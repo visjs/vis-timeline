@@ -1,4 +1,4 @@
-var DataSet = require('../lib/DataSet');
+var { DataSet } = require('vis-data');
 var Timeline = require('../lib/timeline/Timeline');
 
 describe('Timeline', function () {

@@ -1,4 +1,4 @@
-var DataSet = require('../lib/DataSet');
+var { DataSet } = require('vis-data');
 
 module.exports = {
   buildMockItemSet: function() {

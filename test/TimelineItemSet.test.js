@@ -1,5 +1,5 @@
 var assert = require('assert');
-var DataSet = require('../lib/DataSet');
+var { DataSet } = require('vis-data');
 var DateUtil = require('../lib/timeline/DateUtil');
 var Range = require('../lib/timeline/Range');
 var ItemSet = require('../lib/timeline/component/ItemSet');

@@ -31,10 +31,9 @@
     "rollup": "rollup",
     "build:data": "rollup --config rollup.config.data.js",
     "js:network": "rollup --config rollup.config.network.js",
-    "css:network": "concat-glob-cli -f 'lib/{network,shared}/**/*.css' -o dist/vis-network.css",
-    "uglify:css:network": "uglifycss dist/vis-network.css > dist/vis-network.min.css",
-    "images:network": "cpy lib/network/img/* dist/img/network/",
-    "build:network": "npm run js:network && npm run css:network && npm run uglify:css:network && npm run images:network",
+    "css:network": "cpy node_modules/vis-network/dist/*.css dist/",
+    "images:network": "cpy node_modules/vis-network/dist/img/* dist/img/network/",
+    "build:network": "npm run js:network && npm run css:network && npm run images:network",
     "js:graph2d": "rollup --config rollup.config.timeline-graph2d.js",
     "css:graph2d": "concat-glob-cli -f 'lib/{timeline,shared}/**/*.css' -o dist/vis-timeline-graph2d.css",
     "uglify:css:graph2d": "uglifycss dist/vis-timeline-graph2d.css > dist/vis-timeline-graph2d.min.css",
@@ -47,7 +46,6 @@
     "build:all": "npm run js:all && npm run uglify:js:all && npm run css:all && npm run uglify:css:all",
     "build": "npm run build:all && npm run build:data && npm run build:network && npm run build:graph2d && npm run build:graph3d",
     "watch": "npm run css:all && npm run uglify:css:all && rollup --watch --config rollup.config.all.js",
-    "watch-dev": "npm run watch-dev",
     "lint": "eslint '{src,test}/**/*.{m,}{j,t}s{x,}'",
     "clean": "rimraf 'dist/*'",
     "postinstall": "opencollective postinstall || exit 0"
@@ -61,6 +59,7 @@
     "timsort": "^0.3.0",
     "vis-data": "^6.1.0",
     "vis-graph3d": "^5.0.0",
+    "vis-network": "^5.0.0",
     "vis-util": "^1.1.1"
   },
   "devDependencies": {
