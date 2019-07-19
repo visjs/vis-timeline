@@ -21,6 +21,7 @@
     "graph"
   ],
   "main": "./dist/vis-timeline-graph2d.min.js",
+  "module": "./dist/vis-timeline-graph2d.esm.js",
   "scripts": {
     "test": "mocha --exit --require @babel/register",
     "test-cov": "nyc --reporter=lcov mocha --exit --require @babel/register",
