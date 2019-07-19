@@ -28,8 +28,8 @@ of the project.
 <html>
 <head>
   <title>Network</title>
-  <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/dist/vis-timeline.min.js"></script>
-  <link href="https://unpkg.com/vis-timeline@latest/dist/vis-timeline.min.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.js"></script>
+  <link href="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
     #mynetwork {
       width: 600px;
