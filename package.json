@@ -1,54 +1,40 @@
 {
-  "name": "vis",
+  "name": "vis-timeline",
   "version": "5.0.0",
-  "description": "A dynamic, browser-based visualization library.",
-  "homepage": "http://visjs.org/",
+  "description": "Create a fully customizable, interactive timeline with items and ranges.",
+  "homepage": "https://github.com/visjs/vis-timeline",
   "license": "(Apache-2.0 OR MIT)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/almende/vis.git"
+    "url": "git://github.com/visjs/vis-timeline.git"
   },
   "bugs": {
-    "url": "https://github.com/almende/vis/issues"
+    "url": "https://github.com/visjs/vis-timeline/issues"
   },
   "keywords": [
     "vis",
     "visualization",
-    "web based",
-    "browser based",
     "javascript",
     "chart",
     "linechart",
     "timeline",
-    "graph",
-    "network",
-    "browser"
+    "graph"
   ],
-  "main": "./dist/vis.js",
+  "main": "./dist/vis-timeline-graph2d.min.js",
   "scripts": {
     "test": "mocha --exit --require @babel/register",
     "test-cov": "nyc --reporter=lcov mocha --exit --require @babel/register",
-    "rollup": "rollup",
-    "build:data": "rollup --config rollup.config.data.js",
-    "js:network": "rollup --config rollup.config.network.js",
-    "css:network": "cpy node_modules/vis-network/dist/*.css dist/",
-    "images:network": "cpy node_modules/vis-network/dist/img/* dist/img/network/",
-    "build:network": "npm run js:network && npm run css:network && npm run images:network",
-    "js:graph2d": "rollup --config rollup.config.timeline-graph2d.js",
+    "js:graph2d": "rollup --config rollup.config.js",
     "css:graph2d": "concat-glob-cli -f 'lib/{timeline,shared}/**/*.css' -o dist/vis-timeline-graph2d.css",
     "uglify:css:graph2d": "uglifycss dist/vis-timeline-graph2d.css > dist/vis-timeline-graph2d.min.css",
     "build:graph2d": "npm run js:graph2d && npm run css:graph2d && npm run uglify:css:graph2d",
-    "build:graph3d": "rollup --config rollup.config.graph3d.js",
-    "js:all": "rollup --config rollup.config.all.js",
-    "uglify:js:all": "uglifyjs --comments --compress --mangle --output dist/vis.min.js dist/vis.js",
-    "css:all": "concat-glob-cli -f 'lib/**/*.css' -o dist/vis.css",
-    "uglify:css:all": "uglifycss dist/vis.css > dist/vis.min.css",
-    "build:all": "npm run js:all && npm run uglify:js:all && npm run css:all && npm run uglify:css:all",
-    "build": "npm run build:all && npm run build:data && npm run build:network && npm run build:graph2d && npm run build:graph3d",
-    "watch": "npm run css:all && npm run uglify:css:all && rollup --watch --config rollup.config.all.js",
+    "build": "npm run js:graph2d && npm run css:graph2d && npm run uglify:css:graph2d",
+    "watch": "npm run css:graph2d && npm run uglify:css:graph2d && rollup --watch --config rollup.config.js",
     "lint": "eslint '{src,test}/**/*.{m,}{j,t}s{x,}'",
     "clean": "rimraf 'dist/*'",
-    "postinstall": "opencollective postinstall || exit 0"
+    "contributors:update": "git-authors-cli",
+    "postinstall": "opencollective postinstall || exit 0",
+    "preparepublish": "npm run contributors:update"
   },
   "dependencies": {
     "emitter-component": "^1.1.1",
@@ -56,24 +42,20 @@
     "keycharm": "^0.2.0",
     "moment": "^2.20.1",
     "propagating-hammerjs": "^1.4.6",
-    "timsort": "^0.3.0",
     "vis-data": "^6.1.0",
-    "vis-graph3d": "^5.0.0",
-    "vis-network": "^5.0.0",
     "vis-util": "^1.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
-    "clean-css": "^4.1.7",
     "concat-glob-cli": "^0.1.0",
     "cpy-cli": "^2.0.0",
     "eslint": "^4.3.0",
     "jsdoc": "^3.5.5",
     "jsdom": "11.3.0",
     "jsdom-global": "^3.0.2",
-    "merge-stream": "^1.0.1",
+    "git-authors-cli": "^1.0.18",
     "mocha": "^5.2.0",
     "nyc": "^11.2.1",
     "opencollective": "^1.0.3",
@@ -86,11 +68,8 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-sourcemaps": "^0.4.2",
     "rollup-plugin-uglify": "^6.0.2",
-    "sinon": "^4.0.1",
-    "test-console": "^1.0.0",
     "uglify-js": "^3.6.0",
-    "uglifycss": "0.0.29",
-    "uuid": "^3.1.0"
+    "uglifycss": "0.0.29"
   },
   "collective": {
     "type": "opencollective",
