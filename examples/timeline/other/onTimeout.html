@@ -7,7 +7,7 @@
 
 <head>
   <title>Timeline | onTimeout example</title>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
   <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -40,7 +40,7 @@
   var options = {
     stack: true,
     onTimeout: {
-      timeoutMs: 1000,
+      timeoutMs: 10,
       callback: function(callback) {
         var didUserCancel;
         var didUserCancel = confirm("Too many items loaded! Would you like to continue rendering (this might take a while)?");

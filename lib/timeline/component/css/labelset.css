@@ -25,10 +25,8 @@
   cursor: pointer;
 }
 
-.vis-labelset .vis-label.vertical {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
 }
 
 .vis-labelset .vis-label:last-child {
@@ -42,15 +40,4 @@
 
 .vis-labelset .vis-label .vis-inner.vis-hidden {
   padding: 0;
-}
-
-.vis-labelset .vis-label.vertical .vis-inner {
-  padding-top: 0;
-  padding-bottom: 0;
-  white-space: nowrap;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
 }

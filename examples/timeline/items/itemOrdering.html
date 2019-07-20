@@ -12,6 +12,7 @@
     }
   </style>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
   <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
@@ -45,7 +46,7 @@
 
   // Create a DataSet (allows two way data-binding)
   var items = new vis.DataSet();
-  var date = vis.moment('2015-03-02');
+  var date = moment('2015-03-02');
   for (var i = 0; i < 100; i++) {
     date.add(Math.round(Math.random() * 2), 'hour');
     items.add({

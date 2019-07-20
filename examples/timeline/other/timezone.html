@@ -34,7 +34,7 @@
 
 <script type="text/javascript">
   // Create a DataSet (allows two way data-binding)
-  var today = vis.moment(vis.moment.utc().format('YYYY-MM-DDT00:00:00.000Z'));
+  var today = timeline.moment(timeline.moment.utc().format('YYYY-MM-DDT00:00:00.000Z'));
   var start = today.clone();
   var end = today.clone().add(2, 'day');
   var customTime = today.clone().add(28, 'hour');
@@ -59,7 +59,7 @@
     start: start,
     end: end,
     moment: function (date) {
-      return vis.moment(date).utc();
+      return timeline.moment(date).utc();
     }
   });
   timelineUTC.addCustomTime(customTime);
@@ -70,7 +70,7 @@
     start: start,
     end: end,
     moment: function (date) {
-      return vis.moment(date).utcOffset('+08:00');
+      return timeline.moment(date).utcOffset('+08:00');
     }
   });
   timelinePlus8.addCustomTime(customTime);

@@ -18,8 +18,7 @@
     "max-statements": [2, 115],
     "no-unreachable": 1,
     "no-useless-escape": 0,
-    "no-console": 0
-    }
-    // To flag presence of console.log without breaking linting:
-    //"no-console": ["warn", { allow: ["warn", "error"] }],
+    "no-console": 0,
+    "guard-for-in": 1
+  }
 }

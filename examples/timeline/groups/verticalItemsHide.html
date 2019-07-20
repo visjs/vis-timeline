@@ -31,7 +31,6 @@
 <script>
   function showVisibleItems() {
     var a = timeline.getVisibleItems();
-    console.log(a);
     document.getElementById("visibleItemsContainer").innerHTML = ""
     document.getElementById("visibleItemsContainer").innerHTML += a;
   };
@@ -107,7 +106,6 @@
     start: new Date(),
     end: new Date(1000*60*60*24 + (new Date()).valueOf()),
   };
-
 
   // create a Timeline
   var container = document.getElementById('mytimeline');

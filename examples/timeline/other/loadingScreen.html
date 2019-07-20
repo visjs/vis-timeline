@@ -3,7 +3,7 @@
 
 <head>
   <title>Timeline | Loading screen example</title>
-  <script src="http://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
   <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 </head>
@@ -47,6 +47,8 @@
   // create visualization
   var container = document.getElementById('visualization');
   var options = {
+    start: new Date(),
+    end: new Date(100000*60*60*24 + (new Date()).valueOf()),
     loadingScreenTemplate: function() {
       return '<h1>Loading...</h1>'
     }

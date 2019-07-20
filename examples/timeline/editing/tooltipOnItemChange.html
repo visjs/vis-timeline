@@ -2,12 +2,13 @@
 <head>
   <title>Timeline | Tooltip on item onUpdateTime Option</title>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
   <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis.css" rel="stylesheet" type="text/css" />
+  <link href="../../../dist/vis-timeline-graph2d.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
-    .vis-item .vis-onUpdateTime-tooltip {
+    .timeline-item .timeline-onUpdateTime-tooltip {
         border-radius: 4px;
     }
   </style>
@@ -42,7 +43,7 @@
 
  
   for (var order = 0; order < numberOfItems; order++) {
-    var date = vis.moment();
+    var date = moment();
    
 
     date.add(Math.round(Math.random() * 2), 'hour');
