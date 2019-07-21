@@ -7,20 +7,9 @@ http://visjs.org
 In version 5.0.0 the original [vis library](https://github.com/almende/vis) was split up and the whole build process changed.
 
 - feat: remove vis-network sources
-- chore(docs): removed contributors from README
-- chore: remove vis-graph3d sources
-- chore(docs): update opencollective
 - fix: fix postinstall script; #3
-- chore: update ready to show pre-release warning; fixes #3
-- chore: remove vis-uuid dependenciy Its now part of vis-util.
-- chore: use vis-data module
 - feat: generate a unminified vis.js file also
-- chore: move utils to vis-util repository
-- chore: README update
-- chore: add code of conduct
 - use rollup instead of gulp/webpack (#1)
-- chore: updated vis-uuid
-- chore: seperate uuid into its own module
 - fix failing test from ItemSet.js ([#4256](https://github.com/almende/vis/pull/4256))
 - Update ItemSet.js ([#4238](https://github.com/almende/vis/pull/4238))
 - Fixed typo in CONTRIBUTING.md ([#4210](https://github.com/almende/vis/pull/4210))
