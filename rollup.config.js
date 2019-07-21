@@ -5,6 +5,7 @@ import babel from 'rollup-plugin-babel';
 import { uglify } from "rollup-plugin-uglify";
 import banner from 'rollup-plugin-banner';
 import genHeader from './lib/header';
+import css from 'rollup-plugin-css-porter';
 
 export default [{
 	input: 'index.js',
@@ -17,7 +18,10 @@ export default [{
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		banner(genHeader('timeline-graph2d'))
+		banner(genHeader('timeline-graph2d')),
+		css({
+			dest: 'dist/vis-timeline-graph2d.css'
+		}),
 	],
 }, {
 	input: 'index.js',
@@ -33,6 +37,9 @@ export default [{
 		nodeResolve(),
 		babel(),
 		uglify(),
-		banner(genHeader('timeline-graph2d'))
+		banner(genHeader('timeline-graph2d')),
+		css({
+			dest: 'dist/vis-timeline-graph2d.css'
+		})
 	]
 }];

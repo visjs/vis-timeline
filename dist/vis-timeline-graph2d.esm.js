@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  * 
  * @version 5.0.0
- * @date    2019-07-19T20:13:18Z
+ * @date    2019-07-20T22:35:46Z
  * 
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -24924,7 +24924,6 @@ TimeAxis.prototype._calculateCharSize = function () {
 };
 
 var warnedForOverflow = false;
-var TimeAxis_1 = TimeAxis;
 
 var keycharm = createCommonjsModule$1(function (module, exports) {
   /**
@@ -25375,8 +25374,6 @@ function _hasParent(element, parent) {
   return false;
 }
 
-var Activator_1 = Activator;
-
 var locales = createCommonjsModule$1(function (module, exports) {
   // English
   exports['en'] = {
@@ -25701,8 +25698,6 @@ CustomTime.customTimeFromTarget = function (event) {
 
   return null;
 };
-
-var CustomTime_1 = CustomTime;
 
 /**
  * Create a timeline visualization
@@ -26135,14 +26130,14 @@ Core.prototype.setOptions = function (options) {
 
     if (this.options.orientation.axis === 'both') {
       if (!this.timeAxis2) {
-        var timeAxis2 = this.timeAxis2 = new TimeAxis_1(this.body);
+        var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
 
         timeAxis2.setOptions = function (options) {
           var _options = options ? util.extend({}, options) : {};
 
           _options.orientation = 'top'; // override the orientation option, always top
 
-          TimeAxis_1.prototype.setOptions.call(timeAxis2, _options);
+          TimeAxis.prototype.setOptions.call(timeAxis2, _options);
         };
 
         this.components.push(timeAxis2);
@@ -26174,7 +26169,7 @@ Core.prototype.setOptions = function (options) {
     if ('clickToUse' in options) {
       if (options.clickToUse) {
         if (!this.activator) {
-          this.activator = new Activator_1(this.dom.root);
+          this.activator = new Activator(this.dom.root);
         }
       } else {
         if (this.activator) {
@@ -26364,7 +26359,7 @@ Core.prototype.addCustomTime = function (time, id, options) {
     throw new Error('A custom time with id ' + JSON.stringify(id) + ' already exists');
   }
 
-  var customTime = new CustomTime_1(this.body, util.extend({}, this.options, options, {
+  var customTime = new CustomTime(this.body, util.extend({}, this.options, options, {
     time: timestamp,
     id: id
   }));
@@ -27104,8 +27099,6 @@ Core.prototype._getScrollTop = function () {
 Core.prototype._createConfigurator = function () {
   throw new Error('Cannot invoke abstract method _createConfigurator');
 };
-
-var Core_1 = Core;
 
 /**
  * A current time bar
@@ -29193,8 +29186,6 @@ Item.prototype.getTitle = function () {
   return this.data.title;
 };
 
-var Item_1 = Item;
-
 /**
  * @constructor BoxItem
  * @extends Item
@@ -29225,10 +29216,10 @@ function BoxItem(data, conversion, options) {
     }
   }
 
-  Item_1.call(this, data, conversion, options);
+  Item.call(this, data, conversion, options);
 }
 
-BoxItem.prototype = new Item_1(null, null, null);
+BoxItem.prototype = new Item(null, null, null);
 /**
  * Check whether this item is visible inside given range
  * @param {{start: number, end: number}} range with a timestamp for start and end
@@ -29569,10 +29560,10 @@ function PointItem(data, conversion, options) {
     }
   }
 
-  Item_1.call(this, data, conversion, options);
+  Item.call(this, data, conversion, options);
 }
 
-PointItem.prototype = new Item_1(null, null, null);
+PointItem.prototype = new Item(null, null, null);
 /**
  * Check whether this item is visible inside given range
  * @param {{start: number, end: number}} range with a timestamp for start and end
@@ -29842,10 +29833,10 @@ function RangeItem(data, conversion, options) {
     }
   }
 
-  Item_1.call(this, data, conversion, options);
+  Item.call(this, data, conversion, options);
 }
 
-RangeItem.prototype = new Item_1(null, null, null);
+RangeItem.prototype = new Item(null, null, null);
 RangeItem.prototype.baseClassName = 'vis-item vis-range';
 /**
  * Check whether this item is visible inside given range
@@ -30230,10 +30221,10 @@ function BackgroundItem(data, conversion, options) {
     }
   }
 
-  Item_1.call(this, data, conversion, options);
+  Item.call(this, data, conversion, options);
 }
 
-BackgroundItem.prototype = new Item_1(null, null, null);
+BackgroundItem.prototype = new Item(null, null, null);
 BackgroundItem.prototype.baseClassName = 'vis-item vis-background';
 BackgroundItem.prototype.stack = false;
 /**
@@ -30421,6 +30412,7 @@ var BackgroundItem_1 = BackgroundItem;
 /**
  * Popup is a class to create a popup window with some text
  */
+
 var Popup =
 /*#__PURE__*/
 function () {
@@ -30568,9 +30560,6 @@ function () {
   return Popup;
 }();
 
-var DataSet$1 = index.DataSet;
-var DataView$1 = index.DataView;
-var Popup$1 = Popup.default;
 var UNGROUPED = '__ungrouped__'; // reserved group id for ungrouped items
 
 var BACKGROUND = '__background__'; // reserved group id for background items without group
@@ -31431,7 +31420,7 @@ ItemSet.prototype.setItems = function (items) {
 
   if (!items) {
     this.itemsData = null;
-  } else if (items instanceof DataSet$1 || items instanceof DataView$1) {
+  } else if (items instanceof DataSet || items instanceof DataView) {
     this.itemsData = items;
   } else {
     throw new TypeError('Data must be an instance of DataSet or DataView');
@@ -31501,7 +31490,7 @@ ItemSet.prototype.setGroups = function (groups) {
 
   if (!groups) {
     this.groupsData = null;
-  } else if (groups instanceof DataSet$1 || groups instanceof DataView$1) {
+  } else if (groups instanceof DataSet || groups instanceof DataView) {
     this.groupsData = groups;
   } else {
     throw new TypeError('Data must be an instance of DataSet or DataView');
@@ -31511,7 +31500,7 @@ ItemSet.prototype.setGroups = function (groups) {
     // go over all groups nesting
     var groupsData = this.groupsData;
 
-    if (this.groupsData instanceof DataView$1) {
+    if (this.groupsData instanceof DataView) {
       groupsData = this.groupsData.getDataSet();
     }
 
@@ -32399,7 +32388,7 @@ ItemSet.prototype._onGroupDrag = function (event) {
     event.stopPropagation();
     var groupsData = this.groupsData;
 
-    if (this.groupsData instanceof DataView$1) {
+    if (this.groupsData instanceof DataView) {
       groupsData = this.groupsData.getDataSet();
     } // drag from one group to another
 
@@ -32599,7 +32588,7 @@ ItemSet.prototype._onMouseOver = function (event) {
 
   if (this.options.showTooltips && title) {
     if (this.popup == null) {
-      this.popup = new Popup$1(this.body.dom.root, this.options.tooltip.overflowMethod || 'flip');
+      this.popup = new Popup(this.body.dom.root, this.options.tooltip.overflowMethod || 'flip');
     }
 
     this.popup.setText(title);
@@ -33025,8 +33014,6 @@ ItemSet.prototype._cloneItemData = function (itemData, type) {
 
   return clone;
 };
-
-var ItemSet_1 = ItemSet;
 
 var errorFound = false;
 var allOptions;
@@ -35695,8 +35682,8 @@ function () {
   return Configurator;
 }();
 
-var DataSet$2 = index.DataSet;
-var DataView$2 = index.DataView;
+var DataSet$1 = index.DataSet;
+var DataView$1 = index.DataView;
 var Validator$2 = Validator$1.Validator;
 var printStyle$1 = Validator$1.printStyle;
 var allOptions$2 = optionsTimeline.allOptions;
@@ -35721,7 +35708,7 @@ function Timeline(container, items, groups, options) {
   } // if the third element is options, the forth is groups (optionally);
 
 
-  if (!(Array.isArray(groups) || groups instanceof DataSet$2 || groups instanceof DataView$2) && groups instanceof Object) {
+  if (!(Array.isArray(groups) || groups instanceof DataSet$1 || groups instanceof DataView$1) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -35823,7 +35810,7 @@ function Timeline(container, items, groups, options) {
   this.components.push(this.range);
   this.body.range = this.range; // time axis
 
-  this.timeAxis = new TimeAxis_1(this.body, this.options);
+  this.timeAxis = new TimeAxis(this.body, this.options);
   this.timeAxis2 = null; // used in case of orientation option 'both'
 
   this.components.push(this.timeAxis); // current time bar
@@ -35831,7 +35818,7 @@ function Timeline(container, items, groups, options) {
   this.currentTime = new CurrentTime_1(this.body, this.options);
   this.components.push(this.currentTime); // item set
 
-  this.itemSet = new ItemSet_1(this.body, this.options);
+  this.itemSet = new ItemSet(this.body, this.options);
   this.components.push(this.itemSet);
   this.itemsData = null; // DataSet
 
@@ -35940,7 +35927,7 @@ function Timeline(container, items, groups, options) {
 } // Extend the functionality from Core
 
 
-Timeline.prototype = new Core_1();
+Timeline.prototype = new Core();
 /**
  * Load a configurator
  * @return {Object}
@@ -35975,7 +35962,7 @@ Timeline.prototype.setOptions = function (options) {
     console.log('%cErrors have been found in the supplied options object.', printStyle$1);
   }
 
-  Core_1.prototype.setOptions.call(this, options);
+  Core.prototype.setOptions.call(this, options);
 
   if ('type' in options) {
     if (options.type !== this.options.type) {
@@ -36007,11 +35994,11 @@ Timeline.prototype.setItems = function (items) {
 
   if (!items) {
     newDataSet = null;
-  } else if (items instanceof DataSet$2 || items instanceof DataView$2) {
+  } else if (items instanceof DataSet$1 || items instanceof DataView$1) {
     newDataSet = items;
   } else {
     // turn an array into a dataset
-    newDataSet = new DataSet$2(items, {
+    newDataSet = new DataSet$1(items, {
       type: {
         start: 'Date',
         end: 'Date'
@@ -36040,13 +36027,13 @@ Timeline.prototype.setGroups = function (groups) {
       return group.visible !== false;
     };
 
-    if (groups instanceof DataSet$2 || groups instanceof DataView$2) {
-      newDataSet = new DataView$2(groups, {
+    if (groups instanceof DataSet$1 || groups instanceof DataView$1) {
+      newDataSet = new DataView$1(groups, {
         filter: filter
       });
     } else {
       // turn an array into a dataset
-      newDataSet = new DataSet$2(groups.filter(filter));
+      newDataSet = new DataSet$1(groups.filter(filter));
     }
   }
 
@@ -36469,7 +36456,7 @@ Timeline.prototype.getEventProperties = function (event) {
   var y = clientY - util.getAbsoluteTop(this.dom.centerContainer);
   var item = this.itemSet.itemFromTarget(event);
   var group = this.itemSet.groupFromTarget(event);
-  var customTime = CustomTime_1.customTimeFromTarget(event);
+  var customTime = CustomTime.customTimeFromTarget(event);
   var snap = this.itemSet.options.snap || null;
   var scale = this.body.util.getScale();
   var step = this.body.util.getStep();
@@ -37360,8 +37347,6 @@ DataAxis.prototype._calculateCharSize = function () {
     this.dom.frame.removeChild(measureCharTitle);
   }
 };
-
-var DataAxis_1 = DataAxis;
 
 /**
  *
@@ -38456,8 +38441,8 @@ Legend.prototype.drawLegendIcons = function () {
 
 var Legend_1 = Legend;
 
-var DataSet$3 = index.DataSet;
-var DataView$3 = index.DataView;
+var DataSet$2 = index.DataSet;
+var DataView$2 = index.DataView;
 var UNGROUPED$1 = '__ungrouped__'; // reserved group id for ungrouped items
 
 /**
@@ -38602,9 +38587,9 @@ LineGraph.prototype._create = function () {
   frame.appendChild(this.svg); // data axis
 
   this.options.dataAxis.orientation = 'left';
-  this.yAxisLeft = new DataAxis_1(this.body, this.options.dataAxis, this.svg, this.options.groups);
+  this.yAxisLeft = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
   this.options.dataAxis.orientation = 'right';
-  this.yAxisRight = new DataAxis_1(this.body, this.options.dataAxis, this.svg, this.options.groups);
+  this.yAxisRight = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
   delete this.options.dataAxis.orientation; // legends
 
   this.legendLeft = new Legend_1(this.body, this.options.legend, 'left', this.options.groups);
@@ -38714,7 +38699,7 @@ LineGraph.prototype.setItems = function (items) {
 
   if (!items) {
     this.itemsData = null;
-  } else if (items instanceof DataSet$3 || items instanceof DataView$3) {
+  } else if (items instanceof DataSet$2 || items instanceof DataView$2) {
     this.itemsData = items;
   } else {
     throw new TypeError('Data must be an instance of DataSet or DataView');
@@ -38769,7 +38754,7 @@ LineGraph.prototype.setGroups = function (groups) {
 
   if (!groups) {
     this.groupsData = null;
-  } else if (groups instanceof DataSet$3 || groups instanceof DataView$3) {
+  } else if (groups instanceof DataSet$2 || groups instanceof DataView$2) {
     this.groupsData = groups;
   } else {
     throw new TypeError('Data must be an instance of DataSet or DataView');
@@ -40243,8 +40228,8 @@ var optionsGraph2d = /*#__PURE__*/Object.freeze({
   configureOptions: configureOptions$2
 });
 
-var DataSet$4 = index.DataSet;
-var DataView$4 = index.DataView;
+var DataSet$3 = index.DataSet;
+var DataView$3 = index.DataView;
 var Validator$3 = Validator$1.Validator;
 var printStyle$2 = Validator$1.printStyle;
 var allOptions$4 = optionsGraph2d.allOptions;
@@ -40262,7 +40247,7 @@ var Configurator$2 = Configurator.default;
 
 function Graph2d(container, items, groups, options) {
   // if the third element is options, the forth is groups (optionally);
-  if (!(Array.isArray(groups) || groups instanceof DataSet$4 || groups instanceof DataView$4) && groups instanceof Object) {
+  if (!(Array.isArray(groups) || groups instanceof DataSet$3 || groups instanceof DataView$3) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -40319,7 +40304,7 @@ function Graph2d(container, items, groups, options) {
   this.components.push(this.range);
   this.body.range = this.range; // time axis
 
-  this.timeAxis = new TimeAxis_1(this.body);
+  this.timeAxis = new TimeAxis(this.body);
   this.components.push(this.timeAxis); //this.body.util.snap = this.timeAxis.snap.bind(this.timeAxis);
   // current time bar
 
@@ -40401,7 +40386,7 @@ function Graph2d(container, items, groups, options) {
 } // Extend the functionality from Core
 
 
-Graph2d.prototype = new Core_1();
+Graph2d.prototype = new Core();
 
 Graph2d.prototype.setOptions = function (options) {
   // validate options
@@ -40411,7 +40396,7 @@ Graph2d.prototype.setOptions = function (options) {
     console.log('%cErrors have been found in the supplied options object.', printStyle$2);
   }
 
-  Core_1.prototype.setOptions.call(this, options);
+  Core.prototype.setOptions.call(this, options);
 };
 /**
  * Set items
@@ -40426,11 +40411,11 @@ Graph2d.prototype.setItems = function (items) {
 
   if (!items) {
     newDataSet = null;
-  } else if (items instanceof DataSet$4 || items instanceof DataView$4) {
+  } else if (items instanceof DataSet$3 || items instanceof DataView$3) {
     newDataSet = items;
   } else {
     // turn an array into a dataset
-    newDataSet = new DataSet$4(items, {
+    newDataSet = new DataSet$3(items, {
       type: {
         start: 'Date',
         end: 'Date'
@@ -40468,11 +40453,11 @@ Graph2d.prototype.setGroups = function (groups) {
 
   if (!groups) {
     newDataSet = null;
-  } else if (groups instanceof DataSet$4 || groups instanceof DataView$4) {
+  } else if (groups instanceof DataSet$3 || groups instanceof DataView$3) {
     newDataSet = groups;
   } else {
     // turn an array into a dataset
-    newDataSet = new DataSet$4(groups);
+    newDataSet = new DataSet$3(groups);
   }
 
   this.groupsData = newDataSet;
@@ -40562,7 +40547,7 @@ Graph2d.prototype.getEventProperties = function (event) {
 
   var time = this._toTime(x);
 
-  var customTime = CustomTime_1.customTimeFromTarget(event);
+  var customTime = CustomTime.customTimeFromTarget(event);
   var element = util.getTarget(event);
   var what = null;
 
@@ -40625,24 +40610,24 @@ var Graph2d_1 = Graph2d;
 var util_1 = util;
 var DOMutil$1 = DOMutil; // data
 
-var DataSet$5 = index.DataSet,
-    DataView$5 = index.DataView,
+var DataSet$4 = index.DataSet,
+    DataView$4 = index.DataView,
     Queue$1 = index.Queue;
-var DataSet_1 = DataSet$5;
-var DataView_1 = DataView$5;
+var DataSet_1 = DataSet$4;
+var DataView_1 = DataView$4;
 var Queue_1 = Queue$1; // Timeline
 
 var Timeline$1 = Timeline_1;
 var Graph2d$1 = Graph2d_1;
 var timeline = {
-  Core: Core_1,
+  Core: Core,
   DateUtil: DateUtil,
   Range: Range_1,
   stack: Stack,
   TimeStep: TimeStep_1,
   components: {
     items: {
-      Item: Item_1,
+      Item: Item,
       BackgroundItem: BackgroundItem_1,
       BoxItem: BoxItem_1,
       PointItem: PointItem_1,
@@ -40651,15 +40636,15 @@ var timeline = {
     BackgroundGroup: BackgroundGroup_1,
     Component: Component_1,
     CurrentTime: CurrentTime_1,
-    CustomTime: CustomTime_1,
-    DataAxis: DataAxis_1,
+    CustomTime: CustomTime,
+    DataAxis: DataAxis,
     DataScale: DataScale_1,
     GraphGroup: GraphGroup_1,
     Group: Group_1,
-    ItemSet: ItemSet_1,
+    ItemSet: ItemSet,
     Legend: Legend_1,
     LineGraph: LineGraph_1,
-    TimeAxis: TimeAxis_1
+    TimeAxis: TimeAxis
   }
 }; // bundled external libraries
 
