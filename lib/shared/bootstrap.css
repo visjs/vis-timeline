@@ -1,6 +1,6 @@
 /* override some bootstrap styles screwing up the timelines css */
 
-.timeline [class*="span"] {
+.vis [class*="span"] {
   min-height: 0;
   width: auto;
 }
