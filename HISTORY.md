@@ -1,6 +1,61 @@
-# vis.js history
+# vis-timeline
+
 http://visjs.org
 
+## 2019-07-19, version 5.0.0
+
+In version 5.0.0 the original [vis library](https://github.com/almende/vis) was split up and the whole build process changed.
+
+- feat: remove vis-network sources
+- fix: fix postinstall script; #3
+- feat: generate a unminified vis.js file also
+- use rollup instead of gulp/webpack (#1)
+- fix failing test from ItemSet.js ([#4256](https://github.com/almende/vis/pull/4256))
+- Update ItemSet.js ([#4238](https://github.com/almende/vis/pull/4238))
+- Fixed typo in CONTRIBUTING.md ([#4210](https://github.com/almende/vis/pull/4210))
+- Fix ordering for arbitrarily nested groups ([#3990](https://github.com/almende/vis/pull/3990))
+- Fixed the two broken references to SweetAlert ([#3943](https://github.com/almende/vis/pull/3943))
+- Fix visibility of scale lines after toggling left axis groups ([#3936](https://github.com/almende/vis/pull/3936))
+- Normalize mouse wheel deltas ([#3911](https://github.com/almende/vis/pull/3911))
+- Replace babel-preset-es2015 with babel-preset-env ([#3978](https://github.com/almende/vis/pull/3978))
+- customeTime additional editable=false functionality. ([#3816](https://github.com/almende/vis/pull/3816))
+- Allow normal page scrolling over timeline ([#3818](https://github.com/almende/vis/pull/3818))
+- update moment to last version ([#3819](https://github.com/almende/vis/pull/3819))
+- Add russian locale to timeline ([#3783](https://github.com/almende/vis/pull/3783))
+- [Timeline] Vertical group labels ([#3795](https://github.com/almende/vis/pull/3795))
+- [Timeline] Year quarters ([#3717](https://github.com/almende/vis/pull/3717))
+- [Timeline] Fix react integration, fix content applying mechanics ([#3760](https://github.com/almende/vis/pull/3760))
+- Update Graph2d.js ([#3738](https://github.com/almende/vis/pull/3738))
+- [Timeline] Align current time ([#3718](https://github.com/almende/vis/pull/3718))
+- fix: silently ignore a verticle animation when no item ([#3757](https://github.com/almende/vis/pull/3757))
+- fixed memory leak because eventlisteners weren't destroyed ([#3728](https://github.com/almende/vis/pull/3728))
+- [Timeline] Group height mode ([#3670](https://github.com/almende/vis/pull/3670))
+- Fix zooming bug ([#3715](https://github.com/almende/vis/pull/3715))
+- Documented isActive() ([#3704](https://github.com/almende/vis/pull/3704))
+- add localization for Ukraine ([#3699](https://github.com/almende/vis/pull/3699))
+- onTimeout function ([#3602](https://github.com/almende/vis/pull/3602))
+- implementation of visibleGroups with a proper example ([#3674](https://github.com/almende/vis/pull/3674))
+- Opencollective ([#3681](https://github.com/almende/vis/pull/3681))
+- Fix rolling mode ([#3663](https://github.com/almende/vis/pull/3663))
+- Fix initial load when options start and end are not defined ([#3664](https://github.com/almende/vis/pull/3664))
+- BUGFIX: No group info returned to mouse events when cursorY == group top ([#3652](https://github.com/almende/vis/pull/3652))
+- Fixes issue 3321 by ensuring labels are drawn as part of initial cons… ([#3646](https://github.com/almende/vis/pull/3646))
+- Prevent items from being repeatedly redrawn while off screen ([#3633](https://github.com/almende/vis/pull/3633))
+- Adding unit tests for lib/shared ([#3600](https://github.com/almende/vis/pull/3600))
+- Adds code-cov to develop and updates readme. ([#3629](https://github.com/almende/vis/pull/3629))
+- Docs : fixes and enhancements for the documentation template. ([#3596](https://github.com/almende/vis/pull/3596))
+- Fix currentTimeTick table in docs ([#3627](https://github.com/almende/vis/pull/3627))
+- Unit tests: upgrade jsdom to v11 to fix breaking unit tests for Network ([#3603](https://github.com/almende/vis/pull/3603))
+- Moved navbar elements in all html documentation files to partial ([#3604](https://github.com/almende/vis/pull/3604))
+-  Docs: Moved end block in all html documentation files to partial ([#3597](https://github.com/almende/vis/pull/3597))
+- Network: force array order when sorting hierarchical levels ([#3576](https://github.com/almende/vis/pull/3576))
+- Add template for document generation with 'jsdoc'. ([#3497](https://github.com/almende/vis/pull/3497))
+- Week scale - enhance and add to auto-scaling ([#3549](https://github.com/almende/vis/pull/3549))
+- Adds code coverage report the output of `npm test` and adds detailed … ([#3575](https://github.com/almende/vis/pull/3575))
+- Loading screen template ([#3537](https://github.com/almende/vis/pull/3537))
+- Removing duplicate line ([#3578](https://github.com/almende/vis/pull/3578))
+- Fix for majorLabels showing wrong dates ([#3573](https://github.com/almende/vis/pull/3573))
+- Use mock canvas object replacing `canvas` ([#3518](https://github.com/almende/vis/pull/3518))
 
 ## 2017-10-12, version 4.21.0
 

@@ -1,5 +1,5 @@
 // utils
-var util = require('vis-util');
+import util from 'vis-util';
 exports.util = util;
 exports.DOMutil = require('./lib/DOMutil');
 
