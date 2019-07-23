@@ -81,6 +81,16 @@ Then, the project can be build running:
 
     $ npm run build
 
+### Excluding external dependencies
+
+External dependencies such as moment, hammerjs can be excluded in the build by running:
+
+    $ npm run build -- -e [comma separated module names]
+
+Example:
+
+    $ npm run build -- -e moment,hammerjs
+
 ## Test
 
 To test the library, install the project dependencies once:
