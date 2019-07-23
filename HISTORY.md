@@ -2,6 +2,51 @@
 
 http://visjs.org
 
+## 2019-07-19, version 6.0.0
+
+In version 6.0.0, [timeline-plus](https://github.com/yotamberk/timeline-plus) features and PRs were reimplemented to this branch
+
+- fix: performance issue from vis 4.17
+- feat: allow settimg title for customtime bar [timeline-plus#36](https://github.com/yotamberk/timeline-plus/pull/36)
+- fix: text overlay bug - issue [visjs#3041](https://github.com/almende/vis/issues/3041)
+- fix: 3rd level nesting [timeline-plus#33](https://github.com/yotamberk/timeline-plus/pull/33)
+- fix: page scrolling over timeline [visjs#4143](https://github.com/almende/vis/issues/4143) - thanks to @Justabug
+- feat: React16 support  
+- fix: custom time in rtl mode [visjs#4156](https://github.com/almende/vis/issues/4156) - thanks to @noafichman
+- fix: parenthesis type [visjs#4153](https://github.com/almende/vis/issues/4153) - thanks to @Antoine38660
+- fix: remove deprecated options [timeline-plus#72](https://github.com/yotamberk/timeline-plus/pull/72)
+- fix: Firefox scroll issue [timeline-plus#73](https://github.com/yotamberk/timeline-plus/pull/73)
+- feat: option to prefer zooming on scrolling [timeline-plus#85](https://github.com/yotamberk/timeline-plus/pull/85) - thanks to @yuvzaz  
+- feat: clustering POC [timeline-plus#87](https://github.com/yotamberk/timeline-plus/pull/87) - thanks to @konsvarl  
+- fix: groups height never decreases [timeline-plus#92](https://github.com/yotamberk/timeline-plus/pull/92) - thanks to @konsvarl  
+- feat: add zoomFriction option [timeline-plus#106](https://github.com/yotamberk/timeline-plus/pull/106)
+- fix: unselect only ids of items that are not selected anymore [timeline-plus#109](https://github.com/yotamberk/timeline-plus/pull/109)
+- fix: double tap item bug [timeline-plus#110](https://github.com/yotamberk/timeline-plus/pull/110)
+- fix: delayed tooltip popup - issue [visjs#4077](https://github.com/almende/vis/issues/4077)
+- feat: add ability to disable fit on cluster double click [timeline-plus#125](https://github.com/yotamberk/timeline-plus/pull/125) - thanks to @konsvarl 
+- fix: reordering items not working correctly [timeline-plus#126](https://github.com/yotamberk/timeline-plus/pull/126) - thanks to @pmsandhu
+- fix: timeline Tooltips still visible after deleting an item [timeline-plus#128](https://github.com/yotamberk/timeline-plus/pull/128) - thanks to @javdome
+- fix: cluster visibility doesn't rely on content width [timeline-plus#132](https://github.com/yotamberk/timeline-plus/pull/132) - thanks to @konsvarl
+- feat: cluster fit on double click option [timeline-plus#133](https://github.com/yotamberk/timeline-plus/pull/133) - thanks to @konsvarl
+- feat: week plotting stuff [timeline-plus#135](https://github.com/yotamberk/timeline-plus/pull/135) - thanks to @marcortw
+- fix: fix configurator error [timeline-plus#136](https://github.com/yotamberk/timeline-plus/pull/136) - thanks to @sbusch
+- feat: pure CSS-based indentation of group levels [timeline-plus#137](https://github.com/yotamberk/timeline-plus/pull/137) - thanks to @sbusch
+- feat: tooltip templates [timeline-plus#141](https://github.com/yotamberk/timeline-plus/pull/141) - thanks to @sbusch
+- fix: use reserved group IDs instead of hardcoded strings [timeline-plus#143](https://github.com/yotamberk/timeline-plus/pull/143) - thanks to @sbusch
+- feat: allow a tooltip delay of 0 ms [timeline-plus#144](https://github.com/yotamberk/timeline-plus/pull/144) - thanks to @sbusch
+- feat: allow `shiftKey` for `zoomKey` option [timeline-plus#145](https://github.com/yotamberk/timeline-plus/pull/145) - thanks to @sbusch
+- fix: cleaned Commits for Unit Tests, added testing suites to deps [timeline-plus#150](https://github.com/yotamberk/timeline-plus/pull/150) - thanks to @mstr3336
+- fix: events for labels of groups with nestedGroups [timeline-plus#154](https://github.com/yotamberk/timeline-plus/pull/154) - thanks to @sbusch
+- fix: drag threshold directions [visjs#3003](https://github.com/almende/vis/issues/3003) - thanks to @daRoof
+- fix: replaced top, left right bounding rects to single function [timeline-plus#160](https://github.com/yotamberk/timeline-plus/pull/160) - thanks to @jarnovanrhijn
+- fix: avoid babel polyfill collision when loaded multiple times [timeline-plus#164](https://github.com/yotamberk/timeline-plus/pull/164) - thanks to @apwidejulien
+- fix: minorLabels can't be formatted differently when there are multiple timelines in one page [timeline-plus#165](https://github.com/yotamberk/timeline-plus/pull/165) - thanks to @RylandCai
+- fix: performance improvements [timeline-plus#168](https://github.com/yotamberk/timeline-plus/pull/168) - SPECIAL thanks to @jarnovanrhijn
+- fix: change return conditions in onUpdate [timeline-plus#170](https://github.com/yotamberk/timeline-plus/pull/170) - thanks to @javdome
+- fix: press and drag selected item [timeline-plus#173](https://github.com/yotamberk/timeline-plus/pull/173) - thanks to @daRoof
+- fix: build scripts [timeline-plus#178](https://github.com/yotamberk/timeline-plus/pull/178) - thanks to @apwidejulien
+
+
 ## 2019-07-19, version 5.0.0
 
 In version 5.0.0 the original [vis library](https://github.com/almende/vis) was split up and the whole build process changed.
