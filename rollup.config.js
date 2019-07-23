@@ -7,11 +7,17 @@ import banner from 'rollup-plugin-banner';
 import genHeader from './lib/header';
 import css from 'rollup-plugin-css-porter';
 
+const GLOBALS = {
+	moment: "moment",
+	hammerjs: "hammerjs"
+};
+
 export default [{
 	input: 'index.js',
 	output: {
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
+		globals: GLOBALS
 	},
 	plugins: [
 		commonjs(),
@@ -29,7 +35,8 @@ export default [{
 		file: 'dist/vis-timeline-graph2d.min.js',
 		name: 'vis',
 		exports: 'default',
-		format: 'umd'
+		format: 'umd',
+    globals: GLOBALS
 	},
 	plugins: [
 		commonjs(),
