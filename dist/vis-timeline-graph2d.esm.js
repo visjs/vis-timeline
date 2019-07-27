@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  * 
  * @version 5.0.0
- * @date    2019-07-23T17:49:10Z
+ * @date    2019-07-27T11:53:15Z
  * 
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -27815,9 +27815,18 @@ var stack$1 = /*#__PURE__*/Object.freeze({
   collisionByTimes: collisionByTimes
 });
 
-/**
- * @constructor Group
- */
+var UNGROUPED = '__ungrouped__'; // reserved group id for ungrouped items
+
+var BACKGROUND = '__background__'; // reserved group id for background items without group
+
+var ReservedGroupIds = {
+  UNGROUPED: UNGROUPED,
+  BACKGROUND: BACKGROUND
+  /**
+   * @constructor Group
+   */
+
+};
 
 var Group =
 /*#__PURE__*/
@@ -31739,6 +31748,19 @@ function (_Item) {
 
 ClusterItem.prototype.baseClassName = 'vis-item vis-range vis-cluster';
 
+var UNGROUPED$1 = '__ungrouped__'; // reserved group id for ungrouped items
+
+var BACKGROUND$1 = '__background__'; // reserved group id for background items without group
+
+var ReservedGroupIds$1 = {
+  UNGROUPED: UNGROUPED$1,
+  BACKGROUND: BACKGROUND$1
+  /**
+   * An Cluster generator generates cluster items
+   */
+
+};
+
 var ClusterGenerator =
 /*#__PURE__*/
 function () {
@@ -31755,11 +31777,11 @@ function () {
     this.cache[-1] = [];
   }
   /**
-   * 
-   * @param {Object} data             Object containing parameters start content, className.
+   * @param {Object} itemData             Object containing parameters start content, className.
    * @param {{toScreen: function, toTime: function}} conversion
    *                                  Conversion functions from time to screen and vice versa
    * @param {Object} [options]        Configuration options
+   * @return {Object} newItem
   */
 
 
@@ -31803,10 +31825,10 @@ function () {
       this.applyOnChangedLevel = false;
     }
     /**
-     * Cluster the events which are too close together
-     * @param {{maxItems: number, clusterCriteria: function, titleTemplate: string}} options 
+     * Cluster the items which are too close together
+     * @param {oldClusters: {maxItems: number, clusterCriteria: function, titleTemplate: string}} options 
      * @param {scale: number} scale      The scale of the current window : (windowWidth / (endDate - startDate)) 
-     * @return {Item[]} clusters
+     * @return {clusters: array} clusters
     */
 
   }, {
@@ -31916,7 +31938,7 @@ function () {
                 }
 
                 var groupId = this.itemSet.getGroupId(item.data);
-                var group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds.UNGROUPED];
+                var group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds$1.UNGROUPED];
 
                 var cluster = this._getClusterForItems(clusterItems, group, oldClusters, options);
 
@@ -31985,6 +32007,11 @@ function () {
     /**
      * Create new cluster or return existing
      * @private
+     * @param {clusterItems: array} clusterItems    
+     * @param {group: object} group 
+     * @param {oldClusters: array} oldClusters 
+     * @param {options: object} options 
+     * @returns {cluster: object} cluster
      */
 
   }, {
@@ -32098,20 +32125,9 @@ function () {
   return ClusterGenerator;
 }();
 
-var UNGROUPED = '__ungrouped__'; // reserved group id for ungrouped items
+var UNGROUPED$2 = '__ungrouped__'; // reserved group id for ungrouped items
 
-var BACKGROUND = '__background__'; // reserved group id for background items without group
-
-var ReservedGroupIds = {
-  UNGROUPED: UNGROUPED,
-  BACKGROUND: BACKGROUND
-  /**
-   * An ItemSet holds a set of items and ranges which can be displayed in a
-   * range. The width is determined by the parent of the ItemSet, and the height
-   * is determined by the size of the items.
-   */
-
-};
+var BACKGROUND$2 = '__background__'; // reserved group id for background items without group
 
 var ItemSet =
 /*#__PURE__*/
@@ -32381,9 +32397,9 @@ function (_Component) {
       this._updateUngrouped(); // create background Group
 
 
-      var backgroundGroup = new BackgroundGroup(BACKGROUND, null, this);
+      var backgroundGroup = new BackgroundGroup(BACKGROUND$2, null, this);
       backgroundGroup.show();
-      this.groups[BACKGROUND] = backgroundGroup; // attach event listeners
+      this.groups[BACKGROUND$2] = backgroundGroup; // attach event listeners
       // Note: we bind to the centerContainer for the case where the height
       //       of the center container is larger than of the ItemSet, so we
       //       can click in the empty area to create a new item or deselect an item.
@@ -32639,7 +32655,7 @@ function (_Component) {
 
         if (options.restackGroups) {
           util.forEach(this.groups, function (group, key) {
-            if (key === BACKGROUND) return;
+            if (key === BACKGROUND$2) return;
             group.stackDirty = true;
           });
         }
@@ -33006,12 +33022,12 @@ function (_Component) {
       var height = 0;
       var minHeight = margin.axis + margin.item.vertical; // redraw the background group
 
-      this.groups[BACKGROUND].redraw(range, nonFirstMargin, forceRestack);
+      this.groups[BACKGROUND$2].redraw(range, nonFirstMargin, forceRestack);
       var redrawQueue = {};
       var redrawQueueLength = 0; // collect redraw functions
 
       util.forEach(this.groups, function (group, key) {
-        if (key === BACKGROUND) return;
+        if (key === BACKGROUND$2) return;
         var groupMargin = group == firstGroup ? firstMargin : nonFirstMargin;
         var returnQueue = true;
         redrawQueue[key] = group.redraw(range, groupMargin, forceRestack, returnQueue);
@@ -33035,7 +33051,7 @@ function (_Component) {
 
 
           util.forEach(_this4.groups, function (group, key) {
-            if (key === BACKGROUND) return;
+            if (key === BACKGROUND$2) return;
             var groupResized = redrawResults[key];
             resized = groupResized || resized;
             height += group.height;
@@ -33075,7 +33091,7 @@ function (_Component) {
     value: function _firstGroup() {
       var firstGroupIndex = this.options.orientation.item == 'top' ? 0 : this.groupIds.length - 1;
       var firstGroupId = this.groupIds[firstGroupIndex];
-      var firstGroup = this.groups[firstGroupId] || this.groups[UNGROUPED];
+      var firstGroup = this.groups[firstGroupId] || this.groups[UNGROUPED$2];
       return firstGroup || null;
     }
     /**
@@ -33087,7 +33103,7 @@ function (_Component) {
   }, {
     key: "_updateUngrouped",
     value: function _updateUngrouped() {
-      var ungrouped = this.groups[UNGROUPED];
+      var ungrouped = this.groups[UNGROUPED$2];
       var item;
       var itemId;
 
@@ -33095,7 +33111,7 @@ function (_Component) {
         // remove the group holding all ungrouped items
         if (ungrouped) {
           ungrouped.hide();
-          delete this.groups[UNGROUPED];
+          delete this.groups[UNGROUPED$2];
 
           for (itemId in this.items) {
             if (this.items.hasOwnProperty(itemId)) {
@@ -33113,7 +33129,7 @@ function (_Component) {
           var id = null;
           var data = null;
           ungrouped = new Group(id, data, this);
-          this.groups[UNGROUPED] = ungrouped;
+          this.groups[UNGROUPED$2] = ungrouped;
 
           for (itemId in this.items) {
             if (this.items.hasOwnProperty(itemId)) {
@@ -33340,9 +33356,9 @@ function (_Component) {
       var type = this._getType(itemData);
 
       if (type == 'background' && itemData.group == undefined) {
-        return BACKGROUND;
+        return BACKGROUND$2;
       } else {
-        return this.groupsData ? itemData.group : UNGROUPED;
+        return this.groupsData ? itemData.group : UNGROUPED$2;
       }
     }
     /**
@@ -33482,7 +33498,7 @@ function (_Component) {
 
         if (!group) {
           // check for reserved ids
-          if (id == UNGROUPED || id == BACKGROUND) {
+          if (id == UNGROUPED$2 || id == BACKGROUND$2) {
             throw new Error("Illegal group id. ".concat(id, " is a reserved id."));
           }
 
@@ -40582,7 +40598,7 @@ Legend.prototype.drawLegendIcons = function () {
   }
 };
 
-var UNGROUPED$1 = '__ungrouped__'; // reserved group id for ungrouped items
+var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
 
 /**
  * This is the constructor of the LineGraph. It requires a Timeline body and options.
@@ -40789,8 +40805,8 @@ LineGraph.prototype.setOptions = function (options) {
       }
     }
 
-    if (this.groups.hasOwnProperty(UNGROUPED$1)) {
-      this.groups[UNGROUPED$1].setOptions(options);
+    if (this.groups.hasOwnProperty(UNGROUPED$3)) {
+      this.groups[UNGROUPED$3].setOptions(options);
     }
   } // this is used to redraw the graph if the visibility of the groups is changed.
 
@@ -41041,7 +41057,7 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       var groupId = item.group;
 
       if (groupId === null || groupId === undefined) {
-        groupId = UNGROUPED$1;
+        groupId = UNGROUPED$3;
       }
 
       groupCounts.hasOwnProperty(groupId) ? groupCounts[groupId]++ : groupCounts[groupId] = 1;
@@ -41075,7 +41091,7 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       groupId = item.group;
 
       if (groupId === null || groupId === undefined) {
-        groupId = UNGROUPED$1;
+        groupId = UNGROUPED$3;
       }
 
       if (!groupIds && ids && item[fieldId] !== idMap[item[fieldId]] && existingItemsMap.hasOwnProperty(item[fieldId])) {
