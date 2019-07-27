@@ -1,7 +1,6 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
-import sourcemaps from 'rollup-plugin-sourcemaps';
 import babel from 'rollup-plugin-babel';
 import { uglify } from "rollup-plugin-uglify";
 import banner from 'rollup-plugin-banner';
@@ -38,16 +37,15 @@ export default [{
 		exports: 'default',
 		format: 'umd',
 		globals: GLOBALS,
-		sourceMap: true
+		sourcemap: true
 	},
 	plugins: [
 		commonjs(),
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		sourcemaps(),
-		// uglify(),
-		banner(genHeader('timeline-graph2d')),
+		uglify(),
+		// banner(genHeader('timeline-graph2d')),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		})

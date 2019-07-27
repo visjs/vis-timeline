@@ -107,6 +107,13 @@
   white-space: nowrap;
   display: inline-block
 }
+/* override some bootstrap styles screwing up the timelines css */
+
+.vis [class*="span"] {
+  min-height: 0;
+  width: auto;
+}
+
 .vis-time-axis {
   position: relative;
   overflow: hidden;
@@ -381,13 +388,6 @@
   border-style: solid;
   border-radius: 4px;
 }
-/* override some bootstrap styles screwing up the timelines css */
-
-.vis [class*="span"] {
-  min-height: 0;
-  width: auto;
-}
-
 .vis-timeline {
   /*
   -webkit-transition: height .4s ease-in-out;
