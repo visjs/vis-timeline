@@ -1,6 +1,7 @@
 import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
+import sourcemaps from 'rollup-plugin-sourcemaps';
 import babel from 'rollup-plugin-babel';
 import { uglify } from "rollup-plugin-uglify";
 import banner from 'rollup-plugin-banner';
@@ -36,13 +37,15 @@ export default [{
 		name: 'vis',
 		exports: 'default',
 		format: 'umd',
-    globals: GLOBALS
+		globals: GLOBALS,
+		sourceMap: true
 	},
 	plugins: [
 		commonjs(),
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
+		sourcemaps(),
 		// uglify(),
 		banner(genHeader('timeline-graph2d')),
 		css({
