@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  * 
  * @version 5.0.0
- * @date    2019-07-27T11:53:15Z
+ * @date    2019-07-27T12:31:13Z
  * 
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -23372,45 +23372,47 @@ var hammer = createCommonjsModule$1(function (module) {
   })(window, document, 'Hammer');
 });
 
-var hammer$1 = createCommonjsModule$1(function (module) {
-  /**
-   * Setup a mock hammer.js object, for unit testing.
-   *
-   * Inspiration: https://github.com/uber/deck.gl/pull/658
-   *
-   * @returns {{on: noop, off: noop, destroy: noop, emit: noop, get: get}}
-   */
-  function hammerMock() {
-    var noop = function noop() {};
+/**
+ * Setup a mock hammer.js object, for unit testing.
+ *
+ * Inspiration: https://github.com/uber/deck.gl/pull/658
+ *
+ * @returns {{on: noop, off: noop, destroy: noop, emit: noop, get: get}}
+ */
 
-    return {
-      on: noop,
-      off: noop,
-      destroy: noop,
-      emit: noop,
-      get: function get(m) {
-        //eslint-disable-line no-unused-vars
-        return {
-          set: noop
-        };
-      }
-    };
-  }
+function hammerMock() {
+  var noop = function noop() {};
 
-  if (typeof window !== 'undefined') {
-    var propagating$1 = propagating;
-    var Hammer = window['Hammer'] || hammer;
-    module.exports = propagating$1(Hammer, {
-      preventDefault: 'mouse'
-    });
-  } else {
-    module.exports = function () {
-      return (// hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
-        hammerMock()
-      );
-    };
-  }
-});
+  return {
+    on: noop,
+    off: noop,
+    destroy: noop,
+    emit: noop,
+    get: function get(m) {
+      //eslint-disable-line no-unused-vars
+      return {
+        set: noop
+      };
+    }
+  };
+}
+
+var modifiedHammer;
+
+if (typeof window !== 'undefined') {
+  var OurHammer = window['Hammer'] || hammer;
+  modifiedHammer = propagating(OurHammer, {
+    preventDefault: 'mouse'
+  });
+} else {
+  modifiedHammer = function modifiedHammer() {
+    return (// hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
+      hammerMock()
+    );
+  };
+}
+
+var Hammer = modifiedHammer;
 
 var hammerUtil = createCommonjsModule$1(function (module, exports) {
   /**
@@ -25352,7 +25354,7 @@ function Activator(container) {
   this.dom.overlay = document.createElement('div');
   this.dom.overlay.className = 'vis-overlay';
   this.dom.container.appendChild(this.dom.overlay);
-  this.hammer = hammer$1(this.dom.overlay);
+  this.hammer = Hammer(this.dom.overlay);
   this.hammer.on('tap', this._onTapOverlay.bind(this)); // block all touch events (except tap)
 
   var me = this;
@@ -25643,13 +25645,13 @@ function (_Component) {
 
       bar.appendChild(drag); // attach event listeners
 
-      this.hammer = new hammer$1(drag);
+      this.hammer = new Hammer(drag);
       this.hammer.on('panstart', this._onDragStart.bind(this));
       this.hammer.on('panmove', this._onDrag.bind(this));
       this.hammer.on('panend', this._onDragEnd.bind(this));
       this.hammer.get('pan').set({
         threshold: 5,
-        direction: hammer$1.DIRECTION_ALL
+        direction: Hammer.DIRECTION_ALL
       });
     }
     /**
@@ -25957,14 +25959,14 @@ function () {
       }); // create event listeners for all interesting events, these events will be
       // emitted via emitter
 
-      this.hammer = new hammer$1(this.dom.root);
+      this.hammer = new Hammer(this.dom.root);
       var pinchRecognizer = this.hammer.get('pinch').set({
         enable: true
       });
       pinchRecognizer && hammerUtil.disablePreventDefaultVertically(pinchRecognizer);
       this.hammer.get('pan').set({
         threshold: 5,
-        direction: hammer$1.DIRECTION_ALL
+        direction: Hammer.DIRECTION_ALL
       });
       this.listeners = {};
       var events = ['tap', 'doubletap', 'press', 'pinch', 'pan', 'panstart', 'panmove', 'panend' // TODO: cleanup
@@ -26918,7 +26920,7 @@ function () {
 
       var contentsOverflow = props.center.height > props.centerContainer.height;
       this.hammer.get('pan').set({
-        direction: contentsOverflow ? hammer$1.DIRECTION_ALL : hammer$1.DIRECTION_HORIZONTAL
+        direction: contentsOverflow ? Hammer.DIRECTION_ALL : Hammer.DIRECTION_HORIZONTAL
       }); // redraw all components
 
       this.components.forEach(function (component) {
@@ -29218,7 +29220,7 @@ function () {
         var dragCenter = document.createElement('div');
         dragCenter.className = 'vis-drag-center';
         dragCenter.dragCenterItem = this;
-        this.hammerDragCenter = new hammer$1(dragCenter);
+        this.hammerDragCenter = new Hammer(dragCenter);
         this.hammerDragCenter.on('tap', function (event) {
           me.parent.itemSet.body.emitter.emit('click', {
             event: event,
@@ -29288,7 +29290,7 @@ function () {
 
         deleteButton.title = 'Delete this item'; // TODO: be able to destroy the delete button
 
-        this.hammerDeleteButton = new hammer$1(deleteButton).on('tap', function (event) {
+        this.hammerDeleteButton = new Hammer(deleteButton).on('tap', function (event) {
           event.stopPropagation();
           me.parent.removeFromDataSet(me);
         });
@@ -32404,7 +32406,7 @@ function (_Component) {
       //       of the center container is larger than of the ItemSet, so we
       //       can click in the empty area to create a new item or deselect an item.
 
-      this.hammer = new hammer$1(this.body.dom.centerContainer); // drag items when selected
+      this.hammer = new Hammer(this.body.dom.centerContainer); // drag items when selected
 
       this.hammer.on('hammer.input', function (event) {
         if (event.isFirst) {
@@ -32416,7 +32418,7 @@ function (_Component) {
       this.hammer.on('panend', this._onDragEnd.bind(this));
       this.hammer.get('pan').set({
         threshold: 5,
-        direction: hammer$1.ALL
+        direction: Hammer.ALL
       }); // single select (or unselect) when tapping an item
 
       this.hammer.on('tap', this._onSelectItem.bind(this)); // multi select when holding mouse/touch, or on ctrl+click
@@ -32426,9 +32428,9 @@ function (_Component) {
       this.hammer.on('doubletap', this._onAddItem.bind(this));
 
       if (this.options.rtl) {
-        this.groupHammer = new hammer$1(this.body.dom.rightContainer);
+        this.groupHammer = new Hammer(this.body.dom.rightContainer);
       } else {
-        this.groupHammer = new hammer$1(this.body.dom.leftContainer);
+        this.groupHammer = new Hammer(this.body.dom.leftContainer);
       }
 
       this.groupHammer.on('tap', this._onGroupClick.bind(this));
@@ -32437,7 +32439,7 @@ function (_Component) {
       this.groupHammer.on('panend', this._onGroupDragEnd.bind(this));
       this.groupHammer.get('pan').set({
         threshold: 5,
-        direction: hammer$1.DIRECTION_VERTICAL
+        direction: Hammer.DIRECTION_VERTICAL
       });
       this.body.dom.centerContainer.addEventListener('mouseover', this._onMouseOver.bind(this));
       this.body.dom.centerContainer.addEventListener('mouseout', this._onMouseOut.bind(this));
@@ -36715,7 +36717,7 @@ function () {
 
       this.drag = {};
       this.pinch = {};
-      this.hammer = new hammer$1(this.colorPickerCanvas);
+      this.hammer = new Hammer(this.colorPickerCanvas);
       this.hammer.get('pinch').set({
         enable: true
       });
@@ -42784,7 +42786,7 @@ var index = {
     }
   },
   moment: moment$2,
-  Hammer: hammer$1,
+  Hammer: Hammer,
   keycharm: keycharm
 };
 
