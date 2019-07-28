@@ -24563,18 +24563,6 @@ TimeAxis.prototype = new Component_1();
 
 TimeAxis.prototype.setOptions = function (options) {
   if (options) {
-    // // copy all options that we know
-    // util.selectiveExtend([
-    //   'showMinorLabels',
-    //   'showMajorLabels',
-    //   'maxMinorChars',
-    //   'hiddenDates',
-    //   'timeAxis',
-    //   'moment',
-    //   'rtl'
-    // ], this.options, options);
-    // // deep copy the format options
-    // util.selectiveDeepExtend(['format'], this.options, options);
     this.options = _objectSpread2({}, this.options, {}, options);
 
     if ('orientation' in options) {
