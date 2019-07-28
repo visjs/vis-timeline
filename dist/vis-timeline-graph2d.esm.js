@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  * 
  * @version 5.0.0
- * @date    2019-07-21T20:18:02Z
+ * @date    2019-07-28T19:45:11Z
  * 
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -23,20 +23,6 @@
  * 
  * vis.js may be distributed under either license.
  */
-function _typeof(obj) {
-  if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof = function (obj) {
-      return typeof obj;
-    };
-  } else {
-    _typeof = function (obj) {
-      return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
-    };
-  }
-
-  return _typeof(obj);
-}
-
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -52,59 +38,37 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-function ownKeys(object, enumerableOnly) {
-  var keys = Object.keys(object);
-
-  if (Object.getOwnPropertySymbols) {
-    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
-  }
-
-  if (enumerableOnly) keys = keys.filter(function (sym) {
-    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
-  });
-  return keys;
-}
-
-function _objectSpread2(target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i] != null ? arguments[i] : {};
-
-    if (i % 2) {
-      ownKeys(source, true).forEach(function (key) {
-        _defineProperty(target, key, source[key]);
-      });
-    } else if (Object.getOwnPropertyDescriptors) {
-      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
-    } else {
-      ownKeys(source).forEach(function (key) {
-        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
-      });
-    }
-  }
-
-  return target;
-}
-
-function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread();
-}
+var defineProperty = _defineProperty;
 
 function _arrayWithoutHoles(arr) {
   if (Array.isArray(arr)) {
-    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) arr2[i] = arr[i];
+    for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) {
+      arr2[i] = arr[i];
+    }
 
     return arr2;
   }
 }
 
+var arrayWithoutHoles = _arrayWithoutHoles;
+
 function _iterableToArray(iter) {
   if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
 }
+
+var iterableToArray = _iterableToArray;
 
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
+var nonIterableSpread = _nonIterableSpread;
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+}
+
+var toConsumableArray = _toConsumableArray;
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
 function commonjsRequire() {
@@ -116,6 +80,38 @@ function createCommonjsModule(fn, module) {
     exports: {}
   }, fn(module, module.exports), module.exports;
 }
+
+var _typeof_1 = createCommonjsModule(function (module) {
+  function _typeof2(obj) {
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof2 = function _typeof2(obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof2 = function _typeof2(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof2(obj);
+  }
+
+  function _typeof(obj) {
+    if (typeof Symbol === "function" && _typeof2(Symbol.iterator) === "symbol") {
+      module.exports = _typeof = function _typeof(obj) {
+        return _typeof2(obj);
+      };
+    } else {
+      module.exports = _typeof = function _typeof(obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : _typeof2(obj);
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  module.exports = _typeof;
+});
 
 var moment = createCommonjsModule(function (module, exports) {
   (function (global, factory) {
@@ -4820,7 +4816,40 @@ function uuid4() {
 
   return buf || stringifyUUID(rnds);
 } // Rollup will complain about mixing default and named exports in UMD build,
-// for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
+
+
+function ownKeys(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    keys.push.apply(keys, Object.getOwnPropertySymbols(object));
+  }
+
+  if (enumerableOnly) keys = keys.filter(function (sym) {
+    return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+  });
+  return keys;
+}
+
+function _objectSpread(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys(source, true).forEach(function (key) {
+        defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+} // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
 
@@ -4884,7 +4913,7 @@ function isString(value) {
 
 
 function isObject(value) {
-  return _typeof(value) === 'object' && value !== null;
+  return _typeof_1(value) === 'object' && value !== null;
 }
 /**
  * Test whether given object is a Date, or a String containing a Date
@@ -4968,7 +4997,7 @@ function fillIfDefined(a, b) {
 
   for (var prop in a) {
     if (b[prop] !== undefined) {
-      if (b[prop] === null || _typeof(b[prop]) !== 'object') {
+      if (b[prop] === null || _typeof_1(b[prop]) !== 'object') {
         // Note: typeof null === 'object'
         copyOrDelete(a, b, prop, allowDeletion);
       } else {
@@ -5321,7 +5350,7 @@ function convert(object, type) {
     case 'ASPDate':
       if (isNumber(object)) {
         return '/Date(' + object + ')/';
-      } else if (object instanceof Date) {
+      } else if (object instanceof Date || isMoment(object)) {
         return '/Date(' + object.valueOf() + ')/';
       } else if (isString(object)) {
         match = ASPDateRegex.exec(object);
@@ -5355,7 +5384,7 @@ function convert(object, type) {
 
 
 function getType(object) {
-  var type = _typeof(object);
+  var type = _typeof_1(object);
 
   if (type === 'object') {
     if (object === null) {
@@ -5414,7 +5443,7 @@ function getType(object) {
 
 
 function copyAndExtendArray(arr, newValue) {
-  return [].concat(_toConsumableArray(arr), [newValue]);
+  return [].concat(toConsumableArray(arr), [newValue]);
 }
 /**
  * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -6056,7 +6085,7 @@ function addCssText(element, cssText) {
   var currentStyles = cssUtil.split(element.style.cssText);
   var newStyles = cssUtil.split(cssText);
 
-  var styles = _objectSpread2({}, currentStyles, {}, newStyles);
+  var styles = _objectSpread({}, currentStyles, {}, newStyles);
 
   element.style.cssText = cssUtil.join(styles);
 }
@@ -6220,13 +6249,13 @@ function isValidRGBA(rgba) {
 
 
 function selectiveBridgeObject(fields, referenceObject) {
-  if (referenceObject !== null && _typeof(referenceObject) === 'object') {
+  if (referenceObject !== null && _typeof_1(referenceObject) === 'object') {
     // !!! typeof null === 'object'
     var objectTo = Object.create(referenceObject);
 
     for (var i = 0; i < fields.length; i++) {
       if (Object.prototype.hasOwnProperty.call(referenceObject, fields[i])) {
-        if (_typeof(referenceObject[fields[i]]) == 'object') {
+        if (_typeof_1(referenceObject[fields[i]]) == 'object') {
           objectTo[fields[i]] = bridgeObject(referenceObject[fields[i]]);
         }
       }
@@ -6248,7 +6277,7 @@ function selectiveBridgeObject(fields, referenceObject) {
 
 
 function bridgeObject(referenceObject) {
-  if (referenceObject === null || _typeof(referenceObject) !== 'object') {
+  if (referenceObject === null || _typeof_1(referenceObject) !== 'object') {
     return null;
   }
 
@@ -6261,7 +6290,7 @@ function bridgeObject(referenceObject) {
 
   for (var i in referenceObject) {
     if (Object.prototype.hasOwnProperty.call(referenceObject, i)) {
-      if (_typeof(referenceObject[i]) == 'object') {
+      if (_typeof_1(referenceObject[i]) == 'object') {
         objectTo[i] = bridgeObject(referenceObject[i]);
       }
     }
@@ -6316,7 +6345,7 @@ function mergeOptions(mergeTarget, options, option) {
   };
 
   var isObject = function isObject(obj) {
-    return obj !== null && _typeof(obj) === 'object';
+    return obj !== null && _typeof_1(obj) === 'object';
   }; // https://stackoverflow.com/a/34491287/1223531
 
 
@@ -7131,7 +7160,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-var defineProperty = _defineProperty$1;
+var defineProperty$1 = _defineProperty$1;
 
 function createCommonjsModule$2(fn, module) {
   return module = {
@@ -7139,7 +7168,7 @@ function createCommonjsModule$2(fn, module) {
   }, fn(module, module.exports), module.exports;
 }
 
-var _typeof_1 = createCommonjsModule$2(function (module) {
+var _typeof_1$1 = createCommonjsModule$2(function (module) {
   function _typeof2(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
       _typeof2 = function _typeof2(obj) {
@@ -7208,7 +7237,7 @@ function _assertThisInitialized(self) {
 var assertThisInitialized = _assertThisInitialized;
 
 function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+  if (call && (_typeof_1$1(call) === "object" || typeof call === "function")) {
     return call;
   }
 
@@ -7380,18 +7409,18 @@ function uuid4$1() {
 } // Rollup will complain about mixing default and named exports in UMD build,
 
 
-function _typeof$1(obj) {
+function _typeof(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof$1 = function (obj) {
+    _typeof = function (obj) {
       return typeof obj;
     };
   } else {
-    _typeof$1 = function (obj) {
+    _typeof = function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof$1(obj);
+  return _typeof(obj);
 }
 
 var commonjsGlobal$2 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
@@ -12254,7 +12283,7 @@ function convert$1(object, type) {
 
 
 function getType$1(object) {
-  var type = _typeof$1(object);
+  var type = _typeof(object);
 
   if (type === 'object') {
     if (object === null) {
@@ -12533,25 +12562,25 @@ function _arrayWithoutHoles$1(arr) {
   }
 }
 
-var arrayWithoutHoles = _arrayWithoutHoles$1;
+var arrayWithoutHoles$1 = _arrayWithoutHoles$1;
 
 function _iterableToArray$1(iter) {
   if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter);
 }
 
-var iterableToArray = _iterableToArray$1;
+var iterableToArray$1 = _iterableToArray$1;
 
 function _nonIterableSpread$1() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
-var nonIterableSpread = _nonIterableSpread$1;
+var nonIterableSpread$1 = _nonIterableSpread$1;
 
 function _toConsumableArray$1(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || nonIterableSpread();
+  return arrayWithoutHoles$1(arr) || iterableToArray$1(arr) || nonIterableSpread$1();
 }
 
-var toConsumableArray = _toConsumableArray$1;
+var toConsumableArray$1 = _toConsumableArray$1;
 /**
  * [[DataSet]] code that can be reused in [[DataView]] or other similar implementations of [[DataInterface]].
  *
@@ -12597,7 +12626,7 @@ function () {
         throw new Error('Cannot trigger event *');
       }
 
-      var subscribers = [].concat(toConsumableArray(this._subscribers[event]), toConsumableArray(this._subscribers['*']));
+      var subscribers = [].concat(toConsumableArray$1(this._subscribers[event]), toConsumableArray$1(this._subscribers['*']));
 
       for (var i = 0, len = subscribers.length; i < len; i++) {
         var subscriber = subscribers[i];
@@ -12654,13 +12683,13 @@ function ownKeys$1(object, enumerableOnly) {
   return keys;
 }
 
-function _objectSpread(target) {
+function _objectSpread$1(target) {
   for (var i = 1; i < arguments.length; i++) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
       ownKeys$1(source, true).forEach(function (key) {
-        defineProperty(target, key, source[key]);
+        defineProperty$1(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
@@ -12821,7 +12850,7 @@ function (_DataSetPart) {
             });
           }
 
-          if (options.queue && _typeof_1(options.queue) === 'object') {
+          if (options.queue && _typeof_1$1(options.queue) === 'object') {
             this._queue.setOptions(options.queue);
           }
         }
@@ -12868,7 +12897,7 @@ function (_DataSetPart) {
           id = this._addItem(data[i]);
           addedIds.push(id);
         }
-      } else if (data && _typeof_1(data) === 'object') {
+      } else if (data && _typeof_1$1(data) === 'object') {
         // Single item
         id = this._addItem(data);
         addedIds.push(id);
@@ -12953,13 +12982,13 @@ function (_DataSetPart) {
       if (Array.isArray(data)) {
         // Array
         for (var i = 0, len = data.length; i < len; i++) {
-          if (data[i] && _typeof_1(data[i]) === 'object') {
+          if (data[i] && _typeof_1$1(data[i]) === 'object') {
             addOrUpdate(data[i]);
           } else {
             console.warn('Ignoring input item, which is not an object at index ' + i);
           }
         }
-      } else if (data && _typeof_1(data) === 'object') {
+      } else if (data && _typeof_1$1(data) === 'object') {
         // Single item
         addOrUpdate(data);
       } else {
@@ -13378,7 +13407,7 @@ function (_DataSetPart) {
 
       if (isId(id)) {
         ident = id;
-      } else if (id && _typeof_1(id) === 'object') {
+      } else if (id && _typeof_1$1(id) === 'object') {
         ident = id[this._idProp]; // look for the identifier field using ._idProp
       } // do the removing if the item is found
 
@@ -13597,7 +13626,7 @@ function (_DataSetPart) {
         }
       } else {
         // no field types specified, no converting needed
-        converted = _objectSpread({}, raw);
+        converted = _objectSpread$1({}, raw);
       }
 
       if (converted[this._idProp] == null) {
@@ -18677,18 +18706,18 @@ var moment$2 = createCommonjsModule$1(function (module, exports) {
 
 var moment$3 = typeof window !== 'undefined' && window['moment'] || moment$2;
 
-function _typeof$2(obj) {
+function _typeof$1(obj) {
   if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
-    _typeof$2 = function (obj) {
+    _typeof$1 = function (obj) {
       return typeof obj;
     };
   } else {
-    _typeof$2 = function (obj) {
+    _typeof$1 = function (obj) {
       return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
     };
   }
 
-  return _typeof$2(obj);
+  return _typeof$1(obj);
 }
 
 function _classCallCheck$1(instance, Constructor) {
@@ -18711,6 +18740,55 @@ function _createClass$1(Constructor, protoProps, staticProps) {
   if (protoProps) _defineProperties$1(Constructor.prototype, protoProps);
   if (staticProps) _defineProperties$1(Constructor, staticProps);
   return Constructor;
+}
+
+function _defineProperty$2(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys$2(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys$2(source, true).forEach(function (key) {
+        _defineProperty$2(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys$2(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
 }
 
 /**
@@ -19389,7 +19467,7 @@ function Range(body, options) {
       offset: 0.5
     }
   };
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = _objectSpread2({}, this.defaultOptions);
   this.props = {
     touch: {}
   };
@@ -19428,9 +19506,7 @@ Range.prototype = new Component_1();
 
 Range.prototype.setOptions = function (options) {
   if (options) {
-    // copy the options that we know
-    var fields = ['animation', 'direction', 'min', 'max', 'zoomMin', 'zoomMax', 'moveable', 'zoomable', 'moment', 'activate', 'hiddenDates', 'zoomKey', 'rtl', 'showCurrentTime', 'rollingMode', 'horizontalScroll'];
-    util.selectiveExtend(fields, this.options, options);
+    this.options = _objectSpread2({}, this.options, {}, options);
 
     if (options.rollingMode && options.rollingMode.follow) {
       this.startRolling();
@@ -19542,8 +19618,8 @@ Range.prototype.setRange = function (start, end, options, callback, frameCallbac
     // true or an Object
     var initStart = this.start;
     var initEnd = this.end;
-    var duration = _typeof$2(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
-    var easingName = _typeof$2(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
+    var duration = _typeof$1(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
+    var easingName = _typeof$1(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
     var easingFunction = util.easingFunctions[easingName];
 
     if (!easingFunction) {
@@ -24467,7 +24543,7 @@ function TimeAxis(body, options) {
     moment: moment$3,
     timeAxis: null
   };
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = _objectSpread2({}, this.defaultOptions);
   this.body = body; // create the HTML DOM
 
   this._create();
@@ -24487,15 +24563,25 @@ TimeAxis.prototype = new Component_1();
 
 TimeAxis.prototype.setOptions = function (options) {
   if (options) {
-    // copy all options that we know
-    util.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
-
-    util.selectiveDeepExtend(['format'], this.options, options);
+    // // copy all options that we know
+    // util.selectiveExtend([
+    //   'showMinorLabels',
+    //   'showMajorLabels',
+    //   'maxMinorChars',
+    //   'hiddenDates',
+    //   'timeAxis',
+    //   'moment',
+    //   'rtl'
+    // ], this.options, options);
+    // // deep copy the format options
+    // util.selectiveDeepExtend(['format'], this.options, options);
+    this.options = _objectSpread2({}, this.options, {}, options);
 
     if ('orientation' in options) {
       if (typeof options.orientation === 'string') {
+        this.options.orientation = {};
         this.options.orientation.axis = options.orientation;
-      } else if (_typeof$2(options.orientation) === 'object' && 'axis' in options.orientation) {
+      } else if (_typeof$1(options.orientation) === 'object' && 'axis' in options.orientation) {
         this.options.orientation.axis = options.orientation.axis;
       }
     } // apply locale to moment.js
@@ -26086,9 +26172,7 @@ Core.prototype._create = function (container) {
 
 Core.prototype.setOptions = function (options) {
   if (options) {
-    // copy the known options
-    var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll'];
-    util.selectiveExtend(fields, this.options, options);
+    this.options = _objectSpread2({}, this.options, {}, options);
     this.dom.rollingModeBtn.style.visibility = 'hidden';
 
     if (this.options.rtl) {
@@ -26104,7 +26188,7 @@ Core.prototype.setOptions = function (options) {
       }
     }
 
-    if (_typeof$2(this.options.orientation) !== 'object') {
+    if (_typeof$1(this.options.orientation) !== 'object') {
       this.options.orientation = {
         item: undefined,
         axis: undefined
@@ -26117,7 +26201,7 @@ Core.prototype.setOptions = function (options) {
           item: options.orientation,
           axis: options.orientation
         };
-      } else if (_typeof$2(options.orientation) === 'object') {
+      } else if (_typeof$1(options.orientation) === 'object') {
         if ('item' in options.orientation) {
           this.options.orientation.item = options.orientation.item;
         }
@@ -26133,7 +26217,7 @@ Core.prototype.setOptions = function (options) {
         var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
 
         timeAxis2.setOptions = function (options) {
-          var _options = options ? util.extend({}, options) : {};
+          var _options = options ? _objectSpread2({}, options) : {};
 
           _options.orientation = 'top'; // override the orientation option, always top
 
@@ -26199,9 +26283,10 @@ Core.prototype.setOptions = function (options) {
 
     this.configurator.setOptions(options.configure); // collect the settings of all components, and pass them to the configuration system
 
-    var appliedOptions = util.deepExtend({}, this.options);
+    var appliedOptions = _objectSpread2({}, this.options);
+
     this.components.forEach(function (component) {
-      util.deepExtend(appliedOptions, component.options);
+      appliedOptions = _objectSpread2({}, appliedOptions, {}, component.options);
     });
     this.configurator.setModuleOptions({
       global: appliedOptions
@@ -26359,7 +26444,7 @@ Core.prototype.addCustomTime = function (time, id, options) {
     throw new Error('A custom time with id ' + JSON.stringify(id) + ' already exists');
   }
 
-  var customTime = new CustomTime(this.body, util.extend({}, this.options, options, {
+  var customTime = new CustomTime(this.body, _objectSpread2({}, this.options, {}, options, {
     time: timestamp,
     id: id
   }));
@@ -29134,7 +29219,7 @@ Item.prototype._updateEditStatus = function () {
         updateGroup: this.options.editable,
         remove: this.options.editable
       };
-    } else if (_typeof$2(this.options.editable) === 'object') {
+    } else if (_typeof$1(this.options.editable) === 'object') {
       this.editable = {};
       util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
     }
@@ -29149,7 +29234,7 @@ Item.prototype._updateEditStatus = function () {
           updateGroup: this.data.editable,
           remove: this.data.editable
         };
-      } else if (_typeof$2(this.data.editable) === 'object') {
+      } else if (_typeof$1(this.data.editable) === 'object') {
         // TODO: in vis.js 5.0, we should change this to not reset options from the timeline configuration.
         // Basically just remove the next line...
         this.editable = {};
@@ -30922,9 +31007,10 @@ ItemSet.prototype.setOptions = function (options) {
 
     if ('itemsAlwaysDraggable' in options) {
       if (typeof options.itemsAlwaysDraggable === 'boolean') {
+        options.itemsAlwaysDraggable = {};
         this.options.itemsAlwaysDraggable.item = options.itemsAlwaysDraggable;
         this.options.itemsAlwaysDraggable.range = false;
-      } else if (_typeof$2(options.itemsAlwaysDraggable) === 'object') {
+      } else if (_typeof$1(options.itemsAlwaysDraggable) === 'object') {
         util.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
 
         if (!this.options.itemsAlwaysDraggable.item) {
@@ -30935,25 +31021,28 @@ ItemSet.prototype.setOptions = function (options) {
 
     if ('orientation' in options) {
       if (typeof options.orientation === 'string') {
+        this.options.orientation = {};
         this.options.orientation.item = options.orientation === 'top' ? 'top' : 'bottom';
-      } else if (_typeof$2(options.orientation) === 'object' && 'item' in options.orientation) {
+      } else if (_typeof$1(options.orientation) === 'object' && 'item' in options.orientation) {
         this.options.orientation.item = options.orientation.item;
       }
     }
 
     if ('margin' in options) {
       if (typeof options.margin === 'number') {
+        this.options.margin = {};
         this.options.margin.axis = options.margin;
         this.options.margin.item.horizontal = options.margin;
         this.options.margin.item.vertical = options.margin;
-      } else if (_typeof$2(options.margin) === 'object') {
+      } else if (_typeof$1(options.margin) === 'object') {
         util.selectiveExtend(['axis'], this.options.margin, options.margin);
 
         if ('item' in options.margin) {
           if (typeof options.margin.item === 'number') {
+            this.options.margin.item = {};
             this.options.margin.item.horizontal = options.margin.item;
             this.options.margin.item.vertical = options.margin.item;
-          } else if (_typeof$2(options.margin.item) === 'object') {
+          } else if (_typeof$1(options.margin.item) === 'object') {
             util.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
           }
         }
@@ -30962,22 +31051,24 @@ ItemSet.prototype.setOptions = function (options) {
 
     if ('editable' in options) {
       if (typeof options.editable === 'boolean') {
+        this.options.editable = {};
         this.options.editable.updateTime = options.editable;
         this.options.editable.updateGroup = options.editable;
         this.options.editable.add = options.editable;
         this.options.editable.remove = options.editable;
         this.options.editable.overrideItems = false;
-      } else if (_typeof$2(options.editable) === 'object') {
+      } else if (_typeof$1(options.editable) === 'object') {
         util.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
       }
     }
 
     if ('groupEditable' in options) {
       if (typeof options.groupEditable === 'boolean') {
+        this.options.groupEditable = {};
         this.options.groupEditable.order = options.groupEditable;
         this.options.groupEditable.add = options.groupEditable;
         this.options.groupEditable.remove = options.groupEditable;
-      } else if (_typeof$2(options.groupEditable) === 'object') {
+      } else if (_typeof$1(options.groupEditable) === 'object') {
         util.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
       }
     } // callback functions
@@ -33157,7 +33248,7 @@ function () {
   }, {
     key: "getType",
     value: function getType(object) {
-      var type = _typeof$2(object);
+      var type = _typeof$1(object);
 
       if (type === 'object') {
         if (object === null) {
@@ -34860,7 +34951,7 @@ function () {
           this.options.filter = options;
         } else if (options instanceof Array) {
           this.options.filter = options.join();
-        } else if (_typeof$2(options) === 'object') {
+        } else if (_typeof$1(options) === 'object') {
           if (options == null) {
             throw new TypeError('options cannot be null');
           }
@@ -35343,7 +35434,7 @@ function () {
         checkbox.checked = value;
 
         if (value !== defaultValue) {
-          if (_typeof$2(defaultValue) === 'object') {
+          if (_typeof$1(defaultValue) === 'object') {
             if (value !== defaultValue.enabled) {
               this.changedOptions.push({
                 path: path,
@@ -36907,8 +36998,7 @@ DataAxis.prototype.setOptions = function (options) {
       redraw = true;
     }
 
-    var fields = ['orientation', 'showMinorLabels', 'showMajorLabels', 'icons', 'majorLinesOffset', 'minorLinesOffset', 'labelOffsetX', 'labelOffsetY', 'iconWidth', 'width', 'visible', 'left', 'right', 'alignZeros'];
-    util.selectiveDeepExtend(fields, this.options, options);
+    this.options = _objectSpread2({}, this.options, {}, options);
     this.minWidth = Number(('' + this.options.width).replace("px", ""));
 
     if (redraw === true && this.dom.frame) {
@@ -37379,7 +37469,7 @@ Points.draw = function (dataset, group, framework, offset) {
     } else {
       var callbackResult = callback(dataset[i], group); // result might be true, false or an object
 
-      if (callbackResult === true || _typeof$2(callbackResult) === 'object') {
+      if (callbackResult === true || _typeof$1(callbackResult) === 'object') {
         DOMutil.drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group, callbackResult), framework.svgElements, framework.svg, dataset[i].label);
       }
     }
@@ -38102,8 +38192,7 @@ GraphGroup.prototype.setZeroPosition = function (pos) {
 
 GraphGroup.prototype.setOptions = function (options) {
   if (options !== undefined) {
-    var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
-    util.selectiveDeepExtend(fields, this.options, options); // if the group's drawPoints is a function delegate the callback to the onRender property
+    this.options = _objectSpread2({}, this.options, {}, options); // if the group's drawPoints is a function delegate the callback to the onRender property
 
     if (typeof options.drawPoints == 'function') {
       options.drawPoints = {
@@ -38116,7 +38205,7 @@ GraphGroup.prototype.setOptions = function (options) {
     util.mergeOptions(this.options, options, 'shaded');
 
     if (options.interpolation) {
-      if (_typeof$2(options.interpolation) == 'object') {
+      if (_typeof$1(options.interpolation) == 'object') {
         if (options.interpolation.parametrization) {
           if (options.interpolation.parametrization == 'uniform') {
             this.options.interpolation.alpha = 0;
@@ -38336,8 +38425,7 @@ Legend.prototype.show = function () {
 };
 
 Legend.prototype.setOptions = function (options) {
-  var fields = ['enabled', 'orientation', 'icons', 'left', 'right'];
-  util.selectiveDeepExtend(fields, this.options, options);
+  this.options = _objectSpread2({}, this.options, {}, options);
 };
 
 Legend.prototype.redraw = function () {
@@ -38604,8 +38692,6 @@ LineGraph.prototype._create = function () {
 
 LineGraph.prototype.setOptions = function (options) {
   if (options) {
-    var fields = ['sampling', 'defaultGroup', 'stack', 'height', 'graphHeight', 'yAxisOrientation', 'style', 'barChart', 'dataAxis', 'sort', 'groups'];
-
     if (options.graphHeight === undefined && options.height !== undefined) {
       this.updateSVGheight = true;
       this.updateSVGheightOnResize = true;
@@ -38615,14 +38701,14 @@ LineGraph.prototype.setOptions = function (options) {
       }
     }
 
-    util.selectiveDeepExtend(fields, this.options, options);
+    this.options = _objectSpread2({}, this.options, {}, options);
     util.mergeOptions(this.options, options, 'interpolation');
     util.mergeOptions(this.options, options, 'drawPoints');
     util.mergeOptions(this.options, options, 'shaded');
     util.mergeOptions(this.options, options, 'legend');
 
     if (options.interpolation) {
-      if (_typeof$2(options.interpolation) == 'object') {
+      if (_typeof$1(options.interpolation) == 'object') {
         if (options.interpolation.parametrization) {
           if (options.interpolation.parametrization == 'uniform') {
             this.options.interpolation.alpha = 0;
@@ -40276,7 +40362,7 @@ function Graph2d(container, items, groups, options) {
     maxHeight: null,
     minHeight: null
   };
-  this.options = util.deepExtend({}, this.defaultOptions); // Create the DOM, props, and emitter
+  this.options = _objectSpread2({}, this.defaultOptions); // Create the DOM, props, and emitter
 
   this._create(container); // all components listed here will be repainted automatically
 
