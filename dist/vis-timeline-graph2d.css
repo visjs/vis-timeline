@@ -107,13 +107,6 @@
   white-space: nowrap;
   display: inline-block
 }
-/* override some bootstrap styles screwing up the timelines css */
-
-.vis [class*="span"] {
-  min-height: 0;
-  width: auto;
-}
-
 .vis-time-axis {
   position: relative;
   overflow: hidden;
@@ -168,6 +161,13 @@
 
 .vis-time-axis .vis-grid.vis-major {
   border-color: #bfbfbf;
+}
+
+/* override some bootstrap styles screwing up the timelines css */
+
+.vis [class*="span"] {
+  min-height: 0;
+  width: auto;
 }
 
 
