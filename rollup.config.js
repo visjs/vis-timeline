@@ -44,7 +44,7 @@ export default [{
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		uglify(),
+		// uglify(),
 		// banner(genHeader('timeline-graph2d')),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
