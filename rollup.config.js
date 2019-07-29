@@ -36,6 +36,7 @@ export default [{
 		name: 'vis',
 		exports: 'named',
 		format: 'umd',
+		sourcemap: true,
 		globals: GLOBALS
 	},
 	plugins: [
@@ -43,8 +44,8 @@ export default [{
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		uglify(),
-		banner(genHeader('timeline-graph2d')),
+		// uglify(),
+		// banner(genHeader('timeline-graph2d')),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		})
