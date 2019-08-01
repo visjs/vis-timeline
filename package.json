@@ -49,7 +49,6 @@
     "cpy-cli": "^2.0.0",
     "eslint": "^4.3.0",
     "git-authors-cli": "^1.0.18",
-    "ignore-styles": "^5.0.1",
     "jsdoc": "^3.5.5",
     "jsdom": "11.3.0",
     "jsdom-global": "^3.0.2",
