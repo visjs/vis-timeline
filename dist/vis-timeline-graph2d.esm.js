@@ -4,8 +4,8 @@
  * 
  * Create a fully customizable, interactive timeline with items and ranges.
  * 
- * @version 5.0.0
- * @date    2019-08-01T11:14:34Z
+ * @version 5.1.0
+ * @date    2019-08-01T18:12:21Z
  * 
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs

@@ -2,6 +2,21 @@
 
 http://visjs.org
 
+## 2019-01-01, version 5.1.0
+
+- fix(package): upgrade vis-util to 1.1.4 (#31)
+- chore(package): update vis-util to 1.1.2 (#19)
+- fix: update vis-data; fixes #6 (#13)
+- chore: make it possible to exclude external libraries (#9)
+- fix: change script CDN URL's to https (#7)
+- fix(examples): fix css imports
+- chore: removed opencollective logo
+- fix(examples): fix script of basicUsage (#3)
+- chore: use rollup to bundle css (#2)
+- chore: improve HISTORY.md
+- feat: also generate ESM module
+- chore: fix example cdn link in README
+
 ## 2019-07-19, version 5.0.0
 
 In version 5.0.0 the original [vis library](https://github.com/almende/vis) was split up and the whole build process changed.
