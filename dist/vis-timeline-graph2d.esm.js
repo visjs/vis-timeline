@@ -1,26 +1,26 @@
-/** 
+/**
  * vis-timeline - timeline-graph2d
  * https://github.com/visjs/vis-timeline
- * 
+ *
  * Create a fully customizable, interactive timeline with items and ranges.
- * 
+ *
  * @version 5.0.0
- * @date    2019-08-01T11:14:34Z
- * 
+ * @date    2019-08-02T15:01:23Z
+ *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
- * 
+ *
  * @license 
  * vis.js is dual licensed under both
- * 
+ *
  *   1. The Apache 2.0 License
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *   and
- * 
+ *
  *   2. The MIT License
  *      http://opensource.org/licenses/MIT
- * 
+ *
  * vis.js may be distributed under either license.
  */
 function _defineProperty(obj, key, value) {
@@ -19988,6 +19988,8 @@ Range.prototype._onMouseWheel = function (event) {
     // In Mozilla, sign of delta is different than in IE.
     // Also, delta is multiple of 3.
     delta = -event.detail / 3;
+  } else if (event.deltaY) {
+    delta = -event.deltaY / 3;
   } // don't allow zoom when the according key is pressed and the zoomKey option or not zoomable but movable
 
 
@@ -40699,3 +40701,4 @@ var visTimeline = {
 
 export default visTimeline;
 export { DOMutil$1 as DOMutil, DataSet_1 as DataSet, DataView_1 as DataView, Graph2d$1 as Graph2d, Hammer, Queue_1 as Queue, Timeline$1 as Timeline, keycharm$1 as keycharm, moment$6 as moment, timeline, util_1 as util };
+//# sourceMappingURL=vis-timeline-graph2d.esm.js.map
