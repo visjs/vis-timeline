@@ -46,6 +46,7 @@
     "@babel/core": "^7.5.4",
     "@babel/preset-env": "^7.5.4",
     "@babel/register": "^7.4.4",
+    "babel-plugin-css-modules-transform": "^1.6.2",
     "cpy-cli": "^2.0.0",
     "eslint": "^4.3.0",
     "git-authors-cli": "^1.0.18",
