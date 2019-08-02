@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 5.1.0
- * @date    2019-08-02T15:47:04Z
+ * @date    2019-08-02T16:33:04Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -23446,82 +23446,56 @@ if (typeof window !== 'undefined') {
 
 var Hammer = modifiedHammer;
 
-var hammerUtil = createCommonjsModule$1(function (module, exports) {
-  /**
-   * Register a touch event, taking place before a gesture
-   * @param {Hammer} hammer       A hammer instance
-   * @param {function} callback   Callback, called as callback(event)
-   */
-  exports.onTouch = function (hammer, callback) {
-    callback.inputHandler = function (event) {
-      if (event.isFirst) {
-        callback(event);
-      }
-    };
-
-    hammer.on('hammer.input', callback.inputHandler);
+/**
+ * Register a touch event, taking place before a gesture
+ * @param {Hammer} hammer       A hammer instance
+ * @param {function} callback   Callback, called as callback(event)
+ */
+function onTouch(hammer, callback) {
+  callback.inputHandler = function (event) {
+    if (event.isFirst) {
+      callback(event);
+    }
   };
-  /**
-   * Register a release event, taking place after a gesture
-   * @param {Hammer} hammer       A hammer instance
-   * @param {function} callback   Callback, called as callback(event)
-   * @returns {*}
-   */
 
+  hammer.on('hammer.input', callback.inputHandler);
+}
+/**
+ * Register a release event, taking place after a gesture
+ * @param {Hammer} hammer       A hammer instance
+ * @param {function} callback   Callback, called as callback(event)
+ * @returns {*}
+ */
 
-  exports.onRelease = function (hammer, callback) {
-    callback.inputHandler = function (event) {
-      if (event.isFinal) {
-        callback(event);
-      }
-    };
-
-    return hammer.on('hammer.input', callback.inputHandler);
+function onRelease(hammer, callback) {
+  callback.inputHandler = function (event) {
+    if (event.isFinal) {
+      callback(event);
+    }
   };
-  /**
-   * Unregister a touch event, taking place before a gesture
-   * @param {Hammer} hammer       A hammer instance
-   * @param {function} callback   Callback, called as callback(event)
-   */
 
+  return hammer.on('hammer.input', callback.inputHandler);
+}
+/**
+ * Hack the PinchRecognizer such that it doesn't prevent default behavior
+ * for vertical panning.
+ *
+ * Yeah ... this is quite a hack ... see https://github.com/hammerjs/hammer.js/issues/932
+ *
+ * @param {Hammer.Pinch} pinchRecognizer
+ * @return {Hammer.Pinch} returns the pinchRecognizer
+ */
 
-  exports.offTouch = function (hammer, callback) {
-    hammer.off('hammer.input', callback.inputHandler);
+function disablePreventDefaultVertically(pinchRecognizer) {
+  var TOUCH_ACTION_PAN_Y = 'pan-y';
+
+  pinchRecognizer.getTouchAction = function () {
+    // default method returns [TOUCH_ACTION_NONE]
+    return [TOUCH_ACTION_PAN_Y];
   };
-  /**
-   * Unregister a release event, taking place before a gesture
-   * @param {Hammer} hammer       A hammer instance
-   * @param {function} callback   Callback, called as callback(event)
-   */
 
-
-  exports.offRelease = exports.offTouch;
-  /**
-   * Hack the PinchRecognizer such that it doesn't prevent default behavior
-   * for vertical panning.
-   *
-   * Yeah ... this is quite a hack ... see https://github.com/hammerjs/hammer.js/issues/932
-   *
-   * @param {Hammer.Pinch} pinchRecognizer
-   * @return {Hammer.Pinch} returns the pinchRecognizer
-   */
-
-  exports.disablePreventDefaultVertically = function (pinchRecognizer) {
-    var TOUCH_ACTION_PAN_Y = 'pan-y';
-
-    pinchRecognizer.getTouchAction = function () {
-      // default method returns [TOUCH_ACTION_NONE]
-      return [TOUCH_ACTION_PAN_Y];
-    };
-
-    return pinchRecognizer;
-  };
-});
-var hammerUtil_1 = hammerUtil.onTouch;
-var hammerUtil_2 = hammerUtil.onRelease;
-var hammerUtil_3 = hammerUtil.offTouch;
-var hammerUtil_4 = hammerUtil.offRelease;
-var hammerUtil_5 = hammerUtil.disablePreventDefaultVertically;
+  return pinchRecognizer;
+}
 
 /**
  * The class TimeStep is an iterator for dates. You provide a start date and an
@@ -25995,7 +25969,7 @@ function () {
       var pinchRecognizer = this.hammer.get('pinch').set({
         enable: true
       });
-      pinchRecognizer && hammerUtil.disablePreventDefaultVertically(pinchRecognizer);
+      pinchRecognizer && disablePreventDefaultVertically(pinchRecognizer);
       this.hammer.get('pan').set({
         threshold: 5,
         direction: Hammer.DIRECTION_ALL
@@ -26018,11 +25992,11 @@ function () {
         me.listeners[type] = listener;
       }); // emulate a touch event (emitted before the start of a pan, pinch, tap, or press)
 
-      hammerUtil.onTouch(this.hammer, function (event) {
+      onTouch(this.hammer, function (event) {
         me.emit('touch', event);
       }); // emulate a release event (emitted after a pan, pinch, tap, or press)
 
-      hammerUtil.onRelease(this.hammer, function (event) {
+      onRelease(this.hammer, function (event) {
         me.emit('release', event);
       });
       /**
@@ -36753,7 +36727,7 @@ function () {
       this.hammer.get('pinch').set({
         enable: true
       });
-      hammerUtil.onTouch(this.hammer, function (event) {
+      onTouch(this.hammer, function (event) {
         _this2._moveSelector(event);
       });
       this.hammer.on('tap', function (event) {
