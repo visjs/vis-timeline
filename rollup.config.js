@@ -2,8 +2,7 @@ import commonjs from 'rollup-plugin-commonjs';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
 import babel from 'rollup-plugin-babel';
-import { uglify } from "rollup-plugin-uglify";
-import banner from 'rollup-plugin-banner';
+import minify from 'rollup-plugin-babel-minify';
 import genHeader from './lib/header';
 import css from 'rollup-plugin-css-porter';
 
@@ -17,6 +16,8 @@ export default [{
 	output: {
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
+		banner: genHeader('timeline-graph2d'),
+		sourcemap: true,
 		globals: GLOBALS
 	},
 	plugins: [
@@ -24,7 +25,6 @@ export default [{
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		banner(genHeader('timeline-graph2d')),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		}),
@@ -36,6 +36,7 @@ export default [{
 		name: 'vis',
 		exports: 'named',
 		format: 'umd',
+		banner: genHeader('timeline-graph2d'),
 		sourcemap: true,
 		globals: GLOBALS
 	},
@@ -44,8 +45,7 @@ export default [{
 		nodeBuiltins(),
 		nodeResolve(),
 		babel(),
-		// uglify(),
-		// banner(genHeader('timeline-graph2d')),
+		minify({ comments: false }),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		})
