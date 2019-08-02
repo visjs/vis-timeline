@@ -1,6 +1,6 @@
 // utils
 import util from 'vis-util';
-import DOMutil from './lib/DOMutil';
+import * as DOMutil from './lib/DOMutil';
 
 // data
 import { DataSet, DataView, Queue } from 'vis-data';
