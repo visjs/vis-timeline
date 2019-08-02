@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 5.1.0
- * @date    2019-08-02T16:33:04Z
+ * @date    2019-08-02T16:41:54Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -6870,144 +6870,115 @@ Object.freeze({
   randomUUID: uuid4
 }); // New API (tree shakeable).
 
-var commonjsGlobal$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+// DOM utility methods
 
-function commonjsRequire$1 () {
-	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
-}
-
-function createCommonjsModule$1(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var DOMutil = createCommonjsModule$1(function (module, exports) {
-  // DOM utility methods
-
-  /**
-   * this prepares the JSON container for allocating SVG elements
-   * @param {Object} JSONcontainer
-   * @private
-   */
-  exports.prepareElements = function (JSONcontainer) {
-    // cleanup the redundant svgElements;
-    for (var elementType in JSONcontainer) {
-      if (JSONcontainer.hasOwnProperty(elementType)) {
-        JSONcontainer[elementType].redundant = JSONcontainer[elementType].used;
-        JSONcontainer[elementType].used = [];
-      }
-    }
-  };
-  /**
-   * this cleans up all the unused SVG elements. By asking for the parentNode, we only need to supply the JSON container from
-   * which to remove the redundant elements.
-   *
-   * @param {Object} JSONcontainer
-   * @private
-   */
-
-
-  exports.cleanupElements = function (JSONcontainer) {
-    // cleanup the redundant svgElements;
-    for (var elementType in JSONcontainer) {
-      if (JSONcontainer.hasOwnProperty(elementType)) {
-        if (JSONcontainer[elementType].redundant) {
-          for (var i = 0; i < JSONcontainer[elementType].redundant.length; i++) {
-            JSONcontainer[elementType].redundant[i].parentNode.removeChild(JSONcontainer[elementType].redundant[i]);
-          }
-
-          JSONcontainer[elementType].redundant = [];
-        }
-      }
-    }
-  };
-  /**
-   * Ensures that all elements are removed first up so they can be recreated cleanly
-   * @param {Object} JSONcontainer
-   */
-
-
-  exports.resetElements = function (JSONcontainer) {
-    exports.prepareElements(JSONcontainer);
-    exports.cleanupElements(JSONcontainer);
-    exports.prepareElements(JSONcontainer);
-  };
-  /**
-   * Allocate or generate an SVG element if needed. Store a reference to it in the JSON container and draw it in the svgContainer
-   * the JSON container and the SVG container have to be supplied so other svg containers (like the legend) can use this.
-   *
-   * @param {string} elementType
-   * @param {Object} JSONcontainer
-   * @param {Object} svgContainer
-   * @returns {Element}
-   * @private
-   */
-
-
-  exports.getSVGElement = function (elementType, JSONcontainer, svgContainer) {
-    var element; // allocate SVG element, if it doesnt yet exist, create one.
-
+/**
+ * this prepares the JSON container for allocating SVG elements
+ * @param {Object} JSONcontainer
+ * @private
+ */
+function prepareElements(JSONcontainer) {
+  // cleanup the redundant svgElements;
+  for (var elementType in JSONcontainer) {
     if (JSONcontainer.hasOwnProperty(elementType)) {
-      // this element has been created before
-      // check if there is an redundant element
-      if (JSONcontainer[elementType].redundant.length > 0) {
-        element = JSONcontainer[elementType].redundant[0];
-        JSONcontainer[elementType].redundant.shift();
-      } else {
-        // create a new element and add it to the SVG
-        element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
-        svgContainer.appendChild(element);
+      JSONcontainer[elementType].redundant = JSONcontainer[elementType].used;
+      JSONcontainer[elementType].used = [];
+    }
+  }
+}
+/**
+ * this cleans up all the unused SVG elements. By asking for the parentNode, we only need to supply the JSON container from
+ * which to remove the redundant elements.
+ *
+ * @param {Object} JSONcontainer
+ * @private
+ */
+
+function cleanupElements(JSONcontainer) {
+  // cleanup the redundant svgElements;
+  for (var elementType in JSONcontainer) {
+    if (JSONcontainer.hasOwnProperty(elementType)) {
+      if (JSONcontainer[elementType].redundant) {
+        for (var i = 0; i < JSONcontainer[elementType].redundant.length; i++) {
+          JSONcontainer[elementType].redundant[i].parentNode.removeChild(JSONcontainer[elementType].redundant[i]);
+        }
+
+        JSONcontainer[elementType].redundant = [];
       }
+    }
+  }
+}
+/**
+ * Ensures that all elements are removed first up so they can be recreated cleanly
+ * @param {Object} JSONcontainer
+ */
+
+function resetElements(JSONcontainer) {
+  prepareElements(JSONcontainer);
+  cleanupElements(JSONcontainer);
+  prepareElements(JSONcontainer);
+}
+/**
+ * Allocate or generate an SVG element if needed. Store a reference to it in the JSON container and draw it in the svgContainer
+ * the JSON container and the SVG container have to be supplied so other svg containers (like the legend) can use this.
+ *
+ * @param {string} elementType
+ * @param {Object} JSONcontainer
+ * @param {Object} svgContainer
+ * @returns {Element}
+ * @private
+ */
+
+function getSVGElement(elementType, JSONcontainer, svgContainer) {
+  var element; // allocate SVG element, if it doesnt yet exist, create one.
+
+  if (JSONcontainer.hasOwnProperty(elementType)) {
+    // this element has been created before
+    // check if there is an redundant element
+    if (JSONcontainer[elementType].redundant.length > 0) {
+      element = JSONcontainer[elementType].redundant[0];
+      JSONcontainer[elementType].redundant.shift();
     } else {
-      // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+      // create a new element and add it to the SVG
       element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
-      JSONcontainer[elementType] = {
-        used: [],
-        redundant: []
-      };
       svgContainer.appendChild(element);
     }
+  } else {
+    // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+    element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
+    JSONcontainer[elementType] = {
+      used: [],
+      redundant: []
+    };
+    svgContainer.appendChild(element);
+  }
 
-    JSONcontainer[elementType].used.push(element);
-    return element;
-  };
-  /**
-   * Allocate or generate an SVG element if needed. Store a reference to it in the JSON container and draw it in the svgContainer
-   * the JSON container and the SVG container have to be supplied so other svg containers (like the legend) can use this.
-   *
-   * @param {string} elementType
-   * @param {Object} JSONcontainer
-   * @param {Element} DOMContainer
-   * @param {Element} insertBefore
-   * @returns {*}
-   */
+  JSONcontainer[elementType].used.push(element);
+  return element;
+}
+/**
+ * Allocate or generate an SVG element if needed. Store a reference to it in the JSON container and draw it in the svgContainer
+ * the JSON container and the SVG container have to be supplied so other svg containers (like the legend) can use this.
+ *
+ * @param {string} elementType
+ * @param {Object} JSONcontainer
+ * @param {Element} DOMContainer
+ * @param {Element} insertBefore
+ * @returns {*}
+ */
 
+function getDOMElement(elementType, JSONcontainer, DOMContainer, insertBefore) {
+  var element; // allocate DOM element, if it doesnt yet exist, create one.
 
-  exports.getDOMElement = function (elementType, JSONcontainer, DOMContainer, insertBefore) {
-    var element; // allocate DOM element, if it doesnt yet exist, create one.
-
-    if (JSONcontainer.hasOwnProperty(elementType)) {
-      // this element has been created before
-      // check if there is an redundant element
-      if (JSONcontainer[elementType].redundant.length > 0) {
-        element = JSONcontainer[elementType].redundant[0];
-        JSONcontainer[elementType].redundant.shift();
-      } else {
-        // create a new element and add it to the SVG
-        element = document.createElement(elementType);
-
-        if (insertBefore !== undefined) {
-          DOMContainer.insertBefore(element, insertBefore);
-        } else {
-          DOMContainer.appendChild(element);
-        }
-      }
+  if (JSONcontainer.hasOwnProperty(elementType)) {
+    // this element has been created before
+    // check if there is an redundant element
+    if (JSONcontainer[elementType].redundant.length > 0) {
+      element = JSONcontainer[elementType].redundant[0];
+      JSONcontainer[elementType].redundant.shift();
     } else {
-      // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+      // create a new element and add it to the SVG
       element = document.createElement(elementType);
-      JSONcontainer[elementType] = {
-        used: [],
-        redundant: []
-      };
 
       if (insertBefore !== undefined) {
         DOMContainer.insertBefore(element, insertBefore);
@@ -7015,113 +6986,127 @@ var DOMutil = createCommonjsModule$1(function (module, exports) {
         DOMContainer.appendChild(element);
       }
     }
+  } else {
+    // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
+    element = document.createElement(elementType);
+    JSONcontainer[elementType] = {
+      used: [],
+      redundant: []
+    };
 
-    JSONcontainer[elementType].used.push(element);
-    return element;
-  };
-  /**
-   * Draw a point object. This is a separate function because it can also be called by the legend.
-   * The reason the JSONcontainer and the target SVG svgContainer have to be supplied is so the legend can use these functions
-   * as well.
-   *
-   * @param {number} x
-   * @param {number} y
-   * @param {Object} groupTemplate: A template containing the necessary information to draw the datapoint e.g., {style: 'circle', size: 5, className: 'className' }
-   * @param {Object} JSONcontainer
-   * @param {Object} svgContainer
-   * @param {Object} labelObj
-   * @returns {vis.PointItem}
-   */
-
-
-  exports.drawPoint = function (x, y, groupTemplate, JSONcontainer, svgContainer, labelObj) {
-    var point;
-
-    if (groupTemplate.style == 'circle') {
-      point = exports.getSVGElement('circle', JSONcontainer, svgContainer);
-      point.setAttributeNS(null, "cx", x);
-      point.setAttributeNS(null, "cy", y);
-      point.setAttributeNS(null, "r", 0.5 * groupTemplate.size);
+    if (insertBefore !== undefined) {
+      DOMContainer.insertBefore(element, insertBefore);
     } else {
-      point = exports.getSVGElement('rect', JSONcontainer, svgContainer);
-      point.setAttributeNS(null, "x", x - 0.5 * groupTemplate.size);
-      point.setAttributeNS(null, "y", y - 0.5 * groupTemplate.size);
-      point.setAttributeNS(null, "width", groupTemplate.size);
-      point.setAttributeNS(null, "height", groupTemplate.size);
+      DOMContainer.appendChild(element);
+    }
+  }
+
+  JSONcontainer[elementType].used.push(element);
+  return element;
+}
+/**
+ * Draw a point object. This is a separate function because it can also be called by the legend.
+ * The reason the JSONcontainer and the target SVG svgContainer have to be supplied is so the legend can use these functions
+ * as well.
+ *
+ * @param {number} x
+ * @param {number} y
+ * @param {Object} groupTemplate: A template containing the necessary information to draw the datapoint e.g., {style: 'circle', size: 5, className: 'className' }
+ * @param {Object} JSONcontainer
+ * @param {Object} svgContainer
+ * @param {Object} labelObj
+ * @returns {vis.PointItem}
+ */
+
+function drawPoint(x, y, groupTemplate, JSONcontainer, svgContainer, labelObj) {
+  var point;
+
+  if (groupTemplate.style == 'circle') {
+    point = getSVGElement('circle', JSONcontainer, svgContainer);
+    point.setAttributeNS(null, "cx", x);
+    point.setAttributeNS(null, "cy", y);
+    point.setAttributeNS(null, "r", 0.5 * groupTemplate.size);
+  } else {
+    point = getSVGElement('rect', JSONcontainer, svgContainer);
+    point.setAttributeNS(null, "x", x - 0.5 * groupTemplate.size);
+    point.setAttributeNS(null, "y", y - 0.5 * groupTemplate.size);
+    point.setAttributeNS(null, "width", groupTemplate.size);
+    point.setAttributeNS(null, "height", groupTemplate.size);
+  }
+
+  if (groupTemplate.styles !== undefined) {
+    point.setAttributeNS(null, "style", groupTemplate.styles);
+  }
+
+  point.setAttributeNS(null, "class", groupTemplate.className + " vis-point"); //handle label
+
+  if (labelObj) {
+    var label = getSVGElement('text', JSONcontainer, svgContainer);
+
+    if (labelObj.xOffset) {
+      x = x + labelObj.xOffset;
     }
 
-    if (groupTemplate.styles !== undefined) {
-      point.setAttributeNS(null, "style", groupTemplate.styles);
+    if (labelObj.yOffset) {
+      y = y + labelObj.yOffset;
     }
 
-    point.setAttributeNS(null, "class", groupTemplate.className + " vis-point"); //handle label
-
-    if (labelObj) {
-      var label = exports.getSVGElement('text', JSONcontainer, svgContainer);
-
-      if (labelObj.xOffset) {
-        x = x + labelObj.xOffset;
-      }
-
-      if (labelObj.yOffset) {
-        y = y + labelObj.yOffset;
-      }
-
-      if (labelObj.content) {
-        label.textContent = labelObj.content;
-      }
-
-      if (labelObj.className) {
-        label.setAttributeNS(null, "class", labelObj.className + " vis-label");
-      }
-
-      label.setAttributeNS(null, "x", x);
-      label.setAttributeNS(null, "y", y);
+    if (labelObj.content) {
+      label.textContent = labelObj.content;
     }
 
-    return point;
-  };
-  /**
-   * draw a bar SVG element centered on the X coordinate
-   *
-   * @param {number} x
-   * @param {number} y
-   * @param {number} width
-   * @param {number} height
-   * @param {string} className
-   * @param {Object} JSONcontainer
-   * @param {Object} svgContainer
-   * @param {string} style
-   */
-
-
-  exports.drawBar = function (x, y, width, height, className, JSONcontainer, svgContainer, style) {
-    if (height != 0) {
-      if (height < 0) {
-        height *= -1;
-        y -= height;
-      }
-
-      var rect = exports.getSVGElement('rect', JSONcontainer, svgContainer);
-      rect.setAttributeNS(null, "x", x - 0.5 * width);
-      rect.setAttributeNS(null, "y", y);
-      rect.setAttributeNS(null, "width", width);
-      rect.setAttributeNS(null, "height", height);
-      rect.setAttributeNS(null, "class", className);
-
-      if (style) {
-        rect.setAttributeNS(null, "style", style);
-      }
+    if (labelObj.className) {
+      label.setAttributeNS(null, "class", labelObj.className + " vis-label");
     }
-  };
+
+    label.setAttributeNS(null, "x", x);
+    label.setAttributeNS(null, "y", y);
+  }
+
+  return point;
+}
+/**
+ * draw a bar SVG element centered on the X coordinate
+ *
+ * @param {number} x
+ * @param {number} y
+ * @param {number} width
+ * @param {number} height
+ * @param {string} className
+ * @param {Object} JSONcontainer
+ * @param {Object} svgContainer
+ * @param {string} style
+ */
+
+function drawBar(x, y, width, height, className, JSONcontainer, svgContainer, style) {
+  if (height != 0) {
+    if (height < 0) {
+      height *= -1;
+      y -= height;
+    }
+
+    var rect = getSVGElement('rect', JSONcontainer, svgContainer);
+    rect.setAttributeNS(null, "x", x - 0.5 * width);
+    rect.setAttributeNS(null, "y", y);
+    rect.setAttributeNS(null, "width", width);
+    rect.setAttributeNS(null, "height", height);
+    rect.setAttributeNS(null, "class", className);
+
+    if (style) {
+      rect.setAttributeNS(null, "style", style);
+    }
+  }
+}
+
+var DOMutil = /*#__PURE__*/Object.freeze({
+  prepareElements: prepareElements,
+  cleanupElements: cleanupElements,
+  resetElements: resetElements,
+  getSVGElement: getSVGElement,
+  getDOMElement: getDOMElement,
+  drawPoint: drawPoint,
+  drawBar: drawBar
 });
-var DOMutil_1 = DOMutil.prepareElements;
-var DOMutil_2 = DOMutil.cleanupElements;
-var DOMutil_3 = DOMutil.resetElements;
-var DOMutil_4 = DOMutil.getSVGElement;
-var DOMutil_5 = DOMutil.getDOMElement;
-var DOMutil_6 = DOMutil.drawPoint;
-var DOMutil_7 = DOMutil.drawBar;
 
 /** 
  * vis-data - data
@@ -7165,13 +7150,13 @@ function _defineProperty$1(obj, key, value) {
 
 var defineProperty$1 = _defineProperty$1;
 
-function createCommonjsModule$2(fn, module) {
+function createCommonjsModule$1(fn, module) {
   return module = {
     exports: {}
   }, fn(module, module.exports), module.exports;
 }
 
-var _typeof_1$1 = createCommonjsModule$2(function (module) {
+var _typeof_1$1 = createCommonjsModule$1(function (module) {
   function _typeof2(obj) {
     if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
       _typeof2 = function _typeof2(obj) {
@@ -7248,7 +7233,7 @@ function _possibleConstructorReturn(self, call) {
 }
 
 var possibleConstructorReturn = _possibleConstructorReturn;
-var getPrototypeOf = createCommonjsModule$2(function (module) {
+var getPrototypeOf = createCommonjsModule$1(function (module) {
   function _getPrototypeOf(o) {
     module.exports = _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) {
       return o.__proto__ || Object.getPrototypeOf(o);
@@ -7258,7 +7243,7 @@ var getPrototypeOf = createCommonjsModule$2(function (module) {
 
   module.exports = _getPrototypeOf;
 });
-var setPrototypeOf = createCommonjsModule$2(function (module) {
+var setPrototypeOf = createCommonjsModule$1(function (module) {
   function _setPrototypeOf(o, p) {
     module.exports = _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) {
       o.__proto__ = p;
@@ -7426,9 +7411,9 @@ function _typeof(obj) {
   return _typeof(obj);
 }
 
-var commonjsGlobal$2 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+var commonjsGlobal$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-function commonjsRequire$2() {
+function commonjsRequire$1() {
   throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
 }
 
@@ -7441,7 +7426,7 @@ function createCommonjsModule$1$1(fn, module) {
 var moment$1 = createCommonjsModule$1$1(function (module, exports) {
   (function (global, factory) {
     module.exports = factory();
-  })(commonjsGlobal$2, function () {
+  })(commonjsGlobal$1, function () {
     var hookCallback;
 
     function hooks() {
@@ -9329,7 +9314,7 @@ var moment$1 = createCommonjsModule$1$1(function (module, exports) {
       if (!locales[name] && 'object' !== 'undefined' && module && module.exports) {
         try {
           oldLocale = globalLocale._abbr;
-          var aliasedRequire = commonjsRequire$2;
+          var aliasedRequire = commonjsRequire$1;
           aliasedRequire('./locale/' + name);
           getSetGlobalLocale(oldLocale);
         } catch (e) {}
@@ -14219,11 +14204,21 @@ function _nonIterableSpread$2() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
-var moment$2 = createCommonjsModule$1(function (module, exports) {
+var commonjsGlobal$2 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
+
+function commonjsRequire$2 () {
+	throw new Error('Dynamic requires are not currently supported by rollup-plugin-commonjs');
+}
+
+function createCommonjsModule$2(fn, module) {
+	return module = { exports: {} }, fn(module, module.exports), module.exports;
+}
+
+var moment$2 = createCommonjsModule$2(function (module, exports) {
 
   (function (global, factory) {
      module.exports = factory() ;
-  })(commonjsGlobal$1, function () {
+  })(commonjsGlobal$2, function () {
 
     var hookCallback;
 
@@ -16112,7 +16107,7 @@ var moment$2 = createCommonjsModule$1(function (module, exports) {
       if (!locales[name] && 'object' !== 'undefined' && module && module.exports) {
         try {
           oldLocale = globalLocale._abbr;
-          var aliasedRequire = commonjsRequire$1;
+          var aliasedRequire = commonjsRequire$2;
           aliasedRequire('./locale/' + name);
           getSetGlobalLocale(oldLocale);
         } catch (e) {}
@@ -20525,7 +20520,7 @@ Emitter.prototype.hasListeners = function (event) {
   return !!this.listeners(event).length;
 };
 
-var propagating = createCommonjsModule$1(function (module, exports) {
+var propagating = createCommonjsModule$2(function (module, exports) {
 
   (function (factory) {
     {
@@ -20756,7 +20751,7 @@ var propagating = createCommonjsModule$1(function (module, exports) {
   });
 });
 
-var hammer = createCommonjsModule$1(function (module) {
+var hammer = createCommonjsModule$2(function (module) {
   /*! Hammer.JS - v2.0.7 - 2016-04-22
    * http://hammerjs.github.io/
    *
@@ -25039,7 +25034,7 @@ function (_Component) {
 
 var warnedForOverflow = false;
 
-var keycharm = createCommonjsModule$1(function (module, exports) {
+var keycharm = createCommonjsModule$2(function (module, exports) {
   /**
    * Created by Alex on 11/6/2014.
    */
@@ -25053,7 +25048,7 @@ var keycharm = createCommonjsModule$1(function (module, exports) {
       // like Node.
       module.exports = factory();
     }
-  })(commonjsGlobal$1, function () {
+  })(commonjsGlobal$2, function () {
     function keycharm(options) {
       var preventDefault = options && options.preventDefault || false;
       var container = options && options.container || window;
@@ -25488,7 +25483,7 @@ function _hasParent(element, parent) {
   return false;
 }
 
-var locales = createCommonjsModule$1(function (module, exports) {
+var locales = createCommonjsModule$2(function (module, exports) {
   // English
   exports['en'] = {
     current: 'current',
@@ -39102,7 +39097,7 @@ function (_Component) {
   }, {
     key: "_redrawGroupIcons",
     value: function _redrawGroupIcons() {
-      DOMutil.prepareElements(this.svgElements);
+      prepareElements(this.svgElements);
       var x;
       var iconWidth = this.options.iconWidth;
       var iconHeight = 15;
@@ -39129,15 +39124,15 @@ function (_Component) {
         }
       }
 
-      DOMutil.cleanupElements(this.svgElements);
+      cleanupElements(this.svgElements);
       this.iconsRemoved = false;
     }
   }, {
     key: "_cleanupIcons",
     value: function _cleanupIcons() {
       if (this.iconsRemoved === false) {
-        DOMutil.prepareElements(this.svgElements);
-        DOMutil.cleanupElements(this.svgElements);
+        prepareElements(this.svgElements);
+        cleanupElements(this.svgElements);
         this.iconsRemoved = true;
       }
     }
@@ -39284,8 +39279,8 @@ function (_Component) {
       var _this2 = this;
 
       var resized = false;
-      DOMutil.prepareElements(this.DOMelements.lines);
-      DOMutil.prepareElements(this.DOMelements.labels);
+      prepareElements(this.DOMelements.lines);
+      prepareElements(this.DOMelements.labels);
       var orientation = this.options['orientation'];
       var customRange = this.options[orientation].range != undefined ? this.options[orientation].range : {}; //Override range with manual options:
 
@@ -39349,21 +39344,21 @@ function (_Component) {
       if (this.maxLabelSize > this.width - offset && this.options.visible === true) {
         this.width = this.maxLabelSize + offset;
         this.options.width = "".concat(this.width, "px");
-        DOMutil.cleanupElements(this.DOMelements.lines);
-        DOMutil.cleanupElements(this.DOMelements.labels);
+        cleanupElements(this.DOMelements.lines);
+        cleanupElements(this.DOMelements.labels);
         this.redraw();
         resized = true;
       } // this will resize the yAxis if it is too big for the labels.
       else if (this.maxLabelSize < this.width - offset && this.options.visible === true && this.width > this.minWidth) {
           this.width = Math.max(this.minWidth, this.maxLabelSize + offset);
           this.options.width = "".concat(this.width, "px");
-          DOMutil.cleanupElements(this.DOMelements.lines);
-          DOMutil.cleanupElements(this.DOMelements.labels);
+          cleanupElements(this.DOMelements.lines);
+          cleanupElements(this.DOMelements.labels);
           this.redraw();
           resized = true;
         } else {
-          DOMutil.cleanupElements(this.DOMelements.lines);
-          DOMutil.cleanupElements(this.DOMelements.labels);
+          cleanupElements(this.DOMelements.lines);
+          cleanupElements(this.DOMelements.labels);
           resized = false;
         }
 
@@ -39394,7 +39389,7 @@ function (_Component) {
     key: "_redrawLabel",
     value: function _redrawLabel(y, text, orientation, className, characterHeight) {
       // reuse redundant label
-      var label = DOMutil.getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
+      var label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
 
       label.className = className;
       label.innerHTML = text;
@@ -39428,7 +39423,7 @@ function (_Component) {
     key: "_redrawLine",
     value: function _redrawLine(y, orientation, className, offset, width) {
       if (this.master === true) {
-        var line = DOMutil.getDOMElement('div', this.DOMelements.lines, this.dom.lineContainer); //this.dom.redundant.lines.shift();
+        var line = getDOMElement('div', this.DOMelements.lines, this.dom.lineContainer); //this.dom.redundant.lines.shift();
 
         line.className = className;
         line.innerHTML = '';
@@ -39452,10 +39447,10 @@ function (_Component) {
   }, {
     key: "_redrawTitle",
     value: function _redrawTitle(orientation) {
-      DOMutil.prepareElements(this.DOMelements.title); // Check if the title is defined for this axes
+      prepareElements(this.DOMelements.title); // Check if the title is defined for this axes
 
       if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
-        var title = DOMutil.getDOMElement('div', this.DOMelements.title, this.dom.frame);
+        var title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
         title.className = "vis-y-axis vis-title vis-".concat(orientation);
         title.innerHTML = this.options[orientation].title.text; // Add style - if provided
 
@@ -39473,7 +39468,7 @@ function (_Component) {
       } // we need to clean up in case we did not use all elements.
 
 
-      DOMutil.cleanupElements(this.DOMelements.title);
+      cleanupElements(this.DOMelements.title);
     }
     /**
      * Determine the size of text on the axis (both major and minor axis).
@@ -39550,12 +39545,12 @@ Points.draw = function (dataset, group, framework, offset) {
   for (var i = 0; i < dataset.length; i++) {
     if (!callback) {
       // draw the point the simple way.
-      DOMutil.drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group), framework.svgElements, framework.svg, dataset[i].label);
+      drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group), framework.svgElements, framework.svg, dataset[i].label);
     } else {
       var callbackResult = callback(dataset[i], group); // result might be true, false or an object
 
       if (callbackResult === true || _typeof$1(callbackResult) === 'object') {
-        DOMutil.drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group, callbackResult), framework.svgElements, framework.svg, dataset[i].label);
+        drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group, callbackResult), framework.svgElements, framework.svg, dataset[i].label);
       }
     }
   }
@@ -39563,14 +39558,14 @@ Points.draw = function (dataset, group, framework, offset) {
 
 Points.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var fillHeight = iconHeight * 0.5;
-  var outline = DOMutil.getSVGElement("rect", framework.svgElements, framework.svg);
+  var outline = getSVGElement("rect", framework.svgElements, framework.svg);
   outline.setAttributeNS(null, "x", x);
   outline.setAttributeNS(null, "y", y - fillHeight);
   outline.setAttributeNS(null, "width", iconWidth);
   outline.setAttributeNS(null, "height", 2 * fillHeight);
   outline.setAttributeNS(null, "class", "vis-outline"); //Don't call callback on icon
 
-  DOMutil.drawPoint(x + 0.5 * iconWidth, y, getGroupTemplate(group), framework.svgElements, framework.svg);
+  drawPoint(x + 0.5 * iconWidth, y, getGroupTemplate(group), framework.svgElements, framework.svg);
 };
 /**
  *
@@ -39624,7 +39619,7 @@ function Bargraph(groupId, options) {// eslint-disable-line no-unused-vars
 
 Bargraph.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var fillHeight = iconHeight * 0.5;
-  var outline = DOMutil.getSVGElement("rect", framework.svgElements, framework.svg);
+  var outline = getSVGElement("rect", framework.svgElements, framework.svg);
   outline.setAttributeNS(null, "x", x);
   outline.setAttributeNS(null, "y", y - fillHeight);
   outline.setAttributeNS(null, "width", iconWidth);
@@ -39636,8 +39631,8 @@ Bargraph.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var bar1Height = Math.round(0.4 * iconHeight);
   var bar2Height = Math.round(0.75 * iconHeight);
   var offset = Math.round((iconWidth - 2 * barWidth) / 3);
-  DOMutil.drawBar(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, barWidth, bar1Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
-  DOMutil.drawBar(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, barWidth, bar2Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
+  drawBar(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, barWidth, bar1Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
+  drawBar(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, barWidth, bar2Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
 
   if (group.options.drawPoints.enabled == true) {
     var groupTemplate = {
@@ -39646,8 +39641,8 @@ Bargraph.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
       size: group.options.drawPoints.size / scale,
       className: group.className
     };
-    DOMutil.drawPoint(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, groupTemplate, framework.svgElements, framework.svg);
-    DOMutil.drawPoint(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, groupTemplate, framework.svgElements, framework.svg);
+    drawPoint(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, groupTemplate, framework.svgElements, framework.svg);
+    drawPoint(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, groupTemplate, framework.svgElements, framework.svg);
   }
 };
 /**
@@ -39752,7 +39747,7 @@ Bargraph.draw = function (groupIds, processedGroupData, framework) {
       start += drawData.offset;
     }
 
-    DOMutil.drawBar(start, combinedData[i].screen_y - heightOffset, dataWidth, group.zeroPosition - combinedData[i].screen_y, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style); // draw points
+    drawBar(start, combinedData[i].screen_y - heightOffset, dataWidth, group.zeroPosition - combinedData[i].screen_y, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style); // draw points
 
     if (group.options.drawPoints.enabled === true) {
       var pointData = {
@@ -39927,13 +39922,13 @@ Line.calcPath = function (dataset, group) {
 Line.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var fillHeight = iconHeight * 0.5;
   var path, fillPath;
-  var outline = DOMutil.getSVGElement("rect", framework.svgElements, framework.svg);
+  var outline = getSVGElement("rect", framework.svgElements, framework.svg);
   outline.setAttributeNS(null, "x", x);
   outline.setAttributeNS(null, "y", y - fillHeight);
   outline.setAttributeNS(null, "width", iconWidth);
   outline.setAttributeNS(null, "height", 2 * fillHeight);
   outline.setAttributeNS(null, "class", "vis-outline");
-  path = DOMutil.getSVGElement("path", framework.svgElements, framework.svg);
+  path = getSVGElement("path", framework.svgElements, framework.svg);
   path.setAttributeNS(null, "class", group.className);
 
   if (group.style !== undefined) {
@@ -39943,7 +39938,7 @@ Line.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   path.setAttributeNS(null, "d", "M" + x + "," + y + " L" + (x + iconWidth) + "," + y + "");
 
   if (group.options.shaded.enabled == true) {
-    fillPath = DOMutil.getSVGElement("path", framework.svgElements, framework.svg);
+    fillPath = getSVGElement("path", framework.svgElements, framework.svg);
 
     if (group.options.shaded.orientation == 'top') {
       fillPath.setAttributeNS(null, "d", "M" + x + ", " + (y - fillHeight) + "L" + x + "," + y + " L" + (x + iconWidth) + "," + y + " L" + (x + iconWidth) + "," + (y - fillHeight));
@@ -39965,7 +39960,7 @@ Line.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
       size: group.options.drawPoints.size,
       className: group.className
     };
-    DOMutil.drawPoint(x + 0.5 * iconWidth, y, groupTemplate, framework.svgElements, framework.svg);
+    drawPoint(x + 0.5 * iconWidth, y, groupTemplate, framework.svgElements, framework.svg);
   }
 };
 
@@ -39973,7 +39968,7 @@ Line.drawShading = function (pathArray, group, subPathArray, framework) {
   // append shading to the path
   if (group.options.shaded.enabled == true) {
     var svgHeight = Number(framework.svg.style.height.replace('px', ''));
-    var fillPath = DOMutil.getSVGElement('path', framework.svgElements, framework.svg);
+    var fillPath = getSVGElement('path', framework.svgElements, framework.svg);
     var type = "L";
 
     if (group.options.interpolation.enabled == true) {
@@ -40017,7 +40012,7 @@ Line.drawShading = function (pathArray, group, subPathArray, framework) {
 
 Line.draw = function (pathArray, group, framework) {
   if (pathArray != null && pathArray != undefined) {
-    var path = DOMutil.getSVGElement('path', framework.svgElements, framework.svg);
+    var path = getSVGElement('path', framework.svgElements, framework.svg);
     path.setAttributeNS(null, "class", group.className);
 
     if (group.style !== undefined) {
@@ -40586,7 +40581,7 @@ Legend.prototype.drawLegendIcons = function () {
       return a < b ? -1 : 1;
     }); // this resets the elements so the order is maintained
 
-    DOMutil.resetElements(this.svgElements);
+    resetElements(this.svgElements);
     var padding = window.getComputedStyle(this.dom.frame).paddingTop;
     var iconOffset = Number(padding.replace('px', ''));
     var x = iconOffset;
@@ -41270,7 +41265,7 @@ LineGraph.prototype._getSortedGroupIds = function () {
 
 LineGraph.prototype._updateGraph = function () {
   // reset the svg elements
-  DOMutil.prepareElements(this.svgElements);
+  prepareElements(this.svgElements);
 
   if (this.props.width != 0 && this.itemsData != null) {
     var group, i;
@@ -41303,7 +41298,7 @@ LineGraph.prototype._updateGraph = function () {
       //  Cleanup SVG elements on abort.
 
       if (changeCalled == true) {
-        DOMutil.cleanupElements(this.svgElements);
+        cleanupElements(this.svgElements);
         this.abortedGraphUpdate = true;
         return true;
       }
@@ -41411,7 +41406,7 @@ LineGraph.prototype._updateGraph = function () {
   } // cleanup unused svg elements
 
 
-  DOMutil.cleanupElements(this.svgElements);
+  cleanupElements(this.svgElements);
   return false;
 };
 
