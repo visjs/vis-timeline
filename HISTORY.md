@@ -2,8 +2,10 @@
 
 http://visjs.org
 
-## 2019-01-01, version 5.1.0
+## 2019-01-02, version 5.1.0
 
+- fix: fix copyright banner (#32)
+- fix: firefox scroll issue (#27)
 - fix(package): upgrade vis-util to 1.1.4 (#31)
 - chore(package): update vis-util to 1.1.2 (#19)
 - fix: update vis-data; fixes #6 (#13)
