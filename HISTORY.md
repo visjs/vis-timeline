@@ -51,6 +51,22 @@ In version 6.0.0, [timeline-plus](https://github.com/yotamberk/timeline-plus) fe
 - fix: press and drag selected item ([timeline-plus#173](https://github.com/yotamberk/timeline-plus/pull/173)) - thanks to @daRoof
 - fix: build scripts ([timeline-plus#178](https://github.com/yotamberk/timeline-plus/pull/178)) - thanks to @apwidejulien
 
+## 2019-01-02, version 5.1.0
+
+- fix: fix copyright banner (#32)
+- fix: firefox scroll issue (#27)
+- fix(package): upgrade vis-util to 1.1.4 (#31)
+- chore(package): update vis-util to 1.1.2 (#19)
+- fix: update vis-data; fixes #6 (#13)
+- chore: make it possible to exclude external libraries (#9)
+- fix: change script CDN URL's to https (#7)
+- fix(examples): fix css imports
+- chore: removed opencollective logo
+- fix(examples): fix script of basicUsage (#3)
+- chore: use rollup to bundle css (#2)
+- chore: improve HISTORY.md
+- feat: also generate ESM module
+- chore: fix example cdn link in README
 
 ## 2019-07-19, version 5.0.0
 

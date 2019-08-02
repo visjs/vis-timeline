@@ -1,26 +1,26 @@
-/** 
+/**
  * vis-timeline - timeline-graph2d
  * https://github.com/visjs/vis-timeline
- * 
+ *
  * Create a fully customizable, interactive timeline with items and ranges.
- * 
- * @version 5.0.0
- * @date    2019-07-28T19:13:51Z
- * 
+ *
+ * @version 5.1.0
+ * @date    2019-08-02T15:47:04Z
+ *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
- * 
+ *
  * @license 
  * vis.js is dual licensed under both
- * 
+ *
  *   1. The Apache 2.0 License
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  *   and
- * 
+ *
  *   2. The MIT License
  *      http://opensource.org/licenses/MIT
- * 
+ *
  * vis.js may be distributed under either license.
  */
 function _defineProperty(obj, key, value) {
@@ -5035,13 +5035,16 @@ var extend = Object.assign;
  */
 
 function selectiveExtend(props, a) {
-  // @TODO: better solution?
   if (!Array.isArray(props)) {
     throw new Error('Array with property names expected as first argument');
   }
 
-  for (var i = 2; i < (arguments.length <= 2 ? 0 : arguments.length - 2); i++) {
-    var other = i + 2 < 2 || arguments.length <= i + 2 ? undefined : arguments[i + 2];
+  for (var _len = arguments.length, others = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
+    others[_key - 2] = arguments[_key];
+  }
+
+  for (var _i = 0, _others = others; _i < _others.length; _i++) {
+    var other = _others[_i];
 
     for (var p = 0; p < props.length; p++) {
       var prop = props[p];
@@ -5545,9 +5548,9 @@ function forEach(object, callback) {
     }
   } else {
     // object
-    for (var _key in object) {
-      if (Object.prototype.hasOwnProperty.call(object, _key)) {
-        callback(object[_key], _key, object);
+    for (var _key2 in object) {
+      if (Object.prototype.hasOwnProperty.call(object, _key2)) {
+        callback(object[_key2], _key2, object);
       }
     }
   }
@@ -6058,11 +6061,11 @@ var cssUtil = {
       if (style.trim() != '') {
         var parts = style.split(':');
 
-        var _key2 = parts[0].trim();
+        var _key3 = parts[0].trim();
 
         var _value2 = parts[1].trim();
 
-        styles[_key2] = _value2;
+        styles[_key3] = _value2;
       }
     });
     return styles;
@@ -6101,9 +6104,9 @@ function removeCssText(element, cssText) {
   var styles = cssUtil.split(element.style.cssText);
   var removeStyles = cssUtil.split(cssText);
 
-  for (var _key3 in removeStyles) {
-    if (Object.prototype.hasOwnProperty.call(removeStyles, _key3)) {
-      delete styles[_key3];
+  for (var _key4 in removeStyles) {
+    if (Object.prototype.hasOwnProperty.call(removeStyles, _key4)) {
+      delete styles[_key4];
     }
   }
 
@@ -27684,11 +27687,11 @@ function substack(items, margin, subgroup) {
  * @param {boolean} stackSubgroups
  */
 
-function nostack(items, margin, subgroups, stackSubgroups) {
+function nostack(items, margin, subgroups, isStackSubgroups) {
   for (var i = 0; i < items.length; i++) {
     if (items[i].data.subgroup == undefined) {
       items[i].top = margin.item.vertical;
-    } else if (items[i].data.subgroup !== undefined && stackSubgroups) {
+    } else if (items[i].data.subgroup !== undefined && isStackSubgroups) {
       var newTop = 0;
 
       for (var subgroup in subgroups) {
@@ -27704,7 +27707,7 @@ function nostack(items, margin, subgroups, stackSubgroups) {
     }
   }
 
-  if (!stackSubgroups) {
+  if (!isStackSubgroups) {
     stackSubgroups(items, margin, subgroups);
   }
 }
@@ -42820,3 +42823,4 @@ var index = {
 };
 
 export default index;
+//# sourceMappingURL=vis-timeline-graph2d.esm.js.map
