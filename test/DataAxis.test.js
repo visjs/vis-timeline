@@ -1,5 +1,4 @@
 var assert = require('assert');
-var jsdom_global = require('jsdom-global');
 var canvasMockify = require('./canvas-mock');
 
 var DataAxis = require('../lib/timeline/component/DataAxis');
@@ -23,8 +22,7 @@ describe('DataAxis', function () {
   });
 
   it('should work', function () {
-    var dataAxis = new DataAxis(this.body, {}, this.svg, {});
-
+    new DataAxis(this.body, {}, this.svg, {});
   });
 
   describe('screenToValue', function () {
