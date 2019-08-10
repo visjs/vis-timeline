@@ -27,7 +27,7 @@
     "test-cov": "nyc --reporter=lcov mocha --exit --require @babel/register",
     "build": "rollup --config rollup.config.js",
     "watch": "rollup --watch --config rollup.config.js",
-    "lint": "eslint '{src,test}/**/*.{m,}{j,t}s{x,}'",
+    "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
     "clean": "rimraf 'dist/*'",
     "contributors:update": "git-authors-cli",
     "postinstall": "opencollective postinstall || exit 0",
