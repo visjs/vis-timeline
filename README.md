@@ -9,7 +9,7 @@ The Timeline/Graph2D is an interactive visualization chart to visualize data in 
 [![GitHub contributors](https://img.shields.io/github/contributors/visjs/vis-timeline.svg)](https://github.com/visjs/vis-timeline/graphs/contributors)
 [![GitHub stars](https://img.shields.io/github/stars/visjs/vis-timeline.svg)](https://github.com/almende/vis/stargazers)
 
-[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors) 
+[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors) [![Greenkeeper badge](https://badges.greenkeeper.io/visjs/vis-timeline.svg)](https://greenkeeper.io/) 
 
 ## Install
 
