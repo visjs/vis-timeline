@@ -47,6 +47,8 @@
   // create visualization
   var container = document.getElementById('visualization');
   var options = {
+    start: new Date(),
+    end: new Date(100000*60*60*24 + (new Date()).valueOf()),
     loadingScreenTemplate: function() {
       return '<h1>Loading...</h1>'
     }

@@ -2,7 +2,6 @@ var assert = require('assert');
 var jsdom_global = require('jsdom-global');
 var moment = require('../lib/module/moment');
 var TimeStep = require('../lib/timeline/TimeStep');
-var TestSupport = require('./TestSupport');
 
 describe('TimeStep', function () {
   

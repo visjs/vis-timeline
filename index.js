@@ -1,49 +1,88 @@
 // utils
-var util = require('vis-util');
-exports.util = util;
-exports.DOMutil = require('./lib/DOMutil');
+import util from 'vis-util';
+import * as DOMutil from './lib/DOMutil';
 
 // data
-var { DataSet, DataView, Queue } = require('vis-data');
-exports.DataSet = DataSet;
-exports.DataView = DataView;
-exports.Queue = Queue;
+import { DataSet, DataView, Queue } from 'vis-data';
+
 
 // Timeline
-exports.Timeline = require('./lib/timeline/Timeline');
-exports.Graph2d = require('./lib/timeline/Graph2d');
-exports.timeline = {
-  Core: require('./lib/timeline/Core'),
-  DateUtil: require('./lib/timeline/DateUtil'),
-  Range: require('./lib/timeline/Range'),
-  stack: require('./lib/timeline/Stack'),
-  TimeStep: require('./lib/timeline/TimeStep'),
+import Timeline from './lib/timeline/Timeline';
+import Graph2d from './lib/timeline/Graph2d';
 
-  components: {
-    items: {
-      Item: require('./lib/timeline/component/item/Item'),
-      BackgroundItem: require('./lib/timeline/component/item/BackgroundItem'),
-      BoxItem: require('./lib/timeline/component/item/BoxItem'),
-      PointItem: require('./lib/timeline/component/item/PointItem'),
-      RangeItem: require('./lib/timeline/component/item/RangeItem')
-    },
+import Core from './lib/timeline/Core';
+import * as DateUtil from './lib/timeline/DateUtil';
+import Range from './lib/timeline/Range';
+import * as stack from './lib/timeline/Stack';
+import TimeStep from './lib/timeline/TimeStep';
 
-    BackgroundGroup: require('./lib/timeline/component/BackgroundGroup'),
-    Component: require('./lib/timeline/component/Component'),
-    CurrentTime: require('./lib/timeline/component/CurrentTime'),
-    CustomTime: require('./lib/timeline/component/CustomTime'),
-    DataAxis: require('./lib/timeline/component/DataAxis'),
-    DataScale: require('./lib/timeline/component/DataScale'),
-    GraphGroup: require('./lib/timeline/component/GraphGroup'),
-    Group: require('./lib/timeline/component/Group'),
-    ItemSet: require('./lib/timeline/component/ItemSet'),
-    Legend: require('./lib/timeline/component/Legend'),
-    LineGraph: require('./lib/timeline/component/LineGraph'),
-    TimeAxis: require('./lib/timeline/component/TimeAxis')
-  }
-};
+import Item from './lib/timeline/component/item/Item';
+import BackgroundItem from './lib/timeline/component/item/BackgroundItem';
+import BoxItem from './lib/timeline/component/item/BoxItem';
+import PointItem from './lib/timeline/component/item/PointItem';
+import RangeItem from './lib/timeline/component/item/RangeItem';
+
+import BackgroundGroup from './lib/timeline/component/BackgroundGroup';
+import Component from './lib/timeline/component/Component';
+import CurrentTime from './lib/timeline/component/CurrentTime';
+import CustomTime from './lib/timeline/component/CustomTime';
+import DataAxis from './lib/timeline/component/DataAxis';
+import DataScale from './lib/timeline/component/DataScale';
+import GraphGroup from './lib/timeline/component/GraphGroup';
+import Group from './lib/timeline/component/Group';
+import ItemSet from './lib/timeline/component/ItemSet';
+import Legend from './lib/timeline/component/Legend';
+import LineGraph from './lib/timeline/component/LineGraph';
+import TimeAxis from './lib/timeline/component/TimeAxis';
 
 // bundled external libraries
-exports.moment = require('./lib/module/moment');
-exports.Hammer = require('./lib/module/hammer');
-exports.keycharm = require('keycharm');
+import moment from './lib/module/moment';
+import Hammer from './lib/module/hammer';
+import keycharm from 'keycharm';
+
+export default {
+  util,
+  DOMutil,
+
+  DataSet,
+  DataView,
+  Queue,
+
+  Timeline,
+  Graph2d,
+
+  timeline: {
+    Core ,
+    DateUtil,
+    Range,
+    stack,
+    TimeStep,
+
+    components: {
+      items: {
+        Item,
+        BackgroundItem,
+        BoxItem,
+        PointItem,
+        RangeItem,
+      },
+  
+      BackgroundGroup,
+      Component,
+      CurrentTime,
+      CustomTime,
+      DataAxis,
+      DataScale,
+      GraphGroup,
+      Group,
+      ItemSet,
+      Legend,
+      LineGraph,
+      TimeAxis
+    }
+  },
+
+  moment,
+  Hammer,
+  keycharm
+};

@@ -193,3 +193,26 @@
 .vis-range.vis-item.vis-readonly .vis-drag-right {
   cursor: auto;
 }
+
+.vis-item.vis-cluster {
+  vertical-align: center;
+  text-align: center;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+.vis-item.vis-cluster-line {
+  padding: 0;
+  position: absolute;
+  width: 0;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+.vis-item.vis-cluster-dot {
+  position: absolute;
+  padding: 0;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 4px;
+}
