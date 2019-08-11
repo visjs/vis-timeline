@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 5.1.0
- * @date    2019-08-09T16:04:31Z
+ * @date    2019-08-11T20:35:23Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -42499,7 +42499,6 @@ function Graph2d(container, items, groups, options) {
 
     if (!me.initialDrawDone && (me.initialRangeChangeDone || !me.options.start && !me.options.end || me.options.rollingMode)) {
       me.initialDrawDone = true;
-      me.itemSet.initialDrawDone = true;
       me.dom.root.style.visibility = 'visible';
       me.dom.loadingScreen.parentNode.removeChild(me.dom.loadingScreen);
 
