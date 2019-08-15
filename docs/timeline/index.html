@@ -1238,9 +1238,11 @@ function (option, path) {
       <td><code>'flip'</code></td>
       <td>
         Set how the tooltip should act if it is about to overflow out of the timeline.<br />
-        Choose from <code>'cap'</code> and <code>'flip'</code>. <br />
+        Choose from <code>'cap'</code>, <code>'flip'</code> and <code>'none'</code>. <br />
         If it is set to <code>'cap'</code>, the tooltip will just cap its position to inside to timeline. <br />
-        While if it is set to <code>'flip'</code>, the position of the tooltip will flip around the cursor so that a corner is at the cursor, and the rest of it is visible. <br />
+        If set to <code>'flip'</code>, the position of the tooltip will flip around the cursor so that a corner is at the cursor, and the rest of it is visible. <br />
+        If set to <code>'none'</code>, the tooltip will be positioned independently of the timeline, so parts of the tooltip could possibly be hidden or stick ouf of
+        the timeline, depending how CSS overflow is defined for the timeline (by default it's hidden). <br />
     </tr>
     <tr parent="tooltip" class="hidden">
       <td class="indent">tooltip.delay</td>
