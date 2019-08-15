@@ -1119,30 +1119,36 @@ function (option, path) {
       <td>If true, overlapped items will be grouped to clusters, zooming will change that grouping. Use this option when a huge amount of items should be rendered.
       </td>
     </tr>
-    <tr parent="cluster">
-      <td class="indent" class="hidden">cluster.maxItems</td>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.maxItems</td>
       <td>number or null</td>
       <td><code>1</code></td>
       <td>Overlapped items will be not grouped until the number of items is within maxItems. The default value of <code>maxItems</code> is <code>1</code>, it means that each two overlapped items will be clustered.</td>
     </tr>
-    <tr parent="cluster">
-      <td class="indent" class="hidden">cluster.titleTemplate</td>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.titleTemplate</td>
       <td>string or null</td>
       <td><code>none</code></td>
       <td>Cluster item tooltip</td>
     </tr>
-    <tr parent="cluster">
-      <td class="indent" class="hidden">cluster.clusterCriteria</td>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.clusterCriteria</td>
       <td>function or null</td>
       <td><code>() => true</code></td>
       <td>If specified, determines whether overlapped items should go to the same cluster. The signature of the clusterCriteria function is:
         <pre class="prettyprint lang-js">function clusterCriteria(firstItem: Object, secondItem: Object) : boolean.</pre></td>
     </tr>
-    <tr parent="cluster">
-      <td class="indent" class="hidden">cluster.showStipes</td>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.showStipes</td>
       <td>boolean</td>
       <td><code>false</code></td>
       <td>If true, line from cluster to time axis is displayed when content overflows.</td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.fitOnDoubleClick</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>If true, the cluster will be centered on double click.</td>
     </tr>
 
 
