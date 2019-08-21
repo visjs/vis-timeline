@@ -23,6 +23,39 @@
  *
  * vis.js may be distributed under either license.
  */
+
+
+
+
+/*
+
+SkyDynamics JetLogic - Lidakis - changes
+
+issue-modification:
+on double click is adding new item on timeline:
+
+workaround:
+find this in vis.js add item on doubletap this.hammer.on('doubletap', this._onAddItem.bind(this)); and comment it.
+*/
+
+
+/*
+ FOR TIMELINE ITEMS EDITING ON LAPTOP DOUBLE CLICK TIMEOUT HAS an issue with the editing the range of each item,
+ for this issue the solution is presented below.
+
+ put the following line where it is dictated... in all files and below ...Hammer.DIRECTION_HORIZONTAL
+ this.hammer.get('press').set({time:10000});
+
+ timeline/Core.js
+ line 140
+ (below the line this.hammer.get('pan').set({threshold:5, direction: Hammer.DIRECTION_HORIZONTAL});)
+ timeline/component/ItemSet.js
+ line 266
+ (below the line this.hammer.get('pan').set({threshold:5, direction: Hammer.DIRECTION_HORIZONTAL});)
+ */
+
+
+
 function _defineProperty(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
@@ -26923,6 +26956,8 @@ function () {
       this.hammer.get('pan').set({
         direction: contentsOverflow ? Hammer.DIRECTION_ALL : Hammer.DIRECTION_HORIZONTAL
       }); // redraw all components
+      // preventing mouse focus and functionality runaway from long mouse press
+      this.hammer.get('press').set({time:10000});
 
       this.components.forEach(function (component) {
         resized = component.redraw() || resized;
@@ -32426,7 +32461,12 @@ function (_Component) {
 
       this.hammer.on('press', this._onMultiSelectItem.bind(this)); // add item on doubletap
 
-      this.hammer.on('doubletap', this._onAddItem.bind(this));
+      /*
+        issue-modification:
+        on double click is adding new item on timeline:
+      */
+      // commenting the line below
+      //this.hammer.on('doubletap', this._onAddItem.bind(this));
 
       if (this.options.rtl) {
         this.groupHammer = new Hammer(this.body.dom.rightContainer);
