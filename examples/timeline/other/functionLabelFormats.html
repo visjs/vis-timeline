@@ -16,7 +16,7 @@
     }
   </style>
 
-  <!-- note: moment.js must be loaded before vis.js, else vis.js uses its embedded version of moment.js -->
+  <!-- note: moment.js must be loaded before vis-timeline-graph2d.min.js, else vis-timeline-graph2d.min.js uses its embedded version of moment.js -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.8.4/moment.min.js"></script>
 
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
@@ -86,9 +86,6 @@
           case 'month':
             divider = 1000 * 60 * 60 * 24 * 30;
             break;
-          case 'quarter':
-            divider = 1000 * 60 * 60 * 24 * 30 * 3;
-            break;
           case 'year':
             divider = 1000 * 60 * 60 * 24 * 365;
             break;
@@ -123,9 +120,6 @@
           case 'month':
             divider = 1000 * 60 * 60 * 24 * 30;
             break;
-          case 'quarter':
-            divider = 1000 * 60 * 60 * 24 * 30 * 3;
-            break;            
           case 'year':
             divider = 1000 * 60 * 60 * 24 * 365;
             break;

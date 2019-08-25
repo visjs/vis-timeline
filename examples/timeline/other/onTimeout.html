@@ -40,7 +40,7 @@
   var options = {
     stack: true,
     onTimeout: {
-      timeoutMs: 1000,
+      timeoutMs: 10,
       callback: function(callback) {
         var didUserCancel;
         var didUserCancel = confirm("Too many items loaded! Would you like to continue rendering (this might take a while)?");

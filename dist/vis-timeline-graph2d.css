@@ -5,73 +5,6 @@
   z-index: 1;
 }
 
-.vis-custom-time.disabled {
-  cursor: inherit;
-}
-.vis-time-axis {
-  position: relative;
-  overflow: hidden;
-}
-
-.vis-time-axis.vis-foreground {
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.vis-time-axis.vis-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.vis-time-axis .vis-text {
-  position: absolute;
-  color: #4d4d4d;
-  padding: 3px;
-  overflow: hidden;
-  box-sizing: border-box;
-
-  white-space: nowrap;
-}
-
-.vis-time-axis .vis-text.vis-measure {
-  position: absolute;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
-  visibility: hidden;
-}
-
-.vis-time-axis .vis-grid.vis-vertical {
-  position: absolute;
-  border-left: 1px solid;
-}
-
-.vis-time-axis .vis-grid.vis-vertical-rtl {
-  position: absolute;
-  border-right: 1px solid;
-}
-
-.vis-time-axis .vis-grid.vis-minor {
-  border-color: #e5e5e5;
-}
-
-.vis-time-axis .vis-grid.vis-major {
-  border-color: #bfbfbf;
-}
-
-/* override some bootstrap styles screwing up the timelines css */
-
-.vis [class*="span"] {
-  min-height: 0;
-  width: auto;
-}
-
-
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
   width: 100%;
@@ -174,6 +107,69 @@
   white-space: nowrap;
   display: inline-block
 }
+.vis-time-axis {
+  position: relative;
+  overflow: hidden;
+}
+
+.vis-time-axis.vis-foreground {
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.vis-time-axis.vis-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vis-time-axis .vis-text {
+  position: absolute;
+  color: #4d4d4d;
+  padding: 3px;
+  overflow: hidden;
+  box-sizing: border-box;
+
+  white-space: nowrap;
+}
+
+.vis-time-axis .vis-text.vis-measure {
+  position: absolute;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  visibility: hidden;
+}
+
+.vis-time-axis .vis-grid.vis-vertical {
+  position: absolute;
+  border-left: 1px solid;
+}
+
+.vis-time-axis .vis-grid.vis-vertical-rtl {
+  position: absolute;
+  border-right: 1px solid;
+}
+
+.vis-time-axis .vis-grid.vis-minor {
+  border-color: #e5e5e5;
+}
+
+.vis-time-axis .vis-grid.vis-major {
+  border-color: #bfbfbf;
+}
+
+/* override some bootstrap styles screwing up the timelines css */
+
+.vis [class*="span"] {
+  min-height: 0;
+  width: auto;
+}
+
 
 .vis-item {
   position: absolute;
@@ -370,6 +366,28 @@
   cursor: auto;
 }
 
+.vis-item.vis-cluster {
+  vertical-align: center;
+  text-align: center;
+  border-style: solid;
+  border-radius: 2px;
+}
+
+.vis-item.vis-cluster-line {
+  padding: 0;
+  position: absolute;
+  width: 0;
+  border-left-width: 1px;
+  border-left-style: solid;
+}
+
+.vis-item.vis-cluster-dot {
+  position: absolute;
+  padding: 0;
+  border-width: 4px;
+  border-style: solid;
+  border-radius: 4px;
+}
 .vis-timeline {
   /*
   -webkit-transition: height .4s ease-in-out;
@@ -676,20 +694,136 @@
   cursor: pointer;
 }
 
-.vis-nested-group {
+.vis-label.vis-nested-group.vis-group-level-unknown-but-gte1 {
   background: #f5f5f5;
 }
+.vis-label.vis-nested-group.vis-group-level-0 {
+  background-color: #ffffff;
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
+  padding-left: 0;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
+  padding-right: 0;
+}
+.vis-label.vis-nested-group.vis-group-level-1 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
+  padding-left: 15px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
+  padding-right: 15px;
+}
+.vis-label.vis-nested-group.vis-group-level-2 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
+  padding-left: 30px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
+  padding-right: 30px;
+}
+.vis-label.vis-nested-group.vis-group-level-3 {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
+  padding-left: 45px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
+  padding-right: 45px;
+}
+.vis-label.vis-nested-group.vis-group-level-4 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
+  padding-left: 60px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
+  padding-right: 60px;
+}
+.vis-label.vis-nested-group.vis-group-level-5 {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
+  padding-left: 75px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
+  padding-right: 75px;
+}
+.vis-label.vis-nested-group.vis-group-level-6 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
+  padding-left: 90px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
+  padding-right: 90px;
+}
+.vis-label.vis-nested-group.vis-group-level-7 {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
+  padding-left: 105px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
+  padding-right: 105px;
+}
+.vis-label.vis-nested-group.vis-group-level-8 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
+  padding-left: 120px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
+  padding-right: 120px;
+}
+.vis-label.vis-nested-group.vis-group-level-9 {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
+  padding-left: 135px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
+  padding-right: 135px;
+}
+/* default takes over beginning with level-10 (thats why we add .vis-nested-group
+  to the selectors above, to have higher specifity than these rules for the defaults) */
+.vis-label.vis-nested-group {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.vis-ltr .vis-label.vis-nested-group .vis-inner {
+  padding-left: 150px;
+}
+.vis-rtl .vis-label.vis-nested-group .vis-inner {
+  padding-right: 150px;
+}
 
+.vis-group-level-unknown-but-gte1 {
+  border: 1px solid red;
+}
+
+/* expanded/collapsed indicators */
+.vis-label.vis-nesting-group:before,
+.vis-label.vis-nesting-group:before {
+  display: inline-block;
+  width: 15px;
+}
 .vis-label.vis-nesting-group.expanded:before {
   content: "\25BC";
 }
-
-.vis-label.vis-nesting-group.collapsed-rtl:before {
-  content: "\25C0";
-}
-
 .vis-label.vis-nesting-group.collapsed:before {
   content: "\25B6";
+}
+.vis-rtl .vis-label.vis-nesting-group.collapsed:before {
+  content: "\25C0";
+}
+/* compensate missing expanded/collapsed indicator, but only at levels > 0 */
+.vis-ltr .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
+  padding-left: 15px;
+}
+.vis-rtl .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
+  padding-right: 15px;
 }
 
 .vis-overlay {
@@ -727,10 +861,8 @@
   cursor: pointer;
 }
 
-.vis-labelset .vis-label.vertical {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
 }
 
 .vis-labelset .vis-label:last-child {
@@ -744,32 +876,6 @@
 
 .vis-labelset .vis-label .vis-inner.vis-hidden {
   padding: 0;
-}
-
-.vis-labelset .vis-label.vertical .vis-inner {
-  padding-top: 0;
-  padding-bottom: 0;
-  white-space: nowrap;
-  -webkit-transform: rotate(-90deg);
-  -moz-transform: rotate(-90deg);
-  -ms-transform: rotate(-90deg);
-  -o-transform: rotate(-90deg);
-  transform: rotate(-90deg);
-}
-
-.vis .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Must be displayed above for example selected Timeline items */
-  z-index: 10;
-}
-
-.vis-active {
-  box-shadow: 0 0 10px #86d5f8;
 }
 
 div.vis-configuration {
@@ -1060,6 +1166,21 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
     border-width: 12px;
     margin-top: -12px;
 }
+.vis .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Must be displayed above for example selected Timeline items */
+  z-index: 10;
+}
+
+.vis-active {
+  box-shadow: 0 0 10px #86d5f8;
+}
+
 div.vis-tooltip {
   position: absolute;
   visibility: hidden;
