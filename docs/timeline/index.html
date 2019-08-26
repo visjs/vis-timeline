@@ -293,6 +293,15 @@ var items = new vis.DataSet([
         and removing items in a DataSet.</td>
     </tr>
     <tr>
+      <td>selectable</td>
+      <td>Boolean</td>
+      <td>no</td>
+      <td>Ability to enable/disable selectability for specific items. 
+          Defaults to <code>true</code>. Does not override the timeline's
+          <code>selectable</code> configuration option. 
+      </td>
+    </tr>
+    <tr>
       <td>start</td>
       <td>Date or number or string or Moment</td>
       <td>yes</td>
@@ -464,6 +473,14 @@ var groups = [
       </td>
     </tr>
     <tr>
+      <td>subgroupVisibility</td>
+      <td>Object</td>
+      <td>none</td>
+      <td>Ability to hide/show specific subgroups. Example: <code>{'hiddenSubgroup0': false, 'subgroup1': true, 'subgroup2': true}</code> 
+          If a subgroup is missing from the object, it will default as true (visible). 
+      </td>
+    </tr>
+    <tr>
       <td>title</td>
       <td>String</td>
       <td>none</td>
@@ -560,7 +577,7 @@ function (option, path) {
 
     <tr>
       <td>dataAttributes</td>
-      <td>string[] or 'all'</string></td>
+      <td>string[] or 'all'</td>
       <td><code>false</code></td>
       <td>An array of fields optionally defined on the timeline items that will be appended as <code>data-</code> attributes to the DOM element of the items.<br>
         If value is <code>'all'</code> then each field defined on the timeline item will become a <code>data-</code> attribute.</td>
