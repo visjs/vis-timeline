@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Timeline | Localization</title>
+  <title>Timeline | Custom Localization</title>
 
   <style type="text/css">
     body, html, select {
@@ -9,6 +9,11 @@
       font-size: 11pt;
     }
   </style>
+
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/tr.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/sq.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ar.js"></script>
 
   <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
   <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
@@ -19,11 +24,9 @@
 <p>
   <label for="locale">Select a locale:</label>
   <select id="locale">
-    <option value="en" selected>en</option>
-    <option value="it">it</option>
-    <option value="fr">fr</option>
-    <option value="nl">nl</option>
-    <option value="de">de</option>
+    <option value="tr" selected>tr</option>
+    <option value="sq">hy</option>
+    <option value="ar">ar</option>
   </select>
 </p>
 
@@ -43,7 +46,22 @@
 
   // Configuration for the Timeline
   var options = {
-    showCurrentTime: true
+    showCurrentTime: true,
+    locale: 'tr',
+    locales: {
+      tr: {
+        current: 'geçerli',
+        time: 'kere',
+      },
+      sq: {
+        current: 'ընթացիկ',
+        time: 'ժամ',
+      },
+      ar: {
+        current: 'حالي',
+        time: 'وقت',
+      }
+    }
   };
 
   // Create a Timeline

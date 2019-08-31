@@ -1,0 +1,118 @@
+version: 2.1
+
+executors:
+  node:
+    docker:
+      - image: circleci/node:12.7
+    working_directory: ~/repo
+    environment:
+      GIT_AUTHOR_EMAIL: visjsbot@gmail.com
+      GIT_AUTHOR_NAME: vis-bot
+      GIT_COMMITTER_EMAIL: visjsbot@gmail.com
+      GIT_COMMITTER_NAME: vis-bot
+
+jobs:
+  prepare:
+    executor: node
+
+    steps:
+      - checkout
+
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+
+      - run: npm ci
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "package.json" }}
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - '*'
+
+  build:
+    executor: node
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: npm run build
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - 'dist'
+
+  lint:
+    executor: node
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: npm run lint
+
+  test:
+    executor: node
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run: npm run test-cov
+
+  release:
+    executor: node
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Prepare NPM
+          command: |
+            npm set //registry.npmjs.org/:_authToken=$NPM_TOKEN
+
+      - run:
+          name: Release
+          command: |
+            npx semantic-release
+
+workflows:
+  version: 2
+
+  build:
+    jobs:
+      - prepare
+
+      - build:
+          requires:
+            - prepare
+
+      # Enable when the code base is ready.
+      # - lint:
+      #     requires:
+      #       - prepare
+
+      - test:
+          requires:
+            - prepare
+
+      - release:
+          requires:
+            - prepare
+            - build
+            # - lint
+            - test
+          filters:
+            branches:
+              only:
+                - master
