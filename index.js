@@ -40,6 +40,54 @@ import moment from './lib/module/moment';
 import Hammer from './lib/module/hammer';
 import keycharm from 'keycharm';
 
+const timeline = {
+  Core ,
+  DateUtil,
+  Range,
+  stack,
+  TimeStep,
+
+  components: {
+    items: {
+      Item,
+      BackgroundItem,
+      BoxItem,
+      PointItem,
+      RangeItem,
+    },
+
+    BackgroundGroup,
+    Component,
+    CurrentTime,
+    CustomTime,
+    DataAxis,
+    DataScale,
+    GraphGroup,
+    Group,
+    ItemSet,
+    Legend,
+    LineGraph,
+    TimeAxis
+  }
+}
+
+export {
+  util,
+  DOMutil,
+
+  DataSet,
+  DataView,
+  Queue,
+
+  Timeline,
+  Graph2d,
+
+  timeline,
+
+  moment,
+  Hammer,
+  keycharm
+};
 export default {
   util,
   DOMutil,
@@ -51,36 +99,7 @@ export default {
   Timeline,
   Graph2d,
 
-  timeline: {
-    Core ,
-    DateUtil,
-    Range,
-    stack,
-    TimeStep,
-
-    components: {
-      items: {
-        Item,
-        BackgroundItem,
-        BoxItem,
-        PointItem,
-        RangeItem,
-      },
-  
-      BackgroundGroup,
-      Component,
-      CurrentTime,
-      CustomTime,
-      DataAxis,
-      DataScale,
-      GraphGroup,
-      Group,
-      ItemSet,
-      Legend,
-      LineGraph,
-      TimeAxis
-    }
-  },
+  timeline,
 
   moment,
   Hammer,

@@ -35,7 +35,7 @@ export default [{
 		file: 'dist/vis-timeline-graph2d.min.js',
 		name: 'vis',
 		extend: true,
-		exports: 'default',
+		exports: 'named',
 		format: 'umd',
 		banner: genHeader('timeline-graph2d'),
 		sourcemap: true,

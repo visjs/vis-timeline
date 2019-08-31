@@ -4,8 +4,8 @@
  *
  * Create a fully customizable, interactive timeline with items and ranges.
  *
- * @version 5.1.0
- * @date    2019-08-13T21:03:39Z
+ * @version 0.0.0-no-version
+ * @date    2019-08-31T18:14:12Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -26417,7 +26417,7 @@ function (_Component) {
 
       if (!locale) {
         if (!this.warned) {
-          console.log("WARNING: options.locales['".concat(this.options.locale, "'] not found. See http://visjs.org/docs/timeline/#Localization"));
+          console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
           this.warned = true;
         }
 
@@ -28129,7 +28129,7 @@ function (_Component) {
 
         if (!locale) {
           if (!this.warned) {
-            console.log("WARNING: options.locales['".concat(this.options.locale, "'] not found. See http://visjs.org/docs/timeline/#Localization"));
+            console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
             this.warned = true;
           }
 
@@ -43475,6 +43475,34 @@ Graph2d.prototype._createConfigurator = function () {
 };
 
 // utils
+var timeline = {
+  Core: Core,
+  DateUtil: DateUtil,
+  Range: Range,
+  stack: stack$1,
+  TimeStep: TimeStep,
+  components: {
+    items: {
+      Item: Item,
+      BackgroundItem: BackgroundItem,
+      BoxItem: BoxItem,
+      PointItem: PointItem,
+      RangeItem: RangeItem
+    },
+    BackgroundGroup: BackgroundGroup,
+    Component: Component,
+    CurrentTime: CurrentTime,
+    CustomTime: CustomTime,
+    DataAxis: DataAxis,
+    DataScale: DataScale,
+    GraphGroup: GraphGroup,
+    Group: Group,
+    ItemSet: ItemSet,
+    Legend: Legend,
+    LineGraph: LineGraph,
+    TimeAxis: TimeAxis
+  }
+};
 var index = {
   util: util,
   DOMutil: DOMutil,
@@ -43483,38 +43511,12 @@ var index = {
   Queue: Queue,
   Timeline: Timeline,
   Graph2d: Graph2d,
-  timeline: {
-    Core: Core,
-    DateUtil: DateUtil,
-    Range: Range,
-    stack: stack$1,
-    TimeStep: TimeStep,
-    components: {
-      items: {
-        Item: Item,
-        BackgroundItem: BackgroundItem,
-        BoxItem: BoxItem,
-        PointItem: PointItem,
-        RangeItem: RangeItem
-      },
-      BackgroundGroup: BackgroundGroup,
-      Component: Component,
-      CurrentTime: CurrentTime,
-      CustomTime: CustomTime,
-      DataAxis: DataAxis,
-      DataScale: DataScale,
-      GraphGroup: GraphGroup,
-      Group: Group,
-      ItemSet: ItemSet,
-      Legend: Legend,
-      LineGraph: LineGraph,
-      TimeAxis: TimeAxis
-    }
-  },
+  timeline: timeline,
   moment: moment$3,
   Hammer: Hammer,
   keycharm: keycharm
 };
 
 export default index;
+export { DOMutil, DataSet, DataView, Graph2d, Hammer, Queue, Timeline, keycharm, moment$3 as moment, timeline, util };
 //# sourceMappingURL=vis-timeline-graph2d.esm.js.map
