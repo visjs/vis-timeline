@@ -80,16 +80,11 @@
       var groups = new vis.DataSet([
         {
           id: 'bar',
-          content: 'bar',
-          subgroupOrder: function(a, b) {
-            return a.subgroupOrder - b.subgroupOrder;
-          },
-          subgroupStack: { sg_1: true, sg_2: true, sg_3: true }
+          content: 'bar'
         },
         {
           id: 'foo',
-          content: 'foo',
-          subgroupOrder: 'subgroupOrder' // this group has no subgroups but this would be the other method to do the sorting.
+          content: 'foo'
         }
       ]);
       // add items to the DataSet
@@ -111,8 +106,7 @@
           end: '2014-01-27',
           type: 'background',
           group: 'bar',
-          subgroup: 'sg_1',
-          subgroupOrder: 0
+          subgroup: 'sg_1'
         },
         {
           id: 'SG_1_2',
@@ -121,8 +115,7 @@
           type: 'background',
           className: 'positive',
           group: 'bar',
-          subgroup: 'sg_1',
-          subgroupOrder: 0
+          subgroup: 'sg_1'
         },
         {
           id: 1,
@@ -130,8 +123,7 @@
           start: '2014-01-23T12:00:00',
           end: '2014-01-26T12:00:00',
           group: 'bar',
-          subgroup: 'sg_1',
-          subgroupOrder: 0
+          subgroup: 'sg_1'
         },
         {
           id: 2,
@@ -139,8 +131,7 @@
           start: '2014-01-22T12:00:01',
           end: '2014-01-25T12:00:00',
           group: 'bar',
-          subgroup: 'sg_1',
-          subgroupOrder: 0
+          subgroup: 'sg_1'
         },
 
         {
@@ -149,8 +140,7 @@
           end: '2014-02-02',
           type: 'background',
           group: 'bar',
-          subgroup: 'sg_2',
-          subgroupOrder: 1
+          subgroup: 'sg_2'
         },
         {
           id: 'SG_2_2',
@@ -159,8 +149,7 @@
           type: 'background',
           className: 'negative',
           group: 'bar',
-          subgroup: 'sg_2',
-          subgroupOrder: 1
+          subgroup: 'sg_2'
         },
         {
           id: 3,
@@ -168,8 +157,7 @@
           start: '2014-01-27T02:00:00',
           end: '2014-01-29',
           group: 'bar',
-          subgroup: 'sg_2',
-          subgroupOrder: 1
+          subgroup: 'sg_2'
         },
         {
           id: 4,
@@ -177,8 +165,7 @@
           start: '2014-01-28',
           end: '2014-02-02',
           group: 'bar',
-          subgroup: 'sg_2',
-          subgroupOrder: 1
+          subgroup: 'sg_2'
         },
 
         {
@@ -188,7 +175,6 @@
           type: 'background',
           group: 'bar',
           subgroup: 'sg_3',
-          subgroupOrder: 2,
           content: 'a'
         },
         {
@@ -199,7 +185,6 @@
           className: 'positive',
           group: 'bar',
           subgroup: 'sg_3',
-          subgroupOrder: 2,
           content: 'b'
         },
         {
@@ -208,8 +193,7 @@
           start: '2014-01-23T12:00:00',
           end: '2014-01-26T12:00:00',
           group: 'bar',
-          subgroup: 'sg_3',
-          subgroupOrder: 2
+          subgroup: 'sg_3'
         },
         {
           id: 6,
@@ -217,8 +201,7 @@
           start: '2014-01-26T12:00:01',
           end: '2014-01-29T12:00:00',
           group: 'bar',
-          subgroup: 'sg_3',
-          subgroupOrder: 2
+          subgroup: 'sg_3'
         },
 
         {
@@ -239,15 +222,10 @@
       ]);
 
       var container = document.getElementById('visualization');
-      var stackingStatus = document.getElementById('stackingStatus');
-      var stackSubgroupsStatus = document.getElementById('stackSubgroupsStatus');
       var options = {
         // orientation:'top'
         start: '2014-01-10',
         end: '2014-02-10',
-        editable: true,
-        stack: false,
-        stackSubgroups: true,
         selectable: true
       };
 
