@@ -22,6 +22,7 @@
   ],
   "main": "./dist/vis-timeline-graph2d.min.js",
   "module": "./dist/vis-timeline-graph2d.esm.js",
+  "types": "./dist/types/index.d.ts",
   "scripts": {
     "test": "mocha --exit --require @babel/register",
     "test-cov": "nyc --reporter=lcov mocha --exit --require @babel/register",
@@ -71,6 +72,7 @@
     "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-babel-minify": "^9.0.0",
     "rollup-plugin-commonjs": "^10.0.1",
+    "rollup-plugin-copy": "^3.1.0",
     "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-node-builtins": "^2.1.2",
     "rollup-plugin-node-resolve": "^5.2.0",
