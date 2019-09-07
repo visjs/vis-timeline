@@ -5,11 +5,18 @@ import babel from 'rollup-plugin-babel';
 import minify from 'rollup-plugin-babel-minify';
 import genHeader from './lib/header';
 import css from 'rollup-plugin-css-porter';
+import copy from 'rollup-plugin-copy';
 
 const GLOBALS = {
 	moment: "moment",
 	hammerjs: "hammerjs"
 };
+
+const copyStatic = copy({
+	targets: [
+		{ src: 'types', dest: 'dist' }
+	]
+})
 
 export default [{
 	input: 'index.js',
@@ -28,6 +35,7 @@ export default [{
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		}),
+		copyStatic
 	],
 }, {
 	input: 'index.js',
@@ -49,6 +57,7 @@ export default [{
 		minify({ comments: false }),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
-		})
+		}),
+		copyStatic
 	]
 }];
