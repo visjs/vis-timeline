@@ -48,7 +48,7 @@
     "moment": "^2.20.1",
     "propagating-hammerjs": "^1.4.6",
     "vis-data": "^6.1.1",
-    "vis-util": "^1.1.4"
+    "vis-util": "^1.1.8"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
