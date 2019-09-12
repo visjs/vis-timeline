@@ -1226,6 +1226,16 @@ function (option, path) {
         </tr>
 
         <tr>
+            <td>setCustomTimeMarker(title [, id])</td>
+            <td>none</td>
+            <td>Attach a marker to the custom time bar.
+                Parameter <code>title</code> is the string to be set as title of the marker.
+                Parameter <code>id</code> is the id of the custom time bar which the marker is attached to, and is <code>undefined</code> by default.
+                Any marker's style can be overridden by specifying css selectors such as <code>.vis-custom-time > .vis-custom-time-marker</code>, <code>.${The id of the custom time bar} > .vis-custom-time-marker</code>.
+            </td>
+        </tr>
+
+        <tr>
             <td>setGroups(groups)</td>
             <td>none</td>
             <td>Set a data set with groups for the Graph2d.
