@@ -19,6 +19,7 @@ const copyStatic = copy({
 });
 
 const babelConfig = {
+    babelrc: false,
     exclude: [/\/core-js\//],
     presets: [
         [
