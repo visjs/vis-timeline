@@ -42,13 +42,13 @@
     }
   },
   "dependencies": {
-    "@egjs/hammerjs": "^2.0.15",
-    "emitter-component": "^1.1.1",
-    "keycharm": "^0.2.0",
-    "moment": "^2.20.1",
-    "propagating-hammerjs": "^1.4.6",
-    "vis-data": "^6.1.1",
-    "vis-util": "^1.1.4"
+    "@egjs/hammerjs": "2.0.15",
+    "emitter-component": "1.1.1",
+    "keycharm": "0.2.0",
+    "moment": "2.24.0",
+    "propagating-hammerjs": "1.4.7",
+    "vis-data": "6.1.1",
+    "vis-util": "1.1.4"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
