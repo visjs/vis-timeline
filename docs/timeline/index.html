@@ -1737,6 +1737,15 @@ timeline.off('select', onSelect);
     </tr>
 
     <tr>
+      <td>dragover</td>
+      <td>
+        Passes a properties object as returned by the method <a href="#getEventProperties"><code>Timeline.getEventProperties(event)</code></a>.
+      </td>
+      <td>Fired when dragging over a timeline element.
+      </td>
+    </tr>
+
+    <tr>
       <td>drop</td>
       <td>
         Passes a properties object as returned by the method <a href="#getEventProperties"><code>Timeline.getEventProperties(event)</code></a>.
@@ -1744,7 +1753,6 @@ timeline.off('select', onSelect);
       <td>Fired when dropping inside the Timeline.
       </td>
     </tr>
-
 
     <tr>
       <td>mouseOver</td>
@@ -2097,6 +2105,7 @@ var options = {
     mylocale: {
       current: 'current',
       time: 'time',
+      deleteSelected: 'Delete selected'
     }
   },
 
