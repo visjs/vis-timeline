@@ -105,10 +105,15 @@ export interface DataItem {
   subgroup?: SubgroupType;
   title?: string;
   type?: string;
-  editable?: boolean;
+  editable?: TimelineItemEditableType;
+  selectable?: boolean;
 }
 
 export interface SubGroupStackOptions {
+  [name: string]: boolean;
+}
+
+export interface SubGroupVisibilityOptions {
   [name: string]: boolean;
 }
 
@@ -124,6 +129,7 @@ export interface DataGroup {
   subgroupStack?: SubGroupStackOptions | boolean;
   visible?: boolean;
   showNested?: boolean;
+  subgroupVisibility?: SubGroupVisibilityOptions;
 }
 
 export interface DataGroupOptions {
@@ -272,9 +278,11 @@ export interface TimelineOptions {
   onRemoveGroup?: TimelineOptionsGroupCallbackFunction;
   order?: TimelineOptionsComparisonFunction;
   orientation?: TimelineOptionsOrientationType;
+  preferZoom?: boolean;
   rollingMode?: TimelineRollingModeOption;
   rtl?: boolean;
   selectable?: boolean;
+  sequentialSelection?: boolean;
   showCurrentTime?: boolean;
   showMajorLabels?: boolean;
   showMinorLabels?: boolean;
