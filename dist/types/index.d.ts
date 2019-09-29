@@ -32,6 +32,9 @@ import moment from 'moment'
 export { moment }
 import Hammer from 'hammerjs'
 export { Hammer }
+
+// TODO remove @ts-ignore when keycharm creates an index.d.ts file
+// @ts-ignore
 import keycharm from 'keycharm'
 export { keycharm }
 
