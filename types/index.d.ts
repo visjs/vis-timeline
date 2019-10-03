@@ -218,7 +218,9 @@ export interface TimelineRollingModeOption {
 
 export interface TimelineTooltipOption {
   followMouse?: boolean;
-  overflowMethod?: 'cap' | 'flip';
+  overflowMethod?: 'cap' | 'flip' | 'none';
+  delay?: number;
+  template: (item: TimelineItem, editedData?: TimelineItem) => string;
 }
 
 export type TimelineOptionsConfigureFunction = (option: string, path: string[]) => boolean;
