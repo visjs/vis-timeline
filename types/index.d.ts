@@ -32,9 +32,6 @@ import moment from 'moment'
 export { moment }
 import Hammer from 'hammerjs'
 export { Hammer }
-
-// TODO remove @ts-ignore when keycharm creates an index.d.ts file
-// @ts-ignore
 import keycharm from 'keycharm'
 export { keycharm }
 
@@ -221,7 +218,9 @@ export interface TimelineRollingModeOption {
 
 export interface TimelineTooltipOption {
   followMouse?: boolean;
-  overflowMethod?: 'cap' | 'flip';
+  overflowMethod?: 'cap' | 'flip' | 'none';
+  delay?: number;
+  template: (item: TimelineItem, editedData?: TimelineItem) => string;
 }
 
 export type TimelineOptionsConfigureFunction = (option: string, path: string[]) => boolean;
