@@ -19,7 +19,20 @@
     "no-unreachable": 1,
     "no-useless-escape": 0,
     "no-console": 0,
-    "require-jsdoc": 0,
+    "require-jsdoc": ["error", {
+        "require": {
+            "FunctionDeclaration": true,
+            "MethodDefinition": true,
+            "ClassDeclaration": true,
+            "ArrowFunctionExpression": true
+        }
+    }],
+    "valid-jsdoc": [2, {
+      "requireReturnDescription": false,
+      "requireReturn": false,
+      "requireParamDescription": false,
+      "requireReturnType": true
+      }],
     }
     // To flag presence of console.log without breaking linting:
     //"no-console": ["warn", { allow: ["warn", "error"] }],
