@@ -30,8 +30,8 @@
   };
   var timeline = new vis.Timeline(container, items, options);
 
-  var id1 = "foo";
-  var id2 = "bar";
+  var id1 = new Date().getTime();
+  var id2 = new Date().getTime();
   timeline.addCustomTime(new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 2), id1);
   timeline.setCustomTimeMarker("This is editable", id1, true);
   timeline.addCustomTime(new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 3), id2);
