@@ -28,7 +28,7 @@
   Current number of items: <span id='count'>100</span>
 </p>
 
-<div id="mytimeline"></div>
+<div id="visualization"></div>
 
 <script>
   /**
@@ -98,7 +98,7 @@
   };
 
   // create a Timeline
-  var container = document.getElementById('mytimeline');
+  var container = document.getElementById('visualization');
   timeline = new vis.Timeline(container, null, options);
   timeline.setGroups(groups);
   timeline.setItems(items);

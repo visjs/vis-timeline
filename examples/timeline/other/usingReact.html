@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>React Components in templates</title>
+    <title>Timeline | React Components in templates</title>
+
+    <meta name="example-screenshot-selector" content="#root" />
   </head>
   <body>
 
@@ -109,13 +111,13 @@
                     <h1>Vis timline with React</h1>
                     <h2>Using react components for items and group templates</h2>      
 
-                    <div id="mytimeline"></div>
+                    <div id="visualization"></div>
                 </div>
             }
         });
 
         function initTimeline() {
-            var container = document.getElementById('mytimeline');
+            var container = document.getElementById('visualization');
             timeline = new vis.Timeline(container, items, groups, options);
         } 
 
