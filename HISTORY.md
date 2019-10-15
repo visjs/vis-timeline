@@ -2,6 +2,8 @@
 
 http://visjs.org
 
+For release notes > v6 please visit [vis-timeline/releases at github](https://github.com/visjs/vis-timeline/releases).
+
 ## 2019-10-21, version 6.0.0
 
 In version 6.0.0, [timeline-plus](https://github.com/yotamberk/timeline-plus) features and PRs were ported into this library.
@@ -9,15 +11,15 @@ We are now connected to circle-ci for future version publishes.
 
 ### New Features
 
-- feat: add an option to make the custom marker editable ([vis-timeline#117](https://github.com/visjs/vis-timeline/pull/117)) - thanks to @ryamaguchi0220
-- feat: added firing dragover event ([vis-timeline#107](https://github.com/visjs/vis-timeline/pull/107)) - thanks to @apwidejulien
-- feat: return the id of the custom time if clickedtemplates ([vis-timeline#96](https://github.com/visjs/vis-timeline/pull/96)) - thanks to @ryamaguchi0220
-- feat: new examples for tooltip templates ([vis-timeline#94](https://github.com/visjs/vis-timeline/pull/94)) - thanks to @mojoaxel 
-- feat: add localization option to delete button title ([vis-timeline#88](https://github.com/visjs/vis-timeline/pull/88)) - thanks to @exoego 
-- feat: add markers to custom times ([vis-timeline#86](https://github.com/visjs/vis-timeline/pull/86)) - thanks to @ryamaguchi0220 
-- feat: sequential selection ([vis-timeline#73](https://github.com/visjs/vis-timeline/pull/73)) - thanks to @jczacharia 
-- feat: specific item selectibility ([vis-timeline#69](https://github.com/visjs/vis-timeline/pull/69)) - thanks to @jczacharia 
-- feat: specific subgroup visiblity toggle ([vis-timeline#68](https://github.com/visjs/vis-timeline/pull/68)) - thanks to @jczacharia
+- feat: add an option to make the custom marker editable (#117) - thanks to @ryamaguchi0220
+- feat: added firing dragover event (#107) - thanks to @apwidejulien
+- feat: return the id of the custom time if clickedtemplates (#96) - thanks to @ryamaguchi0220
+- feat: new examples for tooltip templates (#94) - thanks to @mojoaxel 
+- feat: add localization option to delete button title (#88) - thanks to @exoego 
+- feat: add markers to custom times (#86) - thanks to @ryamaguchi0220 
+- feat: sequential selection (#73) - thanks to @jczacharia 
+- feat: specific item selectibility (#69) - thanks to @jczacharia 
+- feat: specific subgroup visiblity toggle (#68) - thanks to @jczacharia
 - feat: allow settimg title for customtime bar ([timeline-plus#36](https://github.com/yotamberk/timeline-plus/pull/36))
 - feat: option to prefer zooming on scrolling ([timeline-plus#85](https://github.com/yotamberk/timeline-plus/pull/85)) - thanks to @yuvzaz
 - feat: clustering POC ([timeline-plus#87](https://github.com/yotamberk/timeline-plus/pull/87)) - thanks to @konsvarl
@@ -33,24 +35,24 @@ We are now connected to circle-ci for future version publishes.
 
 ### Bugfixes 
 
-- fix: PR template ([vis-timeline#134](https://github.com/visjs/vis-timeline/pull/134)) - thanks to @lewisjb
-- fix: broken links in CONTRIBUTING ([vis-timeline#133](https://github.com/visjs/vis-timeline/pull/133)) - thanks to @lewisjb
-- fix: pass all lint errors ([vis-timeline#132](https://github.com/visjs/vis-timeline/pull/132)) - thanks to @yotamberk 
-- fix: fix that a marker is not displayed due to an id collision ([vis-timeline#128](https://github.com/visjs/vis-timeline/pull/128)) - thanks to @ryamaguchi0220 
-- fix: tests to run again ([vis-timeline#125](https://github.com/visjs/vis-timeline/pull/125)) - thanks to @yotamberk 
-- fix: initial stacking subgroups bug ([vis-timeline#124](https://github.com/visjs/vis-timeline/pull/124)) - thanks to @yotamberk 
-- fix: support for white-space normal in content of range items ([vis-timeline#121](https://github.com/visjs/vis-timeline/issues/121)) - thanks to @jasonex7
-- fix: support for item horizontal margin zero with RangeItem ([vis-timeline#120](https://github.com/visjs/vis-timeline/issues/120)) - thanks to @jasonex7 
-- fix: npm vulnerabilities ([vis-timeline#112](https://github.com/visjs/vis-timeline/pull/112)) - thanks to @yotamberk 
-- fix: missing types ([vis-timeline#110](https://github.com/visjs/vis-timeline/pull/110)) - thanks to @jczacharia 
-- fix: display of ranges exceeding lower and upper boundaries ([vis-timeline#106](https://github.com/visjs/vis-timeline/pull/106)) - thanks to @apwidejulien 
-- fix: toArray issue in IE11 ([vis-timeline#72](https://github.com/visjs/vis-timeline/issues/72)) - thanks to @jasonex7 
-- fix: Using vis.DataSet _idProp instead of _fieldId ([vis-timeline#97](https://github.com/visjs/vis-timeline/issues/97)) - thanks to @jasonex7 
-- fix: switch to @egjs/hammerjs version ([vis-timeline#93](https://github.com/visjs/vis-timeline/pull/93)) - thanks to @Thomaash 
-- fix: pin runtime dependency version ([vis-timeline#90](https://github.com/visjs/vis-timeline/pull/90)) - thanks to @Thomaash 
-- fix: error on drag left with hidden dates (issue [vis-timeline#81](https://github.com/visjs/vis-timeline/issues/81)) - thanks to @jasonex7
-- fix: types from DefinitelyTyped (issue [vis-timeline#76](https://github.com/visjs/vis-timeline/issues/76)) - thanks to @Thomaash
-- fix: hiding title in graph3d-example (issue [vis-timeline#50](https://github.com/visjs/vis-timeline/issues/50)) - thanks to @treins
+- fix: PR template (#134) - thanks to @lewisjb
+- fix: broken links in CONTRIBUTING (#133) - thanks to @lewisjb
+- fix: pass all lint errors (#132) - thanks to @yotamberk 
+- fix: fix that a marker is not displayed due to an id collision (#128) - thanks to @ryamaguchi0220 
+- fix: tests to run again (#125) - thanks to @yotamberk 
+- fix: initial stacking subgroups bug (#124) - thanks to @yotamberk 
+- fix: support for white-space normal in content of range items (#121) - thanks to @jasonex7
+- fix: support for item horizontal margin zero with RangeItem (#120) - thanks to @jasonex7 
+- fix: npm vulnerabilities (#112) - thanks to @yotamberk 
+- fix: missing types (#110) - thanks to @jczacharia 
+- fix: display of ranges exceeding lower and upper boundaries (#106) - thanks to @apwidejulien 
+- fix: toArray issue in IE11 (#72) - thanks to @jasonex7 
+- fix: Using vis.DataSet _idProp instead of _fieldId (#97) - thanks to @jasonex7 
+- fix: switch to @egjs/hammerjs version (#93) - thanks to @Thomaash 
+- fix: pin runtime dependency version (#90) - thanks to @Thomaash 
+- fix: error on drag left with hidden dates (#81) thanks to @jasonex7
+- fix: types from DefinitelyTyped (#76) thanks to @Thomaash
+- fix: hiding title in graph3d-example (#50) thanks to @treins
 - fix: performance issue from vis 4.17
 - fix: text overlay bug (issue [vis#3041](https://github.com/almende/vis/issues/3041))
 - fix: 3rd level nesting ([timeline-plus#33](https://github.com/yotamberk/timeline-plus/pull/33))
