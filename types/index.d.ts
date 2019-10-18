@@ -739,6 +739,7 @@ export interface TimelineItem {
   title?: string;
   type?: TimelineItemType;
   editable?: TimelineItemEditableType;
+  selectable?: boolean;
 }
 
 export interface TimelineGroup {
