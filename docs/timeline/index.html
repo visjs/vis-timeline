@@ -1900,6 +1900,34 @@ timeline.off('select', onSelect);
       </td>
     </tr>
 
+    <tr>
+      <td>markerchange</td>
+      <td>
+        <ul>
+          <li><code>id</code> (Number or String): custom time bar id which the marker is attached to.</li>
+          <li><code>title</code> (Date): the marker title.</li>
+          <li><code>event</code> (Object): original event triggering the markerchange.</li>
+        </ul>
+      </td>
+      <td>Fired when the marker title has been changed.
+        Only available when the marker is editable.
+      </td>
+    </tr>
+
+    <tr>
+      <td>markerchanged</td>
+      <td>
+        <ul>
+          <li><code>id</code> (Number or String): custom time bar id which the marker is attached to.</li>
+          <li><code>title</code> (Date): the marker title.</li>
+          <li><code>event</code> (Object): original event triggering the markerchanged.</li>
+        </ul>
+      </td>
+      <td>Fired when an alteration to the marker title is committed.
+        Only available when the marker is editable.
+      </td>
+    </tr>
+
   </table>
 
   <h2 id="Editing_Items">Editing Items</h2>

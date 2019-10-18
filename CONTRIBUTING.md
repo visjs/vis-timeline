@@ -1,6 +1,6 @@
 ## Contributing
 
-[Contributions](//github.com/visjs/vis-charts/blob/master/misc/how_to_help.md) to the vis.js library are very welcome! [We can't do this alone](//github.com/visjs/vis-charts/blob/master/misc/we_need_help.md).
+Contributions to the vis.js library are very welcome! We can't do this alone.
 
 ### Questions
 If you have any *general question* on how to use the vis.js library in your own project please check out [stackoverflow](http://stackoverflow.com/questions/tagged/vis.js) for things like that. **This is NOT a JavaScript help forum!**
