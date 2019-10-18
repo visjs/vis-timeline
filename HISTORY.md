@@ -13,7 +13,7 @@ We are now connected to circle-ci for future version publishes.
 
 - feat: add an option to make the custom marker editable (#117) - thanks to @ryamaguchi0220
 - feat: added firing dragover event (#107) - thanks to @apwidejulien
-- feat: return the id of the custom time if clickedtemplates (#96) - thanks to @ryamaguchi0220
+- feat: return the id of the custom time if clicked (#96) - thanks to @ryamaguchi0220
 - feat: new examples for tooltip templates (#94) - thanks to @mojoaxel 
 - feat: add localization option to delete button title (#88) - thanks to @exoego 
 - feat: add markers to custom times (#86) - thanks to @ryamaguchi0220 
