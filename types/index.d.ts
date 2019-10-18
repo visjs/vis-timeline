@@ -123,7 +123,7 @@ export interface DataGroup {
   id: IdType;
   options?: DataGroupOptions;
   style?: string;
-  subgroupOrder?: string | (() => any);
+  subgroupOrder?: string | (() => void);
   title?: string;
   nestedGroups?: IdType[];
   subgroupStack?: SubGroupStackOptions | boolean;
@@ -753,6 +753,7 @@ export interface TimelineGroup {
   visible?: boolean;
   nestedGroups?: IdType[];
   showNested?: boolean;
+  subgroupVisibility?: SubGroupVisibilityOptions;
 }
 
 /**
