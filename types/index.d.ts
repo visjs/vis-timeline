@@ -123,7 +123,7 @@ export interface DataGroup {
   id: IdType;
   options?: DataGroupOptions;
   style?: string;
-  subgroupOrder?: string | (() => void);
+  subgroupOrder?: string | (() => any);
   title?: string;
   nestedGroups?: IdType[];
   subgroupStack?: SubGroupStackOptions | boolean;
