@@ -11,6 +11,7 @@ We are now connected to circle-ci for future version publishes.
 
 ### New Features
 
+- feat: add custom events for markers (#132) - thanks to @ryamaguchi0220
 - feat: add an option to make the custom marker editable (#117) - thanks to @ryamaguchi0220
 - feat: added firing dragover event (#107) - thanks to @apwidejulien
 - feat: return the id of the custom time if clicked (#96) - thanks to @ryamaguchi0220
