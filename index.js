@@ -40,6 +40,8 @@ import moment from './lib/module/moment';
 import Hammer from './lib/module/hammer';
 import keycharm from 'keycharm';
 
+moment.locale('en')
+
 const timeline = {
   Core ,
   DateUtil,
