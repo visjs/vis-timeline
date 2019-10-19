@@ -739,6 +739,7 @@ export interface TimelineItem {
   title?: string;
   type?: TimelineItemType;
   editable?: TimelineItemEditableType;
+  selectable?: boolean;
 }
 
 export interface TimelineGroup {
@@ -752,6 +753,7 @@ export interface TimelineGroup {
   visible?: boolean;
   nestedGroups?: IdType[];
   showNested?: boolean;
+  subgroupVisibility?: SubGroupVisibilityOptions;
 }
 
 /**
