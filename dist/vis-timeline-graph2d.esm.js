@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-10-19T19:12:35Z
+ * @date    2019-10-19T20:13:31Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -49425,6 +49425,7 @@ Graph2d.prototype._createConfigurator = function () {
 };
 
 // utils
+moment$3.locale('en');
 var timeline = {
   Core: Core,
   DateUtil: DateUtil,
