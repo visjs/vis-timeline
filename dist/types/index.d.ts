@@ -119,11 +119,11 @@ export interface SubGroupVisibilityOptions {
 
 export interface DataGroup {
   className?: string;
-  content: string;
+  content: string | HTMLElement;
   id: IdType;
   options?: DataGroupOptions;
   style?: string;
-  subgroupOrder?: string | (() => void);
+  subgroupOrder?: string | ((a: any, b: any) => number);
   title?: string;
   nestedGroups?: IdType[];
   subgroupStack?: SubGroupStackOptions | boolean;
