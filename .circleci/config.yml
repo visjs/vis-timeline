@@ -146,6 +146,7 @@ workflows:
       - examples:
           requires:
             - prepare
+            - build
 
       # Enable when the code base is ready.
       # - lint:
