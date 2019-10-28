@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-10-26T19:42:21Z
+ * @date    2019-10-28T22:18:37Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -31092,6 +31092,14 @@ function (_Component) {
     };
     _this.options = util.extend({}, _this.defaultOptions);
 
+    _this.setOptions(options);
+
+    util.extend(_this.options.locales, locales, _this.options.locales);
+    var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
+    Object.keys(_this.options.locales).forEach(function (locale) {
+      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+    });
+
     if (options && options.time) {
       _this.customTime = options.time;
     } else {
@@ -31099,9 +31107,7 @@ function (_Component) {
     }
 
     _this.eventParams = {}; // stores state parameters while dragging the bar
-
-    _this.setOptions(options); // create the DOM
-
+    // create the DOM
 
     _this._create();
 
@@ -32934,11 +32940,17 @@ function (_Component) {
       locale: 'en'
     };
     _this.options = util.extend({}, _this.defaultOptions);
+
+    _this.setOptions(options);
+
+    util.extend(_this.options.locales, locales, _this.options.locales);
+    var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
+    Object.keys(_this.options.locales).forEach(function (locale) {
+      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+    });
     _this.offset = 0;
 
     _this._create();
-
-    _this.setOptions(options);
 
     return _this;
   }
@@ -35161,6 +35173,8 @@ function () {
   *                                  // TODO: describe available options
   */
   function Item(data, conversion, options) {
+    var _this = this;
+
     _classCallCheck(this, Item);
 
     this.id = null;
@@ -35173,6 +35187,11 @@ function () {
       locale: 'en'
     };
     this.options = util.extend({}, this.defaultOptions, options);
+    util.extend(this.options.locales, locales, this.options.locales);
+    var defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
+    Object.keys(this.options.locales).forEach(function (locale) {
+      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+    });
     this.selected = false;
     this.displayed = false;
     this.groupShowing = true;
