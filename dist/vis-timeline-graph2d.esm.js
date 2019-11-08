@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-10-28T22:18:37Z
+ * @date    2019-11-08T22:02:00Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -34257,9 +34257,14 @@ function () {
 
               stackSubgroupsWithInnerStack(visibleSubgroups, margin, _this.subgroups);
               _this.visibleItems = getVisibleItems();
+
+              _this._updateSubGroupHeights(margin);
             } else {
-              _this.visibleItems = getVisibleItems(); // order all items and force a restacking
+              _this.visibleItems = getVisibleItems();
+
+              _this._updateSubGroupHeights(margin); // order all items and force a restacking
               // order all items outside clusters and force a restacking
+
 
               var customOrderedItems = _this.visibleItems.slice().filter(function (item) {
                 return item.isCluster || !item.isCluster && !item.cluster;
@@ -34281,6 +34286,8 @@ function () {
           }), range);
 
           this.visibleItems = [].concat(_toConsumableArray(visibleItems), _toConsumableArray(visibleClusters));
+
+          this._updateSubGroupHeights(margin);
 
           if (this.itemSet.options.stack) {
             if (this.doInnerStack && this.itemSet.options.stackSubgroups) {
