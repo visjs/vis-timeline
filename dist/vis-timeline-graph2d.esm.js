@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-08T22:02:00Z
+ * @date    2019-11-09T08:20:11Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -23999,12 +23999,12 @@ function (_Component) {
           throw new Error("Unknown easing function ".concat(JSON.stringify(easingName), ". Choose from: ").concat(Object.keys(util.easingFunctions).join(', ')));
         }
 
-        var initTime = new Date().valueOf();
+        var initTime = Date.now();
         var anyChanged = false;
 
         var next = function next() {
           if (!me.props.touch.dragging) {
-            var now = new Date().valueOf();
+            var now = Date.now();
             var time = now - initTime;
             var ease = easingFunction(time / duration);
             var done = time > duration;
@@ -24534,14 +24534,8 @@ function (_Component) {
       // calculate the time where the mouse is, check whether inside
       // and no scroll action should happen.
       var clientX = event.center ? event.center.x : event.clientX;
-      var x;
-
-      if (this.options.rtl) {
-        x = clientX - util.getAbsoluteLeft(this.body.dom.centerContainer);
-      } else {
-        x = util.getAbsoluteRight(this.body.dom.centerContainer) - clientX;
-      }
-
+      var centerContainerRect = this.body.dom.centerContainer.getBoundingClientRect();
+      var x = this.options.rtl ? clientX - centerContainerRect.left : centerContainerRect.right - clientX;
       var time = this.body.util.toTime(x);
       return time >= this.start && time <= this.end;
     }
@@ -24578,15 +24572,17 @@ function (_Component) {
   }, {
     key: "getPointer",
     value: function getPointer(touch, element) {
+      var elementRect = element.getBoundingClientRect();
+
       if (this.options.rtl) {
         return {
-          x: util.getAbsoluteRight(element) - touch.x,
-          y: touch.y - util.getAbsoluteTop(element)
+          x: elementRect.right - touch.x,
+          y: touch.y - elementRect.top
         };
       } else {
         return {
-          x: touch.x - util.getAbsoluteLeft(element),
-          y: touch.y - util.getAbsoluteTop(element)
+          x: touch.x - elementRect.left,
+          y: touch.y - elementRect.top
         };
       }
     }
@@ -28284,8 +28280,8 @@ function () {
         throw "No legal start or end date in method setRange";
       }
 
-      this._start = start != undefined ? this.moment(start.valueOf()) : new Date();
-      this._end = end != undefined ? this.moment(end.valueOf()) : new Date();
+      this._start = start != undefined ? this.moment(start.valueOf()) : Date.now();
+      this._end = end != undefined ? this.moment(end.valueOf()) : Date.now();
 
       if (this.autoScale) {
         this.setMinimumStep(minimumStep);
@@ -28938,7 +28934,7 @@ function () {
 
 
       function today(date) {
-        if (date.isSame(new Date(), 'day')) {
+        if (date.isSame(Date.now(), 'day')) {
           return ' vis-today';
         }
 
@@ -28960,7 +28956,7 @@ function () {
 
 
       function currentWeek(date) {
-        return date.isSame(new Date(), 'week') ? ' vis-current-week' : '';
+        return date.isSame(Date.now(), 'week') ? ' vis-current-week' : '';
       }
       /**
        *
@@ -28970,7 +28966,7 @@ function () {
 
 
       function currentMonth(date) {
-        return date.isSame(new Date(), 'month') ? ' vis-current-month' : '';
+        return date.isSame(Date.now(), 'month') ? ' vis-current-month' : '';
       }
       /**
        *
@@ -28980,7 +28976,7 @@ function () {
 
 
       function currentYear(date) {
-        return date.isSame(new Date(), 'year') ? ' vis-current-year' : '';
+        return date.isSame(Date.now(), 'year') ? ' vis-current-year' : '';
       }
 
       switch (this.scale) {
@@ -29546,14 +29542,9 @@ function (_Component) {
 
       this.dom.minorTexts.push(label);
       label.innerHTML = text;
-      label.style.top = orientation == 'top' ? "".concat(this.props.majorLabelHeight, "px") : '0';
+      var y = orientation == 'top' ? this.props.majorLabelHeight : 0;
 
-      if (this.options.rtl) {
-        label.style.left = "";
-        label.style.right = "".concat(x, "px");
-      } else {
-        label.style.left = "".concat(x, "px");
-      }
+      this._setXY(label, x, y);
 
       label.className = "vis-text vis-minor ".concat(className); //label.title = title;  // TODO: this is a heavy operation
 
@@ -29586,21 +29577,31 @@ function (_Component) {
       label.childNodes[0].innerHTML = text;
       label.className = "vis-text vis-major ".concat(className); //label.title = title; // TODO: this is a heavy operation
 
-      label.style.top = orientation == 'top' ? '0' : "".concat(this.props.minorLabelHeight, "px");
+      var y = orientation == 'top' ? 0 : this.props.minorLabelHeight;
 
-      if (this.options.rtl) {
-        label.style.left = "";
-        label.style.right = "".concat(x, "px");
-      } else {
-        label.style.left = "".concat(x, "px");
-      }
+      this._setXY(label, x, y);
 
       this.dom.majorTexts.push(label);
       return label;
     }
     /**
-     * Create a minor line for the axis at position x
+     * sets xy
+     * @param {string} label
      * @param {number} x
+     * @param {number} y
+     * @private
+     */
+
+  }, {
+    key: "_setXY",
+    value: function _setXY(label, x, y) {
+      // If rtl is true, inverse x.
+      var directionX = this.options.rtl ? x * -1 : x;
+      label.style.transform = "translate(".concat(directionX, "px, ").concat(y, "px)");
+    }
+    /**
+     * Create a minor line for the axis at position x
+     * @param {number} left
      * @param {number} width
      * @param {string} orientation   "top" or "bottom" (default)
      * @param {string} className
@@ -29610,7 +29611,7 @@ function (_Component) {
 
   }, {
     key: "_repaintMinorLine",
-    value: function _repaintMinorLine(x, width, orientation, className) {
+    value: function _repaintMinorLine(left, width, orientation, className) {
       // reuse redundant line
       var line = this.dom.redundant.lines.shift();
 
@@ -29622,30 +29623,19 @@ function (_Component) {
 
       this.dom.lines.push(line);
       var props = this.props;
-
-      if (orientation == 'top') {
-        line.style.top = "".concat(props.majorLabelHeight, "px");
-      } else {
-        line.style.top = "".concat(this.body.domProps.top.height, "px");
-      }
-
-      line.style.height = "".concat(props.minorLineHeight, "px");
-
-      if (this.options.rtl) {
-        line.style.left = "";
-        line.style.right = "".concat(x - props.minorLineWidth / 2, "px");
-        line.className = "vis-grid vis-vertical-rtl vis-minor ".concat(className);
-      } else {
-        line.style.left = "".concat(x - props.minorLineWidth / 2, "px");
-        line.className = "vis-grid vis-vertical vis-minor ".concat(className);
-      }
-
       line.style.width = "".concat(width, "px");
+      line.style.height = "".concat(props.minorLineHeight, "px");
+      var y = orientation == 'top' ? props.majorLabelHeight : this.body.domProps.top.height;
+      var x = left - props.minorLineWidth / 2;
+
+      this._setXY(line, x, y);
+
+      line.className = "vis-grid ".concat(this.options.rtl ? 'vis-vertical-rtl' : 'vis-vertical', " vis-minor ").concat(className);
       return line;
     }
     /**
      * Create a Major line for the axis at position x
-     * @param {number} x
+     * @param {number} left
      * @param {number} width
      * @param {string} orientation   "top" or "bottom" (default)
      * @param {string} className
@@ -29655,7 +29645,7 @@ function (_Component) {
 
   }, {
     key: "_repaintMajorLine",
-    value: function _repaintMajorLine(x, width, orientation, className) {
+    value: function _repaintMajorLine(left, width, orientation, className) {
       // reuse redundant line
       var line = this.dom.redundant.lines.shift();
 
@@ -29667,24 +29657,14 @@ function (_Component) {
 
       this.dom.lines.push(line);
       var props = this.props;
-
-      if (orientation == 'top') {
-        line.style.top = '0';
-      } else {
-        line.style.top = "".concat(this.body.domProps.top.height, "px");
-      }
-
-      if (this.options.rtl) {
-        line.style.left = "";
-        line.style.right = "".concat(x - props.majorLineWidth / 2, "px");
-        line.className = "vis-grid vis-vertical-rtl vis-major ".concat(className);
-      } else {
-        line.style.left = "".concat(x - props.majorLineWidth / 2, "px");
-        line.className = "vis-grid vis-vertical vis-major ".concat(className);
-      }
-
-      line.style.height = "".concat(props.majorLineHeight, "px");
       line.style.width = "".concat(width, "px");
+      line.style.height = "".concat(props.majorLineHeight, "px");
+      var y = orientation == 'top' ? 0 : this.body.domProps.top.height;
+      var x = left - props.majorLineWidth / 2;
+
+      this._setXY(line, x, y);
+
+      line.className = "vis-grid ".concat(this.options.rtl ? 'vis-vertical-rtl' : 'vis-vertical', " vis-major ").concat(className);
       return line;
     }
     /**
@@ -31148,7 +31128,13 @@ function (_Component) {
       var drag = document.createElement('div');
       drag.style.position = 'relative';
       drag.style.top = '0px';
-      this.options.rtl ? drag.style.right = '-10px' : drag.style.left = '-10px';
+
+      if (this.options.rtl) {
+        drag.style.right = '-10px';
+      } else {
+        drag.style.left = '-10px';
+      }
+
       drag.style.height = '100%';
       drag.style.width = '20px';
       /**
@@ -32401,12 +32387,12 @@ function () {
     key: "_redraw",
     value: function _redraw() {
       this.redrawCount++;
-      var resized = false;
-      var options = this.options;
-      var props = this.props;
       var dom = this.dom;
       if (!dom || !dom.container || dom.root.offsetWidth == 0) return; // when destroyed, or invisible
 
+      var resized = false;
+      var options = this.options;
+      var props = this.props;
       updateHiddenDates(this.options.moment, this.body, this.options.hiddenDates); // update class names
 
       if (options.orientation == 'top') {
@@ -32428,22 +32414,26 @@ function () {
 
       dom.root.style.maxHeight = util.option.asSize(options.maxHeight, '');
       dom.root.style.minHeight = util.option.asSize(options.minHeight, '');
-      dom.root.style.width = util.option.asSize(options.width, ''); // calculate border widths
+      dom.root.style.width = util.option.asSize(options.width, '');
+      var rootClientHeight = dom.root.clientHeight;
+      var rootOffsetHeight = dom.root.offsetHeight;
+      var rootOffsetWidth = dom.root.offsetWidth;
+      var centerContainerClientHeight = dom.centerContainer.clientHeight; // calculate border widths
 
       props.border.left = (dom.centerContainer.offsetWidth - dom.centerContainer.clientWidth) / 2;
       props.border.right = props.border.left;
-      props.border.top = (dom.centerContainer.offsetHeight - dom.centerContainer.clientHeight) / 2;
+      props.border.top = (dom.centerContainer.offsetHeight - centerContainerClientHeight) / 2;
       props.border.bottom = props.border.top;
-      props.borderRootHeight = dom.root.offsetHeight - dom.root.clientHeight;
-      props.borderRootWidth = dom.root.offsetWidth - dom.root.clientWidth; // workaround for a bug in IE: the clientWidth of an element with
+      props.borderRootHeight = rootOffsetHeight - rootClientHeight;
+      props.borderRootWidth = rootOffsetWidth - dom.root.clientWidth; // workaround for a bug in IE: the clientWidth of an element with
       // a height:0px and overflow:hidden is not calculated and always has value 0
 
-      if (dom.centerContainer.clientHeight === 0) {
+      if (centerContainerClientHeight === 0) {
         props.border.left = props.border.top;
         props.border.right = props.border.left;
       }
 
-      if (dom.root.clientHeight === 0) {
+      if (rootClientHeight === 0) {
         props.borderRootWidth = props.borderRootHeight;
       } // calculate the heights. If any of the side panels is empty, we set the height to
       // minus the border width, such that the border will be invisible
@@ -32468,24 +32458,27 @@ function () {
       props.leftContainer.height = containerHeight;
       props.rightContainer.height = props.leftContainer.height; // calculate the widths of the panels
 
-      props.root.width = dom.root.offsetWidth;
+      props.root.width = rootOffsetWidth;
       props.background.width = props.root.width - props.borderRootWidth;
 
       if (!this.initialDrawDone) {
         props.scrollbarWidth = util.getScrollBarWidth();
       }
 
+      var leftContainerClientWidth = dom.leftContainer.clientWidth;
+      var rightContainerClientWidth = dom.rightContainer.clientWidth;
+
       if (options.verticalScroll) {
         if (options.rtl) {
-          props.left.width = dom.leftContainer.clientWidth || -props.border.left;
-          props.right.width = dom.rightContainer.clientWidth + props.scrollbarWidth || -props.border.right;
+          props.left.width = leftContainerClientWidth || -props.border.left;
+          props.right.width = rightContainerClientWidth + props.scrollbarWidth || -props.border.right;
         } else {
-          props.left.width = dom.leftContainer.clientWidth + props.scrollbarWidth || -props.border.left;
-          props.right.width = dom.rightContainer.clientWidth || -props.border.right;
+          props.left.width = leftContainerClientWidth + props.scrollbarWidth || -props.border.left;
+          props.right.width = rightContainerClientWidth || -props.border.right;
         }
       } else {
-        props.left.width = dom.leftContainer.clientWidth || -props.border.left;
-        props.right.width = dom.rightContainer.clientWidth || -props.border.right;
+        props.left.width = leftContainerClientWidth || -props.border.left;
+        props.right.width = rightContainerClientWidth || -props.border.right;
       }
 
       this._setDOM(); // update the scrollTop, feasible range for the offset can be changed
@@ -32499,7 +32492,7 @@ function () {
         offset += Math.max(props.centerContainer.height - props.center.height - props.border.top - props.border.bottom, 0);
       }
 
-      dom.center.style.top = "".concat(offset, "px"); // show shadows when vertical scrolling is available
+      dom.center.style.transform = "translateY(".concat(offset, "px)"); // show shadows when vertical scrolling is available
 
       var visibilityTop = props.scrollTop == 0 ? 'hidden' : '';
       var visibilityBottom = props.scrollTop == props.scrollTopMin ? 'hidden' : '';
@@ -32526,8 +32519,8 @@ function () {
         dom.right.style.top = "".concat(offset, "px");
         dom.rightContainer.className = dom.rightContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
         dom.leftContainer.className = dom.leftContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
-        props.left.width = dom.leftContainer.clientWidth || -props.border.left;
-        props.right.width = dom.rightContainer.clientWidth || -props.border.right;
+        props.left.width = leftContainerClientWidth || -props.border.left;
+        props.right.width = rightContainerClientWidth || -props.border.right;
 
         this._setDOM();
       } // enable/disable vertical panning
@@ -32732,13 +32725,15 @@ function () {
         }
 
         if (me.dom.root) {
-          // check whether the frame is resized
+          var rootOffsetHeight = me.dom.root.offsetHeight;
+          var rootOffsetWidth = me.dom.root.offsetWidth; // check whether the frame is resized
           // Note: we compare offsetWidth here, not clientWidth. For some reason,
           // IE does not restore the clientWidth from 0 to the actual width after
           // changing the timeline's container display style from none to visible
-          if (me.dom.root.offsetWidth != me.props.lastWidth || me.dom.root.offsetHeight != me.props.lastHeight) {
-            me.props.lastWidth = me.dom.root.offsetWidth;
-            me.props.lastHeight = me.dom.root.offsetHeight;
+
+          if (rootOffsetWidth != me.props.lastWidth || rootOffsetHeight != me.props.lastHeight) {
+            me.props.lastWidth = rootOffsetWidth;
+            me.props.lastHeight = rootOffsetHeight;
             me.props.scrollbarWidth = util.getScrollBarWidth();
             me.body.emitter.emit('_change');
           }
@@ -33018,7 +33013,7 @@ function (_Component) {
           this.start();
         }
 
-        var now = this.options.moment(new Date().valueOf() + this.offset);
+        var now = this.options.moment(Date.now() + this.offset);
 
         if (this.options.alignCurrentTime) {
           now = now.startOf(this.options.alignCurrentTime);
@@ -33040,9 +33035,9 @@ function (_Component) {
         title = title.charAt(0).toUpperCase() + title.substring(1);
 
         if (this.options.rtl) {
-          this.bar.style.right = "".concat(x, "px");
+          this.bar.style.transform = "translateX(".concat(x * -1, "px)");
         } else {
-          this.bar.style.left = "".concat(x, "px");
+          this.bar.style.transform = "translateX(".concat(x, "px)");
         }
 
         this.bar.title = title;
@@ -33107,7 +33102,7 @@ function (_Component) {
     key: "setCurrentTime",
     value: function setCurrentTime(time) {
       var t = util.convert(time, 'Date').valueOf();
-      var now = new Date().valueOf();
+      var now = Date.now();
       this.offset = t - now;
       this.redraw();
     }
@@ -33119,7 +33114,7 @@ function (_Component) {
   }, {
     key: "getCurrentTime",
     value: function getCurrentTime() {
-      return new Date(new Date().valueOf() + this.offset);
+      return new Date(Date.now() + this.offset);
     }
   }]);
 
@@ -34139,9 +34134,10 @@ function () {
   }, {
     key: "_calculateGroupSizeAndPosition",
     value: function _calculateGroupSizeAndPosition() {
-      var offsetTop = this.dom.foreground.offsetTop;
-      var offsetLeft = this.dom.foreground.offsetLeft;
-      var offsetWidth = this.dom.foreground.offsetWidth;
+      var _this$dom$foreground = this.dom.foreground,
+          offsetTop = _this$dom$foreground.offsetTop,
+          offsetLeft = _this$dom$foreground.offsetLeft,
+          offsetWidth = _this$dom$foreground.offsetWidth;
       this.top = offsetTop;
       this.right = offsetLeft;
       this.width = offsetWidth;
@@ -34169,7 +34165,7 @@ function () {
           return true;
         }
 
-        if (Math.abs(new Date() - new Date(bailOptions.relativeBailingTime)) > bailOptions.bailTimeMs) {
+        if (Math.abs(Date.now() - new Date(bailOptions.relativeBailingTime)) > bailOptions.bailTimeMs) {
           if (bailOptions.userBailFunction && this.itemSet.userContinueNotBail == null) {
             bailOptions.userBailFunction(function (didUserContinue) {
               me.itemSet.userContinueNotBail = didUserContinue;
@@ -35507,12 +35503,8 @@ function () {
         // only show when editing
         this.dom.onItemUpdateTimeTooltip.style.visibility = this.parent.itemSet.touchParams.itemIsDragging ? 'visible' : 'hidden'; // position relative to item's content
 
-        if (this.options.rtl) {
-          this.dom.onItemUpdateTimeTooltip.style.right = this.dom.content.style.right;
-        } else {
-          this.dom.onItemUpdateTimeTooltip.style.left = this.dom.content.style.left;
-        } // position above or below the item depending on the item's position in the window
-
+        this.dom.onItemUpdateTimeTooltip.style.transform = 'translateX(-50%)';
+        this.dom.onItemUpdateTimeTooltip.style.left = '50%'; // position above or below the item depending on the item's position in the window
 
         var tooltipOffset = 50; // TODO: should be tooltip height (depends on template)
 
@@ -36105,11 +36097,44 @@ function (_Item) {
     value: function hide() {
       if (this.displayed) {
         var dom = this.dom;
-        if (dom.box.parentNode) dom.box.parentNode.removeChild(dom.box);
-        if (dom.line.parentNode) dom.line.parentNode.removeChild(dom.line);
-        if (dom.dot.parentNode) dom.dot.parentNode.removeChild(dom.dot);
+        if (dom.box.parentNode) dom.box.remove();
+        if (dom.line.parentNode) dom.line.remove();
+        if (dom.dot.parentNode) dom.dot.remove();
         this.displayed = false;
       }
+    }
+    /**
+     * Reposition the item XY
+     */
+
+  }, {
+    key: "repositionXY",
+    value: function repositionXY() {
+      var rtl = this.options.rtl;
+
+      var repositionXY = function repositionXY(element, x, y) {
+        var rtl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+        if (x === undefined && y === undefined) return; // If rtl invert the number.
+
+        var directionX = rtl ? x * -1 : x; //no y. translate x
+
+        if (y === undefined) {
+          element.style.transform = "translateX(".concat(directionX, "px)");
+          return;
+        } //no x. translate y
+
+
+        if (x === undefined) {
+          element.style.transform = "translateY(".concat(y, "px)");
+          return;
+        }
+
+        element.style.transform = "translate(".concat(directionX, "px, ").concat(y, "px)");
+      };
+
+      repositionXY(this.dom.box, this.boxX, this.boxY, rtl);
+      repositionXY(this.dom.dot, this.dotX, this.dotY, rtl);
+      repositionXY(this.dom.line, this.lineX, this.lineY, rtl);
     }
     /**
      * Reposition the item horizontally
@@ -36120,52 +36145,29 @@ function (_Item) {
     key: "repositionX",
     value: function repositionX() {
       var start = this.conversion.toScreen(this.data.start);
-      var align = this.options.align; // calculate left position of the box
+      var align = this.options.align;
+      var lineWidth = this.props.line.width;
+      var dotWidth = this.props.dot.width;
 
       if (align == 'right') {
-        if (this.options.rtl) {
-          this.right = start - this.width; // reposition box, line, and dot
-
-          this.dom.box.style.right = "".concat(this.right, "px");
-          this.dom.line.style.right = "".concat(start - this.props.line.width, "px");
-          this.dom.dot.style.right = "".concat(start - this.props.line.width / 2 - this.props.dot.width / 2, "px");
-        } else {
-          this.left = start - this.width; // reposition box, line, and dot
-
-          this.dom.box.style.left = "".concat(this.left, "px");
-          this.dom.line.style.left = "".concat(start - this.props.line.width, "px");
-          this.dom.dot.style.left = "".concat(start - this.props.line.width / 2 - this.props.dot.width / 2, "px");
-        }
+        // calculate right position of the box
+        this.boxX = start - this.width;
+        this.lineX = start - lineWidth;
+        this.dotX = start - lineWidth / 2 - dotWidth / 2;
       } else if (align == 'left') {
-        if (this.options.rtl) {
-          this.right = start; // reposition box, line, and dot
-
-          this.dom.box.style.right = "".concat(this.right, "px");
-          this.dom.line.style.right = "".concat(start, "px");
-          this.dom.dot.style.right = "".concat(start + this.props.line.width / 2 - this.props.dot.width / 2, "px");
-        } else {
-          this.left = start; // reposition box, line, and dot
-
-          this.dom.box.style.left = "".concat(this.left, "px");
-          this.dom.line.style.left = "".concat(start, "px");
-          this.dom.dot.style.left = "".concat(start + this.props.line.width / 2 - this.props.dot.width / 2, "px");
-        }
+        // calculate left position of the box
+        this.boxX = start;
+        this.lineX = start;
+        this.dotX = start + lineWidth / 2 - dotWidth / 2;
       } else {
         // default or 'center'
-        if (this.options.rtl) {
-          this.right = start - this.width / 2; // reposition box, line, and dot
-
-          this.dom.box.style.right = "".concat(this.right, "px");
-          this.dom.line.style.right = "".concat(start - this.props.line.width, "px");
-          this.dom.dot.style.right = "".concat(start - this.props.dot.width / 2, "px");
-        } else {
-          this.left = start - this.width / 2; // reposition box, line, and dot
-
-          this.dom.box.style.left = "".concat(this.left, "px");
-          this.dom.line.style.left = "".concat(start - this.props.line.width / 2, "px");
-          this.dom.dot.style.left = "".concat(start - this.props.dot.width / 2, "px");
-        }
+        this.boxX = start - this.width / 2;
+        this.lineX = this.options.rtl ? start - lineWidth : start - lineWidth / 2;
+        this.dotX = start - dotWidth / 2;
       }
+
+      if (this.options.rtl) this.right = this.boxX;else this.left = this.boxX;
+      this.repositionXY();
     }
     /**
      * Reposition the item vertically
@@ -36176,26 +36178,28 @@ function (_Item) {
     key: "repositionY",
     value: function repositionY() {
       var orientation = this.options.orientation.item;
-      var box = this.dom.box;
-      var line = this.dom.line;
-      var dot = this.dom.dot;
+      var lineStyle = this.dom.line.style;
 
       if (orientation == 'top') {
-        box.style.top = "".concat(this.top || 0, "px");
-        line.style.top = '0';
-        line.style.height = "".concat(this.parent.top + this.top + 1, "px");
-        line.style.bottom = '';
+        var lineHeight = this.parent.top + this.top + 1;
+        this.boxY = this.top || 0;
+        lineStyle.height = "".concat(lineHeight, "px");
+        lineStyle.bottom = '';
+        lineStyle.top = '0';
       } else {
         // orientation 'bottom'
         var itemSetHeight = this.parent.itemSet.props.height; // TODO: this is nasty
 
-        var lineHeight = itemSetHeight - this.parent.top - this.parent.height + this.top;
-        box.style.top = "".concat(this.parent.height - this.top - this.height || 0, "px");
-        line.style.top = "".concat(itemSetHeight - lineHeight, "px");
-        line.style.bottom = '0';
+        var _lineHeight = itemSetHeight - this.parent.top - this.parent.height + this.top;
+
+        this.boxY = this.parent.height - this.top - (this.height || 0);
+        lineStyle.height = "".concat(_lineHeight, "px");
+        lineStyle.top = '';
+        lineStyle.bottom = '0';
       }
 
-      dot.style.top = "".concat(-this.props.dot.height / 2, "px");
+      this.dotY = -this.props.dot.height / 2;
+      this.repositionXY();
     }
     /**
      * Return the width of the item left from its start date
@@ -36413,13 +36417,9 @@ function (_Item) {
       this.height = sizes.point.height; // reposition the dot
 
       this.dom.dot.style.top = "".concat((this.height - this.props.dot.height) / 2, "px");
-
-      if (this.options.rtl) {
-        this.dom.dot.style.right = "".concat(this.props.dot.width / 2, "px");
-      } else {
-        this.dom.dot.style.left = "".concat(this.props.dot.width / 2, "px");
-      }
-
+      var dotWidth = this.props.dot.width;
+      var translateX = this.options.rtl ? dotWidth / 2 * -1 : dotWidth / 2;
+      this.dom.dot.style.transform = "translateX(".concat(translateX, "px");
       this.dirty = false;
     }
     /**
@@ -36473,6 +36473,37 @@ function (_Item) {
       }
     }
     /**
+     * Reposition XY
+     */
+
+  }, {
+    key: "repositionXY",
+    value: function repositionXY() {
+      var rtl = this.options.rtl;
+
+      var repositionXY = function repositionXY(element, x, y) {
+        var rtl = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+        if (x === undefined && y === undefined) return; // If rtl invert the number.
+
+        var directionX = rtl ? x * -1 : x; //no y. translate x
+
+        if (y === undefined) {
+          element.style.transform = "translateX(".concat(directionX, "px)");
+          return;
+        } //no x. translate y
+
+
+        if (x === undefined) {
+          element.style.transform = "translateY(".concat(y, "px)");
+          return;
+        }
+
+        element.style.transform = "translate(".concat(directionX, "px, ").concat(y, "px)");
+      };
+
+      repositionXY(this.dom.point, this.pointX, this.pointY, rtl);
+    }
+    /**
      * Show the item in the DOM (when not already visible). The items DOM will
      * be created when needed.
      * @param {boolean} [returnQueue=false]  whether to return a queue of functions to execute instead of just executing them
@@ -36510,16 +36541,15 @@ function (_Item) {
     key: "repositionX",
     value: function repositionX() {
       var start = this.conversion.toScreen(this.data.start);
+      this.pointX = start;
 
       if (this.options.rtl) {
-        this.right = start - this.props.dot.width; // reposition point
-
-        this.dom.point.style.right = "".concat(this.right, "px");
+        this.right = start - this.props.dot.width;
       } else {
-        this.left = start - this.props.dot.width; // reposition point
-
-        this.dom.point.style.left = "".concat(this.left, "px");
+        this.left = start - this.props.dot.width;
       }
+
+      this.repositionXY();
     }
     /**
      * Reposition the item vertically
@@ -36530,13 +36560,14 @@ function (_Item) {
     key: "repositionY",
     value: function repositionY() {
       var orientation = this.options.orientation.item;
-      var point = this.dom.point;
 
       if (orientation == 'top') {
-        point.style.top = "".concat(this.top, "px");
+        this.pointY = this.top;
       } else {
-        point.style.top = "".concat(this.parent.height - this.top - this.height, "px");
+        this.pointY = this.parent.height - this.top - this.height;
       }
+
+      this.repositionXY();
     }
     /**
      * Return the width of the item left from its start date
@@ -36887,9 +36918,9 @@ function (_Item) {
       }
 
       if (this.options.rtl) {
-        this.dom.box.style.right = "".concat(this.right, "px");
+        this.dom.box.style.transform = "translateX(".concat(this.right * -1, "px)");
       } else {
-        this.dom.box.style.left = "".concat(this.left, "px");
+        this.dom.box.style.transform = "translateX(".concat(this.left, "px)");
       }
 
       this.dom.box.style.width = "".concat(boxWidth, "px");
@@ -36900,28 +36931,26 @@ function (_Item) {
 
       switch (align) {
         case 'left':
-          if (this.options.rtl) {
-            this.dom.content.style.right = '0';
-          } else {
-            this.dom.content.style.left = '0';
-          }
-
+          this.dom.content.style.transform = 'translateX(0)';
           break;
 
         case 'right':
           if (this.options.rtl) {
-            this.dom.content.style.right = "".concat(Math.max(boxWidth - contentWidth, 0), "px");
+            var translateX = Math.max(boxWidth - contentWidth, 0) * -1;
+            this.dom.content.style.transform = "translateX(".concat(translateX, "px)");
           } else {
-            this.dom.content.style.left = "".concat(Math.max(boxWidth - contentWidth, 0), "px");
+            this.dom.content.style.transform = "translateX(".concat(Math.max(boxWidth - contentWidth, 0), "px)");
           }
 
           break;
 
         case 'center':
           if (this.options.rtl) {
-            this.dom.content.style.right = "".concat(Math.max((boxWidth - contentWidth) / 2, 0), "px");
+            var _translateX = Math.max((boxWidth - contentWidth) / 2, 0) * -1;
+
+            this.dom.content.style.transform = "translateX(".concat(_translateX, "px)");
           } else {
-            this.dom.content.style.left = "".concat(Math.max((boxWidth - contentWidth) / 2, 0), "px");
+            this.dom.content.style.transform = "translateX(".concat(Math.max((boxWidth - contentWidth) / 2, 0), "px)");
           }
 
           break;
@@ -36944,9 +36973,11 @@ function (_Item) {
           }
 
           if (this.options.rtl) {
-            this.dom.content.style.right = "".concat(contentStartPosition, "px");
+            var _translateX2 = contentStartPosition * -1;
+
+            this.dom.content.style.transform = "translateX(".concat(_translateX2, "px)");
           } else {
-            this.dom.content.style.left = "".concat(contentStartPosition, "px"); // this.dom.content.style.width = `calc(100% - ${contentStartPosition}px)`;
+            this.dom.content.style.transform = "translateX(".concat(contentStartPosition, "px)"); // this.dom.content.style.width = `calc(100% - ${contentStartPosition}px)`;
           }
 
       }
@@ -37684,13 +37715,23 @@ function (_Item) {
     value: function repositionStype(start, end) {
       this.dom.line.style.display = 'block';
       this.dom.dot.style.display = 'block';
+      var lineOffsetWidth = this.dom.line.offsetWidth;
+      var dotOffsetWidth = this.dom.dot.offsetWidth;
 
       if (end) {
-        this.dom.line.style.left = this.dom.line.offsetWidth + start + (end - start) / 2 + 'px';
-        this.dom.dot.style.left = this.dom.line.offsetWidth + start + (end - start) / 2 - this.dom.dot.offsetWidth / 2 + 'px';
+        var lineOffset = lineOffsetWidth + start + (end - start) / 2;
+        var dotOffset = lineOffset - dotOffsetWidth / 2;
+        var lineOffsetDirection = this.options.rtl ? lineOffset * -1 : lineOffset;
+        var dotOffsetDirection = this.options.rtl ? dotOffset * -1 : dotOffset;
+        this.dom.line.style.transform = "translateX(".concat(lineOffsetDirection, ")px");
+        this.dom.dot.style.transform = "translateX(".concat(dotOffsetDirection, "px)");
       } else {
-        this.dom.line.style.left = "".concat(start, "px");
-        this.dom.dot.style.left = "".concat(start - this.dom.dot.offsetWidth / 2, "px");
+        var _lineOffsetDirection = this.options.rtl ? start * -1 : start;
+
+        var _dotOffsetDirection = this.options.rtl ? (start - dotOffsetWidth / 2) * -1 : start - dotOffsetWidth / 2;
+
+        this.dom.line.style.transform = "".concat(_lineOffsetDirection, "px");
+        this.dom.dot.style.transform = "".concat(_dotOffsetDirection, "px");
       }
     }
     /**
@@ -40340,18 +40381,10 @@ function (_Component) {
   }, {
     key: "_onDragStartAddItem",
     value: function _onDragStartAddItem(event) {
-      var xAbs;
-      var x;
       var snap = this.options.snap || null;
+      var frameRect = this.dom.frame.getBoundingClientRect(); // plus (if rtl) 10 to compensate for the drag starting as soon as you've moved 10px
 
-      if (this.options.rtl) {
-        xAbs = util.getAbsoluteRight(this.dom.frame);
-        x = xAbs - event.center.x + 10; // plus 10 to compensate for the drag starting as soon as you've moved 10px
-      } else {
-        xAbs = util.getAbsoluteLeft(this.dom.frame);
-        x = event.center.x - xAbs - 10; // minus 10 to compensate for the drag starting as soon as you've moved 10px
-      }
-
+      var x = this.options.rtl ? frameRect.right - event.center.x + 10 : event.center.x - frameRect.left - 10;
       var time = this.body.util.toTime(x);
       var scale = this.body.util.getScale();
       var step = this.body.util.getStep();
@@ -40405,25 +40438,20 @@ function (_Component) {
     value: function _onDrag(event) {
       var _this8 = this;
 
-      // deactivate tooltip window
-      this.clearPopupTimer();
-
-      if (this.popup != null) {
-        this.popup.hide();
+      if (this.popup != null && this.options.showTooltips && !this.popup.hidden) {
+        // this.popup.hide();
+        var container = this.body.dom.centerContainer;
+        var containerRect = container.getBoundingClientRect();
+        this.popup.setPosition(event.center.x - containerRect.left + container.offsetLeft, event.center.y - containerRect.top + container.offsetTop);
+        this.popup.show(); // redraw
       }
 
       if (this.touchParams.itemProps) {
         event.stopPropagation();
         var me = this;
         var snap = this.options.snap || null;
-        var xOffset;
-
-        if (this.options.rtl) {
-          xOffset = this.body.dom.root.offsetLeft + this.body.domProps.right.width;
-        } else {
-          xOffset = this.body.dom.root.offsetLeft + this.body.domProps.left.width;
-        }
-
+        var domRootOffsetLeft = this.body.dom.root.offsetLeft;
+        var xOffset = this.options.rtl ? domRootOffsetLeft + this.body.domProps.right.width : domRootOffsetLeft + this.body.domProps.left.width;
         var scale = this.body.util.getScale();
         var step = this.body.util.getStep(); //only calculate the new group for the item that's actually dragged
 
@@ -40759,31 +40787,32 @@ function (_Component) {
         if (group && group.height != this.groupTouchParams.group.height) {
           var movingUp = group.top < this.groupTouchParams.group.top;
           var clientY = event.center ? event.center.y : event.clientY;
-          var targetGroupTop = util.getAbsoluteTop(group.dom.foreground);
+          var targetGroup = group.dom.foreground.getBoundingClientRect();
           var draggedGroupHeight = this.groupTouchParams.group.height;
 
           if (movingUp) {
             // skip swapping the groups when the dragged group is not below clientY afterwards
-            if (targetGroupTop + draggedGroupHeight < clientY) {
+            if (targetGroup.top + draggedGroupHeight < clientY) {
               return;
             }
           } else {
             var targetGroupHeight = group.height; // skip swapping the groups when the dragged group is not below clientY afterwards
 
-            if (targetGroupTop + targetGroupHeight - draggedGroupHeight > clientY) {
+            if (targetGroup.top + targetGroupHeight - draggedGroupHeight > clientY) {
               return;
             }
           }
         }
 
         if (group && group != this.groupTouchParams.group) {
-          var targetGroup = groupsData.get(group.groupId);
+          var _targetGroup = groupsData.get(group.groupId);
+
           var draggedGroup = groupsData.get(this.groupTouchParams.group.groupId); // switch groups
 
-          if (draggedGroup && targetGroup) {
-            this.options.groupOrderSwap(draggedGroup, targetGroup, groupsData);
+          if (draggedGroup && _targetGroup) {
+            this.options.groupOrderSwap(draggedGroup, _targetGroup, groupsData);
             groupsData.update(draggedGroup);
-            groupsData.update(targetGroup);
+            groupsData.update(_targetGroup);
           } // fetch current order of groups
 
 
@@ -40968,7 +40997,8 @@ function (_Component) {
 
         this.popup.setText(title);
         var container = this.body.dom.centerContainer;
-        this.popup.setPosition(event.clientX - util.getAbsoluteLeft(container) + container.offsetLeft, event.clientY - util.getAbsoluteTop(container) + container.offsetTop);
+        var containerRect = container.getBoundingClientRect();
+        this.popup.setPosition(event.clientX - containerRect.left + container.offsetLeft, event.clientY - containerRect.top + container.offsetTop);
         this.setPopupTimer(this.popup);
       } else {
         // Hovering over item without a title, hide popup
@@ -41034,14 +41064,11 @@ function (_Component) {
         this.setPopupTimer(this.popup);
       }
 
-      if (this.options.showTooltips && this.options.tooltip.followMouse) {
-        if (this.popup) {
-          if (!this.popup.hidden) {
-            var container = this.body.dom.centerContainer;
-            this.popup.setPosition(event.clientX - util.getAbsoluteLeft(container) + container.offsetLeft, event.clientY - util.getAbsoluteTop(container) + container.offsetTop);
-            this.popup.show(); // Redraw
-          }
-        }
+      if (this.options.showTooltips && this.options.tooltip.followMouse && this.popup && !this.popup.hidden) {
+        var container = this.body.dom.centerContainer;
+        var containerRect = container.getBoundingClientRect();
+        this.popup.setPosition(event.clientX - containerRect.left + container.offsetLeft, event.clientY - containerRect.top + container.offsetTop);
+        this.popup.show(); // Redraw
       }
     }
     /**
@@ -41108,20 +41135,10 @@ function (_Component) {
       if (!this.options.selectable) return;
       if (!this.options.editable.add) return;
       var me = this;
-      var snap = this.options.snap || null;
-      var xAbs;
-      var x; // add item
+      var snap = this.options.snap || null; // add item
 
-      if (this.options.rtl) {
-        xAbs = util.getAbsoluteRight(this.dom.frame);
-        x = xAbs - event.center.x;
-      } else {
-        xAbs = util.getAbsoluteLeft(this.dom.frame);
-        x = event.center.x - xAbs;
-      } // var xAbs = util.getAbsoluteLeft(this.dom.frame);
-      // var x = event.center.x - xAbs;
-
-
+      var frameRect = this.dom.frame.getBoundingClientRect();
+      var x = this.options.rtl ? frameRect.right - event.center.x : event.center.x - frameRect.left;
       var start = this.body.util.toTime(x);
       var scale = this.body.util.getScale();
       var step = this.body.util.getStep();
@@ -41327,18 +41344,18 @@ function (_Component) {
         var groupId = groupIds[i];
         var group = this.groups[groupId];
         var foreground = group.dom.foreground;
-        var top = util.getAbsoluteTop(foreground);
+        var foregroundRect = foreground.getBoundingClientRect();
 
-        if (clientY >= top && clientY < top + foreground.offsetHeight) {
+        if (clientY >= foregroundRect.top && clientY < foregroundRect.top + foreground.offsetHeight) {
           return group;
         }
 
         if (this.options.orientation.item === 'top') {
-          if (i === this.groupIds.length - 1 && clientY > top) {
+          if (i === this.groupIds.length - 1 && clientY > foregroundRect.top) {
             return group;
           }
         } else {
-          if (i === 0 && clientY < top + foreground.offset) {
+          if (i === 0 && clientY < foregroundRect.top + foreground.offset) {
             return group;
           }
         }
@@ -45035,15 +45052,9 @@ function (_Core) {
     value: function getEventProperties(event) {
       var clientX = event.center ? event.center.x : event.clientX;
       var clientY = event.center ? event.center.y : event.clientY;
-      var x;
-
-      if (this.options.rtl) {
-        x = util.getAbsoluteRight(this.dom.centerContainer) - clientX;
-      } else {
-        x = clientX - util.getAbsoluteLeft(this.dom.centerContainer);
-      }
-
-      var y = clientY - util.getAbsoluteTop(this.dom.centerContainer);
+      var centerContainerRect = this.dom.centerContainer.getBoundingClientRect();
+      var x = this.options.rtl ? centerContainerRect.right - clientX : clientX - centerContainerRect.left;
+      var y = clientY - centerContainerRect.top;
       var item = this.itemSet.itemFromTarget(event);
       var group = this.itemSet.groupFromTarget(event);
       var customTime = CustomTime.customTimeFromTarget(event);
@@ -45913,13 +45924,14 @@ function (_Component) {
 
         var orientation = this.options.orientation;
         var showMinorLabels = this.options.showMinorLabels;
-        var showMajorLabels = this.options.showMajorLabels; // determine the width and height of the elements for the axis
+        var showMajorLabels = this.options.showMajorLabels;
+        var backgroundHorizontalOffsetWidth = this.body.dom.backgroundHorizontal.offsetWidth; // determine the width and height of the elements for the axis
 
         props.minorLabelHeight = showMinorLabels ? props.minorCharHeight : 0;
         props.majorLabelHeight = showMajorLabels ? props.majorCharHeight : 0;
-        props.minorLineWidth = this.body.dom.backgroundHorizontal.offsetWidth - this.lineOffset - this.width + 2 * this.options.minorLinesOffset;
+        props.minorLineWidth = backgroundHorizontalOffsetWidth - this.lineOffset - this.width + 2 * this.options.minorLinesOffset;
         props.minorLineHeight = 1;
-        props.majorLineWidth = this.body.dom.backgroundHorizontal.offsetWidth - this.lineOffset - this.width + 2 * this.options.majorLinesOffset;
+        props.majorLineWidth = backgroundHorizontalOffsetWidth - this.lineOffset - this.width + 2 * this.options.majorLinesOffset;
         props.majorLineHeight = 1; //  take frame offline while updating (is almost twice as fast)
 
         if (orientation === 'left') {
