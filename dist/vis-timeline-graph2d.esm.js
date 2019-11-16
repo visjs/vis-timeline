@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-10T18:58:52Z
+ * @date    2019-11-16T21:08:24Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -31074,7 +31074,7 @@ function (_Component) {
 
     _this.setOptions(options);
 
-    util.extend(_this.options.locales, locales, _this.options.locales);
+    _this.options.locales = util.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
     Object.keys(_this.options.locales).forEach(function (locale) {
       _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
@@ -32938,7 +32938,7 @@ function (_Component) {
 
     _this.setOptions(options);
 
-    util.extend(_this.options.locales, locales, _this.options.locales);
+    _this.options.locales = util.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
     Object.keys(_this.options.locales).forEach(function (locale) {
       _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
@@ -35190,7 +35190,7 @@ function () {
       locale: 'en'
     };
     this.options = util.extend({}, this.defaultOptions, options);
-    util.extend(this.options.locales, locales, this.options.locales);
+    this.options.locales = util.extend({}, locales, this.options.locales);
     var defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
     Object.keys(this.options.locales).forEach(function (locale) {
       _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
