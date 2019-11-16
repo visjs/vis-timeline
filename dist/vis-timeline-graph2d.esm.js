@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-16T21:15:10Z
+ * @date    2019-11-16T21:59:53Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -4308,6 +4308,55 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+function ownKeys$1(object, enumerableOnly) {
+  var keys = Object.keys(object);
+
+  if (Object.getOwnPropertySymbols) {
+    var symbols = Object.getOwnPropertySymbols(object);
+    if (enumerableOnly) symbols = symbols.filter(function (sym) {
+      return Object.getOwnPropertyDescriptor(object, sym).enumerable;
+    });
+    keys.push.apply(keys, symbols);
+  }
+
+  return keys;
+}
+
+function _objectSpread2(target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i] != null ? arguments[i] : {};
+
+    if (i % 2) {
+      ownKeys$1(source, true).forEach(function (key) {
+        _defineProperty(target, key, source[key]);
+      });
+    } else if (Object.getOwnPropertyDescriptors) {
+      Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
+    } else {
+      ownKeys$1(source).forEach(function (key) {
+        Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
+      });
+    }
+  }
+
+  return target;
+}
+
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
     throw new TypeError("Super expression must either be null or a function");
@@ -4375,7 +4424,7 @@ function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance");
 }
 
-function _defineProperty(obj, key, value) {
+function _defineProperty$1(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -4390,7 +4439,7 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var defineProperty$7 = _defineProperty;
+var defineProperty$7 = _defineProperty$1;
 
 function _arrayWithoutHoles$1(arr) {
   if (Array.isArray(arr)) {
@@ -9170,7 +9219,7 @@ function uuid4() {
 } // Rollup will complain about mixing default and named exports in UMD build,
 
 
-function ownKeys$1(object, enumerableOnly) {
+function ownKeys$2(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -9188,13 +9237,13 @@ function _objectSpread(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$1(source, true).forEach(function (key) {
+      ownKeys$2(source, true).forEach(function (key) {
         defineProperty$7(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$1(source).forEach(function (key) {
+      ownKeys$2(source).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -11222,6 +11271,65 @@ Object.freeze({
   randomUUID: uuid4
 }); // New API (tree shakeable).
 
+var util$1 = /*#__PURE__*/Object.freeze({
+	'default': util,
+	HSVToHex: HSVToHex,
+	HSVToRGB: HSVToRGB,
+	RGBToHSV: RGBToHSV,
+	RGBToHex: RGBToHex,
+	addClassName: addClassName,
+	addCssText: addCssText,
+	addEventListener: addEventListener,
+	binarySearchCustom: binarySearchCustom,
+	binarySearchValue: binarySearchValue,
+	bridgeObject: bridgeObject,
+	convert: convert,
+	copyAndExtendArray: copyAndExtendArray,
+	copyArray: copyArray,
+	deepExtend: deepExtend,
+	easingFunctions: easingFunctions,
+	equalArray: equalArray,
+	extend: extend,
+	fillIfDefined: fillIfDefined,
+	forEach: forEach,
+	getAbsoluteLeft: getAbsoluteLeft,
+	getAbsoluteRight: getAbsoluteRight,
+	getAbsoluteTop: getAbsoluteTop,
+	getScrollBarWidth: getScrollBarWidth,
+	getTarget: getTarget,
+	getType: getType,
+	hasParent: hasParent,
+	hexToHSV: hexToHSV,
+	hexToRGB: hexToRGB,
+	insertSort: insertSort,
+	isDate: isDate,
+	isMoment: isMoment,
+	isNumber: isNumber,
+	isObject: isObject$1,
+	isString: isString,
+	isValidHex: isValidHex,
+	isValidRGB: isValidRGB,
+	isValidRGBA: isValidRGBA,
+	mergeOptions: mergeOptions,
+	option: option,
+	overrideOpacity: overrideOpacity,
+	parseColor: parseColor,
+	preventDefault: preventDefault,
+	randomUUID: uuid4,
+	recursiveDOMDelete: recursiveDOMDelete,
+	removeClassName: removeClassName,
+	removeCssText: removeCssText,
+	removeEventListener: removeEventListener,
+	selectiveBridgeObject: selectiveBridgeObject,
+	selectiveDeepExtend: selectiveDeepExtend,
+	selectiveExtend: selectiveExtend,
+	selectiveNotDeepExtend: selectiveNotDeepExtend,
+	throttle: throttle,
+	toArray: toArray,
+	topMost: topMost,
+	updateProperty: updateProperty
+});
+
 // DOM utility methods
 
 /**
@@ -11569,7 +11677,7 @@ _export({ target: 'Object', stat: true }, {
  * 
  * vis.js may be distributed under either license.
  */
-function _defineProperty$1(obj, key, value) {
+function _defineProperty$2(obj, key, value) {
   if (key in obj) {
     Object.defineProperty(obj, key, {
       value: value,
@@ -11584,7 +11692,7 @@ function _defineProperty$1(obj, key, value) {
   return obj;
 }
 
-var defineProperty$8 = _defineProperty$1;
+var defineProperty$8 = _defineProperty$2;
 
 function createCommonjsModule$2(fn, module) {
   return module = {
@@ -17094,7 +17202,7 @@ function () {
   return DataSetPart;
 }();
 
-function ownKeys$2(object, enumerableOnly) {
+function ownKeys$3(object, enumerableOnly) {
   var keys = Object.keys(object);
 
   if (Object.getOwnPropertySymbols) {
@@ -17112,13 +17220,13 @@ function _objectSpread$1(target) {
     var source = arguments[i] != null ? arguments[i] : {};
 
     if (i % 2) {
-      ownKeys$2(source, true).forEach(function (key) {
+      ownKeys$3(source, true).forEach(function (key) {
         defineProperty$8(target, key, source[key]);
       });
     } else if (Object.getOwnPropertyDescriptors) {
       Object.defineProperties(target, Object.getOwnPropertyDescriptors(source));
     } else {
-      ownKeys$2(source).forEach(function (key) {
+      ownKeys$3(source).forEach(function (key) {
         Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key));
       });
     }
@@ -23124,6 +23232,157 @@ var moment$2 = createCommonjsModule(function (module, exports) {
 
 var moment$3 = typeof window !== 'undefined' && window['moment'] || moment$2;
 
+// for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
+// code from http://momentjs.com/
+
+var ASPDateRegex$2 = /^\/?Date\((-?\d+)/i;
+/**
+ * Convert an object into another type
+ *
+ * @param object - Value of unknown type.
+ * @param type - Name of the desired type.
+ *
+ * @returns Object in the desired type.
+ * @throws Error
+ */
+
+function convert$2(object, type) {
+  var match;
+
+  if (object === undefined) {
+    return undefined;
+  }
+
+  if (object === null) {
+    return null;
+  }
+
+  if (!type) {
+    return object;
+  }
+
+  if (!(typeof type === "string") && !(type instanceof String)) {
+    throw new Error("Type must be a string");
+  } //noinspection FallthroughInSwitchStatementJS
+
+
+  switch (type) {
+    case "boolean":
+    case "Boolean":
+      return Boolean(object);
+
+    case "number":
+    case "Number":
+      if (isString(object) && !isNaN(Date.parse(object))) {
+        return moment$2(object).valueOf();
+      } else {
+        // @TODO: I don't think that Number and String constructors are a good idea.
+        // This could also fail if the object doesn't have valueOf method or if it's redefined.
+        // For example: Object.create(null) or { valueOf: 7 }.
+        return Number(object.valueOf());
+      }
+
+    case "string":
+    case "String":
+      return String(object);
+
+    case "Date":
+      if (isNumber(object)) {
+        return new Date(object);
+      }
+
+      if (object instanceof Date) {
+        return new Date(object.valueOf());
+      } else if (moment$2.isMoment(object)) {
+        return new Date(object.valueOf());
+      }
+
+      if (isString(object)) {
+        match = ASPDateRegex$2.exec(object);
+
+        if (match) {
+          // object is an ASP date
+          return new Date(Number(match[1])); // parse number
+        } else {
+          return moment$2(new Date(object)).toDate(); // parse string
+        }
+      } else {
+        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
+      }
+
+    case "Moment":
+      if (isNumber(object)) {
+        return moment$2(object);
+      }
+
+      if (object instanceof Date) {
+        return moment$2(object.valueOf());
+      } else if (moment$2.isMoment(object)) {
+        return moment$2(object);
+      }
+
+      if (isString(object)) {
+        match = ASPDateRegex$2.exec(object);
+
+        if (match) {
+          // object is an ASP date
+          return moment$2(Number(match[1])); // parse number
+        } else {
+          return moment$2(object); // parse string
+        }
+      } else {
+        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
+      }
+
+    case "ISODate":
+      if (isNumber(object)) {
+        return new Date(object);
+      } else if (object instanceof Date) {
+        return object.toISOString();
+      } else if (moment$2.isMoment(object)) {
+        return object.toDate().toISOString();
+      } else if (isString(object)) {
+        match = ASPDateRegex$2.exec(object);
+
+        if (match) {
+          // object is an ASP date
+          return new Date(Number(match[1])).toISOString(); // parse number
+        } else {
+          return moment$2(object).format(); // ISO 8601
+        }
+      } else {
+        throw new Error("Cannot convert object of type " + getType(object) + " to type ISODate");
+      }
+
+    case "ASPDate":
+      if (isNumber(object)) {
+        return "/Date(" + object + ")/";
+      } else if (object instanceof Date || moment$2.isMoment(object)) {
+        return "/Date(" + object.valueOf() + ")/";
+      } else if (isString(object)) {
+        match = ASPDateRegex$2.exec(object);
+        var value;
+
+        if (match) {
+          // object is an ASP date
+          value = new Date(Number(match[1])).valueOf(); // parse number
+        } else {
+          value = new Date(object).valueOf(); // parse string
+        }
+
+        return "/Date(" + value + ")/";
+      } else {
+        throw new Error("Cannot convert object of type " + getType(object) + " to type ASPDate");
+      }
+
+    default:
+      throw new Error("Unknown type ".concat(type));
+  }
+}
+var util$2 = _objectSpread2({}, util$1, {
+  convert: convert$2
+});
+
 /** Prototype for visual components */
 
 var Component =
@@ -23151,7 +23410,7 @@ function () {
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
-        util.extend(this.options, options);
+        util$2.extend(this.options, options);
       }
     }
     /**
@@ -23834,7 +24093,7 @@ function (_Component) {
         offset: 0.5
       }
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
     _this.props = {
       touch: {}
     };
@@ -23885,7 +24144,7 @@ function (_Component) {
       if (options) {
         // copy the options that we know
         var fields = ['animation', 'direction', 'min', 'max', 'zoomMin', 'zoomMax', 'moveable', 'zoomable', 'moment', 'activate', 'hiddenDates', 'zoomKey', 'zoomFriction', 'rtl', 'showCurrentTime', 'rollingMode', 'horizontalScroll'];
-        util.selectiveExtend(fields, this.options, options);
+        util$2.selectiveExtend(fields, this.options, options);
 
         if (options.rollingMode && options.rollingMode.follow) {
           this.startRolling();
@@ -23913,7 +24172,7 @@ function (_Component) {
         me.stopRolling();
         me.rolling = true;
         var interval = me.end - me.start;
-        var t = util.convert(new Date(), 'Date').valueOf();
+        var t = util$2.convert(new Date(), 'Date').valueOf();
         var rollingModeOffset = me.options.rollingMode && me.options.rollingMode.offset || 0.5;
         var start = t - interval * rollingModeOffset;
         var end = t + interval * (1 - rollingModeOffset);
@@ -23980,8 +24239,8 @@ function (_Component) {
       }
 
       var me = this;
-      var finalStart = start != undefined ? util.convert(start, 'Date').valueOf() : null;
-      var finalEnd = end != undefined ? util.convert(end, 'Date').valueOf() : null;
+      var finalStart = start != undefined ? util$2.convert(start, 'Date').valueOf() : null;
+      var finalEnd = end != undefined ? util$2.convert(end, 'Date').valueOf() : null;
 
       this._cancelAnimation();
 
@@ -23993,10 +24252,10 @@ function (_Component) {
         var initEnd = this.end;
         var duration = _typeof(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
         var easingName = _typeof(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
-        var easingFunction = util.easingFunctions[easingName];
+        var easingFunction = util$2.easingFunctions[easingName];
 
         if (!easingFunction) {
-          throw new Error("Unknown easing function ".concat(JSON.stringify(easingName), ". Choose from: ").concat(Object.keys(util.easingFunctions).join(', ')));
+          throw new Error("Unknown easing function ".concat(JSON.stringify(easingName), ". Choose from: ").concat(Object.keys(util$2.easingFunctions).join(', ')));
         }
 
         var initTime = Date.now();
@@ -24110,10 +24369,10 @@ function (_Component) {
   }, {
     key: "_applyRange",
     value: function _applyRange(start, end) {
-      var newStart = start != null ? util.convert(start, 'Date').valueOf() : this.start;
-      var newEnd = end != null ? util.convert(end, 'Date').valueOf() : this.end;
-      var max = this.options.max != null ? util.convert(this.options.max, 'Date').valueOf() : null;
-      var min = this.options.min != null ? util.convert(this.options.min, 'Date').valueOf() : null;
+      var newStart = start != null ? util$2.convert(start, 'Date').valueOf() : this.start;
+      var newEnd = end != null ? util$2.convert(end, 'Date').valueOf() : this.end;
+      var max = this.options.max != null ? util$2.convert(this.options.max, 'Date').valueOf() : null;
+      var min = this.options.min != null ? util$2.convert(this.options.min, 'Date').valueOf() : null;
       var diff; // check for valid number
 
       if (isNaN(newStart) || newStart === null) {
@@ -24462,7 +24721,7 @@ function (_Component) {
       this.scaleOffset = 0;
       this.deltaDifference = 0; // Disable the browser default handling of this event.
 
-      util.preventDefault(event);
+      util$2.preventDefault(event);
     }
     /**
      * Handle pinch event
@@ -24476,7 +24735,7 @@ function (_Component) {
       // only allow zooming when configured as zoomable and moveable
       if (!(this.options.zoomable && this.options.moveable)) return; // Disable the browser default handling of this event.
 
-      util.preventDefault(event);
+      util$2.preventDefault(event);
       this.props.touch.allowDragging = false;
 
       if (!this.props.touch.center) {
@@ -28259,8 +28518,8 @@ function () {
   }, {
     key: "setFormat",
     value: function setFormat(format) {
-      var defaultFormat = util.deepExtend({}, TimeStep.FORMAT);
-      this.format = util.deepExtend(defaultFormat, format);
+      var defaultFormat = util$2.deepExtend({}, TimeStep.FORMAT);
+      this.format = util$2.deepExtend(defaultFormat, format);
     }
     /**
      * Set a new range
@@ -29249,7 +29508,7 @@ function (_Component) {
       moment: moment$3,
       timeAxis: null
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
     _this.body = body; // create the HTML DOM
 
     _this._create();
@@ -29273,9 +29532,9 @@ function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
+        util$2.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
 
-        util.selectiveDeepExtend(['format'], this.options, options);
+        util$2.selectiveDeepExtend(['format'], this.options, options);
 
         if ('orientation' in options) {
           if (typeof options.orientation === 'string') {
@@ -29392,8 +29651,8 @@ function (_Component) {
     value: function _repaintLabels() {
       var orientation = this.options.orientation.axis; // calculate range and step (step such that we have space for 7 characters per label)
 
-      var start = util.convert(this.body.range.start, 'Number');
-      var end = util.convert(this.body.range.end, 'Number');
+      var start = util$2.convert(this.body.range.start, 'Number');
+      var end = util$2.convert(this.body.range.end, 'Number');
       var timeLabelsize = this.body.util.toTime((this.props.minorCharWidth || 10) * this.options.maxMinorChars).valueOf();
       var minimumStep = timeLabelsize - getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this.body.range, timeLabelsize);
       minimumStep -= this.body.util.toTime(0).valueOf();
@@ -29506,7 +29765,7 @@ function (_Component) {
       } // Cleanup leftover DOM elements from the redundant list
 
 
-      util.forEach(this.dom.redundant, function (arr) {
+      util$2.forEach(this.dom.redundant, function (arr) {
         while (arr.length) {
           var elem = arr.pop();
 
@@ -30101,7 +30360,7 @@ Activator.prototype.activate = function () {
   Activator.current = this;
   this.active = true;
   this.dom.overlay.style.display = 'none';
-  util.addClassName(this.dom.container, 'vis-active');
+  util$2.addClassName(this.dom.container, 'vis-active');
   this.emit('change');
   this.emit('activate'); // ugly hack: bind ESC after emitting the events, as the Network rebinds all
   // keyboard events on a 'change' event
@@ -30117,7 +30376,7 @@ Activator.prototype.activate = function () {
 Activator.prototype.deactivate = function () {
   this.active = false;
   this.dom.overlay.style.display = '';
-  util.removeClassName(this.dom.container, 'vis-active');
+  util$2.removeClassName(this.dom.container, 'vis-active');
   this.keycharm.unbind('esc', this.escListener);
   this.emit('change');
   this.emit('deactivate');
@@ -31070,14 +31329,14 @@ function (_Component) {
       id: undefined,
       title: undefined
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
 
     _this.setOptions(options);
 
-    _this.options.locales = util.extend({}, locales, _this.options.locales);
+    _this.options.locales = util$2.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
     Object.keys(_this.options.locales).forEach(function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = util$2.extend({}, defaultLocales, _this.options.locales[locale]);
     });
 
     if (options && options.time) {
@@ -31107,7 +31366,7 @@ function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl'], this.options, options);
+        util$2.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl'], this.options, options);
       }
     }
     /**
@@ -31243,7 +31502,7 @@ function (_Component) {
   }, {
     key: "setCustomTime",
     value: function setCustomTime(time) {
-      this.customTime = util.convert(time, 'Date');
+      this.customTime = util$2.convert(time, 'Date');
       this.redraw();
     }
     /**
@@ -31527,7 +31786,7 @@ function () {
       this.on('panmove', this._onDrag.bind(this));
       var me = this;
       this._origRedraw = this._redraw.bind(this);
-      this._redraw = util.throttle(this._origRedraw);
+      this._redraw = util$2.throttle(this._origRedraw);
       this.on('_change', function (properties) {
         if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
           me._redraw();
@@ -31812,7 +32071,7 @@ function () {
       if (options) {
         // copy the known options
         var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll'];
-        util.selectiveExtend(fields, this.options, options);
+        util$2.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = 'hidden';
 
         if (this.options.rtl) {
@@ -31857,7 +32116,7 @@ function () {
             var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
 
             timeAxis2.setOptions = function (options) {
-              var _options = options ? util.extend({}, options) : {};
+              var _options = options ? util$2.extend({}, options) : {};
 
               _options.orientation = 'top'; // override the orientation option, always top
 
@@ -31919,9 +32178,9 @@ function () {
 
         this.configurator.setOptions(options.configure); // collect the settings of all components, and pass them to the configuration system
 
-        var appliedOptions = util.deepExtend({}, this.options);
+        var appliedOptions = util$2.deepExtend({}, this.options);
         this.components.forEach(function (component) {
-          util.deepExtend(appliedOptions, component.options);
+          util$2.deepExtend(appliedOptions, component.options);
         });
         this.configurator.setModuleOptions({
           global: appliedOptions
@@ -32095,7 +32354,7 @@ function () {
   }, {
     key: "addCustomTime",
     value: function addCustomTime(time, id) {
-      var timestamp = time !== undefined ? util.convert(time, 'Date').valueOf() : new Date();
+      var timestamp = time !== undefined ? util$2.convert(time, 'Date').valueOf() : new Date();
       var exists = this.customTimes.some(function (customTime) {
         return customTime.options.id === id;
       });
@@ -32104,7 +32363,7 @@ function () {
         throw new Error("A custom time with id ".concat(JSON.stringify(id), " already exists"));
       }
 
-      var customTime = new CustomTime(this.body, util.extend({}, this.options, {
+      var customTime = new CustomTime(this.body, util$2.extend({}, this.options, {
         time: timestamp,
         id: id
       }));
@@ -32280,7 +32539,7 @@ function () {
       }
 
       var interval = this.range.end - this.range.start;
-      var t = util.convert(time, 'Date').valueOf();
+      var t = util$2.convert(time, 'Date').valueOf();
       var start = t - interval / 2;
       var end = t + interval / 2;
       var animation = options && options.animation !== undefined ? options.animation : true;
@@ -32396,25 +32655,25 @@ function () {
       updateHiddenDates(this.options.moment, this.body, this.options.hiddenDates); // update class names
 
       if (options.orientation == 'top') {
-        util.addClassName(dom.root, 'vis-top');
-        util.removeClassName(dom.root, 'vis-bottom');
+        util$2.addClassName(dom.root, 'vis-top');
+        util$2.removeClassName(dom.root, 'vis-bottom');
       } else {
-        util.removeClassName(dom.root, 'vis-top');
-        util.addClassName(dom.root, 'vis-bottom');
+        util$2.removeClassName(dom.root, 'vis-top');
+        util$2.addClassName(dom.root, 'vis-bottom');
       }
 
       if (options.rtl) {
-        util.addClassName(dom.root, 'vis-rtl');
-        util.removeClassName(dom.root, 'vis-ltr');
+        util$2.addClassName(dom.root, 'vis-rtl');
+        util$2.removeClassName(dom.root, 'vis-ltr');
       } else {
-        util.addClassName(dom.root, 'vis-ltr');
-        util.removeClassName(dom.root, 'vis-rtl');
+        util$2.addClassName(dom.root, 'vis-ltr');
+        util$2.removeClassName(dom.root, 'vis-rtl');
       } // update root width and height options
 
 
-      dom.root.style.maxHeight = util.option.asSize(options.maxHeight, '');
-      dom.root.style.minHeight = util.option.asSize(options.minHeight, '');
-      dom.root.style.width = util.option.asSize(options.width, '');
+      dom.root.style.maxHeight = util$2.option.asSize(options.maxHeight, '');
+      dom.root.style.minHeight = util$2.option.asSize(options.minHeight, '');
+      dom.root.style.width = util$2.option.asSize(options.width, '');
       var rootClientHeight = dom.root.clientHeight;
       var rootOffsetHeight = dom.root.offsetHeight;
       var rootOffsetWidth = dom.root.offsetWidth;
@@ -32449,7 +32708,7 @@ function () {
 
       var contentHeight = Math.max(props.left.height, props.center.height, props.right.height);
       var autoHeight = props.top.height + contentHeight + props.bottom.height + props.borderRootHeight + props.border.top + props.border.bottom;
-      dom.root.style.height = util.option.asSize(options.height, "".concat(autoHeight, "px")); // calculate heights of the content panels
+      dom.root.style.height = util$2.option.asSize(options.height, "".concat(autoHeight, "px")); // calculate heights of the content panels
 
       props.root.height = dom.root.offsetHeight;
       props.background.height = props.root.height - props.borderRootHeight;
@@ -32462,7 +32721,7 @@ function () {
       props.background.width = props.root.width - props.borderRootWidth;
 
       if (!this.initialDrawDone) {
-        props.scrollbarWidth = util.getScrollBarWidth();
+        props.scrollbarWidth = util$2.getScrollBarWidth();
       }
 
       var leftContainerClientWidth = dom.leftContainer.clientWidth;
@@ -32734,14 +32993,14 @@ function () {
           if (rootOffsetWidth != me.props.lastWidth || rootOffsetHeight != me.props.lastHeight) {
             me.props.lastWidth = rootOffsetWidth;
             me.props.lastHeight = rootOffsetHeight;
-            me.props.scrollbarWidth = util.getScrollBarWidth();
+            me.props.scrollbarWidth = util$2.getScrollBarWidth();
             me.body.emitter.emit('_change');
           }
         }
       }; // add event listener to window resize
 
 
-      util.addEventListener(window, 'resize', this._onResize); //Prevent initial unnecessary redraw
+      util$2.addEventListener(window, 'resize', this._onResize); //Prevent initial unnecessary redraw
 
       if (me.dom.root) {
         me.props.lastWidth = me.dom.root.offsetWidth;
@@ -32765,7 +33024,7 @@ function () {
 
 
       if (this._onResize) {
-        util.removeEventListener(window, 'resize', this._onResize);
+        util$2.removeEventListener(window, 'resize', this._onResize);
         this._onResize = null;
       }
     }
@@ -32934,14 +33193,14 @@ function (_Component) {
       locales: locales,
       locale: 'en'
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
 
     _this.setOptions(options);
 
-    _this.options.locales = util.extend({}, locales, _this.options.locales);
+    _this.options.locales = util$2.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
     Object.keys(_this.options.locales).forEach(function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = util$2.extend({}, defaultLocales, _this.options.locales[locale]);
     });
     _this.offset = 0;
 
@@ -32989,7 +33248,7 @@ function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
+        util$2.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
       }
     }
     /**
@@ -33101,7 +33360,7 @@ function (_Component) {
   }, {
     key: "setCurrentTime",
     value: function setCurrentTime(time) {
-      var t = util.convert(time, 'Date').valueOf();
+      var t = util$2.convert(time, 'Date').valueOf();
       var now = Date.now();
       this.offset = t - now;
       this.redraw();
@@ -33997,9 +34256,9 @@ function () {
       this.dom.label.title = data && data.title || '';
 
       if (!this.dom.inner.firstChild) {
-        util.addClassName(this.dom.inner, 'vis-hidden');
+        util$2.addClassName(this.dom.inner, 'vis-hidden');
       } else {
-        util.removeClassName(this.dom.inner, 'vis-hidden');
+        util$2.removeClassName(this.dom.inner, 'vis-hidden');
       }
 
       if (data && data.nestedGroups) {
@@ -34015,33 +34274,33 @@ function () {
           }
         }
 
-        util.addClassName(this.dom.label, 'vis-nesting-group');
+        util$2.addClassName(this.dom.label, 'vis-nesting-group');
 
         if (this.showNested) {
-          util.removeClassName(this.dom.label, 'collapsed');
-          util.addClassName(this.dom.label, 'expanded');
+          util$2.removeClassName(this.dom.label, 'collapsed');
+          util$2.addClassName(this.dom.label, 'expanded');
         } else {
-          util.removeClassName(this.dom.label, 'expanded');
-          util.addClassName(this.dom.label, 'collapsed');
+          util$2.removeClassName(this.dom.label, 'expanded');
+          util$2.addClassName(this.dom.label, 'collapsed');
         }
       } else if (this.nestedGroups) {
         this.nestedGroups = null;
-        util.removeClassName(this.dom.label, 'collapsed');
-        util.removeClassName(this.dom.label, 'expanded');
-        util.removeClassName(this.dom.label, 'vis-nesting-group');
+        util$2.removeClassName(this.dom.label, 'collapsed');
+        util$2.removeClassName(this.dom.label, 'expanded');
+        util$2.removeClassName(this.dom.label, 'vis-nesting-group');
       }
 
       if (data && (data.treeLevel || data.nestedInGroup)) {
-        util.addClassName(this.dom.label, 'vis-nested-group');
+        util$2.addClassName(this.dom.label, 'vis-nested-group');
 
         if (data.treeLevel) {
-          util.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
+          util$2.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
         } else {
           // Nesting level is unknown, but we're sure it's at least 1
-          util.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
+          util$2.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
         }
       } else {
-        util.addClassName(this.dom.label, 'vis-group-level-0');
+        util$2.addClassName(this.dom.label, 'vis-group-level-0');
       } // update className
 
 
@@ -34049,27 +34308,27 @@ function () {
 
       if (className != this.className) {
         if (this.className) {
-          util.removeClassName(this.dom.label, this.className);
-          util.removeClassName(this.dom.foreground, this.className);
-          util.removeClassName(this.dom.background, this.className);
-          util.removeClassName(this.dom.axis, this.className);
+          util$2.removeClassName(this.dom.label, this.className);
+          util$2.removeClassName(this.dom.foreground, this.className);
+          util$2.removeClassName(this.dom.background, this.className);
+          util$2.removeClassName(this.dom.axis, this.className);
         }
 
-        util.addClassName(this.dom.label, className);
-        util.addClassName(this.dom.foreground, className);
-        util.addClassName(this.dom.background, className);
-        util.addClassName(this.dom.axis, className);
+        util$2.addClassName(this.dom.label, className);
+        util$2.addClassName(this.dom.foreground, className);
+        util$2.addClassName(this.dom.background, className);
+        util$2.addClassName(this.dom.axis, className);
         this.className = className;
       } // update style
 
 
       if (this.style) {
-        util.removeCssText(this.dom.label, this.style);
+        util$2.removeCssText(this.dom.label, this.style);
         this.style = null;
       }
 
       if (data && data.style) {
-        util.addCssText(this.dom.label, data.style);
+        util$2.addCssText(this.dom.label, data.style);
         this.style = data.style;
       }
     }
@@ -34097,7 +34356,7 @@ function () {
         this.lastMarkerHeight = markerHeight;
         var redrawQueue = {};
         var redrawQueueLength = 0;
-        util.forEach(this.items, function (item, key) {
+        util$2.forEach(this.items, function (item, key) {
           item.dirty = true;
 
           if (item.displayed) {
@@ -34110,7 +34369,7 @@ function () {
 
         if (needRedraw) {
           var _loop = function _loop(i) {
-            util.forEach(redrawQueue, function (fns) {
+            util$2.forEach(redrawQueue, function (fns) {
               fns[i]();
             });
           };
@@ -34313,7 +34572,7 @@ function () {
         }
 
         if (this.itemSet.options.cluster) {
-          util.forEach(this.items, function (item) {
+          util$2.forEach(this.items, function (item) {
             if (item.cluster && item.displayed) {
               item.hide();
             }
@@ -34337,12 +34596,12 @@ function () {
   }, {
     key: "_didResize",
     value: function _didResize(resized, height) {
-      resized = util.updateProperty(this, 'height', height) || resized; // recalculate size of label
+      resized = util$2.updateProperty(this, 'height', height) || resized; // recalculate size of label
 
       var labelWidth = this.dom.inner.clientWidth;
       var labelHeight = this.dom.inner.clientHeight;
-      resized = util.updateProperty(this.props.label, 'width', labelWidth) || resized;
-      resized = util.updateProperty(this.props.label, 'height', labelHeight) || resized;
+      resized = util$2.updateProperty(this.props.label, 'width', labelWidth) || resized;
+      resized = util$2.updateProperty(this.props.label, 'height', labelHeight) || resized;
       return resized;
     }
     /**
@@ -34444,7 +34703,7 @@ function () {
 
         this._resetSubgroups();
 
-        util.forEach(this.visibleItems, function (item) {
+        util$2.forEach(this.visibleItems, function (item) {
           if (item.data.subgroup !== undefined) {
             me.subgroups[item.data.subgroup].height = Math.max(me.subgroups[item.data.subgroup].height, item.height + margin.item.vertical);
             me.subgroups[item.data.subgroup].visible = typeof _this3.subgroupVisibility[item.data.subgroup] === 'undefined' ? true : Boolean(_this3.subgroupVisibility[item.data.subgroup]);
@@ -34481,7 +34740,7 @@ function () {
       var items;
 
       if (this.heightMode === 'fixed') {
-        items = util.toArray(this.items);
+        items = util$2.toArray(this.items);
       } else {
         // default or 'auto'
         items = this.visibleItems;
@@ -34490,7 +34749,7 @@ function () {
       if (items.length > 0) {
         var min = items[0].top;
         var max = items[0].top + items[0].height;
-        util.forEach(items, function (item) {
+        util$2.forEach(items, function (item) {
           min = Math.min(min, item.top);
           max = Math.max(max, item.top + item.height);
         });
@@ -34499,7 +34758,7 @@ function () {
           // there is an empty gap between the lowest item and the axis
           var offset = min - margin.axis;
           max -= offset;
-          util.forEach(items, function (item) {
+          util$2.forEach(items, function (item) {
             item.top -= offset;
           });
         }
@@ -34781,7 +35040,7 @@ function () {
   }, {
     key: "order",
     value: function order() {
-      var array = util.toArray(this.items);
+      var array = util$2.toArray(this.items);
       var startArray = [];
       var endArray = [];
 
@@ -34857,7 +35116,7 @@ function () {
       } // we do a binary search for the items that have only start values.
 
 
-      var initialPosByStart = util.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data', 'start'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
+      var initialPosByStart = util$2.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data', 'start'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
 
       this._traceVisible(initialPosByStart, orderedItems.byStart, visibleItems, visibleItemsLookup, function (item) {
         return item.data.start < lowerBound || item.data.start > upperBound;
@@ -34873,7 +35132,7 @@ function () {
         }
       } else {
         // we do a binary search for the items that have defined end times.
-        var initialPosByEnd = util.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data', 'end'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
+        var initialPosByEnd = util$2.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data', 'end'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
 
         this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, function (item) {
           return item.data.end < lowerBound || item.data.start > upperBound;
@@ -34897,7 +35156,7 @@ function () {
 
       if (needRedraw) {
         var _loop3 = function _loop3(j) {
-          util.forEach(redrawQueue, function (fns) {
+          util$2.forEach(redrawQueue, function (fns) {
             fns[j]();
           });
         };
@@ -35055,7 +35314,7 @@ function () {
       if (needRedraw) {
         // redraw all regular items
         for (var j = 0; j < redrawQueueLength; j++) {
-          util.forEach(redrawQueue, function (fns) {
+          util$2.forEach(redrawQueue, function (fns) {
             fns[j]();
           });
         }
@@ -35189,11 +35448,11 @@ function () {
       locales: locales,
       locale: 'en'
     };
-    this.options = util.extend({}, this.defaultOptions, options);
-    this.options.locales = util.extend({}, locales, this.options.locales);
+    this.options = util$2.extend({}, this.defaultOptions, options);
+    this.options.locales = util$2.extend({}, locales, this.options.locales);
     var defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
     Object.keys(this.options.locales).forEach(function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = util$2.extend({}, defaultLocales, _this.options.locales[locale]);
     });
     this.selected = false;
     this.displayed = false;
@@ -35701,13 +35960,13 @@ function () {
     value: function _updateStyle(element) {
       // remove old styles
       if (this.style) {
-        util.removeCssText(element, this.style);
+        util$2.removeCssText(element, this.style);
         this.style = null;
       } // append new styles
 
 
       if (this.data.style) {
-        util.addCssText(element, this.data.style);
+        util$2.addCssText(element, this.data.style);
         this.style = this.data.style;
       }
     }
@@ -35741,7 +36000,7 @@ function () {
           };
         } else if (_typeof(this.options.editable) === 'object') {
           this.editable = {};
-          util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
+          util$2.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
         }
       } // Item data overrides, except if options.editable.overrideItems is set.
 
@@ -35758,7 +36017,7 @@ function () {
             // TODO: in timeline.js 5.0, we should change this to not reset options from the timeline configuration.
             // Basically just remove the next line...
             this.editable = {};
-            util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
+            util$2.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
           }
         }
       }
@@ -37539,7 +37798,7 @@ function (_Item) {
     }
 
     Item.call(_assertThisInitialized(_this), data, conversion, _this.options);
-    _this.id = util.randomUUID();
+    _this.id = util$2.randomUUID();
     _this.group = data.group;
 
     _this._setupRange();
@@ -38731,7 +38990,7 @@ function (_Component) {
       tooltipOnItemUpdateTime: false
     }; // options is shared by this ItemSet and all its items
 
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
     _this.options.rtl = options.rtl;
     _this.options.onTimeout = options.onTimeout; // options for getting items from the DataSet with the correct type
 
@@ -39025,14 +39284,14 @@ function (_Component) {
       if (options) {
         // copy all options that we know
         var fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
-        util.selectiveExtend(fields, this.options, options);
+        util$2.selectiveExtend(fields, this.options, options);
 
         if ('itemsAlwaysDraggable' in options) {
           if (typeof options.itemsAlwaysDraggable === 'boolean') {
             this.options.itemsAlwaysDraggable.item = options.itemsAlwaysDraggable;
             this.options.itemsAlwaysDraggable.range = false;
           } else if (_typeof(options.itemsAlwaysDraggable) === 'object') {
-            util.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
+            util$2.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
 
             if (!this.options.itemsAlwaysDraggable.item) {
               this.options.itemsAlwaysDraggable.range = false;
@@ -39060,14 +39319,14 @@ function (_Component) {
             this.options.margin.item.horizontal = options.margin;
             this.options.margin.item.vertical = options.margin;
           } else if (_typeof(options.margin) === 'object') {
-            util.selectiveExtend(['axis'], this.options.margin, options.margin);
+            util$2.selectiveExtend(['axis'], this.options.margin, options.margin);
 
             if ('item' in options.margin) {
               if (typeof options.margin.item === 'number') {
                 this.options.margin.item.horizontal = options.margin.item;
                 this.options.margin.item.vertical = options.margin.item;
               } else if (_typeof(options.margin.item) === 'object') {
-                util.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
+                util$2.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
               }
             }
           }
@@ -39087,7 +39346,7 @@ function (_Component) {
             this.options.editable.remove = options.editable;
             this.options.editable.overrideItems = false;
           } else if (_typeof(options.editable) === 'object') {
-            util.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
+            util$2.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
           }
         }
 
@@ -39097,7 +39356,7 @@ function (_Component) {
             this.options.groupEditable.add = options.groupEditable;
             this.options.groupEditable.remove = options.groupEditable;
           } else if (_typeof(options.groupEditable) === 'object') {
-            util.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
+            util$2.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
           }
         } // callback functions
 
@@ -39163,14 +39422,14 @@ function (_Component) {
 
       if (options) {
         if (options.refreshItems) {
-          util.forEach(this.items, function (item) {
+          util$2.forEach(this.items, function (item) {
             item.dirty = true;
             if (item.displayed) item.redraw();
           });
         }
 
         if (options.restackGroups) {
-          util.forEach(this.groups, function (group, key) {
+          util$2.forEach(this.groups, function (group, key) {
             if (key === BACKGROUND$2) return;
             group.stackDirty = true;
           });
@@ -39495,7 +39754,7 @@ function (_Component) {
 
       var margin = this.options.margin;
       var range = this.body.range;
-      var asSize = util.option.asSize;
+      var asSize = util$2.option.asSize;
       var options = this.options;
       var orientation = options.orientation.item;
       var resized = false;
@@ -39549,7 +39808,7 @@ function (_Component) {
       var redrawQueue = {};
       var redrawQueueLength = 0; // collect redraw functions
 
-      util.forEach(this.groups, function (group, key) {
+      util$2.forEach(this.groups, function (group, key) {
         if (key === BACKGROUND$2) return;
         var groupMargin = group == firstGroup ? firstMargin : nonFirstMargin;
         var returnQueue = true;
@@ -39563,7 +39822,7 @@ function (_Component) {
           var redrawResults = {};
 
           var _loop = function _loop(i) {
-            util.forEach(redrawQueue, function (fns, key) {
+            util$2.forEach(redrawQueue, function (fns, key) {
               redrawResults[key] = fns[i]();
             });
           };
@@ -39573,7 +39832,7 @@ function (_Component) {
           } // redraw all regular groups
 
 
-          util.forEach(_this4.groups, function (group, key) {
+          util$2.forEach(_this4.groups, function (group, key) {
             if (key === BACKGROUND$2) return;
             var groupResized = redrawResults[key];
             resized = groupResized || resized;
@@ -39698,7 +39957,7 @@ function (_Component) {
 
       if (oldItemsData) {
         // unsubscribe from old dataset
-        util.forEach(this.itemListeners, function (callback, event) {
+        util$2.forEach(this.itemListeners, function (callback, event) {
           oldItemsData.off(event, callback);
         }); // remove all drawn items
 
@@ -39710,7 +39969,7 @@ function (_Component) {
       if (this.itemsData) {
         // subscribe to new dataset
         var id = this.id;
-        util.forEach(this.itemListeners, function (callback, event) {
+        util$2.forEach(this.itemListeners, function (callback, event) {
           me.itemsData.on(event, callback, id);
         }); // add all new items
 
@@ -39748,7 +40007,7 @@ function (_Component) {
       var ids; // unsubscribe from current dataset
 
       if (this.groupsData) {
-        util.forEach(this.groupListeners, function (callback, event) {
+        util$2.forEach(this.groupListeners, function (callback, event) {
           me.groupsData.off(event, callback);
         }); // remove all drawn groups
 
@@ -39792,7 +40051,7 @@ function (_Component) {
         }); // subscribe to new dataset
 
         var id = this.id;
-        util.forEach(this.groupListeners, function (callback, event) {
+        util$2.forEach(this.groupListeners, function (callback, event) {
           me.groupsData.on(event, callback, id);
         }); // draw all ms
 
@@ -39990,7 +40249,7 @@ function (_Component) {
     value: function _order() {
       // reorder the items in all groups
       // TODO: optimization: only reorder groups affected by the changed items
-      util.forEach(this.groups, function (group) {
+      util$2.forEach(this.groups, function (group) {
         group.order();
       });
     }
@@ -40026,7 +40285,7 @@ function (_Component) {
           }
 
           var groupOptions = Object.create(me.options);
-          util.extend(groupOptions, {
+          util$2.extend(groupOptions, {
             height: null
           });
           group = new Group(id, groupData, me);
@@ -40100,7 +40359,7 @@ function (_Component) {
           order: this.options.groupOrder
         });
         groupIds = this._orderNestedGroups(groupIds);
-        var changed = !util.equalArray(groupIds, this.groupIds);
+        var changed = !util$2.equalArray(groupIds, this.groupIds);
 
         if (changed) {
           // hide all groups, removes them from the DOM
@@ -40396,7 +40655,7 @@ function (_Component) {
         end: end,
         content: 'new item'
       };
-      var id = util.randomUUID();
+      var id = util$2.randomUUID();
       itemData[this.itemsData._idProp] = id;
       var group = this.groupFromTarget(event);
 
@@ -40502,14 +40761,14 @@ function (_Component) {
               // drag left side of a range item
               if (_this8.options.rtl) {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = util$2.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.end = snap ? snap(end, scale, step) : end;
                 }
               } else {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = util$2.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
@@ -40519,14 +40778,14 @@ function (_Component) {
               // drag right side of a range item
               if (_this8.options.rtl) {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = util$2.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
                 }
               } else {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = util$2.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.end = snap ? snap(end, scale, step) : end;
@@ -40535,11 +40794,11 @@ function (_Component) {
             } else {
               // drag both start and end
               if (itemData.start != undefined) {
-                initialStart = util.convert(props.data.start, 'Date').valueOf();
+                initialStart = util$2.convert(props.data.start, 'Date').valueOf();
                 start = new Date(initialStart + offset);
 
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = util$2.convert(props.data.end, 'Date');
                   var duration = initialEnd.valueOf() - initialStart.valueOf(); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
@@ -40720,11 +40979,11 @@ function (_Component) {
       groupsData.update(nestedGroups.concat(nestingGroup));
 
       if (nestingGroup.showNested) {
-        util.removeClassName(group.dom.label, 'collapsed');
-        util.addClassName(group.dom.label, 'expanded');
+        util$2.removeClassName(group.dom.label, 'collapsed');
+        util$2.addClassName(group.dom.label, 'expanded');
       } else {
-        util.removeClassName(group.dom.label, 'expanded');
-        util.addClassName(group.dom.label, 'collapsed');
+        util$2.removeClassName(group.dom.label, 'expanded');
+        util$2.addClassName(group.dom.label, 'collapsed');
       }
     }
     /**
@@ -40820,7 +41079,7 @@ function (_Component) {
             order: this.options.groupOrder
           }); // in case of changes since _onGroupDragStart
 
-          if (!util.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
+          if (!util$2.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
             var origOrder = this.groupTouchParams.originalOrder;
             var draggedId = this.groupTouchParams.group.groupId;
             var numGroups = Math.min(origOrder.length, newOrder.length);
@@ -40883,7 +41142,7 @@ function (_Component) {
         var me = this;
         var id = me.groupTouchParams.group.groupId;
         var dataset = me.groupsData.getDataSet();
-        var groupData = util.extend({}, dataset.get(id)); // clone the data
+        var groupData = util$2.extend({}, dataset.get(id)); // clone the data
 
         me.options.onMoveGroup(groupData, function (groupData) {
           if (groupData) {
@@ -40897,7 +41156,7 @@ function (_Component) {
               order: me.options.groupOrder
             }); // restore original order
 
-            if (!util.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
+            if (!util$2.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
               var origOrder = me.groupTouchParams.originalOrder;
               var numGroups = Math.min(origOrder.length, newOrder.length);
               var curPos = 0;
@@ -41150,7 +41409,7 @@ function (_Component) {
         newItemData.content = newItemData.content ? newItemData.content : 'new item';
         newItemData.start = newItemData.start ? newItemData.start : snap ? snap(start, scale, step) : start;
         newItemData.type = newItemData.type || 'box';
-        newItemData[this.itemsData._idProp] = newItemData.id || util.randomUUID();
+        newItemData[this.itemsData._idProp] = newItemData.id || util$2.randomUUID();
 
         if (newItemData.type == 'range' && !newItemData.end) {
           end = this.body.util.toTime(x + this.props.width / 5);
@@ -41161,7 +41420,7 @@ function (_Component) {
           start: snap ? snap(start, scale, step) : start,
           content: 'new item'
         };
-        newItemData[this.itemsData._idProp] = util.randomUUID(); // when default type is a range, add a default end date to the new item
+        newItemData[this.itemsData._idProp] = util$2.randomUUID(); // when default type is a range, add a default end date to the new item
 
         if (this.options.type === 'range') {
           end = this.body.util.toTime(x + this.props.width / 5);
@@ -41383,7 +41642,7 @@ function (_Component) {
      * @private
      */
     value: function _cloneItemData(itemData, type) {
-      var clone = util.extend({}, itemData);
+      var clone = util$2.extend({}, itemData);
 
       if (!type) {
         // convert start and end date to the type (Date, Moment, ...) configured in the DataSet
@@ -41391,11 +41650,11 @@ function (_Component) {
       }
 
       if (clone.start != undefined) {
-        clone.start = util.convert(clone.start, type && type.start || 'Date');
+        clone.start = util$2.convert(clone.start, type && type.start || 'Date');
       }
 
       if (clone.end != undefined) {
-        clone.end = util.convert(clone.end, type && type.end || 'Date');
+        clone.end = util$2.convert(clone.end, type && type.end || 'Date');
       }
 
       return clone;
@@ -41729,7 +41988,7 @@ function () {
           log('Invalid option detected in "' + option + '".' + ' Allowed values are:' + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
           errorFound = true;
         } else if (optionType === 'object' && referenceOption !== "__any__") {
-          path = util.copyAndExtendArray(path, option);
+          path = util$2.copyAndExtendArray(path, option);
           Validator.parse(options[option], referenceOptions[referenceOption], path);
         }
       } else if (refOptionObj['any'] === undefined) {
@@ -41850,7 +42109,7 @@ function () {
         var distance = void 0;
 
         if (options[op].__type__ !== undefined && recursive === true) {
-          var result = Validator.findInOptions(option, options[op], util.copyAndExtendArray(path, op));
+          var result = Validator.findInOptions(option, options[op], util$2.copyAndExtendArray(path, op));
 
           if (min > result.distance) {
             closestMatch = result.closestMatch;
@@ -41867,7 +42126,7 @@ function () {
 
           if (min > distance) {
             closestMatch = op;
-            closestMatchPath = util.copyArray(path);
+            closestMatchPath = util$2.copyArray(path);
             min = distance;
           }
         }
@@ -42918,8 +43177,8 @@ function () {
       } // check format
 
 
-      if (util.isString(color) === true) {
-        if (util.isValidRGB(color) === true) {
+      if (util$2.isString(color) === true) {
+        if (util$2.isValidRGB(color) === true) {
           var rgbaArray = color.substr(4).substr(0, color.length - 5).split(',');
           rgba = {
             r: rgbaArray[0],
@@ -42927,7 +43186,7 @@ function () {
             b: rgbaArray[2],
             a: 1.0
           };
-        } else if (util.isValidRGBA(color) === true) {
+        } else if (util$2.isValidRGBA(color) === true) {
           var _rgbaArray = color.substr(5).substr(0, color.length - 6).split(',');
 
           rgba = {
@@ -42936,8 +43195,8 @@ function () {
             b: _rgbaArray[2],
             a: _rgbaArray[3]
           };
-        } else if (util.isValidHex(color) === true) {
-          var rgbObj = util.hexToRGB(color);
+        } else if (util$2.isValidHex(color) === true) {
+          var rgbObj = util$2.hexToRGB(color);
           rgba = {
             r: rgbObj.r,
             g: rgbObj.g,
@@ -43001,7 +43260,7 @@ function () {
 
       // store the previous color for next time;
       if (storePrevious === true) {
-        this.previousColor = util.extend({}, this.color);
+        this.previousColor = util$2.extend({}, this.color);
       }
 
       if (this.applied === true) {
@@ -43073,11 +43332,11 @@ function () {
 
       // store the initial color
       if (setInitial === true) {
-        this.initialColor = util.extend({}, rgba);
+        this.initialColor = util$2.extend({}, rgba);
       }
 
       this.color = rgba;
-      var hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      var hsv = util$2.RGBToHSV(rgba.r, rgba.g, rgba.b);
       var angleConvert = 2 * Math.PI;
       var radius = this.r * hsv.s;
       var x = this.centerCoordinates.x + radius * Math.sin(angleConvert * hsv.h);
@@ -43109,9 +43368,9 @@ function () {
   }, {
     key: "_setBrightness",
     value: function _setBrightness(value) {
-      var hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      var hsv = util$2.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.v = value / 100;
-      var rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      var rgba = util$2.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba;
 
@@ -43127,7 +43386,7 @@ function () {
     key: "_updatePicker",
     value: function _updatePicker() {
       var rgba = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.color;
-      var hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      var hsv = util$2.RGBToHSV(rgba.r, rgba.g, rgba.b);
       var ctx = this.colorPickerCanvas.getContext('2d');
 
       if (this.pixelRation === undefined) {
@@ -43354,7 +43613,7 @@ function () {
           for (sat = 0; sat < this.r; sat++) {
             x = this.centerCoordinates.x + sat * Math.sin(angleConvert * hue);
             y = this.centerCoordinates.y + sat * Math.cos(angleConvert * hue);
-            rgb = util.HSVToRGB(hue * hfac, sat * sfac, 1);
+            rgb = util$2.HSVToRGB(hue * hfac, sat * sfac, 1);
             ctx.fillStyle = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
             ctx.fillRect(x - 0.5, y - 0.5, 2, 2);
           }
@@ -43395,10 +43654,10 @@ function () {
       var h = angle / (2 * Math.PI);
       h = h < 0 ? h + 1 : h;
       var s = radius / this.r;
-      var hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      var hsv = util$2.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.h = h;
       hsv.s = s;
-      var rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      var rgba = util$2.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba; // update previews
 
@@ -43447,7 +43706,7 @@ function () {
       container: undefined,
       showButton: true
     };
-    util.extend(this.options, this.defaultOptions);
+    util$2.extend(this.options, this.defaultOptions);
     this.configureOptions = configureOptions;
     this.moduleOptions = {};
     this.domElements = [];
@@ -44110,7 +44369,7 @@ function () {
         if (obj.hasOwnProperty(subObj)) {
           show = true;
           var item = obj[subObj];
-          var newPath = util.copyAndExtendArray(path, subObj);
+          var newPath = util$2.copyAndExtendArray(path, subObj);
 
           if (typeof filter === 'function') {
             show = filter(subObj, path); // if needed we must go deeper into the object.
@@ -44148,7 +44407,7 @@ function () {
               if (draw === true) {
                 // initially collapse options with an disabled enabled option.
                 if (item.enabled !== undefined) {
-                  var enabledPath = util.copyAndExtendArray(newPath, 'enabled');
+                  var enabledPath = util$2.copyAndExtendArray(newPath, 'enabled');
 
                   var enabledValue = this._getValue(enabledPath);
 
@@ -44357,7 +44616,7 @@ function (_Core) {
       },
       moment: moment$3
     };
-    _this.options = util.deepExtend({}, _this.defaultOptions); // Create the DOM, props, and emitter
+    _this.options = util$2.deepExtend({}, _this.defaultOptions); // Create the DOM, props, and emitter
 
     _this._create(container);
 
@@ -44936,7 +45195,7 @@ function (_Core) {
         var redrawQueue = {};
         var redrawQueueLength = 0; // collect redraw functions
 
-        util.forEach(this.itemSet.items, function (item, key) {
+        util$2.forEach(this.itemSet.items, function (item, key) {
           if (item.groupShowing) {
             var returnQueue = true;
             redrawQueue[key] = item.redraw(returnQueue);
@@ -44947,7 +45206,7 @@ function (_Core) {
 
         if (needRedraw) {
           var _loop = function _loop(i) {
-            util.forEach(redrawQueue, function (fns) {
+            util$2.forEach(redrawQueue, function (fns) {
               fns[i]();
             });
           };
@@ -44959,7 +45218,7 @@ function (_Core) {
         } // calculate the date of the left side and right side of the items given
 
 
-        util.forEach(this.itemSet.items, function (item) {
+        util$2.forEach(this.itemSet.items, function (item) {
           var start = getStart(item);
           var end = getEnd(item);
           var startSide;
@@ -45022,8 +45281,8 @@ function (_Core) {
 
       if (dataset) {
         dataset.forEach(function (item) {
-          var start = util.convert(item.start, 'Date').valueOf();
-          var end = util.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
+          var start = util$2.convert(item.start, 'Date').valueOf();
+          var end = util$2.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
 
           if (min === null || start < min) {
             min = start;
@@ -45065,22 +45324,22 @@ function (_Core) {
       var time = this._toTime(x);
 
       var snappedTime = snap ? snap(time, scale, step) : time;
-      var element = util.getTarget(event);
+      var element = util$2.getTarget(event);
       var what = null;
 
       if (item != null) {
         what = 'item';
       } else if (customTime != null) {
         what = 'custom-time';
-      } else if (util.hasParent(element, this.timeAxis.dom.foreground)) {
+      } else if (util$2.hasParent(element, this.timeAxis.dom.foreground)) {
         what = 'axis';
-      } else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {
+      } else if (this.timeAxis2 && util$2.hasParent(element, this.timeAxis2.dom.foreground)) {
         what = 'axis';
-      } else if (util.hasParent(element, this.itemSet.dom.labelSet)) {
+      } else if (util$2.hasParent(element, this.itemSet.dom.labelSet)) {
         what = 'group-label';
-      } else if (util.hasParent(element, this.currentTime.bar)) {
+      } else if (util$2.hasParent(element, this.currentTime.bar)) {
         what = 'current-time';
-      } else if (util.hasParent(element, this.dom.center)) {
+      } else if (util$2.hasParent(element, this.dom.center)) {
         what = 'background';
       }
 
@@ -45156,7 +45415,7 @@ function (_Core) {
 }(Core);
 
 function getStart(item) {
-  return util.convert(item.data.start, 'Date').valueOf();
+  return util$2.convert(item.data.start, 'Date').valueOf();
 }
 /**
  *
@@ -45167,7 +45426,7 @@ function getStart(item) {
 
 function getEnd(item) {
   var end = item.data.end != undefined ? item.data.end : item.data.start;
-  return util.convert(end, 'Date').valueOf();
+  return util$2.convert(end, 'Date').valueOf();
 }
 /**
  * @param {vis.Timeline} timeline
@@ -45593,7 +45852,7 @@ function (_Component) {
     _classCallCheck(this, DataAxis);
 
     _this = _possibleConstructorReturn(this, _getPrototypeOf(DataAxis).call(this));
-    _this.id = util.randomUUID();
+    _this.id = util$2.randomUUID();
     _this.body = body;
     _this.defaultOptions = {
       orientation: 'left',
@@ -45651,7 +45910,7 @@ function (_Component) {
       start: 0,
       end: 0
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = util$2.extend({}, _this.defaultOptions);
     _this.conversionFactor = 1;
 
     _this.setOptions(options);
@@ -45752,7 +46011,7 @@ function (_Component) {
         }
 
         var fields = ['orientation', 'showMinorLabels', 'showMajorLabels', 'icons', 'majorLinesOffset', 'minorLinesOffset', 'labelOffsetX', 'labelOffsetY', 'iconWidth', 'width', 'visible', 'left', 'right', 'alignZeros'];
-        util.selectiveDeepExtend(fields, this.options, options);
+        util$2.selectiveDeepExtend(fields, this.options, options);
         this.minWidth = Number("".concat(this.options.width).replace("px", ""));
 
         if (redraw === true && this.dom.frame) {
@@ -46168,7 +46427,7 @@ function (_Component) {
         title.innerHTML = this.options[orientation].title.text; // Add style - if provided
 
         if (this.options[orientation].title.style !== undefined) {
-          util.addCssText(title, this.options[orientation].title.style);
+          util$2.addCssText(title, this.options[orientation].title.style);
         }
 
         if (orientation === 'left') {
@@ -46926,7 +47185,7 @@ Line._linear = function (data) {
 function GraphGroup(group, groupId, options, groupsUsingDefaultStyles) {
   this.id = groupId;
   var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'drawPoints', 'shaded', 'interpolation', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
-  this.options = util.selectiveBridgeObject(fields, options);
+  this.options = util$2.selectiveBridgeObject(fields, options);
   this.usingDefaultStyle = group.className === undefined;
   this.groupsUsingDefaultStyles = groupsUsingDefaultStyles;
   this.zeroPosition = 0;
@@ -46950,7 +47209,7 @@ GraphGroup.prototype.setItems = function (items) {
     this.itemsData = items;
 
     if (this.options.sort == true) {
-      util.insertSort(this.itemsData, function (a, b) {
+      util$2.insertSort(this.itemsData, function (a, b) {
         return a.x > b.x ? 1 : -1;
       });
     }
@@ -46980,7 +47239,7 @@ GraphGroup.prototype.setZeroPosition = function (pos) {
 GraphGroup.prototype.setOptions = function (options) {
   if (options !== undefined) {
     var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
-    util.selectiveDeepExtend(fields, this.options, options); // if the group's drawPoints is a function delegate the callback to the onRender property
+    util$2.selectiveDeepExtend(fields, this.options, options); // if the group's drawPoints is a function delegate the callback to the onRender property
 
     if (typeof options.drawPoints == 'function') {
       options.drawPoints = {
@@ -46988,9 +47247,9 @@ GraphGroup.prototype.setOptions = function (options) {
       };
     }
 
-    util.mergeOptions(this.options, options, 'interpolation');
-    util.mergeOptions(this.options, options, 'drawPoints');
-    util.mergeOptions(this.options, options, 'shaded');
+    util$2.mergeOptions(this.options, options, 'interpolation');
+    util$2.mergeOptions(this.options, options, 'drawPoints');
+    util$2.mergeOptions(this.options, options, 'shaded');
 
     if (options.interpolation) {
       if (_typeof(options.interpolation) == 'object') {
@@ -47122,7 +47381,7 @@ function Legend(body, options, side, linegraphOptions) {
     }
   };
   this.side = side;
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = util$2.extend({}, this.defaultOptions);
   this.linegraphOptions = linegraphOptions;
   this.svgElements = {};
   this.dom = {};
@@ -47212,7 +47471,7 @@ Legend.prototype.show = function () {
 
 Legend.prototype.setOptions = function (options) {
   var fields = ['enabled', 'orientation', 'icons', 'left', 'right'];
-  util.selectiveDeepExtend(fields, this.options, options);
+  util$2.selectiveDeepExtend(fields, this.options, options);
 };
 
 Legend.prototype.redraw = function () {
@@ -47326,7 +47585,7 @@ var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
  */
 
 function LineGraph(body, options) {
-  this.id = util.randomUUID();
+  this.id = util$2.randomUUID();
   this.body = body;
   this.defaultOptions = {
     yAxisOrientation: 'left',
@@ -47369,7 +47628,7 @@ function LineGraph(body, options) {
     }
   }; // options is shared by this lineGraph and all its items
 
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = util$2.extend({}, this.defaultOptions);
   this.dom = {};
   this.props = {};
   this.hammer = null;
@@ -47425,7 +47684,7 @@ function LineGraph(body, options) {
   this.groupsUsingDefaultStyles = [0];
   this.body.emitter.on('rangechanged', function () {
     me.lastStart = me.body.range.start;
-    me.svg.style.left = util.option.asSize(-me.props.width);
+    me.svg.style.left = util$2.option.asSize(-me.props.width);
     me.forceGraphUpdate = true; //Is this local redraw necessary? (Core also does a change event!)
 
     me.redraw.call(me);
@@ -47486,11 +47745,11 @@ LineGraph.prototype.setOptions = function (options) {
       }
     }
 
-    util.selectiveDeepExtend(fields, this.options, options);
-    util.mergeOptions(this.options, options, 'interpolation');
-    util.mergeOptions(this.options, options, 'drawPoints');
-    util.mergeOptions(this.options, options, 'shaded');
-    util.mergeOptions(this.options, options, 'legend');
+    util$2.selectiveDeepExtend(fields, this.options, options);
+    util$2.mergeOptions(this.options, options, 'interpolation');
+    util$2.mergeOptions(this.options, options, 'drawPoints');
+    util$2.mergeOptions(this.options, options, 'shaded');
+    util$2.mergeOptions(this.options, options, 'legend');
 
     if (options.interpolation) {
       if (_typeof(options.interpolation) == 'object') {
@@ -47578,7 +47837,7 @@ LineGraph.prototype.setItems = function (items) {
 
   if (oldItemsData) {
     // unsubscribe from old dataset
-    util.forEach(this.itemListeners, function (callback, event) {
+    util$2.forEach(this.itemListeners, function (callback, event) {
       oldItemsData.off(event, callback);
     }); // remove all drawn items
 
@@ -47590,7 +47849,7 @@ LineGraph.prototype.setItems = function (items) {
   if (this.itemsData) {
     // subscribe to new dataset
     var id = this.id;
-    util.forEach(this.itemListeners, function (callback, event) {
+    util$2.forEach(this.itemListeners, function (callback, event) {
       me.itemsData.on(event, callback, id);
     }); // add all new items
 
@@ -47610,7 +47869,7 @@ LineGraph.prototype.setGroups = function (groups) {
   var ids; // unsubscribe from current dataset
 
   if (this.groupsData) {
-    util.forEach(this.groupListeners, function (callback, event) {
+    util$2.forEach(this.groupListeners, function (callback, event) {
       me.groupsData.off(event, callback);
     }); // remove all drawn groups
 
@@ -47634,7 +47893,7 @@ LineGraph.prototype.setGroups = function (groups) {
   if (this.groupsData) {
     // subscribe to new dataset
     var id = this.id;
-    util.forEach(this.groupListeners, function (callback, event) {
+    util$2.forEach(this.groupListeners, function (callback, event) {
       me.groupsData.on(event, callback, id);
     }); // draw all ms
 
@@ -47819,9 +48078,9 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       } //Copy data (because of unmodifiable DataView input.
 
 
-      var extended = util.bridgeObject(item);
-      extended.x = util.convert(item.x, 'Date');
-      extended.end = util.convert(item.end, 'Date');
+      var extended = util$2.bridgeObject(item);
+      extended.x = util$2.convert(item.x, 'Date');
+      extended.end = util$2.convert(item.end, 'Date');
       extended.orginalY = item.y; //real Y
 
       extended.y = Number(item.y);
@@ -47893,8 +48152,8 @@ LineGraph.prototype.redraw = function () {
   // without reloading the graph. the controls for this are bound to events in the constructor
 
   if (resized == true) {
-    this.svg.style.width = util.option.asSize(3 * this.props.width);
-    this.svg.style.left = util.option.asSize(-this.props.width); // if the height of the graph is set as proportional, change the height of the svg
+    this.svg.style.width = util$2.option.asSize(3 * this.props.width);
+    this.svg.style.left = util$2.option.asSize(-this.props.width); // if the height of the graph is set as proportional, change the height of the svg
 
     if ((this.options.height + '').indexOf("%") != -1 || this.updateSVGheightOnResize == true) {
       this.updateSVGheight = true;
@@ -47953,7 +48212,7 @@ LineGraph.prototype._getSortedGroupIds = function () {
     }
   }
 
-  util.insertSort(grouplist, function (a, b) {
+  util$2.insertSort(grouplist, function (a, b) {
     var az = a.zIndex;
     var bz = b.zIndex;
     if (az === undefined) az = 0;
@@ -48198,8 +48457,8 @@ LineGraph.prototype._getRelevantData = function (groupIds, groupsData, minDate, 
           return a.getTime() == b.getTime() ? 0 : a < b ? -1 : 1;
         };
 
-        var first = Math.max(0, util.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
-        var last = Math.min(itemsData.length, util.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
+        var first = Math.max(0, util$2.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
+        var last = Math.min(itemsData.length, util$2.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
 
         if (last <= 0) {
           last = itemsData.length;
@@ -49133,7 +49392,7 @@ function Graph2d(container, items, groups, options) {
     maxHeight: null,
     minHeight: null
   };
-  this.options = util.deepExtend({}, this.defaultOptions); // Create the DOM, props, and emitter
+  this.options = util$2.deepExtend({}, this.defaultOptions); // Create the DOM, props, and emitter
 
   this._create(container); // all components listed here will be repainted automatically
 
@@ -49374,7 +49633,7 @@ Graph2d.prototype.getDataRange = function () {
       if (this.linegraph.groups[groupId].visible == true) {
         for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
           var item = this.linegraph.groups[groupId].itemsData[i];
-          var value = util.convert(item.x, 'Date').valueOf();
+          var value = util$2.convert(item.x, 'Date').valueOf();
           min = min == null ? value : min > value ? value : min;
           max = max == null ? value : max < value ? value : max;
         }
@@ -49398,32 +49657,32 @@ Graph2d.prototype.getDataRange = function () {
 Graph2d.prototype.getEventProperties = function (event) {
   var clientX = event.center ? event.center.x : event.clientX;
   var clientY = event.center ? event.center.y : event.clientY;
-  var x = clientX - util.getAbsoluteLeft(this.dom.centerContainer);
-  var y = clientY - util.getAbsoluteTop(this.dom.centerContainer);
+  var x = clientX - util$2.getAbsoluteLeft(this.dom.centerContainer);
+  var y = clientY - util$2.getAbsoluteTop(this.dom.centerContainer);
 
   var time = this._toTime(x);
 
   var customTime = CustomTime.customTimeFromTarget(event);
-  var element = util.getTarget(event);
+  var element = util$2.getTarget(event);
   var what = null;
 
-  if (util.hasParent(element, this.timeAxis.dom.foreground)) {
+  if (util$2.hasParent(element, this.timeAxis.dom.foreground)) {
     what = 'axis';
-  } else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {
+  } else if (this.timeAxis2 && util$2.hasParent(element, this.timeAxis2.dom.foreground)) {
     what = 'axis';
-  } else if (util.hasParent(element, this.linegraph.yAxisLeft.dom.frame)) {
+  } else if (util$2.hasParent(element, this.linegraph.yAxisLeft.dom.frame)) {
     what = 'data-axis';
-  } else if (util.hasParent(element, this.linegraph.yAxisRight.dom.frame)) {
+  } else if (util$2.hasParent(element, this.linegraph.yAxisRight.dom.frame)) {
     what = 'data-axis';
-  } else if (util.hasParent(element, this.linegraph.legendLeft.dom.frame)) {
+  } else if (util$2.hasParent(element, this.linegraph.legendLeft.dom.frame)) {
     what = 'legend';
-  } else if (util.hasParent(element, this.linegraph.legendRight.dom.frame)) {
+  } else if (util$2.hasParent(element, this.linegraph.legendRight.dom.frame)) {
     what = 'legend';
   } else if (customTime != null) {
     what = 'custom-time';
-  } else if (util.hasParent(element, this.currentTime.bar)) {
+  } else if (util$2.hasParent(element, this.currentTime.bar)) {
     what = 'current-time';
-  } else if (util.hasParent(element, this.dom.center)) {
+  } else if (util$2.hasParent(element, this.dom.center)) {
     what = 'background';
   }
 
