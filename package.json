@@ -93,6 +93,10 @@
     "type": "opencollective",
     "url": "https://opencollective.com/visjs"
   },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/visjs"
+  },
   "contributors": [
     "jos <wjosdejong@gmail.com>",
     "Alex de Mulder <alexdemulder@gmail.com>",
