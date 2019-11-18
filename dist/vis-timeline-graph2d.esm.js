@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-18T19:07:33Z
+ * @date    2019-11-18T19:09:03Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -32679,9 +32679,9 @@ function () {
       var rootOffsetWidth = dom.root.offsetWidth;
       var centerContainerClientHeight = dom.centerContainer.clientHeight; // calculate border widths
 
-      props.border.left = (dom.centerContainer.offsetWidth - dom.centerContainer.clientWidth) / 2;
+      props.border.left = Math.floor((dom.centerContainer.offsetWidth - dom.centerContainer.clientWidth) / 2);
       props.border.right = props.border.left;
-      props.border.top = (dom.centerContainer.offsetHeight - centerContainerClientHeight) / 2;
+      props.border.top = Math.floor((dom.centerContainer.offsetHeight - centerContainerClientHeight) / 2);
       props.border.bottom = props.border.top;
       props.borderRootHeight = rootOffsetHeight - rootClientHeight;
       props.borderRootWidth = rootOffsetWidth - dom.root.clientWidth; // workaround for a bug in IE: the clientWidth of an element with
@@ -34763,7 +34763,7 @@ function () {
           });
         }
 
-        height = max + margin.item.vertical / 2;
+        height = Math.ceil(max + margin.item.vertical / 2);
 
         if (this.heightMode !== "fitItems") {
           height = Math.max(height, this.props.label.height);
