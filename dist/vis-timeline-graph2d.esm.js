@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-18T19:09:03Z
+ * @date    2019-11-18T19:19:24Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -11557,6 +11557,18 @@ function drawBar(x, y, width, height, className, JSONcontainer, svgContainer, st
     }
   }
 }
+/**
+ * get default language
+ * @returns {string}
+ */
+
+function getNavigatorLanguage() {
+  if (navigator.languages && navigator.languages.length) {
+    return navigator.languages;
+  } else {
+    return navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+  }
+}
 
 var DOMutil = /*#__PURE__*/Object.freeze({
 	prepareElements: prepareElements,
@@ -11565,7 +11577,8 @@ var DOMutil = /*#__PURE__*/Object.freeze({
 	getSVGElement: getSVGElement,
 	getDOMElement: getDOMElement,
 	drawPoint: drawPoint,
-	drawBar: drawBar
+	drawBar: drawBar,
+	getNavigatorLanguage: getNavigatorLanguage
 });
 
 var $reduce$1 = arrayReduce.left;
@@ -49722,7 +49735,8 @@ Graph2d.prototype._createConfigurator = function () {
 };
 
 // utils
-moment$3.locale('en');
+var defaultLanguage = getNavigatorLanguage();
+moment$3.locale(defaultLanguage);
 var timeline = {
   Core: Core,
   DateUtil: DateUtil,
