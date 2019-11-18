@@ -128,16 +128,10 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## License
 
-Copyright (C) 2010-2018 Almende B.V. and Contributors
+Copyright (c) 2014-2017 Almende B.V. and contributors
+Copyright (c) 2017-2019 vis.js contributors
 
-Vis.js is dual licensed under both
+This work is dual-licensed under [Apache-2.0](./LICENSE.Apache-2.0.txt) and [MIT](./LICENSE.MIT.txt).
+You can choose between one of them if you use this work.
 
-  * The Apache 2.0 License
-    http://www.apache.org/licenses/LICENSE-2.0
-
-and
-
-  * The MIT License
-    http://opensource.org/licenses/MIT
-
-Vis.js may be distributed under either license.
+`SPDX-License-Identifier: Apache-2.0 OR MIT`
