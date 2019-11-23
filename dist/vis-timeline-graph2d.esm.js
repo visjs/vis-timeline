@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-23T16:02:33Z
+ * @date    2019-11-23T19:57:29Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -31951,10 +31951,14 @@ function () {
 
       var wheelType = "onwheel" in document.createElement("div") ? "wheel" : // Modern browsers support "wheel"
       document.onmousewheel !== undefined ? "mousewheel" : // Webkit and IE support at least "mousewheel"
-      this.dom.centerContainer.addEventListener ? "DOMMouseScroll" : // Older Firefox versions use "DOMMouseScroll"
-      "onmousewheel"; // All the use "onmousewheel"
-
+      // DOMMouseScroll - Older Firefox versions use "DOMMouseScroll"
+      // onmousewheel - All the use "onmousewheel"
+      this.dom.centerContainer.addEventListener ? "DOMMouseScroll" : "onmousewheel";
+      this.dom.top.addEventListener ? "DOMMouseScroll" : "onmousewheel";
+      this.dom.bottom.addEventListener ? "DOMMouseScroll" : "onmousewheel";
       this.dom.centerContainer.addEventListener(wheelType, onMouseWheel.bind(this), false);
+      this.dom.top.addEventListener(wheelType, onMouseWheel.bind(this), false);
+      this.dom.bottom.addEventListener(wheelType, onMouseWheel.bind(this), false);
       /**
        *
        * @param {scroll} event
