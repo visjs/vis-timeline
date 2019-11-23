@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-23T19:57:29Z
+ * @date    2019-11-23T20:21:30Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -36104,7 +36104,7 @@ function (_Item) {
 
     _classCallCheck(this, BoxItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoxItem).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BoxItem).call(this, data, conversion, options));
     _this.props = {
       dot: {
         width: 0,
@@ -36123,7 +36123,6 @@ function (_Item) {
       }
     }
 
-    Item.call(_assertThisInitialized(_this), data, conversion, options);
     return _this;
   }
   /**
@@ -36525,7 +36524,7 @@ function (_Item) {
 
     _classCallCheck(this, PointItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(PointItem).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PointItem).call(this, data, conversion, options));
     _this.props = {
       dot: {
         top: 0,
@@ -36546,7 +36545,6 @@ function (_Item) {
       }
     }
 
-    Item.call(_assertThisInitialized(_this), data, conversion, options);
     return _this;
   }
   /**
@@ -36893,7 +36891,7 @@ function (_Item) {
 
     _classCallCheck(this, RangeItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(RangeItem).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(RangeItem).call(this, data, conversion, options));
     _this.props = {
       content: {
         width: 0
@@ -36913,7 +36911,6 @@ function (_Item) {
       }
     }
 
-    Item.call(_assertThisInitialized(_this), data, conversion, options);
     return _this;
   }
   /**
@@ -37355,7 +37352,7 @@ function (_Item) {
 
     _classCallCheck(this, BackgroundItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(BackgroundItem).call(this));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(BackgroundItem).call(this, data, conversion, options));
     _this.props = {
       content: {
         width: 0
@@ -37374,7 +37371,6 @@ function (_Item) {
       }
     }
 
-    Item.call(_assertThisInitialized(_this), data, conversion, options);
     return _this;
   }
   /**
@@ -37797,24 +37793,24 @@ function (_Item) {
 
     _classCallCheck(this, ClusterItem);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(ClusterItem).call(this));
+    var modifiedOptions = Object.assign({}, {
+      fitOnDoubleClick: true
+    }, options, {
+      editable: false
+    });
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(ClusterItem).call(this, data, conversion, modifiedOptions));
     _this.props = {
       content: {
         width: 0,
         height: 0
       }
     };
-    _this.options = Object.assign({}, {
-      fitOnDoubleClick: true
-    }, options, {
-      editable: false
-    });
+    _this.options = modifiedOptions;
 
     if (!data || data.uiItems == undefined) {
       throw new Error('Property "uiItems" missing in item ' + data.id);
     }
 
-    Item.call(_assertThisInitialized(_this), data, conversion, _this.options);
     _this.id = util$2.randomUUID();
     _this.group = data.group;
 
