@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-18T19:19:24Z
+ * @date    2019-11-23T16:02:33Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -36417,7 +36417,7 @@ function (_Item) {
     key: "repositionX",
     value: function repositionX() {
       var start = this.conversion.toScreen(this.data.start);
-      var align = this.options.align;
+      var align = this.data.align === undefined ? this.options.align : this.data.align;
       var lineWidth = this.props.line.width;
       var dotWidth = this.props.dot.width;
 
