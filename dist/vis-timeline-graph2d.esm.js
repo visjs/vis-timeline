@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-11-23T20:21:30Z
+ * @date    2019-12-06T16:42:31Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -25367,7 +25367,7 @@ var propagating = createCommonjsModule(function (module, exports) {
   });
 });
 
-/*! Hammer.JS - v2.0.15 - 2019-04-04
+/*! Hammer.JS - v2.0.16 - 2019-11-11
  * http://naver.github.io/egjs
  *
  * Forked By Naver egjs
@@ -26040,9 +26040,19 @@ function computeInputData(manager, input) {
   computeIntervalInputData(session, input); // find the correct target
 
   var target = manager.element;
+  var srcEvent = input.srcEvent;
+  var srcEventTarget;
 
-  if (hasParent$1(input.srcEvent.target, target)) {
-    target = input.srcEvent.target;
+  if (srcEvent.composedPath) {
+    srcEventTarget = srcEvent.composedPath()[0];
+  } else if (srcEvent.path) {
+    srcEventTarget = srcEvent.path[0];
+  } else {
+    srcEventTarget = target;
+  }
+
+  if (hasParent$1(srcEventTarget, target)) {
+    target = srcEventTarget;
   }
 
   input.target = target;
@@ -28289,7 +28299,7 @@ function () {
     }, options));
   };
 
-  Hammer.VERSION = "2.0.15";
+  Hammer.VERSION = "2.0.16";
   Hammer.DIRECTION_ALL = DIRECTION_ALL;
   Hammer.DIRECTION_DOWN = DIRECTION_DOWN;
   Hammer.DIRECTION_LEFT = DIRECTION_LEFT;
