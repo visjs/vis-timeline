@@ -45,7 +45,7 @@
     }
   },
   "dependencies": {
-    "@egjs/hammerjs": "2.0.15",
+    "@egjs/hammerjs": "2.0.16",
     "emitter-component": "1.1.1",
     "keycharm": "^0.3.0",
     "moment": "2.24.0",
