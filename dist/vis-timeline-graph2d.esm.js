@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-06T16:42:31Z
+ * @date    2019-12-06T16:48:55Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -34484,7 +34484,6 @@ function () {
       var restack = forceRestack || this.stackDirty || this.isVisible && !lastIsVisible; // if restacking, reposition visible items vertically
 
       if (restack) {
-        var visibleSubgroups = {};
         var orderedItems = {
           byEnd: this.orderedItems.byEnd.filter(function (item) {
             return !item.isCluster;
@@ -34522,62 +34521,70 @@ function () {
 
           return [].concat(_toConsumableArray(visibleItems), _toConsumableArray(visibleClusters));
         };
+        /**
+         * Get visible items grouped by subgroup
+         * @param {function} orderFn An optional function to order items inside the subgroups
+         * @return {Object}
+         */
+
+
+        var getVisibleItemsGroupedBySubgroup = function getVisibleItemsGroupedBySubgroup(orderFn) {
+          var visibleSubgroupsItems = {};
+
+          var _loop2 = function _loop2(subgroup) {
+            var items = _this.visibleItems.filter(function (item) {
+              return item.data.subgroup === subgroup;
+            });
+
+            visibleSubgroupsItems[subgroup] = orderFn ? items.sort(function (a, b) {
+              return orderFn(a.data, b.data);
+            }) : items;
+          };
+
+          for (var subgroup in _this.subgroups) {
+            _loop2(subgroup);
+          }
+
+          return visibleSubgroupsItems;
+        };
 
         if (typeof this.itemSet.options.order === 'function') {
-          (function () {
-            // a custom order function
-            //show all items
-            var me = _this;
+          // a custom order function
+          //show all items
+          var me = this;
 
-            if (_this.doInnerStack && _this.itemSet.options.stackSubgroups) {
-              // Order the items within each subgroup
-              for (var subgroup in _this.subgroups) {
-                visibleSubgroups[subgroup] = _this.subgroups[subgroup].items.slice().sort(function (a, b) {
-                  return me.itemSet.options.order(a.data, b.data);
-                });
-              }
+          if (this.doInnerStack && this.itemSet.options.stackSubgroups) {
+            // Order the items within each subgroup
+            var visibleSubgroupsItems = getVisibleItemsGroupedBySubgroup(this.itemSet.options.order);
+            stackSubgroupsWithInnerStack(visibleSubgroupsItems, margin, this.subgroups);
+            this.visibleItems = getVisibleItems();
 
-              stackSubgroupsWithInnerStack(visibleSubgroups, margin, _this.subgroups);
-              _this.visibleItems = getVisibleItems();
+            this._updateSubGroupHeights(margin);
+          } else {
+            this.visibleItems = getVisibleItems();
 
-              _this._updateSubGroupHeights(margin);
-            } else {
-              _this.visibleItems = getVisibleItems();
-
-              _this._updateSubGroupHeights(margin); // order all items and force a restacking
-              // order all items outside clusters and force a restacking
+            this._updateSubGroupHeights(margin); // order all items and force a restacking
+            // order all items outside clusters and force a restacking
 
 
-              var customOrderedItems = _this.visibleItems.slice().filter(function (item) {
-                return item.isCluster || !item.isCluster && !item.cluster;
-              }).sort(function (a, b) {
-                return me.itemSet.options.order(a.data, b.data);
-              });
-
-              _this.shouldBailStackItems = stack(customOrderedItems, margin, true, _this._shouldBailItemsRedraw.bind(_this));
-            }
-          })();
+            var customOrderedItems = this.visibleItems.slice().filter(function (item) {
+              return item.isCluster || !item.isCluster && !item.cluster;
+            }).sort(function (a, b) {
+              return me.itemSet.options.order(a.data, b.data);
+            });
+            this.shouldBailStackItems = stack(customOrderedItems, margin, true, this._shouldBailItemsRedraw.bind(this));
+          }
         } else {
           // no custom order function, lazy stacking
-          var visibleItems = this._updateItemsInRange(orderedItems, this.visibleItems.filter(function (item) {
-            return !item.isCluster;
-          }), range);
-
-          var visibleClusters = this._updateClustersInRange(orderedClusters, this.visibleItems.filter(function (item) {
-            return item.isCluster;
-          }), range);
-
-          this.visibleItems = [].concat(_toConsumableArray(visibleItems), _toConsumableArray(visibleClusters));
+          this.visibleItems = getVisibleItems();
 
           this._updateSubGroupHeights(margin);
 
           if (this.itemSet.options.stack) {
             if (this.doInnerStack && this.itemSet.options.stackSubgroups) {
-              for (var subgroup in this.subgroups) {
-                visibleSubgroups[subgroup] = this.subgroups[subgroup].items;
-              }
+              var _visibleSubgroupsItems = getVisibleItemsGroupedBySubgroup();
 
-              stackSubgroupsWithInnerStack(visibleSubgroups, margin, this.subgroups);
+              stackSubgroupsWithInnerStack(_visibleSubgroupsItems, margin, this.subgroups);
             } else {
               // TODO: ugly way to access options...
               this.shouldBailStackItems = stack(this.visibleItems, margin, true, this._shouldBailItemsRedraw.bind(this));
@@ -34926,7 +34933,7 @@ function () {
       var me = this;
 
       if (me.subgroups) {
-        var _loop2 = function _loop2(subgroup) {
+        var _loop3 = function _loop3(subgroup) {
           var initialEnd = me.subgroups[subgroup].items[0].data.end || me.subgroups[subgroup].items[0].data.start;
           var newStart = me.subgroups[subgroup].items[0].data.start;
           var newEnd = initialEnd - 1;
@@ -34946,7 +34953,7 @@ function () {
         };
 
         for (var subgroup in me.subgroups) {
-          _loop2(subgroup);
+          _loop3(subgroup);
         }
       }
     }
@@ -35182,7 +35189,7 @@ function () {
       var needRedraw = redrawQueueLength > 0;
 
       if (needRedraw) {
-        var _loop3 = function _loop3(j) {
+        var _loop4 = function _loop4(j) {
           util$2.forEach(redrawQueue, function (fns) {
             fns[j]();
           });
@@ -35190,7 +35197,7 @@ function () {
 
         // redraw all regular items
         for (var j = 0; j < redrawQueueLength; j++) {
-          _loop3(j);
+          _loop4(j);
         }
       }
 
