@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-06T16:48:55Z
+ * @date    2019-12-08T21:06:22Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -31250,76 +31250,91 @@ var ja = createCommonjsModule(function (module, exports) {
   });
 });
 
-var locales = createCommonjsModule(function (module, exports) {
-  // English
-  exports['en'] = {
-    current: 'current',
-    time: 'time',
-    deleteSelected: 'Delete selected'
-  };
-  exports['en_EN'] = exports['en'];
-  exports['en_US'] = exports['en']; // Italiano
-
-  exports['it'] = {
-    current: 'attuale',
-    time: 'tempo',
-    deleteSelected: 'Cancella la selezione'
-  };
-  exports['it_IT'] = exports['it'];
-  exports['it_CH'] = exports['it']; // Dutch
-
-  exports['nl'] = {
-    current: 'huidige',
-    time: 'tijd',
-    deleteSelected: 'Selectie verwijderen'
-  };
-  exports['nl_NL'] = exports['nl'];
-  exports['nl_BE'] = exports['nl']; // German
-
-  exports['de'] = {
-    current: 'Aktuelle',
-    time: 'Zeit',
-    deleteSelected: "L\xF6sche Auswahl"
-  };
-  exports['de_DE'] = exports['de']; // French
-
-  exports['fr'] = {
-    current: 'actuel',
-    time: 'heure',
-    deleteSelected: 'Effacer la selection'
-  };
-  exports['fr_FR'] = exports['fr'];
-  exports['fr_CA'] = exports['fr'];
-  exports['fr_BE'] = exports['fr']; // Espanol
-
-  exports['es'] = {
-    current: 'corriente',
-    time: 'hora',
-    deleteSelected: "Eliminar selecci\xF3n"
-  };
-  exports['es_ES'] = exports['es']; // Ukrainian
-
-  exports['uk'] = {
-    current: 'поточний',
-    time: 'час',
-    deleteSelected: 'Видалити обране'
-  };
-  exports['uk_UA'] = exports['uk']; // Russian
-
-  exports['ru'] = {
-    current: 'текущее',
-    time: 'время',
-    deleteSelected: 'Удалить выбранное'
-  };
-  exports['ru_RU'] = exports['ru']; // Japanese
-
-  exports['ja'] = {
-    current: '現在',
-    time: '時刻',
-    deleteSelected: '選択されたものを削除'
-  };
-  exports['ja_JP'] = exports['ja'];
-});
+// English
+var en = {
+  current: 'current',
+  time: 'time',
+  deleteSelected: 'Delete selected'
+};
+var en_EN = en;
+var en_US = en; // Italiano
+var it$1 = {
+  current: 'attuale',
+  time: 'tempo',
+  deleteSelected: 'Cancella la selezione'
+};
+var it_IT = it$1;
+var it_CH = it$1; // Dutch
+var nl$1 = {
+  current: 'huidige',
+  time: 'tijd',
+  deleteSelected: 'Selectie verwijderen'
+};
+var nl_NL = nl$1;
+var nl_BE = nl$1; // German
+var de$1 = {
+  current: 'Aktuelle',
+  time: 'Zeit',
+  deleteSelected: "L\xF6sche Auswahl"
+};
+var de_DE = de$1; // French
+var fr$1 = {
+  current: 'actuel',
+  time: 'heure',
+  deleteSelected: 'Effacer la selection'
+};
+var fr_FR = fr$1;
+var fr_CA = fr$1;
+var fr_BE = fr$1; // Espanol
+var es$1 = {
+  current: 'corriente',
+  time: 'hora',
+  deleteSelected: "Eliminar selecci\xF3n"
+};
+var es_ES = es$1; // Ukrainian
+var uk$1 = {
+  current: 'поточний',
+  time: 'час',
+  deleteSelected: 'Видалити обране'
+};
+var uk_UA = uk$1; // Russian
+var ru$1 = {
+  current: 'текущее',
+  time: 'время',
+  deleteSelected: 'Удалить выбранное'
+};
+var ru_RU = ru$1; // Japanese
+var ja$1 = {
+  current: '現在',
+  time: '時刻',
+  deleteSelected: '選択されたものを削除'
+};
+var ja_JP = ja$1;
+var locales = {
+  en: en,
+  en_EN: en_EN,
+  en_US: en_US,
+  it: it$1,
+  it_IT: it_IT,
+  it_CH: it_CH,
+  nl: nl$1,
+  nl_NL: nl_NL,
+  nl_BE: nl_BE,
+  de: de$1,
+  de_DE: de_DE,
+  fr: fr$1,
+  fr_FR: fr_FR,
+  fr_CA: fr_CA,
+  fr_BE: fr_BE,
+  es: es$1,
+  es_ES: es_ES,
+  uk: uk$1,
+  uk_UA: uk_UA,
+  ru: ru$1,
+  ru_RU: ru_RU,
+  ja: ja$1,
+  ja_JP: ja_JP
+};
 
 /** A custom time bar */
 
