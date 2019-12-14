@@ -239,17 +239,30 @@ export type TimelineOptionsOrientationType = string | TimelineOrientationOption;
 export type TimelineOptionsSnapFunction = (date: Date, scale: string, step: number) => Date | number;
 export type TimelineOptionsTemplateFunction = (item?: any, element?: any, data?: any) => string;
 export type TimelineOptionsComparisonFunction = (a: any, b: any) => number;
+export type TimelineOptionsGroupHeightModeType = 'auto' | 'fixed' | 'fitItems';
+export type TimelineOptionsClusterCriteriaFunction = (firstItem: TimelineItem, secondItem: TimelineItem) => boolean;
+export type TimelineOptionsCluster = {
+  titleTemplate?: string;
+  maxItems?: number;
+  clusterCriteria?: TimelineOptionsClusterCriteriaFunction;
+  showStipes?: boolean;
+  fitOnDoubleClick?: boolean;
+};
+export type TimelineOptionsEventType = 'box' | 'point' | 'range' | 'background';
+export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';
 
 export interface TimelineOptions {
   align?: TimelineAlignType;
   autoResize?: boolean;
   clickToUse?: boolean;
+  cluster?: TimelineOptionsCluster;
   configure?: TimelineOptionsConfigureType;
   dataAttributes?: TimelineOptionsDataAttributesType;
   editable?: TimelineOptionsEditableType;
   end?: DateType;
   format?: TimelineFormatOption;
   groupEditable?: TimelineOptionsGroupEditableType;
+  groupHeightMode?: TimelineOptionsGroupHeightModeType;
   groupOrder?: TimelineOptionsGroupOrderType;
   groupOrderSwap?: TimelineOptionsGroupOrderSwapFunction;
   groupTemplate?: TimelineOptionsTemplateFunction;
@@ -271,7 +284,8 @@ export interface TimelineOptions {
   multiselectPerGroup?: boolean;
   onAdd?: TimelineOptionsItemCallbackFunction;
   onAddGroup?: TimelineOptionsGroupCallbackFunction;
-  onInitialDrawComplete?: (() => void);
+  onDropObjectOnItem?: any; // TODO
+  onInitialDrawComplete?: () => void;
   onUpdate?: TimelineOptionsItemCallbackFunction;
   onMove?: TimelineOptionsItemCallbackFunction;
   onMoveGroup?: TimelineOptionsGroupCallbackFunction;
@@ -295,15 +309,14 @@ export interface TimelineOptions {
   start?: DateType;
   template?: TimelineOptionsTemplateFunction;
   visibleFrameTemplate?: TimelineOptionsTemplateFunction;
-  throttleRedraw?: number;
   timeAxis?: TimelineTimeAxisOption;
-  type?: string;
+  type?: TimelineOptionsEventType;
   tooltip?: TimelineTooltipOption;
   tooltipOnItemUpdateTime?: boolean | { template(item: any): any };
   verticalScroll?: boolean;
   width?: HeightWidthType;
   zoomable?: boolean;
-  zoomKey?: string;
+  zoomKey?: TimelineOptionsZoomKey;
   zoomMax?: number;
   zoomMin?: number;
 }
