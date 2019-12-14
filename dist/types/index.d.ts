@@ -330,6 +330,7 @@ export type TimelineAnimationType = boolean | AnimationOptions;
 
 export interface TimelineAnimationOptions {
   animation?: TimelineAnimationType;
+  zoom?: boolean;
 }
 
 export interface TimelineEventPropertiesResult {

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-14T20:29:05Z
+ * @date    2019-12-14T20:52:07Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -45071,6 +45071,9 @@ function (_Core) {
      *                                    provided to specify duration and easing function.
      *                                    Default duration is 500 ms, and default easing
      *                                    function is 'easeInOutQuad'.
+     *                                `zoom: boolean`
+     *                                    If true (default), the timeline will
+     *                                    zoom on the element after focus it.
      */
 
   }, {
@@ -45159,8 +45162,9 @@ function (_Core) {
         }; // calculate the new middle and interval for the window
 
 
+        var zoom = options && options.zoom !== undefined ? options.zoom : true;
         var middle = (start + end) / 2;
-        var interval = (end - start) * 1.1;
+        var interval = zoom ? (end - start) * 1.1 : Math.max(this.range.end - this.range.start, (end - start) * 1.1);
         var animation = options && options.animation !== undefined ? options.animation : true;
 
         if (!animation) {
