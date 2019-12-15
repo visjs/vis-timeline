@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-14T20:52:07Z
+ * @date    2019-12-15T21:42:22Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -32716,29 +32716,13 @@ function () {
       dom.root.style.maxHeight = util$2.option.asSize(options.maxHeight, '');
       dom.root.style.minHeight = util$2.option.asSize(options.minHeight, '');
       dom.root.style.width = util$2.option.asSize(options.width, '');
-      var rootClientHeight = dom.root.clientHeight;
-      var rootOffsetHeight = dom.root.offsetHeight;
-      var rootOffsetWidth = dom.root.offsetWidth;
-      var centerContainerClientHeight = dom.centerContainer.clientHeight; // calculate border widths
+      var rootOffsetWidth = dom.root.offsetWidth; // calculate border widths
 
-      props.border.left = Math.floor((dom.centerContainer.offsetWidth - dom.centerContainer.clientWidth) / 2);
-      props.border.right = props.border.left;
-      props.border.top = Math.floor((dom.centerContainer.offsetHeight - centerContainerClientHeight) / 2);
-      props.border.bottom = props.border.top;
-      props.borderRootHeight = rootOffsetHeight - rootClientHeight;
-      props.borderRootWidth = rootOffsetWidth - dom.root.clientWidth; // workaround for a bug in IE: the clientWidth of an element with
-      // a height:0px and overflow:hidden is not calculated and always has value 0
-
-      if (centerContainerClientHeight === 0) {
-        props.border.left = props.border.top;
-        props.border.right = props.border.left;
-      }
-
-      if (rootClientHeight === 0) {
-        props.borderRootWidth = props.borderRootHeight;
-      } // calculate the heights. If any of the side panels is empty, we set the height to
+      props.border.left = 1;
+      props.border.right = 1;
+      props.border.top = 1;
+      props.border.bottom = 1; // calculate the heights. If any of the side panels is empty, we set the height to
       // minus the border width, such that the border will be invisible
-
 
       props.center.height = dom.center.offsetHeight;
       props.left.height = dom.left.offsetHeight;
@@ -32749,18 +32733,18 @@ function () {
       // TODO: only calculate autoHeight when needed (else we cause an extra reflow/repaint of the DOM)
 
       var contentHeight = Math.max(props.left.height, props.center.height, props.right.height);
-      var autoHeight = props.top.height + contentHeight + props.bottom.height + props.borderRootHeight + props.border.top + props.border.bottom;
+      var autoHeight = props.top.height + contentHeight + props.bottom.height + props.border.top + props.border.bottom;
       dom.root.style.height = util$2.option.asSize(options.height, "".concat(autoHeight, "px")); // calculate heights of the content panels
 
       props.root.height = dom.root.offsetHeight;
-      props.background.height = props.root.height - props.borderRootHeight;
-      var containerHeight = props.root.height - props.top.height - props.bottom.height - props.borderRootHeight;
+      props.background.height = props.root.height;
+      var containerHeight = props.root.height - props.top.height - props.bottom.height;
       props.centerContainer.height = containerHeight;
       props.leftContainer.height = containerHeight;
       props.rightContainer.height = props.leftContainer.height; // calculate the widths of the panels
 
       props.root.width = rootOffsetWidth;
-      props.background.width = props.root.width - props.borderRootWidth;
+      props.background.width = props.root.width;
 
       if (!this.initialDrawDone) {
         props.scrollbarWidth = util$2.getScrollBarWidth();
@@ -32862,7 +32846,7 @@ function () {
       var dom = this.dom;
       props.leftContainer.width = props.left.width;
       props.rightContainer.width = props.right.width;
-      var centerWidth = props.root.width - props.left.width - props.right.width - props.borderRootWidth;
+      var centerWidth = props.root.width - props.left.width - props.right.width;
       props.center.width = centerWidth;
       props.centerContainer.width = centerWidth;
       props.top.width = centerWidth;
@@ -35747,18 +35731,18 @@ function () {
           deleteButton.className = 'vis-delete';
         }
 
-        var _locales = this.options.locales[this.options.locale];
+        var optionsLocale = this.options.locales[this.options.locale];
 
-        if (!_locales) {
+        if (!optionsLocale) {
           if (!this.warned) {
             console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
             this.warned = true;
           }
 
-          _locales = this.options.locales['en']; // fall back on english when not available
+          optionsLocale = this.options.locales['en']; // fall back on english when not available
         }
 
-        deleteButton.title = _locales.deleteSelected; // TODO: be able to destroy the delete button
+        deleteButton.title = optionsLocale.deleteSelected; // TODO: be able to destroy the delete button
 
         this.hammerDeleteButton = new Hammer$1(deleteButton).on('tap', function (event) {
           event.stopPropagation();
@@ -36146,8 +36130,7 @@ function (_Item) {
         width: 0,
         height: 0
       }
-    };
-    _this.options = options; // validate data
+    }; // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -36568,8 +36551,7 @@ function (_Item) {
         marginLeft: 0,
         marginRight: 0
       }
-    };
-    _this.options = options; // validate data
+    }; // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -36930,8 +36912,7 @@ function (_Item) {
       }
     };
     _this.overflow = false; // if contents can overflow (css styling), this flag is set to true
-
-    _this.options = options; // validate data
+    // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -37837,7 +37818,6 @@ function (_Item) {
         height: 0
       }
     };
-    _this.options = modifiedOptions;
 
     if (!data || data.uiItems == undefined) {
       throw new Error('Property "uiItems" missing in item ' + data.id);
