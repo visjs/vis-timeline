@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-15T21:42:22Z
+ * @date    2019-12-15T21:43:20Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -35731,18 +35731,18 @@ function () {
           deleteButton.className = 'vis-delete';
         }
 
-        var optionsLocale = this.options.locales[this.options.locale];
+        var _locales = this.options.locales[this.options.locale];
 
-        if (!optionsLocale) {
+        if (!_locales) {
           if (!this.warned) {
             console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
             this.warned = true;
           }
 
-          optionsLocale = this.options.locales['en']; // fall back on english when not available
+          _locales = this.options.locales['en']; // fall back on english when not available
         }
 
-        deleteButton.title = optionsLocale.deleteSelected; // TODO: be able to destroy the delete button
+        deleteButton.title = _locales.deleteSelected; // TODO: be able to destroy the delete button
 
         this.hammerDeleteButton = new Hammer$1(deleteButton).on('tap', function (event) {
           event.stopPropagation();
@@ -36130,7 +36130,8 @@ function (_Item) {
         width: 0,
         height: 0
       }
-    }; // validate data
+    };
+    _this.options = options; // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -36551,7 +36552,8 @@ function (_Item) {
         marginLeft: 0,
         marginRight: 0
       }
-    }; // validate data
+    };
+    _this.options = options; // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -36912,7 +36914,8 @@ function (_Item) {
       }
     };
     _this.overflow = false; // if contents can overflow (css styling), this flag is set to true
-    // validate data
+
+    _this.options = options; // validate data
 
     if (data) {
       if (data.start == undefined) {
@@ -37818,6 +37821,7 @@ function (_Item) {
         height: 0
       }
     };
+    _this.options = modifiedOptions;
 
     if (!data || data.uiItems == undefined) {
       throw new Error('Property "uiItems" missing in item ' + data.id);
