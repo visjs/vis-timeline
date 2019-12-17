@@ -30,9 +30,9 @@
 
 <script>
   function showVisibleItems() {
-    var a = timeline.getVisibleItems();
+    var visibleItems = timeline.getVisibleItems();
     document.getElementById("visibleItemsContainer").innerHTML = ""
-    document.getElementById("visibleItemsContainer").innerHTML += a;
+    document.getElementById("visibleItemsContainer").innerHTML += visibleItems;
   };
 
   // get selected item count from url parameter
