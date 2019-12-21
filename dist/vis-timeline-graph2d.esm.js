@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-18T06:05:19Z
+ * @date    2019-12-21T19:52:42Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -49080,6 +49080,10 @@ var allOptions$2 = {
         string: string$1,
         'undefined': 'undefined'
       },
+      week: {
+        string: string$1,
+        'undefined': 'undefined'
+      },
       month: {
         string: string$1,
         'undefined': 'undefined'
@@ -49118,6 +49122,10 @@ var allOptions$2 = {
         'undefined': 'undefined'
       },
       day: {
+        string: string$1,
+        'undefined': 'undefined'
+      },
+      week: {
         string: string$1,
         'undefined': 'undefined'
       },
@@ -49344,6 +49352,7 @@ var configureOptions$1 = {
         hour: 'HH:mm',
         weekday: 'ddd D',
         day: 'D',
+        week: 'w',
         month: 'MMM',
         quarter: '[Q]Q',
         year: 'YYYY'
@@ -49355,6 +49364,7 @@ var configureOptions$1 = {
         hour: 'ddd D MMMM',
         weekday: 'MMMM YYYY',
         day: 'MMMM YYYY',
+        week: 'MMMM YYYY',
         month: 'YYYY',
         quarter: 'YYYY',
         year: ''
