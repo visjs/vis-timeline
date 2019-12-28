@@ -58,6 +58,7 @@ describe('Timeline ItemSet', () => {
       },
       emitter: {
         on: () => {return {};},
+        off: () => {return {};},
         emit: () => {}
       },
       util: {
