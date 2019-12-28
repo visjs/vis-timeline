@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-28T20:36:51Z
+ * @date    2019-12-28T20:39:53Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -44105,7 +44105,7 @@ function () {
 
       var input = document.createElement('input');
       input.className = 'vis-configuration vis-config-rangeinput';
-      input.value = range.value;
+      input.value = Number(range.value);
       var me = this;
 
       range.onchange = function () {
