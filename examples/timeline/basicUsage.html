@@ -7,10 +7,6 @@
     body, html {
       font-family: sans-serif;
     }
-
-    .slideout-panel {
-      will-change: transform;
-    }
   </style>
 
   <script src="../../dist/vis-timeline-graph2d.min.js"></script>
@@ -43,7 +39,8 @@
   ]);
 
   // Configuration for the Timeline
-  var options = { moment: function(date) { return vis.moment(date).utc(); } };
+  var options = {};
+
   // Create a Timeline
   var timeline = new vis.Timeline(container, items, options);
 </script>
