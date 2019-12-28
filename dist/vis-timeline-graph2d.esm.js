@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-28T20:39:53Z
+ * @date    2019-12-28T20:40:45Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2018-2019 visjs contributors, https://github.com/visjs
@@ -28492,7 +28492,7 @@ function () {
   function TimeStep(start, end, minimumStep, hiddenDates, options) {
     _classCallCheck(this, TimeStep);
 
-    this.moment = moment$3; // variables
+    this.moment = options && options.moment || moment$3; // variables
 
     this.current = this.moment();
     this._start = this.moment();
@@ -28674,7 +28674,7 @@ function () {
         }
 
         if (!priorCurrent.isSame(this.current)) {
-          this.current = moment$3(snapAwayFromHidden(this.hiddenDates, this.current.valueOf(), -1, true));
+          this.current = this.moment(snapAwayFromHidden(this.hiddenDates, this.current.valueOf(), -1, true));
         }
       }
     }
