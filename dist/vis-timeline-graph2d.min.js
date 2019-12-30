@@ -1,11 +1,11 @@
 /**
  * vis-timeline and vis-graph2d
- * https://visjs.github.io/vis-timeline/
+ * https://github.com/visjs/vis-timeline
  *
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2019-12-30T19:22:06.017Z
+ * @date    2019-12-30T19:22:57.188Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
