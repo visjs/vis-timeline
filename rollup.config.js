@@ -3,9 +3,11 @@ import nodeResolve from 'rollup-plugin-node-resolve';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
 import babel from 'rollup-plugin-babel';
 import {terser} from 'rollup-plugin-terser';
-import genHeader from './lib/header';
+import {generateHeader} from 'vis-dev-utils';
 import css from 'rollup-plugin-css-porter';
 import copy from 'rollup-plugin-copy';
+
+const banner = generateHeader({ name: 'vis-timeline and vis-graph2d' });
 
 const GLOBALS = {
 	moment: "moment",
@@ -19,19 +21,7 @@ const copyStatic = copy({
 });
 
 const babelConfig = {
-    babelrc: false,
-    exclude: [/\/core-js\//],
-    presets: [
-        [
-            "@babel/preset-env",
-            {
-                targets: '> 0.1% or not dead',
-                useBuiltIns: 'usage',
-                corejs: 3
-            }
-        ]
-    ],
-    plugins: ["css-modules-transform"]
+	runtimeHelpers: true
 };
 
 export default [{
@@ -39,7 +29,7 @@ export default [{
 	output: {
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
-		banner: genHeader('timeline-graph2d'),
+		banner,
 		sourcemap: true,
 		globals: GLOBALS
 	},
@@ -61,7 +51,7 @@ export default [{
 		extend: true,
 		exports: 'named',
 		format: 'umd',
-		banner: genHeader('timeline-graph2d'),
+		banner,
 		sourcemap: true,
 		globals: GLOBALS
 	},
