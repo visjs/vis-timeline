@@ -1,0 +1,23 @@
+{
+  "base-url": "https://visjs.github.io/vis-timeline/",
+  "output-directory": "./examples/timeline",
+
+  "assets-local-directory": "./examples/timeline-generated",
+  "assets-web-directory": "../timeline-generated",
+  "examples-local-directory": "./examples/timeline",
+  "examples-web-directory": "./",
+  "pages-local-directory": "./examples/timeline-generated",
+  "pages-web-directory": "../timeline-generated",
+
+  "index": true,
+  "lint": true,
+  "playgrounds": true,
+  "screenshots": true,
+
+  "container-id": "visualization",
+  "format": "html",
+  "parallel": 6,
+  "screenshot-script": "./scripts/examples-index/screenshot-script.js",
+  "title": "Vis Timeline Examples",
+  "verify": 100
+}
