@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | interaction | Event listeners</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This example listens for events &lt;code&gt;select&lt;/code&gt;, &lt;code&gt;click&lt;/code&gt;,
+  &lt;code&gt;doubleClick&lt;/code&gt;, &lt;code&gt;rangechange&lt;/code&gt;, and
+  &lt;code&gt;rangechanged&lt;/code&gt; of the Timeline (other possible events:
+  &lt;code&gt;mouseDown&lt;/code&gt;, &lt;code&gt;mouseUp&lt;/code&gt;, &lt;code&gt;mouseOver&lt;/code&gt;,
+  &lt;code&gt;mouseMove&lt;/code&gt;), and listens for changes in the DataSet
+  (&lt;code&gt;add&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;, or &lt;code&gt;remove&lt;/code&gt; items).
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;div id="hoveredItem"&gt;&lt;/div&gt;
+&lt;div id="log"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var items = new vis.DataSet([
+  { id: 1, content: "item 1", start: "2013-04-20" },
+  { id: 2, content: "item 2", start: "2013-04-14" },
+  { id: 3, content: "item 3", start: "2013-04-18" },
+  { id: 4, content: "item 4", start: "2013-04-16", end: "2013-04-19" },
+  { id: 5, content: "item 5", start: "2013-04-25" },
+  { id: 6, content: "item 6", start: "2013-04-27" }
+]);
+
+var container = document.getElementById("visualization");
+var options = {
+  editable: true,
+  onInitialDrawComplete: function() {
+    logEvent("Timeline initial draw completed", {});
+  }
+};
+var timeline = new vis.Timeline(container, items, options);
+
+timeline.on("rangechange", function(properties) {
+  logEvent("rangechange", properties);
+});
+
+timeline.on("rangechanged", function(properties) {
+  logEvent("rangechanged", properties);
+});
+
+timeline.on("select", function(properties) {
+  logEvent("select", properties);
+});
+
+timeline.on("itemover", function(properties) {
+  logEvent("itemover", properties);
+  setHoveredItem(properties.item);
+});
+
+timeline.on("itemout", function(properties) {
+  logEvent("itemout", properties);
+  setHoveredItem("none");
+});
+
+timeline.on("click", function(properties) {
+  logEvent("click", properties);
+});
+
+timeline.on("doubleClick", function(properties) {
+  logEvent("doubleClick", properties);
+});
+
+timeline.on("contextmenu", function(properties) {
+  logEvent("contextmenu", properties);
+});
+
+timeline.on("mouseDown", function(properties) {
+  logEvent("mouseDown", properties);
+});
+
+timeline.on("mouseUp", function(properties) {
+  logEvent("mouseUp", properties);
+});
+
+// other possible events:
+
+// timeline.on(&apos;mouseOver&apos;, function (properties) {
+//   logEvent(&apos;mouseOver&apos;, properties);
+// });
+
+// timeline.on("mouseMove", function(properties) {
+//   logEvent(&apos;mouseMove&apos;, properties);
+// });
+
+items.on("*", function(event, properties) {
+  logEvent(event, properties);
+});
+
+function stringifyObject(object) {
+  if (!object) return;
+  var replacer = function(key, value) {
+    if (value &amp;&amp; value.tagName) {
+      return "DOM Element";
+    } else {
+      return value;
+    }
+  };
+  return JSON.stringify(object, replacer);
+}
+
+function logEvent(event, properties) {
+  var log = document.getElementById("log");
+  var msg = document.createElement("div");
+  msg.innerHTML =
+    "event=" +
+    JSON.stringify(event) +
+    ", " +
+    "properties=" +
+    stringifyObject(properties);
+  log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
+}
+
+function setHoveredItem(id) {
+  var hoveredItem = document.getElementById("hoveredItem");
+  hoveredItem.innerHTML = "hoveredItem=" + id;
+}
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | interaction | Event listeners"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

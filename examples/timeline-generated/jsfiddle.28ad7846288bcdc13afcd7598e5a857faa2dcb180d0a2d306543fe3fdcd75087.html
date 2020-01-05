@@ -1,0 +1,122 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | items | Background areas with groups</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This example demonstrates the item type &amp;quot;background&amp;quot; when using
+  groups.
+&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Background items having a group are displayed in that group&lt;/li&gt;
+  &lt;li&gt;Background items without a group are spread over the whole timeline&lt;/li&gt;
+  &lt;li&gt;Background items with a non-existing group are not displayed&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var items = new vis.DataSet([
+  {
+    id: "A",
+    content: "Period A",
+    start: "2014-01-16",
+    end: "2014-01-22",
+    type: "background",
+    group: 1
+  },
+  {
+    id: "B",
+    content: "Period B",
+    start: "2014-01-23",
+    end: "2014-01-26",
+    type: "background",
+    group: 2
+  },
+  {
+    id: "C",
+    content: "Period C",
+    start: "2014-01-27",
+    end: "2014-02-03",
+    type: "background"
+  }, // no group
+  {
+    id: "D",
+    content: "Period D",
+    start: "2014-01-14",
+    end: "2014-01-20",
+    type: "background",
+    group: "non-existing"
+  },
+  { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-30", group: 1 },
+  { id: 2, content: "item 2", start: "2014-01-18", group: 1 },
+  { id: 3, content: "item 3", start: "2014-01-21", group: 2 },
+  {
+    id: 4,
+    content: "item 4",
+    start: "2014-01-17",
+    end: "2014-01-21",
+    group: 2
+  },
+  { id: 5, content: "item 5", start: "2014-01-28", type: "point", group: 2 },
+  { id: 6, content: "item 6", start: "2014-01-25", group: 2 }
+]);
+
+var groups = new vis.DataSet([
+  { id: 1, content: "Group 1" },
+  { id: 2, content: "Group 2" }
+]);
+
+var container = document.getElementById("visualization");
+var options = {
+  start: "2014-01-10",
+  end: "2014-02-10",
+  editable: true
+};
+
+var timeline = new vis.Timeline(container, items, groups, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | items | Background areas with groups"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

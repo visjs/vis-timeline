@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | RTL example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input type="hidden" name="css" value />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Timeline RTL support&lt;/h1&gt;
+
+&lt;h2&gt;Using &lt;code&gt;dir = &amp;quot;rtl&amp;quot;&lt;/code&gt; in any parent node&lt;/h2&gt;
+&lt;div id="timeline1" dir="rtl"&gt;&lt;/div&gt;
+
+&lt;h2&gt;Using &lt;code&gt;options.rtl = true&lt;/code&gt;&lt;/h2&gt;
+&lt;div id="timeline2"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var items = new vis.DataSet();
+// add items to the DataSet
+items.add([
+  { id: 1, content: "2014-01-23 &lt;br&gt;start", start: "2014-01-23" },
+  { id: 2, content: "2014-01-18", start: "2014-01-18" },
+  { id: 3, content: "2014-01-21", start: "2014-01-21" },
+  {
+    id: 4,
+    content: "2014-01-19 - 2014-01-24",
+    start: "2014-01-19",
+    end: "2014-01-24"
+  },
+  { id: 5, content: "2014-01-28", start: "2014-01-28", type: "point" },
+  { id: 6, content: "2014-01-26", start: "2014-01-26" }
+]);
+
+var container1 = document.getElementById("timeline1");
+var container2 = document.getElementById("timeline2");
+
+var options = {
+  start: "2014-01-10",
+  end: "2014-02-10",
+  height: "300px"
+};
+
+var options1 = jQuery.extend(options, {});
+var timeline1 = new vis.Timeline(container1, items, options1);
+
+var options2 = jQuery.extend(options, { rtl: true });
+var timeline2 = new vis.Timeline(container2, items, options2);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | RTL example"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

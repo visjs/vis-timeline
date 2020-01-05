@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Bar Graph Example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h2&gt;Graph2d | Bar Graph With End Example&lt;/h2&gt;
+&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+  This example shows how you can plot a bar chart and supply an end value to
+  have it fill.
+&lt;/div&gt;
+&lt;br /&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = [
+  { x: "2014-06-11 00:00:00", end: "2014-06-13 00:00:00", y: 10 },
+  { x: "2014-06-13 00:00:00", end: "2014-06-14 00:00:00", y: 15 },
+  { x: "2014-06-15 00:00:00", end: "2014-06-16 00:00:00", y: 14 },
+  { x: "2014-06-16 00:00:00", end: "2014-06-17 00:00:00", y: 17 },
+  { x: "2014-06-17 00:00:00", end: "2014-06-18 00:00:00", y: 20 },
+  { x: "2014-06-18 00:00:00", end: "2014-06-25 00:00:00", y: 25 }
+];
+
+var dataset = new vis.DataSet(items);
+var options = {
+  style: "bar",
+  drawPoints: false,
+  dataAxis: {
+    icons: true
+  },
+  orientation: "top",
+  start: "2014-06-10",
+  end: "2014-06-18"
+};
+var graph2d = new vis.Graph2d(container, items, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Graph2d | Bar Graph Example" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,116 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | editing | Update data on event</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body {
+  font: 11pt verdana;
+}
+
+.vis.timeline .item.past {
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p style="width: 600px;"&gt;
+  When the custom time bar is shown, the user can drag this bar to a specific
+  time. The Timeline sends an event that the custom time is changed, after which
+  the contents of the timeline can be changed according to the specified time in
+  past or future.
+&lt;/p&gt;
+
+&lt;div id="customTime"&gt;&amp;#xA0;&lt;/div&gt;
+&lt;p&gt;&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// create a data set
+var data = new vis.DataSet([
+  {
+    id: 1,
+    start: new Date(new Date().getTime() - 60 * 1000),
+    end: new Date(),
+    content: "Dynamic event"
+  }
+]);
+
+// specify options
+var options = {
+  showCurrentTime: true
+};
+
+// create a timeline
+var container = document.getElementById("visualization");
+timeline = new vis.Timeline(container, data, options);
+
+timeline.addCustomTime(new Date());
+
+// add event listener
+timeline.on("timechange", function(event) {
+  document.getElementById("customTime").innerHTML =
+    "Custom Time: " + event.time;
+
+  var item = data.get(1);
+  if (event.time &gt; item.start) {
+    item.end = new Date(event.time);
+    var now = new Date();
+    if (event.time &lt; now) {
+      item.content = "Dynamic event (past)";
+      item.className = "past";
+    } else if (event.time &gt; now) {
+      item.content = "Dynamic event (future)";
+      item.className = "future";
+    } else {
+      item.content = "Dynamic event (now)";
+      item.className = "now";
+    }
+
+    data.update(item);
+  }
+});
+
+// set a custom range from -2 minute to +3 minutes current time
+var start = new Date(new Date().getTime() - 2 * 60 * 1000);
+var end = new Date(new Date().getTime() + 3 * 60 * 1000);
+timeline.setWindow(start, end, { animation: false });
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | editing | Update data on event"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

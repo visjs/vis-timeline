@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Scrolling and Sorting</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h2&gt;Graph2d | Scrolling and Sorting&lt;/h2&gt;
+&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+  You can determine the height of the Graph2d seperately from the height of the
+  frame. If the &lt;code&gt;graphHeight&lt;/code&gt; is defined, and the
+  &lt;code&gt;height&lt;/code&gt; is not, the frame will auto-scale to accommodate the
+  graphHeight. If the &lt;code&gt;height&lt;/code&gt;
+  is defined as well, the user can scroll up and down vertically as well as
+  horizontally to view the graph.
+  &lt;br /&gt;&lt;br /&gt;
+  Vertical scrolling is planned, though not yet available. The graphHeight also
+  does not conform if only the &lt;code&gt;height&lt;/code&gt; is defined. &lt;br /&gt;&lt;br /&gt;
+  You can manually disable the automatic sorting of the datapoints by using the
+  &lt;code&gt;sort&lt;/code&gt; option. However, doing so does reduce the optimization of
+  the drawing so if you have a lot of points, keep &lt;code&gt;sort&lt;/code&gt; turned on
+  for the best results.
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = [
+  { x: "2014-06-11", y: 10 },
+  { x: "2014-06-12", y: 25 },
+  { x: "2014-06-13", y: 30 },
+  { x: "2014-06-14", y: 10 },
+  { x: "2014-06-15", y: 15 },
+  { x: "2014-06-16", y: 30 },
+  { x: "2014-06-11", y: 100 },
+  { x: "2014-06-12", y: 250 },
+  { x: "2014-06-13", y: 300 },
+  { x: "2014-06-14", y: 100 },
+  { x: "2014-06-15", y: 150 },
+  { x: "2014-06-16", y: 300 },
+  { x: "2014-06-11", y: 400 },
+  { x: "2014-06-12", y: 450 },
+  { x: "2014-06-13", y: 400 },
+  { x: "2014-06-14", y: 500 },
+  { x: "2014-06-15", y: 420 },
+  { x: "2014-06-16", y: 600 },
+  { x: "2014-06-11", y: 810 },
+  { x: "2014-06-12", y: 825 },
+  { x: "2014-06-13", y: 830 },
+  { x: "2014-06-14", y: 810 },
+  { x: "2014-06-15", y: 815 },
+  { x: "2014-06-16", y: 900 }
+];
+
+var dataset = new vis.DataSet(items);
+var options = {
+  legend: true,
+  sort: false,
+  defaultGroup: "doodle",
+  graphHeight: "1500px",
+  height: "500px",
+  start: "2014-06-10",
+  end: "2014-06-18"
+};
+var graph2d = new vis.Graph2d(container, dataset, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Graph2d | Scrolling and Sorting"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

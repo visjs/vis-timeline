@@ -1,0 +1,115 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | items | Item ordering</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+p {
+  max-width: 800px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Item ordering&lt;/h1&gt;
+&lt;p&gt;
+  By default, the items displayed on the Timeline are unordered. They are
+  stacked in the order that they where loaded. This means that way items are
+  stacked can change while moving and zooming the Timeline.
+&lt;/p&gt;
+&lt;p&gt;
+  To display and stack the items in a controlled order, you can provide a custom
+  sorting function via the configuration option &lt;code&gt;order&lt;/code&gt;.
+&lt;/p&gt;
+&lt;p&gt;
+  WARNING: Custom ordering is only suitable for small amounts of items (up to a
+  few hundred), as the Timeline has to render &lt;i&gt;all&lt;/i&gt; items once on load to
+  determine their width and height.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;label for="ordering"
+    &gt;&lt;input type="checkbox" id="ordering" checked /&gt; Apply custom ordering.
+    Order items by their id.&lt;/label
+  &gt;
+&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// DOM element where the Timeline will be attached
+var container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet();
+var date = vis.moment("2015-03-02");
+for (var i = 0; i &lt; 100; i++) {
+  date.add(Math.round(Math.random() * 2), "hour");
+  items.add({
+    id: i,
+    content: "Item " + i,
+    start: date.clone(),
+    end: date.clone().add(4, "hour")
+  });
+}
+
+function customOrder(a, b) {
+  // order by id
+  return a.id - b.id;
+}
+
+// Configuration for the Timeline
+var options = {
+  order: customOrder,
+  editable: true,
+  margin: { item: 0 }
+};
+
+// Create a Timeline
+var timeline = new vis.Timeline(container, items, options);
+
+var ordering = document.getElementById("ordering");
+ordering.onchange = function() {
+  timeline.setOptions({
+    order: ordering.checked ? customOrder : () =&gt; {}
+  });
+};
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | items | Item ordering"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

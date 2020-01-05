@@ -1,0 +1,104 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | performance</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  Test the performance with a lot of items. The Timeline can load hundreds of
+  thousands of items, but the performance of rendering them in the browser is
+  limited. Rendering typically runs smooth for up to a few hundreds of items at
+  once (you can set a &lt;code&gt;zoomMax&lt;/code&gt; to prevent the user from zooming out
+  too far).
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;label for="count"&gt;Number of items&lt;/label&gt;
+  &lt;input id="count" value="10000" /&gt;
+  &lt;input id="draw" type="button" value="draw" /&gt;
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// create a dataset with items
+var now = moment()
+  .minutes(0)
+  .seconds(0)
+  .milliseconds(0);
+var items = new vis.DataSet({
+  type: { start: "ISODate", end: "ISODate" }
+});
+
+// create data
+function createData() {
+  var count = parseInt(document.getElementById("count").value) || 100;
+  var newData = [];
+  var start = now;
+  for (var i = 0; i &lt; count; i++) {
+    newData.push({
+      id: i,
+      content: "item " + i,
+      start: start + 24 * 3600 * 1000 * i
+    }); // much much faster than now.clone add days
+  }
+  items.clear();
+  items.add(newData);
+}
+createData();
+
+document.getElementById("draw").onclick = createData;
+
+var container = document.getElementById("visualization");
+var options = {
+  editable: true,
+  start: now.clone().add(-3, "days"),
+  end: now.clone().add(11, "days"),
+  zoomMin: 1000 * 60 * 60 * 24, // a day
+  zoomMax: 1000 * 60 * 60 * 24 * 30 * 3 // three months
+};
+
+var timeline = new vis.Timeline(container, items, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | performance"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

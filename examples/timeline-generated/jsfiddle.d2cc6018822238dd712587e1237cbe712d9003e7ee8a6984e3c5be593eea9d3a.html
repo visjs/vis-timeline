@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Hiding periods</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  It&amp;apos;s possible to hide (recurring) periods from the Timeline. The
+  following example hides weekends and nights.
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// DOM element where the Timeline will be attached
+var container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet([
+  { id: 1, content: "item 1", start: "2014-04-19" },
+  { id: 2, content: "item 2", start: "2014-04-21" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-24" },
+  { id: 5, content: "item 5", start: "2014-04-26 12:00:00" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+]);
+
+// Configuration for the Timeline
+var options = {
+  hiddenDates: [
+    { start: "2014-03-21 00:00:00", end: "2014-03-28 00:00:00" },
+    {
+      start: "2013-10-26 00:00:00",
+      end: "2013-10-28 00:00:00",
+      repeat: "weekly"
+    }, // daily weekly monthly yearly
+    {
+      start: "2013-03-29 20:00:00",
+      end: "2013-03-30 09:00:00",
+      repeat: "daily"
+    } // daily weekly monthly yearly
+  ],
+  start: "2014-04-17",
+  end: "2014-05-01",
+  height: "200px",
+  editable: true
+};
+
+// Create a Timeline
+var timeline = new vis.Timeline(container, items, options);
+timeline.addCustomTime("2014-04-18 13:00:00");
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | Hiding periods"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

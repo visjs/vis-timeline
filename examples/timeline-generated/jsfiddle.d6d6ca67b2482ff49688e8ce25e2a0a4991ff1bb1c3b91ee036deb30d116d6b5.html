@@ -1,0 +1,143 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | groups | Nested Groups example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+
+#visualization {
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This example demonstrate using groups. Note that a DataSet is used for both
+  items and groups, allowing to dynamically add, update or remove both items and
+  groups via the DataSet.
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var now = moment()
+  .minutes(0)
+  .seconds(0)
+  .milliseconds(0);
+var itemCount = 60;
+
+// create a data set with groups
+var groups = new vis.DataSet();
+
+groups.add([
+  {
+    id: 1,
+    content: "Lee",
+    nestedGroups: [11, 12, 13]
+  },
+  {
+    id: 2,
+    content: "invisible group",
+    visible: false
+  },
+  {
+    id: 3,
+    content: "John",
+    nestedGroups: [14],
+    showNested: false
+  },
+  {
+    id: 4,
+    content: "Alson"
+  }
+]);
+
+groups.add([
+  {
+    id: 11,
+    content: "cook"
+  },
+  {
+    id: 12,
+    content: "shop"
+  },
+  {
+    id: 13,
+    content: "clean house"
+  },
+  {
+    id: 14,
+    content: "wash dishes"
+  }
+]);
+
+// create a dataset with items
+var items = new vis.DataSet();
+var groupIds = groups.getIds();
+var types = ["box", "point", "range", "background"];
+for (var i = 0; i &lt; itemCount; i++) {
+  var start = now.clone().add(Math.random() * 200, "hours");
+  var end = start.clone().add(2, "hours");
+  var randomGroupId = groupIds[Math.floor(Math.random() * groupIds.length)];
+  var type = types[Math.floor(4 * Math.random())];
+
+  items.add({
+    id: i,
+    group: randomGroupId,
+    content: "item " + i,
+    start: start,
+    end: end,
+    type: type
+  });
+}
+
+// create visualization
+var container = document.getElementById("visualization");
+var options = {
+  groupOrder: "content" // groupOrder can be a property name or a sorting function
+};
+
+var timeline = new vis.Timeline(container, items, groups, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | groups | Nested Groups example"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,87 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | dataHandling | External data</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This demo shows how to load external data via an ajax call.
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+&lt;div id="loading"&gt;loading...&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// load data via an ajax request. When the data is in, load the timeline
+$.ajax({
+  url: "../resources/data/basic.json",
+  success: function(data) {
+    // hide the "loading..." message
+    document.getElementById("loading").style.display = "none";
+
+    // DOM element where the Timeline will be attached
+    var container = document.getElementById("visualization");
+
+    // Create a DataSet (allows two way data-binding)
+    var items = new vis.DataSet(data);
+
+    // Configuration for the Timeline
+    var options = {};
+
+    // Create a Timeline
+    var timeline = new vis.Timeline(container, items, options);
+  },
+  error: function(err) {
+    console.log("Error", err);
+    if (err.status === 0) {
+      alert(
+        "Failed to load data/basic.json.\nPlease run this example on a server."
+      );
+    } else {
+      alert("Failed to load data/basic.json.");
+    }
+  }
+});
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | dataHandling | External data"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

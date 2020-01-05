@@ -1,0 +1,142 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | groups | Visible Groups</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body {
+  color: #4d4d4d;
+  font: 10pt arial;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Timeline visible Groups&lt;/h1&gt;
+
+&lt;button onclick="showVisibleGroups()"&gt;Show current visible items&lt;/button&gt;
+&lt;div&gt;
+  &lt;h2&gt;visible groups:&lt;/h2&gt;
+  &lt;h3 id="visibleGroupsContainer"&gt;&lt;/h3&gt;
+  &lt;h2&gt;
+    (Scroll with the mouse and see the items being focus automatically on the
+    timeline)
+  &lt;/h2&gt;
+&lt;/div&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+&lt;br /&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='function showVisibleGroups() {
+  var a = timeline.getVisibleGroups();
+  document.getElementById("visibleGroupsContainer").innerHTML = "";
+  document.getElementById("visibleGroupsContainer").innerHTML += a;
+}
+
+var now = Date.now();
+
+var options = {
+  stack: true,
+  maxHeight: 640,
+  horizontalScroll: false,
+  verticalScroll: true,
+  zoomKey: "ctrlKey",
+  start: Date.now() - 1000 * 60 * 60 * 24 * 3, // minus 3 days
+  end: Date.now() + 1000 * 60 * 60 * 24 * 21, // plus 1 months aprox.
+  orientation: {
+    axis: "both",
+    item: "top"
+  }
+};
+var groups = new vis.DataSet();
+var items = new vis.DataSet();
+
+var count = 300;
+
+for (var i = 0; i &lt; count; i++) {
+  var start = now + 1000 * 60 * 60 * 24 * (i + Math.floor(Math.random() * 7));
+  var end = start + 1000 * 60 * 60 * 24 * (1 + Math.floor(Math.random() * 5));
+
+  groups.add({
+    id: i,
+    content: "Task " + i,
+    order: i
+  });
+
+  items.add({
+    id: i,
+    group: i,
+    start: start,
+    end: end,
+    type: "range",
+    content: "Item " + i
+  });
+}
+
+// create a Timeline
+var container = document.getElementById("visualization");
+timeline = new vis.Timeline(container, null, options);
+timeline.setGroups(groups);
+timeline.setItems(items);
+
+function debounce(func, wait = 100) {
+  let timeout;
+  return function(...args) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() =&gt; {
+      func.apply(this, args);
+    }, wait);
+  };
+}
+
+let groupFocus = e =&gt; {
+  let vGroups = timeline.getVisibleGroups();
+  let vItems = vGroups.reduce((res, groupId) =&gt; {
+    let group = timeline.itemSet.groups[groupId];
+    if (group.items) {
+      res = res.concat(Object.keys(group.items));
+    }
+    return res;
+  }, []);
+  timeline.focus(vItems);
+};
+this.timeline.on("scroll", debounce(groupFocus, 200));
+// Enabling the next line leads to a continuous since calling focus might scroll vertically even if it shouldn&apos;t
+// this.timeline.on("scrollSide", debounce(groupFocus, 200))
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/docs/js/jquery.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | groups | Visible Groups"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

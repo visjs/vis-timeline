@@ -1,0 +1,81 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | items | Tooltip Template</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+  max-width: 800px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Tooltip Templates&lt;/h1&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var items = new vis.DataSet([
+  {
+    id: 1,
+    content: "Item with custom tooltip",
+    start: "2016-01-02",
+    end: "2016-01-03",
+    title: "IN_PROGRESS"
+  }
+]);
+
+var options = {
+  start: "2016-01-01",
+  end: "2016-01-04",
+  tooltip: {
+    template: function(originalItemData, parsedItemData) {
+      var color = originalItemData.title == "IN_PROGRESS" ? "red" : "green";
+      return `&lt;span style="color:${color}"&gt;${originalItemData.title}&lt;/span&gt;`;
+    }
+  }
+};
+
+var element = document.getElementById("visualization");
+
+// Timeline object
+var timelineTooltips = new vis.Timeline(element, items, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | items | Tooltip Template"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

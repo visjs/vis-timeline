@@ -1,0 +1,125 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Bar Graphs Side by Side Example with Groups</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h2&gt;Graph2d | Bar Graphs Side by Side Example with Groups&lt;/h2&gt;
+&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+  When using Bar graphs, it can often be the case that there are multiple bars
+  on the same timepoint. This may not always be the desired result. You can use
+  the barChart.handleOverlap option to automatically plot the bars next to
+  eachother or stacked on top of eachother if they occupy the same timeslot. By
+  default, this option is on, the bars overlap. Use the dropdown box to
+  experiment with the options. The stacked only really makes sense when using
+  groups as is shown here.
+
+  &lt;br /&gt;&lt;br /&gt;
+  Handle overlap:
+  &lt;select id="dropdownID"&gt;
+    &lt;option value="overlap"&gt;overlap&lt;/option&gt;
+    &lt;option value="sideBySide" selected="selected"&gt;sideBySide&lt;/option&gt;
+    &lt;option value="stack"&gt;stack&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var groups = new vis.DataSet();
+groups.add({ id: 0, content: "group0" });
+groups.add({ id: 1, content: "group1" });
+groups.add({ id: 2, content: "group2" });
+
+var items = [
+  { x: "2014-06-11", y: 10, group: 0 },
+  { x: "2014-06-12", y: 25, group: 0 },
+  { x: "2014-06-13", y: 30, group: 0 },
+  { x: "2014-06-14", y: 10, group: 0 },
+  { x: "2014-06-15", y: 15, group: 0 },
+  { x: "2014-06-16", y: 30, group: 0 },
+  { x: "2014-06-11", y: 12, group: 1 },
+  { x: "2014-06-12", y: 15, group: 1 },
+  { x: "2014-06-13", y: 34, group: 1 },
+  { x: "2014-06-14", y: 24, group: 1 },
+  { x: "2014-06-15", y: 5, group: 1 },
+  { x: "2014-06-16", y: 12, group: 1 },
+  { x: "2014-06-11", y: 22, group: 2 },
+  { x: "2014-06-12", y: 14, group: 2 },
+  { x: "2014-06-13", y: 24, group: 2 },
+  { x: "2014-06-14", y: 21, group: 2 },
+  { x: "2014-06-15", y: 30, group: 2 },
+  { x: "2014-06-16", y: 18, group: 2 }
+];
+
+var dataset = new vis.DataSet(items);
+var options = {
+  style: "bar",
+  stack: false,
+  barChart: { width: 50, align: "center", sideBySide: true }, // align: left, center, right
+  drawPoints: false,
+  dataAxis: {
+    icons: true
+  },
+  orientation: "top",
+  start: "2014-06-10",
+  end: "2014-06-18"
+};
+var graph2d = new vis.Graph2d(container, items, groups, options);
+
+var dropdown = document.getElementById("dropdownID");
+dropdown.onchange = update;
+
+function update() {
+  var options = {
+    stack: dropdown.value === "stack",
+    barChart: { sideBySide: dropdown.value === "sideBySide" }
+  };
+  graph2d.setOptions(options);
+}
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Graph2d | Bar Graphs Side by Side Example with Groups"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

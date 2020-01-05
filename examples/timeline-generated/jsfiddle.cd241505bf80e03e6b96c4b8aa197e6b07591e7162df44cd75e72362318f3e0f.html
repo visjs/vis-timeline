@@ -1,0 +1,139 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | A lot of grouped data</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body {
+  color: #4d4d4d;
+  font: 10pt arial;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Timeline grouping performance&lt;/h1&gt;
+
+&lt;p&gt;
+  Choose a number of items:
+  &lt;a href="?count=100"&gt;100&lt;/a&gt;, &lt;a href="?count=1000"&gt;1000&lt;/a&gt;,
+  &lt;a href="?count=10000"&gt;10000&lt;/a&gt;,
+  &lt;a href="?count=100000"&gt;100000&lt;/a&gt;
+&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt;
+&lt;p&gt;Current number of items: &lt;span id="count"&gt;100&lt;/span&gt;&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='/**
+ * Get URL parameter
+ * https://www.netlobo.com/url_query_string_javascript.html
+ */
+function gup(name) {
+  name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+  var regexS = "[\\?&amp;]" + name + "=([^&amp;#]*)";
+  var regex = new RegExp(regexS);
+  var results = regex.exec(window.location.href);
+  if (results == null) return "";
+  else return results[1];
+}
+
+// get selected item count from url parameter
+var count = Number(gup("count")) || 1000;
+
+// create groups
+var groups = new vis.DataSet([
+  { id: 1, content: "Truck&amp;nbsp;1" },
+  { id: 2, content: "Truck&amp;nbsp;2" },
+  { id: 3, content: "Truck&amp;nbsp;3" },
+  { id: 4, content: "Truck&amp;nbsp;4" }
+]);
+
+// create items
+var items = new vis.DataSet();
+
+var order = 1;
+var truck = 1;
+for (var j = 0; j &lt; 4; j++) {
+  var date = new Date();
+  for (var i = 0; i &lt; count / 4; i++) {
+    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+    var start = new Date(date);
+
+    date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+    var end = new Date(date);
+
+    items.add({
+      id: order,
+      group: truck,
+      start: start,
+      end: end,
+      content: "Order " + order
+    });
+
+    order++;
+  }
+  truck++;
+}
+
+// specify options
+var options = {
+  stack: false,
+  start: new Date(),
+  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+  editable: true,
+  margin: {
+    item: 10, // minimal margin between items
+    axis: 5 // minimal margin between items and the axis
+  },
+  orientation: "top"
+};
+
+// create a Timeline
+var container = document.getElementById("visualization");
+timeline = new vis.Timeline(container, null, options);
+timeline.setGroups(groups);
+timeline.setItems(items);
+
+document.getElementById("count").innerHTML = count;
+
+window.addEventListener("resize", () =&gt; {
+  /*timeline.checkResize();*/
+});
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | A lot of grouped data"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

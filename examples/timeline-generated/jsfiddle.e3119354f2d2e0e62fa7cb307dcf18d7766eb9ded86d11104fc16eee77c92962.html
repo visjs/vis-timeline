@@ -1,0 +1,150 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | items | Tooltips</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+  max-width: 800px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Tooltips&lt;/h1&gt;
+
+&lt;p&gt;
+  Setting the tooltip in various ways.
+&lt;/p&gt;
+
+&lt;div id="tooltips"&gt;&lt;/div&gt;
+
+&lt;p&gt;
+  The example below has the tooltip follow the mouse.
+&lt;/p&gt;
+
+&lt;div id="tooltips-follow"&gt;&lt;/div&gt;
+
+&lt;p&gt;
+  The example below has the tooltip overflow set to &amp;apos;cap&amp;apos;. Compare
+  this to the one above, to see how they differ. For the best results, move the
+  cursor to the top right, where the tool-tip is going to overflow out of the
+  timeline.
+&lt;/p&gt;
+
+&lt;div id="tooltips-cap"&gt;&lt;/div&gt;
+
+&lt;p&gt;
+  Disable item tooltips.
+&lt;/p&gt;
+
+&lt;div id="tooltips-hide"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet([
+  {
+    id: 1,
+    content: "Item 1",
+    start: "2016-01-01",
+    end: "2016-01-02",
+    title: "Normal text"
+  },
+  { id: 2, content: "Item 2", start: "2016-01-02", title: "&lt;b&gt;Bold&lt;/b&gt;" },
+  {
+    id: 3,
+    content: "Item 3",
+    start: "2016-01-03",
+    type: "point",
+    title: &apos;&lt;span style="color: red"&gt;Red&lt;/span&gt; text&apos;
+  },
+  {
+    id: 4,
+    content: "&lt;h1&gt;HTML&lt;/h1&gt; Item",
+    start: "2016-01-03",
+    end: "2016-01-04",
+    title: &apos;&lt;table border="1"&gt;&lt;tr&gt;&lt;td&gt;Cell 1&lt;/td&gt;&lt;td&gt;Cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;
+  }
+]);
+
+// Options
+var options = {};
+
+// Timeline object
+var timelineTooltips = new vis.Timeline(
+  document.getElementById("tooltips"),
+  items,
+  options
+);
+
+// Follow options
+var follow_options = {
+  tooltip: {
+    followMouse: true
+  }
+};
+
+var timelineFollow = new vis.Timeline(
+  document.getElementById("tooltips-follow"),
+  items,
+  follow_options
+);
+
+// Cap options
+var cap_options = {
+  tooltip: {
+    followMouse: true,
+    overflowMethod: "cap"
+  }
+};
+
+var timelineCap = new vis.Timeline(
+  document.getElementById("tooltips-cap"),
+  items,
+  cap_options
+);
+
+// Hide options
+var hide_options = {
+  showTooltips: false
+};
+
+var timelineHide = new vis.Timeline(
+  document.getElementById("tooltips-hide"),
+  items,
+  hide_options
+);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Timeline | items | Tooltips" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

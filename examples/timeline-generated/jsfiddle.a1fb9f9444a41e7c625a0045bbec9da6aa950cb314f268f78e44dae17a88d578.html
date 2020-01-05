@@ -1,0 +1,166 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | React Components in templates</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input type="hidden" name="css" value />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;div id="root"&gt;&lt;/div&gt;
+
+&lt;!--
+    For ease of use, we are including the React, ReactDOM and Babel CDN
+    builds to make getting started as fast as possible.
+    
+    In production, you&apos;ll want to instead look at using something 
+    like Gulp, Grunt or WebPack (my personal recommendation) 
+    to compile JSX into JavaScript. Also, check out:
+    https://facebook.github.io/react/docs/tooling-integration.html
+    --&gt;
+
+&lt;link
+  href="../../../dist/vis-timeline-graph2d.min.css"
+  rel="stylesheet"
+  type="text/css"
+/&gt;
+
+&lt;!--
+    This is where you link to your React code. Can be .js or .jsx 
+    extension, doesn&apos;t really matter.
+    --&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var timeline;
+
+// create groups
+var numberOfGroups = 25;
+var groups = new vis.DataSet();
+for (var i = 0; i &lt; numberOfGroups; i++) {
+  groups.add({
+    id: i,
+    content: "Truck " + i
+  });
+}
+
+// create items
+var numberOfItems = 1000;
+var items = new vis.DataSet();
+var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
+for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+  var date = new Date();
+  for (var order = 0; order &lt; itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+    var start = new Date(date);
+    date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+    var end = new Date(date);
+    items.add({
+      id: order + itemsPerGroup * truck,
+      group: truck,
+      start: start,
+      end: end,
+      content: "Order " + order
+    });
+  }
+}
+
+var GroupTemplate = React.createClass({
+  render: function() {
+    var { group } = this.props;
+    return (
+      &lt;div&gt;
+        &lt;label&gt;{group.content}&lt;/label&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+var ItemTemplate = React.createClass({
+  render: function() {
+    var { item } = this.props;
+    return (
+      &lt;div&gt;
+        &lt;label&gt;{item.content}&lt;/label&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+// specify options
+var options = {
+  orientation: "top",
+  maxHeight: 400,
+  start: new Date(),
+  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+  editable: true,
+  template: function(item, element) {
+    if (!item) {
+      return;
+    }
+    ReactDOM.unmountComponentAtNode(element);
+    return ReactDOM.render(&lt;ItemTemplate item={item} /&gt;, element);
+  },
+  groupTemplate: function(group, element) {
+    if (!group) {
+      return;
+    }
+    ReactDOM.unmountComponentAtNode(element);
+    return ReactDOM.render(&lt;GroupTemplate group={group} /&gt;, element);
+  }
+};
+
+var VisTimeline = React.createClass({
+  componentDidMount: function() {
+    return initTimeline();
+  },
+  render: function() {
+    return (
+      &lt;div&gt;
+        &lt;h1&gt;Vis timline with React&lt;/h1&gt;
+        &lt;h2&gt;Using react components for items and group templates&lt;/h2&gt;
+
+        &lt;div id="visualization"&gt;&lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+});
+
+function initTimeline() {
+  var container = document.getElementById("visualization");
+  timeline = new vis.Timeline(container, items, groups, options);
+}
+
+ReactDOM.render(&lt;VisTimeline /&gt;, document.getElementById("root"));
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react.js,https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js,https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | React Components in templates"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

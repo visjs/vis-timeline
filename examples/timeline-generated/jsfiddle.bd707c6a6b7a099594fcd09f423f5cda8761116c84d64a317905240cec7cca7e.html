@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Time zone</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+  max-width: 800px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Time zone&lt;/h1&gt;
+
+&lt;p&gt;
+  The following demo shows how to display items in local time (default), in UTC,
+  or for a specific time zone offset. By configuring your own
+  &lt;code&gt;moment&lt;/code&gt; constructor, you can display items in the time zone that
+  you want. All timelines have the same start and end date.
+&lt;/p&gt;
+
+&lt;h2&gt;Local time&lt;/h2&gt;
+&lt;div id="local"&gt;&lt;/div&gt;
+
+&lt;h2&gt;UTC&lt;/h2&gt;
+&lt;div id="utc"&gt;&lt;/div&gt;
+
+&lt;h2&gt;UTC +08:00&lt;/h2&gt;
+&lt;div id="plus8"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// Create a DataSet (allows two way data-binding)
+var today = vis.moment(vis.moment.utc().format("YYYY-MM-DDT00:00:00.000Z"));
+var start = today.clone();
+var end = today.clone().add(2, "day");
+var customTime = today.clone().add(28, "hour");
+
+var items = new vis.DataSet([
+  { id: 1, content: "item 1", start: today.clone().add(8, "hour") },
+  { id: 2, content: "item 2", start: today.clone().add(16, "hour") },
+  { id: 3, content: "item 3", start: today.clone().add(32, "hour") }
+]);
+
+// Create a timeline displaying in local time (default)
+var timelineLocal = new vis.Timeline(document.getElementById("local"), items, {
+  editable: true,
+  start: start,
+  end: end
+});
+timelineLocal.addCustomTime(customTime);
+
+// Create a timeline displaying in UTC
+var timelineUTC = new vis.Timeline(document.getElementById("utc"), items, {
+  editable: true,
+  start: start,
+  end: end,
+  moment: function(date) {
+    return vis.moment(date).utc();
+  }
+});
+timelineUTC.addCustomTime(customTime);
+
+// Create a timeline displaying in UTC +08:00
+var timelinePlus8 = new vis.Timeline(document.getElementById("plus8"), items, {
+  editable: true,
+  start: start,
+  end: end,
+  moment: function(date) {
+    return vis.moment(date).utcOffset("+08:00");
+  }
+});
+timelinePlus8.addCustomTime(customTime);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Timeline | other | Time zone" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

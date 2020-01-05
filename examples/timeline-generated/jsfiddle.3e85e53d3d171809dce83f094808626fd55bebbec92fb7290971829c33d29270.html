@@ -1,0 +1,103 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | items | HTML data</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+span {
+  color: red;
+}
+span.large {
+  font-size: 200%;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  Load HTML contents in the Timeline in various ways.
+&lt;/p&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// create a couple of HTML items in various ways
+
+var item1 = document.createElement("div");
+item1.appendChild(document.createTextNode("item 1"));
+
+var item2 = document.createElement("div");
+item2.innerHTML = "&lt;span&gt;item 2&lt;/span&gt;";
+
+var item3 = document.createElement("div");
+var span3 = document.createElement("span");
+span3.className = "large";
+span3.appendChild(document.createTextNode("item 3"));
+item3.appendChild(span3);
+
+var item4 = &apos;item &lt;span class="large"&gt;4&lt;/span&gt;&apos;;
+
+var item5 = document.createElement("div");
+item5.appendChild(document.createTextNode("item 5"));
+item5.appendChild(document.createElement("br"));
+var img5 = document.createElement("img");
+img5.src = "../resources/img/attachment-icon.png";
+img5.style.width = "48px";
+img5.style.height = "48px";
+item5.appendChild(img5);
+
+var item6 =
+  &apos;item6&lt;br&gt;&lt;img src="../resources/img/comments-icon.png" style="width: 48px; height: 48px;"&gt;&apos;;
+
+var item7 =
+  &apos;item7&lt;br&gt;&lt;a href="https://visjs.org" target="_blank"&gt;click here&lt;/a&gt;&apos;;
+
+// create data and a Timeline
+var container = document.getElementById("visualization");
+var items = new vis.DataSet([
+  { id: 1, content: item1, start: "2013-04-20" },
+  { id: 2, content: item2, start: "2013-04-14" },
+  { id: 3, content: item3, start: "2013-04-18" },
+  { id: 4, content: item4, start: "2013-04-16", end: "2013-04-19" },
+  { id: 5, content: item5, start: "2013-04-25" },
+  { id: 6, content: item6, start: "2013-04-27" },
+  { id: 7, content: item7, start: "2013-04-21" }
+]);
+var options = {};
+var timeline = new vis.Timeline(container, items, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Timeline | items | HTML data" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

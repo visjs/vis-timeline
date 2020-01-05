@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Bar Graph Example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h2&gt;Graph2d | Bar Graph Example&lt;/h2&gt;
+&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+  This example shows the most the same data as the first example, except we plot
+  the data as bars! The dataAxis (y-axis) icons have been enabled as well. These
+  icons are generated automatically from the CSS styling of the graphs. Finally,
+  we&amp;apos;ve used the option from Timeline where we draw the x-axis (time-axis)
+  on top.
+  &lt;br /&gt;&lt;br /&gt;
+  The &lt;code&gt;align&lt;/code&gt; option can be used to align the bar at the center of
+  the datapoint or on the left or right side of it. This example uses the
+  default center alignment.
+&lt;/div&gt;
+&lt;br /&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = [
+  { x: "2014-06-11", y: 10 },
+  { x: "2014-06-12", y: 25 },
+  { x: "2014-06-13", y: 30 },
+  { x: "2014-06-14", y: 10 },
+  { x: "2014-06-15", y: 15 },
+  { x: "2014-06-16", y: 30 }
+];
+
+var dataset = new vis.DataSet(items);
+var options = {
+  style: "bar",
+  barChart: { width: 50, align: "center" }, // align: left, center, right
+  drawPoints: false,
+  dataAxis: {
+    icons: true
+  },
+  orientation: "top",
+  start: "2014-06-10",
+  end: "2014-06-18"
+};
+var graph2d = new vis.Graph2d(container, items, options);
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Graph2d | Bar Graph Example" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

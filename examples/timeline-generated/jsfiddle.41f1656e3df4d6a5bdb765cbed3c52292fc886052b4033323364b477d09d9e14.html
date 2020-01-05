@@ -1,0 +1,109 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Custom Localization</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html,
+select {
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  &lt;label for="locale"&gt;Select a locale:&lt;/label&gt;
+  &lt;select id="locale"&gt;
+    &lt;option value="tr" selected&gt;tr&lt;/option&gt;
+    &lt;option value="sq"&gt;hy&lt;/option&gt;
+    &lt;option value="ar"&gt;ar&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var DAY = 24 * 60 * 60 * 1000;
+
+// DOM element where the Timeline will be attached
+var container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet([
+  { id: 1, content: "item 1", start: new Date(new Date().valueOf() - DAY) },
+  { id: 2, content: "item 2", start: new Date(new Date().valueOf() + 2 * DAY) }
+]);
+
+// Configuration for the Timeline
+var options = {
+  showCurrentTime: true,
+  locale: "tr",
+  locales: {
+    tr: {
+      current: "ge&#xE7;erli",
+      time: "kere"
+    },
+    sq: {
+      current: "&#x568;&#x576;&#x569;&#x561;&#x581;&#x56B;&#x56F;",
+      time: "&#x56A;&#x561;&#x574;"
+    },
+    ar: {
+      current: "&#x62D;&#x627;&#x644;&#x64A;",
+      time: "&#x648;&#x642;&#x62A;"
+    }
+  }
+};
+
+// Create a Timeline
+var timeline = new vis.Timeline(container, items, options);
+timeline.addCustomTime(new Date());
+
+timeline.setCustomTime(new Date(new Date().valueOf() + DAY));
+
+// update the locale when changing the select box value
+var select = document.getElementById("locale");
+select.onchange = function() {
+  timeline.setOptions({
+    locale: this.value
+  });
+};
+select.onchange();
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/tr.js,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/sq.js,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ar.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | Custom Localization"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

@@ -1,0 +1,341 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | groups | Subgroups</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+
+.vis-item.vis-background.negative {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+.vis-item.vis-background.positive {
+  background-color: rgba(105, 255, 98, 0.2);
+}
+.vis-item.vis-background.marker {
+  border-left: 2px solid green;
+}
+
+table {
+  border: 1px solid gray;
+}
+
+td {
+  text-align: center;
+}
+
+code {
+  padding: 2px 4px;
+  font-size: 90%;
+  color: #c7254e;
+  background-color: #f9f2f4;
+  border-radius: 4px;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This example shows the workings of the subgroups. Subgroups can be stacked on
+  each other, and the items within each subgroup can be stacked.
+&lt;/p&gt;
+&lt;p&gt;
+  When stacking is on for the whole timeline, all items in the timeline will be
+  stacked with respect to each other &lt;em&gt;unless&lt;/em&gt; the
+  &lt;code&gt;stackSubgroups&lt;/code&gt; option is set to &lt;code&gt;true&lt;/code&gt;
+  and at least one subgroup has stacking enabled. In that case the subgroups
+  will be stacked with respect to each other and the elements in each subgroup
+  will be stacked based on the individual stacking settings for each subgroup.
+&lt;/p&gt;
+&lt;table&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;Option&lt;/th&gt;
+      &lt;th&gt;Status&lt;/th&gt;
+      &lt;th&gt;Toggle&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stacking&lt;/td&gt;
+      &lt;td id="stackingStatus"&gt;false&lt;/td&gt;
+      &lt;td&gt;&lt;button onclick="toggleStacking()"&gt;Toggle&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;stackSubgroups&lt;/td&gt;
+      &lt;td id="stackSubgroupsStatus"&gt;true&lt;/td&gt;
+      &lt;td&gt;&lt;button onclick="toggleStackSubgroups()"&gt;Toggle&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stack Subgroup 0&lt;/td&gt;
+      &lt;td id="stacksg_1"&gt;false&lt;/td&gt;
+      &lt;td&gt;&lt;button onclick="toggleSubgroupStack(&apos;sg_1&apos;)"&gt;Toggle&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stack Subgroup 1&lt;/td&gt;
+      &lt;td id="stacksg_2"&gt;false&lt;/td&gt;
+      &lt;td&gt;&lt;button onclick="toggleSubgroupStack(&apos;sg_2&apos;)"&gt;Toggle&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;Stack Subgroup 2&lt;/td&gt;
+      &lt;td id="stacksg_3"&gt;false&lt;/td&gt;
+      &lt;td&gt;&lt;button onclick="toggleSubgroupStack(&apos;sg_3&apos;)"&gt;Toggle&lt;/button&gt;&lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;br /&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// create a dataset with items
+// we specify the type of the fields `start` and `end` here to be strings
+// containing an ISO date. The fields will be outputted as ISO dates
+// automatically getting data from the DataSet via items.get().
+var items = new vis.DataSet({
+  type: { start: "ISODate", end: "ISODate" }
+});
+var groups = new vis.DataSet([
+  {
+    id: "bar",
+    content: "bar",
+    subgroupOrder: function(a, b) {
+      return a.subgroupOrder - b.subgroupOrder;
+    },
+    subgroupStack: { sg_1: false, sg_2: false, sg_3: false }
+  },
+  {
+    id: "foo",
+    content: "foo",
+    subgroupOrder: "subgroupOrder" // this group has no subgroups but this would be the other method to do the sorting.
+  }
+]);
+// add items to the DataSet
+items.add([
+  {
+    id: "A",
+    start: "2014-01-20",
+    end: "2014-01-22",
+    type: "background",
+    group: "foo"
+  },
+  {
+    id: "B",
+    start: "2014-01-22",
+    end: "2014-01-23",
+    type: "background",
+    group: "foo",
+    className: "negative"
+  },
+  {
+    id: 0,
+    content: "no subgroup",
+    start: "2014-01-20",
+    end: "2014-01-22",
+    group: "foo"
+  },
+
+  {
+    id: "SG_1_1",
+    start: "2014-01-25",
+    end: "2014-01-27",
+    type: "background",
+    group: "bar",
+    subgroup: "sg_1",
+    subgroupOrder: 0
+  },
+  {
+    id: "SG_1_2",
+    start: "2014-01-26",
+    end: "2014-01-27",
+    type: "background",
+    className: "positive",
+    group: "bar",
+    subgroup: "sg_1",
+    subgroupOrder: 0
+  },
+  {
+    id: 1,
+    content: "subgroup0_1",
+    start: "2014-01-23T12:00:00",
+    end: "2014-01-26T12:00:00",
+    group: "bar",
+    subgroup: "sg_1",
+    subgroupOrder: 0
+  },
+  {
+    id: 2,
+    content: "subgroup0_2",
+    start: "2014-01-22T12:00:01",
+    end: "2014-01-25T12:00:00",
+    group: "bar",
+    subgroup: "sg_1",
+    subgroupOrder: 0
+  },
+
+  {
+    id: "SG_2_1",
+    start: "2014-02-01",
+    end: "2014-02-02",
+    type: "background",
+    group: "bar",
+    subgroup: "sg_2",
+    subgroupOrder: 1
+  },
+  {
+    id: "SG_2_2",
+    start: "2014-02-2",
+    end: "2014-02-03",
+    type: "background",
+    className: "negative",
+    group: "bar",
+    subgroup: "sg_2",
+    subgroupOrder: 1
+  },
+  {
+    id: 3,
+    content: "subgroup1_1",
+    start: "2014-01-27T02:00:00",
+    end: "2014-01-29",
+    group: "bar",
+    subgroup: "sg_2",
+    subgroupOrder: 1
+  },
+  {
+    id: 4,
+    content: "subgroup1_2",
+    start: "2014-01-28",
+    end: "2014-02-02",
+    group: "bar",
+    subgroup: "sg_2",
+    subgroupOrder: 1
+  },
+
+  {
+    id: "SG_3_1",
+    start: "2014-01-23",
+    end: "2014-01-25",
+    type: "background",
+    group: "bar",
+    subgroup: "sg_3",
+    subgroupOrder: 2,
+    content: "a"
+  },
+  {
+    id: "SG_3_2",
+    start: "2014-01-26",
+    end: "2014-01-28",
+    type: "background",
+    className: "positive",
+    group: "bar",
+    subgroup: "sg_3",
+    subgroupOrder: 2,
+    content: "b"
+  },
+  {
+    id: 5,
+    content: "subgroup2_1",
+    start: "2014-01-23T12:00:00",
+    end: "2014-01-26T12:00:00",
+    group: "bar",
+    subgroup: "sg_3",
+    subgroupOrder: 2
+  },
+  {
+    id: 6,
+    content: "subgroup2_2",
+    start: "2014-01-26T12:00:01",
+    end: "2014-01-29T12:00:00",
+    group: "bar",
+    subgroup: "sg_3",
+    subgroupOrder: 2
+  },
+
+  {
+    id: "background",
+    start: "2014-01-29",
+    end: "2014-01-30",
+    type: "background",
+    className: "negative",
+    group: "bar"
+  },
+  {
+    id: "background_all",
+    start: "2014-01-31",
+    end: "2014-02-02",
+    type: "background",
+    className: "positive"
+  }
+]);
+
+var container = document.getElementById("visualization");
+var stackingStatus = document.getElementById("stackingStatus");
+var stackSubgroupsStatus = document.getElementById("stackSubgroupsStatus");
+var options = {
+  // orientation:&apos;top&apos;
+  start: "2014-01-10",
+  end: "2014-02-10",
+  editable: true,
+  stack: false,
+  stackSubgroups: true
+};
+
+var timeline = new vis.Timeline(container, items, groups, options);
+
+function toggleStacking() {
+  options.stack = !options.stack;
+  stackingStatus.innerHTML = options.stack.toString();
+  timeline.setOptions(options);
+}
+
+function toggleStackSubgroups() {
+  options.stackSubgroups = !options.stackSubgroups;
+  stackSubgroupsStatus.innerHTML = options.stackSubgroups.toString();
+  timeline.setOptions(options);
+}
+
+function toggleSubgroupStack(subgroup) {
+  groups.get("bar").subgroupStack[subgroup] = !groups.get("bar").subgroupStack[
+    subgroup
+  ];
+  document.getElementById("stack" + subgroup).innerHTML = groups
+    .get("bar")
+    .subgroupStack[subgroup].toString();
+  timeline.setGroups(groups);
+}
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Timeline | groups | Subgroups" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

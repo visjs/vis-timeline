@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | markers | Markers example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  The Timeline has a function to add multiple custom time markers which can be
+  dragged by the user.
+&lt;/p&gt;
+&lt;p&gt;
+  In this example, you can add new markers by double-clicking the timeline below
+  and delete the markers by double-clicking it.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;input type="text" id="markerText" placeholder="marker text" /&gt;
+&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = new vis.DataSet();
+var customDate = new Date();
+var options = {
+  start: new Date(Date.now() - 1000 * 60 * 60 * 24),
+  end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
+};
+var timeline = new vis.Timeline(container, items, options);
+
+timeline.on("doubleClick", function(properties) {
+  var eventProps = timeline.getEventProperties(properties.event);
+  if (eventProps.what === "custom-time") {
+    timeline.removeCustomTime(eventProps.customTime);
+  } else {
+    var id = new Date().getTime();
+    var markerText = document.getElementById("markerText").value || undefined;
+    timeline.addCustomTime(eventProps.time, id);
+    timeline.setCustomTimeMarker(markerText, id);
+  }
+});
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | markers | Markers example"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

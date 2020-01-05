@@ -1,0 +1,105 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | styling | Orientation</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  There are a number of orientation options for the time axis and the items.
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;label for="axis-orientation"&gt;Axis orientation&lt;/label&gt;
+  &lt;select id="axis-orientation"&gt;
+    &lt;option value="both"&gt;both&lt;/option&gt;
+    &lt;option value="bottom" selected&gt;bottom&lt;/option&gt;
+    &lt;option value="none"&gt;none&lt;/option&gt;
+    &lt;option value="top"&gt;top&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/p&gt;
+
+&lt;p&gt;
+  &lt;label for="item-orientation"&gt;Item orientation&lt;/label&gt;
+  &lt;select id="item-orientation"&gt;
+    &lt;option value="bottom" selected&gt;bottom&lt;/option&gt;
+    &lt;option value="top"&gt;top&lt;/option&gt;
+  &lt;/select&gt;
+&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// DOM element where the Timeline will be attached
+var container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet([
+  { id: 1, content: "item 1", start: "2014-04-20" },
+  { id: 2, content: "item 2", start: "2014-04-14" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+  { id: 5, content: "item 5", start: "2014-04-25" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+]);
+
+// Configuration for the Timeline
+var options = {
+  height: 250 // px
+};
+
+// Create a Timeline
+var timeline = new vis.Timeline(container, items, options);
+
+var axisOrientation = document.getElementById("axis-orientation");
+axisOrientation.onchange = function() {
+  timeline.setOptions({ orientation: { axis: this.value } });
+};
+
+var itemOrientation = document.getElementById("item-orientation");
+itemOrientation.onchange = function() {
+  timeline.setOptions({ orientation: { item: this.value } });
+};
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | styling | Orientation"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

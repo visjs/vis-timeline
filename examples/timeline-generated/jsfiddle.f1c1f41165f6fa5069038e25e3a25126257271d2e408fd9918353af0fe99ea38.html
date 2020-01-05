@@ -1,0 +1,235 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Drag &amp; Drop</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value='li.item {
+  list-style: none;
+  width: 150px;
+  color: #1a1a1a;
+  background-color: #d5ddf6;
+  border: 1px solid #97b0f8;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  padding: 5px 12px;
+}
+li.item:before {
+  content: "&#x2263;";
+  font-family: Arial, sans-serif;
+  display: inline-block;
+  font-size: inherit;
+  cursor: move;
+}
+li.object-item {
+  list-style: none;
+  width: 150px;
+  color: #1a1a1a;
+  background-color: #d5ddf6;
+  border: 1px solid #97b0f8;
+  border-radius: 2px;
+  margin-bottom: 5px;
+  padding: 5px 12px;
+}
+li.object-item:before {
+  content: "&#x2263;";
+  font-family: Arial, sans-serif;
+  display: inline-block;
+  font-size: inherit;
+  cursor: move;
+}
+.items-panel {
+  display: flex;
+  justify-content: space-around;
+}
+'
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h1&gt;Timeline Drag &amp;amp; Drop Example&lt;/h1&gt;
+
+&lt;p&gt;
+  For this to work, you will have to define your own
+  &lt;code&gt;&amp;apos;dragstart&amp;apos;&lt;/code&gt; eventListener on each item in your list of
+  items (make sure that any new item added to the list is attached to this
+  eventListener &amp;apos;dragstart&amp;apos; handler). This &amp;apos;dragstart&amp;apos;
+  handler must set &lt;code&gt;dataTransfer&lt;/code&gt; - notice you can set the
+  item&amp;apos;s information as you want this way.
+&lt;/p&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+
+&lt;div class="items-panel"&gt;
+  &lt;div class="side"&gt;
+    &lt;h3&gt;Items:&lt;/h3&gt;
+    &lt;ul class="items"&gt;
+      &lt;li draggable="true" class="item"&gt;
+        item 1 - box
+      &lt;/li&gt;
+      &lt;li draggable="true" class="item"&gt;
+        item 2 - point
+      &lt;/li&gt;
+      &lt;li draggable="true" class="item"&gt;
+        item 3 - range
+      &lt;/li&gt;
+      &lt;li draggable="true" class="item"&gt;
+        item 3 - range - fixed times - &lt;br /&gt;
+        (start: now, end: now + 10 min)
+      &lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/div&gt;
+
+  &lt;div class="side"&gt;
+    &lt;h3&gt;Object with &amp;quot;target:&amp;apos;item&amp;apos;&amp;quot;:&lt;/h3&gt;
+    &lt;li draggable="true" class="object-item"&gt;
+      object with target:&amp;apos;item&amp;apos;
+    &lt;/li&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='// create groups
+var numberOfGroups = 3;
+var groups = new vis.DataSet();
+for (var i = 0; i &lt; numberOfGroups; i++) {
+  groups.add({
+    id: i,
+    content: "Truck&amp;nbsp;" + i
+  });
+}
+
+// create items
+var numberOfItems = 10;
+var items = new vis.DataSet();
+
+var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
+
+for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+  var date = new Date();
+  for (var order = 0; order &lt; itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+    var start = new Date(date);
+
+    date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+    var end = new Date(date);
+
+    items.add({
+      id: order + itemsPerGroup * truck,
+      group: truck,
+      start: start,
+      end: end,
+      content: "Order " + order
+    });
+  }
+}
+
+// specify options
+var options = {
+  stack: true,
+  start: new Date(),
+  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+  editable: true,
+  orientation: "top",
+  onDropObjectOnItem: function(objectData, item, callback) {
+    if (!item) {
+      return;
+    }
+    alert(
+      &apos;dropped object with content: "&apos; +
+        objectData.content +
+        &apos;" to item: "&apos; +
+        item.content +
+        &apos;"&apos;
+    );
+  }
+};
+
+// create a Timeline
+var container = document.getElementById("visualization");
+timeline1 = new vis.Timeline(container, items, groups, options);
+
+function handleDragStart(event) {
+  var dragSrcEl = event.target;
+
+  event.dataTransfer.effectAllowed = "move";
+  var itemType = event.target.innerHTML.split("-")[1].trim();
+  var item = {
+    id: new Date(),
+    type: itemType,
+    content: event.target.innerHTML.split("-")[0].trim()
+  };
+
+  var isFixedTimes =
+    event.target.innerHTML.split("-")[2] &amp;&amp;
+    event.target.innerHTML.split("-")[2].trim() == "fixed times";
+  if (isFixedTimes) {
+    item.start = new Date();
+    item.end = new Date(1000 * 60 * 10 + new Date().valueOf());
+  }
+  event.dataTransfer.setData("text", JSON.stringify(item));
+}
+
+function handleObjectItemDragStart(event) {
+  var dragSrcEl = event.target;
+
+  event.dataTransfer.effectAllowed = "move";
+  var objectItem = {
+    content: "objectItemData",
+    target: "item"
+  };
+  event.dataTransfer.setData("text", JSON.stringify(objectItem));
+}
+
+var items = document.querySelectorAll(".items .item");
+
+var objectItems = document.querySelectorAll(".object-item");
+
+for (var i = items.length - 1; i &gt;= 0; i--) {
+  var item = items[i];
+  item.addEventListener("dragstart", handleDragStart.bind(this), false);
+}
+
+for (var i = objectItems.length - 1; i &gt;= 0; i--) {
+  var objectItem = objectItems[i];
+  objectItem.addEventListener(
+    "dragstart",
+    handleObjectItemDragStart.bind(this),
+    false
+  );
+}
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | Drag &amp; Drop"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

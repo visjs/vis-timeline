@@ -1,0 +1,283 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Clustering example</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: arial, sans-serif;
+  font-size: 11pt;
+}
+
+#visualization {
+  box-sizing: border-box;
+  width: 100%;
+  height: 300px;
+}
+
+.vis-cluster {
+  min-width: 145px;
+}
+
+.cluster-header {
+  display: block;
+  font-weight: 600;
+}
+
+.slider-value {
+  border: 0;
+  background: transparent;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  This example demonstrate using clustering.
+&lt;/p&gt;
+&lt;button class="zoom" data-dir="1"&gt;Zoom in&lt;/button&gt;
+&lt;button class="zoom" data-dir="-1"&gt;Zoom out&lt;/button&gt;
+&lt;br /&gt;
+&lt;input type="checkbox" id="clusterCheckbox" /&gt;Enable clustering
+&lt;br /&gt;
+&lt;input type="checkbox" id="groupItemsCheckBox" /&gt;Enable grouping
+&lt;br /&gt;
+&lt;br /&gt;
+
+&lt;div&gt;
+  &lt;label for="total-days-number"&gt;Days number:&lt;/label&gt;
+  &lt;input class="slider-value" type="text" id="total-days-number" readonly /&gt;
+  &lt;div class="slider" id="total-days-slider"&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div&gt;
+  &lt;label for="orders-per-day-number"&gt;Orders per day number:&lt;/label&gt;
+  &lt;input class="slider-value" type="text" id="orders-per-day-number" readonly /&gt;
+  &lt;div class="slider" id="orders-per-day-slider"&gt;&lt;/div&gt;
+&lt;/div&gt;
+&lt;br /&gt;
+&lt;div&gt;
+  &lt;label for="total-orders-count"&gt;Total orders:&lt;/label&gt;
+  &lt;input class="slider-value" type="text" id="total-orders-count" readonly /&gt;
+&lt;/div&gt;
+
+&lt;br /&gt;
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='function getRandomArbitrary(min, max) {
+  return Math.round(Math.random() * (max - min) + min);
+}
+
+function getRandomSignum() {
+  return Math.round(Math.random()) ? 1 : -1;
+}
+
+var names = ["Group 1", "Group 2", "Group 3", "Group 4"];
+var groups = new vis.DataSet();
+var groupsCount = 0;
+for (var i in names) {
+  var name = names[i];
+  groups.add({ id: name, content: name });
+}
+
+function getTimelineData() {
+  const offsets = [];
+  const totalDaysCount = $("#total-days-slider").slider("value");
+  const itemsInClusterCount = $("#orders-per-day-slider").slider("value");
+
+  const before = [
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function(val, index) {
+      return index - totalDaysCount + 1;
+    })
+  ];
+  const after = [
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function(val, index) {
+      return index + 1;
+    })
+  ];
+
+  for (var i in before) {
+    var offset = before[i];
+    offsets.push(...offset);
+  }
+
+  for (var i in after) {
+    var offset = after[i];
+    offsets.push(...offset);
+  }
+
+  const clusterCenters = [];
+  for (let offset of offsets) {
+    const date = moment().add("days", offset);
+    clusterCenters.push(date);
+  }
+
+  const timeLineData = [];
+  let nodeIndex = 0;
+  for (var i in clusterCenters) {
+    let clusterCenter = clusterCenters[i];
+    for (
+      let clusterNodeIdx = 0;
+      clusterNodeIdx &lt; itemsInClusterCount;
+      ++clusterNodeIdx
+    ) {
+      const minutesShift = getRandomArbitrary(1, 60) * getRandomSignum();
+      const hoursShift = getRandomArbitrary(1, 5) * getRandomSignum();
+      const secondsShift = getRandomArbitrary(1, 60) * getRandomSignum();
+
+      const start = clusterCenter
+        .clone()
+        .add(+minutesShift, "m")
+        .add(+hoursShift, "h")
+        .add(+secondsShift, "s");
+
+      const end = start.clone().add(60, "m");
+
+      ++nodeIndex;
+
+      const currentGroup = names[getRandomArbitrary(0, names.length - 1)];
+
+      timeLineData.push({
+        id: nodeIndex,
+        content: "Order: " + nodeIndex,
+        start: start.format("YYYY/MM/DD HH:mm:ss"),
+        end: end.format("YYYY/MM/DD HH:mm:ss"),
+        width: 50,
+        group: currentGroup
+      });
+    }
+  }
+  return timeLineData;
+}
+
+$("#groupItemsCheckBox").change(function() {
+  if (this.checked) {
+    timeline.setGroups(groups);
+  } else {
+    timeline.setGroups(null);
+  }
+});
+
+$("#orders-per-day-slider").slider({
+  value: 10,
+  min: 1,
+  max: 1000,
+  slide: function(event, ui) {
+    setTimeout(() =&gt; {
+      $("#orders-per-day-number").val(ui.value);
+      timeLineData = getTimelineData();
+      $("#total-orders-count").val(timeLineData.length);
+      timeline.setItems(timeLineData);
+    });
+  }
+});
+
+$("#total-days-slider").slider({
+  value: 1,
+  min: 2,
+  max: 10,
+  step: 2,
+  slide: function(event, ui) {
+    setTimeout(() =&gt; {
+      $("#total-days-number").val(ui.value);
+      timeLineData = getTimelineData();
+      $("#total-orders-count").val(timeLineData.length);
+      timeline.setItems(timeLineData);
+    });
+  }
+});
+
+$("#total-days-number").val($("#total-days-slider").slider("value"));
+
+$("#orders-per-day-number").val($("#orders-per-day-slider").slider("value"));
+
+// create visualization
+var container = document.getElementById("visualization");
+var defaultOptions = {
+  stack: true,
+  maxHeight: 800,
+  height: 600,
+  groupOrder: "content", // groupOrder can be a property name or a sorting function,
+  template: (itemData, element, data) =&gt; {
+    if (data.isCluster) {
+      return `&lt;span class="cluster-header"&gt;Cluster&lt;/span&gt;&lt;div&gt;containg ${data.items.length} items &lt;/div&gt;`;
+    } else {
+      return `&lt;div&gt;${data.content}&lt;/div&gt;`;
+    }
+  }
+};
+
+var timeline = new vis.Timeline(container);
+timeline.setOptions(defaultOptions);
+
+var timeLineData = getTimelineData();
+$("#total-orders-count").val(timeLineData.length);
+timeline.setItems(timeLineData);
+
+timeline.fit();
+
+$(".zoom").on("click", function() {
+  var dir = $(this).data("dir");
+  var range = timeline.getWindow();
+  var interval = range.end - range.start;
+
+  timeline.setWindow({
+    start: range.start.valueOf() - interval * dir * 0.2,
+    end: range.end.valueOf() + interval * dir * 0.2
+  });
+});
+
+$("#clusterCheckbox").change(function() {
+  var options = {};
+  if (this.checked) {
+    var clusterOpts = {
+      cluster: {
+        titleTemplate:
+          "Cluster containing {count} events. Zoom in to see the individual events.",
+        showStipes: true
+      }
+    };
+    Object.assign(options, defaultOptions, clusterOpts);
+  } else {
+    Object.assign(options, defaultOptions);
+  }
+  timeline.setOptions(options);
+});
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js,https://code.jquery.com/jquery-1.12.4.js,https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | Clustering example"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

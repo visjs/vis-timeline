@@ -1,0 +1,134 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Show current and custom time bars tooltip</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+  font-size: 11pt;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;p&gt;
+  The Timeline has functions to add multiple custom time bars which can be
+  dragged by the user.
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;input type="button" id="add" value="Add custom vertical bar" /&gt;
+  &lt;input type="text" id="barId" placeholder="custom bar ID" /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;input type="button" id="remove" value="Remove custom vertical bar" /&gt;
+  &lt;input type="text" id="barIndex" value="t1" placeholder="custom bar ID" /&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;code&gt;&lt;strong&gt;timechange&lt;/strong&gt;&lt;/code&gt; event, index:
+  &lt;span id="timechangeBar"&gt;&lt;/span&gt;, time: &lt;span id="timechangeEvent"&gt;&lt;/span&gt;
+&lt;/p&gt;
+&lt;p&gt;
+  &lt;code&gt;&lt;strong&gt;timechanged&lt;/strong&gt;&lt;/code&gt; event, index:
+  &lt;span id="timechangedBar"&gt;&lt;/span&gt;, time: &lt;span id="timechangedEvent"&gt;&lt;/span&gt;
+&lt;/p&gt;
+&lt;br /&gt;
+
+&lt;div id="visualization"&gt;&lt;/div&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = new vis.DataSet();
+var customDate = new Date();
+var options = {
+  showCurrentTime: true,
+  start: new Date(Date.now() - 1000 * 60 * 60 * 24),
+  end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
+};
+var timeline = new vis.Timeline(container, items, options);
+
+// Set first time bar
+customDate = new Date(
+  customDate.getFullYear(),
+  customDate.getMonth(),
+  customDate.getDate() + 1
+);
+timeline.addCustomTime(customDate, "t1");
+timeline.setCustomTimeTitle(function(time) {
+  return "I&apos;m t1!";
+}, "t1");
+
+document.getElementById("add").onclick = function() {
+  try {
+    customDate = new Date(
+      customDate.getFullYear(),
+      customDate.getMonth(),
+      customDate.getDate() + 1
+    );
+    var barId = document.getElementById("barId").value || undefined;
+    timeline.addCustomTime(customDate, barId);
+    timeline.setCustomTimeTitle(function(time) {
+      return "I&apos;m " + barId + "!";
+    }, barId);
+    document.getElementById("barId").value = "";
+  } catch (err) {
+    console.log(err);
+    alert(err);
+  }
+};
+
+document.getElementById("remove").onclick = function() {
+  try {
+    timeline.removeCustomTime(document.getElementById("barIndex").value);
+    document.getElementById("barIndex").value = "";
+  } catch (err) {
+    console.log(err);
+    alert(err);
+  }
+};
+
+timeline.on("timechange", function(properties) {
+  document.getElementById("timechangeBar").innerHTML = properties.id;
+  document.getElementById("timechangeEvent").innerHTML = properties.time;
+});
+timeline.on("timechanged", function(properties) {
+  document.getElementById("timechangedBar").innerHTML = properties.id;
+  document.getElementById("timechangedEvent").innerHTML = properties.time;
+});
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js,https://visjs.github.io/vis-timeline/examples/googleAnalytics.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | other | Show current and custom time bars tooltip"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

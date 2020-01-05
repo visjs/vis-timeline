@@ -1,0 +1,303 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Dynamic Styling</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="http://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='&lt;h2&gt;Graph2d | Dynamic Styling Example&lt;/h2&gt;
+
+&lt;div style="width:800px; font-size:14px; text-align: justify;"&gt;
+  This example shows how to programmatically change the styling of a group.
+  While this can also be done in CSS, this must be statically defined, and the
+  programmatic interface allows the user to define the look of the graph at
+  runtime.
+&lt;/div&gt;
+&lt;br /&gt;
+
+&lt;table&gt;
+  &lt;colgroup&gt;
+    &lt;col width="600" /&gt;
+    &lt;col width="220" /&gt;
+  &lt;/colgroup&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td style="padding-right: 20px; border-right: 1px solid;"&gt;
+        &lt;div id="visualization"&gt;&lt;/div&gt;
+      &lt;/td&gt;
+      &lt;td style="padding-left: 5px;"&gt;
+        &lt;table style="font-size: 12px;"&gt;
+          &lt;colgroup&gt;
+            &lt;col width="150" /&gt;
+            &lt;col width="50" /&gt;
+          &lt;/colgroup&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Line Color&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="color" onchange="updateStyle()"&gt;
+                  &lt;option value="stroke:green;"&gt;green&lt;/option&gt;
+                  &lt;option value="stroke:red;"&gt;red&lt;/option&gt;
+                  &lt;option value="stroke:blue;" selected="selected"&gt;blue&lt;/option&gt;
+                  &lt;option value="stroke:black;"&gt;black&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Line Style&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="line" onchange="updateStyle()"&gt;
+                  &lt;option value="stroke-dasharray:1 0;" selected="selected"
+                    &gt;line&lt;/option
+                  &gt;
+                  &lt;option value="stroke-dasharray:10 10;"&gt;dash&lt;/option&gt;
+                  &lt;option value="stroke-dasharray:2 2;"&gt;dot&lt;/option&gt;
+                  &lt;option value="stroke-dasharray:10 5 2 5;"&gt;dash-dot&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Line thickness&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="thickness" onchange="updateStyle()"&gt;
+                  &lt;option value="stroke-width:0;"&gt;0&lt;/option&gt;
+                  &lt;option value="stroke-width:1;"&gt;1&lt;/option&gt;
+                  &lt;option value="stroke-width:2;" selected="selected"&gt;2&lt;/option&gt;
+                  &lt;option value="stroke-width:3;"&gt;3&lt;/option&gt;
+                  &lt;option value="stroke-width:4;"&gt;4&lt;/option&gt;
+                  &lt;option value="stroke-width:5;"&gt;5&lt;/option&gt;
+                  &lt;option value="stroke-width:6;"&gt;6&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Fill Position&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="fill" onchange="updateStyle()"&gt;
+                  &lt;option value&gt;none&lt;/option&gt;
+                  &lt;option value="top"&gt;top&lt;/option&gt;
+                  &lt;option value="bottom"&gt;bottom&lt;/option&gt;
+                  &lt;option value="zero" selected="selected"&gt;zero&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Fill Color&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="fillcolor" onchange="updateStyle()"&gt;
+                  &lt;option value="fill:green;"&gt;green&lt;/option&gt;
+                  &lt;option value="fill:red;"&gt;red&lt;/option&gt;
+                  &lt;option value="fill:blue;" selected="selected"&gt;blue&lt;/option&gt;
+                  &lt;option value="fill:black;"&gt;black&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Fill Opacity&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="fillopacity" onchange="updateStyle()"&gt;
+                  &lt;option value="fill-opacity:0.1;"&gt;0.1&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.2;"&gt;0.2&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.3;"&gt;0.3&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.4;"&gt;0.4&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.5;"&gt;0.5&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.6;" selected="selected"
+                    &gt;0.6&lt;/option
+                  &gt;
+                  &lt;option value="fill-opacity:0.7;"&gt;0.7&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.8;"&gt;0.8&lt;/option&gt;
+                  &lt;option value="fill-opacity:0.9;"&gt;0.9&lt;/option&gt;
+                  &lt;option value="fill-opacity:1;"&gt;1&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Points Shape&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="points" onchange="updateStyle()"&gt;
+                  &lt;option value&gt;none&lt;/option&gt;
+                  &lt;option value="circle"&gt;circle&lt;/option&gt;
+                  &lt;option value="square" selected="selected"&gt;square&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Points Size&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="pointsize" onchange="updateStyle()"&gt;
+                  &lt;option value="1"&gt;1&lt;/option&gt;
+                  &lt;option value="2"&gt;2&lt;/option&gt;
+                  &lt;option value="3"&gt;3&lt;/option&gt;
+                  &lt;option value="4"&gt;4&lt;/option&gt;
+                  &lt;option value="5"&gt;5&lt;/option&gt;
+                  &lt;option value="6" selected="selected"&gt;6&lt;/option&gt;
+                  &lt;option value="8"&gt;8&lt;/option&gt;
+                  &lt;option value="10"&gt;10&lt;/option&gt;
+                  &lt;option value="15"&gt;15&lt;/option&gt;
+                  &lt;option value="20"&gt;20&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Points Color&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="pointcolor" onchange="updateStyle()"&gt;
+                  &lt;option value="stroke:green;"&gt;green&lt;/option&gt;
+                  &lt;option value="stroke:red;"&gt;red&lt;/option&gt;
+                  &lt;option value="stroke:blue;" selected="selected"&gt;blue&lt;/option&gt;
+                  &lt;option value="stroke:black;"&gt;black&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Point Line Thickness&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="pointthickness" onchange="updateStyle()"&gt;
+                  &lt;option value="stroke-width:0;"&gt;0&lt;/option&gt;
+                  &lt;option value="stroke-width:1;"&gt;1&lt;/option&gt;
+                  &lt;option value="stroke-width:2;" selected="selected"&gt;2&lt;/option&gt;
+                  &lt;option value="stroke-width:3;"&gt;3&lt;/option&gt;
+                  &lt;option value="stroke-width:4;"&gt;4&lt;/option&gt;
+                  &lt;option value="stroke-width:5;"&gt;5&lt;/option&gt;
+                  &lt;option value="stroke-width:6;"&gt;6&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+            &lt;tr&gt;&lt;/tr&gt;
+            &lt;tr&gt;
+              &lt;td&gt;Points Fill Color&lt;/td&gt;
+              &lt;td&gt;
+                &lt;select id="pointfill" onchange="updateStyle()"&gt;
+                  &lt;option value="fill:green;"&gt;green&lt;/option&gt;
+                  &lt;option value="fill:red;"&gt;red&lt;/option&gt;
+                  &lt;option value="fill:blue;" selected="selected"&gt;blue&lt;/option&gt;
+                  &lt;option value="fill:black;"&gt;black&lt;/option&gt;
+                &lt;/select&gt;
+              &lt;/td&gt;
+            &lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var container = document.getElementById("visualization");
+var items = [
+  { x: "2014-06-11", y: 10, group: 0 },
+  { x: "2014-06-12", y: 25, group: 0 },
+  { x: "2014-06-13", y: 30, group: 0 },
+  { x: "2014-06-14", y: -10, group: 0 },
+  { x: "2014-06-15", y: 15, group: 0 },
+  { x: "2014-06-16", y: 30, group: 0 }
+];
+
+var dataset = new vis.DataSet(items);
+var options = {
+  start: "2014-06-10",
+  end: "2014-06-18",
+  dataAxis: {
+    showMinorLabels: false,
+    icons: true
+  }
+};
+
+var groupData = {
+  id: 0,
+  content: "Group Name",
+  options: {
+    drawPoints: {
+      style: "square" // square, circle
+    },
+    shaded: {
+      orientation: "zero" // top, bottom
+    }
+  }
+};
+
+var groups = new vis.DataSet();
+groups.add(groupData);
+
+var graph2d = new vis.Graph2d(container, dataset, groups, options);
+updateStyle();
+
+function updateStyle() {
+  groupData.style = "";
+  groupData.style += document.getElementById("color").value;
+  groupData.style += document.getElementById("line").value;
+  groupData.style += document.getElementById("thickness").value;
+
+  groupData.options.drawPoints = {};
+  groupData.options.drawPoints.styles = "";
+  groupData.options.drawPoints.style = document.getElementById("points").value;
+  groupData.options.drawPoints.styles += document.getElementById(
+    "pointcolor"
+  ).value;
+  groupData.options.drawPoints.styles += document.getElementById(
+    "pointthickness"
+  ).value;
+  groupData.options.drawPoints.styles += document.getElementById(
+    "pointfill"
+  ).value;
+  groupData.options.drawPoints.size = Number(
+    document.getElementById("pointsize").value
+  );
+  if (groupData.options.drawPoints.style == "") {
+    groupData.options.drawPoints = false;
+  }
+
+  groupData.options.shaded = {};
+  groupData.options.shaded.style = "";
+  groupData.options.shaded.style += document.getElementById("fillcolor").value;
+  groupData.options.shaded.style += document.getElementById(
+    "fillopacity"
+  ).value;
+  groupData.options.shaded.orientation = document.getElementById("fill").value;
+  if (groupData.options.shaded.orientation == "") {
+    groupData.options.shaded = false;
+  }
+
+  var groups = new vis.DataSet();
+  groups.add(groupData);
+  graph2d.setGroups(groups);
+}
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.css,https://visjs.github.io/vis-timeline/dist/vis-timeline-graph2d.min.js"
+      />
+      <input type="hidden" name="title" value="Graph2d | Dynamic Styling" />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">
+        Open JSFiddle
+      </button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>
