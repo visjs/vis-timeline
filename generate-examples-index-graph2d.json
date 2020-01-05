@@ -1,0 +1,23 @@
+{
+  "base-url": "https://visjs.github.io/vis-timeline/",
+  "output-directory": "./examples/graph2d",
+
+  "assets-local-directory": "./examples/graph2d-generated",
+  "assets-web-directory": "../graph2d-generated",
+  "examples-local-directory": "./examples/graph2d",
+  "examples-web-directory": "./",
+  "pages-local-directory": "./examples/graph2d-generated",
+  "pages-web-directory": "../graph2d-generated",
+
+  "index": true,
+  "lint": true,
+  "playgrounds": true,
+  "screenshots": true,
+
+  "container-id": "visualization",
+  "format": "html",
+  "parallel": 6,
+  "screenshot-script": "./scripts/examples-index/screenshot-script.js",
+  "title": "Vis Graph2D Examples",
+  "verify": 100
+}

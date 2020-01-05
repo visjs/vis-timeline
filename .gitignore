@@ -13,7 +13,13 @@ npm-debug.log
 # temporary files
 .*.sw[op]
 .commits.tmp
-gen/
 .nyc_output/
+/examples/graph2d-generated/
+/examples/graph2d/examples.css
+/examples/graph2d/index.html
+/examples/timeline-generated/
+/examples/timeline/examples.css
+/examples/timeline/index.html
 coverage/
 dist/
+gen/
