@@ -29,8 +29,8 @@
     "build": "rollup --config rollup.config.js",
     "watch": "rollup --watch --config rollup.config.js",
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
-    "generate-examples-index:timeline": "generate-examples-index -t \"Vis Timeline Examples\" -d examples/timeline -c visualization -w https://visjs.github.io/vis-timeline -S scripts/examples-index/screenshot-script.js -lis",
-    "generate-examples-index:graph2d": "generate-examples-index -t \"Vis Graph2D Examples\" -d examples/graph2d -c visualization -w https://visjs.github.io/vis-timeline -S scripts/examples-index/screenshot-script.js -lis",
+    "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
+    "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
     "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
     "clean": "rimraf 'dist/*'",
     "contributors:update": "git-authors-cli",
@@ -90,7 +90,7 @@
     "semantic-release": "^15.13.21",
     "uglify-js": "^3.6.0",
     "uglifycss": "0.0.29",
-    "vis-dev-utils": "^1.2.0"
+    "vis-dev-utils": "^2.0.0"
   },
   "collective": {
     "type": "opencollective",
