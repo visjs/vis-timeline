@@ -282,6 +282,7 @@ export interface TimelineOptions {
   moveable?: boolean;
   multiselect?: boolean;
   multiselectPerGroup?: boolean;
+  multiselectLongPressTime?: number;
   onAdd?: TimelineOptionsItemCallbackFunction;
   onAddGroup?: TimelineOptionsGroupCallbackFunction;
   onDropObjectOnItem?: any; // TODO
