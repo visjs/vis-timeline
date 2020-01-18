@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-18T16:29:42.609Z
+ * @date    2020-01-18T20:22:35.077Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -35075,6 +35075,12 @@ function () {
 
       function onMouseScrollSide(event) {
         if (!me.options.verticalScroll) return;
+
+        if (me._isProgramaticallyScrolled) {
+          me._isProgramaticallyScrolled = false;
+          return;
+        }
+
         event.preventDefault();
 
         if (me.isActive()) {
@@ -36271,6 +36277,7 @@ function () {
         this.dom.right.parentNode.scrollTop = -this.props.scrollTop;
       }
 
+      this._isProgramaticallyScrolled = true;
       return this.props.scrollTop;
     }
     /**
