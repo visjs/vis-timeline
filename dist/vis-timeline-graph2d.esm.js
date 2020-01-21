@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-21T20:13:27.594Z
+ * @date    2020-01-21T20:14:55.576Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -45485,8 +45485,7 @@ function (_Component) {
     key: "_onUpdateItem",
     value: function _onUpdateItem(item) {
       if (!this.options.selectable) return;
-      if (!this.options.editable.updateTime) return;
-      if (!this.options.editable.updateGroup) return;
+      if (!this.options.editable.updateTime && !this.options.editable.updateGroup) return;
       var me = this;
 
       if (item) {
