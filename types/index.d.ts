@@ -272,6 +272,7 @@ export interface TimelineOptions {
   itemsAlwaysDraggable?: TimelineOptionsItemsAlwaysDraggableType;
   locale?: string;
   locales?: any; // TODO
+  longSelectPressTime?: number,
   moment?: MomentConstructor;
   margin?: TimelineOptionsMarginType;
   max?: DateType;
@@ -282,7 +283,6 @@ export interface TimelineOptions {
   moveable?: boolean;
   multiselect?: boolean;
   multiselectPerGroup?: boolean;
-  multiselectLongPressTime?: number;
   onAdd?: TimelineOptionsItemCallbackFunction;
   onAddGroup?: TimelineOptionsGroupCallbackFunction;
   onDropObjectOnItem?: any; // TODO
