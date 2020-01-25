@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-21T20:14:55.576Z
+ * @date    2020-01-25T13:10:20.539Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -35357,7 +35357,7 @@ function () {
 
       if (options) {
         // copy the known options
-        var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll'];
+        var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll', 'longSelectPressTime'];
         util$2.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = 'hidden';
 
@@ -36087,6 +36087,10 @@ function () {
       var contentsOverflow = props.center.height > props.centerContainer.height;
       this.hammer.get('pan').set({
         direction: contentsOverflow ? Hammer$1.DIRECTION_ALL : Hammer$1.DIRECTION_HORIZONTAL
+      }); // set the long press time
+
+      this.hammer.get('press').set({
+        time: this.options.longSelectPressTime
       }); // redraw all components
 
       forEach$7(_context20 = this.components).call(_context20, function (component) {
@@ -42986,6 +42990,7 @@ function (_Component) {
       groupOrder: 'order',
       selectable: true,
       multiselect: false,
+      longSelectPressTime: 251,
       itemsAlwaysDraggable: {
         item: false,
         range: false
@@ -43364,7 +43369,7 @@ function (_Component) {
         var _context18, _context20;
 
         // copy all options that we know
-        var fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
+        var fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'longSelectPressTime', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
         util$2.selectiveExtend(fields, this.options, options);
 
         if ('itemsAlwaysDraggable' in options) {
@@ -43950,6 +43955,9 @@ function (_Component) {
         this.dom.axis.style.left = '0';
       }
 
+      this.hammer.get('press').set({
+        time: this.options.longSelectPressTime
+      });
       this.initialItemSetDrawn = true; // check if this component is resized
 
       resized = this._isResized() || resized;
@@ -46690,6 +46698,9 @@ var allOptions$1 = {
       object: object
     }
   },
+  longSelectPressTime: {
+    number: number
+  },
   margin: {
     axis: {
       number: number
@@ -46978,6 +46989,7 @@ var configureOptions = {
     height: '',
     //hiddenDates: {object, array},
     locale: '',
+    longSelectPressTime: 251,
     margin: {
       axis: [20, 0, 100, 1],
       item: {
@@ -48797,6 +48809,7 @@ function (_Core) {
 
     _this.defaultOptions = {
       autoResize: true,
+      longSelectPressTime: 251,
       orientation: {
         axis: 'bottom',
         // axis orientation: 'bottom', 'top', or 'both'
