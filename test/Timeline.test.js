@@ -44,4 +44,10 @@ describe('Timeline', () => {
 		timeline
 			.setSelection([events[0].id], {animation: false});
 	});
+
+	it("setItems(null) should not crash", function() {
+		const timeline = new Timeline(document.createElement("div"), []);
+
+		timeline.setItems(null);
+	});
 });

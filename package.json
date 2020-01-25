@@ -50,7 +50,7 @@
     "keycharm": "^0.3.0",
     "moment": "2.24.0",
     "propagating-hammerjs": "1.4.7",
-    "vis-data": "6.3.3",
+    "vis-data": "6.3.5",
     "vis-util": "2.1.0"
   },
   "devDependencies": {
