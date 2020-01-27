@@ -28,8 +28,8 @@ of the project.
 <html>
 <head>
   <title>Network</title>
-  <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.js"></script>
-  <link href="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="//unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
     #mynetwork {
       width: 600px;
@@ -63,6 +63,62 @@ of the project.
 </body>
 </html>
 ```
+
+## Builds
+
+There are three builds provided at the moment.
+
+### Standalone build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/standalone";
+```
+
+This has no dependencies and therefore is great for things like MWEs but has
+more issues with interoperability and bundle bloat. For more information see the
+following (example)[https://visjs.github.io/vis-timeline/examples/timeline/standalone-build.html].
+
+### Peer build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/peer/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/peer";
+```
+
+For this build you have to load Vis Data and Moment packages yourself. The
+advantage here is that it works well with other Vis packages and it is also
+possible to reduce bundle size by omitting unneeded locales. For more
+information see the following
+(example)[https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html].
+
+### Legacy build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline";
+```
+
+This is kept for backwards compatibility only. It is deprecated and will be
+removed eventually. Don't use this, please.
 
 ## Build
 
