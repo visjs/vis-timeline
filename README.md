@@ -27,11 +27,11 @@ of the project.
 <!doctype html>
 <html>
 <head>
-  <title>Network</title>
+  <title>Timeline</title>
   <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
   <link href="//unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
-    #mynetwork {
+    #visualization {
       width: 600px;
       height: 400px;
       border: 1px solid lightgray;
