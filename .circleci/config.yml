@@ -50,6 +50,9 @@ jobs:
           root: .
           paths:
             - 'dist'
+            - 'peer'
+            - 'standalone'
+            - 'styles'
 
   examples:
     executor: node
