@@ -98,10 +98,9 @@ following (example)[https://visjs.github.io/vis-timeline/examples/timeline/stand
 import { Timeline } from "vis-timeline/peer";
 ```
 
-For this build you have to load Vis Data and Moment packages yourself. The
-advantage here is that it works well with other Vis packages and it is also
-possible to reduce bundle size by omitting unneeded locales. For more
-information see the following
+For this build to work you have to load Vis Data and Moment (including locales
+except English) packages yourself. The advantage here is that it works well with
+other packages. For more information see the following
 (example)[https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html].
 
 ### ESNext build
@@ -119,8 +118,8 @@ import { Timeline } from "vis-timeline/esnext";
 
 This is the same as the peer build but without any bundled dependencies or
 pollyfills. It's indented to be used with bundlers like Rollup or Webpack which
-will fetch the dependencies, prevent duplicate dependencies in the bundle and
-use transpilers to add necessary polyfills etc.
+will fetch the dependencies, prevent duplicate dependencies in the bundle, use
+transpilers to add necessary polyfills etc.
 
 ### Legacy build
 
@@ -135,8 +134,9 @@ use transpilers to add necessary polyfills etc.
 import { Timeline } from "vis-timeline";
 ```
 
-This is kept for backwards compatibility only. It is deprecated and will be
-removed eventually. Don't use this, please.
+This is solely kept for backwards compatibility. It is deprecated and will be
+removed in case of URLs and replaced by the peer build in case of
+Node.js/bundlers. Don't use this, please.
 
 ## Build
 
