@@ -11,11 +11,24 @@ import packageJSON from "./package.json";
 const banner = generateHeader({ name: "vis-timeline and vis-graph2d" });
 
 const globals = {
+  "@egjs/hammerjs": "Hammer",
+  "emitter-component": "Emitter",
+  "propagating-hammerjs": "propagating",
   "vis-data": "vis",
+  "vis-util": "vis",
+  keycharm: "keycharm",
   moment: "moment"
 };
 
-const external = Object.keys(packageJSON.peerDependencies);
+// These are used in the public API and if there are different versions imported
+// by the user compatibility issues may arise.
+const externalPeer = ["moment", "vis-data"];
+// These have big potential to cause bundle bloat.
+const externalESNext = [].concat.call(
+  [],
+  Object.keys(packageJSON.dependencies),
+  Object.keys(packageJSON.peerDependencies)
+);
 
 const commonOutputESM = {
   banner,
@@ -38,12 +51,19 @@ const commonPlugins = [
     targets: [
       {
         src: "dev-lib/bundle-esm.js",
-        dest: ["peer", "standalone"],
+        dest: ["esnext", "peer", "standalone"],
         rename: "index.js"
       },
       {
         src: "dev-lib/bundle-index.js",
-        dest: ["peer/esm", "peer/umd", "standalone/esm", "standalone/umd"],
+        dest: [
+          "esnext/esm",
+          "esnext/umd",
+          "peer/esm",
+          "peer/umd",
+          "standalone/esm",
+          "standalone/umd"
+        ],
         rename: "index.js"
       }
     ]
@@ -53,11 +73,17 @@ const commonPlugins = [
   }),
   commonjs(),
   nodeBuiltins(),
-  nodeResolve(),
-  babel({
-    runtimeHelpers: true
-  })
+  nodeResolve()
 ];
+
+const babelPlugin = babel({
+  runtimeHelpers: true
+});
+const terserPlugin = terser({
+  output: {
+    comments: "some"
+  }
+});
 
 export default [
   {
@@ -70,7 +96,7 @@ export default [
         file: "standalone/umd/vis-timeline-graph2d.js"
       })
     ],
-    plugins: commonPlugins
+    plugins: [].concat.call([], commonPlugins, [babelPlugin])
   },
   {
     input: "lib/bundle-standalone.js",
@@ -82,17 +108,11 @@ export default [
         file: "standalone/umd/vis-timeline-graph2d.min.js"
       })
     ],
-    plugins: [].concat(commonPlugins, [
-      terser({
-        output: {
-          comments: "some"
-        }
-      })
-    ])
+    plugins: [].concat(commonPlugins, [babelPlugin, terserPlugin])
   },
 
   {
-    external,
+    external: externalPeer,
     input: "lib/bundle-peer.js",
     output: [
       Object.assign({}, commonOutputESM, {
@@ -102,10 +122,10 @@ export default [
         file: "peer/umd/vis-timeline-graph2d.js"
       })
     ],
-    plugins: commonPlugins
+    plugins: [].concat.call([], commonPlugins, [babelPlugin])
   },
   {
-    external,
+    external: externalPeer,
     input: "lib/bundle-peer.js",
     output: [
       Object.assign({}, commonOutputESM, {
@@ -115,12 +135,33 @@ export default [
         file: "peer/umd/vis-timeline-graph2d.min.js"
       })
     ],
-    plugins: [].concat(commonPlugins, [
-      terser({
-        output: {
-          comments: "some"
-        }
+    plugins: [].concat(commonPlugins, [babelPlugin, terserPlugin])
+  },
+
+  {
+    external: externalESNext,
+    input: "lib/bundle-peer.js",
+    output: [
+      Object.assign({}, commonOutputESM, {
+        file: "esnext/esm/vis-timeline-graph2d.js"
+      }),
+      Object.assign({}, commonOutputUMD, {
+        file: "esnext/umd/vis-timeline-graph2d.js"
       })
-    ])
+    ],
+    plugins: commonPlugins
+  },
+  {
+    external: externalESNext,
+    input: "lib/bundle-peer.js",
+    output: [
+      Object.assign({}, commonOutputESM, {
+        file: "esnext/esm/vis-timeline-graph2d.min.js"
+      }),
+      Object.assign({}, commonOutputUMD, {
+        file: "esnext/umd/vis-timeline-graph2d.min.js"
+      })
+    ],
+    plugins: [].concat(commonPlugins, [terserPlugin])
   }
 ];

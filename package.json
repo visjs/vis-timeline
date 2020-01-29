@@ -25,6 +25,7 @@
   "types": "./types/index.d.ts",
   "files": [
     "dist",
+    "esnext",
     "peer",
     "standalone",
     "styles",
@@ -39,7 +40,7 @@
     "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
     "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
     "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
-    "clean": "rimraf \"{dist,peer,standalone,styles}/*\"",
+    "clean": "rimraf \"{dist,esnext,peer,standalone,styles}/*\"",
     "contributors:update": "git-authors-cli",
     "postinstall": "opencollective postinstall || exit 0",
     "preparepublish": "npm run contributors:update",
@@ -50,6 +51,13 @@
       "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
       "pre-push": "npm test"
     }
+  },
+  "dependencies": {
+    "@egjs/hammerjs": "^2.0.17",
+    "emitter-component": "^1.1.1",
+    "keycharm": "^0.3.0",
+    "propagating-hammerjs": "^1.4.7",
+    "vis-util": "^2.1.0"
   },
   "peerDependencies": {
     "moment": "^2.24.0",

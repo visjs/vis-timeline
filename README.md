@@ -66,7 +66,7 @@ of the project.
 
 ## Builds
 
-There are three builds provided at the moment.
+There are four builds provided at the moment.
 
 ### Standalone build
 
@@ -103,6 +103,24 @@ advantage here is that it works well with other Vis packages and it is also
 possible to reduce bundle size by omitting unneeded locales. For more
 information see the following
 (example)[https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html].
+
+### ESNext build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/esnext/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/esnext";
+```
+
+This is the same as the peer build but without any bundled dependencies or
+pollyfills. It's indented to be used with bundlers like Rollup or Webpack which
+will fetch the dependencies, prevent duplicate dependencies in the bundle and
+use transpilers to add necessary polyfills etc.
 
 ### Legacy build
 

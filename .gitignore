@@ -16,6 +16,7 @@ npm-debug.log
 .nyc_output/
 /coverage/
 /dist/
+/esnext/
 /examples/graph2d-generated/
 /examples/graph2d/examples.css
 /examples/graph2d/index.html
