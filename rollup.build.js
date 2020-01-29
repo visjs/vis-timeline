@@ -27,7 +27,12 @@ const externalPeer = ["moment", "vis-data"];
 const externalESNext = [].concat.call(
   [],
   Object.keys(packageJSON.dependencies),
-  Object.keys(packageJSON.peerDependencies)
+  Object.keys(packageJSON.peerDependencies),
+
+  // This will show a warning if any of them is used. The idea behind it is that
+  // if someone accidentaly imports a dev dependency they won't accidentaly add
+  // it to globals and Rollup will warn them about their error.
+  Object.keys(packageJSON.devDependencies)
 );
 
 const commonOutputESM = {
