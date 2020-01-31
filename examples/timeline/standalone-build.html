@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>
+      Timeline | Standalone Build
+    </title>
+
+    <link
+      href="../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script
+      type="text/javascript"
+      src="../../standalone/umd/vis-timeline-graph2d.min.js"
+    ></script>
+  </head>
+
+  <body>
+    <div id="title">
+      <h1>Timeline</h1>
+      <h2>Standalone Build</h2>
+    </div>
+
+    <p>
+      A basic timeline. You can move and zoom the timeline, and select items.
+    </p>
+
+    <div id="visualization"></div>
+
+    <p>
+      Standalone build doesn't work with other packages from the Vis family
+      because it bundles all dependencies. This leads to situation where
+      DataSets (and other dependencies) from one package (e.g. Network) don't
+      work in Timeline because Timeline expects it's own bundled DataSets to be
+      used. It is inteded as a convenience build for cases where multiple
+      packages are not necessary but ease of use is (like JSFiddle MWEs or
+      examples). This build is available in ESM and UMD versions each of them
+      has minified and unminified variant.
+    </p>
+
+    <h4>When to use</h4>
+    <p>
+      When the only thing you need is Timeline (no Network, Graph3D etc.) and
+      don't want to deal with dependencies (all are bundled in this build ready
+      to use).
+    </p>
+
+    <h4>How to use</h4>
+
+    <h5>Browser UMD</h5>
+    <pre><code>&lt;script type=&quot;text/javascript&quot; src=&quot;https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js&quot;&gt;&lt;/script&gt;
+&lt;!--
+  Including other packages like Vis Network or Vis Graph3D here won't work.
+  You need the peer build to do that.
+--&gt;
+
+&lt;script type=&quot;text/javascript&quot;&gt;
+// DOM element where the Timeline will be attached
+const container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+const items = new vis.DataSet([
+  { id: 1, content: "item 1", start: "2014-04-20" },
+  { id: 2, content: "item 2", start: "2014-04-14" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+  { id: 5, content: "item 5", start: "2014-04-25" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+]);
+
+// Configuration for the Timeline
+const options = {};
+
+// Create a Timeline
+const timeline = new vis.Timeline(container, items, options);
+&lt;/script&gt;</code></pre>
+
+    <h5>Bundled ESM</h5>
+    <pre><code>import { DataSet, Timeline } from "vis-timeline/standalone";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
+
+// DOM element where the Timeline will be attached
+const container = document.getElementById("visualization");
+
+// Create a DataSet (allows two way data-binding)
+const items = new DataSet([
+  { id: 1, content: "item 1", start: "2014-04-20" },
+  { id: 2, content: "item 2", start: "2014-04-14" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+  { id: 5, content: "item 5", start: "2014-04-25" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+]);
+
+// Configuration for the Timeline
+const options = {};
+
+// Create a Timeline
+const timeline = new Timeline(container, items, options);</code></pre>
+
+    <script type="text/javascript">
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById("visualization");
+
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        { id: 1, content: "item 1", start: "2014-04-20" },
+        { id: 2, content: "item 2", start: "2014-04-14" },
+        { id: 3, content: "item 3", start: "2014-04-18" },
+        { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+        { id: 5, content: "item 5", start: "2014-04-25" },
+        { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+      ]);
+
+      // Configuration for the Timeline
+      var options = {};
+
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, options);
+    </script>
+  </body>
+</html>

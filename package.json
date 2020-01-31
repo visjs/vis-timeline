@@ -20,19 +20,27 @@
     "timeline",
     "graph"
   ],
-  "main": "./dist/vis-timeline-graph2d.min.js",
-  "module": "./dist/vis-timeline-graph2d.esm.js",
-  "types": "./dist/types/index.d.ts",
+  "main": "./dist/umd/vis-timeline-graph2d.js",
+  "module": "./dist/esm/vis-timeline-graph2d.js",
+  "types": "./types/index.d.ts",
+  "files": [
+    "dist",
+    "esnext",
+    "peer",
+    "standalone",
+    "styles",
+    "types"
+  ],
   "scripts": {
     "test": "mocha --exit --require @babel/register",
     "test-cov": "nyc --reporter=lcov mocha --exit --require @babel/register",
-    "build": "rollup --config rollup.config.js",
+    "build": "rollup --config rollup.build.js && rollup --config rollup.config.js",
     "watch": "rollup --watch --config rollup.config.js",
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
     "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
     "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
     "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
-    "clean": "rimraf 'dist/*'",
+    "clean": "rimraf \"{dist,esnext,peer,standalone,styles}/*\"",
     "contributors:update": "git-authors-cli",
     "postinstall": "opencollective postinstall || exit 0",
     "preparepublish": "npm run contributors:update",
@@ -45,13 +53,15 @@
     }
   },
   "dependencies": {
-    "@egjs/hammerjs": "2.0.17",
-    "emitter-component": "1.1.1",
+    "@egjs/hammerjs": "^2.0.17",
+    "emitter-component": "^1.1.1",
     "keycharm": "^0.3.0",
-    "moment": "2.24.0",
-    "propagating-hammerjs": "1.4.7",
-    "vis-data": "6.3.5",
-    "vis-util": "2.1.0"
+    "propagating-hammerjs": "^1.4.7",
+    "vis-util": "^2.1.0"
+  },
+  "peerDependencies": {
+    "moment": "^2.24.0",
+    "vis-data": "^6.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.4",
@@ -63,9 +73,11 @@
     "@babel/runtime-corejs3": "^7.7.7",
     "@commitlint/cli": "^8.1.0",
     "@commitlint/config-conventional": "^8.1.0",
+    "@egjs/hammerjs": "2.0.17",
     "babel-plugin-css-modules-transform": "^1.6.2",
     "core-js-pure": "^3.2.1",
     "cpy-cli": "^2.0.0",
+    "emitter-component": "1.1.1",
     "eslint": "^4.3.0",
     "gh-pages": "^2.1.1",
     "git-authors-cli": "^1.0.18",
@@ -73,10 +85,13 @@
     "jsdoc": "^3.5.5",
     "jsdom": "11.3.0",
     "jsdom-global": "^3.0.2",
+    "keycharm": "^0.3.0",
     "mocha": "^5.2.0",
+    "moment": "2.24.0",
     "nyc": "^14.1.1",
     "opencollective": "^1.0.3",
     "prettier": "^1.19.1",
+    "propagating-hammerjs": "1.4.7",
     "rimraf": "^2.6.1",
     "rollup": "^1.16.7",
     "rollup-plugin-babel": "^4.3.3",
@@ -90,7 +105,9 @@
     "semantic-release": "^15.13.21",
     "uglify-js": "^3.6.0",
     "uglifycss": "0.0.29",
-    "vis-dev-utils": "^2.0.0"
+    "vis-data": "6.3.5",
+    "vis-dev-utils": "2.0.0",
+    "vis-util": "2.1.0"
   },
   "collective": {
     "type": "opencollective",
