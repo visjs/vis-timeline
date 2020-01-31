@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T08:30:26.760Z
+ * @date    2020-01-31T08:37:17.391Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6944,7 +6944,11 @@
             item: me.id
           });
         });
-        this.hammerDragCenter.on('panstart', me.parent.itemSet._onDragStart.bind(me.parent.itemSet));
+        this.hammerDragCenter.on('panstart', event => {
+          // do not allow this event to propagate to the Range
+          event.stopPropagation();
+          me.parent.itemSet._onDragStart(event);
+        });
         this.hammerDragCenter.on('panmove',  me.parent.itemSet._onDrag.bind(me.parent.itemSet));
         this.hammerDragCenter.on('panend',   me.parent.itemSet._onDragEnd.bind(me.parent.itemSet));
 

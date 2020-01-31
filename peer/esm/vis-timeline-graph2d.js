@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T08:30:26.760Z
+ * @date    2020-01-31T08:37:17.391Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -19683,7 +19683,7 @@ function () {
     key: "_repaintDragCenter",
     value: function _repaintDragCenter() {
       if (this.selected && this.options.editable.updateTime && !this.dom.dragCenter) {
-        var _context2, _context3, _context4;
+        var _context2, _context3;
 
         var me = this; // create and show drag area
 
@@ -19707,9 +19707,14 @@ function () {
             item: me.id
           });
         });
-        this.hammerDragCenter.on('panstart', bind$2(_context2 = me.parent.itemSet._onDragStart).call(_context2, me.parent.itemSet));
-        this.hammerDragCenter.on('panmove', bind$2(_context3 = me.parent.itemSet._onDrag).call(_context3, me.parent.itemSet));
-        this.hammerDragCenter.on('panend', bind$2(_context4 = me.parent.itemSet._onDragEnd).call(_context4, me.parent.itemSet));
+        this.hammerDragCenter.on('panstart', function (event) {
+          // do not allow this event to propagate to the Range
+          event.stopPropagation();
+
+          me.parent.itemSet._onDragStart(event);
+        });
+        this.hammerDragCenter.on('panmove', bind$2(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
+        this.hammerDragCenter.on('panend', bind$2(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet));
 
         if (this.dom.box) {
           if (this.dom.dragLeft) {
@@ -19853,9 +19858,9 @@ function () {
         var templateFunction;
 
         if (this.options.tooltipOnItemUpdateTime && this.options.tooltipOnItemUpdateTime.template) {
-          var _context5;
+          var _context4;
 
-          templateFunction = bind$2(_context5 = this.options.tooltipOnItemUpdateTime.template).call(_context5, this);
+          templateFunction = bind$2(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
           content = templateFunction(this.data);
         } else {
           content = "start: ".concat(moment(this.data.start).format('MM/DD/YYYY hh:mm'));
@@ -19901,9 +19906,9 @@ function () {
       var itemVisibleFrameContentElement = frameElement.getElementsByClassName('vis-item-visible-frame')[0];
 
       if (this.options.visibleFrameTemplate) {
-        var _context6;
+        var _context5;
 
-        visibleFrameTemplateFunction = bind$2(_context6 = this.options.visibleFrameTemplate).call(_context6, this);
+        visibleFrameTemplateFunction = bind$2(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
         itemVisibleFrameContent = visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement);
       } else {
         itemVisibleFrameContent = '';
@@ -19934,9 +19939,9 @@ function () {
       }
 
       if (this.options.template) {
-        var _context7;
+        var _context6;
 
-        templateFunction = bind$2(_context7 = this.options.template).call(_context7, this);
+        templateFunction = bind$2(_context6 = this.options.template).call(_context6, this);
         content = templateFunction(itemData, element, this.data);
       } else {
         content = this.data.content;
@@ -20117,9 +20122,9 @@ function () {
     key: "getTitle",
     value: function getTitle() {
       if (this.options.tooltip && this.options.tooltip.template) {
-        var _context8;
+        var _context7;
 
-        var templateFunction = bind$2(_context8 = this.options.tooltip.template).call(_context8, this);
+        var templateFunction = bind$2(_context7 = this.options.tooltip.template).call(_context7, this);
 
         return templateFunction(this._getItemData(), this.data);
       }
