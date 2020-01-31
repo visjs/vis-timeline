@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T08:37:17.391Z
+ * @date    2020-01-31T14:31:30.088Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -8785,6 +8785,7 @@
         this.props.touch.end = this.end;
         this.props.touch.allowDragging = true;
         this.props.touch.center = null;
+        this.props.touch.centerDate = null;
         this.scaleOffset = 0;
         this.deltaDifference = 0; // Disable the browser default handling of this event.
 
@@ -8807,13 +8808,12 @@
 
         if (!this.props.touch.center) {
           this.props.touch.center = this.getPointer(event.center, this.body.dom.center);
+          this.props.touch.centerDate = this._pointerToDate(this.props.touch.center);
         }
 
         this.stopRolling();
         var scale = 1 / (event.scale + this.scaleOffset);
-
-        var centerDate = this._pointerToDate(this.props.touch.center);
-
+        var centerDate = this.props.touch.centerDate;
         var hiddenDuration = getHiddenDurationBetween(this.body.hiddenDates, this.start, this.end);
         var hiddenDurationBefore = getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this, centerDate);
         var hiddenDurationAfter = hiddenDuration - hiddenDurationBefore; // calculate new start and end

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T08:37:17.391Z
+ * @date    2020-01-31T14:31:30.088Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1521,6 +1521,7 @@ class Range extends Component {
     this.props.touch.end = this.end;
     this.props.touch.allowDragging = true;
     this.props.touch.center = null;
+    this.props.touch.centerDate = null;
     this.scaleOffset = 0;
     this.deltaDifference = 0;
     // Disable the browser default handling of this event.
@@ -1543,12 +1544,12 @@ class Range extends Component {
 
     if (!this.props.touch.center) {
       this.props.touch.center = this.getPointer(event.center, this.body.dom.center);
+      this.props.touch.centerDate = this._pointerToDate(this.props.touch.center);
     }
 
     this.stopRolling();
-
     const scale = 1 / (event.scale + this.scaleOffset);
-    const centerDate = this._pointerToDate(this.props.touch.center);
+    const centerDate = this.props.touch.centerDate;
 
     const hiddenDuration = getHiddenDurationBetween(this.body.hiddenDates, this.start, this.end);
     const hiddenDurationBefore = getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this, centerDate);
@@ -1561,7 +1562,7 @@ class Range extends Component {
     // snapping times away from hidden zones
     this.startToFront = 1 - scale <= 0; // used to do the right auto correction with periodic hidden times
     this.endToFront = scale - 1 <= 0;   // used to do the right auto correction with periodic hidden times
-
+    
     const safeStart = snapAwayFromHidden(this.body.hiddenDates, newStart, 1 - scale, true);
     const safeEnd = snapAwayFromHidden(this.body.hiddenDates, newEnd, scale - 1, true);
     if (safeStart != newStart || safeEnd != newEnd) {
@@ -1571,7 +1572,7 @@ class Range extends Component {
       newStart = safeStart;
       newEnd = safeEnd;
     }
-
+    
     const options = {
       animation: false,
       byUser: true,
