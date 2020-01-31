@@ -25,7 +25,7 @@ const babelConfig = {
 };
 
 export default [{
-	input: 'index.js',
+	input: 'lib/bundle-legacy.js',
 	output: {
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
@@ -44,7 +44,7 @@ export default [{
 		copyStatic
 	]
 }, {
-	input: 'index.js',
+	input: 'lib/bundle-legacy.js',
 	output: {
 		file: 'dist/vis-timeline-graph2d.min.js',
 		name: 'vis',

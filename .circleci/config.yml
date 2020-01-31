@@ -50,6 +50,10 @@ jobs:
           root: .
           paths:
             - 'dist'
+            - 'esnext'
+            - 'peer'
+            - 'standalone'
+            - 'styles'
 
   examples:
     executor: node
@@ -113,7 +117,7 @@ jobs:
       - run:
           name: Publish GitHub Pages
           command: |
-            npx gh-pages --dist . --message "chore: update to $(git rev-parse HEAD) [ci skip]" --repo "$(node -e 'process.stdout.write(require("./package.json").repository.url)')" --src '{{coverage,dist,docs,examples}/**/*,LICENSE*,*.{html,md}}'
+            npx gh-pages --dist . --message "chore: update to $(git rev-parse HEAD) [ci skip]" --repo "$(node -e 'process.stdout.write(require("./package.json").repository.url)')" --src '{{coverage,dist,docs,esnext,examples,peer,standalone,styles,types}/**/*,LICENSE*,*.{html,md}}'
 
   release:
     executor: node
