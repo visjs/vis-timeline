@@ -1,6 +1,6 @@
 require.config({
   paths: {
-    vis: '../../../../../dist/vis-timeline-graph2d.min'
+    vis: '../../../../../standalone/umd/vis-timeline-graph2d.min'
   }
 });
 
