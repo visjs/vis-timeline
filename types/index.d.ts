@@ -303,6 +303,7 @@ export interface TimelineOptions {
   showCurrentTime?: boolean;
   showMajorLabels?: boolean;
   showMinorLabels?: boolean;
+  showWeekScale?: boolean;
   showTooltips?: boolean;
   stack?: boolean;
   stackSubgroups?: boolean;
@@ -416,6 +417,7 @@ export interface Graph2dDataAxisOption {
   orientation?: TimelineOptionsOrientationType;
   showMinorLabels?: boolean;
   showMajorLabels?: boolean;
+  showWeekScale?: boolean;
   majorLinesOffset?: number;
   minorLinesOffset?: number;
   labelOffsetX?: number;
@@ -475,6 +477,7 @@ export interface Graph2dOptions {
   showCurrentTime?: boolean;
   showMajorLabels?: boolean;
   showMinorLabels?: boolean;
+  showWeekScale?: boolean;
   sort?: boolean;
   stack?: boolean;
   start?: DateType;
