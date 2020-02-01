@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T14:38:43.526Z
+ * @date    2020-02-01T17:14:21.337Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -9075,14 +9075,14 @@
         const lineOffsetDirection = this.options.rtl ? lineOffset * -1 : lineOffset;
         const dotOffsetDirection = this.options.rtl ? dotOffset * -1 : dotOffset;
 
-        this.dom.line.style.transform = `translateX(${lineOffsetDirection})px`;
+        this.dom.line.style.transform = `translateX(${lineOffsetDirection}px)`;
         this.dom.dot.style.transform = `translateX(${dotOffsetDirection}px)`;
       } else {
-        const lineOffsetDirection = this.options.rtl ? start * -1 : start;
-        const dotOffsetDirection = this.options.rtl ? (start - dotOffsetWidth / 2) * -1 : start - dotOffsetWidth / 2;
+        const lineOffsetDirection = this.options.rtl ? (start * -1) : start;
+        const dotOffsetDirection = this.options.rtl ? ((start - dotOffsetWidth / 2) * -1) : (start - dotOffsetWidth / 2);
 
-        this.dom.line.style.transform = `${lineOffsetDirection}px`;
-        this.dom.dot.style.transform = `${dotOffsetDirection}px`;
+        this.dom.line.style.transform = `translateX(${lineOffsetDirection}px)`;
+        this.dom.dot.style.transform = `translateX(${dotOffsetDirection}px)`;
       }
     }
     
@@ -9410,6 +9410,13 @@
         previous: {
           right: this.dom.box.style.right,
           left: this.dom.box.style.left
+        },
+        dot: {
+          height: this.dom.dot.offsetHeight,
+          width: this.dom.dot.offsetWidth
+        },
+        line: {
+          width: this.dom.line.offsetWidth
         },
         box: {
           width: this.dom.box.offsetWidth,

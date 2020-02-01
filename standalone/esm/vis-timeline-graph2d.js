@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-01-31T14:38:43.526Z
+ * @date    2020-02-01T17:14:21.337Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -42472,15 +42472,15 @@ function (_Item) {
         var dotOffset = lineOffset - dotOffsetWidth / 2;
         var lineOffsetDirection = this.options.rtl ? lineOffset * -1 : lineOffset;
         var dotOffsetDirection = this.options.rtl ? dotOffset * -1 : dotOffset;
-        this.dom.line.style.transform = "translateX(".concat(lineOffsetDirection, ")px");
+        this.dom.line.style.transform = "translateX(".concat(lineOffsetDirection, "px)");
         this.dom.dot.style.transform = "translateX(".concat(dotOffsetDirection, "px)");
       } else {
         var _lineOffsetDirection = this.options.rtl ? start * -1 : start;
 
         var _dotOffsetDirection = this.options.rtl ? (start - dotOffsetWidth / 2) * -1 : start - dotOffsetWidth / 2;
 
-        this.dom.line.style.transform = "".concat(_lineOffsetDirection, "px");
-        this.dom.dot.style.transform = "".concat(_dotOffsetDirection, "px");
+        this.dom.line.style.transform = "translateX(".concat(_lineOffsetDirection, "px)");
+        this.dom.dot.style.transform = "translateX(".concat(_dotOffsetDirection, "px)");
       }
     }
     /**
@@ -42898,6 +42898,13 @@ function (_Item) {
         previous: {
           right: this.dom.box.style.right,
           left: this.dom.box.style.left
+        },
+        dot: {
+          height: this.dom.dot.offsetHeight,
+          width: this.dom.dot.offsetWidth
+        },
+        line: {
+          width: this.dom.line.offsetWidth
         },
         box: {
           width: this.dom.box.offsetWidth,
