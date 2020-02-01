@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-01T21:07:11.945Z
+ * @date    2020-02-01T21:31:22.548Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -33018,13 +33018,14 @@
 	    * @param {Date} [end]           The end date
 	    * @param {number} [minimumStep] Optional. Minimum step size in milliseconds
 	    * @param {Date|Array.<Date>} [hiddenDates] Optional.
-	    * @param {{showMajorLabels: boolean}} [options] Optional.
+	    * @param {{showMajorLabels: boolean, showWeekScale: boolean}} [options] Optional.
 	    * @constructor  TimeStep
 	    */
 	  function TimeStep(start, end, minimumStep, hiddenDates, options) {
 	    classCallCheck$1(this, TimeStep);
 
-	    this.moment = options && options.moment || moment$2; // variables
+	    this.moment = options && options.moment || moment$2;
+	    this.options = options ? options : {}; // variables
 
 	    this.current = this.moment();
 	    this._start = this.moment();
@@ -33048,8 +33049,6 @@
 	    }
 
 	    this.format = TimeStep.FORMAT; // default formatting
-
-	    this.options = options ? options : {};
 	  }
 	  /**
 	   * Set custom constructor function for moment. Can be used to set dates
@@ -33461,7 +33460,7 @@
 	        this.step = 1;
 	      }
 
-	      if (stepDay * 7 > minimumStep) {
+	      if (stepDay * 7 > minimumStep && this.options.showWeekScale) {
 	        this.scale = 'week';
 	        this.step = 1;
 	      }
@@ -34064,6 +34063,7 @@
 	      // axis orientation: 'top' or 'bottom'
 	      showMinorLabels: true,
 	      showMajorLabels: true,
+	      showWeekScale: false,
 	      maxMinorChars: 7,
 	      format: TimeStep.FORMAT,
 	      moment: moment$2,
@@ -34085,6 +34085,7 @@
 	   *                          {string} [orientation.axis]
 	   *                          {boolean} [showMinorLabels]
 	   *                          {boolean} [showMajorLabels]
+	   *                          {boolean} [showWeekScale]
 	   */
 
 
@@ -34093,7 +34094,7 @@
 	    value: function setOptions(options) {
 	      if (options) {
 	        // copy all options that we know
-	        util$2.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
+	        util$2.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'showWeekScale', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
 
 	        util$2.selectiveDeepExtend(['format'], this.options, options);
 
@@ -47275,6 +47276,9 @@
 	  showMinorLabels: {
 	    'boolean': bool
 	  },
+	  showWeekScale: {
+	    'boolean': bool
+	  },
 	  stack: {
 	    'boolean': bool
 	  },
@@ -50501,6 +50505,7 @@
 	      // supported: 'left', 'right'
 	      showMinorLabels: true,
 	      showMajorLabels: true,
+	      showWeekScale: false,
 	      icons: false,
 	      majorLinesOffset: 7,
 	      minorLinesOffset: 4,
@@ -53558,6 +53563,9 @@
 	    showMajorLabels: {
 	      'boolean': bool$1
 	    },
+	    showWeekScale: {
+	      'boolean': bool$1
+	    },
 	    icons: {
 	      'boolean': bool$1
 	    },
@@ -53878,6 +53886,9 @@
 	  showMinorLabels: {
 	    'boolean': bool$1
 	  },
+	  showWeekScale: {
+	    'boolean': bool$1
+	  },
 	  start: {
 	    date: date$1,
 	    number: number$1,
@@ -53955,6 +53966,7 @@
 	    dataAxis: {
 	      showMinorLabels: true,
 	      showMajorLabels: true,
+	      showWeekScale: false,
 	      icons: false,
 	      width: [40, 0, 200, 1],
 	      visible: true,
@@ -54031,6 +54043,7 @@
 	    showCurrentTime: false,
 	    showMajorLabels: true,
 	    showMinorLabels: true,
+	    showWeekScale: false,
 	    start: '',
 	    width: '100%',
 	    zoomable: true,

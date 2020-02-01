@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-01T21:07:11.945Z
+ * @date    2020-02-01T21:31:22.548Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1865,11 +1865,12 @@
       * @param {Date} [end]           The end date
       * @param {number} [minimumStep] Optional. Minimum step size in milliseconds
       * @param {Date|Array.<Date>} [hiddenDates] Optional.
-      * @param {{showMajorLabels: boolean}} [options] Optional.
+      * @param {{showMajorLabels: boolean, showWeekScale: boolean}} [options] Optional.
       * @constructor  TimeStep
       */
     constructor(start, end, minimumStep, hiddenDates, options) {
       this.moment = (options && options.moment) || moment;
+      this.options = options ? options : {};
 
       // variables
       this.current = this.moment();
@@ -1898,8 +1899,6 @@
       }
 
       this.format = TimeStep.FORMAT; // default formatting
-      this.options = options ? options : {};
-
     }
 
     /**
@@ -2154,7 +2153,7 @@
       if (stepYear > minimumStep)             {this.scale = 'year';        this.step = 1;}
       if (stepMonth*3 > minimumStep)          {this.scale = 'month';       this.step = 3;}
       if (stepMonth > minimumStep)            {this.scale = 'month';       this.step = 1;}
-      if (stepDay*7 > minimumStep)            {this.scale = 'week';        this.step = 1;}
+      if (stepDay*7 > minimumStep && this.options.showWeekScale)            {this.scale = 'week';        this.step = 1;}
       if (stepDay*2 > minimumStep)            {this.scale = 'day';         this.step = 2;}
       if (stepDay > minimumStep)              {this.scale = 'day';         this.step = 1;}
       if (stepDay/2 > minimumStep)            {this.scale = 'weekday';     this.step = 1;}
@@ -2609,6 +2608,7 @@
         },  // axis orientation: 'top' or 'bottom'
         showMinorLabels: true,
         showMajorLabels: true,
+        showWeekScale: false,
         maxMinorChars: 7,
         format: TimeStep.FORMAT,
         moment,
@@ -2631,6 +2631,7 @@
      *                          {string} [orientation.axis]
      *                          {boolean} [showMinorLabels]
      *                          {boolean} [showMajorLabels]
+     *                          {boolean} [showWeekScale]
      */
     setOptions(options) {
       if (options) {
@@ -2638,6 +2639,7 @@
         util.selectiveExtend([
           'showMinorLabels',
           'showMajorLabels',
+          'showWeekScale',
           'maxMinorChars',
           'hiddenDates',
           'timeAxis',
@@ -12996,6 +12998,7 @@
     showCurrentTime: { 'boolean': bool},
     showMajorLabels: { 'boolean': bool},
     showMinorLabels: { 'boolean': bool},
+    showWeekScale: { 'boolean': bool},
     stack: { 'boolean': bool},
     stackSubgroups: { 'boolean': bool},
     cluster: { 
@@ -15806,6 +15809,7 @@
         orientation: 'left',  // supported: 'left', 'right'
         showMinorLabels: true,
         showMajorLabels: true,
+        showWeekScale: false,
         icons: false,
         majorLinesOffset: 7,
         minorLinesOffset: 4,
@@ -18613,6 +18617,7 @@
     dataAxis: {
       showMinorLabels: {'boolean': bool$1},
       showMajorLabels: {'boolean': bool$1},
+      showWeekScale: {'boolean': bool$1},
       icons: {'boolean': bool$1},
       width: {string: string$1, number: number$1},
       visible: {'boolean': bool$1},
@@ -18708,6 +18713,7 @@
     showCurrentTime: {'boolean': bool$1},
     showMajorLabels: {'boolean': bool$1},
     showMinorLabels: {'boolean': bool$1},
+    showWeekScale: {'boolean': bool$1},
     start: {date: date$1, number: number$1, string: string$1, moment: moment$2},
     timeAxis: {
       scale: {string: string$1,'undefined': 'undefined'},
@@ -18753,6 +18759,7 @@
       dataAxis: {
         showMinorLabels: true,
         showMajorLabels: true,
+        showWeekScale: false,
         icons: false,
         width: [40,0,200,1],
         visible: true,
@@ -18823,6 +18830,7 @@
       showCurrentTime: false,
       showMajorLabels: true,
       showMinorLabels: true,
+      showWeekScale: false,
       start: '',
       width: '100%',
       zoomable: true,
