@@ -75,7 +75,7 @@
     "@commitlint/config-conventional": "8.3.4",
     "@egjs/hammerjs": "2.0.17",
     "babel-plugin-css-modules-transform": "1.6.2",
-    "core-js-pure": "3.2.1",
+    "core-js-pure": "3.6.4",
     "cpy-cli": "2.0.0",
     "emitter-component": "1.1.1",
     "eslint": "4.19.1",
