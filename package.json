@@ -106,7 +106,7 @@
     "uglify-js": "3.6.0",
     "uglifycss": "0.0.29",
     "vis-data": "6.3.5",
-    "vis-dev-utils": "2.0.0",
+    "vis-dev-utils": "2.1.0",
     "vis-util": "2.1.0"
   },
   "collective": {
