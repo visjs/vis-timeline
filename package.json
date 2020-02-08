@@ -88,7 +88,7 @@
     "keycharm": "0.3.1",
     "mocha": "5.2.0",
     "moment": "2.24.0",
-    "nyc": "14.1.1",
+    "nyc": "15.0.0",
     "opencollective": "1.0.3",
     "prettier": "1.19.1",
     "propagating-hammerjs": "1.4.7",
