@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-01T21:32:16.158Z
+ * @date    2020-02-08T20:11:18.059Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -26950,6 +26950,8 @@ var symbol$6 = symbol$5;
 
 var _typeof_1$2 = createCommonjsModule(function (module) {
   function _typeof(obj) {
+    "@babel/helpers - typeof";
+
     if (typeof symbol$6 === "function" && typeof iterator$8 === "symbol") {
       module.exports = _typeof = function _typeof(obj) {
         return typeof obj;
@@ -27329,7 +27331,7 @@ var map$9 = map$8;
 
 function ownKeys$4(object, enumerableOnly) { var keys = keys$b(object); if (getOwnPropertySymbols$6) { var symbols = getOwnPropertySymbols$6(object); if (enumerableOnly) symbols = filter$6(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$8(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$7(_context8 = ownKeys$4(source, true)).call(_context8, function (key) { defineProperty$h(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$6) { defineProperties$4(target, getOwnPropertyDescriptors$6(source)); } else { var _context9; forEach$7(_context9 = ownKeys$4(source)).call(_context9, function (key) { defineProperty$g(target, key, getOwnPropertyDescriptor$8(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$7(_context8 = ownKeys$4(Object(source), true)).call(_context8, function (key) { defineProperty$h(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$6) { defineProperties$4(target, getOwnPropertyDescriptors$6(source)); } else { var _context9; forEach$7(_context9 = ownKeys$4(Object(source))).call(_context9, function (key) { defineProperty$g(target, key, getOwnPropertyDescriptor$8(source, key)); }); } } return target; }
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
@@ -38388,11 +38390,10 @@ var BACKGROUND = '__background__'; // reserved group id for background items wit
 var ReservedGroupIds = {
   UNGROUPED: UNGROUPED,
   BACKGROUND: BACKGROUND
-  /**
-   * @constructor Group
-   */
-
 };
+/**
+ * @constructor Group
+ */
 
 var Group =
 /*#__PURE__*/
@@ -38788,12 +38789,11 @@ function () {
           })).call(_context6, function (item) {
             return !!item;
           })))
-          /**
-          * Get all visible items in range
-          * @return {array} items
-          */
-
         };
+        /**
+        * Get all visible items in range
+        * @return {array} items
+        */
 
         var getVisibleItems = function getVisibleItems() {
           var _context8, _context9, _context10;
@@ -38953,11 +38953,12 @@ function () {
     key: "_updateItemsVerticalPosition",
     value: function _updateItemsVerticalPosition(margin) {
       for (var i = 0, ii = this.visibleItems.length; i < ii; i++) {
-        var item = this.visibleItems[i];
-        item.repositionY(margin);
+        var _item = this.visibleItems[i];
+
+        _item.repositionY(margin);
 
         if (!this.isVisible && this.groupId != ReservedGroupIds.BACKGROUND) {
-          if (item.displayed) item.hide();
+          if (_item.displayed) _item.hide();
         }
       }
     }
@@ -39506,11 +39507,11 @@ function () {
       var redrawQueueLength = 0;
 
       for (var _i3 = 0; _i3 < visibleItems.length; _i3++) {
-        var _item = visibleItems[_i3];
+        var _item2 = visibleItems[_i3];
 
-        if (!_item.displayed) {
+        if (!_item2.displayed) {
           var returnQueue = true;
-          redrawQueue[_i3] = _item.redraw(returnQueue);
+          redrawQueue[_i3] = _item2.redraw(returnQueue);
           redrawQueueLength = redrawQueue[_i3].length;
         }
       }
@@ -39550,30 +39551,30 @@ function () {
     value: function _traceVisible(initialPos, items, visibleItems, visibleItemsLookup, breakCondition) {
       if (initialPos != -1) {
         for (var i = initialPos; i >= 0; i--) {
-          var item = items[i];
+          var _item3 = items[i];
 
-          if (breakCondition(item)) {
+          if (breakCondition(_item3)) {
             break;
           } else {
-            if (!(item.isCluster && !item.hasItems()) && !item.cluster) {
-              if (visibleItemsLookup[item.id] === undefined) {
-                visibleItemsLookup[item.id] = true;
-                visibleItems.push(item);
+            if (!(_item3.isCluster && !_item3.hasItems()) && !_item3.cluster) {
+              if (visibleItemsLookup[_item3.id] === undefined) {
+                visibleItemsLookup[_item3.id] = true;
+                visibleItems.push(_item3);
               }
             }
           }
         }
 
         for (var _i5 = initialPos + 1; _i5 < items.length; _i5++) {
-          var _item2 = items[_i5];
+          var _item4 = items[_i5];
 
-          if (breakCondition(_item2)) {
+          if (breakCondition(_item4)) {
             break;
           } else {
-            if (!(_item2.isCluster && !_item2.hasItems()) && !_item2.cluster) {
-              if (visibleItemsLookup[_item2.id] === undefined) {
-                visibleItemsLookup[_item2.id] = true;
-                visibleItems.push(_item2);
+            if (!(_item4.isCluster && !_item4.hasItems()) && !_item4.cluster) {
+              if (visibleItemsLookup[_item4.id] === undefined) {
+                visibleItemsLookup[_item4.id] = true;
+                visibleItems.push(_item4);
               }
             }
           }
@@ -39663,11 +39664,11 @@ function () {
       var redrawQueueLength = 0;
 
       for (var _i8 = 0; _i8 < visibleClusters.length; _i8++) {
-        var item = visibleClusters[_i8];
+        var _item5 = visibleClusters[_i8];
 
-        if (!item.displayed) {
+        if (!_item5.displayed) {
           var returnQueue = true;
-          redrawQueue[_i8] = item.redraw(returnQueue);
+          redrawQueue[_i8] = _item5.redraw(returnQueue);
           redrawQueueLength = redrawQueue[_i8].length;
         }
       }
@@ -43025,11 +43026,10 @@ var BACKGROUND$1 = '__background__'; // reserved group id for background items w
 var ReservedGroupIds$1 = {
   UNGROUPED: UNGROUPED$1,
   BACKGROUND: BACKGROUND$1
-  /**
-   * An Cluster generator generates cluster items
-   */
-
 };
+/**
+ * An Cluster generator generates cluster items
+ */
 
 var ClusterGenerator =
 /*#__PURE__*/
@@ -43408,6 +43408,11 @@ function () {
 var UNGROUPED$2 = '__ungrouped__'; // reserved group id for ungrouped items
 
 var BACKGROUND$2 = '__background__'; // reserved group id for background items without group
+/**
+ * An ItemSet holds a set of items and ranges which can be displayed in a
+ * range. The width is determined by the parent of the ItemSet, and the height
+ * is determined by the size of the items.
+ */
 
 var ItemSet =
 /*#__PURE__*/
