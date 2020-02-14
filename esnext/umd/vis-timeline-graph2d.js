@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-08T20:19:08.296Z
+ * @date    2020-02-14T16:45:53.778Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5590,6 +5590,12 @@
       this.isVisible = null;
       this.stackDirty = true; // if true, items will be restacked on next redraw
 
+      // This is a stack of functions (`() => void`) that will be executed before
+      // the instance is disposed off (method `dispose`). Anything that needs to
+      // be manually disposed off before garbage collection happens (or so that
+      // garbage collection can happen) should be added to this stack.
+      this._disposeCallbacks = [];
+
       if (data && data.nestedGroups) {
         this.nestedGroups = data.nestedGroups;
         if (data.showNested == false) {
@@ -5639,9 +5645,13 @@
         byEnd: []
       };
       this.checkRangedItems = false; // needed to refresh the ranged items if the window is programatically changed with NO overlap.
-      const me = this;
-      this.itemSet.body.emitter.on("checkRangedItems", () => {
-        me.checkRangedItems = true;
+
+      const handleCheckRangedItems = () => {
+        this.checkRangedItems = true;
+      };
+      this.itemSet.body.emitter.on("checkRangedItems", handleCheckRangedItems);
+      this._disposeCallbacks.push(() => {
+        this.itemSet.body.emitter.off("checkRangedItems", handleCheckRangedItems);
       });
 
       this._create();
@@ -6687,6 +6697,19 @@
       this._removeFromSubgroup(item, oldSubgroup);
       this._addToSubgroup(item, newSubgroup);
       this.orderSubgroups();
+    }
+
+    /**
+     * Call this method before you lose the last reference to an instance of this.
+     * It will remove listeners etc.
+     */
+    dispose() {
+      this.hide();
+
+      let disposeCallback;
+      while ((disposeCallback = this._disposeCallbacks.pop())) {
+        disposeCallback();
+      }
     }
   }
 
@@ -10700,7 +10723,7 @@
       if (this.groupsData) {
         // remove the group holding all ungrouped items
         if (ungrouped) {
-          ungrouped.hide();
+          ungrouped.dispose();
           delete this.groups[UNGROUPED$2];
 
           for (itemId in this.items) {
@@ -11088,13 +11111,12 @@
      * @private
      */
     _onRemoveGroups(ids) {
-      const groups = this.groups;
       ids.forEach(id => {
-        const group = groups[id];
+        const group = this.groups[id];
 
         if (group) {
-          group.hide();
-          delete groups[id];
+          group.dispose();
+          delete this.groups[id];
         }
       });
 
@@ -14781,6 +14803,20 @@
         }
       }
 
+      // This looks weird but it's necessary to prevent memory leaks.
+      //
+      // The problem is that the DataView will exist as long as the DataSet it's
+      // connected to. This will force it to swap the groups DataSet for it's own
+      // DataSet. In this arrangement it will become unreferenced from the outside
+      // and garbage collected.
+      //
+      // IMPORTANT NOTE: If `this.groupsData` is a DataView was created in this
+      // method. Even if the original is a DataView already a new one has been
+      // created and assigned to `this.groupsData`. In case this changes in the
+      // future it will be necessary to rework this!!!!
+      if (this.groupsData instanceof visData.DataView) {
+        this.groupsData.setData(null);
+      }
       this.groupsData = newDataSet;
       this.itemSet.setGroups(newDataSet);
     }
