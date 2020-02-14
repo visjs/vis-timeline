@@ -78,7 +78,7 @@
     "core-js-pure": "3.6.4",
     "cpy-cli": "3.0.0",
     "emitter-component": "1.1.1",
-    "eslint": "4.19.1",
+    "eslint": "6.8.0",
     "gh-pages": "2.2.0",
     "git-authors-cli": "1.0.20",
     "husky": "4.2.1",
