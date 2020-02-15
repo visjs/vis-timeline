@@ -20,8 +20,8 @@
     "timeline",
     "graph"
   ],
-  "main": "./dist/umd/vis-timeline-graph2d.js",
-  "module": "./dist/esm/vis-timeline-graph2d.js",
+  "main": "./standalone/umd/vis-timeline-graph2d.js",
+  "module": "./standalone/esm/vis-timeline-graph2d.js",
   "types": "./types/index.d.ts",
   "files": [
     "dist",
