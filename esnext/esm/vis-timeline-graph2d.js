@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-17T20:24:47.661Z
+ * @date    2020-02-17T21:19:11.194Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -26,7 +26,7 @@
 
 import moment$3 from 'moment';
 import * as util$1 from 'vis-util';
-import { isString, isNumber, getType } from 'vis-util';
+import { isNumber, isString, getType } from 'vis-util';
 import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data';
 import Emitter from 'emitter-component';
 import PropagatingHammer from 'propagating-hammerjs';
@@ -836,6 +836,7 @@ function getIsHidden(time, hiddenDates) {
 }
 
 var DateUtil = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   convertHiddenOptions: convertHiddenOptions,
   updateHiddenDates: updateHiddenDates,
   removeDuplicates: removeDuplicates,
@@ -1993,7 +1994,6 @@ class TimeStep {
         case 'week':         this.current.subtract(this.current.week() % this.step, 'week'); break;
         case 'month':        this.current.subtract(this.current.month() % this.step, 'month');  break;
         case 'year':         this.current.subtract(this.current.year() % this.step, 'year'); break;
-        default: break;
       }
       if (!priorCurrent.isSame(this.current)) {
           this.current = this.moment(snapAwayFromHidden(this.hiddenDates, this.current.valueOf(), -1, true));
@@ -2053,7 +2053,6 @@ class TimeStep {
         break;
       case 'month':        this.current.add(this.step, 'month'); break;
       case 'year':         this.current.add(this.step, 'year'); break;
-      default: break;
     }
 
     if (this.step != 1) {
@@ -2067,8 +2066,6 @@ class TimeStep {
         case 'day':          if(this.current.date() < this.step+1) this.current.date(1); break;
         case 'week':         if(this.current.week() < this.step) this.current.week(1); break; // week numbering starts at 1, not 0
         case 'month':        if(this.current.month() < this.step) this.current.month(0);  break;
-        case 'year':         break; // nothing to do for year
-        default:             break;
       }
     }
 
@@ -5543,6 +5540,7 @@ function collisionByTimes(a, b) {
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
+  __proto__: null,
   orderByStart: orderByStart,
   orderByEnd: orderByEnd,
   stack: stack,
@@ -18233,10 +18231,6 @@ LineGraph.prototype._updateGraph = function () {
                 Points.draw(groupsData[groupIds[i]], group, this.framework);
               }
               break;
-            case "bar":
-            // bar needs to be drawn enmasse
-            // eslint-disable-line no-fallthrough
-            default:
             //do nothing...
           }
         }
