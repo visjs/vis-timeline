@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-17T21:21:41.167Z
+ * @date    2020-02-17T21:22:34.738Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10259,6 +10259,7 @@ Object.freeze({
 }); // New API (tree shakeable).
 
 var util$1 = /*#__PURE__*/Object.freeze({
+	__proto__: null,
 	'default': util,
 	Alea: Alea,
 	HSVToHex: HSVToHex,
@@ -10563,6 +10564,7 @@ function getNavigatorLanguage() {
 }
 
 var DOMutil = /*#__PURE__*/Object.freeze({
+	__proto__: null,
 	prepareElements: prepareElements,
 	cleanupElements: cleanupElements,
 	resetElements: resetElements,
@@ -28545,6 +28547,7 @@ function getIsHidden(time, hiddenDates) {
 }
 
 var DateUtil = /*#__PURE__*/Object.freeze({
+	__proto__: null,
 	convertHiddenOptions: convertHiddenOptions,
 	updateHiddenDates: updateHiddenDates,
 	removeDuplicates: removeDuplicates,
@@ -33373,9 +33376,6 @@ function () {
           case 'year':
             this.current.subtract(this.current.year() % this.step, 'year');
             break;
-
-          default:
-            break;
         }
 
         if (!priorCurrent.isSame(this.current)) {
@@ -33467,9 +33467,6 @@ function () {
         case 'year':
           this.current.add(this.step, 'year');
           break;
-
-        default:
-          break;
       }
 
       if (this.step != 1) {
@@ -33504,13 +33501,6 @@ function () {
 
           case 'month':
             if (this.current.month() < this.step) this.current.month(0);
-            break;
-
-          case 'year':
-            break;
-          // nothing to do for year
-
-          default:
             break;
         }
       } // safety mechanism: if current time is still unchanged, move to the end
@@ -38588,6 +38578,7 @@ function collisionByTimes(a, b) {
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
+	__proto__: null,
 	orderByStart: orderByStart,
 	orderByEnd: orderByEnd,
 	stack: stack,
@@ -53310,11 +53301,6 @@ LineGraph.prototype._updateGraph = function () {
               }
 
               break;
-
-            case "bar": // bar needs to be drawn enmasse
-            // eslint-disable-line no-fallthrough
-
-            default: //do nothing...
 
           }
         }

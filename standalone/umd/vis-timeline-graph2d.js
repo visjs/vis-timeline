@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-17T21:20:29.670Z
+ * @date    2020-02-17T21:21:39.990Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,7 +28,7 @@
 	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports) :
 	typeof define === 'function' && define.amd ? define(['exports'], factory) :
 	(global = global || self, factory(global.vis = global.vis || {}));
-}(this, function (exports) { 'use strict';
+}(this, (function (exports) { 'use strict';
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -10265,6 +10265,7 @@
 	}); // New API (tree shakeable).
 
 	var util$1 = /*#__PURE__*/Object.freeze({
+		__proto__: null,
 		'default': util,
 		Alea: Alea,
 		HSVToHex: HSVToHex,
@@ -10569,6 +10570,7 @@
 	}
 
 	var DOMutil = /*#__PURE__*/Object.freeze({
+		__proto__: null,
 		prepareElements: prepareElements,
 		cleanupElements: cleanupElements,
 		resetElements: resetElements,
@@ -28551,6 +28553,7 @@
 	}
 
 	var DateUtil = /*#__PURE__*/Object.freeze({
+		__proto__: null,
 		convertHiddenOptions: convertHiddenOptions,
 		updateHiddenDates: updateHiddenDates,
 		removeDuplicates: removeDuplicates,
@@ -33379,9 +33382,6 @@
 	          case 'year':
 	            this.current.subtract(this.current.year() % this.step, 'year');
 	            break;
-
-	          default:
-	            break;
 	        }
 
 	        if (!priorCurrent.isSame(this.current)) {
@@ -33473,9 +33473,6 @@
 	        case 'year':
 	          this.current.add(this.step, 'year');
 	          break;
-
-	        default:
-	          break;
 	      }
 
 	      if (this.step != 1) {
@@ -33510,13 +33507,6 @@
 
 	          case 'month':
 	            if (this.current.month() < this.step) this.current.month(0);
-	            break;
-
-	          case 'year':
-	            break;
-	          // nothing to do for year
-
-	          default:
 	            break;
 	        }
 	      } // safety mechanism: if current time is still unchanged, move to the end
@@ -38594,6 +38584,7 @@
 	}
 
 	var stack$1 = /*#__PURE__*/Object.freeze({
+		__proto__: null,
 		orderByStart: orderByStart,
 		orderByEnd: orderByEnd,
 		stack: stack,
@@ -53317,11 +53308,6 @@
 
 	              break;
 
-	            case "bar": // bar needs to be drawn enmasse
-	            // eslint-disable-line no-fallthrough
-
-	            default: //do nothing...
-
 	          }
 	        }
 	      }
@@ -54740,5 +54726,5 @@
 
 	Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=vis-timeline-graph2d.js.map

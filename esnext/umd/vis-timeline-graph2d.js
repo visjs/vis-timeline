@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-17T21:20:29.670Z
+ * @date    2020-02-17T21:21:39.990Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,7 +28,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util'), require('vis-data'), require('emitter-component'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm')) :
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util', 'vis-data', 'emitter-component', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm'], factory) :
   (global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm));
-}(this, function (exports, moment$3, util$1, visData, Emitter, PropagatingHammer, Hammer$1, keycharm) { 'use strict';
+}(this, (function (exports, moment$3, util$1, visData, Emitter, PropagatingHammer, Hammer$1, keycharm) { 'use strict';
 
   moment$3 = moment$3 && moment$3.hasOwnProperty('default') ? moment$3['default'] : moment$3;
   Emitter = Emitter && Emitter.hasOwnProperty('default') ? Emitter['default'] : Emitter;
@@ -839,6 +839,7 @@
   }
 
   var DateUtil = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     convertHiddenOptions: convertHiddenOptions,
     updateHiddenDates: updateHiddenDates,
     removeDuplicates: removeDuplicates,
@@ -1996,7 +1997,6 @@
           case 'week':         this.current.subtract(this.current.week() % this.step, 'week'); break;
           case 'month':        this.current.subtract(this.current.month() % this.step, 'month');  break;
           case 'year':         this.current.subtract(this.current.year() % this.step, 'year'); break;
-          default: break;
         }
         if (!priorCurrent.isSame(this.current)) {
             this.current = this.moment(snapAwayFromHidden(this.hiddenDates, this.current.valueOf(), -1, true));
@@ -2056,7 +2056,6 @@
           break;
         case 'month':        this.current.add(this.step, 'month'); break;
         case 'year':         this.current.add(this.step, 'year'); break;
-        default: break;
       }
 
       if (this.step != 1) {
@@ -2070,8 +2069,6 @@
           case 'day':          if(this.current.date() < this.step+1) this.current.date(1); break;
           case 'week':         if(this.current.week() < this.step) this.current.week(1); break; // week numbering starts at 1, not 0
           case 'month':        if(this.current.month() < this.step) this.current.month(0);  break;
-          case 'year':         break; // nothing to do for year
-          default:             break;
         }
       }
 
@@ -5546,6 +5543,7 @@
   }
 
   var stack$1 = /*#__PURE__*/Object.freeze({
+    __proto__: null,
     orderByStart: orderByStart,
     orderByEnd: orderByEnd,
     stack: stack,
@@ -18236,10 +18234,6 @@
                   Points.draw(groupsData[groupIds[i]], group, this.framework);
                 }
                 break;
-              case "bar":
-              // bar needs to be drawn enmasse
-              // eslint-disable-line no-fallthrough
-              default:
               //do nothing...
             }
           }
@@ -19267,5 +19261,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-}));
+})));
 //# sourceMappingURL=vis-timeline-graph2d.js.map
