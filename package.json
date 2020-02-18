@@ -105,6 +105,7 @@
     "semantic-release": "17.0.4",
     "uglify-js": "3.8.0",
     "uglifycss": "0.0.29",
+    "uuid": "3.4.0",
     "vis-data": "6.4.0",
     "vis-dev-utils": "2.1.0",
     "vis-util": "2.1.0"
