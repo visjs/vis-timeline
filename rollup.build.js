@@ -78,7 +78,7 @@ const commonPlugins = [
   }),
   commonjs(),
   nodeBuiltins(),
-  nodeResolve()
+  nodeResolve({ browser: true })
 ];
 
 const babelPlugin = babel({
