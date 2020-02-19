@@ -94,6 +94,7 @@
     "propagating-hammerjs": "1.4.7",
     "rimraf": "2.6.3",
     "rollup": "1.19.4",
+    "rollup-plugin-analyzer": "^3.2.2",
     "rollup-plugin-babel": "4.3.3",
     "rollup-plugin-commonjs": "10.0.2",
     "rollup-plugin-copy": "3.1.0",
