@@ -36,7 +36,7 @@ export default [{
 	plugins: [
 		commonjs(),
 		nodeBuiltins(),
-		nodeResolve(),
+		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
@@ -58,7 +58,7 @@ export default [{
 	plugins: [
 		commonjs(),
 		nodeBuiltins(),
-		nodeResolve(),
+		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		terser({
                     output: {
