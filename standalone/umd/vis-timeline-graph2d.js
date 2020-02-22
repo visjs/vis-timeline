@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-21T22:47:13.422Z
+ * @date    2020-02-22T18:18:52.746Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10498,8 +10498,8 @@
 	 *
 	 * Manage unstructured data using DataSet. Add, update, and remove data, and listen for changes in the data.
 	 *
-	 * @version 6.4.0
-	 * @date    2020-02-17T20:51:47.321Z
+	 * @version 6.4.1
+	 * @date    2020-02-21T21:33:19.504Z
 	 *
 	 * @copyright (c) 2011-2017 Almende B.V, http://almende.com
 	 * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -14586,131 +14586,92 @@
 	}
 
 	var inherits = _inherits;
-	var byteToHex = [];
+	var rngBrowser = createCommonjsModule$2(function (module) {
+	  // Unique ID creation requires a high quality random # generator.  In the
+	  // browser this is a little complicated due to unknown quality of Math.random()
+	  // and inconsistent support for the `crypto` API.  We do the best we can via
+	  // feature-detection
+	  // getRandomValues needs to be invoked in a context where "this" is a Crypto
+	  // implementation. Also, find the complete implementation of crypto on IE11.
+	  var getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto);
 
-	for (var i = 0; i < 256; i++) {
-	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-	}
-	/**
-	 * Represent binary UUID into it's string representation.
-	 *
-	 * @param buf - Buffer containing UUID bytes.
-	 * @param offset - Offset from the start of the buffer where the UUID is saved (not needed if the buffer starts with the UUID).
-	 *
-	 * @returns String representation of the UUID.
-	 */
+	  if (getRandomValues) {
+	    // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
+	    var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
 
-
-	function stringifyUUID(buf, offset) {
-	  var i = offset || 0;
-	  var bth = byteToHex;
-	  return bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + '-' + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]] + bth[buf[i++]];
-	}
-
-	var random = function () {
-	  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-	    // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-	    // Moderately fast, high quality
-	    var _rnds8 = new Uint8Array(16);
-
-	    return function whatwgRNG() {
-	      crypto.getRandomValues(_rnds8);
-	      return _rnds8;
+	    module.exports = function whatwgRNG() {
+	      getRandomValues(rnds8);
+	      return rnds8;
 	    };
-	  } // Math.random()-based (RNG)
-	  //
-	  // If all else fails, use Math.random().
-	  // It's fast, but is of unspecified quality.
+	  } else {
+	    // Math.random()-based (RNG)
+	    //
+	    // If all else fails, use Math.random().  It's fast, but is of unspecified
+	    // quality.
+	    var rnds = new Array(16);
 
-
-	  var _rnds = new Array(16);
-
-	  return function () {
-	    for (var i = 0, r; i < 16; i++) {
-	      if ((i & 0x03) === 0) {
-	        r = Math.random() * 0x100000000;
+	    module.exports = function mathRNG() {
+	      for (var i = 0, r; i < 16; i++) {
+	        if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
+	        rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
 	      }
 
-	      _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-	    }
-
-	    return _rnds;
-	  }; //     uuid.js
-	  //
-	  //     Copyright (c) 2010-2012 Robert Kieffer
-	  //     MIT License - http://opensource.org/licenses/mit-license.php
-	  // Unique ID creation requires a high quality random # generator.  We feature
-	  // detect to determine the best RNG source, normalizing to a function that
-	  // returns 128-bits of randomness, since that's what's usually required
-	  // return require('./rng');
-	}();
-
-	var byteToHex$1 = [];
-
-	for (var i$1 = 0; i$1 < 256; i$1++) {
-	  byteToHex$1[i$1] = (i$1 + 0x100).toString(16).substr(1);
-	} // **`v1()` - Generate time-based UUID**
-	//
-	// Inspired by https://github.com/LiosK/UUID.js
-	// and http://docs.python.org/library/uuid.html
-	// random #'s we need to init node and clockseq
-
-
-	var seedBytes = random(); // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-
-	var defaultNodeId = [seedBytes[0] | 0x01, seedBytes[1], seedBytes[2], seedBytes[3], seedBytes[4], seedBytes[5]]; // Per 4.2.2, randomize (14 bit) clockseq
-
-	var defaultClockseq = (seedBytes[6] << 8 | seedBytes[7]) & 0x3fff; // Previous uuid creation time
-
+	      return rnds;
+	    };
+	  }
+	});
 	/**
-	 * UUIDv4 options.
+	 * Convert array of 16 byte values to UUID string format of the form:
+	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 	 */
 
-	/**
-	 * Generate UUIDv4
-	 *
-	 * @param options - Options to be used instead of default generated values.
-	 * String 'binary' is a shorthand for uuid4({}, new Array(16)).
-	 * @param buf - If present the buffer will be filled with the generated UUID.
-	 * @param offset - Offset of the UUID from the start of the buffer.
-	 *
-	 * @returns UUIDv4
-	 */
+	var byteToHex = [];
 
-	function uuid4() {
-	  var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-	  var buf = arguments.length > 1 ? arguments[1] : undefined;
-	  var offset = arguments.length > 2 ? arguments[2] : undefined; // Deprecated - 'format' argument, as supported in v1.2
+	for (var i = 0; i < 256; ++i) {
+	  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+	}
 
+	function bytesToUuid(buf, offset) {
+	  var i = offset || 0;
+	  var bth = byteToHex; // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+
+	  return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');
+	}
+
+	var bytesToUuid_1 = bytesToUuid;
+
+	function v4(options, buf, offset) {
 	  var i = buf && offset || 0;
 
-	  if (typeof options === 'string') {
-	    buf = options === 'binary' ? new Array(16) : undefined;
-	    options = {};
+	  if (typeof options == 'string') {
+	    buf = options === 'binary' ? new Array(16) : null;
+	    options = null;
 	  }
 
-	  var rnds = options.random || (options.rng || random)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+	  options = options || {};
+	  var rnds = options.random || (options.rng || rngBrowser)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
 	  rnds[6] = rnds[6] & 0x0f | 0x40;
 	  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
 
 	  if (buf) {
-	    for (var ii = 0; ii < 16; ii++) {
+	    for (var ii = 0; ii < 16; ++ii) {
 	      buf[i + ii] = rnds[ii];
 	    }
 	  }
 
-	  return buf || stringifyUUID(rnds);
-	} // Rollup will complain about mixing default and named exports in UMD build,
+	  return buf || bytesToUuid_1(rnds);
+	}
 
+	var v4_1 = v4;
 	/**
 	 * vis-util
 	 * https://github.com/visjs/vis-util
 	 *
 	 * utilitie collection for visjs
 	 *
-	 * @version 2.1.0
-	 * @date    2020-01-12T20:17:27.848Z
+	 * @version 3.0.0
+	 * @date    2020-02-19T22:03:40.827Z
 	 *
 	 * @copyright (c) 2011-2017 Almende B.V, http://almende.com
 	 * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -14728,7 +14689,6 @@
 	 *
 	 * vis.js may be distributed under either license.
 	 */
-
 
 	var commonjsGlobal$1$1 = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -14756,11 +14716,11 @@
 	};
 
 	var descriptors$1$1 = !fails$1$1(function () {
-	  return Object.defineProperty({}, 'a', {
+	  return Object.defineProperty({}, 1, {
 	    get: function () {
 	      return 7;
 	    }
-	  }).a != 7;
+	  })[1] != 7;
 	});
 	var nativePropertyIsEnumerable$2$1 = {}.propertyIsEnumerable;
 	var getOwnPropertyDescriptor$4$1 = Object.getOwnPropertyDescriptor; // Nashorn ~ JDK8 bug
@@ -14891,7 +14851,7 @@
 	  return it;
 	};
 
-	var bindContext = function (fn, that, length) {
+	var functionBindContext$1$1 = function (fn, that, length) {
 	  aFunction$2$1(fn);
 	  if (that === undefined) return fn;
 
@@ -15022,9 +14982,9 @@
 	    sourceProperty = USE_NATIVE && nativeProperty ? nativeProperty : source[key];
 	    if (USE_NATIVE && typeof targetProperty === typeof sourceProperty) continue; // bind timers to global for call from export context
 
-	    if (options.bind && USE_NATIVE) resultProperty = bindContext(sourceProperty, global_1$1$1); // wrap global constructors for prevent changs in this version
+	    if (options.bind && USE_NATIVE) resultProperty = functionBindContext$1$1(sourceProperty, global_1$1$1); // wrap global constructors for prevent changs in this version
 	    else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor$1$1(sourceProperty); // make static versions for prototype methods
-	      else if (PROTO && typeof sourceProperty == 'function') resultProperty = bindContext(Function.call, sourceProperty); // default case
+	      else if (PROTO && typeof sourceProperty == 'function') resultProperty = functionBindContext$1$1(Function.call, sourceProperty); // default case
 	        else resultProperty = sourceProperty; // add a flag to not completely full polyfills
 
 	    if (options.sham || sourceProperty && sourceProperty.sham || targetProperty && targetProperty.sham) {
@@ -15094,9 +15054,9 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore$1$1[key] || (sharedStore$1$1[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.6.0',
+	    version: '3.6.4',
 	    mode: 'pure',
-	    copyright: '© 2019 Denis Pushkarev (zloirock.ru)'
+	    copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
 	  });
 	});
 	var id$1$1 = 0;
@@ -15209,10 +15169,10 @@
 	});
 	var useSymbolAsUid$1$1 = nativeSymbol$1$1 // eslint-disable-next-line no-undef
 	&& !Symbol.sham // eslint-disable-next-line no-undef
-	&& typeof Symbol() == 'symbol';
+	&& typeof Symbol.iterator == 'symbol';
 	var WellKnownSymbolsStore$2$1 = shared$1$1('wks');
 	var Symbol$1$1$1 = global_1$1$1.Symbol;
-	var createWellKnownSymbol$1$1 = useSymbolAsUid$1$1 ? Symbol$1$1$1 : uid$1$1;
+	var createWellKnownSymbol$1$1 = useSymbolAsUid$1$1 ? Symbol$1$1$1 : Symbol$1$1$1 && Symbol$1$1$1.withoutSetter || uid$1$1;
 
 	var wellKnownSymbol$1$1 = function (name) {
 	  if (!has$2$1(WellKnownSymbolsStore$2$1, name)) {
@@ -15715,7 +15675,7 @@
 	  var Collection$1$1 = global_1$1$1[COLLECTION_NAME$1$1];
 	  var CollectionPrototype$1$1 = Collection$1$1 && Collection$1$1.prototype;
 
-	  if (CollectionPrototype$1$1 && !CollectionPrototype$1$1[TO_STRING_TAG$3$1$1]) {
+	  if (CollectionPrototype$1$1 && classof$1$1(CollectionPrototype$1$1) !== TO_STRING_TAG$3$1$1) {
 	    createNonEnumerableProperty$1$1(CollectionPrototype$1$1, TO_STRING_TAG$3$1$1, COLLECTION_NAME$1$1);
 	  }
 
@@ -15925,7 +15885,7 @@
 	  f: f$5$1$1
 	};
 	var f$6$1$1 = wellKnownSymbol$1$1;
-	var wrappedWellKnownSymbol = {
+	var wellKnownSymbolWrapped$1$1 = {
 	  f: f$6$1$1
 	};
 	var defineProperty$3$1$1 = objectDefineProperty$1$1.f;
@@ -15933,7 +15893,7 @@
 	var defineWellKnownSymbol$1$1 = function (NAME) {
 	  var Symbol = path$1$1.Symbol || (path$1$1.Symbol = {});
 	  if (!has$2$1(Symbol, NAME)) defineProperty$3$1$1(Symbol, NAME, {
-	    value: wrappedWellKnownSymbol.f(NAME)
+	    value: wellKnownSymbolWrapped$1$1.f(NAME)
 	  });
 	};
 
@@ -15967,7 +15927,7 @@
 	  return function ($this, callbackfn, that, specificCreate) {
 	    var O = toObject$1$1($this);
 	    var self = indexedObject$1$1(O);
-	    var boundFunction = bindContext(callbackfn, that, 3);
+	    var boundFunction = functionBindContext$1$1(callbackfn, that, 3);
 	    var length = toLength$1$1(self.length);
 	    var index = 0;
 	    var create = specificCreate || arraySpeciesCreate$1$1;
@@ -16079,7 +16039,7 @@
 	  return symbol;
 	};
 
-	var isSymbol$1$1 = nativeSymbol$1$1 && typeof $Symbol$1$1.iterator == 'symbol' ? function (it) {
+	var isSymbol$1$1 = useSymbolAsUid$1$1 ? function (it) {
 	  return typeof it == 'symbol';
 	} : function (it) {
 	  return Object(it) instanceof $Symbol$1$1;
@@ -16187,11 +16147,18 @@
 	  redefine$1$1($Symbol$1$1[PROTOTYPE$1$1$1], 'toString', function toString() {
 	    return getInternalState$2$1$1(this).tag;
 	  });
+	  redefine$1$1($Symbol$1$1, 'withoutSetter', function (description) {
+	    return wrap$1$1(uid$1$1(description), description);
+	  });
 	  objectPropertyIsEnumerable$1$1.f = $propertyIsEnumerable$1$1;
 	  objectDefineProperty$1$1.f = $defineProperty$1$1;
 	  objectGetOwnPropertyDescriptor$1$1.f = $getOwnPropertyDescriptor$1$1;
 	  objectGetOwnPropertyNames$1$1.f = objectGetOwnPropertyNamesExternal$1$1.f = $getOwnPropertyNames$1$1;
 	  objectGetOwnPropertySymbols$1$1.f = $getOwnPropertySymbols$1$1;
+
+	  wellKnownSymbolWrapped$1$1.f = function (name) {
+	    return wrap$1$1(wellKnownSymbol$1$1(name), name);
+	  };
 
 	  if (descriptors$1$1) {
 	    // https://github.com/tc39/proposal-Symbol-description
@@ -16202,12 +16169,6 @@
 	      }
 	    });
 	  }
-	}
-
-	if (!useSymbolAsUid$1$1) {
-	  wrappedWellKnownSymbol.f = function (name) {
-	    return wrap$1$1(wellKnownSymbol$1$1(name), name);
-	  };
 	}
 
 	_export$1$1({
@@ -16403,7 +16364,7 @@
 	var non$1 = '\u200B\u0085\u180E'; // check that a method works with the correct list
 	// of whitespaces and has a correct name
 
-	var forcedStringTrimMethod = function (METHOD_NAME) {
+	var stringTrimForced$1 = function (METHOD_NAME) {
 	  return fails$1$1(function () {
 	    return !!whitespaces$1[METHOD_NAME]() || non$1[METHOD_NAME]() != non$1 || whitespaces$1[METHOD_NAME].name !== METHOD_NAME;
 	  });
@@ -16415,7 +16376,7 @@
 	_export$1$1({
 	  target: 'String',
 	  proto: true,
-	  forced: forcedStringTrimMethod('trim')
+	  forced: stringTrimForced$1('trim')
 	}, {
 	  trim: function trim() {
 	    return $trim$1(this);
@@ -16428,9 +16389,9 @@
 
 	var trim$4 = entryVirtual$1$1('String').trim;
 
-	var sloppyArrayMethod = function (METHOD_NAME, argument) {
+	var arrayMethodIsStrict$1$1 = function (METHOD_NAME, argument) {
 	  var method = [][METHOD_NAME];
-	  return !method || !fails$1$1(function () {
+	  return !!method && fails$1$1(function () {
 	    // eslint-disable-next-line no-useless-call,no-throw-literal
 	    method.call(null, argument || function () {
 	      throw 1;
@@ -16438,10 +16399,39 @@
 	  });
 	};
 
-	var $forEach$1$1$1 = arrayIteration$1$1.forEach; // `Array.prototype.forEach` method implementation
+	var defineProperty$7$1$1 = Object.defineProperty;
+	var cache$1$1 = {};
+
+	var thrower$1$1 = function (it) {
+	  throw it;
+	};
+
+	var arrayMethodUsesToLength$1$1 = function (METHOD_NAME, options) {
+	  if (has$2$1(cache$1$1, METHOD_NAME)) return cache$1$1[METHOD_NAME];
+	  if (!options) options = {};
+	  var method = [][METHOD_NAME];
+	  var ACCESSORS = has$2$1(options, 'ACCESSORS') ? options.ACCESSORS : false;
+	  var argument0 = has$2$1(options, 0) ? options[0] : thrower$1$1;
+	  var argument1 = has$2$1(options, 1) ? options[1] : undefined;
+	  return cache$1$1[METHOD_NAME] = !!method && !fails$1$1(function () {
+	    if (ACCESSORS && !descriptors$1$1) return true;
+	    var O = {
+	      length: -1
+	    };
+	    if (ACCESSORS) defineProperty$7$1$1(O, 1, {
+	      enumerable: true,
+	      get: thrower$1$1
+	    });else O[1] = 1;
+	    method.call(O, argument0, argument1);
+	  });
+	};
+
+	var $forEach$1$1$1 = arrayIteration$1$1.forEach;
+	var STRICT_METHOD$4 = arrayMethodIsStrict$1$1('forEach');
+	var USES_TO_LENGTH$5$1 = arrayMethodUsesToLength$1$1('forEach'); // `Array.prototype.forEach` method implementation
 	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
 
-	var arrayForEach$1$1 = sloppyArrayMethod('forEach') ? function forEach(callbackfn
+	var arrayForEach$1$1 = !STRICT_METHOD$4 || !USES_TO_LENGTH$5$1 ? function forEach(callbackfn
 	/* , thisArg */
 	) {
 	  return $forEach$1$1$1(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
@@ -16456,7 +16446,7 @@
 	});
 
 	var forEach$4$1 = entryVirtual$1$1('Array').forEach;
-	var userAgent = getBuiltIn$1$1('navigator', 'userAgent') || '';
+	var engineUserAgent$1$1 = getBuiltIn$1$1('navigator', 'userAgent') || '';
 	var process$1$1 = global_1$1$1.process;
 	var versions$1$1 = process$1$1 && process$1$1.versions;
 	var v8$1$1 = versions$1$1 && versions$1$1.v8;
@@ -16465,23 +16455,23 @@
 	if (v8$1$1) {
 	  match$1$1 = v8$1$1.split('.');
 	  version$1$1 = match$1$1[0] + match$1$1[1];
-	} else if (userAgent) {
-	  match$1$1 = userAgent.match(/Edge\/(\d+)/);
+	} else if (engineUserAgent$1$1) {
+	  match$1$1 = engineUserAgent$1$1.match(/Edge\/(\d+)/);
 
 	  if (!match$1$1 || match$1$1[1] >= 74) {
-	    match$1$1 = userAgent.match(/Chrome\/(\d+)/);
+	    match$1$1 = engineUserAgent$1$1.match(/Chrome\/(\d+)/);
 	    if (match$1$1) version$1$1 = match$1$1[1];
 	  }
 	}
 
-	var v8Version = version$1$1 && +version$1$1;
+	var engineV8Version$1$1 = version$1$1 && +version$1$1;
 	var SPECIES$1$1$1 = wellKnownSymbol$1$1('species');
 
 	var arrayMethodHasSpeciesSupport$1$1 = function (METHOD_NAME) {
 	  // We can't use this feature detection in V8 since it causes
 	  // deoptimization and serious performance degradation
 	  // https://github.com/zloirock/core-js/issues/677
-	  return v8Version >= 51 || !fails$1$1(function () {
+	  return engineV8Version$1$1 >= 51 || !fails$1$1(function () {
 	    var array = [];
 	    var constructor = array.constructor = {};
 
@@ -16498,21 +16488,14 @@
 	var $map$1$1 = arrayIteration$1$1.map;
 	var HAS_SPECIES_SUPPORT$2$1 = arrayMethodHasSpeciesSupport$1$1('map'); // FF49- issue
 
-	var USES_TO_LENGTH$5$1 = HAS_SPECIES_SUPPORT$2$1 && !fails$1$1(function () {
-	  [].map.call({
-	    length: -1,
-	    0: 1
-	  }, function (it) {
-	    throw it;
-	  });
-	}); // `Array.prototype.map` method
+	var USES_TO_LENGTH$1$1$1 = arrayMethodUsesToLength$1$1('map'); // `Array.prototype.map` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.map
 	// with adding support of @@species
 
 	_export$1$1({
 	  target: 'Array',
 	  proto: true,
-	  forced: !HAS_SPECIES_SUPPORT$2$1 || !USES_TO_LENGTH$5$1
+	  forced: !HAS_SPECIES_SUPPORT$2$1 || !USES_TO_LENGTH$1$1$1
 	}, {
 	  map: function map(callbackfn
 	  /* , thisArg */
@@ -16523,22 +16506,21 @@
 
 	var map$6 = entryVirtual$1$1('Array').map;
 	var trim$3$1 = stringTrim$1.trim;
-	var nativeParseInt = global_1$1$1.parseInt;
+	var $parseInt$1 = global_1$1$1.parseInt;
 	var hex$1 = /^[+-]?0[Xx]/;
-	var FORCED$1$1$1 = nativeParseInt(whitespaces$1 + '08') !== 8 || nativeParseInt(whitespaces$1 + '0x16') !== 22; // `parseInt` method
+	var FORCED$1$1$1 = $parseInt$1(whitespaces$1 + '08') !== 8 || $parseInt$1(whitespaces$1 + '0x16') !== 22; // `parseInt` method
 	// https://tc39.github.io/ecma262/#sec-parseint-string-radix
 
-	var _parseInt$3 = FORCED$1$1$1 ? function parseInt(string, radix) {
+	var numberParseInt$1 = FORCED$1$1$1 ? function parseInt(string, radix) {
 	  var S = trim$3$1(String(string));
-	  return nativeParseInt(S, radix >>> 0 || (hex$1.test(S) ? 16 : 10));
-	} : nativeParseInt; // https://tc39.github.io/ecma262/#sec-parseint-string-radix
-
+	  return $parseInt$1(S, radix >>> 0 || (hex$1.test(S) ? 16 : 10));
+	} : $parseInt$1; // https://tc39.github.io/ecma262/#sec-parseint-string-radix
 
 	_export$1$1({
 	  global: true,
-	  forced: parseInt != _parseInt$3
+	  forced: parseInt != numberParseInt$1
 	}, {
-	  parseInt: _parseInt$3
+	  parseInt: numberParseInt$1
 	});
 
 	var propertyIsEnumerable$1 = objectPropertyIsEnumerable$1$1.f; // `Object.{ entries, values }` methods implementation
@@ -16588,21 +16570,14 @@
 	var $filter$1$1 = arrayIteration$1$1.filter;
 	var HAS_SPECIES_SUPPORT$1$1$1 = arrayMethodHasSpeciesSupport$1$1('filter'); // Edge 14- issue
 
-	var USES_TO_LENGTH$1$1$1 = HAS_SPECIES_SUPPORT$1$1$1 && !fails$1$1(function () {
-	  [].filter.call({
-	    length: -1,
-	    0: 1
-	  }, function (it) {
-	    throw it;
-	  });
-	}); // `Array.prototype.filter` method
+	var USES_TO_LENGTH$2$1$1 = arrayMethodUsesToLength$1$1('filter'); // `Array.prototype.filter` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.filter
 	// with adding support of @@species
 
 	_export$1$1({
 	  target: 'Array',
 	  proto: true,
-	  forced: !HAS_SPECIES_SUPPORT$1$1$1 || !USES_TO_LENGTH$1$1$1
+	  forced: !HAS_SPECIES_SUPPORT$1$1$1 || !USES_TO_LENGTH$2$1$1
 	}, {
 	  filter: function filter(callbackfn
 	  /* , thisArg */
@@ -16618,7 +16593,7 @@
 	// deoptimization and serious performance degradation
 	// https://github.com/zloirock/core-js/issues/679
 
-	var IS_CONCAT_SPREADABLE_SUPPORT$1$1 = v8Version >= 51 || !fails$1$1(function () {
+	var IS_CONCAT_SPREADABLE_SUPPORT$1$1 = engineV8Version$1$1 >= 51 || !fails$1$1(function () {
 	  var array = [];
 	  array[IS_CONCAT_SPREADABLE$1$1] = false;
 	  return array.concat()[0] !== array;
@@ -16694,10 +16669,10 @@
 	  var argumentsLength = arguments.length;
 	  var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
 	  var mapping = mapfn !== undefined;
-	  var index = 0;
 	  var iteratorMethod = getIteratorMethod$1$1(O);
-	  var length, result, step, iterator, next;
-	  if (mapping) mapfn = bindContext(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2); // if the target is not iterable or it's an array with the default iterator - use a simple case
+	  var index = 0;
+	  var length, result, step, iterator, next, value;
+	  if (mapping) mapfn = functionBindContext$1$1(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2); // if the target is not iterable or it's an array with the default iterator - use a simple case
 
 	  if (iteratorMethod != undefined && !(C == Array && isArrayIteratorMethod$1$1(iteratorMethod))) {
 	    iterator = iteratorMethod.call(O);
@@ -16705,14 +16680,16 @@
 	    result = new C();
 
 	    for (; !(step = next.call(iterator)).done; index++) {
-	      createProperty$1$1(result, index, mapping ? callWithSafeIterationClosing$1$1(iterator, mapfn, [step.value, index], true) : step.value);
+	      value = mapping ? callWithSafeIterationClosing$1$1(iterator, mapfn, [step.value, index], true) : step.value;
+	      createProperty$1$1(result, index, value);
 	    }
 	  } else {
 	    length = toLength$1$1(O.length);
 	    result = new C(length);
 
 	    for (; length > index; index++) {
-	      createProperty$1$1(result, index, mapping ? mapfn(O[index], index) : O[index]);
+	      value = mapping ? mapfn(O[index], index) : O[index];
+	      createProperty$1$1(result, index, value);
 	    }
 	  }
 
@@ -16787,6 +16764,12 @@
 	});
 
 	var from_1$3$1 = path$1$1.Array.from;
+	var HAS_SPECIES_SUPPORT$2$1$1 = arrayMethodHasSpeciesSupport$1$1('slice');
+	var USES_TO_LENGTH$3$1$1 = arrayMethodUsesToLength$1$1('slice', {
+	  ACCESSORS: true,
+	  0: 0,
+	  1: 2
+	});
 	var SPECIES$2$1$1 = wellKnownSymbol$1$1('species');
 	var nativeSlice$1 = [].slice;
 	var max$1$1$1 = Math.max; // `Array.prototype.slice` method
@@ -16796,7 +16779,7 @@
 	_export$1$1({
 	  target: 'Array',
 	  proto: true,
-	  forced: !arrayMethodHasSpeciesSupport$1$1('slice')
+	  forced: !HAS_SPECIES_SUPPORT$2$1$1 || !USES_TO_LENGTH$3$1$1
 	}, {
 	  slice: function slice(start, end) {
 	    var O = toIndexedObject$1$1(this);
@@ -16862,13 +16845,17 @@
 	var $indexOf$1 = arrayIncludes$1$1.indexOf;
 	var nativeIndexOf$1 = [].indexOf;
 	var NEGATIVE_ZERO$1 = !!nativeIndexOf$1 && 1 / [1].indexOf(1, -0) < 0;
-	var SLOPPY_METHOD = sloppyArrayMethod('indexOf'); // `Array.prototype.indexOf` method
+	var STRICT_METHOD$1$1$1 = arrayMethodIsStrict$1$1('indexOf');
+	var USES_TO_LENGTH$4$1$1 = arrayMethodUsesToLength$1$1('indexOf', {
+	  ACCESSORS: true,
+	  1: 0
+	}); // `Array.prototype.indexOf` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.indexof
 
 	_export$1$1({
 	  target: 'Array',
 	  proto: true,
-	  forced: NEGATIVE_ZERO$1 || SLOPPY_METHOD
+	  forced: NEGATIVE_ZERO$1 || !STRICT_METHOD$1$1$1 || !USES_TO_LENGTH$4$1$1
 	}, {
 	  indexOf: function indexOf(searchElement
 	  /* , fromIndex = 0 */
@@ -16882,17 +16869,17 @@
 	var isArray$4$1$1 = isArray$1$1$1;
 	var isArray$5$1$1 = isArray$4$1$1;
 	var nativeAssign$1$1 = Object.assign;
-	var defineProperty$7$1$1 = Object.defineProperty; // `Object.assign` method
+	var defineProperty$8$1$1 = Object.defineProperty; // `Object.assign` method
 	// https://tc39.github.io/ecma262/#sec-object.assign
 
 	var objectAssign$1$1 = !nativeAssign$1$1 || fails$1$1(function () {
 	  // should have correct order of operations (Edge bug)
 	  if (descriptors$1$1 && nativeAssign$1$1({
 	    b: 1
-	  }, nativeAssign$1$1(defineProperty$7$1$1({}, 'a', {
+	  }, nativeAssign$1$1(defineProperty$8$1$1({}, 'a', {
 	    enumerable: true,
 	    get: function () {
-	      defineProperty$7$1$1(this, 'b', {
+	      defineProperty$8$1$1(this, 'b', {
 	        value: 3,
 	        enumerable: false
 	      });
@@ -16945,7 +16932,7 @@
 
 	var assign$3$1 = path$1$1.Object.assign;
 	defineWellKnownSymbol$1$1('iterator');
-	var iterator$5 = wrappedWellKnownSymbol.f('iterator');
+	var iterator$5 = wellKnownSymbolWrapped$1$1.f('iterator');
 	var iterator$1$1$1 = iterator$5;
 	var iterator$2$1$1 = iterator$1$1$1; // https://tc39.github.io/ecma262/#sec-symbol.asynciterator
 
@@ -16990,6 +16977,8 @@
 
 	var _typeof_1$1$1 = createCommonjsModule$1$1(function (module) {
 	  function _typeof(obj) {
+	    "@babel/helpers - typeof";
+
 	    if (typeof symbol$2$1$1 === "function" && typeof iterator$2$1$1 === "symbol") {
 	      module.exports = _typeof = function _typeof(obj) {
 	        return typeof obj;
@@ -17005,68 +16994,6 @@
 
 	  module.exports = _typeof;
 	});
-
-	var byteToHex$2 = [];
-
-	for (var i$2 = 0; i$2 < 256; i$2++) {
-	  byteToHex$2[i$2] = (i$2 + 0x100).toString(16).substr(1);
-	}
-
-	var random$1 = function () {
-	  if (typeof crypto !== 'undefined' && crypto.getRandomValues) {
-	    // WHATWG crypto-based RNG - http://wiki.whatwg.org/wiki/Crypto
-	    // Moderately fast, high quality
-	    var _rnds8 = new Uint8Array(16);
-
-	    return function whatwgRNG() {
-	      crypto.getRandomValues(_rnds8);
-	      return _rnds8;
-	    };
-	  } // Math.random()-based (RNG)
-	  //
-	  // If all else fails, use Math.random().
-	  // It's fast, but is of unspecified quality.
-
-
-	  var _rnds = new Array(16);
-
-	  return function () {
-	    for (var i = 0, r; i < 16; i++) {
-	      if ((i & 0x03) === 0) {
-	        r = Math.random() * 0x100000000;
-	      }
-
-	      _rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-	    }
-
-	    return _rnds;
-	  }; //     uuid.js
-	  //
-	  //     Copyright (c) 2010-2012 Robert Kieffer
-	  //     MIT License - http://opensource.org/licenses/mit-license.php
-	  // Unique ID creation requires a high quality random # generator.  We feature
-	  // detect to determine the best RNG source, normalizing to a function that
-	  // returns 128-bits of randomness, since that's what's usually required
-	  // return require('./rng');
-	}();
-
-	var byteToHex$1$1 = [];
-
-	for (var i$1$1 = 0; i$1$1 < 256; i$1$1++) {
-	  byteToHex$1$1[i$1$1] = (i$1$1 + 0x100).toString(16).substr(1);
-	} // **`v1()` - Generate time-based UUID**
-	//
-	// Inspired by https://github.com/LiosK/UUID.js
-	// and http://docs.python.org/library/uuid.html
-	// random #'s we need to init node and clockseq
-
-
-	var seedBytes$1 = random$1(); // Per 4.5, create and 48-bit node id, (47 random bits + multicast bit = 1)
-
-	var defaultNodeId$1 = [seedBytes$1[0] | 0x01, seedBytes$1[1], seedBytes$1[2], seedBytes$1[3], seedBytes$1[4], seedBytes$1[5]]; // Per 4.2.2, randomize (14 bit) clockseq
-
-	var defaultClockseq$1 = (seedBytes$1[6] << 8 | seedBytes$1[7]) & 0x3fff; // Previous uuid creation time
-
 	/**
 	 * Hue, Saturation, Value.
 	 */
@@ -17078,6 +17005,7 @@
 	 *
 	 * @returns True if number, false otherwise.
 	 */
+
 
 	function isNumber$1(value) {
 	  return value instanceof Number || typeof value === "number";
@@ -24410,7 +24338,7 @@
 	        }
 	      } else {
 	        // generate an id
-	        id = uuid4();
+	        id = v4_1();
 	        item[this._idProp] = id;
 	      }
 
@@ -26241,11 +26169,11 @@
 	};
 
 	var $forEach$3 = arrayIteration$2.forEach;
-	var STRICT_METHOD$4 = arrayMethodIsStrict$2('forEach');
+	var STRICT_METHOD$5 = arrayMethodIsStrict$2('forEach');
 	var USES_TO_LENGTH$7 = arrayMethodUsesToLength$2('forEach'); // `Array.prototype.forEach` method implementation
 	// https://tc39.github.io/ecma262/#sec-array.prototype.foreach
 
-	var arrayForEach$2 = !STRICT_METHOD$4 || !USES_TO_LENGTH$7 ? function forEach(callbackfn
+	var arrayForEach$2 = !STRICT_METHOD$5 || !USES_TO_LENGTH$7 ? function forEach(callbackfn
 	/* , thisArg */
 	) {
 	  return $forEach$3(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
@@ -27404,7 +27332,7 @@
 	};
 
 	var $reduce$1 = arrayReduce$1.left;
-	var STRICT_METHOD$5 = arrayMethodIsStrict$2('reduce');
+	var STRICT_METHOD$6 = arrayMethodIsStrict$2('reduce');
 	var USES_TO_LENGTH$9 = arrayMethodUsesToLength$2('reduce', {
 	  1: 0
 	}); // `Array.prototype.reduce` method
@@ -27413,7 +27341,7 @@
 	_export$2({
 	  target: 'Array',
 	  proto: true,
-	  forced: !STRICT_METHOD$5 || !USES_TO_LENGTH$9
+	  forced: !STRICT_METHOD$6 || !USES_TO_LENGTH$9
 	}, {
 	  reduce: function reduce(callbackfn
 	  /* , initialValue */
@@ -27925,8 +27853,8 @@
 	  test$4.sort(null);
 	}); // Old WebKit
 
-	var STRICT_METHOD$6 = arrayMethodIsStrict$2('sort');
-	var FORCED$9 = FAILS_ON_UNDEFINED$1 || !FAILS_ON_NULL$1 || !STRICT_METHOD$6; // `Array.prototype.sort` method
+	var STRICT_METHOD$7 = arrayMethodIsStrict$2('sort');
+	var FORCED$9 = FAILS_ON_UNDEFINED$1 || !FAILS_ON_NULL$1 || !STRICT_METHOD$7; // `Array.prototype.sort` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.sort
 
 	_export$2({
@@ -29513,14 +29441,14 @@
 	var setInterval$1 = setInterval;
 
 	var $some$1 = arrayIteration$2.some;
-	var STRICT_METHOD$7 = arrayMethodIsStrict$2('some');
+	var STRICT_METHOD$8 = arrayMethodIsStrict$2('some');
 	var USES_TO_LENGTH$b = arrayMethodUsesToLength$2('some'); // `Array.prototype.some` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.some
 
 	_export$2({
 	  target: 'Array',
 	  proto: true,
-	  forced: !STRICT_METHOD$7 || !USES_TO_LENGTH$b
+	  forced: !STRICT_METHOD$8 || !USES_TO_LENGTH$b
 	}, {
 	  some: function some(callbackfn
 	  /* , thisArg */
@@ -29633,7 +29561,7 @@
 	var $indexOf$2 = arrayIncludes$2.indexOf;
 	var nativeIndexOf$2 = [].indexOf;
 	var NEGATIVE_ZERO$2 = !!nativeIndexOf$2 && 1 / [1].indexOf(1, -0) < 0;
-	var STRICT_METHOD$8 = arrayMethodIsStrict$2('indexOf');
+	var STRICT_METHOD$9 = arrayMethodIsStrict$2('indexOf');
 	var USES_TO_LENGTH$d = arrayMethodUsesToLength$2('indexOf', {
 	  ACCESSORS: true,
 	  1: 0
@@ -29643,7 +29571,7 @@
 	_export$2({
 	  target: 'Array',
 	  proto: true,
-	  forced: NEGATIVE_ZERO$2 || !STRICT_METHOD$8 || !USES_TO_LENGTH$d
+	  forced: NEGATIVE_ZERO$2 || !STRICT_METHOD$9 || !USES_TO_LENGTH$d
 	}, {
 	  indexOf: function indexOf(searchElement
 	  /* , fromIndex = 0 */
@@ -33143,30 +33071,30 @@
 	}
 
 	var trim$6 = stringTrim$2.trim;
-	var $parseInt$1 = global_1$2.parseInt;
+	var $parseInt$2 = global_1$2.parseInt;
 	var hex$2 = /^[+-]?0[Xx]/;
-	var FORCED$a = $parseInt$1(whitespaces$2 + '08') !== 8 || $parseInt$1(whitespaces$2 + '0x16') !== 22; // `parseInt` method
+	var FORCED$a = $parseInt$2(whitespaces$2 + '08') !== 8 || $parseInt$2(whitespaces$2 + '0x16') !== 22; // `parseInt` method
 	// https://tc39.github.io/ecma262/#sec-parseint-string-radix
 
-	var numberParseInt$1 = FORCED$a ? function parseInt(string, radix) {
+	var numberParseInt$2 = FORCED$a ? function parseInt(string, radix) {
 	  var S = trim$6(String(string));
-	  return $parseInt$1(S, radix >>> 0 || (hex$2.test(S) ? 16 : 10));
-	} : $parseInt$1;
+	  return $parseInt$2(S, radix >>> 0 || (hex$2.test(S) ? 16 : 10));
+	} : $parseInt$2;
 
 	// https://tc39.github.io/ecma262/#sec-parseint-string-radix
 
 	_export$2({
 	  global: true,
-	  forced: parseInt != numberParseInt$1
+	  forced: parseInt != numberParseInt$2
 	}, {
-	  parseInt: numberParseInt$1
+	  parseInt: numberParseInt$2
 	});
 
-	var _parseInt$4 = path$2.parseInt;
+	var _parseInt$3 = path$2.parseInt;
+
+	var _parseInt$4 = _parseInt$3;
 
 	var _parseInt$5 = _parseInt$4;
-
-	var _parseInt$6 = _parseInt$5;
 
 	/**
 	 * The class TimeStep is an iterator for dates. You provide a start date and an
@@ -34471,7 +34399,7 @@
 	          } else {
 	            if (line) {
 	              // adjust the width of the previous grid
-	              line.style.width = "".concat(_parseInt$6(line.style.width) + width, "px");
+	              line.style.width = "".concat(_parseInt$5(line.style.width) + width, "px");
 	            }
 	          }
 	        }
@@ -38122,7 +38050,7 @@
 
 	var assign$7 = assign$6;
 
-	var rngBrowser = createCommonjsModule(function (module) {
+	var rngBrowser$1 = createCommonjsModule(function (module) {
 	  // Unique ID creation requires a high quality random # generator.  In the
 	  // browser this is a little complicated due to unknown quality of Math.random()
 	  // and inconsistent support for the `crypto` API.  We do the best we can via
@@ -38161,22 +38089,22 @@
 	 * Convert array of 16 byte values to UUID string format of the form:
 	 * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 	 */
-	var byteToHex$3 = [];
+	var byteToHex$1 = [];
 
-	for (var i$3 = 0; i$3 < 256; ++i$3) {
-	  byteToHex$3[i$3] = (i$3 + 0x100).toString(16).substr(1);
+	for (var i$1 = 0; i$1 < 256; ++i$1) {
+	  byteToHex$1[i$1] = (i$1 + 0x100).toString(16).substr(1);
 	}
 
-	function bytesToUuid(buf, offset) {
+	function bytesToUuid$1(buf, offset) {
 	  var i = offset || 0;
-	  var bth = byteToHex$3; // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
+	  var bth = byteToHex$1; // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
 
 	  return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');
 	}
 
-	var bytesToUuid_1 = bytesToUuid;
+	var bytesToUuid_1$1 = bytesToUuid$1;
 
-	function v4(options, buf, offset) {
+	function v4$1(options, buf, offset) {
 	  var i = buf && offset || 0;
 
 	  if (typeof options == 'string') {
@@ -38185,7 +38113,7 @@
 	  }
 
 	  options = options || {};
-	  var rnds = options.random || (options.rng || rngBrowser)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+	  var rnds = options.random || (options.rng || rngBrowser$1)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
 	  rnds[6] = rnds[6] & 0x0f | 0x40;
 	  rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
@@ -38196,10 +38124,10 @@
 	    }
 	  }
 
-	  return buf || bytesToUuid_1(rnds);
+	  return buf || bytesToUuid_1$1(rnds);
 	}
 
-	var v4_1 = v4;
+	var v4_1$1 = v4$1;
 
 	var $includes = arrayIncludes$2.includes;
 	var USES_TO_LENGTH$f = arrayMethodUsesToLength$2('indexOf', {
@@ -42363,8 +42291,8 @@
 	  createClass$1(Popup, [{
 	    key: "setPosition",
 	    value: function setPosition(x, y) {
-	      this.x = _parseInt$6(x);
-	      this.y = _parseInt$6(y);
+	      this.x = _parseInt$5(x);
+	      this.y = _parseInt$5(y);
 	    }
 	    /**
 	     * Set the content for the popup window. This can be HTML code or text.
@@ -42484,14 +42412,14 @@
 	}();
 
 	var $every = arrayIteration$2.every;
-	var STRICT_METHOD$9 = arrayMethodIsStrict$2('every');
+	var STRICT_METHOD$a = arrayMethodIsStrict$2('every');
 	var USES_TO_LENGTH$h = arrayMethodUsesToLength$2('every'); // `Array.prototype.every` method
 	// https://tc39.github.io/ecma262/#sec-array.prototype.every
 
 	_export$2({
 	  target: 'Array',
 	  proto: true,
-	  forced: !STRICT_METHOD$9 || !USES_TO_LENGTH$h
+	  forced: !STRICT_METHOD$a || !USES_TO_LENGTH$h
 	}, {
 	  every: function every(callbackfn
 	  /* , thisArg */
@@ -42604,7 +42532,7 @@
 	      throw new Error('Property "uiItems" missing in item ' + data.id);
 	    }
 
-	    _this.id = v4_1();
+	    _this.id = v4_1$1();
 	    _this.group = data.group;
 
 	    _this._setupRange();
@@ -45563,7 +45491,7 @@
 	        end: end,
 	        content: 'new item'
 	      };
-	      var id = v4_1();
+	      var id = v4_1$1();
 	      itemData[this.itemsData.idProp] = id;
 	      var group = this.groupFromTarget(event);
 
@@ -46325,7 +46253,7 @@
 	        newItemData.content = newItemData.content ? newItemData.content : 'new item';
 	        newItemData.start = newItemData.start ? newItemData.start : snap ? snap(start, scale, step) : start;
 	        newItemData.type = newItemData.type || 'box';
-	        newItemData[this.itemsData.idProp] = newItemData.id || v4_1();
+	        newItemData[this.itemsData.idProp] = newItemData.id || v4_1$1();
 
 	        if (newItemData.type == 'range' && !newItemData.end) {
 	          end = this.body.util.toTime(x + this.props.width / 5);
@@ -46336,7 +46264,7 @@
 	          start: snap ? snap(start, scale, step) : start,
 	          content: 'new item'
 	        };
-	        newItemData[this.itemsData.idProp] = v4_1(); // when default type is a range, add a default end date to the new item
+	        newItemData[this.itemsData.idProp] = v4_1$1(); // when default type is a range, add a default end date to the new item
 
 	        if (this.options.type === 'range') {
 	          end = this.body.util.toTime(x + this.props.width / 5);
@@ -50832,7 +50760,7 @@
 	    classCallCheck$1(this, DataAxis);
 
 	    _this = possibleConstructorReturn$1(this, getPrototypeOf$8(DataAxis).call(this));
-	    _this.id = v4_1();
+	    _this.id = v4_1$1();
 	    _this.body = body;
 	    _this.defaultOptions = {
 	      orientation: 'left',
@@ -52594,7 +52522,7 @@
 	 */
 
 	function LineGraph(body, options) {
-	  this.id = v4_1();
+	  this.id = v4_1$1();
 	  this.body = body;
 	  this.defaultOptions = {
 	    yAxisOrientation: 'left',
@@ -52749,7 +52677,7 @@
 	      this.updateSVGheight = true;
 	      this.updateSVGheightOnResize = true;
 	    } else if (this.body.domProps.centerContainer.height !== undefined && options.graphHeight !== undefined) {
-	      if (_parseInt$6((options.graphHeight + '').replace("px", '')) < this.body.domProps.centerContainer.height) {
+	      if (_parseInt$5((options.graphHeight + '').replace("px", '')) < this.body.domProps.centerContainer.height) {
 	        this.updateSVGheight = true;
 	      }
 	    }
