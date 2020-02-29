@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-22T18:22:33.460Z
+ * @date    2020-02-29T11:48:00.117Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10112,9 +10112,7 @@ function topMost(pile, accessors) {
   return candidate;
 }
 
-var util =
-/*#__PURE__*/
-Object.freeze({
+var util = /*#__PURE__*/Object.freeze({
   __proto__: null,
   isNumber: isNumber,
   recursiveDOMDelete: recursiveDOMDelete,
@@ -11420,9 +11418,7 @@ function createNewDataPipeFrom(from) {
  */
 
 
-var SimpleDataPipe =
-/*#__PURE__*/
-function () {
+var SimpleDataPipe = /*#__PURE__*/function () {
   /**
    * Create a new data pipe.
    *
@@ -11561,9 +11557,7 @@ function () {
  */
 
 
-var DataPipeUnderConstruction =
-/*#__PURE__*/
-function () {
+var DataPipeUnderConstruction = /*#__PURE__*/function () {
   /**
    * Create a new data pipe factory. This is an internal constructor that
    * should never be called from outside of this file.
@@ -22020,9 +22014,7 @@ var setTimeout$1$1 = setTimeout$1;
  * @typeParam T - The type of method names to be replaced by queued versions.
  */
 
-var Queue =
-/*#__PURE__*/
-function () {
+var Queue = /*#__PURE__*/function () {
   /**
    * Construct a new Queue.
    *
@@ -22235,9 +22227,7 @@ function () {
  */
 
 
-var DataSetPart =
-/*#__PURE__*/
-function () {
+var DataSetPart = /*#__PURE__*/function () {
   function DataSetPart() {
     classCallCheck(this, DataSetPart);
     this._subscribers = {
@@ -22390,9 +22380,7 @@ var slicedToArray$1 = _slicedToArray$1;
  * @typeparam Item - The item type this stream is going to work with.
  */
 
-var DataStream =
-/*#__PURE__*/
-function () {
+var DataStream = /*#__PURE__*/function () {
   /**
    * Create a new data stream.
    *
@@ -22409,9 +22397,7 @@ function () {
 
   createClass(DataStream, [{
     key: iterator$2$1,
-    value:
-    /*#__PURE__*/
-    regenerator.mark(function value() {
+    value: /*#__PURE__*/regenerator.mark(function value() {
       var _iteratorNormalCompletion, _didIteratorError, _iteratorError, _iterator, _step, _step$value, id, item;
 
       return regenerator.wrap(function value$(_context) {
@@ -22486,9 +22472,7 @@ function () {
 
   }, {
     key: "entries",
-    value:
-    /*#__PURE__*/
-    regenerator.mark(function entries() {
+    value: /*#__PURE__*/regenerator.mark(function entries() {
       var _iteratorNormalCompletion2, _didIteratorError2, _iteratorError2, _iterator2, _step2, _step2$value, id, item;
 
       return regenerator.wrap(function entries$(_context2) {
@@ -22563,9 +22547,7 @@ function () {
 
   }, {
     key: "keys",
-    value:
-    /*#__PURE__*/
-    regenerator.mark(function keys() {
+    value: /*#__PURE__*/regenerator.mark(function keys() {
       var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, _step3$value, id;
 
       return regenerator.wrap(function keys$(_context3) {
@@ -22640,9 +22622,7 @@ function () {
 
   }, {
     key: "values",
-    value:
-    /*#__PURE__*/
-    regenerator.mark(function values() {
+    value: /*#__PURE__*/regenerator.mark(function values() {
       var _iteratorNormalCompletion4, _didIteratorError4, _iteratorError4, _iterator4, _step4, _step4$value, item;
 
       return regenerator.wrap(function values$(_context4) {
@@ -22920,9 +22900,7 @@ function () {
     key: "filter",
     value: function filter(callback) {
       var pairs = this._pairs;
-      return new DataStream(defineProperty$7$1({}, iterator$2$1,
-      /*#__PURE__*/
-      regenerator.mark(function _callee() {
+      return new DataStream(defineProperty$7$1({}, iterator$2$1, /*#__PURE__*/regenerator.mark(function _callee() {
         var _iteratorNormalCompletion7, _didIteratorError7, _iteratorError7, _iterator7, _step7, _step7$value, id, item;
 
         return regenerator.wrap(function _callee$(_context7) {
@@ -23048,9 +23026,7 @@ function () {
     key: "map",
     value: function map(callback) {
       var pairs = this._pairs;
-      return new DataStream(defineProperty$7$1({}, iterator$2$1,
-      /*#__PURE__*/
-      regenerator.mark(function _callee2() {
+      return new DataStream(defineProperty$7$1({}, iterator$2$1, /*#__PURE__*/regenerator.mark(function _callee2() {
         var _iteratorNormalCompletion9, _didIteratorError9, _iteratorError9, _iterator9, _step9, _step9$value, id, item;
 
         return regenerator.wrap(function _callee2$(_context8) {
@@ -23365,9 +23341,7 @@ var warnTypeCorectionDeprecation = function warnTypeCorectionDeprecation() {
  */
 
 
-var DataSet =
-/*#__PURE__*/
-function (_DataSetPart) {
+var DataSet = /*#__PURE__*/function (_DataSetPart) {
   inherits(DataSet, _DataSetPart);
   /**
    * Construct a new DataSet.
@@ -24439,9 +24413,7 @@ function (_DataSetPart) {
     value: function stream(ids) {
       if (ids) {
         var data = this._data;
-        return new DataStream(defineProperty$7$1({}, iterator$2$1,
-        /*#__PURE__*/
-        regenerator.mark(function _callee() {
+        return new DataStream(defineProperty$7$1({}, iterator$2$1, /*#__PURE__*/regenerator.mark(function _callee() {
           var _iteratorNormalCompletion3, _didIteratorError3, _iteratorError3, _iterator3, _step3, id, item;
 
           return regenerator.wrap(function _callee$(_context7) {
@@ -24573,9 +24545,7 @@ function (_DataSetPart) {
  */
 
 
-var DataView =
-/*#__PURE__*/
-function (_DataSetPart) {
+var DataView = /*#__PURE__*/function (_DataSetPart) {
   inherits(DataView, _DataSetPart);
   /**
    * Create a DataView.
@@ -27769,9 +27739,7 @@ var concat$6 = concat$5;
 
 /** Prototype for visual components */
 
-var Component =
-/*#__PURE__*/
-function () {
+var Component = /*#__PURE__*/function () {
   /**
   * @param {{dom: Object, domProps: Object, emitter: Emitter, range: Range}} [body]
   * @param {Object} [options]
@@ -28496,9 +28464,7 @@ var DateUtil = /*#__PURE__*/Object.freeze({
  * and triggers events when the range is changing or has been changed.
  */
 
-var Range =
-/*#__PURE__*/
-function (_Component) {
+var Range = /*#__PURE__*/function (_Component) {
   inherits$1(Range, _Component);
 
   /**
@@ -30255,9 +30221,7 @@ function cleanTouchActions(actions) {
  */
 
 
-var TouchAction =
-/*#__PURE__*/
-function () {
+var TouchAction = /*#__PURE__*/function () {
   function TouchAction(manager, value) {
     this.manager = manager;
     this.set(value);
@@ -30760,9 +30724,7 @@ function getWindowForElement(element) {
  */
 
 
-var Input =
-/*#__PURE__*/
-function () {
+var Input = /*#__PURE__*/function () {
   function Input(manager, callback) {
     var self = this;
     this.manager = manager;
@@ -30873,9 +30835,7 @@ if (win.MSPointerEvent && !win.PointerEvent) {
  */
 
 
-var PointerEventInput =
-/*#__PURE__*/
-function (_Input) {
+var PointerEventInput = /*#__PURE__*/function (_Input) {
   _inheritsLoose(PointerEventInput, _Input);
 
   function PointerEventInput() {
@@ -31002,9 +30962,7 @@ var TOUCH_TARGET_EVENTS = 'touchstart touchmove touchend touchcancel';
  * @extends Input
  */
 
-var TouchInput =
-/*#__PURE__*/
-function (_Input) {
+var TouchInput = /*#__PURE__*/function (_Input) {
   _inheritsLoose(TouchInput, _Input);
 
   function TouchInput() {
@@ -31104,9 +31062,7 @@ var MOUSE_WINDOW_EVENTS = 'mousemove mouseup';
  * @extends Input
  */
 
-var MouseInput =
-/*#__PURE__*/
-function (_Input) {
+var MouseInput = /*#__PURE__*/function (_Input) {
   _inheritsLoose(MouseInput, _Input);
 
   function MouseInput() {
@@ -31224,12 +31180,8 @@ function isSyntheticEvent(eventData) {
   return false;
 }
 
-var TouchMouseInput =
-/*#__PURE__*/
-function () {
-  var TouchMouseInput =
-  /*#__PURE__*/
-  function (_Input) {
+var TouchMouseInput = /*#__PURE__*/function () {
+  var TouchMouseInput = /*#__PURE__*/function (_Input) {
     _inheritsLoose(TouchMouseInput, _Input);
 
     function TouchMouseInput(_manager, callback) {
@@ -31430,9 +31382,7 @@ function stateStr(state) {
  */
 
 
-var Recognizer =
-/*#__PURE__*/
-function () {
+var Recognizer = /*#__PURE__*/function () {
   function Recognizer(options) {
     if (options === void 0) {
       options = {};
@@ -31719,9 +31669,7 @@ function () {
  */
 
 
-var TapRecognizer =
-/*#__PURE__*/
-function (_Recognizer) {
+var TapRecognizer = /*#__PURE__*/function (_Recognizer) {
   _inheritsLoose(TapRecognizer, _Recognizer);
 
   function TapRecognizer(options) {
@@ -31844,9 +31792,7 @@ function (_Recognizer) {
  */
 
 
-var AttrRecognizer =
-/*#__PURE__*/
-function (_Recognizer) {
+var AttrRecognizer = /*#__PURE__*/function (_Recognizer) {
   _inheritsLoose(AttrRecognizer, _Recognizer);
 
   function AttrRecognizer(options) {
@@ -31935,9 +31881,7 @@ function directionStr(direction) {
  */
 
 
-var PanRecognizer =
-/*#__PURE__*/
-function (_AttrRecognizer) {
+var PanRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
   _inheritsLoose(PanRecognizer, _AttrRecognizer);
 
   function PanRecognizer(options) {
@@ -32027,9 +31971,7 @@ function (_AttrRecognizer) {
  */
 
 
-var SwipeRecognizer =
-/*#__PURE__*/
-function (_AttrRecognizer) {
+var SwipeRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
   _inheritsLoose(SwipeRecognizer, _AttrRecognizer);
 
   function SwipeRecognizer(options) {
@@ -32088,9 +32030,7 @@ function (_AttrRecognizer) {
  */
 
 
-var PinchRecognizer =
-/*#__PURE__*/
-function (_AttrRecognizer) {
+var PinchRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
   _inheritsLoose(PinchRecognizer, _AttrRecognizer);
 
   function PinchRecognizer(options) {
@@ -32135,9 +32075,7 @@ function (_AttrRecognizer) {
  */
 
 
-var RotateRecognizer =
-/*#__PURE__*/
-function (_AttrRecognizer) {
+var RotateRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
   _inheritsLoose(RotateRecognizer, _AttrRecognizer);
 
   function RotateRecognizer(options) {
@@ -32173,9 +32111,7 @@ function (_AttrRecognizer) {
  */
 
 
-var PressRecognizer =
-/*#__PURE__*/
-function (_Recognizer) {
+var PressRecognizer = /*#__PURE__*/function (_Recognizer) {
   _inheritsLoose(PressRecognizer, _Recognizer);
 
   function PressRecognizer(options) {
@@ -32427,9 +32363,7 @@ function triggerDomEvent(event, data) {
  */
 
 
-var Manager =
-/*#__PURE__*/
-function () {
+var Manager = /*#__PURE__*/function () {
   function Manager(element, options) {
     var _this = this;
 
@@ -32733,9 +32667,7 @@ var SINGLE_TOUCH_WINDOW_EVENTS = 'touchstart touchmove touchend touchcancel';
  * @extends Input
  */
 
-var SingleTouchInput =
-/*#__PURE__*/
-function (_Input) {
+var SingleTouchInput = /*#__PURE__*/function (_Input) {
   _inheritsLoose(SingleTouchInput, _Input);
 
   function SingleTouchInput() {
@@ -32892,9 +32824,7 @@ function bindFn(fn, context) {
  */
 
 
-var Hammer =
-/*#__PURE__*/
-function () {
+var Hammer = /*#__PURE__*/function () {
   var Hammer =
   /**
     * @private
@@ -33112,9 +33042,7 @@ var _parseInt$5 = _parseInt$4;
  *
  */
 
-var TimeStep =
-/*#__PURE__*/
-function () {
+var TimeStep = /*#__PURE__*/function () {
   /**
     * @param {Date} [start]         The start date, for example new Date(2010, 9, 21)
     *                               or new Date(2010, 9, 21, 23, 45, 00)
@@ -34109,9 +34037,7 @@ TimeStep.FORMAT = {
 
 /** A horizontal time axis */
 
-var TimeAxis =
-/*#__PURE__*/
-function (_Component) {
+var TimeAxis = /*#__PURE__*/function (_Component) {
   inherits$1(TimeAxis, _Component);
 
   /**
@@ -35193,9 +35119,7 @@ var locales = {
 
 /** A custom time bar */
 
-var CustomTime =
-/*#__PURE__*/
-function (_Component) {
+var CustomTime = /*#__PURE__*/function (_Component) {
   inherits$1(CustomTime, _Component);
 
   /**
@@ -35577,9 +35501,7 @@ function (_Component) {
  * @constructor Core
  */
 
-var Core =
-/*#__PURE__*/
-function () {
+var Core = /*#__PURE__*/function () {
   function Core() {
     classCallCheck$1(this, Core);
   }
@@ -37103,9 +37025,7 @@ emitterComponent(Core.prototype);
  * A current time bar
  */
 
-var CurrentTime =
-/*#__PURE__*/
-function (_Component) {
+var CurrentTime = /*#__PURE__*/function (_Component) {
   inherits$1(CurrentTime, _Component);
 
   /**
@@ -38607,9 +38527,7 @@ var ReservedGroupIds = {
  * @constructor Group
  */
 
-var Group =
-/*#__PURE__*/
-function () {
+var Group = /*#__PURE__*/function () {
   /**
   * @param {number | string} groupId
   * @param {Object} data
@@ -39956,9 +39874,7 @@ function () {
  * @extends Group
  */
 
-var BackgroundGroup =
-/*#__PURE__*/
-function (_Group) {
+var BackgroundGroup = /*#__PURE__*/function (_Group) {
   inherits$1(BackgroundGroup, _Group);
 
   /**
@@ -40026,9 +39942,7 @@ function (_Group) {
  * Item
  */
 
-var Item =
-/*#__PURE__*/
-function () {
+var Item = /*#__PURE__*/function () {
   /**
   * @constructor Item
   * @param {Object} data             Object containing (optional) parameters type,
@@ -40692,9 +40606,7 @@ Item.prototype.stack = true;
  * @extends Item
  */
 
-var BoxItem =
-/*#__PURE__*/
-function (_Item) {
+var BoxItem = /*#__PURE__*/function (_Item) {
   inherits$1(BoxItem, _Item);
 
   /**
@@ -41124,9 +41036,7 @@ function (_Item) {
  * @extends Item
  */
 
-var PointItem =
-/*#__PURE__*/
-function (_Item) {
+var PointItem = /*#__PURE__*/function (_Item) {
   inherits$1(PointItem, _Item);
 
   /**
@@ -41500,9 +41410,7 @@ function (_Item) {
  * @extends Item
  */
 
-var RangeItem =
-/*#__PURE__*/
-function (_Item) {
+var RangeItem = /*#__PURE__*/function (_Item) {
   inherits$1(RangeItem, _Item);
 
   /**
@@ -41968,9 +41876,7 @@ RangeItem.prototype.baseClassName = 'vis-item vis-range';
  * @extends Item
  */
 
-var BackgroundItem =
-/*#__PURE__*/
-function (_Item) {
+var BackgroundItem = /*#__PURE__*/function (_Item) {
   inherits$1(BackgroundItem, _Item);
 
   /**
@@ -42255,9 +42161,7 @@ BackgroundItem.prototype.repositionX = RangeItem.prototype.repositionX;
  * Popup is a class to create a popup window with some text
  */
 
-var Popup =
-/*#__PURE__*/
-function () {
+var Popup = /*#__PURE__*/function () {
   /**
    * @param {Element} container       The container object.
    * @param {string}  overflowMethod  How the popup should act to overflowing ('flip', 'cap' or 'none')
@@ -42489,9 +42393,7 @@ var values$6 = values$5;
  * ClusterItem
  */
 
-var ClusterItem =
-/*#__PURE__*/
-function (_Item) {
+var ClusterItem = /*#__PURE__*/function (_Item) {
   inherits$1(ClusterItem, _Item);
 
   /**
@@ -43273,9 +43175,7 @@ var ReservedGroupIds$1 = {
  * An Cluster generator generates cluster items
  */
 
-var ClusterGenerator =
-/*#__PURE__*/
-function () {
+var ClusterGenerator = /*#__PURE__*/function () {
   /**
    * @param {ItemSet} itemSet itemsSet instance
    * @constructor ClusterGenerator
@@ -43656,9 +43556,7 @@ var BACKGROUND$2 = '__background__'; // reserved group id for background items w
  * is determined by the size of the items.
  */
 
-var ItemSet =
-/*#__PURE__*/
-function (_Component) {
+var ItemSet = /*#__PURE__*/function (_Component) {
   inherits$1(ItemSet, _Component);
 
   /**
@@ -46724,9 +46622,7 @@ var printStyle = 'background: #FFeeee; color: #dd0000';
  *  Used to validate options.
  */
 
-var Validator =
-/*#__PURE__*/
-function () {
+var Validator = /*#__PURE__*/function () {
   /**
    * @ignore
    */
@@ -47934,9 +47830,7 @@ var htmlColors = {
  * @param {number} [pixelRatio=1]
  */
 
-var ColorPicker =
-/*#__PURE__*/
-function () {
+var ColorPicker = /*#__PURE__*/function () {
   /**
    * @param {number} [pixelRatio=1]
    */
@@ -48575,9 +48469,7 @@ function () {
  * The options are matched with their counterparts in each of the modules and the values used in the configuration are
  */
 
-var Configurator =
-/*#__PURE__*/
-function () {
+var Configurator = /*#__PURE__*/function () {
   /**
    * @param {Object} parentModule        | the location where parentModule.setOptions() can be called
    * @param {Object} defaultContainer    | the default container of the module
@@ -49467,9 +49359,7 @@ function () {
  * @extends Core
  */
 
-var Timeline =
-/*#__PURE__*/
-function (_Core) {
+var Timeline = /*#__PURE__*/function (_Core) {
   inherits$1(Timeline, _Core);
 
   /**
@@ -50401,9 +50291,7 @@ function getItemVerticalScroll(timeline, item) {
 }
 
 /** DataScale */
-var DataScale =
-/*#__PURE__*/
-function () {
+var DataScale = /*#__PURE__*/function () {
   /**
    *
    * @param {number} start
@@ -50734,9 +50622,7 @@ function () {
 
 /** A horizontal time axis */
 
-var DataAxis =
-/*#__PURE__*/
-function (_Component) {
+var DataAxis = /*#__PURE__*/function (_Component) {
   inherits$1(DataAxis, _Component);
 
   /**

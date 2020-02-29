@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-02-22T18:22:33.460Z
+ * @date    2020-02-29T11:48:00.117Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6955,9 +6955,7 @@
     return candidate;
   }
 
-  var util =
-  /*#__PURE__*/
-  Object.freeze({
+  var util = /*#__PURE__*/Object.freeze({
     __proto__: null,
     isNumber: isNumber,
     recursiveDOMDelete: recursiveDOMDelete,
@@ -7451,9 +7449,7 @@
 
   /** Prototype for visual components */
 
-  var Component =
-  /*#__PURE__*/
-  function () {
+  var Component = /*#__PURE__*/function () {
     /**
     * @param {{dom: Object, domProps: Object, emitter: Emitter, range: Range}} [body]
     * @param {Object} [options]
@@ -8178,9 +8174,7 @@
    * and triggers events when the range is changing or has been changed.
    */
 
-  var Range =
-  /*#__PURE__*/
-  function (_Component) {
+  var Range = /*#__PURE__*/function (_Component) {
     inherits(Range, _Component);
 
     /**
@@ -9937,9 +9931,7 @@
    */
 
 
-  var TouchAction =
-  /*#__PURE__*/
-  function () {
+  var TouchAction = /*#__PURE__*/function () {
     function TouchAction(manager, value) {
       this.manager = manager;
       this.set(value);
@@ -10442,9 +10434,7 @@
    */
 
 
-  var Input =
-  /*#__PURE__*/
-  function () {
+  var Input = /*#__PURE__*/function () {
     function Input(manager, callback) {
       var self = this;
       this.manager = manager;
@@ -10555,9 +10545,7 @@
    */
 
 
-  var PointerEventInput =
-  /*#__PURE__*/
-  function (_Input) {
+  var PointerEventInput = /*#__PURE__*/function (_Input) {
     _inheritsLoose(PointerEventInput, _Input);
 
     function PointerEventInput() {
@@ -10684,9 +10672,7 @@
    * @extends Input
    */
 
-  var TouchInput =
-  /*#__PURE__*/
-  function (_Input) {
+  var TouchInput = /*#__PURE__*/function (_Input) {
     _inheritsLoose(TouchInput, _Input);
 
     function TouchInput() {
@@ -10786,9 +10772,7 @@
    * @extends Input
    */
 
-  var MouseInput =
-  /*#__PURE__*/
-  function (_Input) {
+  var MouseInput = /*#__PURE__*/function (_Input) {
     _inheritsLoose(MouseInput, _Input);
 
     function MouseInput() {
@@ -10906,12 +10890,8 @@
     return false;
   }
 
-  var TouchMouseInput =
-  /*#__PURE__*/
-  function () {
-    var TouchMouseInput =
-    /*#__PURE__*/
-    function (_Input) {
+  var TouchMouseInput = /*#__PURE__*/function () {
+    var TouchMouseInput = /*#__PURE__*/function (_Input) {
       _inheritsLoose(TouchMouseInput, _Input);
 
       function TouchMouseInput(_manager, callback) {
@@ -11112,9 +11092,7 @@
    */
 
 
-  var Recognizer =
-  /*#__PURE__*/
-  function () {
+  var Recognizer = /*#__PURE__*/function () {
     function Recognizer(options) {
       if (options === void 0) {
         options = {};
@@ -11401,9 +11379,7 @@
    */
 
 
-  var TapRecognizer =
-  /*#__PURE__*/
-  function (_Recognizer) {
+  var TapRecognizer = /*#__PURE__*/function (_Recognizer) {
     _inheritsLoose(TapRecognizer, _Recognizer);
 
     function TapRecognizer(options) {
@@ -11526,9 +11502,7 @@
    */
 
 
-  var AttrRecognizer =
-  /*#__PURE__*/
-  function (_Recognizer) {
+  var AttrRecognizer = /*#__PURE__*/function (_Recognizer) {
     _inheritsLoose(AttrRecognizer, _Recognizer);
 
     function AttrRecognizer(options) {
@@ -11617,9 +11591,7 @@
    */
 
 
-  var PanRecognizer =
-  /*#__PURE__*/
-  function (_AttrRecognizer) {
+  var PanRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
     _inheritsLoose(PanRecognizer, _AttrRecognizer);
 
     function PanRecognizer(options) {
@@ -11709,9 +11681,7 @@
    */
 
 
-  var SwipeRecognizer =
-  /*#__PURE__*/
-  function (_AttrRecognizer) {
+  var SwipeRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
     _inheritsLoose(SwipeRecognizer, _AttrRecognizer);
 
     function SwipeRecognizer(options) {
@@ -11770,9 +11740,7 @@
    */
 
 
-  var PinchRecognizer =
-  /*#__PURE__*/
-  function (_AttrRecognizer) {
+  var PinchRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
     _inheritsLoose(PinchRecognizer, _AttrRecognizer);
 
     function PinchRecognizer(options) {
@@ -11817,9 +11785,7 @@
    */
 
 
-  var RotateRecognizer =
-  /*#__PURE__*/
-  function (_AttrRecognizer) {
+  var RotateRecognizer = /*#__PURE__*/function (_AttrRecognizer) {
     _inheritsLoose(RotateRecognizer, _AttrRecognizer);
 
     function RotateRecognizer(options) {
@@ -11855,9 +11821,7 @@
    */
 
 
-  var PressRecognizer =
-  /*#__PURE__*/
-  function (_Recognizer) {
+  var PressRecognizer = /*#__PURE__*/function (_Recognizer) {
     _inheritsLoose(PressRecognizer, _Recognizer);
 
     function PressRecognizer(options) {
@@ -12109,9 +12073,7 @@
    */
 
 
-  var Manager =
-  /*#__PURE__*/
-  function () {
+  var Manager = /*#__PURE__*/function () {
     function Manager(element, options) {
       var _this = this;
 
@@ -12415,9 +12377,7 @@
    * @extends Input
    */
 
-  var SingleTouchInput =
-  /*#__PURE__*/
-  function (_Input) {
+  var SingleTouchInput = /*#__PURE__*/function (_Input) {
     _inheritsLoose(SingleTouchInput, _Input);
 
     function SingleTouchInput() {
@@ -12574,9 +12534,7 @@
    */
 
 
-  var Hammer =
-  /*#__PURE__*/
-  function () {
+  var Hammer = /*#__PURE__*/function () {
     var Hammer =
     /**
       * @private
@@ -12794,9 +12752,7 @@
    *
    */
 
-  var TimeStep =
-  /*#__PURE__*/
-  function () {
+  var TimeStep = /*#__PURE__*/function () {
     /**
       * @param {Date} [start]         The start date, for example new Date(2010, 9, 21)
       *                               or new Date(2010, 9, 21, 23, 45, 00)
@@ -13791,9 +13747,7 @@
 
   /** A horizontal time axis */
 
-  var TimeAxis =
-  /*#__PURE__*/
-  function (_Component) {
+  var TimeAxis = /*#__PURE__*/function (_Component) {
     inherits(TimeAxis, _Component);
 
     /**
@@ -14875,9 +14829,7 @@
 
   /** A custom time bar */
 
-  var CustomTime =
-  /*#__PURE__*/
-  function (_Component) {
+  var CustomTime = /*#__PURE__*/function (_Component) {
     inherits(CustomTime, _Component);
 
     /**
@@ -15259,9 +15211,7 @@
    * @constructor Core
    */
 
-  var Core =
-  /*#__PURE__*/
-  function () {
+  var Core = /*#__PURE__*/function () {
     function Core() {
       classCallCheck(this, Core);
     }
@@ -16785,9 +16735,7 @@
    * A current time bar
    */
 
-  var CurrentTime =
-  /*#__PURE__*/
-  function (_Component) {
+  var CurrentTime = /*#__PURE__*/function (_Component) {
     inherits(CurrentTime, _Component);
 
     /**
@@ -18289,9 +18237,7 @@
    * @constructor Group
    */
 
-  var Group =
-  /*#__PURE__*/
-  function () {
+  var Group = /*#__PURE__*/function () {
     /**
     * @param {number | string} groupId
     * @param {Object} data
@@ -19638,9 +19584,7 @@
    * @extends Group
    */
 
-  var BackgroundGroup =
-  /*#__PURE__*/
-  function (_Group) {
+  var BackgroundGroup = /*#__PURE__*/function (_Group) {
     inherits(BackgroundGroup, _Group);
 
     /**
@@ -19708,9 +19652,7 @@
    * Item
    */
 
-  var Item =
-  /*#__PURE__*/
-  function () {
+  var Item = /*#__PURE__*/function () {
     /**
     * @constructor Item
     * @param {Object} data             Object containing (optional) parameters type,
@@ -20374,9 +20316,7 @@
    * @extends Item
    */
 
-  var BoxItem =
-  /*#__PURE__*/
-  function (_Item) {
+  var BoxItem = /*#__PURE__*/function (_Item) {
     inherits(BoxItem, _Item);
 
     /**
@@ -20806,9 +20746,7 @@
    * @extends Item
    */
 
-  var PointItem =
-  /*#__PURE__*/
-  function (_Item) {
+  var PointItem = /*#__PURE__*/function (_Item) {
     inherits(PointItem, _Item);
 
     /**
@@ -21182,9 +21120,7 @@
    * @extends Item
    */
 
-  var RangeItem =
-  /*#__PURE__*/
-  function (_Item) {
+  var RangeItem = /*#__PURE__*/function (_Item) {
     inherits(RangeItem, _Item);
 
     /**
@@ -21650,9 +21586,7 @@
    * @extends Item
    */
 
-  var BackgroundItem =
-  /*#__PURE__*/
-  function (_Item) {
+  var BackgroundItem = /*#__PURE__*/function (_Item) {
     inherits(BackgroundItem, _Item);
 
     /**
@@ -21937,9 +21871,7 @@
    * Popup is a class to create a popup window with some text
    */
 
-  var Popup =
-  /*#__PURE__*/
-  function () {
+  var Popup = /*#__PURE__*/function () {
     /**
      * @param {Element} container       The container object.
      * @param {string}  overflowMethod  How the popup should act to overflowing ('flip', 'cap' or 'none')
@@ -22171,9 +22103,7 @@
    * ClusterItem
    */
 
-  var ClusterItem =
-  /*#__PURE__*/
-  function (_Item) {
+  var ClusterItem = /*#__PURE__*/function (_Item) {
     inherits(ClusterItem, _Item);
 
     /**
@@ -22955,9 +22885,7 @@
    * An Cluster generator generates cluster items
    */
 
-  var ClusterGenerator =
-  /*#__PURE__*/
-  function () {
+  var ClusterGenerator = /*#__PURE__*/function () {
     /**
      * @param {ItemSet} itemSet itemsSet instance
      * @constructor ClusterGenerator
@@ -23338,9 +23266,7 @@
    * is determined by the size of the items.
    */
 
-  var ItemSet =
-  /*#__PURE__*/
-  function (_Component) {
+  var ItemSet = /*#__PURE__*/function (_Component) {
     inherits(ItemSet, _Component);
 
     /**
@@ -26406,9 +26332,7 @@
    *  Used to validate options.
    */
 
-  var Validator =
-  /*#__PURE__*/
-  function () {
+  var Validator = /*#__PURE__*/function () {
     /**
      * @ignore
      */
@@ -27616,9 +27540,7 @@
    * @param {number} [pixelRatio=1]
    */
 
-  var ColorPicker =
-  /*#__PURE__*/
-  function () {
+  var ColorPicker = /*#__PURE__*/function () {
     /**
      * @param {number} [pixelRatio=1]
      */
@@ -28257,9 +28179,7 @@
    * The options are matched with their counterparts in each of the modules and the values used in the configuration are
    */
 
-  var Configurator =
-  /*#__PURE__*/
-  function () {
+  var Configurator = /*#__PURE__*/function () {
     /**
      * @param {Object} parentModule        | the location where parentModule.setOptions() can be called
      * @param {Object} defaultContainer    | the default container of the module
@@ -29149,9 +29069,7 @@
    * @extends Core
    */
 
-  var Timeline =
-  /*#__PURE__*/
-  function (_Core) {
+  var Timeline = /*#__PURE__*/function (_Core) {
     inherits(Timeline, _Core);
 
     /**
@@ -30329,9 +30247,7 @@
   }
 
   /** DataScale */
-  var DataScale =
-  /*#__PURE__*/
-  function () {
+  var DataScale = /*#__PURE__*/function () {
     /**
      *
      * @param {number} start
@@ -30662,9 +30578,7 @@
 
   /** A horizontal time axis */
 
-  var DataAxis =
-  /*#__PURE__*/
-  function (_Component) {
+  var DataAxis = /*#__PURE__*/function (_Component) {
     inherits(DataAxis, _Component);
 
     /**
