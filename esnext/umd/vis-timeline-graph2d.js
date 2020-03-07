@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-07T21:17:07.645Z
+ * @date    2020-03-07T21:19:55.367Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -30,11 +30,11 @@
   (global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm));
 }(this, (function (exports, moment$3, util$1, visData, Emitter, PropagatingHammer, Hammer$1, keycharm) { 'use strict';
 
-  moment$3 = moment$3 && moment$3.hasOwnProperty('default') ? moment$3['default'] : moment$3;
-  Emitter = Emitter && Emitter.hasOwnProperty('default') ? Emitter['default'] : Emitter;
-  PropagatingHammer = PropagatingHammer && PropagatingHammer.hasOwnProperty('default') ? PropagatingHammer['default'] : PropagatingHammer;
-  Hammer$1 = Hammer$1 && Hammer$1.hasOwnProperty('default') ? Hammer$1['default'] : Hammer$1;
-  keycharm = keycharm && keycharm.hasOwnProperty('default') ? keycharm['default'] : keycharm;
+  moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
+  Emitter = Emitter && Object.prototype.hasOwnProperty.call(Emitter, 'default') ? Emitter['default'] : Emitter;
+  PropagatingHammer = PropagatingHammer && Object.prototype.hasOwnProperty.call(PropagatingHammer, 'default') ? PropagatingHammer['default'] : PropagatingHammer;
+  Hammer$1 = Hammer$1 && Object.prototype.hasOwnProperty.call(Hammer$1, 'default') ? Hammer$1['default'] : Hammer$1;
+  keycharm = keycharm && Object.prototype.hasOwnProperty.call(keycharm, 'default') ? keycharm['default'] : keycharm;
 
   // first check if moment.js is already loaded in the browser window, if so,
   // use this instance. Else, load via commonjs.

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-07T21:17:07.645Z
+ * @date    2020-03-07T21:19:55.367Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -30,7 +30,7 @@
   (global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis));
 }(this, (function (exports, moment$3, visData) { 'use strict';
 
-  moment$3 = moment$3 && moment$3.hasOwnProperty('default') ? moment$3['default'] : moment$3;
+  moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
 
   var fails = function (exec) {
     try {
