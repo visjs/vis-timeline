@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-07T21:19:55.367Z
+ * @date    2020-03-07T21:29:43.032Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3392,7 +3392,7 @@ class CustomTime extends Component {
   setOptions(options) {
     if (options) {
       // copy all options that we know
-      util.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl'], this.options, options);
+      util.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
     }
   }
 
@@ -3589,7 +3589,13 @@ class CustomTime extends Component {
     const x = this.body.util.toScreen(this.eventParams.customTime) + deltaX;
     const time = this.body.util.toTime(x);
 
-    this.setCustomTime(time);
+    const scale = this.body.util.getScale();
+    const step = this.body.util.getStep();
+    const snap = this.options.snap;
+
+    const snappedTime = snap ? snap(time, scale, step) : time;
+
+    this.setCustomTime(snappedTime);
 
     // fire a timechange event
     this.body.emitter.emit('timechange', {
@@ -4323,7 +4329,8 @@ class Core {
 
     const customTime = new CustomTime(this.body, util.extend({}, this.options, {
       time : timestamp,
-      id
+      id,
+      snap: this.itemSet.options.snap
     }));
 
     this.customTimes.push(customTime);

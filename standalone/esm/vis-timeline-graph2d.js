@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-07T21:19:55.367Z
+ * @date    2020-03-07T21:29:43.032Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -35186,7 +35186,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util$2.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl'], this.options, options);
+        util$2.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
       }
     }
     /**
@@ -35410,7 +35410,11 @@ var CustomTime = /*#__PURE__*/function (_Component) {
       var deltaX = this.options.rtl ? -1 * event.deltaX : event.deltaX;
       var x = this.body.util.toScreen(this.eventParams.customTime) + deltaX;
       var time = this.body.util.toTime(x);
-      this.setCustomTime(time); // fire a timechange event
+      var scale = this.body.util.getScale();
+      var step = this.body.util.getStep();
+      var snap = this.options.snap;
+      var snappedTime = snap ? snap(time, scale, step) : time;
+      this.setCustomTime(snappedTime); // fire a timechange event
 
       this.body.emitter.emit('timechange', {
         id: this.options.id,
@@ -36231,7 +36235,8 @@ var Core = /*#__PURE__*/function () {
 
       var customTime = new CustomTime(this.body, util$2.extend({}, this.options, {
         time: timestamp,
-        id: id
+        id: id,
+        snap: this.itemSet.options.snap
       }));
       this.customTimes.push(customTime);
       this.components.push(customTime);
