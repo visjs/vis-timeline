@@ -61,10 +61,10 @@ export default [{
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		terser({
-                    output: {
-                        comments: "some"
-                    }
-                }),
+			output: {
+				comments: "some"
+			}
+		}),
 		css({
 			dest: 'dist/vis-timeline-graph2d.css'
 		}),

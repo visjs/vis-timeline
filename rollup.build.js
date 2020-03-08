@@ -17,7 +17,8 @@ const globals = {
   "vis-data": "vis",
   "vis-util": "vis",
   keycharm: "keycharm",
-  moment: "moment"
+  moment: "moment",
+  uuid: "uuid"
 };
 
 // These are used in the public API and if there are different versions imported
