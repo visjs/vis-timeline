@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-08T19:37:56.173Z
+ * @date    2020-03-08T20:56:51.584Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -32,6 +32,7 @@ import Emitter from 'emitter-component';
 import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
 import keycharm from 'keycharm';
+import { v4 } from 'uuid';
 
 // first check if moment.js is already loaded in the browser window, if so,
 // use this instance. Else, load via commonjs.
@@ -5247,101 +5248,6 @@ class CurrentTime extends Component {
   }
 }
 
-function createCommonjsModule(fn, module) {
-	return module = { exports: {} }, fn(module, module.exports), module.exports;
-}
-
-var rngBrowser = createCommonjsModule(function (module) {
-// Unique ID creation requires a high quality random # generator.  In the
-// browser this is a little complicated due to unknown quality of Math.random()
-// and inconsistent support for the `crypto` API.  We do the best we can via
-// feature-detection
-
-// getRandomValues needs to be invoked in a context where "this" is a Crypto
-// implementation. Also, find the complete implementation of crypto on IE11.
-var getRandomValues = (typeof(crypto) != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto)) ||
-                      (typeof(msCrypto) != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto));
-
-if (getRandomValues) {
-  // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-  var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-
-  module.exports = function whatwgRNG() {
-    getRandomValues(rnds8);
-    return rnds8;
-  };
-} else {
-  // Math.random()-based (RNG)
-  //
-  // If all else fails, use Math.random().  It's fast, but is of unspecified
-  // quality.
-  var rnds = new Array(16);
-
-  module.exports = function mathRNG() {
-    for (var i = 0, r; i < 16; i++) {
-      if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-      rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-    }
-
-    return rnds;
-  };
-}
-});
-
-/**
- * Convert array of 16 byte values to UUID string format of the form:
- * XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
- */
-var byteToHex = [];
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
-}
-
-function bytesToUuid(buf, offset) {
-  var i = offset || 0;
-  var bth = byteToHex;
-  // join used to fix memory issue caused by concatenation: https://bugs.chromium.org/p/v8/issues/detail?id=3175#c4
-  return ([
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]], '-',
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]],
-    bth[buf[i++]], bth[buf[i++]]
-  ]).join('');
-}
-
-var bytesToUuid_1 = bytesToUuid;
-
-function v4(options, buf, offset) {
-  var i = buf && offset || 0;
-
-  if (typeof(options) == 'string') {
-    buf = options === 'binary' ? new Array(16) : null;
-    options = null;
-  }
-  options = options || {};
-
-  var rnds = options.random || (options.rng || rngBrowser)();
-
-  // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
-  rnds[6] = (rnds[6] & 0x0f) | 0x40;
-  rnds[8] = (rnds[8] & 0x3f) | 0x80;
-
-  // Copy bytes to buffer, if provided
-  if (buf) {
-    for (var ii = 0; ii < 16; ++ii) {
-      buf[i + ii] = rnds[ii];
-    }
-  }
-
-  return buf || bytesToUuid_1(rnds);
-}
-
-var v4_1 = v4;
-
 // Utility functions for ordering and stacking of items
 const EPSILON = 0.001; // used when checking collisions, to prevent round-off errors
 
@@ -9024,7 +8930,7 @@ class ClusterItem extends Item {
       throw new Error('Property "uiItems" missing in item ' + data.id);
     }
   
-    this.id = v4_1();
+    this.id = v4();
     this.group = data.group;
     this._setupRange();
   
@@ -11524,7 +11430,7 @@ class ItemSet extends Component {
       content: 'new item'
     };
 
-    const id = v4_1();
+    const id = v4();
     itemData[this.itemsData.idProp] = id;
 
     const group = this.groupFromTarget(event);
@@ -12262,7 +12168,7 @@ class ItemSet extends Component {
       newItemData.content = newItemData.content ? newItemData.content : 'new item';
       newItemData.start = newItemData.start ? newItemData.start : (snap ? snap(start, scale, step) : start);
       newItemData.type = newItemData.type || 'box';
-      newItemData[this.itemsData.idProp] = newItemData.id || v4_1();
+      newItemData[this.itemsData.idProp] = newItemData.id || v4();
 
       if (newItemData.type == 'range' && !newItemData.end) {
         end = this.body.util.toTime(x + this.props.width / 5);
@@ -12273,7 +12179,7 @@ class ItemSet extends Component {
         start: snap ? snap(start, scale, step) : start,
         content: 'new item'
       };
-      newItemData[this.itemsData.idProp] = v4_1();
+      newItemData[this.itemsData.idProp] = v4();
 
       // when default type is a range, add a default end date to the new item
       if (this.options.type === 'range') {
@@ -15935,7 +15841,7 @@ class DataAxis extends Component {
  */
   constructor(body, options, svg, linegraphOptions) {
     super();
-    this.id = v4_1();
+    this.id = v4();
     this.body = body;
 
     this.defaultOptions = {
@@ -17605,7 +17511,7 @@ var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
  * @extends Component
  */
 function LineGraph(body, options) {
-  this.id = v4_1();
+  this.id = v4();
   this.body = body;
 
   this.defaultOptions = {

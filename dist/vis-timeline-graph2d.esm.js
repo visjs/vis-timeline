@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-08T19:38:52.924Z
+ * @date    2020-03-08T20:57:46.947Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -37969,40 +37969,21 @@ var assign$6 = assign$5;
 
 var assign$7 = assign$6;
 
-var rngBrowser$1 = createCommonjsModule(function (module) {
-  // Unique ID creation requires a high quality random # generator.  In the
-  // browser this is a little complicated due to unknown quality of Math.random()
-  // and inconsistent support for the `crypto` API.  We do the best we can via
-  // feature-detection
-  // getRandomValues needs to be invoked in a context where "this" is a Crypto
-  // implementation. Also, find the complete implementation of crypto on IE11.
-  var getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && typeof window.msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto);
+// Unique ID creation requires a high quality random # generator. In the browser we therefore
+// require the crypto API and do not support built-in fallback to lower quality random number
+// generators (like Math.random()).
+// getRandomValues needs to be invoked in a context where "this" is a Crypto implementation. Also,
+// find the complete implementation of crypto (msCrypto) on IE11.
+var getRandomValues = typeof crypto != 'undefined' && crypto.getRandomValues && crypto.getRandomValues.bind(crypto) || typeof msCrypto != 'undefined' && typeof msCrypto.getRandomValues == 'function' && msCrypto.getRandomValues.bind(msCrypto);
+var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
 
-  if (getRandomValues) {
-    // WHATWG crypto RNG - http://wiki.whatwg.org/wiki/Crypto
-    var rnds8 = new Uint8Array(16); // eslint-disable-line no-undef
-
-    module.exports = function whatwgRNG() {
-      getRandomValues(rnds8);
-      return rnds8;
-    };
-  } else {
-    // Math.random()-based (RNG)
-    //
-    // If all else fails, use Math.random().  It's fast, but is of unspecified
-    // quality.
-    var rnds = new Array(16);
-
-    module.exports = function mathRNG() {
-      for (var i = 0, r; i < 16; i++) {
-        if ((i & 0x03) === 0) r = Math.random() * 0x100000000;
-        rnds[i] = r >>> ((i & 0x03) << 3) & 0xff;
-      }
-
-      return rnds;
-    };
+function rng() {
+  if (!getRandomValues) {
+    throw new Error('crypto.getRandomValues() not supported. See https://github.com/uuidjs/uuid#getrandomvalues-not-supported');
   }
-});
+
+  return getRandomValues(rnds8);
+}
 
 /**
  * Convert array of 16 byte values to UUID string format of the form:
@@ -38021,8 +38002,6 @@ function bytesToUuid$1(buf, offset) {
   return [bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], '-', bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]], bth[buf[i++]]].join('');
 }
 
-var bytesToUuid_1$1 = bytesToUuid$1;
-
 function v4$1(options, buf, offset) {
   var i = buf && offset || 0;
 
@@ -38032,7 +38011,7 @@ function v4$1(options, buf, offset) {
   }
 
   options = options || {};
-  var rnds = options.random || (options.rng || rngBrowser$1)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
+  var rnds = options.random || (options.rng || rng)(); // Per 4.4, set bits for version and `clock_seq_hi_and_reserved`
 
   rnds[6] = rnds[6] & 0x0f | 0x40;
   rnds[8] = rnds[8] & 0x3f | 0x80; // Copy bytes to buffer, if provided
@@ -38043,10 +38022,8 @@ function v4$1(options, buf, offset) {
     }
   }
 
-  return buf || bytesToUuid_1$1(rnds);
+  return buf || bytesToUuid$1(rnds);
 }
-
-var v4_1$1 = v4$1;
 
 var $includes = arrayIncludes$2.includes;
 var USES_TO_LENGTH$f = arrayMethodUsesToLength$2('indexOf', {
@@ -42433,7 +42410,7 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
       throw new Error('Property "uiItems" missing in item ' + data.id);
     }
 
-    _this.id = v4_1$1();
+    _this.id = v4$1();
     _this.group = data.group;
 
     _this._setupRange();
@@ -45388,7 +45365,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         end: end,
         content: 'new item'
       };
-      var id = v4_1$1();
+      var id = v4$1();
       itemData[this.itemsData.idProp] = id;
       var group = this.groupFromTarget(event);
 
@@ -46150,7 +46127,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         newItemData.content = newItemData.content ? newItemData.content : 'new item';
         newItemData.start = newItemData.start ? newItemData.start : snap ? snap(start, scale, step) : start;
         newItemData.type = newItemData.type || 'box';
-        newItemData[this.itemsData.idProp] = newItemData.id || v4_1$1();
+        newItemData[this.itemsData.idProp] = newItemData.id || v4$1();
 
         if (newItemData.type == 'range' && !newItemData.end) {
           end = this.body.util.toTime(x + this.props.width / 5);
@@ -46161,7 +46138,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           start: snap ? snap(start, scale, step) : start,
           content: 'new item'
         };
-        newItemData[this.itemsData.idProp] = v4_1$1(); // when default type is a range, add a default end date to the new item
+        newItemData[this.itemsData.idProp] = v4$1(); // when default type is a range, add a default end date to the new item
 
         if (this.options.type === 'range') {
           end = this.body.util.toTime(x + this.props.width / 5);
@@ -50645,7 +50622,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
     classCallCheck$1(this, DataAxis);
 
     _this = possibleConstructorReturn$1(this, getPrototypeOf$8(DataAxis).call(this));
-    _this.id = v4_1$1();
+    _this.id = v4$1();
     _this.body = body;
     _this.defaultOptions = {
       orientation: 'left',
@@ -52407,7 +52384,7 @@ var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
  */
 
 function LineGraph(body, options) {
-  this.id = v4_1$1();
+  this.id = v4$1();
   this.body = body;
   this.defaultOptions = {
     yAxisOrientation: 'left',
