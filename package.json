@@ -57,6 +57,7 @@
     "emitter-component": "^1.1.1",
     "keycharm": "^0.3.0",
     "propagating-hammerjs": "^1.4.7",
+    "vis-data": "6.4.1",
     "vis-util": "^3.0.0"
   },
   "peerDependencies": {
