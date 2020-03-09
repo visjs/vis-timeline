@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-09T20:09:26.597Z
+ * @date    2020-03-09T21:30:37.080Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5332,14 +5332,14 @@
   }
 
   /**
-   * Adjust vertical positions of the items within a single subgroup such that they 
+   * Adjust vertical positions of the items within a single subgroup such that they
    * don't overlap each other.
    * @param {Item[]} items
    *            All items withina subgroup
    * @param {{item: {horizontal: number, vertical: number}, axis: number}} margin
    *            Margins between items and between items and the axis.
    * @param {subgroup} subgroup
-   *            The subgroup that is being stacked 
+   *            The subgroup that is being stacked
    */
   function substack(items, margin, subgroup) {
     for (var i = 0; i < items.length; i++) {
@@ -5464,11 +5464,11 @@
    * @param {{item: {horizontal: number, vertical: number}, axis: number}} margin
    *            Margins between items and between items and the axis.
    * @param {subgroups[]} subgroups
-   *            All subgroups 
+   *            All subgroups
    */
   function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
     let doSubStack = false;
-    
+
     // Run subgroups in their order (if any)
     const subgroupOrder = [];
 
@@ -5486,7 +5486,7 @@
       if (subgroups.hasOwnProperty(subgroup)) {
 
         doSubStack = doSubStack || subgroups[subgroup].stack;
-        subgroups[subgroup].top = 0;      
+        subgroups[subgroup].top = 0;
 
         for (const otherSubgroup in subgroups) {
           if (subgroups[otherSubgroup].visible && subgroups[subgroup].index > subgroups[otherSubgroup].index) {
@@ -5500,16 +5500,16 @@
             items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
 
             if (subgroups[subgroup].stack) {
-              items[i].baseTop = items[i].top;              
+              items[i].baseTop = items[i].top;
             }
-          } 
+          }
         }
 
         if (doSubStack && subgroups[subgroup].stack) {
-          substack(subgroupItems[subgroup], margin, subgroups[subgroup]);        
+          substack(subgroupItems[subgroup], margin, subgroups[subgroup]);
         }
       }
-    }    
+    }
   }
 
   /**
@@ -5545,8 +5545,12 @@
    * @return {boolean}        true if a and b collide, else false
    */
   function collisionByTimes(a, b) {
-    return (a.start <= b.start && a.end >= b.start && a.top < (b.top + b.height) && (a.top + a.height) > b.top ) ||
-    (b.start <= a.start && b.end >= a.start && b.top < (a.top + a.height) && (b.top + b.height) > a.top );
+
+    // Check for overlap by time and height. Abutting is OK and
+    // not considered a collision while overlap is considered a collision.
+    const timeOverlap = a.start < b.end && a.end > b.start;
+    const heightOverlap = a.top < (b.top + b.height) && (a.top + a.height) > b.top;
+    return timeOverlap && heightOverlap;
   }
 
   var stack$1 = /*#__PURE__*/Object.freeze({

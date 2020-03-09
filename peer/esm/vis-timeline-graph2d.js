@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-09T20:09:26.597Z
+ * @date    2020-03-09T21:30:37.080Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -17972,14 +17972,14 @@ function stack(items, margin, force, shouldBailItemsRedrawFunction) {
   return shouldBail;
 }
 /**
- * Adjust vertical positions of the items within a single subgroup such that they 
+ * Adjust vertical positions of the items within a single subgroup such that they
  * don't overlap each other.
  * @param {Item[]} items
  *            All items withina subgroup
  * @param {{item: {horizontal: number, vertical: number}, axis: number}} margin
  *            Margins between items and between items and the axis.
  * @param {subgroup} subgroup
- *            The subgroup that is being stacked 
+ *            The subgroup that is being stacked
  */
 
 function substack(items, margin, subgroup) {
@@ -18111,7 +18111,7 @@ function stackSubgroups(items, margin, subgroups) {
  * @param {{item: {horizontal: number, vertical: number}, axis: number}} margin
  *            Margins between items and between items and the axis.
  * @param {subgroups[]} subgroups
- *            All subgroups 
+ *            All subgroups
  */
 
 function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
@@ -18186,7 +18186,11 @@ function collision(a, b, margin, rtl) {
  */
 
 function collisionByTimes(a, b) {
-  return a.start <= b.start && a.end >= b.start && a.top < b.top + b.height && a.top + a.height > b.top || b.start <= a.start && b.end >= a.start && b.top < a.top + a.height && b.top + b.height > a.top;
+  // Check for overlap by time and height. Abutting is OK and
+  // not considered a collision while overlap is considered a collision.
+  var timeOverlap = a.start < b.end && a.end > b.start;
+  var heightOverlap = a.top < b.top + b.height && a.top + a.height > b.top;
+  return timeOverlap && heightOverlap;
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
