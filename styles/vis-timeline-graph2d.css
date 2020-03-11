@@ -330,39 +330,35 @@ div.vis-tooltip {
   z-index: 5;
 }
 
-.vis-timeline {
-  /*
-  -webkit-transition: height .4s ease-in-out;
-  transition:         height .4s ease-in-out;
-  */
+.vis-current-time {
+  background-color: #FF7F6E;
+  width: 2px;
+  z-index: 1;
+  pointer-events: none;
 }
 
-.vis-panel {
-  /*
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-  */
+.vis-rolling-mode-btn {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #3876c2;
+}
+.vis-rolling-mode-btn:before {
+  content: "\26F6";
 }
 
-.vis-axis {
-  /*
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-  */
+.vis-rolling-mode-btn:hover {
+  opacity: 1;
 }
-
-/* TODO: get animation working nicely
-
-.vis-item {
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-}
-
-.vis-item.line {
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-}
-/**/
 .vis-panel {
   position: absolute;
 
@@ -461,35 +457,39 @@ div.vis-tooltip {
   top: 0;
   left: 0;
 }
-.vis-current-time {
-  background-color: #FF7F6E;
-  width: 2px;
-  z-index: 1;
-  pointer-events: none;
+.vis-timeline {
+  /*
+  -webkit-transition: height .4s ease-in-out;
+  transition:         height .4s ease-in-out;
+  */
 }
 
-.vis-rolling-mode-btn {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.8;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  background: #3876c2;
-}
-.vis-rolling-mode-btn:before {
-  content: "\26F6";
+.vis-panel {
+  /*
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+  */
 }
 
-.vis-rolling-mode-btn:hover {
-  opacity: 1;
+.vis-axis {
+  /*
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+  */
 }
+
+/* TODO: get animation working nicely
+
+.vis-item {
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+}
+
+.vis-item.line {
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+}
+/**/
 .vis-graph-group0 {
     fill:#4f81bd;
     fill-opacity:0;
@@ -597,23 +597,6 @@ div.vis-tooltip {
     stroke: none;
 }
 
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
-}
-
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
-}
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
@@ -717,60 +700,65 @@ div.vis-tooltip {
   white-space: nowrap;
   display: inline-block
 }
-.vis-time-axis {
-  position: relative;
-  overflow: hidden;
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
 }
 
-.vis-time-axis.vis-foreground {
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.vis-time-axis.vis-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.vis-time-axis .vis-text {
-  position: absolute;
-  color: #4d4d4d;
-  padding: 3px;
-  overflow: hidden;
-  box-sizing: border-box;
-
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
   white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
 }
 
-.vis-time-axis .vis-text.vis-measure {
-  position: absolute;
-  padding-left: 0;
-  padding-right: 0;
-  margin-left: 0;
-  margin-right: 0;
-  visibility: hidden;
+.vis-labelset {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
 }
 
-.vis-time-axis .vis-grid.vis-vertical {
-  position: absolute;
-  border-left: 1px solid;
+.vis-labelset .vis-label {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #4d4d4d;
+
+  box-sizing: border-box;
 }
 
-.vis-time-axis .vis-grid.vis-vertical-rtl {
-  position: absolute;
-  border-right: 1px solid;
+.vis-labelset .vis-label {
+  border-bottom: 1px solid #bfbfbf;
 }
 
-.vis-time-axis .vis-grid.vis-minor {
-  border-color: #e5e5e5;
+.vis-labelset .vis-label.draggable {
+  cursor: pointer;
 }
 
-.vis-time-axis .vis-grid.vis-major {
-  border-color: #bfbfbf;
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
+}
+
+.vis-labelset .vis-label:last-child {
+  border-bottom: none;
+}
+
+.vis-labelset .vis-label .vis-inner {
+  display: inline-block;
+  padding: 5px;
+}
+
+.vis-labelset .vis-label .vis-inner.vis-hidden {
+  padding: 0;
 }
 
 
@@ -952,48 +940,60 @@ div.vis-tooltip {
   height: 100%;
   z-index: 10;
 }
-
-.vis-labelset {
+.vis-time-axis {
   position: relative;
-
   overflow: hidden;
-
-  box-sizing: border-box;
 }
 
-.vis-labelset .vis-label {
-  position: relative;
-  left: 0;
+.vis-time-axis.vis-foreground {
   top: 0;
+  left: 0;
   width: 100%;
+}
+
+.vis-time-axis.vis-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.vis-time-axis .vis-text {
+  position: absolute;
   color: #4d4d4d;
-
+  padding: 3px;
+  overflow: hidden;
   box-sizing: border-box;
+
+  white-space: nowrap;
 }
 
-.vis-labelset .vis-label {
-  border-bottom: 1px solid #bfbfbf;
+.vis-time-axis .vis-text.vis-measure {
+  position: absolute;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+  visibility: hidden;
 }
 
-.vis-labelset .vis-label.draggable {
-  cursor: pointer;
+.vis-time-axis .vis-grid.vis-vertical {
+  position: absolute;
+  border-left: 1px solid;
 }
 
-.vis-group-is-dragging {
-  background: rgba(0, 0, 0, .1);
+.vis-time-axis .vis-grid.vis-vertical-rtl {
+  position: absolute;
+  border-right: 1px solid;
 }
 
-.vis-labelset .vis-label:last-child {
-  border-bottom: none;
+.vis-time-axis .vis-grid.vis-minor {
+  border-color: #e5e5e5;
 }
 
-.vis-labelset .vis-label .vis-inner {
-  display: inline-block;
-  padding: 5px;
-}
-
-.vis-labelset .vis-label .vis-inner.vis-hidden {
-  padding: 0;
+.vis-time-axis .vis-grid.vis-major {
+  border-color: #bfbfbf;
 }
 
 
