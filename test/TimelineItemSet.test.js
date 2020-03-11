@@ -1,6 +1,6 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
-import { DataSet } from 'vis-data'
+import { DataSet } from 'vis-data/esnext'
 import * as DateUtil from '../lib/timeline/DateUtil'
 import Range from '../lib/timeline/Range'
 import ItemSet from '../lib/timeline/component/ItemSet'
