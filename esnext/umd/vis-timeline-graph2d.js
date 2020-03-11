@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-09T21:36:48.681Z
+ * @date    2020-03-11T18:32:21.555Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,10 +25,10 @@
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util'), require('vis-data'), require('emitter-component'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util', 'vis-data', 'emitter-component', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext'), require('vis-data/esnext'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext', 'vis-data/esnext', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
   (global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
-}(this, (function (exports, moment$3, util$1, visData, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) { 'use strict';
+}(this, (function (exports, moment$3, util$1, esnext, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) { 'use strict';
 
   moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
   Emitter = Emitter && Object.prototype.hasOwnProperty.call(Emitter, 'default') ? Emitter['default'] : Emitter;
@@ -223,9 +223,9 @@
     type = { start: "Date", end: "Date" }
   ) {
     const idProp = rawDS._idProp;
-    const coercedDS = new visData.DataSet({ fieldId: idProp });
+    const coercedDS = new esnext.DataSet({ fieldId: idProp });
 
-    const pipe = visData.createNewDataPipeFrom(rawDS)
+    const pipe = esnext.createNewDataPipeFrom(rawDS)
       .map(item =>
         Object.keys(item).reduce((acc, key) => {
           acc[key] = convert(item[key], type[key]);
@@ -10788,7 +10788,7 @@
       if (!items) {
         this.itemsData = null;
       }
-      else if (items instanceof visData.DataSet || items instanceof visData.DataView) {
+      else if (items instanceof esnext.DataSet || items instanceof esnext.DataView) {
         this.itemsData = typeCoerceDataSet(items);
       }
       else {
@@ -10859,7 +10859,7 @@
       if (!groups) {
         this.groupsData = null;
       }
-      else if (groups instanceof visData.DataSet || groups instanceof visData.DataView) {
+      else if (groups instanceof esnext.DataSet || groups instanceof esnext.DataView) {
         this.groupsData = groups;
       }
       else {
@@ -10869,7 +10869,7 @@
       if (this.groupsData) {
         // go over all groups nesting
         let groupsData = this.groupsData;
-        if (this.groupsData instanceof visData.DataView) {
+        if (this.groupsData instanceof esnext.DataView) {
           groupsData = this.groupsData.getDataSet();
         }
 
@@ -11801,7 +11801,7 @@
             event.stopPropagation();
             
         let groupsData = this.groupsData;
-        if (this.groupsData instanceof visData.DataView) {
+        if (this.groupsData instanceof esnext.DataView) {
           groupsData = this.groupsData.getDataSet();
         }
             // drag from one group to another
@@ -14503,7 +14503,7 @@
       }
 
       // if the third element is options, the forth is groups (optionally);
-      if (!(Array.isArray(groups) || groups instanceof visData.DataSet || groups instanceof visData.DataView) && groups instanceof Object) {
+      if (!(Array.isArray(groups) || groups instanceof esnext.DataSet || groups instanceof esnext.DataView) && groups instanceof Object) {
         const forthArgument = options;
         options = groups;
         groups = forthArgument;
@@ -14774,12 +14774,12 @@
       if (!items) {
         newDataSet = null;
       }
-      else if (items instanceof visData.DataSet || items instanceof visData.DataView) {
+      else if (items instanceof esnext.DataSet || items instanceof esnext.DataView) {
         newDataSet = typeCoerceDataSet(items);
       }
       else {
         // turn an array into a dataset
-        newDataSet = typeCoerceDataSet(new visData.DataSet(items));
+        newDataSet = typeCoerceDataSet(new esnext.DataSet(items));
       }
 
       // set items
@@ -14803,12 +14803,12 @@
       }
       else {
         const filter = group => group.visible !== false;
-        if (groups instanceof visData.DataSet || groups instanceof visData.DataView) {
-          newDataSet = new visData.DataView(groups,{filter});
+        if (groups instanceof esnext.DataSet || groups instanceof esnext.DataView) {
+          newDataSet = new esnext.DataView(groups,{filter});
         }
         else {
           // turn an array into a dataset
-          newDataSet = new visData.DataSet(groups.filter(filter));
+          newDataSet = new esnext.DataSet(groups.filter(filter));
         }
       }
 
@@ -14823,7 +14823,7 @@
       // method. Even if the original is a DataView already a new one has been
       // created and assigned to `this.groupsData`. In case this changes in the
       // future it will be necessary to rework this!!!!
-      if (this.groupsData instanceof visData.DataView) {
+      if (this.groupsData instanceof esnext.DataView) {
         this.groupsData.setData(null);
       }
       this.groupsData = newDataSet;
@@ -17749,7 +17749,7 @@
     if (!items) {
       this.itemsData = null;
     }
-    else if (items instanceof visData.DataSet || items instanceof visData.DataView) {
+    else if (items instanceof esnext.DataSet || items instanceof esnext.DataView) {
       this.itemsData = typeCoerceDataSet(items);
     }
     else {
@@ -17810,7 +17810,7 @@
     if (!groups) {
       this.groupsData = null;
     }
-    else if (groups instanceof visData.DataSet || groups instanceof visData.DataView) {
+    else if (groups instanceof esnext.DataSet || groups instanceof esnext.DataView) {
       this.groupsData = groups;
     }
     else {
@@ -18893,7 +18893,7 @@
    */
   function Graph2d (container, items, groups, options) {
     // if the third element is options, the forth is groups (optionally);
-    if (!(Array.isArray(groups) || groups instanceof visData.DataSet || groups instanceof visData.DataView) && groups instanceof Object) {
+    if (!(Array.isArray(groups) || groups instanceof esnext.DataSet || groups instanceof esnext.DataView) && groups instanceof Object) {
       var forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -19058,12 +19058,12 @@
     if (!items) {
       newDataSet = null;
     }
-    else if (items instanceof visData.DataSet || items instanceof visData.DataView) {
+    else if (items instanceof esnext.DataSet || items instanceof esnext.DataView) {
       newDataSet = typeCoerceDataSet(items);
     }
     else {
       // turn an array into a dataset
-      newDataSet = typeCoerceDataSet(new visData.DataSet(items));
+      newDataSet = typeCoerceDataSet(new esnext.DataSet(items));
     }
 
     // set items
@@ -19096,12 +19096,12 @@
     if (!groups) {
       newDataSet = null;
     }
-    else if (groups instanceof visData.DataSet || groups instanceof visData.DataView) {
+    else if (groups instanceof esnext.DataSet || groups instanceof esnext.DataView) {
       newDataSet = groups;
     }
     else {
       // turn an array into a dataset
-      newDataSet = new visData.DataSet(groups);
+      newDataSet = new esnext.DataSet(groups);
     }
 
     this.groupsData = newDataSet;
