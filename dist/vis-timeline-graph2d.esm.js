@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-11T18:59:05.990Z
+ * @date    2020-03-11T19:05:37.652Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24323,7 +24323,7 @@ var Core = /*#__PURE__*/function () {
     value: function addCustomTime(time, id) {
       var _context14;
 
-      var timestamp = time !== undefined ? util$1.convert(time, 'Date').valueOf() : new Date();
+      var timestamp = time !== undefined ? util$1.convert(time, 'Date') : new Date();
 
       var exists = some$2(_context14 = this.customTimes).call(_context14, function (customTime) {
         return customTime.options.id === id;
