@@ -16,24 +16,13 @@
 //                 Slaven Tomac <https://github.com/slavede>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-import { DataInterface, DataSet, DataView, Queue } from 'vis-data';
-export { DataSet, DataView, Queue };
+import { DataInterface, DataSet, DataView } from 'vis-data';
 export type DataInterfaceDataGroup = DataInterface<DataGroup, 'id'>;
 export type DataInterfaceDataItem = DataInterface<DataItem, 'id'>;
 export type DataSetDataGroup = DataSet<DataGroup, 'id'>;
 export type DataSetDataItem = DataSet<DataItem, 'id'>;
 export type DataViewDataGroup = DataView<DataGroup, 'id'>;
 export type DataViewDataItem = DataView<DataItem, 'id'>;
-
-import * as util from 'vis-util';
-export { util };
-
-import moment from 'moment'
-export { moment }
-import Hammer from 'hammerjs'
-export { Hammer }
-import keycharm from 'keycharm'
-export { keycharm }
 
 import { MomentInput, MomentFormatSpecification, Moment } from 'moment';
 export type MomentConstructor1 =

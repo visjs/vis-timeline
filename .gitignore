@@ -15,6 +15,7 @@ npm-debug.log
 .commits.tmp
 .nyc_output/
 /coverage/
+/declarations/
 /dist/
 /esnext/
 /examples/graph2d-generated/
@@ -27,3 +28,4 @@ npm-debug.log
 /peer/
 /standalone/
 /styles/
+/vis-timeline-0.0.0-no-version.tgz
