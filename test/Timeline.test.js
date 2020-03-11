@@ -1,5 +1,5 @@
 import jsdom_global from 'jsdom-global'
-import { DataSet } from'vis-data'
+import { DataSet } from'vis-data/esnext'
 import Timeline from'../lib/timeline/Timeline'
 
 const internals = {}

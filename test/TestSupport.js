@@ -1,4 +1,4 @@
-import { DataSet } from 'vis-data'
+import { DataSet } from 'vis-data/esnext'
 
 const TestSupport = {
   buildMockItemSet: () => {
