@@ -69,7 +69,7 @@ customDate = new Date(
 );
 timeline.addCustomTime(customDate, "t1");
 timeline.setCustomTimeTitle(function(time) {
-  return "I&apos;m t1!";
+  return "I&apos;m t1! time:" + time;
 }, "t1");
 
 document.getElementById("add").onclick = function() {
@@ -82,7 +82,7 @@ document.getElementById("add").onclick = function() {
     var barId = document.getElementById("barId").value || undefined;
     timeline.addCustomTime(customDate, barId);
     timeline.setCustomTimeTitle(function(time) {
-      return "I&apos;m " + barId + "!";
+      return "I&apos;m " + barId + "! time:" + time;
     }, barId);
     document.getElementById("barId").value = "";
   } catch (err) {
