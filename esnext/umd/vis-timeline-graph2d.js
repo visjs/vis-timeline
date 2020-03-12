@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-12T20:50:12.518Z
+ * @date    2020-03-12T21:00:10.736Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6957,7 +6957,7 @@
      * @protected
      */
     _repaintDragCenter() {
-      if (this.selected && this.options.editable.updateTime && !this.dom.dragCenter) {
+      if (this.selected && this.editable.updateTime && !this.dom.dragCenter) {
         const me = this;
         // create and show drag area
         const dragCenter = document.createElement('div');
@@ -8472,7 +8472,7 @@
      * @protected
      */
     _repaintDragLeft() {
-      if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.options.editable.updateTime && !this.dom.dragLeft) {
+      if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.editable.updateTime && !this.dom.dragLeft) {
         // create and show drag area
         const dragLeft = document.createElement('div');
         dragLeft.className = 'vis-drag-left';
@@ -8495,7 +8495,7 @@
      * @protected
      */
     _repaintDragRight() {
-      if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.options.editable.updateTime && !this.dom.dragRight) {
+      if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.editable.updateTime && !this.dom.dragRight) {
         // create and show drag area
         const dragRight = document.createElement('div');
         dragRight.className = 'vis-drag-right';
