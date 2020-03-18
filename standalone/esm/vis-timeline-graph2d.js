@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-03-18T08:13:01.756Z
+ * @date    2020-03-18T16:58:30.553Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -30867,8 +30867,8 @@ var ClusterGenerator = /*#__PURE__*/function () {
         toScreen: this.itemSet.body.util.toScreen,
         toTime: this.itemSet.body.util.toTime
       };
-      var clusterContent = '<div title="' + title + '">' + clusterItems.length + '</div>';
       var title = titleTemplate.replace(/{count}/, clusterItems.length);
+      var clusterContent = '<div title="' + title + '">' + clusterItems.length + '</div>';
 
       var clusterOptions = assign$2({}, options, this.itemSet.options);
 
