@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Interpolation&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   The Graph2d makes use of
   &lt;a
     href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline"
@@ -67,9 +67,9 @@ groups.add({
   options: {
     drawPoints: false,
     interpolation: {
-      parametrization: "centripetal"
-    }
-  }
+      parametrization: "centripetal",
+    },
+  },
 });
 
 groups.add({
@@ -78,9 +78,9 @@ groups.add({
   options: {
     drawPoints: false,
     interpolation: {
-      parametrization: "chordal"
-    }
-  }
+      parametrization: "chordal",
+    },
+  },
 });
 
 groups.add({
@@ -89,9 +89,9 @@ groups.add({
   options: {
     drawPoints: false,
     interpolation: {
-      parametrization: "uniform"
-    }
-  }
+      parametrization: "uniform",
+    },
+  },
 });
 
 groups.add({
@@ -99,8 +99,8 @@ groups.add({
   content: names[3],
   options: {
     drawPoints: { style: "circle" },
-    interpolation: false
-  }
+    interpolation: false,
+  },
 });
 
 var container = document.getElementById("visualization");
@@ -116,7 +116,7 @@ for (var i = 0; i &lt; names.length; i++) {
     { x: "2014-06-18", y: 15, group: i },
     { x: "2014-06-19", y: 52, group: i },
     { x: "2014-06-20", y: 10, group: i },
-    { x: "2014-06-21", y: 20, group: i }
+    { x: "2014-06-21", y: 20, group: i },
   ]);
 }
 
@@ -125,7 +125,7 @@ var options = {
   dataAxis: { visible: false },
   legend: true,
   start: "2014-06-11",
-  end: "2014-06-22"
+  end: "2014-06-22",
 };
 var graph2d = new vis.Graph2d(container, dataset, groups, options);
 '

@@ -34,7 +34,7 @@ for (var i = 0; i &lt; itemCount; i++) {
     type: types[Math.floor(Math.random() * types.length)],
     content: "" + i,
     start: start,
-    end: end
+    end: end,
   });
 }
 
@@ -44,14 +44,14 @@ var options = {
   stack: true,
   onTimeout: {
     timeoutMs: 10,
-    callback: function(callback) {
+    callback: function (callback) {
       var didUserCancel;
       var didUserCancel = confirm(
         "Too many items loaded! Would you like to continue rendering (this might take a while)?"
       );
       callback(didUserCancel);
-    }
-  }
+    },
+  },
 };
 
 var timeline = new vis.Timeline(container, items, options);

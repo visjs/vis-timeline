@@ -40,10 +40,7 @@ html {
       <input
         type="hidden"
         name="js"
-        value='var now = moment()
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+        value='var now = moment().minutes(0).seconds(0).milliseconds(0);
 var itemCount = 60;
 
 // create a data set with groups
@@ -53,42 +50,42 @@ groups.add([
   {
     id: 1,
     content: "Lee",
-    nestedGroups: [11, 12, 13]
+    nestedGroups: [11, 12, 13],
   },
   {
     id: 2,
     content: "invisible group",
-    visible: false
+    visible: false,
   },
   {
     id: 3,
     content: "John",
     nestedGroups: [14],
-    showNested: false
+    showNested: false,
   },
   {
     id: 4,
-    content: "Alson"
-  }
+    content: "Alson",
+  },
 ]);
 
 groups.add([
   {
     id: 11,
-    content: "cook"
+    content: "cook",
   },
   {
     id: 12,
-    content: "shop"
+    content: "shop",
   },
   {
     id: 13,
-    content: "clean house"
+    content: "clean house",
   },
   {
     id: 14,
-    content: "wash dishes"
-  }
+    content: "wash dishes",
+  },
 ]);
 
 // create a dataset with items
@@ -107,14 +104,14 @@ for (var i = 0; i &lt; itemCount; i++) {
     content: "item " + i,
     start: start,
     end: end,
-    type: type
+    type: type,
   });
 }
 
 // create visualization
 var container = document.getElementById("visualization");
 var options = {
-  groupOrder: "content" // groupOrder can be a property name or a sorting function
+  groupOrder: "content", // groupOrder can be a property name or a sorting function
 };
 
 var timeline = new vis.Timeline(container, items, groups, options);

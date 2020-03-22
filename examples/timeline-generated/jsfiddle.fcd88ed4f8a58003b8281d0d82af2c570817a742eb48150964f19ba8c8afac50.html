@@ -51,10 +51,10 @@ var items = new vis.DataSet([
     id: 4,
     content: "item 4",
     start: new Date(2013, 3, 16),
-    end: new Date(2013, 3, 19)
+    end: new Date(2013, 3, 19),
   },
   { id: 5, content: "item 5", start: new Date(2013, 3, 25) },
-  { id: 6, content: "item 6", start: new Date(2013, 3, 27) }
+  { id: 6, content: "item 6", start: new Date(2013, 3, 27) },
 ]);
 
 var min = new Date(2013, 3, 1); // 1 april
@@ -64,12 +64,12 @@ var container = document.getElementById("visualization");
 var options = {
   editable: true,
 
-  onAdd: function(item, callback) {
+  onAdd: function (item, callback) {
     prettyPrompt(
       "Add item",
       "Enter text content for new item:",
       item.content,
-      function(value) {
+      function (value) {
         if (value) {
           item.content = value;
           callback(item); // send back adjusted new item
@@ -80,7 +80,7 @@ var options = {
     );
   },
 
-  onMove: function(item, callback) {
+  onMove: function (item, callback) {
     var title =
       "Do you really want to move the item to\n" +
       "start: " +
@@ -90,7 +90,7 @@ var options = {
       item.end +
       "?";
 
-    prettyConfirm("Move item", title, function(ok) {
+    prettyConfirm("Move item", title, function (ok) {
       if (ok) {
         callback(item); // send back item as confirmation (can be changed)
       } else {
@@ -99,7 +99,7 @@ var options = {
     });
   },
 
-  onMoving: function(item, callback) {
+  onMoving: function (item, callback) {
     if (item.start &lt; min) item.start = min;
     if (item.start &gt; max) item.start = max;
     if (item.end &gt; max) item.end = max;
@@ -107,8 +107,8 @@ var options = {
     callback(item); // send back the (possibly) changed item
   },
 
-  onUpdate: function(item, callback) {
-    prettyPrompt("Update item", "Edit items text:", item.content, function(
+  onUpdate: function (item, callback) {
+    prettyPrompt("Update item", "Edit items text:", item.content, function (
       value
     ) {
       if (value) {
@@ -120,11 +120,11 @@ var options = {
     });
   },
 
-  onRemove: function(item, callback) {
+  onRemove: function (item, callback) {
     prettyConfirm(
       "Remove item",
       "Do you really want to remove item " + item.content + "?",
-      function(ok) {
+      function (ok) {
         if (ok) {
           callback(item); // confirm deletion
         } else {
@@ -132,11 +132,11 @@ var options = {
         }
       }
     );
-  }
+  },
 };
 var timeline = new vis.Timeline(container, items, options);
 
-items.on("*", function(event, properties) {
+items.on("*", function (event, properties) {
   logEvent(event, properties);
 });
 
@@ -159,7 +159,7 @@ function prettyConfirm(title, text, callback) {
       text: text,
       type: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#DD6B55"
+      confirmButtonColor: "#DD6B55",
     },
     callback
   );
@@ -172,7 +172,7 @@ function prettyPrompt(title, text, inputValue, callback) {
       text: text,
       type: "input",
       showCancelButton: true,
-      inputValue: inputValue
+      inputValue: inputValue,
     },
     callback
   );

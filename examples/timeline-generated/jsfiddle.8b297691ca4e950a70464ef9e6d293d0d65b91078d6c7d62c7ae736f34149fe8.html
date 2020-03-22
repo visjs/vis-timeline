@@ -48,13 +48,13 @@ var data = new vis.DataSet([
     id: 1,
     start: new Date(new Date().getTime() - 60 * 1000),
     end: new Date(),
-    content: "Dynamic event"
-  }
+    content: "Dynamic event",
+  },
 ]);
 
 // specify options
 var options = {
-  showCurrentTime: true
+  showCurrentTime: true,
 };
 
 // create a timeline
@@ -64,7 +64,7 @@ timeline = new vis.Timeline(container, data, options);
 timeline.addCustomTime(new Date());
 
 // add event listener
-timeline.on("timechange", function(event) {
+timeline.on("timechange", function (event) {
   document.getElementById("customTime").innerHTML =
     "Custom Time: " + event.time;
 

@@ -45,57 +45,57 @@ html {
   { id: 3, content: "item 3", start: "2013-04-18" },
   { id: 4, content: "item 4", start: "2013-04-16", end: "2013-04-19" },
   { id: 5, content: "item 5", start: "2013-04-25" },
-  { id: 6, content: "item 6", start: "2013-04-27" }
+  { id: 6, content: "item 6", start: "2013-04-27" },
 ]);
 
 var container = document.getElementById("visualization");
 var options = {
   editable: true,
-  onInitialDrawComplete: function() {
+  onInitialDrawComplete: function () {
     logEvent("Timeline initial draw completed", {});
-  }
+  },
 };
 var timeline = new vis.Timeline(container, items, options);
 
-timeline.on("rangechange", function(properties) {
+timeline.on("rangechange", function (properties) {
   logEvent("rangechange", properties);
 });
 
-timeline.on("rangechanged", function(properties) {
+timeline.on("rangechanged", function (properties) {
   logEvent("rangechanged", properties);
 });
 
-timeline.on("select", function(properties) {
+timeline.on("select", function (properties) {
   logEvent("select", properties);
 });
 
-timeline.on("itemover", function(properties) {
+timeline.on("itemover", function (properties) {
   logEvent("itemover", properties);
   setHoveredItem(properties.item);
 });
 
-timeline.on("itemout", function(properties) {
+timeline.on("itemout", function (properties) {
   logEvent("itemout", properties);
   setHoveredItem("none");
 });
 
-timeline.on("click", function(properties) {
+timeline.on("click", function (properties) {
   logEvent("click", properties);
 });
 
-timeline.on("doubleClick", function(properties) {
+timeline.on("doubleClick", function (properties) {
   logEvent("doubleClick", properties);
 });
 
-timeline.on("contextmenu", function(properties) {
+timeline.on("contextmenu", function (properties) {
   logEvent("contextmenu", properties);
 });
 
-timeline.on("mouseDown", function(properties) {
+timeline.on("mouseDown", function (properties) {
   logEvent("mouseDown", properties);
 });
 
-timeline.on("mouseUp", function(properties) {
+timeline.on("mouseUp", function (properties) {
   logEvent("mouseUp", properties);
 });
 
@@ -109,13 +109,13 @@ timeline.on("mouseUp", function(properties) {
 //   logEvent(&apos;mouseMove&apos;, properties);
 // });
 
-items.on("*", function(event, properties) {
+items.on("*", function (event, properties) {
   logEvent(event, properties);
 });
 
 function stringifyObject(object) {
   if (!object) return;
-  var replacer = function(key, value) {
+  var replacer = function (key, value) {
     if (value &amp;&amp; value.tagName) {
       return "DOM Element";
     } else {

@@ -30,7 +30,7 @@ var groups = new vis.DataSet();
 for (var g = 0; g &lt; groupCount; g++) {
   groups.add({
     id: g,
-    content: "group " + g
+    content: "group " + g,
   });
 }
 
@@ -47,7 +47,7 @@ for (var i = 0; i &lt; itemCount; i++) {
     group: group,
     content: "" + i,
     start: start,
-    end: end
+    end: end,
   });
 }
 
@@ -56,9 +56,9 @@ var container = document.getElementById("visualization");
 var options = {
   start: new Date(),
   end: new Date(100000 * 60 * 60 * 24 + new Date().valueOf()),
-  loadingScreenTemplate: function() {
+  loadingScreenTemplate: function () {
     return "&lt;h1&gt;Loading...&lt;/h1&gt;";
-  }
+  },
 };
 
 var timeline = new vis.Timeline(container, items, groups, options);

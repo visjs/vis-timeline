@@ -28,7 +28,7 @@ var groups = new vis.DataSet();
 for (var i = 0; i &lt; numberOfGroups; i++) {
   groups.add({
     id: i,
-    content: "Truck&amp;nbsp;" + i
+    content: "Truck&amp;nbsp;" + i,
   });
 }
 
@@ -52,7 +52,7 @@ for (var truck = 0; truck &lt; numberOfGroups; truck++) {
       group: truck,
       start: start,
       end: end,
-      content: "Order " + order
+      content: "Order " + order,
     });
   }
 }
@@ -68,9 +68,9 @@ var options = {
   editable: true,
   margin: {
     item: 10, // minimal margin between items
-    axis: 5 // minimal margin between items and the axis
+    axis: 5, // minimal margin between items and the axis
   },
-  orientation: "top"
+  orientation: "top",
 };
 
 // create a Timeline

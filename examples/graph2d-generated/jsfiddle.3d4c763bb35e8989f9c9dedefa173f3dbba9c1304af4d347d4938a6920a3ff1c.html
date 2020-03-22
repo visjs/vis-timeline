@@ -62,16 +62,16 @@ var options = {
     left: {
       range: {
         min: -10,
-        max: 10
-      }
-    }
+        max: 10,
+      },
+    },
   },
   drawPoints: {
-    style: "circle" // square, circle
+    style: "circle", // square, circle
   },
   shaded: {
-    orientation: "bottom" // top, bottom
-  }
+    orientation: "bottom", // top, bottom
+  },
 };
 var graph2d = new vis.Graph2d(container, dataset, options);
 
@@ -117,16 +117,16 @@ function addDataPoint() {
   var now = vis.moment();
   dataset.add({
     x: now,
-    y: y(now / 1000)
+    y: y(now / 1000),
   });
 
   // remove all data points which are no longer visible
   var range = graph2d.getWindow();
   var interval = range.end - range.start;
   var oldIds = dataset.getIds({
-    filter: function(item) {
+    filter: function (item) {
       return item.x &lt; range.start - interval;
-    }
+    },
   });
   dataset.remove(oldIds);
 

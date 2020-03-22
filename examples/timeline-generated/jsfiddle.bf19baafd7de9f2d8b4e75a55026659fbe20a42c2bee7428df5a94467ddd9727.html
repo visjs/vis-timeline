@@ -38,10 +38,7 @@ html {
       <input
         type="hidden"
         name="js"
-        value='var now = moment()
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+        value='var now = moment().minutes(0).seconds(0).milliseconds(0);
 var groupCount = 3;
 var itemCount = 20;
 
@@ -67,7 +64,7 @@ for (var i = 0; i &lt; itemCount; i++) {
       names[group] +
       ")&lt;/span&gt;",
     start: start,
-    type: "box"
+    type: "box",
   });
 }
 
@@ -75,7 +72,7 @@ for (var i = 0; i &lt; itemCount; i++) {
 var container = document.getElementById("visualization");
 var options = {
   format: {
-    minorLabels: function(date, scale, step) {
+    minorLabels: function (date, scale, step) {
       var now = new Date();
       var ago = now - date;
       var divider;
@@ -109,7 +106,7 @@ var options = {
       }
       return Math.round((ago * step) / divider) + " " + scale + "s ago";
     },
-    majorLabels: function(date, scale, step) {
+    majorLabels: function (date, scale, step) {
       var now = new Date();
       var ago = now - date;
       var divider;
@@ -142,8 +139,8 @@ var options = {
           return new Date(date);
       }
       return Math.round((ago * step) / divider) + " " + scale + "s ago";
-    }
-  }
+    },
+  },
 };
 
 var timeline = new vis.Timeline(container);

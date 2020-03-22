@@ -39,7 +39,7 @@ html {
 // containing an ISO date. The fields will be outputted as ISO dates
 // automatically getting data from the DataSet via items.get().
 var items = new vis.DataSet({
-  type: { start: "ISODate", end: "ISODate" }
+  type: { start: "ISODate", end: "ISODate" },
 });
 
 // add items to the DataSet
@@ -49,11 +49,11 @@ items.add([
   { id: 3, content: "item 3", start: "2014-01-21" },
   { id: 4, content: "item 4", start: "2014-01-19", end: "2014-01-24" },
   { id: 5, content: "item 5", start: "2014-01-28", type: "point" },
-  { id: 6, content: "item 6", start: "2014-01-26" }
+  { id: 6, content: "item 6", start: "2014-01-26" },
 ]);
 
 // log changes to the console
-items.on("*", function(event, properties) {
+items.on("*", function (event, properties) {
   console.log(event, properties.items);
 });
 
@@ -80,7 +80,7 @@ var options = {
 
     */
 
-  showCurrentTime: true
+  showCurrentTime: true,
 };
 
 var timeline = new vis.Timeline(container, items, options);

@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Shading Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the shading functionality within Graph2d.
 &lt;/div&gt;
 &lt;br /&gt;
@@ -42,9 +42,9 @@ groups.add({
   content: names[0],
   options: {
     shaded: {
-      orientation: "top"
-    }
-  }
+      orientation: "top",
+    },
+  },
 });
 
 groups.add({
@@ -52,9 +52,9 @@ groups.add({
   content: names[1],
   options: {
     shaded: {
-      orientation: "bottom"
-    }
-  }
+      orientation: "bottom",
+    },
+  },
 });
 
 groups.add({
@@ -62,16 +62,16 @@ groups.add({
   content: names[2],
   options: {
     shaded: {
-      orientation: "zero"
-    }
-  }
+      orientation: "zero",
+    },
+  },
 });
 
 groups.add({
   id: 3,
   options: {
-    excludeFromLegend: true
-  }
+    excludeFromLegend: true,
+  },
 });
 
 groups.add({
@@ -80,14 +80,14 @@ groups.add({
   options: {
     shaded: {
       orientation: "group",
-      groupId: "3"
-    }
-  }
+      groupId: "3",
+    },
+  },
 });
 
 groups.add({
   id: 5,
-  content: names[5]
+  content: names[5],
 });
 
 var container = document.getElementById("visualization");
@@ -115,14 +115,14 @@ var items = [
   { x: "2014-06-27", y: 0, group: 5 },
   { x: "2014-06-28", y: 15, group: 5 },
   { x: "2014-06-29", y: -15, group: 5 },
-  { x: "2014-06-30", y: 0, group: 5 }
+  { x: "2014-06-30", y: 0, group: 5 },
 ];
 
 var dataset = new vis.DataSet(items);
 var options = {
   legend: true,
   start: "2014-06-07",
-  end: "2014-07-03"
+  end: "2014-07-03",
 };
 var graph2d = new vis.Graph2d(container, dataset, groups, options);
 '

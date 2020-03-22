@@ -77,7 +77,7 @@ html {
 // containing an ISO date. The fields will be outputted as ISO dates
 // automatically getting data from the DataSet via items.get().
 var items = new vis.DataSet({
-  type: { start: "ISODate", end: "ISODate" }
+  type: { start: "ISODate", end: "ISODate" },
 });
 
 // add items to the DataSet
@@ -87,12 +87,12 @@ items.add([
   { id: 3, content: "item 3", start: "2014-01-21" },
   { id: 4, content: "item 4", start: "2014-01-19", end: "2014-01-24" },
   { id: 5, content: "item 5", start: "2014-01-28", type: "point" },
-  { id: 6, content: "item 6", start: "2014-01-26" }
+  { id: 6, content: "item 6", start: "2014-01-26" },
 ]);
 
 var container = document.getElementById("visualization");
 var options = {
-  editable: true
+  editable: true,
 };
 
 var timeline = new vis.Timeline(container, items, options);
@@ -100,8 +100,8 @@ var timeline = new vis.Timeline(container, items, options);
 var selection = document.getElementById("selection");
 var select = document.getElementById("select");
 var focus = document.getElementById("focus");
-select.onclick = function() {
-  var ids = selection.value.split(",").map(function(value) {
+select.onclick = function () {
+  var ids = selection.value.split(",").map(function (value) {
     return value.trim();
   });
   timeline.setSelection(ids, { focus: focus.checked });
@@ -121,7 +121,7 @@ var groupItems = {};
 for (var g = 0; g &lt; 10; g++) {
   groups.push({
     id: g,
-    content: "Group " + g
+    content: "Group " + g,
   });
 
   groupItems[g] = [];
@@ -131,7 +131,7 @@ for (var g = 0; g &lt; 10; g++) {
       id: "g" + g + "_" + i,
       content: "g" + g + "_" + i,
       group: g,
-      start: "2014-" + (g + 1) + "-" + getRandomInt(1, 20)
+      start: "2014-" + (g + 1) + "-" + getRandomInt(1, 20),
     });
 
     groupItems[g].push(items[items.length - 1]);
@@ -144,7 +144,7 @@ var options = {
   stack: true,
   height: 300,
   verticalScroll: true,
-  groupOrder: "id"
+  groupOrder: "id",
 };
 
 var timeline2 = new vis.Timeline(container2, items, groups, options);
@@ -152,7 +152,7 @@ var timeline2 = new vis.Timeline(container2, items, groups, options);
 var groupIndex = 0;
 var itemIndex = 0;
 
-var moveToItem = function(direction) {
+var moveToItem = function (direction) {
   itemIndex += direction;
   groupIndex += direction;
 
@@ -180,23 +180,23 @@ var prevFocus = document.getElementById("prevFocus");
 var selectionVertical = document.getElementById("selectionVertical");
 var selectVertical = document.getElementById("selectVertical");
 
-selectVertical.onclick = function() {
-  var ids = selectionVertical.value.split(",").map(function(value) {
+selectVertical.onclick = function () {
+  var ids = selectionVertical.value.split(",").map(function (value) {
     return value.trim();
   });
   timeline2.setSelection(ids, { focus: focus.checked });
 };
 
-nextFocus.onclick = function() {
+nextFocus.onclick = function () {
   moveToItem(1);
 };
 
-prevFocus.onclick = function() {
+prevFocus.onclick = function () {
   moveToItem(-1);
 };
 
 // Set the initial focus
-setTimeout(function() {
+setTimeout(function () {
   moveToItem(0);
 }, 500);
 '

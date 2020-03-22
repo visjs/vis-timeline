@@ -113,7 +113,7 @@ var items = new vis.DataSet();
 // create a timeline
 var container = document.getElementById("visualization");
 var options = {
-  editable: true
+  editable: true,
 };
 var timeline = new vis.Timeline(container, items, options);
 
@@ -156,8 +156,8 @@ function saveData() {
   var data = items.get({
     type: {
       start: "ISODate",
-      end: "ISODate"
-    }
+      end: "ISODate",
+    },
   });
 
   // serialize the data and put it in the textarea

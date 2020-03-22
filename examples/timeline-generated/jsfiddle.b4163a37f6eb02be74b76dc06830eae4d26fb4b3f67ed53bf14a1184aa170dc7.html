@@ -34,7 +34,7 @@ for (var i = 10; i &gt;= 0; i--) {
     id: i,
     content: "item " + i,
     start: start,
-    end: new Date(start.getTime() + 100000)
+    end: new Date(start.getTime() + 100000),
   });
 }
 
@@ -44,8 +44,8 @@ var options = {
   editable: true,
   itemsAlwaysDraggable: {
     item: true,
-    range: true
-  }
+    range: true,
+  },
 };
 var timeline = new vis.Timeline(container, items, null, options);
 '

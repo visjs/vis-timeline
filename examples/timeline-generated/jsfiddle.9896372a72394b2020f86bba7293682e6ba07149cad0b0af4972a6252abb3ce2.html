@@ -60,24 +60,24 @@ var items = new vis.DataSet([
   { id: 3, content: "item 3", start: "2014-04-18" },
   { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
   { id: 5, content: "item 5", start: "2014-04-25" },
-  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" },
 ]);
 
 // Configuration for the Timeline
 var options = {
-  height: 250 // px
+  height: 250, // px
 };
 
 // Create a Timeline
 var timeline = new vis.Timeline(container, items, options);
 
 var axisOrientation = document.getElementById("axis-orientation");
-axisOrientation.onchange = function() {
+axisOrientation.onchange = function () {
   timeline.setOptions({ orientation: { axis: this.value } });
 };
 
 var itemOrientation = document.getElementById("item-orientation");
-itemOrientation.onchange = function() {
+itemOrientation.onchange = function () {
   timeline.setOptions({ orientation: { item: this.value } });
 };
 '

@@ -83,20 +83,20 @@ code {
 // containing an ISO date. The fields will be outputted as ISO dates
 // automatically getting data from the DataSet via items.get().
 var items = new vis.DataSet({
-  type: { start: "ISODate", end: "ISODate" }
+  type: { start: "ISODate", end: "ISODate" },
 });
 var groups = new vis.DataSet([
   {
     id: "bar",
     content: "bar",
     subgroupStack: { sg_1: true, sg_2: true, sg_3: true },
-    subgroupVisibility: { sg_1: true, sg_2: true, sg_3: true }
+    subgroupVisibility: { sg_1: true, sg_2: true, sg_3: true },
   },
   {
     id: "foo",
     content: "foo",
-    subgroupOrder: "subgroupOrder" // this group has no subgroups but this would be the other method to do the sorting.
-  }
+    subgroupOrder: "subgroupOrder", // this group has no subgroups but this would be the other method to do the sorting.
+  },
 ]);
 // add items to the DataSet
 items.add([
@@ -105,7 +105,7 @@ items.add([
     start: "2014-01-20",
     end: "2014-01-22",
     type: "background",
-    group: "foo"
+    group: "foo",
   },
   {
     id: "B",
@@ -113,14 +113,14 @@ items.add([
     end: "2014-01-23",
     type: "background",
     group: "foo",
-    className: "negative"
+    className: "negative",
   },
   {
     id: 0,
     content: "no subgroup",
     start: "2014-01-20",
     end: "2014-01-22",
-    group: "foo"
+    group: "foo",
   },
 
   {
@@ -130,7 +130,7 @@ items.add([
     type: "background",
     group: "bar",
     subgroup: "sg_1",
-    subgroupOrder: 0
+    subgroupOrder: 0,
   },
   {
     id: "SG_1_2",
@@ -140,7 +140,7 @@ items.add([
     className: "positive",
     group: "bar",
     subgroup: "sg_1",
-    subgroupOrder: 0
+    subgroupOrder: 0,
   },
   {
     id: 1,
@@ -149,7 +149,7 @@ items.add([
     end: "2014-01-26T12:00:00",
     group: "bar",
     subgroup: "sg_1",
-    subgroupOrder: 0
+    subgroupOrder: 0,
   },
   {
     id: 2,
@@ -158,7 +158,7 @@ items.add([
     end: "2014-01-25T12:00:00",
     group: "bar",
     subgroup: "sg_1",
-    subgroupOrder: 0
+    subgroupOrder: 0,
   },
 
   {
@@ -168,7 +168,7 @@ items.add([
     type: "background",
     group: "bar",
     subgroup: "sg_2",
-    subgroupOrder: 1
+    subgroupOrder: 1,
   },
   {
     id: "SG_2_2",
@@ -178,7 +178,7 @@ items.add([
     className: "negative",
     group: "bar",
     subgroup: "sg_2",
-    subgroupOrder: 1
+    subgroupOrder: 1,
   },
   {
     id: 3,
@@ -187,7 +187,7 @@ items.add([
     end: "2014-01-29",
     group: "bar",
     subgroup: "sg_2",
-    subgroupOrder: 1
+    subgroupOrder: 1,
   },
   {
     id: 4,
@@ -196,7 +196,7 @@ items.add([
     end: "2014-02-02",
     group: "bar",
     subgroup: "sg_2",
-    subgroupOrder: 1
+    subgroupOrder: 1,
   },
 
   {
@@ -207,7 +207,7 @@ items.add([
     group: "bar",
     subgroup: "sg_3",
     subgroupOrder: 2,
-    content: "a"
+    content: "a",
   },
   {
     id: "SG_3_2",
@@ -218,7 +218,7 @@ items.add([
     group: "bar",
     subgroup: "sg_3",
     subgroupOrder: 2,
-    content: "b"
+    content: "b",
   },
   {
     id: 5,
@@ -227,7 +227,7 @@ items.add([
     end: "2014-01-26T12:00:00",
     group: "bar",
     subgroup: "sg_3",
-    subgroupOrder: 2
+    subgroupOrder: 2,
   },
   {
     id: 6,
@@ -236,7 +236,7 @@ items.add([
     end: "2014-01-29T12:00:00",
     group: "bar",
     subgroup: "sg_3",
-    subgroupOrder: 2
+    subgroupOrder: 2,
   },
 
   {
@@ -245,15 +245,15 @@ items.add([
     end: "2014-01-30",
     type: "background",
     className: "negative",
-    group: "bar"
+    group: "bar",
   },
   {
     id: "background_all",
     start: "2014-01-31",
     end: "2014-02-02",
     type: "background",
-    className: "positive"
-  }
+    className: "positive",
+  },
 ]);
 
 var container = document.getElementById("visualization");
@@ -267,7 +267,7 @@ var options = {
   stack: true,
   stackSubgroups: true,
   multiselect: true,
-  sequentialSelection: true
+  sequentialSelection: true,
 };
 
 var timeline = new vis.Timeline(container, items, groups, options);

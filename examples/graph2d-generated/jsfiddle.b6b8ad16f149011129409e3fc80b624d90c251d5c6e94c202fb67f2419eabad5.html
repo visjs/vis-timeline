@@ -24,7 +24,7 @@ html {
         name="html"
         value='&lt;h2&gt;Graph2d | Dynamic Styling Example&lt;/h2&gt;
 
-&lt;div style="width:800px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 800px; font-size: 14px; text-align: justify;"&gt;
   This example shows how to programmatically change the styling of a group.
   While this can also be done in CSS, this must be statically defined, and the
   programmatic interface allows the user to define the look of the graph at
@@ -210,7 +210,7 @@ var items = [
   { x: "2014-06-13", y: 30, group: 0 },
   { x: "2014-06-14", y: -10, group: 0 },
   { x: "2014-06-15", y: 15, group: 0 },
-  { x: "2014-06-16", y: 30, group: 0 }
+  { x: "2014-06-16", y: 30, group: 0 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -219,8 +219,8 @@ var options = {
   end: "2014-06-18",
   dataAxis: {
     showMinorLabels: false,
-    icons: true
-  }
+    icons: true,
+  },
 };
 
 var groupData = {
@@ -228,12 +228,12 @@ var groupData = {
   content: "Group Name",
   options: {
     drawPoints: {
-      style: "square" // square, circle
+      style: "square", // square, circle
     },
     shaded: {
-      orientation: "zero" // top, bottom
-    }
-  }
+      orientation: "zero", // top, bottom
+    },
+  },
 };
 
 var groups = new vis.DataSet();

@@ -48,7 +48,7 @@ path.custom-style3.vis-fill {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Axis Titles and Styling&lt;/h2&gt;
-&lt;div style="width:800px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 800px; font-size: 14px; text-align: justify;"&gt;
   &lt;table&gt;
     &lt;tbody&gt;
       &lt;tr&gt;
@@ -147,12 +147,12 @@ groups.add({
   className: "custom-style1",
   options: {
     drawPoints: {
-      style: "square" // square, circle
+      style: "square", // square, circle
     },
     shaded: {
-      orientation: "bottom" // top, bottom
-    }
-  }
+      orientation: "bottom", // top, bottom
+    },
+  },
 });
 
 groups.add({
@@ -161,8 +161,8 @@ groups.add({
   className: "custom-style2",
   options: {
     style: "bar",
-    drawPoints: { style: "circle", size: 10 }
-  }
+    drawPoints: { style: "circle", size: 10 },
+  },
 });
 
 groups.add({
@@ -170,8 +170,8 @@ groups.add({
   content: names[2],
   options: {
     yAxisOrientation: "right", // right, left
-    drawPoints: false
-  }
+    drawPoints: false,
+  },
 });
 
 groups.add({
@@ -181,12 +181,12 @@ groups.add({
   options: {
     yAxisOrientation: "right", // right, left
     drawPoints: {
-      style: "circle" // square, circle
+      style: "circle", // square, circle
     },
     shaded: {
-      orientation: "top" // top, bottom
-    }
-  }
+      orientation: "top", // top, bottom
+    },
+  },
 });
 
 var container = document.getElementById("visualization");
@@ -209,7 +209,7 @@ var items = [
   { x: "2014-06-27", y: 600, group: 3 },
   { x: "2014-06-28", y: 1000, group: 3 },
   { x: "2014-06-29", y: 250, group: 3 },
-  { x: "2014-06-30", y: 300, group: 3 }
+  { x: "2014-06-30", y: 300, group: 3 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -218,13 +218,13 @@ var options = {
     showMinorLabels: false,
     right: {
       title: {
-        text: "Title (right axis)"
-      }
-    }
+        text: "Title (right axis)",
+      },
+    },
   },
   legend: { left: { position: "bottom-left" } },
   start: "2014-06-09",
-  end: "2014-07-03"
+  end: "2014-07-03",
 };
 var graph2d = new vis.Graph2d(container, items, groups, options);
 
@@ -251,7 +251,7 @@ var colors = ["red", "green", "blue", "black", "yellow", "purple", "pink"];
 function styleTitle(axis) {
   var title;
   title = {
-    style: "color: " + colors[Math.floor(Math.random() * colors.length) + 1]
+    style: "color: " + colors[Math.floor(Math.random() * colors.length) + 1],
   };
 
   if (axis == "left") {

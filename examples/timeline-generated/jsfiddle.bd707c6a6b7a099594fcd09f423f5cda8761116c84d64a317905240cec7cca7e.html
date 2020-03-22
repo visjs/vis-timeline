@@ -54,14 +54,14 @@ var customTime = today.clone().add(28, "hour");
 var items = new vis.DataSet([
   { id: 1, content: "item 1", start: today.clone().add(8, "hour") },
   { id: 2, content: "item 2", start: today.clone().add(16, "hour") },
-  { id: 3, content: "item 3", start: today.clone().add(32, "hour") }
+  { id: 3, content: "item 3", start: today.clone().add(32, "hour") },
 ]);
 
 // Create a timeline displaying in local time (default)
 var timelineLocal = new vis.Timeline(document.getElementById("local"), items, {
   editable: true,
   start: start,
-  end: end
+  end: end,
 });
 timelineLocal.addCustomTime(customTime);
 
@@ -70,9 +70,9 @@ var timelineUTC = new vis.Timeline(document.getElementById("utc"), items, {
   editable: true,
   start: start,
   end: end,
-  moment: function(date) {
+  moment: function (date) {
     return vis.moment(date).utc();
-  }
+  },
 });
 timelineUTC.addCustomTime(customTime);
 
@@ -81,9 +81,9 @@ var timelinePlus8 = new vis.Timeline(document.getElementById("plus8"), items, {
   editable: true,
   start: start,
   end: end,
-  moment: function(date) {
+  moment: function (date) {
     return vis.moment(date).utcOffset("+08:00");
-  }
+  },
 });
 timelinePlus8.addCustomTime(customTime);
 '

@@ -47,7 +47,7 @@ var container = document.getElementById("visualization");
 // Create a DataSet (allows two way data-binding)
 var items = new vis.DataSet([
   { id: 1, content: "item 1", start: new Date(new Date().valueOf() - DAY) },
-  { id: 2, content: "item 2", start: new Date(new Date().valueOf() + 2 * DAY) }
+  { id: 2, content: "item 2", start: new Date(new Date().valueOf() + 2 * DAY) },
 ]);
 
 // Configuration for the Timeline
@@ -57,17 +57,17 @@ var options = {
   locales: {
     tr: {
       current: "ge&#xE7;erli",
-      time: "kere"
+      time: "kere",
     },
     sq: {
       current: "&#x568;&#x576;&#x569;&#x561;&#x581;&#x56B;&#x56F;",
-      time: "&#x56A;&#x561;&#x574;"
+      time: "&#x56A;&#x561;&#x574;",
     },
     ar: {
       current: "&#x62D;&#x627;&#x644;&#x64A;",
-      time: "&#x648;&#x642;&#x62A;"
-    }
-  }
+      time: "&#x648;&#x642;&#x62A;",
+    },
+  },
 };
 
 // Create a Timeline
@@ -78,9 +78,9 @@ timeline.setCustomTime(new Date(new Date().valueOf() + DAY));
 
 // update the locale when changing the select box value
 var select = document.getElementById("locale");
-select.onchange = function() {
+select.onchange = function () {
   timeline.setOptions({
-    locale: this.value
+    locale: this.value,
   });
 };
 select.onchange();

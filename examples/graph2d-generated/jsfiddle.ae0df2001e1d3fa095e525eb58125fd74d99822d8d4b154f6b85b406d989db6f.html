@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Scrolling and Sorting&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   You can determine the height of the Graph2d seperately from the height of the
   frame. If the &lt;code&gt;graphHeight&lt;/code&gt; is defined, and the
   &lt;code&gt;height&lt;/code&gt; is not, the frame will auto-scale to accommodate the
@@ -70,7 +70,7 @@ var items = [
   { x: "2014-06-13", y: 830 },
   { x: "2014-06-14", y: 810 },
   { x: "2014-06-15", y: 815 },
-  { x: "2014-06-16", y: 900 }
+  { x: "2014-06-16", y: 900 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -81,7 +81,7 @@ var options = {
   graphHeight: "1500px",
   height: "500px",
   start: "2014-06-10",
-  end: "2014-06-18"
+  end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, dataset, options);
 '

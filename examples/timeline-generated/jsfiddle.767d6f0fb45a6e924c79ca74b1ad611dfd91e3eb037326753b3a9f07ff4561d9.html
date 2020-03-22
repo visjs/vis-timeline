@@ -42,12 +42,9 @@ html {
         type="hidden"
         name="js"
         value='// create a dataset with items
-var now = moment()
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+var now = moment().minutes(0).seconds(0).milliseconds(0);
 var items = new vis.DataSet({
-  type: { start: "ISODate", end: "ISODate" }
+  type: { start: "ISODate", end: "ISODate" },
 });
 
 // create data
@@ -59,7 +56,7 @@ function createData() {
     newData.push({
       id: i,
       content: "item " + i,
-      start: start + 24 * 3600 * 1000 * i
+      start: start + 24 * 3600 * 1000 * i,
     }); // much much faster than now.clone add days
   }
   items.clear();
@@ -75,7 +72,7 @@ var options = {
   start: now.clone().add(-3, "days"),
   end: now.clone().add(11, "days"),
   zoomMin: 1000 * 60 * 60 * 24, // a day
-  zoomMax: 1000 * 60 * 60 * 24 * 30 * 3 // three months
+  zoomMax: 1000 * 60 * 60 * 24 * 30 * 3, // three months
 };
 
 var timeline = new vis.Timeline(container, items, options);

@@ -101,14 +101,20 @@ function getTimelineData() {
   const itemsInClusterCount = $("#orders-per-day-slider").slider("value");
 
   const before = [
-    Array.from(new Array(Math.round(totalDaysCount / 2)), function(val, index) {
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function (
+      val,
+      index
+    ) {
       return index - totalDaysCount + 1;
-    })
+    }),
   ];
   const after = [
-    Array.from(new Array(Math.round(totalDaysCount / 2)), function(val, index) {
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function (
+      val,
+      index
+    ) {
       return index + 1;
-    })
+    }),
   ];
 
   for (var i in before) {
@@ -158,14 +164,14 @@ function getTimelineData() {
         start: start.format("YYYY/MM/DD HH:mm:ss"),
         end: end.format("YYYY/MM/DD HH:mm:ss"),
         width: 50,
-        group: currentGroup
+        group: currentGroup,
       });
     }
   }
   return timeLineData;
 }
 
-$("#groupItemsCheckBox").change(function() {
+$("#groupItemsCheckBox").change(function () {
   if (this.checked) {
     timeline.setGroups(groups);
   } else {
@@ -177,14 +183,14 @@ $("#orders-per-day-slider").slider({
   value: 10,
   min: 1,
   max: 1000,
-  slide: function(event, ui) {
+  slide: function (event, ui) {
     setTimeout(() =&gt; {
       $("#orders-per-day-number").val(ui.value);
       timeLineData = getTimelineData();
       $("#total-orders-count").val(timeLineData.length);
       timeline.setItems(timeLineData);
     });
-  }
+  },
 });
 
 $("#total-days-slider").slider({
@@ -192,14 +198,14 @@ $("#total-days-slider").slider({
   min: 2,
   max: 10,
   step: 2,
-  slide: function(event, ui) {
+  slide: function (event, ui) {
     setTimeout(() =&gt; {
       $("#total-days-number").val(ui.value);
       timeLineData = getTimelineData();
       $("#total-orders-count").val(timeLineData.length);
       timeline.setItems(timeLineData);
     });
-  }
+  },
 });
 
 $("#total-days-number").val($("#total-days-slider").slider("value"));
@@ -219,7 +225,7 @@ var defaultOptions = {
     } else {
       return `&lt;div&gt;${data.content}&lt;/div&gt;`;
     }
-  }
+  },
 };
 
 var timeline = new vis.Timeline(container);
@@ -231,26 +237,26 @@ timeline.setItems(timeLineData);
 
 timeline.fit();
 
-$(".zoom").on("click", function() {
+$(".zoom").on("click", function () {
   var dir = $(this).data("dir");
   var range = timeline.getWindow();
   var interval = range.end - range.start;
 
   timeline.setWindow({
     start: range.start.valueOf() - interval * dir * 0.2,
-    end: range.end.valueOf() + interval * dir * 0.2
+    end: range.end.valueOf() + interval * dir * 0.2,
   });
 });
 
-$("#clusterCheckbox").change(function() {
+$("#clusterCheckbox").change(function () {
   var options = {};
   if (this.checked) {
     var clusterOpts = {
       cluster: {
         titleTemplate:
           "Cluster containing {count} events. Zoom in to see the individual events.",
-        showStipes: true
-      }
+        showStipes: true,
+      },
     };
     Object.assign(options, defaultOptions, clusterOpts);
   } else {

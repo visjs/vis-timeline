@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Bar Graph Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the most the same data as the first example, except we plot
   the data as bars! The dataAxis (y-axis) icons have been enabled as well. These
   icons are generated automatically from the CSS styling of the graphs. Finally,
@@ -49,7 +49,7 @@ var items = [
   { x: "2014-06-13", y: 30 },
   { x: "2014-06-14", y: 10 },
   { x: "2014-06-15", y: 15 },
-  { x: "2014-06-16", y: 30 }
+  { x: "2014-06-16", y: 30 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -58,11 +58,11 @@ var options = {
   barChart: { width: 50, align: "center" }, // align: left, center, right
   drawPoints: false,
   dataAxis: {
-    icons: true
+    icons: true,
   },
   orientation: "top",
   start: "2014-06-10",
-  end: "2014-06-18"
+  end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, items, options);
 '

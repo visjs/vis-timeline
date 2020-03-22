@@ -72,7 +72,7 @@ var groups = new vis.DataSet([
   { id: 22, content: "Truck&amp;nbsp;22" },
   { id: 23, content: "Truck&amp;nbsp;23" },
   { id: 24, content: "Truck&amp;nbsp;24" },
-  { id: 25, content: "Truck&amp;nbsp;25" }
+  { id: 25, content: "Truck&amp;nbsp;25" },
 ]);
 
 // create items
@@ -98,7 +98,7 @@ for (var j = 0; j &lt; 25; j++) {
       start: start,
       end: end,
       type: type,
-      content: "Order " + order
+      content: "Order " + order,
     });
 
     order++;
@@ -111,7 +111,7 @@ var options = {
   stack: true,
   maxHeight: 400,
   start: new Date(),
-  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf())
+  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
 };
 
 // create a Timeline

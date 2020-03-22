@@ -49,7 +49,7 @@ var groups = new vis.DataSet();
 for (var i = 0; i &lt; numberOfGroups; i++) {
   groups.add({
     id: i,
-    content: "Truck " + i
+    content: "Truck " + i,
   });
 }
 
@@ -69,31 +69,31 @@ for (var truck = 0; truck &lt; numberOfGroups; truck++) {
       group: truck,
       start: start,
       end: end,
-      content: "Order " + order
+      content: "Order " + order,
     });
   }
 }
 
 var GroupTemplate = React.createClass({
-  render: function() {
+  render: function () {
     var { group } = this.props;
     return (
       &lt;div&gt;
         &lt;label&gt;{group.content}&lt;/label&gt;
       &lt;/div&gt;
     );
-  }
+  },
 });
 
 var ItemTemplate = React.createClass({
-  render: function() {
+  render: function () {
     var { item } = this.props;
     return (
       &lt;div&gt;
         &lt;label&gt;{item.content}&lt;/label&gt;
       &lt;/div&gt;
     );
-  }
+  },
 });
 
 // specify options
@@ -103,27 +103,27 @@ var options = {
   start: new Date(),
   end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
   editable: true,
-  template: function(item, element) {
+  template: function (item, element) {
     if (!item) {
       return;
     }
     ReactDOM.unmountComponentAtNode(element);
     return ReactDOM.render(&lt;ItemTemplate item={item} /&gt;, element);
   },
-  groupTemplate: function(group, element) {
+  groupTemplate: function (group, element) {
     if (!group) {
       return;
     }
     ReactDOM.unmountComponentAtNode(element);
     return ReactDOM.render(&lt;GroupTemplate group={group} /&gt;, element);
-  }
+  },
 };
 
 var VisTimeline = React.createClass({
-  componentDidMount: function() {
+  componentDidMount: function () {
     return initTimeline();
   },
-  render: function() {
+  render: function () {
     return (
       &lt;div&gt;
         &lt;h1&gt;Vis timline with React&lt;/h1&gt;
@@ -132,7 +132,7 @@ var VisTimeline = React.createClass({
         &lt;div id="visualization"&gt;&lt;/div&gt;
       &lt;/div&gt;
     );
-  }
+  },
 });
 
 function initTimeline() {

@@ -50,21 +50,21 @@ var items = [
   { x: "2014-06-13", y: 30 },
   { x: "2014-06-14", y: 10 },
   { x: "2014-06-15", y: 15 },
-  { x: "2014-06-16", y: 30 }
+  { x: "2014-06-16", y: 30 },
 ];
 
 var dataset = new vis.DataSet(items);
 var options = {
   start: "2014-06-10",
-  end: "2014-06-18"
+  end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, dataset, options);
 
 // update the locale when changing the select box value
 var select = document.getElementById("locale");
-select.onchange = function() {
+select.onchange = function () {
   graph2d.setOptions({
-    locale: this.value
+    locale: this.value,
   });
 };
 select.onchange();

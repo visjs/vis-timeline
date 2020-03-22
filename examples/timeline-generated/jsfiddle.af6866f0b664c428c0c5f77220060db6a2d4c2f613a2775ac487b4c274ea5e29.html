@@ -40,10 +40,7 @@ html {
       <input
         type="hidden"
         name="js"
-        value='var now = moment()
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+        value='var now = moment().minutes(0).seconds(0).milliseconds(0);
 var groupCount = 3;
 var itemCount = 20;
 
@@ -69,14 +66,14 @@ for (var i = 0; i &lt; itemCount; i++) {
       names[group] +
       ")&lt;/span&gt;",
     start: start,
-    type: "box"
+    type: "box",
   });
 }
 
 // create visualization
 var container = document.getElementById("visualization");
 var options = {
-  groupOrder: "content" // groupOrder can be a property name or a sorting function
+  groupOrder: "content", // groupOrder can be a property name or a sorting function
 };
 
 var timeline = new vis.Timeline(container);

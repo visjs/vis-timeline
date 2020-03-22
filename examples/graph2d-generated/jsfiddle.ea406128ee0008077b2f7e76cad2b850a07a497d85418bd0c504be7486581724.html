@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Bar Graphs Side by Side Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   When using Bar graphs, it can often be the case that there are multiple bars
   on the same timepoint. This may not always be the desired result. You can use
   the barChart.handleOverlap option to automatically plot the bars next to
@@ -60,7 +60,7 @@ var items = [
   { x: "2014-06-11", y: -12 },
   { x: "2014-06-14", y: 24 },
   { x: "2014-06-15", y: 5 },
-  { x: "2014-06-16", y: 12 }
+  { x: "2014-06-16", y: 12 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -70,11 +70,11 @@ var options = {
   barChart: { width: 50, align: "center", sideBySide: false }, // align: left, center, right
   drawPoints: false,
   dataAxis: {
-    icons: true
+    icons: true,
   },
   orientation: "top",
   start: "2014-06-10",
-  end: "2014-06-18"
+  end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, items, options);
 
@@ -84,7 +84,7 @@ dropdown.onchange = update;
 function update() {
   var options = {
     stack: dropdown.value === "stack",
-    barChart: { sideBySide: dropdown.value === "sideBySide" }
+    barChart: { sideBySide: dropdown.value === "sideBySide" },
   };
   graph2d.setOptions(options);
 }

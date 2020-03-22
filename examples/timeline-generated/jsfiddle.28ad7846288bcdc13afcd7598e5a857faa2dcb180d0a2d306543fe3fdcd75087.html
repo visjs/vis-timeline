@@ -45,7 +45,7 @@ html {
     start: "2014-01-16",
     end: "2014-01-22",
     type: "background",
-    group: 1
+    group: 1,
   },
   {
     id: "B",
@@ -53,14 +53,14 @@ html {
     start: "2014-01-23",
     end: "2014-01-26",
     type: "background",
-    group: 2
+    group: 2,
   },
   {
     id: "C",
     content: "Period C",
     start: "2014-01-27",
     end: "2014-02-03",
-    type: "background"
+    type: "background",
   }, // no group
   {
     id: "D",
@@ -68,7 +68,7 @@ html {
     start: "2014-01-14",
     end: "2014-01-20",
     type: "background",
-    group: "non-existing"
+    group: "non-existing",
   },
   { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-30", group: 1 },
   { id: 2, content: "item 2", start: "2014-01-18", group: 1 },
@@ -78,22 +78,22 @@ html {
     content: "item 4",
     start: "2014-01-17",
     end: "2014-01-21",
-    group: 2
+    group: 2,
   },
   { id: 5, content: "item 5", start: "2014-01-28", type: "point", group: 2 },
-  { id: 6, content: "item 6", start: "2014-01-25", group: 2 }
+  { id: 6, content: "item 6", start: "2014-01-25", group: 2 },
 ]);
 
 var groups = new vis.DataSet([
   { id: 1, content: "Group 1" },
-  { id: 2, content: "Group 2" }
+  { id: 2, content: "Group 2" },
 ]);
 
 var container = document.getElementById("visualization");
 var options = {
   start: "2014-01-10",
   end: "2014-02-10",
-  editable: true
+  editable: true,
 };
 
 var timeline = new vis.Timeline(container, items, groups, options);

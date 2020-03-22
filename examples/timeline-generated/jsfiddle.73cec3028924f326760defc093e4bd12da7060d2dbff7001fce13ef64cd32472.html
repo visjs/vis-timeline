@@ -49,12 +49,12 @@ var container = document.getElementById("visualization");
 // Create a DataSet (allows two way data-binding)
 var items = new vis.DataSet([
   { id: 1, content: "item 1", start: new Date(Date.now() - DAY) },
-  { id: 2, content: "item 2", start: new Date(Date.now() + 2 * DAY) }
+  { id: 2, content: "item 2", start: new Date(Date.now() + 2 * DAY) },
 ]);
 
 // Configuration for the Timeline
 var options = {
-  showCurrentTime: true
+  showCurrentTime: true,
 };
 
 // Create a Timeline
@@ -65,9 +65,9 @@ timeline.setCustomTime(new Date(Date.now() + DAY));
 
 // update the locale when changing the select box value
 var select = document.getElementById("locale");
-select.onchange = function() {
+select.onchange = function () {
   timeline.setOptions({
-    locale: this.value
+    locale: this.value,
   });
 };
 select.onchange();

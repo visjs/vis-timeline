@@ -63,7 +63,7 @@ var items = new vis.DataSet([
     content: "Item 1",
     start: "2016-01-01",
     end: "2016-01-02",
-    title: "Normal text"
+    title: "Normal text",
   },
   { id: 2, content: "Item 2", start: "2016-01-02", title: "&lt;b&gt;Bold&lt;/b&gt;" },
   {
@@ -71,15 +71,15 @@ var items = new vis.DataSet([
     content: "Item 3",
     start: "2016-01-03",
     type: "point",
-    title: &apos;&lt;span style="color: red"&gt;Red&lt;/span&gt; text&apos;
+    title: &apos;&lt;span style="color: red"&gt;Red&lt;/span&gt; text&apos;,
   },
   {
     id: 4,
     content: "&lt;h1&gt;HTML&lt;/h1&gt; Item",
     start: "2016-01-03",
     end: "2016-01-04",
-    title: &apos;&lt;table border="1"&gt;&lt;tr&gt;&lt;td&gt;Cell 1&lt;/td&gt;&lt;td&gt;Cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;
-  }
+    title: &apos;&lt;table border="1"&gt;&lt;tr&gt;&lt;td&gt;Cell 1&lt;/td&gt;&lt;td&gt;Cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;,
+  },
 ]);
 
 // Options
@@ -95,8 +95,8 @@ var timelineTooltips = new vis.Timeline(
 // Follow options
 var follow_options = {
   tooltip: {
-    followMouse: true
-  }
+    followMouse: true,
+  },
 };
 
 var timelineFollow = new vis.Timeline(
@@ -109,8 +109,8 @@ var timelineFollow = new vis.Timeline(
 var cap_options = {
   tooltip: {
     followMouse: true,
-    overflowMethod: "cap"
-  }
+    overflowMethod: "cap",
+  },
 };
 
 var timelineCap = new vis.Timeline(
@@ -121,7 +121,7 @@ var timelineCap = new vis.Timeline(
 
 // Hide options
 var hide_options = {
-  showTooltips: false
+  showTooltips: false,
 };
 
 var timelineHide = new vis.Timeline(

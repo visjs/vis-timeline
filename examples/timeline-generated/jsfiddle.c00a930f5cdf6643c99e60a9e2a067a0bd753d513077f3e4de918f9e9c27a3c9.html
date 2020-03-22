@@ -66,14 +66,14 @@ var items = new vis.DataSet([
     content: "Editable",
     editable: true,
     start: "2010-08-23T23:00:00",
-    group: 2
+    group: 2,
   },
   {
     id: 3,
     content: "Read-only",
     editable: false,
     start: "2010-08-24T16:00:00",
-    group: 1
+    group: 1,
   },
   {
     id: 4,
@@ -81,7 +81,7 @@ var items = new vis.DataSet([
     editable: false,
     start: "2010-08-26",
     end: "2010-09-02",
-    group: 2
+    group: 2,
   },
   { id: 5, content: "Editable", editable: true, start: "2010-08-28", group: 1 },
   {
@@ -89,7 +89,7 @@ var items = new vis.DataSet([
     content: "Read-only",
     editable: false,
     start: "2010-08-29",
-    group: 2
+    group: 2,
   },
   {
     id: 7,
@@ -97,28 +97,28 @@ var items = new vis.DataSet([
     editable: true,
     start: "2010-08-31",
     end: "2010-09-03",
-    group: 1
+    group: 1,
   },
   {
     id: 8,
     content: "Read-only",
     editable: false,
     start: "2010-09-04T12:00:00",
-    group: 2
+    group: 2,
   },
   { id: 9, content: "Default", start: "2010-09-04", group: 1 },
-  { id: 10, content: "Default", start: "2010-08-24", group: 2 }
+  { id: 10, content: "Default", start: "2010-08-24", group: 2 },
 ]);
 
 var groups = [
   {
     id: 1,
-    content: "group 1"
+    content: "group 1",
   },
   {
     id: 2,
-    content: "group 2"
-  }
+    content: "group 2",
+  },
 ];
 
 var container = document.getElementById("visualization");
@@ -128,13 +128,13 @@ var options = {
     remove: true,
     updateGroup: false,
     updateTime: true,
-    overrideItems: false
-  } // default for all items
+    overrideItems: false,
+  }, // default for all items
 };
 
 var timeline = new vis.Timeline(container, items, groups, options);
 
-var updateEditOptions = function(e) {
+var updateEditOptions = function (e) {
   var changedOption = e.target.name;
   var options = { editable: {} };
   options.editable[changedOption] = e.target.checked;
@@ -142,7 +142,7 @@ var updateEditOptions = function(e) {
 };
 
 var cbs = document.getElementsByTagName("input");
-[].forEach.call(cbs, function(cb) {
+[].forEach.call(cbs, function (cb) {
   cb.onchange = updateEditOptions;
 });
 '

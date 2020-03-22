@@ -42,7 +42,7 @@ var items = new vis.DataSet([
   { id: 3, content: "item 3", start: "2014-04-18" },
   { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-24" },
   { id: 5, content: "item 5", start: "2014-04-26 12:00:00" },
-  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" },
 ]);
 
 // Configuration for the Timeline
@@ -52,18 +52,18 @@ var options = {
     {
       start: "2013-10-26 00:00:00",
       end: "2013-10-28 00:00:00",
-      repeat: "weekly"
+      repeat: "weekly",
     }, // daily weekly monthly yearly
     {
       start: "2013-03-29 20:00:00",
       end: "2013-03-30 09:00:00",
-      repeat: "daily"
-    } // daily weekly monthly yearly
+      repeat: "daily",
+    }, // daily weekly monthly yearly
   ],
   start: "2014-04-17",
   end: "2014-05-01",
   height: "200px",
-  editable: true
+  editable: true,
 };
 
 // Create a Timeline

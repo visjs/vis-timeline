@@ -30,7 +30,7 @@ for (var i = 10; i &gt;= 0; i--) {
   items.add({
     id: i,
     content: "item " + i,
-    start: new Date(new Date().getTime() + i * 100000)
+    start: new Date(new Date().getTime() + i * 100000),
   });
 }
 
@@ -41,8 +41,8 @@ var options = {
   end: new Date(new Date().getTime() + 1000000),
   rollingMode: {
     follow: true,
-    offset: 0.5
-  }
+    offset: 0.5,
+  },
 };
 
 // create a Timeline

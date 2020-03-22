@@ -59,8 +59,8 @@ var options = {
   end: Date.now() + 1000 * 60 * 60 * 24 * 21, // plus 1 months aprox.
   orientation: {
     axis: "both",
-    item: "top"
-  }
+    item: "top",
+  },
 };
 var groups = new vis.DataSet();
 var items = new vis.DataSet();
@@ -74,7 +74,7 @@ for (var i = 0; i &lt; count; i++) {
   groups.add({
     id: i,
     content: "Task " + i,
-    order: i
+    order: i,
   });
 
   items.add({
@@ -83,7 +83,7 @@ for (var i = 0; i &lt; count; i++) {
     start: start,
     end: end,
     type: "range",
-    content: "Item " + i
+    content: "Item " + i,
   });
 }
 
@@ -95,7 +95,7 @@ timeline.setItems(items);
 
 function debounce(func, wait = 100) {
   let timeout;
-  return function(...args) {
+  return function (...args) {
     clearTimeout(timeout);
     timeout = setTimeout(() =&gt; {
       func.apply(this, args);
@@ -103,7 +103,7 @@ function debounce(func, wait = 100) {
   };
 }
 
-let groupFocus = e =&gt; {
+let groupFocus = (e) =&gt; {
   let vGroups = timeline.getVisibleGroups();
   let vItems = vGroups.reduce((res, groupId) =&gt; {
     let group = timeline.itemSet.groups[groupId];

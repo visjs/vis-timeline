@@ -23,7 +23,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Basic Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the most basic functionality of the vis.js Graph2d module.
   An array or a vis.Dataset can be used as input. In the following examples
   we&amp;apos;ll explore the options Graph2d offest for customization. This example
@@ -49,13 +49,13 @@ var items = [
   { x: "2014-06-13", y: 30 },
   { x: "2014-06-14", y: 10 },
   { x: "2014-06-15", y: 15 },
-  { x: "2014-06-16", y: 30 }
+  { x: "2014-06-16", y: 30 },
 ];
 
 var dataset = new vis.DataSet(items);
 var options = {
   start: "2014-06-10",
-  end: "2014-06-18"
+  end: "2014-06-18",
 };
 var graph2d = new vis.Graph2d(container, dataset, options);
 '

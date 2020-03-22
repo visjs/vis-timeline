@@ -60,10 +60,10 @@ var options = {
   showCurrentTime: true,
   start: new Date(Date.now() - 1000 * 60 * 60 * 24),
   end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6),
-  snap: function(date, scale, step) {
+  snap: function (date, scale, step) {
     const hour = 60 * 1000;
     return Math.round(date / hour) * hour;
-  }
+  },
 };
 var timeline = new vis.Timeline(container, items, options);
 
@@ -75,7 +75,7 @@ customDate = new Date(
 );
 timeline.addCustomTime(customDate, "t1");
 
-document.getElementById("add").onclick = function() {
+document.getElementById("add").onclick = function () {
   try {
     customDate = new Date(
       customDate.getFullYear(),
@@ -91,7 +91,7 @@ document.getElementById("add").onclick = function() {
   }
 };
 
-document.getElementById("remove").onclick = function() {
+document.getElementById("remove").onclick = function () {
   try {
     timeline.removeCustomTime(document.getElementById("barIndex").value);
     document.getElementById("barIndex").value = "";
@@ -101,11 +101,11 @@ document.getElementById("remove").onclick = function() {
   }
 };
 
-timeline.on("timechange", function(properties) {
+timeline.on("timechange", function (properties) {
   document.getElementById("timechangeBar").innerHTML = properties.id;
   document.getElementById("timechangeEvent").innerHTML = properties.time;
 });
-timeline.on("timechanged", function(properties) {
+timeline.on("timechanged", function (properties) {
   document.getElementById("timechangedBar").innerHTML = properties.id;
   document.getElementById("timechangedEvent").innerHTML = properties.time;
 });

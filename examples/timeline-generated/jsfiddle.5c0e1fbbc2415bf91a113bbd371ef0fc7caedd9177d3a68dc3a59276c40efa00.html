@@ -65,7 +65,7 @@ for (var i = 0; i &lt; 100; i++) {
     id: i,
     content: "Item " + i,
     start: date.clone(),
-    end: date.clone().add(4, "hour")
+    end: date.clone().add(4, "hour"),
   });
 }
 
@@ -78,16 +78,16 @@ function customOrder(a, b) {
 var options = {
   order: customOrder,
   editable: true,
-  margin: { item: 0 }
+  margin: { item: 0 },
 };
 
 // Create a Timeline
 var timeline = new vis.Timeline(container, items, options);
 
 var ordering = document.getElementById("ordering");
-ordering.onchange = function() {
+ordering.onchange = function () {
   timeline.setOptions({
-    order: ordering.checked ? customOrder : () =&gt; {}
+    order: ordering.checked ? customOrder : () =&gt; {},
   });
 };
 '

@@ -41,7 +41,7 @@ var groups = new vis.DataSet();
 for (var i = 0; i &lt; numberOfGroups; i++) {
   groups.add({
     id: i,
-    content: "Truck " + i
+    content: "Truck " + i,
   });
 }
 
@@ -61,12 +61,12 @@ for (var truck = 0; truck &lt; numberOfGroups; truck++) {
       group: truck,
       start: start,
       end: end,
-      content: "Order " + order
+      content: "Order " + order,
     });
   }
 }
 
-var GroupTemplate = group =&gt; {
+var GroupTemplate = (group) =&gt; {
   return (
     &lt;div&gt;
       &lt;label&gt;{group.content}&lt;/label&gt;
@@ -124,7 +124,7 @@ var options = {
   onInitialDrawComplete: () =&gt; {
     window.timeline.setItems(window.items);
   },
-  template: function(item, element) {
+  template: function (item, element) {
     if (!item) {
       return;
     }
@@ -145,7 +145,7 @@ var options = {
     // return &apos;&apos;
   },
 
-  groupTemplate: function(group, element) {
+  groupTemplate: function (group, element) {
     if (!group || !group.content) {
       return;
     }
@@ -155,7 +155,7 @@ var options = {
     );
   },
 
-  visibleFrameTemplate: function(item, element) {
+  visibleFrameTemplate: function (item, element) {
     if (!item || !element) {
       return;
     }
@@ -166,7 +166,7 @@ var options = {
       ReactDOM.render(&lt;VisibleFramTemplate item={item} /&gt;, element),
       element
     );
-  }
+  },
 };
 
 class Timeline extends React.Component {

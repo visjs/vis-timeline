@@ -28,7 +28,7 @@ div.graphs {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Groups Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the groups visibility functionality within Graph2d. Groups
   have their own visibility option. By using this, all graph2d instances using
   those groups would show or hide that group. If you have multiple instances
@@ -72,26 +72,26 @@ groups.add({
   content: names[0],
   options: {
     drawPoints: {
-      style: "square" // square, circle
+      style: "square", // square, circle
     },
     shaded: {
-      orientation: "bottom" // top, bottom
-    }
-  }
+      orientation: "bottom", // top, bottom
+    },
+  },
 });
 
 groups.add({
   id: 1,
   content: names[1],
   options: {
-    style: "bar"
-  }
+    style: "bar",
+  },
 });
 
 groups.add({
   id: 2,
   content: names[2],
-  options: { drawPoints: false }
+  options: { drawPoints: false },
 });
 
 groups.add({
@@ -99,12 +99,12 @@ groups.add({
   content: names[3],
   options: {
     drawPoints: {
-      style: "circle" // square, circle
+      style: "circle", // square, circle
     },
     shaded: {
-      orientation: "top" // top, bottom
-    }
-  }
+      orientation: "top", // top, bottom
+    },
+  },
 });
 
 var container = document.getElementById("visualization");
@@ -131,7 +131,7 @@ var items = [
   { x: "2014-06-27", y: 60, group: 3 },
   { x: "2014-06-28", y: 10, group: 3 },
   { x: "2014-06-29", y: 25, group: 3 },
-  { x: "2014-06-30", y: 30, group: 3 }
+  { x: "2014-06-30", y: 30, group: 3 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -142,7 +142,7 @@ var options = {
   start: "2014-06-10",
   end: "2014-07-04",
   showMajorLabels: false,
-  showMinorLabels: false
+  showMinorLabels: false,
 };
 var graph2d1 = new vis.Graph2d(
   document.getElementById("visualization1"),
@@ -183,28 +183,28 @@ var graph2d6 = new vis.Graph2d(
 
 graph2d1.setOptions({
   groups: {
-    visibility: { 0: true, 1: false, 2: false, 3: false, __ungrouped__: false }
-  }
+    visibility: { 0: true, 1: false, 2: false, 3: false, __ungrouped__: false },
+  },
 });
 graph2d2.setOptions({
   groups: {
-    visibility: { 0: false, 1: true, 2: false, 3: false, __ungrouped__: false }
-  }
+    visibility: { 0: false, 1: true, 2: false, 3: false, __ungrouped__: false },
+  },
 });
 graph2d3.setOptions({
   groups: {
-    visibility: { 0: false, 1: false, 2: true, 3: false, __ungrouped__: false }
-  }
+    visibility: { 0: false, 1: false, 2: true, 3: false, __ungrouped__: false },
+  },
 });
 graph2d4.setOptions({
   groups: {
-    visibility: { 0: false, 1: false, 2: false, 3: true, __ungrouped__: false }
-  }
+    visibility: { 0: false, 1: false, 2: false, 3: true, __ungrouped__: false },
+  },
 });
 graph2d5.setOptions({
   groups: {
-    visibility: { 0: false, 1: false, 2: false, 3: false, __ungrouped__: true }
-  }
+    visibility: { 0: false, 1: false, 2: false, 3: false, __ungrouped__: true },
+  },
 });
 '
       />

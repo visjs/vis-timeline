@@ -35,7 +35,7 @@ html {
         value='// load data via an ajax request. When the data is in, load the timeline
 $.ajax({
   url: "../resources/data/basic.json",
-  success: function(data) {
+  success: function (data) {
     // hide the "loading..." message
     document.getElementById("loading").style.display = "none";
 
@@ -51,7 +51,7 @@ $.ajax({
     // Create a Timeline
     var timeline = new vis.Timeline(container, items, options);
   },
-  error: function(err) {
+  error: function (err) {
     console.log("Error", err);
     if (err.status === 0) {
       alert(
@@ -60,7 +60,7 @@ $.ajax({
     } else {
       alert("Failed to load data/basic.json.");
     }
-  }
+  },
 });
 '
       />

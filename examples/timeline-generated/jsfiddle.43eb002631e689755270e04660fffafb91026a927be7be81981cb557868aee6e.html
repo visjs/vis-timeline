@@ -57,7 +57,7 @@ var customDate = new Date();
 var options = {
   showCurrentTime: true,
   start: new Date(Date.now() - 1000 * 60 * 60 * 24),
-  end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
+  end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6),
 };
 var timeline = new vis.Timeline(container, items, options);
 
@@ -68,11 +68,11 @@ customDate = new Date(
   customDate.getDate() + 1
 );
 timeline.addCustomTime(customDate, "t1");
-timeline.setCustomTimeTitle(function(time) {
+timeline.setCustomTimeTitle(function (time) {
   return "I&apos;m t1! time:" + time;
 }, "t1");
 
-document.getElementById("add").onclick = function() {
+document.getElementById("add").onclick = function () {
   try {
     customDate = new Date(
       customDate.getFullYear(),
@@ -81,7 +81,7 @@ document.getElementById("add").onclick = function() {
     );
     var barId = document.getElementById("barId").value || undefined;
     timeline.addCustomTime(customDate, barId);
-    timeline.setCustomTimeTitle(function(time) {
+    timeline.setCustomTimeTitle(function (time) {
       return "I&apos;m " + barId + "! time:" + time;
     }, barId);
     document.getElementById("barId").value = "";
@@ -91,7 +91,7 @@ document.getElementById("add").onclick = function() {
   }
 };
 
-document.getElementById("remove").onclick = function() {
+document.getElementById("remove").onclick = function () {
   try {
     timeline.removeCustomTime(document.getElementById("barIndex").value);
     document.getElementById("barIndex").value = "";
@@ -101,11 +101,11 @@ document.getElementById("remove").onclick = function() {
   }
 };
 
-timeline.on("timechange", function(properties) {
+timeline.on("timechange", function (properties) {
   document.getElementById("timechangeBar").innerHTML = properties.id;
   document.getElementById("timechangeEvent").innerHTML = properties.time;
 });
-timeline.on("timechanged", function(properties) {
+timeline.on("timechanged", function (properties) {
   document.getElementById("timechangedBar").innerHTML = properties.id;
   document.getElementById("timechangedEvent").innerHTML = properties.time;
 });

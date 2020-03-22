@@ -27,7 +27,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Label Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the how to add a label to each point in Graph2d. Each item
   can have a label object which contains the content and CSS class.In addition,
   xOffset and yOffset will adjust the location of the label relative to the
@@ -46,16 +46,16 @@ html {
 var label1 = {
   content: "Label 1 (with offset)",
   xOffset: 20,
-  yOffset: 20
+  yOffset: 20,
 };
 
 var label2 = {
   content: "Label 2",
-  className: "red"
+  className: "red",
 };
 
 var label3 = {
-  content: "Label 3"
+  content: "Label 3",
 };
 var items = [
   { group: 1, x: "2014-06-11", y: 10, label: label1 },
@@ -77,7 +77,7 @@ var items = [
   { group: 3, x: "2014-06-25", y: 30 },
   { group: 3, x: "2014-06-26", y: 10 },
   { group: 3, x: "2014-06-27", y: 15, label: label3 },
-  { group: 3, x: "2014-06-28", y: 30 }
+  { group: 3, x: "2014-06-28", y: 30 },
 ];
 
 var groups = new vis.DataSet();
@@ -92,10 +92,10 @@ groups.add({
       }
       return {
         style: "square",
-        size: 15
+        size: 15,
       };
-    }
-  }
+    },
+  },
 });
 
 groups.add({
@@ -104,9 +104,9 @@ groups.add({
     "Draw according to the Graph2d callback, but make it every datapoint square one.",
   options: {
     drawPoints: {
-      style: "square"
-    }
-  }
+      style: "square",
+    },
+  },
 });
 
 groups.add({
@@ -114,10 +114,10 @@ groups.add({
   content:
     "I want to render datapoints with no labels. Screw the graph2d options. Except the style/size should be according to the graph2d option.",
   options: {
-    drawPoints: function(item, group, grap2d) {
+    drawPoints: function (item, group, grap2d) {
       return item.label == null;
-    }
-  }
+    },
+  },
 });
 
 var dataset = new vis.DataSet(items);
@@ -126,11 +126,11 @@ var options = {
   end: "2014-06-29",
   style: "bar",
   drawPoints: {
-    onRender: function(item, group, grap2d) {
+    onRender: function (item, group, grap2d) {
       return item.label != null;
     },
-    style: "circle"
-  }
+    style: "circle",
+  },
 };
 
 var graph2d = new vis.Graph2d(container, dataset, groups, options);

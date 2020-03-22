@@ -53,7 +53,7 @@ html {
 // note that months are zero-based in the JavaScript Date object, so month 4 is May
 var items = new vis.DataSet([
   { start: new Date(2012, 4, 25), content: "First" },
-  { start: new Date(2012, 4, 26), content: "Last" }
+  { start: new Date(2012, 4, 26), content: "Last" },
 ]);
 
 // create visualization
@@ -63,7 +63,7 @@ var options = {
   min: new Date(2012, 0, 1), // lower limit of visible range
   max: new Date(2013, 0, 1), // upper limit of visible range
   zoomMin: 1000 * 60 * 60 * 24, // one day in milliseconds
-  zoomMax: 1000 * 60 * 60 * 24 * 31 * 3 // about three months in milliseconds
+  zoomMax: 1000 * 60 * 60 * 24 * 31 * 3, // about three months in milliseconds
 };
 
 // create the timeline

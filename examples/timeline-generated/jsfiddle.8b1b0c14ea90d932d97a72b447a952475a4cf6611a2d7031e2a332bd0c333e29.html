@@ -73,7 +73,7 @@ var container = document.getElementById("visualization");
 var groups = new vis.DataSet();
 groups.add([
   { id: 1, content: "ISO Weeks" },
-  { id: 2, content: "US Weeks" }
+  { id: 2, content: "US Weeks" },
 ]);
 
 // Create a DataSet (allows two way data-binding)
@@ -100,7 +100,7 @@ for (var i = 0; i &lt; itemCount; i++) {
     group: 2,
     content: "US week " + USweekNumber,
     start: USweekStart,
-    end: USweekEnd
+    end: USweekEnd,
   });
 }
 
@@ -121,7 +121,7 @@ for (var j = 0; j &lt; itemCount; j++) {
     group: 1,
     content: "ISO week " + DEweekNumber,
     start: DEweekStart,
-    end: DEweekEnd
+    end: DEweekEnd,
   });
 }
 
@@ -130,11 +130,11 @@ var options = {
   locale: "de",
   timeAxis: {
     scale: "week",
-    step: 1
+    step: 1,
   },
   format: {
-    minorLabels: { week: "w" }
-  }
+    minorLabels: { week: "w" },
+  },
 };
 
 // Create a Timeline
@@ -142,9 +142,9 @@ var timeline = new vis.Timeline(container, items, groups, options);
 
 // update the locale when changing the select box value
 var select = document.getElementById("locale");
-select.onchange = function() {
+select.onchange = function () {
   timeline.setOptions({
-    locale: this.value
+    locale: this.value,
   });
 };
 select.onchange();

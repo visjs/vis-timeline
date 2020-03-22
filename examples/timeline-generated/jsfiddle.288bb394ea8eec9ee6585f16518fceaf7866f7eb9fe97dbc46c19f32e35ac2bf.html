@@ -39,7 +39,7 @@ var groups = new vis.DataSet();
 for (var i = 0; i &lt; numberOfGroups; i++) {
   groups.add({
     id: i,
-    content: "Truck&amp;nbsp;" + i
+    content: "Truck&amp;nbsp;" + i,
   });
 }
 
@@ -64,7 +64,7 @@ for (var truck = 0; truck &lt; numberOfGroups; truck++) {
       group: truck,
       start: start,
       end: end,
-      content: "Order " + orderIndex
+      content: "Order " + orderIndex,
     });
   }
 }
@@ -76,7 +76,7 @@ var options = {
   zoomKey: "ctrlKey",
   maxHeight: 200,
   start: new Date(),
-  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf())
+  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
 };
 
 // create a Timeline

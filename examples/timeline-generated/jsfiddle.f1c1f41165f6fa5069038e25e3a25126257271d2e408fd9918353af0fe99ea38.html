@@ -107,7 +107,7 @@ var groups = new vis.DataSet();
 for (var i = 0; i &lt; numberOfGroups; i++) {
   groups.add({
     id: i,
-    content: "Truck&amp;nbsp;" + i
+    content: "Truck&amp;nbsp;" + i,
   });
 }
 
@@ -131,7 +131,7 @@ for (var truck = 0; truck &lt; numberOfGroups; truck++) {
       group: truck,
       start: start,
       end: end,
-      content: "Order " + order
+      content: "Order " + order,
     });
   }
 }
@@ -143,7 +143,7 @@ var options = {
   end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
   editable: true,
   orientation: "top",
-  onDropObjectOnItem: function(objectData, item, callback) {
+  onDropObjectOnItem: function (objectData, item, callback) {
     if (!item) {
       return;
     }
@@ -154,7 +154,7 @@ var options = {
         item.content +
         &apos;"&apos;
     );
-  }
+  },
 };
 
 // create a Timeline
@@ -169,7 +169,7 @@ function handleDragStart(event) {
   var item = {
     id: new Date(),
     type: itemType,
-    content: event.target.innerHTML.split("-")[0].trim()
+    content: event.target.innerHTML.split("-")[0].trim(),
   };
 
   var isFixedTimes =
@@ -188,7 +188,7 @@ function handleObjectItemDragStart(event) {
   event.dataTransfer.effectAllowed = "move";
   var objectItem = {
     content: "objectItemData",
-    target: "item"
+    target: "item",
   };
   event.dataTransfer.setData("text", JSON.stringify(objectItem));
 }

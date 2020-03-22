@@ -37,7 +37,7 @@ html {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Right Axis Example&lt;/h2&gt;
-&lt;div style="width:700px; font-size:14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
   This example shows the all of the graphs outlined on the right side using the
   &lt;code&gt;yAxisOrientation&lt;/code&gt; option. We also show a few custom styles for the
   graph and show icons on the axis, which are adhering to the custom styling.
@@ -63,12 +63,12 @@ groups.add({
   className: "custom-style1",
   options: {
     drawPoints: {
-      style: "square" // square, circle
+      style: "square", // square, circle
     },
     shaded: {
-      orientation: "bottom" // top, bottom
-    }
-  }
+      orientation: "bottom", // top, bottom
+    },
+  },
 });
 
 groups.add({
@@ -77,16 +77,16 @@ groups.add({
   className: "custom-style2",
   options: {
     style: "bar",
-    drawPoints: { style: "circle", size: 10 }
-  }
+    drawPoints: { style: "circle", size: 10 },
+  },
 });
 
 groups.add({
   id: 2,
   content: names[2],
   options: {
-    drawPoints: false
-  }
+    drawPoints: false,
+  },
 });
 
 groups.add({
@@ -94,12 +94,12 @@ groups.add({
   content: names[3],
   options: {
     drawPoints: {
-      style: "circle" // square, circle
+      style: "circle", // square, circle
     },
     shaded: {
-      orientation: "top" // top, bottom
-    }
-  }
+      orientation: "top", // top, bottom
+    },
+  },
 });
 
 var container = document.getElementById("visualization");
@@ -121,7 +121,7 @@ var items = [
   { x: "2014-06-27", y: 60, group: 3 },
   { x: "2014-06-28", y: 10, group: 3 },
   { x: "2014-06-29", y: 85, group: 3 },
-  { x: "2014-06-30", y: 30, group: 3 }
+  { x: "2014-06-30", y: 30, group: 3 },
 ];
 
 var dataset = new vis.DataSet(items);
@@ -131,7 +131,7 @@ var options = {
   dataAxis: { icons: true },
   start: "2014-06-10",
   end: "2014-07-04",
-  moveable: false
+  moveable: false,
 };
 var graph2d = new vis.Graph2d(container, dataset, groups, options);
 '
