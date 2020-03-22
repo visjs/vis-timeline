@@ -226,6 +226,7 @@ export type TimelineOptionsItemsAlwaysDraggableType = boolean | TimelineItemsAlw
 export type TimelineOptionsMarginType = number | TimelineMarginOption;
 export type TimelineOptionsOrientationType = string | TimelineOrientationOption;
 export type TimelineOptionsSnapFunction = (date: Date, scale: string, step: number) => Date | number;
+export type TimelineOptionsSnapType = null | TimelineOptionsSnapFunction;
 export type TimelineOptionsTemplateFunction = (item?: any, element?: any, data?: any) => string;
 export type TimelineOptionsComparisonFunction = (a: any, b: any) => number;
 export type TimelineOptionsGroupHeightModeType = 'auto' | 'fixed' | 'fitItems';
@@ -296,7 +297,7 @@ export interface TimelineOptions {
   showTooltips?: boolean;
   stack?: boolean;
   stackSubgroups?: boolean;
-  snap?: TimelineOptionsSnapFunction;
+  snap?: TimelineOptionsSnapType;
   start?: DateType;
   template?: TimelineOptionsTemplateFunction;
   visibleFrameTemplate?: TimelineOptionsTemplateFunction;
