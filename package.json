@@ -104,7 +104,7 @@
     "prettier": "2.0.2",
     "propagating-hammerjs": "1.4.7",
     "rimraf": "3.0.2",
-    "rollup": "2.3.1",
+    "rollup": "2.3.3",
     "rollup-plugin-analyzer": "3.2.2",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
