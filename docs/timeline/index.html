@@ -1000,7 +1000,7 @@ function (option, path) {
       <td>onControl</td>
       <td>function</td>
       <td>none</td>
-      <td>Callback function triggered when an item is about to be controled: when the user tapped the control button on the top right of a selected item. See section <a href="#Editing_Items">Editing Items</a> for more information. Only applicable when both options <code>selectable</code> and <code>editable.control</code> are set <code>true</code>.
+      <td>Callback function triggered when an item is about to be controlled: when the user tapped the control button on the top right of a selected item. See section <a href="#Editing_Items">Editing Items</a> for more information. Only applicable when both options <code>selectable</code> and <code>editable.control</code> are set <code>true</code>.
       </td>
     </tr>
 
@@ -2027,7 +2027,7 @@ var items = new vis.DataSet([
     <li><code>onMove(item, callback)</code> Fired when an item has been moved. If not implemented, the move action will be accepted.</li>
     <li><code>onMoving(item, callback)</code> Fired repeatedly while an item is being moved (dragged). Can be used to adjust the items start, end, and/or group to allowed regions.</li>
     <li><code>onRemove(item, callback)</code> Fired when an item is about to be deleted. If not implemented, the item will be always removed.</li>
-    <li><code>onControl(item, callback)</code> Fired when an item is about to be controled. If not implemented, nothing changes. you just don´t get the item callback</li>
+    <li><code>onControl(item, callback)</code> Fired when an item is about to be controlled. If not implemented, nothing changes. you just don´t get the item callback</li>
   </ul>
 
   <p>
