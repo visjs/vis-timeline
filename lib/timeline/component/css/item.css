@@ -158,7 +158,7 @@
 
 .vis-item .vis-control, .vis-item .vis-control-rtl {
   position: absolute;
-  top: 0px;
+  top: -24px;
   width: 24px;
   height: 24px;
   box-sizing: border-box;
@@ -181,7 +181,10 @@
 }
 
 .vis-item .vis-control:after, .vis-item .vis-control-rtl:after {
-  content: "\25AA"; /* STOP SIGN */ /* PLAY SIGN "\25B8";*/
+  position: absolute;
+  top: -3px;
+  left: 7px;
+  content: "\25AA"; /* PLAY SIGN "\25B8"; /* STOP SIGN \25AA */
   color: rgb(0, 0, 0);
   font-family: arial, sans-serif;
   font-size: 26px;
