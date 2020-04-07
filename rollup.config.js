@@ -30,7 +30,7 @@ export default [{
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
 		banner,
-		sourcemap: true,
+		sourcemap: false,
 		globals: GLOBALS
 	},
 	plugins: [
@@ -52,7 +52,7 @@ export default [{
 		exports: 'named',
 		format: 'umd',
 		banner,
-		sourcemap: true,
+		sourcemap: false,
 		globals: GLOBALS
 	},
 	plugins: [
