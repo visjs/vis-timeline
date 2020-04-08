@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-04-07T11:49:46.874Z
+ * @date    2020-04-08T09:32:24.618Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1539,6 +1539,71 @@
 
 	var assertThisInitialized = _assertThisInitialized;
 
+	// https://tc39.github.io/ecma262/#sec-object.create
+
+	_export({
+	  target: 'Object',
+	  stat: true,
+	  sham: !descriptors
+	}, {
+	  create: objectCreate
+	});
+
+	var Object$1 = path.Object;
+
+	var create = function create(P, D) {
+	  return Object$1.create(P, D);
+	};
+
+	var create$1 = create;
+
+	var create$2 = create$1;
+
+	// https://tc39.github.io/ecma262/#sec-object.setprototypeof
+
+	_export({
+	  target: 'Object',
+	  stat: true
+	}, {
+	  setPrototypeOf: objectSetPrototypeOf
+	});
+
+	var setPrototypeOf = path.Object.setPrototypeOf;
+
+	var setPrototypeOf$1 = setPrototypeOf;
+
+	var setPrototypeOf$2 = setPrototypeOf$1;
+
+	var setPrototypeOf$3 = createCommonjsModule(function (module) {
+	  function _setPrototypeOf(o, p) {
+	    module.exports = _setPrototypeOf = setPrototypeOf$2 || function _setPrototypeOf(o, p) {
+	      o.__proto__ = p;
+	      return o;
+	    };
+
+	    return _setPrototypeOf(o, p);
+	  }
+
+	  module.exports = _setPrototypeOf;
+	});
+
+	function _inherits(subClass, superClass) {
+	  if (typeof superClass !== "function" && superClass !== null) {
+	    throw new TypeError("Super expression must either be null or a function");
+	  }
+
+	  subClass.prototype = create$2(superClass && superClass.prototype, {
+	    constructor: {
+	      value: subClass,
+	      writable: true,
+	      configurable: true
+	    }
+	  });
+	  if (superClass) setPrototypeOf$3(subClass, superClass);
+	}
+
+	var inherits = _inherits;
+
 	var f$3 = wellKnownSymbol;
 	var wellKnownSymbolWrapped = {
 	  f: f$3
@@ -2172,21 +2237,6 @@
 
 	var getPrototypeOf$2 = getPrototypeOf$1;
 
-	// https://tc39.github.io/ecma262/#sec-object.setprototypeof
-
-	_export({
-	  target: 'Object',
-	  stat: true
-	}, {
-	  setPrototypeOf: objectSetPrototypeOf
-	});
-
-	var setPrototypeOf = path.Object.setPrototypeOf;
-
-	var setPrototypeOf$1 = setPrototypeOf;
-
-	var setPrototypeOf$2 = setPrototypeOf$1;
-
 	var getPrototypeOf$3 = createCommonjsModule(function (module) {
 	  function _getPrototypeOf(o) {
 	    module.exports = _getPrototypeOf = setPrototypeOf$2 ? getPrototypeOf$2 : function _getPrototypeOf(o) {
@@ -2197,56 +2247,6 @@
 
 	  module.exports = _getPrototypeOf;
 	});
-
-	// https://tc39.github.io/ecma262/#sec-object.create
-
-	_export({
-	  target: 'Object',
-	  stat: true,
-	  sham: !descriptors
-	}, {
-	  create: objectCreate
-	});
-
-	var Object$1 = path.Object;
-
-	var create = function create(P, D) {
-	  return Object$1.create(P, D);
-	};
-
-	var create$1 = create;
-
-	var create$2 = create$1;
-
-	var setPrototypeOf$3 = createCommonjsModule(function (module) {
-	  function _setPrototypeOf(o, p) {
-	    module.exports = _setPrototypeOf = setPrototypeOf$2 || function _setPrototypeOf(o, p) {
-	      o.__proto__ = p;
-	      return o;
-	    };
-
-	    return _setPrototypeOf(o, p);
-	  }
-
-	  module.exports = _setPrototypeOf;
-	});
-
-	function _inherits(subClass, superClass) {
-	  if (typeof superClass !== "function" && superClass !== null) {
-	    throw new TypeError("Super expression must either be null or a function");
-	  }
-
-	  subClass.prototype = create$2(superClass && superClass.prototype, {
-	    constructor: {
-	      value: subClass,
-	      writable: true,
-	      configurable: true
-	    }
-	  });
-	  if (superClass) setPrototypeOf$3(subClass, superClass);
-	}
-
-	var inherits = _inherits;
 
 	// use this instance. Else, load via commonjs.
 	//
