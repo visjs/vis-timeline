@@ -91,7 +91,7 @@
     "eslint": "6.8.0",
     "gh-pages": "2.2.0",
     "git-authors-cli": "1.0.24",
-    "husky": "4.2.3",
+    "husky": "4.2.5",
     "jsdoc": "3.6.4",
     "jsdom": "16.2.2",
     "jsdom-global": "3.0.2",
