@@ -5,21 +5,6 @@
   width: auto;
 }
 
-.vis .overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  /* Must be displayed above for example selected Timeline items */
-  z-index: 10;
-}
-
-.vis-active {
-  box-shadow: 0 0 10px #86d5f8;
-}
-
 div.vis-configuration {
     position:relative;
     display:block;
@@ -308,6 +293,21 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
     border-width: 12px;
     margin-top: -12px;
 }
+.vis .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+
+  /* Must be displayed above for example selected Timeline items */
+  z-index: 10;
+}
+
+.vis-active {
+  box-shadow: 0 0 10px #86d5f8;
+}
+
 div.vis-tooltip {
   position: absolute;
   visibility: hidden;
@@ -547,39 +547,6 @@ div.vis-tooltip {
   bottom: -1px;
   left: 0;
 }
-.vis-timeline {
-  /*
-  -webkit-transition: height .4s ease-in-out;
-  transition:         height .4s ease-in-out;
-  */
-}
-
-.vis-panel {
-  /*
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-  */
-}
-
-.vis-axis {
-  /*
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-  */
-}
-
-/* TODO: get animation working nicely
-
-.vis-item {
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-}
-
-.vis-item.line {
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-}
-/**/
 
 .vis-timeline {
   position: relative;
@@ -614,6 +581,39 @@ div.vis-tooltip {
   cursor: initial;
   z-index: inherit;
 }
+.vis-timeline {
+  /*
+  -webkit-transition: height .4s ease-in-out;
+  transition:         height .4s ease-in-out;
+  */
+}
+
+.vis-panel {
+  /*
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+  */
+}
+
+.vis-axis {
+  /*
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+  */
+}
+
+/* TODO: get animation working nicely
+
+.vis-item {
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+}
+
+.vis-item.line {
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+}
+/**/
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
