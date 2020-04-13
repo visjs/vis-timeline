@@ -116,7 +116,7 @@
     "rollup-plugin-terser": "5.3.0",
     "rollup-plugin-typescript2": "0.27.0",
     "semantic-release": "17.0.4",
-    "uglify-js": "3.8.1",
+    "uglify-js": "3.9.0",
     "uglifycss": "0.0.29",
     "uuid": "7.0.3",
     "vis-data": "6.5.1",
