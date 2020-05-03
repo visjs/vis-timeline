@@ -61,7 +61,7 @@
     "keycharm": "^0.3.0",
     "moment": "^2.24.0",
     "propagating-hammerjs": "^1.4.0",
-    "uuid": "^3.4.0 || ^7.0.0",
+    "uuid": "^3.4.0 || ^7.0.0 || ^8.0.0",
     "vis-data": "^6.3.0",
     "vis-util": "^3.0.0 || ^4.0.0"
   },
@@ -118,7 +118,7 @@
     "semantic-release": "17.0.7",
     "uglify-js": "3.9.2",
     "uglifycss": "0.0.29",
-    "uuid": "7.0.3",
+    "uuid": "8.0.0",
     "vis-data": "6.5.1",
     "vis-dev-utils": "2.2.6",
     "vis-util": "4.0.0"
