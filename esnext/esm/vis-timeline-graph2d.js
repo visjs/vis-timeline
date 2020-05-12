@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-12T19:56:33.563Z
+ * @date    2020-05-12T20:03:09.619Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6484,9 +6484,11 @@ class Group {
     };
 
     // this function is used to do the binary search for items having start and end dates (range).
-    const endSearchFunction = value => {
-      if      (value < lowerBound)  {return -1;}
-      else                          {return  0;}
+    const endSearchFunction = data => {
+      const {start, end} = data;
+      if      (end < lowerBound)    {return -1;}
+      else if (start <= upperBound) {return  0;}
+      else                          {return  1;}
     };
 
     // first check if the items that were in view previously are still in view.
@@ -6514,7 +6516,7 @@ class Group {
     }
     else {
       // we do a binary search for the items that have defined end times.
-      const initialPosByEnd = util.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data','end');
+      const initialPosByEnd = util.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data');
 
       // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
       this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, item => item.data.end < lowerBound || item.data.start > upperBound);

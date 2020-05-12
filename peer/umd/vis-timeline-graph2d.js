@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-12T19:56:33.563Z
+ * @date    2020-05-12T20:03:09.619Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -16978,11 +16978,16 @@
 	      }; // this function is used to do the binary search for items having start and end dates (range).
 
 
-	      var endSearchFunction = function endSearchFunction(value) {
-	        if (value < lowerBound) {
+	      var endSearchFunction = function endSearchFunction(data) {
+	        var start = data.start,
+	            end = data.end;
+
+	        if (end < lowerBound) {
 	          return -1;
-	        } else {
+	        } else if (start <= upperBound) {
 	          return 0;
+	        } else {
+	          return 1;
 	        }
 	      }; // first check if the items that were in view previously are still in view.
 	      // IMPORTANT: this handles the case for the items with startdate before the window and enddate after the window!
@@ -17012,7 +17017,7 @@
 	        }
 	      } else {
 	        // we do a binary search for the items that have defined end times.
-	        var initialPosByEnd = util$1.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data', 'end'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
+	        var initialPosByEnd = util$1.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
 
 	        this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, function (item) {
 	          return item.data.end < lowerBound || item.data.start > upperBound;
