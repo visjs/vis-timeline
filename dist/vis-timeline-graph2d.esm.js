@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-16T07:45:46.770Z
+ * @date    2020-05-16T18:16:50.186Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23646,7 +23646,7 @@ var Core = /*#__PURE__*/function () {
         threshold: 5,
         direction: Hammer$1.DIRECTION_ALL
       });
-      this.listeners = {};
+      this.timelineListeners = {};
       var events = ['tap', 'doubletap', 'press', 'pinch', 'pan', 'panstart', 'panmove', 'panend' // TODO: cleanup
       //'touch', 'pinch',
       //'tap', 'doubletap', 'hold',
@@ -23662,7 +23662,7 @@ var Core = /*#__PURE__*/function () {
         };
 
         me.hammer.on(type, listener);
-        me.listeners[type] = listener;
+        me.timelineListeners[type] = listener;
       }); // emulate a touch event (emitted before the start of a pan, pinch, tap, or press)
 
 
@@ -24095,13 +24095,13 @@ var Core = /*#__PURE__*/function () {
       } // cleanup hammer touch events
 
 
-      for (var event in this.listeners) {
-        if (this.listeners.hasOwnProperty(event)) {
-          delete this.listeners[event];
+      for (var event in this.timelineListeners) {
+        if (this.timelineListeners.hasOwnProperty(event)) {
+          delete this.timelineListeners[event];
         }
       }
 
-      this.listeners = null;
+      this.timelineListeners = null;
       this.hammer && this.hammer.destroy();
       this.hammer = null; // give all components the opportunity to cleanup
 
@@ -36648,45 +36648,53 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
     _this.groupsData = null; // DataSet
 
+    function emit(eventName, event) {
+      if (!me.hasListeners(eventName)) {
+        return;
+      }
+
+      me.emit(eventName, me.getEventProperties(event));
+    }
+
     _this.dom.root.onclick = function (event) {
-      me.emit('click', me.getEventProperties(event));
+      emit('click', event);
     };
 
     _this.dom.root.ondblclick = function (event) {
-      me.emit('doubleClick', me.getEventProperties(event));
+      emit('doubleClick', event);
     };
 
     _this.dom.root.oncontextmenu = function (event) {
-      me.emit('contextmenu', me.getEventProperties(event));
+      emit('contextmenu', event);
     };
 
     _this.dom.root.onmouseover = function (event) {
-      me.emit('mouseOver', me.getEventProperties(event));
+      emit('mouseOver', event);
     };
 
     if (window.PointerEvent) {
       _this.dom.root.onpointerdown = function (event) {
-        me.emit('mouseDown', me.getEventProperties(event));
+        emit('mouseDown', event);
       };
 
       _this.dom.root.onpointermove = function (event) {
-        me.emit('mouseMove', me.getEventProperties(event));
+        emit('mouseMove', event);
       };
 
       _this.dom.root.onpointerup = function (event) {
-        me.emit('mouseUp', me.getEventProperties(event));
+        emit('mouseUp', event);
       };
     } else {
       _this.dom.root.onmousemove = function (event) {
-        me.emit('mouseMove', me.getEventProperties(event));
+        emit('mouseMove', event);
       };
 
       _this.dom.root.onmousedown = function (event) {
-        me.emit('mouseDown', me.getEventProperties(event));
+        emit('mouseDown', event);
       };
 
       _this.dom.root.onmouseup = function (event) {
-        me.emit('mouseUp', me.getEventProperties(event));
+        emit('mouseUp', event);
       };
     } //Single time autoscale/fit
 
@@ -36993,14 +37001,15 @@ var Timeline = /*#__PURE__*/function (_Core) {
       });
 
       if (start !== null && end !== null) {
-        var me = this; // Use the first item for the vertical focus
+        var _me = this; // Use the first item for the vertical focus
+
 
         var item = this.itemSet.items[ids[0]];
         var startPos = this._getScrollTop() * -1;
         var initialVerticalScroll = null; // Setup a handler for each frame of the vertical scroll
 
         var verticalAnimationFrame = function verticalAnimationFrame(ease, willDraw, done) {
-          var verticalScroll = getItemVerticalScroll(me, item);
+          var verticalScroll = getItemVerticalScroll(_me, item);
 
           if (verticalScroll === false) {
             return; // We don't need to scroll, so do nothing
@@ -37015,28 +37024,28 @@ var Timeline = /*#__PURE__*/function (_Core) {
           } else if (initialVerticalScroll.itemTop != verticalScroll.itemTop && verticalScroll.shouldScroll) {
             // The redraw shifted elements, so reset the animation to correct
             initialVerticalScroll = verticalScroll;
-            startPos = me._getScrollTop() * -1;
+            startPos = _me._getScrollTop() * -1;
           }
 
           var from = startPos;
           var to = initialVerticalScroll.scrollOffset;
           var scrollTop = done ? to : from + (to - from) * ease;
 
-          me._setScrollTop(-scrollTop);
+          _me._setScrollTop(-scrollTop);
 
           if (!willDraw) {
-            me._redraw();
+            _me._redraw();
           }
         }; // Enforces the final vertical scroll position
 
 
         var setFinalVerticalPosition = function setFinalVerticalPosition() {
-          var finalVerticalScroll = getItemVerticalScroll(me, item);
+          var finalVerticalScroll = getItemVerticalScroll(_me, item);
 
           if (finalVerticalScroll.shouldScroll && finalVerticalScroll.itemTop != initialVerticalScroll.itemTop) {
-            me._setScrollTop(-finalVerticalScroll.scrollOffset);
+            _me._setScrollTop(-finalVerticalScroll.scrollOffset);
 
-            me._redraw();
+            _me._redraw();
           }
         }; // Perform one last check at the end to make sure the final vertical
         // position is correct

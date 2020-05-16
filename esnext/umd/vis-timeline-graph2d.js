@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-16T07:43:40.637Z
+ * @date    2020-05-16T18:15:04.046Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3805,7 +3805,7 @@
       const pinchRecognizer = this.hammer.get('pinch').set({enable: true});
       pinchRecognizer && disablePreventDefaultVertically(pinchRecognizer);
       this.hammer.get('pan').set({threshold:5, direction: Hammer.DIRECTION_ALL});
-      this.listeners = {};
+      this.timelineListeners = {};
 
       const events = [
         'tap', 'doubletap', 'press',
@@ -3824,7 +3824,7 @@
           }
         };
         me.hammer.on(type, listener);
-        me.listeners[type] = listener;
+        me.timelineListeners[type] = listener;
       });
 
       // emulate a touch event (emitted before the start of a pan, pinch, tap, or press)
@@ -4220,12 +4220,12 @@
       }
 
       // cleanup hammer touch events
-      for (const event in this.listeners) {
-        if (this.listeners.hasOwnProperty(event)) {
-          delete this.listeners[event];
+      for (const event in this.timelineListeners) {
+        if (this.timelineListeners.hasOwnProperty(event)) {
+          delete this.timelineListeners[event];
         }
       }
-      this.listeners = null;
+      this.timelineListeners = null;
       this.hammer && this.hammer.destroy();
       this.hammer = null;
 
@@ -14623,37 +14623,45 @@
       this.itemsData = null;      // DataSet
       this.groupsData = null;     // DataSet
 
+      function emit(eventName, event) {
+        if (!me.hasListeners(eventName)) {
+          return;
+        }
+
+        me.emit(eventName, me.getEventProperties(event));
+      }
+
       this.dom.root.onclick = event => {
-        me.emit('click', me.getEventProperties(event));
+        emit('click', event);
       };
       this.dom.root.ondblclick = event => {
-        me.emit('doubleClick', me.getEventProperties(event));
+        emit('doubleClick', event);
       };
       this.dom.root.oncontextmenu = event => {
-        me.emit('contextmenu', me.getEventProperties(event));
+        emit('contextmenu', event);
       };
       this.dom.root.onmouseover = event => {
-        me.emit('mouseOver', me.getEventProperties(event));
+        emit('mouseOver', event);
       };
       if(window.PointerEvent) {
         this.dom.root.onpointerdown = event => {
-          me.emit('mouseDown', me.getEventProperties(event));
+          emit('mouseDown', event);
         };
         this.dom.root.onpointermove = event => {
-          me.emit('mouseMove', me.getEventProperties(event));
+          emit('mouseMove', event);
         };
         this.dom.root.onpointerup = event => {
-          me.emit('mouseUp', me.getEventProperties(event));
+          emit('mouseUp', event);
         };
       } else {
         this.dom.root.onmousemove = event => {
-          me.emit('mouseMove', me.getEventProperties(event));
+          emit('mouseMove', event);
         };
         this.dom.root.onmousedown = event => {
-          me.emit('mouseDown', me.getEventProperties(event));
+          emit('mouseDown', event);
         };
         this.dom.root.onmouseup = event => {
-          me.emit('mouseUp', me.getEventProperties(event));
+          emit('mouseUp', event);
         };
       }
 
