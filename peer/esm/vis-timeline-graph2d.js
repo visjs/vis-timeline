@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-17T16:57:50.049Z
+ * @date    2020-05-17T18:06:25.442Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,7 +25,7 @@
  */
 
 import moment$3 from 'moment';
-import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/peer';
+import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/peer/esm/vis-data.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 

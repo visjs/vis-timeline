@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-17T16:57:50.049Z
+ * @date    2020-05-17T18:06:25.442Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,8 +25,8 @@
  */
 
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-data/peer')) :
-	typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-data/peer'], factory) :
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-data/peer/umd/vis-data.js')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-data/peer/umd/vis-data.js'], factory) :
 	(global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis));
 }(this, (function (exports, moment$3, esnext) {
 	moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;

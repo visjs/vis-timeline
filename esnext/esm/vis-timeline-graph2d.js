@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-17T16:57:50.049Z
+ * @date    2020-05-17T18:06:25.442Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,9 +25,9 @@
  */
 
 import moment$3 from 'moment';
-import * as util$1 from 'vis-util/esnext';
-import { isNumber, isString, getType } from 'vis-util/esnext';
-import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext';
+import * as util$1 from 'vis-util/esnext/esm/vis-util.js';
+import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
+import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext/esm/vis-data.js';
 import Emitter from 'component-emitter';
 import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
