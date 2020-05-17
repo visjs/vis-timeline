@@ -90,7 +90,7 @@
     "emitter-component": "1.1.1",
     "eslint": "7.0.0",
     "gh-pages": "2.2.0",
-    "git-authors-cli": "1.0.24",
+    "git-authors-cli": "1.0.26",
     "husky": "4.2.5",
     "jsdoc": "3.6.4",
     "jsdom": "16.2.2",
