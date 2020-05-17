@@ -119,7 +119,7 @@
     "uglify-js": "3.9.2",
     "uglifycss": "0.0.29",
     "uuid": "7.0.3",
-    "vis-data": "6.5.1",
+    "vis-data": "6.5.2",
     "vis-dev-utils": "2.2.10",
     "vis-util": "4.0.0"
   },
