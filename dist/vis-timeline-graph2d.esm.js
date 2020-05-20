@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-20T19:45:11.658Z
+ * @date    2020-05-20T19:48:15.304Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2521,8 +2521,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
       for (i = 0; i < tokens.length; i++) {
         token = tokens[i];
-        parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0]; // console.log('token', token, 'parsedInput', parsedInput,
-        //         'regex', getParseRegexForToken(token, config));
+        parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
 
         if (parsedInput) {
           skipped = string.substr(0, string.indexOf(parsedInput));
@@ -5080,7 +5079,7 @@ var moment = createCommonjsModule(function (module, exports) {
       config._d = new Date(toInt(input));
     }); //! moment.js
 
-    hooks.version = '2.25.3';
+    hooks.version = '2.26.0';
     setHookCallback(createLocal);
     hooks.fn = proto;
     hooks.min = min;
@@ -5846,14 +5845,14 @@ var ru = createCommonjsModule(function (module, exports) {
         standalone: 'январь_февраль_март_апрель_май_июнь_июль_август_сентябрь_октябрь_ноябрь_декабрь'.split('_')
       },
       monthsShort: {
-        // по CLDR именно "июл." и "июн.", но какой смысл менять букву на точку ?
+        // по CLDR именно "июл." и "июн.", но какой смысл менять букву на точку?
         format: 'янв._февр._мар._апр._мая_июня_июля_авг._сент._окт._нояб._дек.'.split('_'),
         standalone: 'янв._февр._март_апр._май_июнь_июль_авг._сент._окт._нояб._дек.'.split('_')
       },
       weekdays: {
         standalone: 'воскресенье_понедельник_вторник_среда_четверг_пятница_суббота'.split('_'),
         format: 'воскресенье_понедельник_вторник_среду_четверг_пятницу_субботу'.split('_'),
-        isFormat: /\[ ?[Вв] ?(?:прошлую|следующую|эту)? ?\] ?dddd/
+        isFormat: /\[ ?[Вв] ?(?:прошлую|следующую|эту)? ?] ?dddd/
       },
       weekdaysShort: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
       weekdaysMin: 'вс_пн_вт_ср_чт_пт_сб'.split('_'),
@@ -5866,7 +5865,7 @@ var ru = createCommonjsModule(function (module, exports) {
       monthsShortRegex: /^(январ[ья]|янв\.?|феврал[ья]|февр?\.?|марта?|мар\.?|апрел[ья]|апр\.?|ма[йя]|июн[ья]|июн\.?|июл[ья]|июл\.?|августа?|авг\.?|сентябр[ья]|сент?\.?|октябр[ья]|окт\.?|ноябр[ья]|нояб?\.?|декабр[ья]|дек\.?)/i,
       // полные названия с падежами
       monthsStrictRegex: /^(январ[яь]|феврал[яь]|марта?|апрел[яь]|ма[яй]|июн[яь]|июл[яь]|августа?|сентябр[яь]|октябр[яь]|ноябр[яь]|декабр[яь])/i,
-      // Выражение, которое соотвествует только сокращённым формам
+      // Выражение, которое соответствует только сокращённым формам
       monthsShortStrictRegex: /^(янв\.|февр?\.|мар[т.]|апр\.|ма[яй]|июн[ья.]|июл[ья.]|авг\.|сент?\.|окт\.|нояб?\.|дек\.)/i,
       longDateFormat: {
         LT: 'H:mm',
