@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-05-17T18:09:57.929Z
+ * @date    2020-05-20T19:43:50.858Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -12787,7 +12787,15 @@
 	  time: 'czas',
 	  deleteSelected: 'Usuń wybrane'
 	};
-	var pl_PL = pl; // Japanese
+	var pl_PL = pl; // Portuguese
+
+	var pt = {
+	  current: 'atual',
+	  time: 'data',
+	  deleteSelected: 'Apagar selecionado'
+	};
+	var pt_BR = pt;
+	var pt_PT = pt; // Japanese
 
 	var ja = {
 	  current: '現在',
@@ -12819,6 +12827,9 @@
 	  ru_RU: ru_RU,
 	  pl: pl,
 	  pl_PL: pl_PL,
+	  pt: pt,
+	  pt_BR: pt_BR,
+	  pt_PT: pt_PT,
 	  ja: ja,
 	  ja_JP: ja_JP
 	};
