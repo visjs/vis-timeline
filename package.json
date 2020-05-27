@@ -96,7 +96,7 @@
     "jsdom": "16.2.2",
     "jsdom-global": "3.0.2",
     "keycharm": "0.3.1",
-    "mocha": "7.1.2",
+    "mocha": "7.2.0",
     "moment": "2.26.0",
     "nyc": "15.0.1",
     "opencollective": "1.0.3",
@@ -104,7 +104,7 @@
     "prettier": "2.0.5",
     "propagating-hammerjs": "1.4.7",
     "rimraf": "3.0.2",
-    "rollup": "2.10.2",
+    "rollup": "2.10.8",
     "rollup-plugin-analyzer": "3.2.3",
     "rollup-plugin-babel": "4.4.0",
     "rollup-plugin-commonjs": "10.1.0",
@@ -120,7 +120,7 @@
     "uglifycss": "0.0.29",
     "uuid": "7.0.3",
     "vis-data": "6.5.3",
-    "vis-dev-utils": "2.2.13",
+    "vis-dev-utils": "2.3.0",
     "vis-util": "4.0.2"
   },
   "collective": {
