@@ -49,11 +49,13 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - 'declarations'
             - 'dist'
             - 'esnext'
             - 'peer'
             - 'standalone'
             - 'styles'
+            - 'types'
 
   examples:
     executor: node
@@ -160,6 +162,7 @@ workflows:
       - test:
           requires:
             - prepare
+            - build
 
       - gh_pages:
           requires:
