@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-06T20:53:18.358Z
+ * @date    2020-06-06T20:56:52.530Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2517,10 +2517,6 @@ var getIteratorMethod_1 = getIteratorMethod;
 
 var getIteratorMethod$1 = getIteratorMethod_1;
 
-var symbol$3 = symbol;
-
-var symbol$4 = symbol$3;
-
 var callWithSafeIterationClosing = function (iterator, fn, value, ENTRIES) {
   try {
     return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value); // 7.4.6 IteratorClose(iterator, completion)
@@ -2793,156 +2789,6 @@ var values$1 = values;
 
 var values$2 = values$1;
 
-var concat = entryVirtual('Array').concat;
-
-var ArrayPrototype$5 = Array.prototype;
-
-var concat_1 = function (it) {
-  var own = it.concat;
-  return it === ArrayPrototype$5 || it instanceof Array && own === ArrayPrototype$5.concat ? concat : own;
-};
-
-var concat$1 = concat_1;
-
-var concat$2 = concat$1;
-
-var isArray$4 = isArray$1;
-
-var isArray$5 = isArray$4;
-
-function _arrayLikeToArray(arr, len) {
-  if (len == null || len > arr.length) len = arr.length;
-
-  for (var i = 0, arr2 = new Array(len); i < len; i++) {
-    arr2[i] = arr[i];
-  }
-
-  return arr2;
-}
-
-var arrayLikeToArray = _arrayLikeToArray;
-
-function _arrayWithoutHoles(arr) {
-  if (isArray$5(arr)) return arrayLikeToArray(arr);
-}
-
-var arrayWithoutHoles = _arrayWithoutHoles;
-
-var from_1$3 = from_1;
-
-var from_1$4 = from_1$3;
-
-var ITERATOR$5 = wellKnownSymbol('iterator');
-
-var isIterable = function (it) {
-  var O = Object(it);
-  return O[ITERATOR$5] !== undefined || '@@iterator' in O // eslint-disable-next-line no-prototype-builtins
-  || iterators.hasOwnProperty(classof(O));
-};
-
-var isIterable_1 = isIterable;
-
-var isIterable$1 = isIterable_1;
-
-function _iterableToArray(iter) {
-  if (typeof symbol$2 !== "undefined" && isIterable$1(Object(iter))) return from_1$4(iter);
-}
-
-var iterableToArray = _iterableToArray;
-
-var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('slice');
-var USES_TO_LENGTH$4 = arrayMethodUsesToLength('slice', {
-  ACCESSORS: true,
-  0: 0,
-  1: 2
-});
-var SPECIES$2 = wellKnownSymbol('species');
-var nativeSlice = [].slice;
-var max$1 = Math.max; // `Array.prototype.slice` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.slice
-// fallback for not array-like ES3 strings and DOM objects
-
-_export({
-  target: 'Array',
-  proto: true,
-  forced: !HAS_SPECIES_SUPPORT$2 || !USES_TO_LENGTH$4
-}, {
-  slice: function slice(start, end) {
-    var O = toIndexedObject(this);
-    var length = toLength(O.length);
-    var k = toAbsoluteIndex(start, length);
-    var fin = toAbsoluteIndex(end === undefined ? length : end, length); // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
-
-    var Constructor, result, n;
-
-    if (isArray(O)) {
-      Constructor = O.constructor; // cross-realm fallback
-
-      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
-        Constructor = undefined;
-      } else if (isObject(Constructor)) {
-        Constructor = Constructor[SPECIES$2];
-        if (Constructor === null) Constructor = undefined;
-      }
-
-      if (Constructor === Array || Constructor === undefined) {
-        return nativeSlice.call(O, k, fin);
-      }
-    }
-
-    result = new (Constructor === undefined ? Array : Constructor)(max$1(fin - k, 0));
-
-    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
-
-    result.length = n;
-    return result;
-  }
-});
-
-var slice$2 = entryVirtual('Array').slice;
-
-var ArrayPrototype$6 = Array.prototype;
-
-var slice_1 = function (it) {
-  var own = it.slice;
-  return it === ArrayPrototype$6 || it instanceof Array && own === ArrayPrototype$6.slice ? slice$2 : own;
-};
-
-var slice$3 = slice_1;
-
-var slice$4 = slice$3;
-
-function _unsupportedIterableToArray(o, minLen) {
-  var _context;
-
-  if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
-
-  var n = slice$4(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
-
-  if (n === "Object" && o.constructor) n = o.constructor.name;
-  if (n === "Map" || n === "Set") return from_1$4(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
-}
-
-var unsupportedIterableToArray = _unsupportedIterableToArray;
-
-function _nonIterableSpread() {
-  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
-}
-
-var nonIterableSpread = _nonIterableSpread;
-
-function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
-}
-
-var toConsumableArray = _toConsumableArray;
-
-var slice$5 = slice_1;
-
-var slice$6 = slice$5;
-
 var getPrototypeOf$4 = getPrototypeOf;
 
 var getPrototypeOf$5 = getPrototypeOf$4;
@@ -2951,7 +2797,7 @@ var $indexOf = arrayIncludes.indexOf;
 var nativeIndexOf = [].indexOf;
 var NEGATIVE_ZERO = !!nativeIndexOf && 1 / [1].indexOf(1, -0) < 0;
 var STRICT_METHOD$2 = arrayMethodIsStrict('indexOf');
-var USES_TO_LENGTH$5 = arrayMethodUsesToLength('indexOf', {
+var USES_TO_LENGTH$4 = arrayMethodUsesToLength('indexOf', {
   ACCESSORS: true,
   1: 0
 }); // `Array.prototype.indexOf` method
@@ -2960,7 +2806,7 @@ var USES_TO_LENGTH$5 = arrayMethodUsesToLength('indexOf', {
 _export({
   target: 'Array',
   proto: true,
-  forced: NEGATIVE_ZERO || !STRICT_METHOD$2 || !USES_TO_LENGTH$5
+  forced: NEGATIVE_ZERO || !STRICT_METHOD$2 || !USES_TO_LENGTH$4
 }, {
   indexOf: function indexOf(searchElement
   /* , fromIndex = 0 */
@@ -2972,11 +2818,11 @@ _export({
 
 var indexOf$1 = entryVirtual('Array').indexOf;
 
-var ArrayPrototype$7 = Array.prototype;
+var ArrayPrototype$5 = Array.prototype;
 
 var indexOf_1 = function (it) {
   var own = it.indexOf;
-  return it === ArrayPrototype$7 || it instanceof Array && own === ArrayPrototype$7.indexOf ? indexOf$1 : own;
+  return it === ArrayPrototype$5 || it instanceof Array && own === ArrayPrototype$5.indexOf ? indexOf$1 : own;
 };
 
 var indexOf$2 = indexOf_1;
@@ -3053,11 +2899,27 @@ var assign$1 = assign;
 
 var assign$2 = assign$1;
 
+var isArray$4 = isArray$1;
+
+var isArray$5 = isArray$4;
+
 function _arrayWithHoles(arr) {
   if (isArray$5(arr)) return arr;
 }
 
 var arrayWithHoles = _arrayWithHoles;
+
+var ITERATOR$5 = wellKnownSymbol('iterator');
+
+var isIterable = function (it) {
+  var O = Object(it);
+  return O[ITERATOR$5] !== undefined || '@@iterator' in O // eslint-disable-next-line no-prototype-builtins
+  || iterators.hasOwnProperty(classof(O));
+};
+
+var isIterable_1 = isIterable;
+
+var isIterable$1 = isIterable_1;
 
 function _iterableToArrayLimit(arr, i) {
   if (typeof symbol$2 === "undefined" || !isIterable$1(Object(arr))) return;
@@ -3088,6 +2950,99 @@ function _iterableToArrayLimit(arr, i) {
 
 var iterableToArrayLimit = _iterableToArrayLimit;
 
+var from_1$3 = from_1;
+
+var from_1$4 = from_1$3;
+
+var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('slice');
+var USES_TO_LENGTH$5 = arrayMethodUsesToLength('slice', {
+  ACCESSORS: true,
+  0: 0,
+  1: 2
+});
+var SPECIES$2 = wellKnownSymbol('species');
+var nativeSlice = [].slice;
+var max$1 = Math.max; // `Array.prototype.slice` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.slice
+// fallback for not array-like ES3 strings and DOM objects
+
+_export({
+  target: 'Array',
+  proto: true,
+  forced: !HAS_SPECIES_SUPPORT$2 || !USES_TO_LENGTH$5
+}, {
+  slice: function slice(start, end) {
+    var O = toIndexedObject(this);
+    var length = toLength(O.length);
+    var k = toAbsoluteIndex(start, length);
+    var fin = toAbsoluteIndex(end === undefined ? length : end, length); // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+
+    var Constructor, result, n;
+
+    if (isArray(O)) {
+      Constructor = O.constructor; // cross-realm fallback
+
+      if (typeof Constructor == 'function' && (Constructor === Array || isArray(Constructor.prototype))) {
+        Constructor = undefined;
+      } else if (isObject(Constructor)) {
+        Constructor = Constructor[SPECIES$2];
+        if (Constructor === null) Constructor = undefined;
+      }
+
+      if (Constructor === Array || Constructor === undefined) {
+        return nativeSlice.call(O, k, fin);
+      }
+    }
+
+    result = new (Constructor === undefined ? Array : Constructor)(max$1(fin - k, 0));
+
+    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+
+    result.length = n;
+    return result;
+  }
+});
+
+var slice$2 = entryVirtual('Array').slice;
+
+var ArrayPrototype$6 = Array.prototype;
+
+var slice_1 = function (it) {
+  var own = it.slice;
+  return it === ArrayPrototype$6 || it instanceof Array && own === ArrayPrototype$6.slice ? slice$2 : own;
+};
+
+var slice$3 = slice_1;
+
+var slice$4 = slice$3;
+
+function _arrayLikeToArray(arr, len) {
+  if (len == null || len > arr.length) len = arr.length;
+
+  for (var i = 0, arr2 = new Array(len); i < len; i++) {
+    arr2[i] = arr[i];
+  }
+
+  return arr2;
+}
+
+var arrayLikeToArray = _arrayLikeToArray;
+
+function _unsupportedIterableToArray(o, minLen) {
+  var _context;
+
+  if (!o) return;
+  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+
+  var n = slice$4(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
+
+  if (n === "Object" && o.constructor) n = o.constructor.name;
+  if (n === "Map" || n === "Set") return from_1$4(o);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+}
+
+var unsupportedIterableToArray = _unsupportedIterableToArray;
+
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
@@ -3117,15 +3072,75 @@ var now$1 = now;
 
 var now$2 = now$1;
 
+// https://tc39.github.io/ecma262/#sec-reflect.ownkeys
+
+_export({
+  target: 'Reflect',
+  stat: true
+}, {
+  ownKeys: ownKeys
+});
+
+var ownKeys$1 = path.Reflect.ownKeys;
+
+var ownKeys$2 = ownKeys$1;
+
+var ownKeys$3 = ownKeys$2;
+
+var slice$5 = slice_1;
+
+var slice$6 = slice$5;
+
+var concat = entryVirtual('Array').concat;
+
+var ArrayPrototype$7 = Array.prototype;
+
+var concat_1 = function (it) {
+  var own = it.concat;
+  return it === ArrayPrototype$7 || it instanceof Array && own === ArrayPrototype$7.concat ? concat : own;
+};
+
+var concat$1 = concat_1;
+
+var concat$2 = concat$1;
+
+function _arrayWithoutHoles(arr) {
+  if (isArray$5(arr)) return arrayLikeToArray(arr);
+}
+
+var arrayWithoutHoles = _arrayWithoutHoles;
+
+function _iterableToArray(iter) {
+  if (typeof symbol$2 !== "undefined" && isIterable$1(Object(iter))) return from_1$4(iter);
+}
+
+var iterableToArray = _iterableToArray;
+
+function _nonIterableSpread() {
+  throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+var nonIterableSpread = _nonIterableSpread;
+
+function _toConsumableArray(arr) {
+  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+}
+
+var toConsumableArray = _toConsumableArray;
+
+var symbol$3 = symbol;
+
+var symbol$4 = symbol$3;
+
+function ownKeys$4(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context13; forEach$2(_context13 = ownKeys$4(Object(source), true)).call(_context13, function (key) { defineProperty$7(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context14; forEach$2(_context14 = ownKeys$4(Object(source))).call(_context14, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
+
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof symbol$4 === "undefined" || getIteratorMethod$1(o) == null) { if (isArray$3(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator$1(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray$1(o, minLen) { var _context13; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$6(_context13 = Object.prototype.toString.call(o)).call(_context13, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
+function _unsupportedIterableToArray$1(o, minLen) { var _context12; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$6(_context12 = Object.prototype.toString.call(o)).call(_context12, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
 
 function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function ownKeys$1(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
-
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context11; forEach$2(_context11 = ownKeys$1(Object(source), true)).call(_context11, function (key) { defineProperty$7(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context12; forEach$2(_context12 = ownKeys$1(Object(source))).call(_context12, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
 
 /**
  * vis-util
@@ -3133,8 +3148,8 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  *
  * utilitie collection for visjs
  *
- * @version 4.0.2
- * @date    2020-05-17T17:33:03.726Z
+ * @version 4.1.0
+ * @date    2020-06-06T20:01:04.286Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3154,6 +3169,113 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  */
 
 /**
+ * Use this symbol to delete properies in deepObjectAssign.
+ */
+var DELETE = symbol$4("DELETE");
+/**
+ * Deep version of object assign with additional deleting by the DELETE symbol.
+ *
+ * @param values - Objects to be deeply merged.
+ *
+ * @returns The first object from values.
+ */
+
+
+function deepObjectAssign() {
+  var merged = deepObjectAssignNonentry.apply(void 0, arguments);
+  stripDelete(merged);
+  console.log(merged);
+  return merged;
+}
+/**
+ * Deep version of object assign with additional deleting by the DELETE symbol.
+ *
+ * @remarks
+ * This doesn't strip the DELETE symbols so they may end up in the final object.
+ *
+ * @param values - Objects to be deeply merged.
+ *
+ * @returns The first object from values.
+ */
+
+
+function deepObjectAssignNonentry() {
+  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
+    values[_key] = arguments[_key];
+  }
+
+  if (values.length < 2) {
+    return values[0];
+  } else if (values.length > 2) {
+    var _context;
+
+    return deepObjectAssignNonentry.apply(void 0, concat$2(_context = [deepObjectAssign(values[0], values[1])]).call(_context, toConsumableArray(slice$6(values).call(values, 2))));
+  }
+
+  var a = values[0];
+  var b = values[1];
+
+  var _iterator = _createForOfIteratorHelper(ownKeys$3(b)),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var prop = _step.value;
+      if (Object.prototype.propertyIsEnumerable.call(b, b[prop])) ;else if (b[prop] === DELETE) {
+        delete a[prop];
+      } else if (a[prop] !== null && b[prop] !== null && _typeof_1(a[prop]) === "object" && _typeof_1(b[prop]) === "object" && !isArray$3(a[prop]) && !isArray$3(b[prop])) {
+        a[prop] = deepObjectAssignNonentry(a[prop], b[prop]);
+      } else {
+        a[prop] = clone(b[prop]);
+      }
+    }
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  return a;
+}
+/**
+ * Deep clone given object or array. In case of primitive simply return.
+ *
+ * @param a - Anything.
+ *
+ * @returns Deep cloned object/array or unchanged a.
+ */
+
+
+function clone(a) {
+  if (isArray$3(a)) {
+    return map$2(a).call(a, function (value) {
+      return clone(value);
+    });
+  } else if (_typeof_1(a) === "object" && a !== null) {
+    return deepObjectAssignNonentry({}, a);
+  } else {
+    return a;
+  }
+}
+/**
+ * Strip DELETE from given object.
+ *
+ * @param a - Object which may contain DELETE but won't after this is executed.
+ */
+
+
+function stripDelete(a) {
+  for (var _i = 0, _Object$keys = keys$3(a); _i < _Object$keys.length; _i++) {
+    var prop = _Object$keys[_i];
+
+    if (a[prop] === DELETE) {
+      delete a[prop];
+    } else if (_typeof_1(a[prop]) === "object" && a[prop] !== null) {
+      stripDelete(a[prop]);
+    }
+  }
+}
+/**
  * Seedable, fast and reasonably good (not crypto but more than okay for our
  * needs) random number generator.
  *
@@ -3170,9 +3292,11 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
  *
  * @returns A ready to use seeded generator.
  */
+
+
 function Alea() {
-  for (var _len = arguments.length, seed = new Array(_len), _key = 0; _key < _len; _key++) {
-    seed[_key] = arguments[_key];
+  for (var _len2 = arguments.length, seed = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    seed[_key2] = arguments[_key2];
   }
 
   return AleaImplementation(seed.length ? seed : [now$2()]);
@@ -3462,12 +3586,12 @@ function selectiveExtend(props, a) {
     throw new Error("Array with property names expected as first argument");
   }
 
-  for (var _len2 = arguments.length, others = new Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
-    others[_key2 - 2] = arguments[_key2];
+  for (var _len3 = arguments.length, others = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
+    others[_key3 - 2] = arguments[_key3];
   }
 
-  for (var _i = 0, _others = others; _i < _others.length; _i++) {
-    var other = _others[_i];
+  for (var _i2 = 0, _others = others; _i2 < _others.length; _i2++) {
+    var other = _others[_i2];
 
     for (var p = 0; p < props.length; p++) {
       var prop = props[p];
@@ -3621,9 +3745,9 @@ function deepExtend(a, b) {
           copyOrDelete(a, b, prop, allowDeletion);
         }
       } else if (isArray$3(b[prop])) {
-        var _context;
+        var _context2;
 
-        a[prop] = slice$6(_context = b[prop]).call(_context);
+        a[prop] = slice$6(_context2 = b[prop]).call(_context2);
       } else {
         copyOrDelete(a, b, prop, allowDeletion);
       }
@@ -3724,9 +3848,9 @@ function getType(object) {
 
 
 function copyAndExtendArray(arr, newValue) {
-  var _context2;
+  var _context3;
 
-  return concat$2(_context2 = []).call(_context2, toConsumableArray(arr), [newValue]);
+  return concat$2(_context3 = []).call(_context3, toConsumableArray(arr), [newValue]);
 }
 /**
  * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -3896,13 +4020,13 @@ function throttle(fn) {
 
 function addEventListener(element, action, listener, useCapture) {
   if (element.addEventListener) {
-    var _context3;
+    var _context4;
 
     if (useCapture === undefined) {
       useCapture = false;
     }
 
-    if (action === "mousewheel" && indexOf$3(_context3 = navigator.userAgent).call(_context3, "Firefox") >= 0) {
+    if (action === "mousewheel" && indexOf$3(_context4 = navigator.userAgent).call(_context4, "Firefox") >= 0) {
       action = "DOMMouseScroll"; // For Firefox
     }
 
@@ -3924,14 +4048,14 @@ function addEventListener(element, action, listener, useCapture) {
 
 function removeEventListener(element, action, listener, useCapture) {
   if (element.removeEventListener) {
-    var _context4;
+    var _context5;
 
     // non-IE browsers
     if (useCapture === undefined) {
       useCapture = false;
     }
 
-    if (action === "mousewheel" && indexOf$3(_context4 = navigator.userAgent).call(_context4, "Firefox") >= 0) {
+    if (action === "mousewheel" && indexOf$3(_context5 = navigator.userAgent).call(_context5, "Firefox") >= 0) {
       action = "DOMMouseScroll"; // For Firefox
     }
 
@@ -4195,9 +4319,9 @@ function overrideOpacity(color, opacity) {
 
 
 function RGBToHex(red, green, blue) {
-  var _context5;
+  var _context6;
 
-  return "#" + slice$6(_context5 = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16)).call(_context5, 1);
+  return "#" + slice$6(_context6 = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16)).call(_context6, 1);
 }
 /**
  * Parse a color property into an object with border, background, and highlight colors.
@@ -4214,9 +4338,9 @@ function parseColor(inputColor, defaultColor) {
     var colorStr = inputColor;
 
     if (isValidRGB(colorStr)) {
-      var _context6;
+      var _context7;
 
-      var rgb = map$2(_context6 = colorStr.substr(4).substr(0, colorStr.length - 5).split(",")).call(_context6, function (value) {
+      var rgb = map$2(_context7 = colorStr.substr(4).substr(0, colorStr.length - 5).split(",")).call(_context7, function (value) {
         return _parseInt$2(value);
       });
 
@@ -4352,19 +4476,19 @@ function RGBToHSV(red, green, blue) {
 var cssUtil = {
   // split a string with css styles into an object with key/values
   split: function split(cssText) {
-    var _context7;
+    var _context8;
 
     var styles = {};
 
-    forEach$2(_context7 = cssText.split(";")).call(_context7, function (style) {
+    forEach$2(_context8 = cssText.split(";")).call(_context8, function (style) {
       if (trim$2(style).call(style) != "") {
-        var _context8, _context9;
+        var _context9, _context10;
 
         var parts = style.split(":");
 
-        var key = trim$2(_context8 = parts[0]).call(_context8);
+        var key = trim$2(_context9 = parts[0]).call(_context9);
 
-        var value = trim$2(_context9 = parts[1]).call(_context9);
+        var value = trim$2(_context10 = parts[1]).call(_context10);
 
         styles[key] = value;
       }
@@ -4374,9 +4498,9 @@ var cssUtil = {
   },
   // build a css text string from an object with key/values
   join: function join(styles) {
-    var _context10;
+    var _context11;
 
-    return map$2(_context10 = keys$3(styles)).call(_context10, function (key) {
+    return map$2(_context11 = keys$3(styles)).call(_context11, function (key) {
       return key + ": " + styles[key];
     }).join("; ");
   }
@@ -5073,12 +5197,12 @@ function topMost(pile, accessors) {
     accessors = [accessors];
   }
 
-  var _iterator = _createForOfIteratorHelper(pile),
-      _step;
+  var _iterator2 = _createForOfIteratorHelper(pile),
+      _step2;
 
   try {
-    for (_iterator.s(); !(_step = _iterator.n()).done;) {
-      var member = _step.value;
+    for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+      var member = _step2.value;
 
       if (member) {
         candidate = member[accessors[0]];
@@ -5095,9 +5219,9 @@ function topMost(pile, accessors) {
       }
     }
   } catch (err) {
-    _iterator.e(err);
+    _iterator2.e(err);
   } finally {
-    _iterator.f();
+    _iterator2.f();
   }
 
   return candidate;
@@ -5106,6 +5230,7 @@ function topMost(pile, accessors) {
 var util = /*#__PURE__*/Object.freeze({
 	__proto__: null,
 	Alea: Alea,
+	DELETE: DELETE,
 	HSVToHex: HSVToHex,
 	HSVToRGB: HSVToRGB,
 	RGBToHSV: RGBToHSV,
@@ -5119,6 +5244,7 @@ var util = /*#__PURE__*/Object.freeze({
 	copyAndExtendArray: copyAndExtendArray,
 	copyArray: copyArray,
 	deepExtend: deepExtend,
+	deepObjectAssign: deepObjectAssign,
 	easingFunctions: easingFunctions,
 	equalArray: equalArray,
 	extend: extend,
@@ -5160,9 +5286,9 @@ var util = /*#__PURE__*/Object.freeze({
 	updateProperty: updateProperty
 });
 
-function ownKeys$2(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$5(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys$2(Object(source), true)).call(_context8, function (key) { defineProperty$7(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context9; forEach$2(_context9 = ownKeys$2(Object(source))).call(_context9, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys$5(Object(source), true)).call(_context8, function (key) { defineProperty$7(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context9; forEach$2(_context9 = ownKeys$5(Object(source))).call(_context9, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
