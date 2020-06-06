@@ -309,6 +309,7 @@ export interface TimelineOptions {
   width?: HeightWidthType;
   zoomable?: boolean;
   zoomKey?: TimelineOptionsZoomKey;
+  zoomFriction?: number;
   zoomMax?: number;
   zoomMin?: number;
 }
