@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-20T12:21:43.694Z
+ * @date    2020-06-20T12:24:08.266Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5079,7 +5079,7 @@ var moment = createCommonjsModule(function (module, exports) {
       config._d = new Date(toInt(input));
     }); //! moment.js
 
-    hooks.version = '2.26.0';
+    hooks.version = '2.27.0';
     setHookCallback(createLocal);
     hooks.fn = proto;
     hooks.min = min;
@@ -5145,6 +5145,7 @@ var de = createCommonjsModule(function (module, exports) {
         h: ['eine Stunde', 'einer Stunde'],
         d: ['ein Tag', 'einem Tag'],
         dd: [number + ' Tage', number + ' Tagen'],
+        w: ['eine Woche', 'einer Woche'],
         M: ['ein Monat', 'einem Monat'],
         MM: [number + ' Monate', number + ' Monaten'],
         y: ['ein Jahr', 'einem Jahr'],
@@ -5188,6 +5189,8 @@ var de = createCommonjsModule(function (module, exports) {
         hh: '%d Stunden',
         d: processRelativeTime,
         dd: processRelativeTime,
+        w: processRelativeTime,
+        ww: '%d Wochen',
         M: processRelativeTime,
         MM: processRelativeTime,
         y: processRelativeTime,
@@ -5300,10 +5303,20 @@ var fr = createCommonjsModule(function (module, exports) {
      typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
+    var monthsStrictRegex = /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i,
+        monthsShortStrictRegex = /(janv\.?|févr\.?|mars|avr\.?|mai|juin|juil\.?|août|sept\.?|oct\.?|nov\.?|déc\.?)/i,
+        monthsRegex = /(janv\.?|févr\.?|mars|avr\.?|mai|juin|juil\.?|août|sept\.?|oct\.?|nov\.?|déc\.?|janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i,
+        monthsParse = [/^janv/i, /^févr/i, /^mars/i, /^avr/i, /^mai/i, /^juin/i, /^juil/i, /^août/i, /^sept/i, /^oct/i, /^nov/i, /^déc/i];
     var fr = moment.defineLocale('fr', {
       months: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
       monthsShort: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
-      monthsParseExact: true,
+      monthsRegex: monthsRegex,
+      monthsShortRegex: monthsRegex,
+      monthsStrictRegex: monthsStrictRegex,
+      monthsShortStrictRegex: monthsShortStrictRegex,
+      monthsParse: monthsParse,
+      longMonthsParse: monthsParse,
+      shortMonthsParse: monthsParse,
       weekdays: 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
       weekdaysShort: 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
       weekdaysMin: 'di_lu_ma_me_je_ve_sa'.split('_'),
@@ -5419,9 +5432,7 @@ var it = createCommonjsModule(function (module, exports) {
         sameElse: 'L'
       },
       relativeTime: {
-        future: function (s) {
-          return (/^[0-9].+$/.test(s) ? 'tra' : 'in') + ' ' + s;
-        },
+        future: 'tra %s',
         past: '%s fa',
         s: 'alcuni secondi',
         ss: '%d secondi',
