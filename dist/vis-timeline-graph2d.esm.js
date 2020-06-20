@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-13T18:05:45.480Z
+ * @date    2020-06-20T12:20:51.652Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -16691,8 +16691,8 @@ var Component = /*#__PURE__*/function () {
 
   }, {
     key: "destroy",
-    value: function destroy() {} // should be implemented by the component
-
+    value: function destroy() {// should be implemented by the component
+    }
     /**
      * Test whether the component is resized since the last time _isResized() was
      * called.
@@ -28055,24 +28055,24 @@ var Item = /*#__PURE__*/function () {
 
   }, {
     key: "redraw",
-    value: function redraw() {} // should be implemented by the item
-
+    value: function redraw() {// should be implemented by the item
+    }
     /**
      * Reposition the Item horizontally
      */
 
   }, {
     key: "repositionX",
-    value: function repositionX() {} // should be implemented by the item
-
+    value: function repositionX() {// should be implemented by the item
+    }
     /**
      * Reposition the Item vertically
      */
 
   }, {
     key: "repositionY",
-    value: function repositionY() {} // should be implemented by the item
-
+    value: function repositionY() {// should be implemented by the item
+    }
     /**
      * Repaint a drag area on the center of the item when the item is selected
      * @protected
@@ -39164,8 +39164,8 @@ var DataAxis = /*#__PURE__*/function (_Component) {
  * @constructor Points
  */
 
-function Points(groupId, options) {} // eslint-disable-line no-unused-vars
-
+function Points(groupId, options) {// eslint-disable-line no-unused-vars
+}
 /**
  * draw the data points
  *
