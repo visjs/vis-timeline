@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-20T12:34:45.573Z
+ * @date    2020-06-20T12:46:06.495Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -15090,7 +15090,7 @@
 	        var oldData = _ref5.oldData,
 	            update = _ref5.update;
 	        var id = oldData[_this6._idProp];
-	        var updatedData = deepExtend(deepExtend({}, oldData), update);
+	        var updatedData = pureDeepObjectAssign(oldData, update);
 
 	        _this6._data.set(id, updatedData);
 
