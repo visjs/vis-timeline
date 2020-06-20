@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-20T12:23:04.695Z
+ * @date    2020-06-20T12:32:30.989Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -19968,7 +19968,7 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
     value: function isVisible(range) {
       var rangeWidth = this.data.end ? this.data.end - this.data.start : 0;
       var widthInMs = this.width * range.getMillisecondsPerPixel();
-      var end = Math.max(rangeWidth, this.data.start.getTime() + widthInMs);
+      var end = Math.max(this.data.start.getTime() + rangeWidth, this.data.start.getTime() + widthInMs);
       return this.data.start < range.end && end > range.start && this.hasItems();
     }
     /**
@@ -20824,7 +20824,7 @@ var ClusterGenerator = /*#__PURE__*/function () {
                 var m = i;
 
                 while (clusterItems.length < num && m < items.length) {
-                  if (clusterCriteria(items[m].data, items[m].data)) {
+                  if (clusterCriteria(items[i].data, items[m].data)) {
                     clusterItems.push(items[m]);
                   }
 
