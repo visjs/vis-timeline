@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-20T12:34:46.073Z
+ * @date    2020-06-20T12:36:13.753Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -8842,19 +8842,6 @@ var slice$3 = slice_1;
 
 var slice$4 = slice$3;
 
-var concat = entryVirtual('Array').concat;
-
-var ArrayPrototype$6 = Array.prototype;
-
-var concat_1 = function (it) {
-  var own = it.concat;
-  return it === ArrayPrototype$6 || it instanceof Array && own === ArrayPrototype$6.concat ? concat : own;
-};
-
-var concat$1 = concat_1;
-
-var concat$2 = concat$1;
-
 function _arrayWithoutHoles(arr) {
   if (isArray$3(arr)) return arrayLikeToArray(arr);
 }
@@ -8879,17 +8866,30 @@ function _toConsumableArray(arr) {
 
 var toConsumableArray = _toConsumableArray;
 
+var concat = entryVirtual('Array').concat;
+
+var ArrayPrototype$6 = Array.prototype;
+
+var concat_1 = function (it) {
+  var own = it.concat;
+  return it === ArrayPrototype$6 || it instanceof Array && own === ArrayPrototype$6.concat ? concat : own;
+};
+
+var concat$1 = concat_1;
+
+var concat$2 = concat$1;
+
 var symbol$3 = symbol;
 
 var symbol$4 = symbol$3;
 
 function ownKeys$4(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context13; forEach$2(_context13 = ownKeys$4(Object(source), true)).call(_context13, function (key) { defineProperty$6(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context14; forEach$2(_context14 = ownKeys$4(Object(source))).call(_context14, function (key) { defineProperty$1(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context14; forEach$2(_context14 = ownKeys$4(Object(source), true)).call(_context14, function (key) { defineProperty$6(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context15; forEach$2(_context15 = ownKeys$4(Object(source))).call(_context15, function (key) { defineProperty$1(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof symbol$4 === "undefined" || getIteratorMethod$1(o) == null) { if (isArray$5(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator$1(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray$1(o, minLen) { var _context12; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$4(_context12 = Object.prototype.toString.call(o)).call(_context12, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
+function _unsupportedIterableToArray$1(o, minLen) { var _context13; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$4(_context13 = Object.prototype.toString.call(o)).call(_context13, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
 
 function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -8899,8 +8899,8 @@ function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) le
  *
  * utilitie collection for visjs
  *
- * @version 4.2.0
- * @date    2020-06-13T17:11:08.287Z
+ * @version 4.3.2
+ * @date    2020-06-15T14:15:22.151Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -8923,6 +8923,25 @@ function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) le
  * Use this symbol to delete properies in deepObjectAssign.
  */
 var DELETE = symbol$4("DELETE");
+/**
+ * Pure version of deepObjectAssign, it doesn't modify any of it's arguments.
+ *
+ * @param base - The base object that fullfils the whole interface T.
+ * @param updates - Updates that may change or delete props.
+ *
+ * @returns A brand new instance with all the supplied objects deeply merged.
+ */
+
+
+function pureDeepObjectAssign(base) {
+  var _context;
+
+  for (var _len = arguments.length, updates = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+    updates[_key - 1] = arguments[_key];
+  }
+
+  return deepObjectAssign.apply(void 0, concat$2(_context = [{}, base]).call(_context, updates));
+}
 /**
  * Deep version of object assign with additional deleting by the DELETE symbol.
  *
@@ -8951,16 +8970,16 @@ function deepObjectAssign() {
 
 
 function deepObjectAssignNonentry() {
-  for (var _len = arguments.length, values = new Array(_len), _key = 0; _key < _len; _key++) {
-    values[_key] = arguments[_key];
+  for (var _len2 = arguments.length, values = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    values[_key2] = arguments[_key2];
   }
 
   if (values.length < 2) {
     return values[0];
   } else if (values.length > 2) {
-    var _context;
+    var _context2;
 
-    return deepObjectAssignNonentry.apply(void 0, concat$2(_context = [deepObjectAssign(values[0], values[1])]).call(_context, toConsumableArray(slice$4(values).call(values, 2))));
+    return deepObjectAssignNonentry.apply(void 0, concat$2(_context2 = [deepObjectAssign(values[0], values[1])]).call(_context2, toConsumableArray(slice$4(values).call(values, 2))));
   }
 
   var a = values[0];
@@ -9046,8 +9065,8 @@ function stripDelete(a) {
 
 
 function Alea() {
-  for (var _len2 = arguments.length, seed = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-    seed[_key2] = arguments[_key2];
+  for (var _len3 = arguments.length, seed = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+    seed[_key3] = arguments[_key3];
   }
 
   return AleaImplementation(seed.length ? seed : [now$2()]);
@@ -9337,8 +9356,8 @@ function selectiveExtend(props, a) {
     throw new Error("Array with property names expected as first argument");
   }
 
-  for (var _len3 = arguments.length, others = new Array(_len3 > 2 ? _len3 - 2 : 0), _key3 = 2; _key3 < _len3; _key3++) {
-    others[_key3 - 2] = arguments[_key3];
+  for (var _len4 = arguments.length, others = new Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
+    others[_key4 - 2] = arguments[_key4];
   }
 
   for (var _i2 = 0, _others = others; _i2 < _others.length; _i2++) {
@@ -9496,9 +9515,9 @@ function deepExtend(a, b) {
           copyOrDelete(a, b, prop, allowDeletion);
         }
       } else if (isArray$5(b[prop])) {
-        var _context2;
+        var _context3;
 
-        a[prop] = slice$4(_context2 = b[prop]).call(_context2);
+        a[prop] = slice$4(_context3 = b[prop]).call(_context3);
       } else {
         copyOrDelete(a, b, prop, allowDeletion);
       }
@@ -9599,9 +9618,9 @@ function getType(object) {
 
 
 function copyAndExtendArray(arr, newValue) {
-  var _context3;
+  var _context4;
 
-  return concat$2(_context3 = []).call(_context3, toConsumableArray(arr), [newValue]);
+  return concat$2(_context4 = []).call(_context4, toConsumableArray(arr), [newValue]);
 }
 /**
  * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -9771,13 +9790,13 @@ function throttle(fn) {
 
 function addEventListener(element, action, listener, useCapture) {
   if (element.addEventListener) {
-    var _context4;
+    var _context5;
 
     if (useCapture === undefined) {
       useCapture = false;
     }
 
-    if (action === "mousewheel" && indexOf$3(_context4 = navigator.userAgent).call(_context4, "Firefox") >= 0) {
+    if (action === "mousewheel" && indexOf$3(_context5 = navigator.userAgent).call(_context5, "Firefox") >= 0) {
       action = "DOMMouseScroll"; // For Firefox
     }
 
@@ -9799,14 +9818,14 @@ function addEventListener(element, action, listener, useCapture) {
 
 function removeEventListener(element, action, listener, useCapture) {
   if (element.removeEventListener) {
-    var _context5;
+    var _context6;
 
     // non-IE browsers
     if (useCapture === undefined) {
       useCapture = false;
     }
 
-    if (action === "mousewheel" && indexOf$3(_context5 = navigator.userAgent).call(_context5, "Firefox") >= 0) {
+    if (action === "mousewheel" && indexOf$3(_context6 = navigator.userAgent).call(_context6, "Firefox") >= 0) {
       action = "DOMMouseScroll"; // For Firefox
     }
 
@@ -10070,9 +10089,9 @@ function overrideOpacity(color, opacity) {
 
 
 function RGBToHex(red, green, blue) {
-  var _context6;
+  var _context7;
 
-  return "#" + slice$4(_context6 = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16)).call(_context6, 1);
+  return "#" + slice$4(_context7 = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16)).call(_context7, 1);
 }
 /**
  * Parse a color property into an object with border, background, and highlight colors.
@@ -10089,9 +10108,9 @@ function parseColor(inputColor, defaultColor) {
     var colorStr = inputColor;
 
     if (isValidRGB(colorStr)) {
-      var _context7;
+      var _context8;
 
-      var rgb = map$2(_context7 = colorStr.substr(4).substr(0, colorStr.length - 5).split(",")).call(_context7, function (value) {
+      var rgb = map$2(_context8 = colorStr.substr(4).substr(0, colorStr.length - 5).split(",")).call(_context8, function (value) {
         return _parseInt$2(value);
       });
 
@@ -10227,19 +10246,19 @@ function RGBToHSV(red, green, blue) {
 var cssUtil = {
   // split a string with css styles into an object with key/values
   split: function split(cssText) {
-    var _context8;
+    var _context9;
 
     var styles = {};
 
-    forEach$2(_context8 = cssText.split(";")).call(_context8, function (style) {
+    forEach$2(_context9 = cssText.split(";")).call(_context9, function (style) {
       if (trim$2(style).call(style) != "") {
-        var _context9, _context10;
+        var _context10, _context11;
 
         var parts = style.split(":");
 
-        var key = trim$2(_context9 = parts[0]).call(_context9);
+        var key = trim$2(_context10 = parts[0]).call(_context10);
 
-        var value = trim$2(_context10 = parts[1]).call(_context10);
+        var value = trim$2(_context11 = parts[1]).call(_context11);
 
         styles[key] = value;
       }
@@ -10249,9 +10268,9 @@ var cssUtil = {
   },
   // build a css text string from an object with key/values
   join: function join(styles) {
-    var _context11;
+    var _context12;
 
-    return map$2(_context11 = keys$3(styles)).call(_context11, function (key) {
+    return map$2(_context12 = keys$3(styles)).call(_context12, function (key) {
       return key + ": " + styles[key];
     }).join("; ");
   }
@@ -11023,6 +11042,7 @@ var util = /*#__PURE__*/Object.freeze({
 	overrideOpacity: overrideOpacity,
 	parseColor: parseColor,
 	preventDefault: preventDefault,
+	pureDeepObjectAssign: pureDeepObjectAssign,
 	recursiveDOMDelete: recursiveDOMDelete,
 	removeClassName: removeClassName,
 	removeCssText: removeCssText,
