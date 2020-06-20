@@ -18,19 +18,7 @@ jobs:
     steps:
       - checkout
 
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-            - v1-dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - v1-dependencies-
-
       - run: npm ci
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
 
       - persist_to_workspace:
           root: .
@@ -49,11 +37,13 @@ jobs:
       - persist_to_workspace:
           root: .
           paths:
+            - 'declarations'
             - 'dist'
             - 'esnext'
             - 'peer'
             - 'standalone'
             - 'styles'
+            - 'types'
 
   examples:
     executor: node
@@ -160,6 +150,7 @@ workflows:
       - test:
           requires:
             - prepare
+            - build
 
       - gh_pages:
           requires:
