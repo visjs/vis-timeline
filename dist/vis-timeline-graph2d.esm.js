@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-23T08:47:46.660Z
+ * @date    2020-06-23T08:50:20.422Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24677,7 +24677,7 @@ var Core = /*#__PURE__*/function () {
 
       if (options) {
         // copy the known options
-        var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll', 'longSelectPressTime'];
+        var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll', 'longSelectPressTime', 'snap'];
         util$1.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = 'hidden';
 
@@ -24996,7 +24996,7 @@ var Core = /*#__PURE__*/function () {
       var customTime = new CustomTime(this.body, util$1.extend({}, this.options, {
         time: timestamp,
         id: id,
-        snap: this.itemSet.options.snap
+        snap: this.itemSet ? this.itemSet.options.snap : this.options.snap
       }));
       this.customTimes.push(customTime);
       this.components.push(customTime);
@@ -41912,6 +41912,10 @@ var allOptions$2 = {
   showWeekScale: {
     'boolean': bool$1
   },
+  snap: {
+    'function': 'function',
+    'null': 'null'
+  },
   start: {
     date: date$1,
     number: number$1,
@@ -42136,6 +42140,12 @@ function Graph2d(container, items, groups, options) {
     },
     hiddenDates: [],
     util: {
+      getScale: function getScale() {
+        return me.timeAxis.step.scale;
+      },
+      getStep: function getStep() {
+        return me.timeAxis.step.step;
+      },
       toScreen: bind$2(_context4 = me._toScreen).call(_context4, me),
       toGlobalScreen: bind$2(_context5 = me._toGlobalScreen).call(_context5, me),
       // this refers to the root.width

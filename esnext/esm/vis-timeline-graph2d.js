@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-06-23T08:46:28.313Z
+ * @date    2020-06-23T08:49:02.906Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -4084,7 +4084,7 @@ class Core {
         'width', 'height', 'minHeight', 'maxHeight', 'autoResize',
         'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates',
         'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey',
-        'horizontalScroll', 'verticalScroll', 'longSelectPressTime'
+        'horizontalScroll', 'verticalScroll', 'longSelectPressTime', 'snap'
       ];
       util.selectiveExtend(fields, this.options, options);
       this.dom.rollingModeBtn.style.visibility = 'hidden';
@@ -4341,9 +4341,9 @@ class Core {
     }
 
     const customTime = new CustomTime(this.body, util.extend({}, this.options, {
-      time : timestamp,
+      time: timestamp,
       id,
-      snap: this.itemSet.options.snap
+      snap: this.itemSet ? this.itemSet.options.snap : this.options.snap
     }));
 
     this.customTimes.push(customTime);
@@ -18780,6 +18780,7 @@ let allOptions$2 = {
   showMajorLabels: {'boolean': bool$1},
   showMinorLabels: {'boolean': bool$1},
   showWeekScale: {'boolean': bool$1},
+  snap: {'function': 'function', 'null': 'null'},
   start: {date: date$1, number: number$1, string: string$1, moment: moment$2},
   timeAxis: {
     scale: {string: string$1,'undefined': 'undefined'},
@@ -18967,6 +18968,13 @@ function Graph2d (container, items, groups, options) {
     },
     hiddenDates: [],
     util: {
+      getScale() {
+        return me.timeAxis.step.scale;
+      },
+      getStep() {
+        return me.timeAxis.step.step;
+      },
+
       toScreen: me._toScreen.bind(me),
       toGlobalScreen: me._toGlobalScreen.bind(me), // this refers to the root.width
       toTime: me._toTime.bind(me),
