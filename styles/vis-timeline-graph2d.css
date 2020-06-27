@@ -38,6 +38,87 @@
   transition:         height .4s ease-in-out, top .4s ease-in-out;
 }
 /**/
+.vis-panel {
+  position: absolute;
+
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+.vis-panel.vis-center,
+.vis-panel.vis-left,
+.vis-panel.vis-right,
+.vis-panel.vis-top,
+.vis-panel.vis-bottom {
+  border: 1px #bfbfbf;
+}
+
+.vis-panel.vis-center,
+.vis-panel.vis-left,
+.vis-panel.vis-right {
+  border-top-style: solid;
+  border-bottom-style: solid;
+  overflow: hidden;
+}
+
+.vis-left.vis-panel.vis-vertical-scroll, .vis-right.vis-panel.vis-vertical-scroll {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+} 
+
+.vis-left.vis-panel.vis-vertical-scroll {
+  direction: rtl;
+}
+
+.vis-left.vis-panel.vis-vertical-scroll .vis-content {
+  direction: ltr;
+}
+
+.vis-right.vis-panel.vis-vertical-scroll {
+  direction: ltr;
+}
+
+.vis-right.vis-panel.vis-vertical-scroll .vis-content {
+  direction: rtl;
+}
+
+.vis-panel.vis-center,
+.vis-panel.vis-top,
+.vis-panel.vis-bottom {
+  border-left-style: solid;
+  border-right-style: solid;
+}
+
+.vis-background {
+  overflow: hidden;
+}
+
+.vis-panel > .vis-content {
+  position: relative;
+}
+
+.vis-panel .vis-shadow {
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  /* TODO: find a nice way to ensure vis-shadows are drawn on top of items
+  z-index: 1;
+  */
+}
+
+.vis-panel .vis-shadow.vis-top {
+  top: -1px;
+  left: 0;
+}
+
+.vis-panel .vis-shadow.vis-bottom {
+  bottom: -1px;
+  left: 0;
+}
 .vis-current-time {
   background-color: #FF7F6E;
   width: 2px;
@@ -174,87 +255,6 @@
     stroke: none;
 }
 
-.vis-panel {
-  position: absolute;
-
-  padding: 0;
-  margin: 0;
-
-  box-sizing: border-box;
-}
-
-.vis-panel.vis-center,
-.vis-panel.vis-left,
-.vis-panel.vis-right,
-.vis-panel.vis-top,
-.vis-panel.vis-bottom {
-  border: 1px #bfbfbf;
-}
-
-.vis-panel.vis-center,
-.vis-panel.vis-left,
-.vis-panel.vis-right {
-  border-top-style: solid;
-  border-bottom-style: solid;
-  overflow: hidden;
-}
-
-.vis-left.vis-panel.vis-vertical-scroll, .vis-right.vis-panel.vis-vertical-scroll {
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: scroll;
-} 
-
-.vis-left.vis-panel.vis-vertical-scroll {
-  direction: rtl;
-}
-
-.vis-left.vis-panel.vis-vertical-scroll .vis-content {
-  direction: ltr;
-}
-
-.vis-right.vis-panel.vis-vertical-scroll {
-  direction: ltr;
-}
-
-.vis-right.vis-panel.vis-vertical-scroll .vis-content {
-  direction: rtl;
-}
-
-.vis-panel.vis-center,
-.vis-panel.vis-top,
-.vis-panel.vis-bottom {
-  border-left-style: solid;
-  border-right-style: solid;
-}
-
-.vis-background {
-  overflow: hidden;
-}
-
-.vis-panel > .vis-content {
-  position: relative;
-}
-
-.vis-panel .vis-shadow {
-  position: absolute;
-  width: 100%;
-  height: 1px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.8);
-  /* TODO: find a nice way to ensure vis-shadows are drawn on top of items
-  z-index: 1;
-  */
-}
-
-.vis-panel .vis-shadow.vis-top {
-  top: -1px;
-  left: 0;
-}
-
-.vis-panel .vis-shadow.vis-bottom {
-  bottom: -1px;
-  left: 0;
-}
 
 .vis-timeline {
   position: relative;
@@ -574,6 +574,23 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
     border-left-color: #f2faff;
     border-width: 12px;
     margin-top: -12px;
+}
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
+}
+
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
 }
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
@@ -901,45 +918,6 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
   height: 100%;
   z-index: 10;
 }
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
-}
-
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
-}
-div.vis-tooltip {
-  position: absolute;
-  visibility: hidden;
-  padding: 5px;
-  white-space: nowrap;
-
-  font-family: verdana;
-  font-size:14px;
-  color:#000000;
-  background-color: #f5f4ed;
-
-  -moz-border-radius: 3px;
-  -webkit-border-radius: 3px;
-  border-radius: 3px;
-  border: 1px solid #808074;
-
-  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
-  pointer-events: none;
-
-  z-index: 5;
-}
-
 .vis-time-axis {
   position: relative;
   overflow: hidden;
@@ -994,6 +972,28 @@ div.vis-tooltip {
 
 .vis-time-axis .vis-grid.vis-major {
   border-color: #bfbfbf;
+}
+
+div.vis-tooltip {
+  position: absolute;
+  visibility: hidden;
+  padding: 5px;
+  white-space: nowrap;
+
+  font-family: verdana;
+  font-size:14px;
+  color:#000000;
+  background-color: #f5f4ed;
+
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  border: 1px solid #808074;
+
+  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+
+  z-index: 5;
 }
 
 
