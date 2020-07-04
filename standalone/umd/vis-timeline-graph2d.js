@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-07-04T17:43:03.616Z
+ * @date    2020-07-04T17:44:41.190Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -31,8 +31,14 @@
 }(this, (function (exports) {
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
-	function createCommonjsModule(fn, module) {
-		return module = { exports: {} }, fn(module, module.exports), module.exports;
+	function createCommonjsModule(fn, basedir, module) {
+		return module = {
+		  path: basedir,
+		  exports: {},
+		  require: function (path, base) {
+	      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+	    }
+		}, fn(module, module.exports), module.exports;
 	}
 
 	function commonjsRequire () {
@@ -11746,10 +11752,6 @@
 	  };
 	  hiddenKeys[METADATA] = true;
 	});
-	var internalMetadata_1 = internalMetadata.REQUIRED;
-	var internalMetadata_2 = internalMetadata.fastKey;
-	var internalMetadata_3 = internalMetadata.getWeakData;
-	var internalMetadata_4 = internalMetadata.onFreeze;
 
 	var iterate_1 = createCommonjsModule(function (module) {
 	  var Result = function (stopped, result) {
