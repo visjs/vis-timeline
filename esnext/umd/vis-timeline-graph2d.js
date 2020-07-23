@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-07-23T01:53:25.924Z
+ * @date    2020-07-23T19:55:15.468Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -27,7 +27,7 @@
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
-  (global = global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
 }(this, (function (exports, moment$3, util$1, esnext, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
   moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
   Emitter = Emitter && Object.prototype.hasOwnProperty.call(Emitter, 'default') ? Emitter['default'] : Emitter;
