@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-08-05T16:15:24.369Z
+ * @date    2020-08-05T18:25:22.256Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -13497,169 +13497,7 @@ var DataPipeUnderConstruction = /*#__PURE__*/function () {
   }]);
 
   return DataPipeUnderConstruction;
-}(); // utility functions
-// parse ASP.Net Date pattern,
-// for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
-// code from http://momentjs.com/
-
-
-var ASPDateRegex$1 = /^\/?Date\((-?\d+)/i;
-/**
- * Test whether given object is a Moment date.
- *
- * @param value - Input value of unknown type.
- *
- * @returns True if Moment instance, false otherwise.
- */
-
-function isMoment(value) {
-  return moment.isMoment(value);
-}
-/**
- * Convert an object into another type
- *
- * @param object - Value of unknown type.
- * @param type - Name of the desired type.
- *
- * @returns Object in the desired type.
- * @throws Error
- */
-
-
-function convert(object, type) {
-  var match;
-
-  if (object === undefined) {
-    return undefined;
-  }
-
-  if (object === null) {
-    return null;
-  }
-
-  if (!type) {
-    return object;
-  }
-
-  if (!(typeof type === "string") && !(type instanceof String)) {
-    throw new Error("Type must be a string");
-  } //noinspection FallthroughInSwitchStatementJS
-
-
-  switch (type) {
-    case "boolean":
-    case "Boolean":
-      return Boolean(object);
-
-    case "number":
-    case "Number":
-      if (isString(object) && !isNaN(Date.parse(object))) {
-        return moment(object).valueOf();
-      } else {
-        // @TODO: I don't think that Number and String constructors are a good idea.
-        // This could also fail if the object doesn't have valueOf method or if it's redefined.
-        // For example: Object.create(null) or { valueOf: 7 }.
-        return Number(object.valueOf());
-      }
-
-    case "string":
-    case "String":
-      return String(object);
-
-    case "Date":
-      if (isNumber(object)) {
-        return new Date(object);
-      }
-
-      if (object instanceof Date) {
-        return new Date(object.valueOf());
-      } else if (isMoment(object)) {
-        return new Date(object.valueOf());
-      }
-
-      if (isString(object)) {
-        match = ASPDateRegex$1.exec(object);
-
-        if (match) {
-          // object is an ASP date
-          return new Date(Number(match[1])); // parse number
-        } else {
-          return moment(new Date(object)).toDate(); // parse string
-        }
-      } else {
-        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
-      }
-
-    case "Moment":
-      if (isNumber(object)) {
-        return moment(object);
-      }
-
-      if (object instanceof Date) {
-        return moment(object.valueOf());
-      } else if (isMoment(object)) {
-        return moment(object);
-      }
-
-      if (isString(object)) {
-        match = ASPDateRegex$1.exec(object);
-
-        if (match) {
-          // object is an ASP date
-          return moment(Number(match[1])); // parse number
-        } else {
-          return moment(object); // parse string
-        }
-      } else {
-        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
-      }
-
-    case "ISODate":
-      if (isNumber(object)) {
-        return new Date(object);
-      } else if (object instanceof Date) {
-        return object.toISOString();
-      } else if (isMoment(object)) {
-        return object.toDate().toISOString();
-      } else if (isString(object)) {
-        match = ASPDateRegex$1.exec(object);
-
-        if (match) {
-          // object is an ASP date
-          return new Date(Number(match[1])).toISOString(); // parse number
-        } else {
-          return moment(object).format(); // ISO 8601
-        }
-      } else {
-        throw new Error("Cannot convert object of type " + getType(object) + " to type ISODate");
-      }
-
-    case "ASPDate":
-      if (isNumber(object)) {
-        return "/Date(" + object + ")/";
-      } else if (object instanceof Date || isMoment(object)) {
-        return "/Date(" + object.valueOf() + ")/";
-      } else if (isString(object)) {
-        match = ASPDateRegex$1.exec(object);
-        var value;
-
-        if (match) {
-          // object is an ASP date
-          value = new Date(Number(match[1])).valueOf(); // parse number
-        } else {
-          value = new Date(object).valueOf(); // parse string
-        }
-
-        return "/Date(" + value + ")/";
-      } else {
-        throw new Error("Cannot convert object of type " + getType(object) + " to type ASPDate");
-      }
-
-    default:
-      var never = type;
-      throw new Error("Unknown type ".concat(never));
-  }
-}
+}();
 /**
  * Determine whether a value can be used as an id.
  *
@@ -14707,14 +14545,39 @@ var DataStream = /*#__PURE__*/function () {
 }();
 /* eslint @typescript-eslint/member-ordering: ["error", { "classes": ["field", "constructor", "method"] }] */
 
+/**
+ * Add an id to given item if it doesn't have one already.
+ *
+ * @remarks
+ * The item will be modified.
+ *
+ * @param item - The item that will have an id after a call to this function.
+ * @param idProp - The key of the id property.
+ *
+ * @typeParam Item - Item type that may or may not have an id.
+ * @typeParam IdProp - Name of the property that contains the id.
+ *
+ * @returns true
+ */
 
-var warnTypeCorectionDeprecation = function warnTypeCorectionDeprecation() {
-  console.warn("Type coercion has been deprecated. " + "Please, use data pipes instead. " + "See https://visjs.github.io/vis-data/data/datapipe.html#TypeCoercion for more details with working migration example.");
-};
+
+function ensureFullItem(item, idProp) {
+  if (item[idProp] == null) {
+    // generate an id
+    item[idProp] = v4();
+  }
+
+  return item;
+}
 /**
  * # DataSet
  *
- * Vis.js comes with a flexible DataSet, which can be used to hold and manipulate unstructured data and listen for changes in the data. The DataSet is key/value based. Data items can be added, updated and removed from the DataSet, and one can subscribe to changes in the DataSet. The data in the DataSet can be filtered and ordered, and fields (like dates) can be converted to a specific type. Data can be normalized when appending it to the DataSet as well.
+ * Vis.js comes with a flexible DataSet, which can be used to hold and
+ * manipulate unstructured data and listen for changes in the data. The DataSet
+ * is key/value based. Data items can be added, updated and removed from the
+ * DataSet, and one can subscribe to changes in the DataSet. The data in the
+ * DataSet can be filtered and ordered. Data can be normalized when appending it
+ * to the DataSet as well.
  *
  * ## Example
  *
@@ -14796,28 +14659,7 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
     _this3.length = 0; // number of items in the DataSet
 
     _this3._idProp = _this3._options.fieldId || "id"; // name of the field containing id
-
-    _this3._type = {}; // internal field types (NOTE: this can differ from this._options.type)
-    // all variants of a Date are internally stored as Date, so we can convert
-    // from everything to everything (also from ISODate to Number for example)
-
-    if (_this3._options.type) {
-      warnTypeCorectionDeprecation();
-
-      var fields = keys$3(_this3._options.type);
-
-      for (var i = 0, len = fields.length; i < len; i++) {
-        var field = fields[i];
-        var _value3 = _this3._options.type[field];
-
-        if (_value3 == "Date" || _value3 == "ISODate" || _value3 == "ASPDate") {
-          _this3._type[field] = "Date";
-        } else {
-          _this3._type[field] = _value3;
-        }
-      }
-    } // add initial data when provided
-
+    // add initial data when provided
 
     if (data && data.length) {
       _this3.add(data);
@@ -15177,26 +15019,24 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       // }
       // build options
 
-      var type = options && options.type || this._options.type;
-
       var filter = options && filter$2(options);
 
       var items = [];
-      var item = null;
-      var itemIds = null;
-      var itemId = null; // convert items
+      var item = undefined;
+      var itemIds = undefined;
+      var itemId = undefined; // convert items
 
       if (id != null) {
         // return a single item
-        item = this._getItem(id, type);
+        item = this._data.get(id);
 
         if (item && filter && !filter(item)) {
-          item = null;
+          item = undefined;
         }
       } else if (ids != null) {
         // return a subset of items
         for (var i = 0, len = ids.length; i < len; i++) {
-          item = this._getItem(ids[i], type);
+          item = this._data.get(ids[i]);
 
           if (item != null && (!filter || filter(item))) {
             items.push(item);
@@ -15210,7 +15050,7 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
 
         for (var _i = 0, _len2 = itemIds.length; _i < _len2; _i++) {
           itemId = itemIds[_i];
-          item = this._getItem(itemId, type);
+          item = this._data.get(itemId);
 
           if (item != null && (!filter || filter(item))) {
             items.push(item);
@@ -15252,7 +15092,7 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       } else {
         if (id != null) {
           // a single item
-          return item;
+          return item !== null && item !== void 0 ? item : null;
         } else {
           // just return our array
           return items;
@@ -15269,25 +15109,23 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       var filter = options && filter$2(options);
 
       var order = options && options.order;
-      var type = options && options.type || this._options.type;
 
       var itemIds = toConsumableArray(keys$6(data).call(data));
 
       var ids = [];
-      var item;
-      var items;
 
       if (filter) {
         // get filtered items
         if (order) {
           // create ordered list
-          items = [];
+          var items = [];
 
           for (var i = 0, len = itemIds.length; i < len; i++) {
             var id = itemIds[i];
-            item = this._getItem(id, type);
 
-            if (filter(item)) {
+            var item = this._data.get(id);
+
+            if (item != null && filter(item)) {
               items.push(item);
             }
           }
@@ -15301,10 +15139,11 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
           // create unordered list
           for (var _i5 = 0, _len6 = itemIds.length; _i5 < _len6; _i5++) {
             var _id3 = itemIds[_i5];
-            item = this._getItem(_id3, type);
 
-            if (filter(item)) {
-              ids.push(item[this._idProp]);
+            var _item = this._data.get(_id3);
+
+            if (_item != null && filter(_item)) {
+              ids.push(_item[this._idProp]);
             }
           }
         }
@@ -15312,24 +15151,29 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
         // get all items
         if (order) {
           // create an ordered list
-          items = [];
+          var _items = [];
 
           for (var _i6 = 0, _len7 = itemIds.length; _i6 < _len7; _i6++) {
             var _id4 = itemIds[_i6];
-            items.push(data.get(_id4));
+
+            _items.push(data.get(_id4));
           }
 
-          this._sort(items, order);
+          this._sort(_items, order);
 
-          for (var _i7 = 0, _len8 = items.length; _i7 < _len8; _i7++) {
-            ids.push(items[_i7][this._idProp]);
+          for (var _i7 = 0, _len8 = _items.length; _i7 < _len8; _i7++) {
+            ids.push(_items[_i7][this._idProp]);
           }
         } else {
           // create unordered list
           for (var _i8 = 0, _len9 = itemIds.length; _i8 < _len9; _i8++) {
             var _id5 = itemIds[_i8];
-            item = data.get(_id5);
-            ids.push(item[this._idProp]);
+
+            var _item2 = data.get(_id5);
+
+            if (_item2 != null) {
+              ids.push(_item2[this._idProp]);
+            }
           }
         }
       }
@@ -15350,7 +15194,6 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
     value: function forEach(callback, options) {
       var filter = options && filter$2(options);
 
-      var type = options && options.type || this._options.type;
       var data = this._data;
 
       var itemIds = toConsumableArray(keys$6(data).call(data));
@@ -15369,10 +15212,10 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
         for (var _i9 = 0, _len10 = itemIds.length; _i9 < _len10; _i9++) {
           var _id6 = itemIds[_i9];
 
-          var _item = this._getItem(_id6, type);
+          var _item3 = this._data.get(_id6);
 
-          if (!filter || filter(_item)) {
-            callback(_item, _id6);
+          if (_item3 != null && (!filter || filter(_item3))) {
+            callback(_item3, _id6);
           }
         }
       }
@@ -15384,7 +15227,6 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
     value: function map(callback, options) {
       var filter = options && filter$2(options);
 
-      var type = options && options.type || this._options.type;
       var mappedItems = [];
       var data = this._data;
 
@@ -15394,9 +15236,9 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       for (var i = 0, len = itemIds.length; i < len; i++) {
         var id = itemIds[i];
 
-        var item = this._getItem(id, type);
+        var item = this._data.get(id);
 
-        if (!filter || filter(item)) {
+        if (item != null && (!filter || filter(item))) {
           mappedItems.push(callback(item, id));
         }
       } // order items
@@ -15682,31 +15524,24 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       var itemIds = toConsumableArray(keys$6(data).call(data));
 
       var values = [];
-      var fieldType = this._options.type && this._options.type[prop] || null;
       var count = 0;
 
       for (var i = 0, len = itemIds.length; i < len; i++) {
         var id = itemIds[i];
         var item = data.get(id);
-        var _value4 = item[prop];
+        var _value3 = item[prop];
         var exists = false;
 
         for (var j = 0; j < count; j++) {
-          if (values[j] == _value4) {
+          if (values[j] == _value3) {
             exists = true;
             break;
           }
         }
 
-        if (!exists && _value4 !== undefined) {
-          values[count] = _value4;
+        if (!exists && _value3 !== undefined) {
+          values[count] = _value3;
           count++;
-        }
-      }
-
-      if (fieldType) {
-        for (var _i10 = 0, _len11 = values.length; _i10 < _len11; _i10++) {
-          values[_i10] = convert(values[_i10], fieldType);
         }
       }
 
@@ -15723,115 +15558,45 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
   }, {
     key: "_addItem",
     value: function _addItem(item) {
-      var id = item[this._idProp];
+      var fullItem = ensureFullItem(item, this._idProp);
+      var id = fullItem[this._idProp]; // check whether this id is already taken
 
-      if (id != null) {
-        // check whether this id is already taken
-        if (this._data.has(id)) {
-          // item already exists
-          throw new Error("Cannot add item: item with id " + id + " already exists");
-        }
-      } else {
-        // generate an id
-        id = v4();
-        item[this._idProp] = id;
+      if (this._data.has(id)) {
+        // item already exists
+        throw new Error("Cannot add item: item with id " + id + " already exists");
       }
 
-      var d = {};
-
-      var fields = keys$3(item);
-
-      for (var i = 0, len = fields.length; i < len; i++) {
-        var field = fields[i];
-        var fieldType = this._type[field]; // type may be undefined
-
-        d[field] = convert(item[field], fieldType);
-      }
-
-      this._data.set(id, d);
+      this._data.set(id, fullItem);
 
       ++this.length;
       return id;
     }
     /**
-     * Get an item. Fields can be converted to a specific type
-     *
-     * @param id - Id of the requested item.
-     * @param types - Property name to type name object map of type converstions.
-     *
-     * @returns The item, optionally after type conversion.
-     */
-
-  }, {
-    key: "_getItem",
-    value: function _getItem(id, types) {
-      // @TODO: I have no idea how to type this.
-      // get the item from the dataset
-      var raw = this._data.get(id);
-
-      if (!raw) {
-        return null;
-      } // convert the items field types
-
-
-      var converted;
-
-      var fields = keys$3(raw);
-
-      if (types) {
-        warnTypeCorectionDeprecation();
-        converted = {};
-
-        for (var i = 0, len = fields.length; i < len; i++) {
-          var field = fields[i];
-          var _value5 = raw[field];
-          converted[field] = convert(_value5, types[field]);
-        }
-      } else {
-        // no field types specified, no converting needed
-        converted = _objectSpread$1({}, raw);
-      }
-
-      if (converted[this._idProp] == null) {
-        converted[this._idProp] = raw.id;
-      }
-
-      return converted;
-    }
-    /**
      * Update a single item: merge with existing item.
      * Will fail when the item has no id, or when there does not exist an item with the same id.
      *
-     * @param item - The new item
+     * @param update - The new item
      *
      * @returns The id of the updated item.
      */
 
   }, {
     key: "_updateItem",
-    value: function _updateItem(item) {
-      var id = item[this._idProp];
+    value: function _updateItem(update) {
+      var id = update[this._idProp];
 
       if (id == null) {
-        throw new Error("Cannot update item: item has no id (item: " + stringify$2(item) + ")");
+        throw new Error("Cannot update item: item has no id (item: " + stringify$2(update) + ")");
       }
 
-      var d = this._data.get(id);
+      var item = this._data.get(id);
 
-      if (!d) {
+      if (!item) {
         // item doesn't exist
         throw new Error("Cannot update item: no item with id " + id + " found");
-      } // merge with current item
-
-
-      var fields = keys$3(item);
-
-      for (var i = 0, len = fields.length; i < len; i++) {
-        var field = fields[i];
-        var fieldType = this._type[field]; // type may be undefined
-
-        d[field] = convert(item[field], fieldType);
       }
+
+      this._data.set(id, _objectSpread$1(_objectSpread$1({}, item), update));
 
       return id;
     }
@@ -16086,8 +15851,8 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
       } // check for removals
 
 
-      for (var _i11 = 0, _len12 = oldIds.length; _i11 < _len12; _i11++) {
-        var _id7 = oldIds[_i11];
+      for (var _i10 = 0, _len11 = oldIds.length; _i10 < _len11; _i10++) {
+        var _id7 = oldIds[_i10];
 
         var item = this._data.get(_id7);
 
@@ -16345,16 +16110,16 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
         case "update":
           // determine the event from the views viewpoint: an updated
           // item can be added, updated, or removed from this view.
-          for (var _i12 = 0, _len13 = ids.length; _i12 < _len13; _i12++) {
-            var _id8 = ids[_i12];
+          for (var _i11 = 0, _len12 = ids.length; _i11 < _len12; _i11++) {
+            var _id8 = ids[_i11];
 
-            var _item2 = this.get(_id8);
+            var _item4 = this.get(_id8);
 
-            if (_item2) {
+            if (_item4) {
               if (this._ids.has(_id8)) {
                 updatedIds.push(_id8);
-                updatedItems.push(params.data[_i12]);
-                oldItems.push(params.oldData[_i12]);
+                updatedItems.push(params.data[_i11]);
+                oldItems.push(params.oldData[_i11]);
               } else {
                 this._ids.add(_id8);
 
@@ -16365,7 +16130,7 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
                 this._ids.delete(_id8);
 
                 removedIds.push(_id8);
-                removedItems.push(params.oldData[_i12]);
+                removedItems.push(params.oldData[_i11]);
               }
             }
           }
@@ -16374,14 +16139,14 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
 
         case "remove":
           // filter the ids of the removed items
-          for (var _i13 = 0, _len14 = ids.length; _i13 < _len14; _i13++) {
-            var _id9 = ids[_i13];
+          for (var _i12 = 0, _len13 = ids.length; _i12 < _len13; _i12++) {
+            var _id9 = ids[_i12];
 
             if (this._ids.has(_id9)) {
               this._ids.delete(_id9);
 
               removedIds.push(_id9);
-              removedItems.push(params.oldData[_i13]);
+              removedItems.push(params.oldData[_i12]);
             }
           }
 
@@ -16428,7 +16193,7 @@ function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { 
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
-var ASPDateRegex$2 = /^\/?Date\((-?\d+)/i;
+var ASPDateRegex$1 = /^\/?Date\((-?\d+)/i;
 /**
  * Convert an object into another type
  *
@@ -16439,7 +16204,7 @@ var ASPDateRegex$2 = /^\/?Date\((-?\d+)/i;
  * @throws Error
  */
 
-function convert$1(object, type) {
+function convert(object, type) {
   var match;
 
   if (object === undefined) {
@@ -16491,7 +16256,7 @@ function convert$1(object, type) {
       }
 
       if (isString(object)) {
-        match = ASPDateRegex$2.exec(object);
+        match = ASPDateRegex$1.exec(object);
 
         if (match) {
           // object is an ASP date
@@ -16515,7 +16280,7 @@ function convert$1(object, type) {
       }
 
       if (isString(object)) {
-        match = ASPDateRegex$2.exec(object);
+        match = ASPDateRegex$1.exec(object);
 
         if (match) {
           // object is an ASP date
@@ -16535,7 +16300,7 @@ function convert$1(object, type) {
       } else if (moment.isMoment(object)) {
         return object.toDate().toISOString();
       } else if (isString(object)) {
-        match = ASPDateRegex$2.exec(object);
+        match = ASPDateRegex$1.exec(object);
 
         if (match) {
           // object is an ASP date
@@ -16553,7 +16318,7 @@ function convert$1(object, type) {
       } else if (object instanceof Date || moment.isMoment(object)) {
         return "/Date(" + object.valueOf() + ")/";
       } else if (isString(object)) {
-        match = ASPDateRegex$2.exec(object);
+        match = ASPDateRegex$1.exec(object);
         var value;
 
         if (match) {
@@ -16615,7 +16380,7 @@ function typeCoerceDataSet(rawDS) {
     var _context2;
 
     return reduce$2(_context2 = keys$3(item)).call(_context2, function (acc, key) {
-      acc[key] = convert$1(item[key], type[key]);
+      acc[key] = convert(item[key], type[key]);
       return acc;
     }, {});
   }).to(coercedDS);
@@ -16665,7 +16430,7 @@ function typeCoerceDataSet(rawDS) {
   };
 }
 var util$1 = _objectSpread$2(_objectSpread$2({}, util), {}, {
-  convert: convert$1
+  convert: convert
 });
 
 var trim$4 = stringTrim.trim;
