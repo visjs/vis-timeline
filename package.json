@@ -62,7 +62,7 @@
     "moment": "^2.24.0",
     "propagating-hammerjs": "^1.4.0",
     "uuid": "^3.4.0 || ^7.0.0",
-    "vis-data": "^6.3.0",
+    "vis-data": "^6.3.0 || ^7.0.0",
     "vis-util": "^3.0.0 || ^4.0.0"
   },
   "devDependencies": {
@@ -120,7 +120,7 @@
     "uglify-js": "3.10.1",
     "uglifycss": "0.0.29",
     "uuid": "7.0.3",
-    "vis-data": "6.6.1",
+    "vis-data": "7.0.0",
     "vis-dev-utils": "2.4.0",
     "vis-util": "4.3.4"
   },
