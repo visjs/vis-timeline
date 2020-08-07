@@ -114,7 +114,7 @@
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-postcss": "2.9.0",
     "rollup-plugin-terser": "6.1.0",
-    "rollup-plugin-typescript2": "0.27.1",
+    "rollup-plugin-typescript2": "0.27.2",
     "semantic-release": "17.1.1",
     "snap-shot-it": "7.9.3",
     "uglify-js": "3.10.1",
