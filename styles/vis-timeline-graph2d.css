@@ -308,35 +308,6 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
     border-width: 12px;
     margin-top: -12px;
 }
-.vis-current-time {
-  background-color: #FF7F6E;
-  width: 2px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.vis-rolling-mode-btn {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.8;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  background: #3876c2;
-}
-.vis-rolling-mode-btn:before {
-  content: "\26F6";
-}
-
-.vis-rolling-mode-btn:hover {
-  opacity: 1;
-}
 .vis-timeline {
   /*
   -webkit-transition: height .4s ease-in-out;
@@ -574,6 +545,35 @@ input.vis-configuration.vis-config-range:focus::-ms-fill-upper {
   position: absolute;
   top: 0;
   left: 0;
+}
+.vis-current-time {
+  background-color: #FF7F6E;
+  width: 2px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vis-rolling-mode-btn {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #3876c2;
+}
+.vis-rolling-mode-btn:before {
+  content: "\26F6";
+}
+
+.vis-rolling-mode-btn:hover {
+  opacity: 1;
 }
 div.vis-tooltip {
   position: absolute;
