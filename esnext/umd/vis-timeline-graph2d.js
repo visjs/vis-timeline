@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-08-12T23:26:19.022Z
+ * @date    2020-08-13T20:46:00.067Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -29,17 +29,41 @@
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
 }(this, (function (exports, moment$3, util$1, esnext, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
-  moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
-  Emitter = Emitter && Object.prototype.hasOwnProperty.call(Emitter, 'default') ? Emitter['default'] : Emitter;
-  PropagatingHammer = PropagatingHammer && Object.prototype.hasOwnProperty.call(PropagatingHammer, 'default') ? PropagatingHammer['default'] : PropagatingHammer;
-  Hammer$1 = Hammer$1 && Object.prototype.hasOwnProperty.call(Hammer$1, 'default') ? Hammer$1['default'] : Hammer$1;
-  keycharm = keycharm && Object.prototype.hasOwnProperty.call(keycharm, 'default') ? keycharm['default'] : keycharm;
+  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+  function _interopNamespace(e) {
+    if (e && e.__esModule) { return e; } else {
+      var n = Object.create(null);
+      if (e) {
+        Object.keys(e).forEach(function (k) {
+          if (k !== 'default') {
+            var d = Object.getOwnPropertyDescriptor(e, k);
+            Object.defineProperty(n, k, d.get ? d : {
+              enumerable: true,
+              get: function () {
+                return e[k];
+              }
+            });
+          }
+        });
+      }
+      n['default'] = e;
+      return Object.freeze(n);
+    }
+  }
+
+  var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
+  var util__namespace = /*#__PURE__*/_interopNamespace(util$1);
+  var Emitter__default = /*#__PURE__*/_interopDefaultLegacy(Emitter);
+  var PropagatingHammer__default = /*#__PURE__*/_interopDefaultLegacy(PropagatingHammer);
+  var Hammer__default = /*#__PURE__*/_interopDefaultLegacy(Hammer$1);
+  var keycharm__default = /*#__PURE__*/_interopDefaultLegacy(keycharm);
 
   // first check if moment.js is already loaded in the browser window, if so,
   // use this instance. Else, load via commonjs.
   //
   // Note: This doesn't work in ESM.
-  var moment = (typeof window !== 'undefined') && window['moment'] || moment$3;
+  var moment = (typeof window !== 'undefined') && window['moment'] || moment__default['default'];
 
   // utility functions
 
@@ -83,7 +107,7 @@
       case "number":
       case "Number":
         if (util$1.isString(object) && !isNaN(Date.parse(object))) {
-          return moment$3(object).valueOf();
+          return moment__default['default'](object).valueOf();
         } else {
           // @TODO: I don't think that Number and String constructors are a good idea.
           // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -100,7 +124,7 @@
         }
         if (object instanceof Date) {
           return new Date(object.valueOf());
-        } else if (moment$3.isMoment(object)) {
+        } else if (moment__default['default'].isMoment(object)) {
           return new Date(object.valueOf());
         }
         if (util$1.isString(object)) {
@@ -109,7 +133,7 @@
             // object is an ASP date
             return new Date(Number(match[1])); // parse number
           } else {
-            return moment$3(new Date(object)).toDate(); // parse string
+            return moment__default['default'](new Date(object)).toDate(); // parse string
           }
         } else {
           throw new Error(
@@ -119,20 +143,20 @@
 
       case "Moment":
         if (util$1.isNumber(object)) {
-          return moment$3(object);
+          return moment__default['default'](object);
         }
         if (object instanceof Date) {
-          return moment$3(object.valueOf());
-        } else if (moment$3.isMoment(object)) {
-          return moment$3(object);
+          return moment__default['default'](object.valueOf());
+        } else if (moment__default['default'].isMoment(object)) {
+          return moment__default['default'](object);
         }
         if (util$1.isString(object)) {
           match = ASPDateRegex.exec(object);
           if (match) {
             // object is an ASP date
-            return moment$3(Number(match[1])); // parse number
+            return moment__default['default'](Number(match[1])); // parse number
           } else {
-            return moment$3(object); // parse string
+            return moment__default['default'](object); // parse string
           }
         } else {
           throw new Error(
@@ -145,7 +169,7 @@
           return new Date(object);
         } else if (object instanceof Date) {
           return object.toISOString();
-        } else if (moment$3.isMoment(object)) {
+        } else if (moment__default['default'].isMoment(object)) {
           return object.toDate().toISOString();
         } else if (util$1.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -153,7 +177,7 @@
             // object is an ASP date
             return new Date(Number(match[1])).toISOString(); // parse number
           } else {
-            return moment$3(object).format(); // ISO 8601
+            return moment__default['default'](object).format(); // ISO 8601
           }
         } else {
           throw new Error(
@@ -166,7 +190,7 @@
       case "ASPDate":
         if (util$1.isNumber(object)) {
           return "/Date(" + object + ")/";
-        } else if (object instanceof Date || moment$3.isMoment(object)) {
+        } else if (object instanceof Date || moment__default['default'].isMoment(object)) {
           return "/Date(" + object.valueOf() + ")/";
         } else if (util$1.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -264,7 +288,7 @@
   }
 
   var util = {
-    ...util$1,
+    ...util__namespace,
     convert
   };
 
@@ -1775,8 +1799,8 @@
   let modifiedHammer;
 
   if (typeof window !== 'undefined') {
-    const OurHammer = window['Hammer'] || Hammer$1;
-    modifiedHammer = PropagatingHammer(OurHammer, {
+    const OurHammer = window['Hammer'] || Hammer__default['default'];
+    modifiedHammer = PropagatingHammer__default['default'](OurHammer, {
       preventDefault: 'mouse'
     });
   } else {
@@ -3112,14 +3136,14 @@
     if (this.keycharm !== undefined) {
       this.keycharm.destroy();
     }
-    this.keycharm = keycharm();
+    this.keycharm = keycharm__default['default']();
 
     // keycharm listener only bounded when active)
     this.escListener = this.deactivate.bind(this);
   }
 
   // turn into an event emitter
-  Emitter(Activator.prototype);
+  Emitter__default['default'](Activator.prototype);
 
   // The currently active activator
   Activator.current = null;
@@ -5065,7 +5089,7 @@
   }
 
   // turn Core into an event emitter
-  Emitter(Core.prototype);
+  Emitter__default['default'](Core.prototype);
 
   /**
    * A current time bar
@@ -19267,7 +19291,7 @@
 
   // Locales have to be supplied by the user.
   const defaultLanguage = getNavigatorLanguage();
-  moment$3.locale(defaultLanguage);
+  moment__default['default'].locale(defaultLanguage);
 
   const timeline = {
     Core,

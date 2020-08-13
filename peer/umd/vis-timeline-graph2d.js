@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-08-12T23:26:19.022Z
+ * @date    2020-08-13T20:46:00.067Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -29,7 +29,9 @@
 	typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-data/peer/umd/vis-data.js'], factory) :
 	(global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis));
 }(this, (function (exports, moment$3, esnext) {
-	moment$3 = moment$3 && Object.prototype.hasOwnProperty.call(moment$3, 'default') ? moment$3['default'] : moment$3;
+	function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
+
+	var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
 
 	var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -2261,7 +2263,7 @@
 	//
 	// Note: This doesn't work in ESM.
 
-	var moment = typeof window !== 'undefined' && window['moment'] || moment$3;
+	var moment = typeof window !== 'undefined' && window['moment'] || moment__default['default'];
 
 	var defineProperty$5 = defineProperty_1;
 
@@ -5364,7 +5366,7 @@
 	    case "number":
 	    case "Number":
 	      if (isString(object) && !isNaN(Date.parse(object))) {
-	        return moment$3(object).valueOf();
+	        return moment__default['default'](object).valueOf();
 	      } else {
 	        // @TODO: I don't think that Number and String constructors are a good idea.
 	        // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -5383,7 +5385,7 @@
 
 	      if (object instanceof Date) {
 	        return new Date(object.valueOf());
-	      } else if (moment$3.isMoment(object)) {
+	      } else if (moment__default['default'].isMoment(object)) {
 	        return new Date(object.valueOf());
 	      }
 
@@ -5394,7 +5396,7 @@
 	          // object is an ASP date
 	          return new Date(Number(match[1])); // parse number
 	        } else {
-	          return moment$3(new Date(object)).toDate(); // parse string
+	          return moment__default['default'](new Date(object)).toDate(); // parse string
 	        }
 	      } else {
 	        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
@@ -5402,13 +5404,13 @@
 
 	    case "Moment":
 	      if (isNumber(object)) {
-	        return moment$3(object);
+	        return moment__default['default'](object);
 	      }
 
 	      if (object instanceof Date) {
-	        return moment$3(object.valueOf());
-	      } else if (moment$3.isMoment(object)) {
-	        return moment$3(object);
+	        return moment__default['default'](object.valueOf());
+	      } else if (moment__default['default'].isMoment(object)) {
+	        return moment__default['default'](object);
 	      }
 
 	      if (isString(object)) {
@@ -5416,9 +5418,9 @@
 
 	        if (match) {
 	          // object is an ASP date
-	          return moment$3(Number(match[1])); // parse number
+	          return moment__default['default'](Number(match[1])); // parse number
 	        } else {
-	          return moment$3(object); // parse string
+	          return moment__default['default'](object); // parse string
 	        }
 	      } else {
 	        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
@@ -5429,7 +5431,7 @@
 	        return new Date(object);
 	      } else if (object instanceof Date) {
 	        return object.toISOString();
-	      } else if (moment$3.isMoment(object)) {
+	      } else if (moment__default['default'].isMoment(object)) {
 	        return object.toDate().toISOString();
 	      } else if (isString(object)) {
 	        match = ASPDateRegex$1.exec(object);
@@ -5438,7 +5440,7 @@
 	          // object is an ASP date
 	          return new Date(Number(match[1])).toISOString(); // parse number
 	        } else {
-	          return moment$3(object).format(); // ISO 8601
+	          return moment__default['default'](object).format(); // ISO 8601
 	        }
 	      } else {
 	        throw new Error("Cannot convert object of type " + getType(object) + " to type ISODate");
@@ -5447,7 +5449,7 @@
 	    case "ASPDate":
 	      if (isNumber(object)) {
 	        return "/Date(" + object + ")/";
-	      } else if (object instanceof Date || moment$3.isMoment(object)) {
+	      } else if (object instanceof Date || moment__default['default'].isMoment(object)) {
 	        return "/Date(" + object.valueOf() + ")/";
 	      } else if (isString(object)) {
 	        match = ASPDateRegex$1.exec(object);
@@ -32289,7 +32291,7 @@
 
 	// Locales have to be supplied by the user.
 	var defaultLanguage = getNavigatorLanguage();
-	moment$3.locale(defaultLanguage);
+	moment__default['default'].locale(defaultLanguage);
 	var timeline = {
 	  Core: Core,
 	  DateUtil: DateUtil,
