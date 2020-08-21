@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-08-20T20:31:54.706Z
+ * @date    2020-08-21T05:23:21.110Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -42253,6 +42253,7 @@ var timeline = {
       Item: Item,
       BackgroundItem: BackgroundItem,
       BoxItem: BoxItem,
+      ClusterItem: ClusterItem,
       PointItem: PointItem,
       RangeItem: RangeItem
     },
