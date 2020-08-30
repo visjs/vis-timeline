@@ -28,7 +28,7 @@ span.label {
         type="hidden"
         name="html"
         value='&lt;h2&gt;Graph2d | Performance&lt;/h2&gt;
-&lt;div style="width: 700px; font-size: 14px; text-align: justify;"&gt;
+&lt;div style="width: 700px; font-size: 14px; text-align: justify"&gt;
   This example is a test of the performance of the Graph2d. Select the amount of
   datapoints you want to plot and press draw. You can choose between the style
   of the points as well as the interpolation method. This can only be toggled
@@ -43,7 +43,7 @@ span.label {
 &lt;br /&gt;
 &lt;p&gt;
   &lt;span class="label"&gt;Number of items:&lt;/span&gt;&lt;input id="count" value="50000" /&gt;
-  &lt;input id="draw" type="button" value="draw" style="width: 200px;" /&gt;
+  &lt;input id="draw" type="button" value="draw" style="width: 200px" /&gt;
   &lt;span id="description"&gt;&lt;b&gt;Click the draw button to load the data!&lt;/b&gt;&lt;/span&gt;
   &lt;br /&gt;
 
@@ -53,7 +53,7 @@ span.label {
     id="toggleInterpolation"
     type="button"
     value="toggle Interpolation"
-    style="width: 200px;"
+    style="width: 200px"
   /&gt;
   &lt;br /&gt;
   &lt;span class="label"&gt;Points style:&lt;/span&gt;&lt;input id="points" value="none" /&gt;
@@ -61,7 +61,7 @@ span.label {
     id="togglePoints"
     type="button"
     value="toggle Points"
-    style="width: 200px;"
+    style="width: 200px"
   /&gt;
 &lt;/p&gt;
 &lt;div id="visualization"&gt;&lt;/div&gt;
@@ -179,9 +179,7 @@ var graph2d = new vis.Graph2d(container, dataset, options);
       />
       <input type="hidden" name="title" value="Graph2d | Performance" />
       <input type="hidden" name="wrap" value="b" />
-      <button id="open" alt="JSFiddle" title="JSFiddle">
-        Open JSFiddle
-      </button>
+      <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>
 
     <script type="text/javascript">

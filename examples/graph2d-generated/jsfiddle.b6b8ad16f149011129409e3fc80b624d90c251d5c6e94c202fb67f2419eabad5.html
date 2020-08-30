@@ -24,7 +24,7 @@ html {
         name="html"
         value='&lt;h2&gt;Graph2d | Dynamic Styling Example&lt;/h2&gt;
 
-&lt;div style="width: 800px; font-size: 14px; text-align: justify;"&gt;
+&lt;div style="width: 800px; font-size: 14px; text-align: justify"&gt;
   This example shows how to programmatically change the styling of a group.
   While this can also be done in CSS, this must be statically defined, and the
   programmatic interface allows the user to define the look of the graph at
@@ -39,11 +39,11 @@ html {
   &lt;/colgroup&gt;
   &lt;tbody&gt;
     &lt;tr&gt;
-      &lt;td style="padding-right: 20px; border-right: 1px solid;"&gt;
+      &lt;td style="padding-right: 20px; border-right: 1px solid"&gt;
         &lt;div id="visualization"&gt;&lt;/div&gt;
       &lt;/td&gt;
-      &lt;td style="padding-left: 5px;"&gt;
-        &lt;table style="font-size: 12px;"&gt;
+      &lt;td style="padding-left: 5px"&gt;
+        &lt;table style="font-size: 12px"&gt;
           &lt;colgroup&gt;
             &lt;col width="150" /&gt;
             &lt;col width="50" /&gt;
@@ -64,9 +64,9 @@ html {
               &lt;td&gt;Line Style&lt;/td&gt;
               &lt;td&gt;
                 &lt;select id="line" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke-dasharray:1 0;" selected="selected"
-                    &gt;line&lt;/option
-                  &gt;
+                  &lt;option value="stroke-dasharray:1 0;" selected="selected"&gt;
+                    line
+                  &lt;/option&gt;
                   &lt;option value="stroke-dasharray:10 10;"&gt;dash&lt;/option&gt;
                   &lt;option value="stroke-dasharray:2 2;"&gt;dot&lt;/option&gt;
                   &lt;option value="stroke-dasharray:10 5 2 5;"&gt;dash-dot&lt;/option&gt;
@@ -118,9 +118,9 @@ html {
                   &lt;option value="fill-opacity:0.3;"&gt;0.3&lt;/option&gt;
                   &lt;option value="fill-opacity:0.4;"&gt;0.4&lt;/option&gt;
                   &lt;option value="fill-opacity:0.5;"&gt;0.5&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.6;" selected="selected"
-                    &gt;0.6&lt;/option
-                  &gt;
+                  &lt;option value="fill-opacity:0.6;" selected="selected"&gt;
+                    0.6
+                  &lt;/option&gt;
                   &lt;option value="fill-opacity:0.7;"&gt;0.7&lt;/option&gt;
                   &lt;option value="fill-opacity:0.8;"&gt;0.8&lt;/option&gt;
                   &lt;option value="fill-opacity:0.9;"&gt;0.9&lt;/option&gt;
@@ -291,9 +291,7 @@ function updateStyle() {
       />
       <input type="hidden" name="title" value="Graph2d | Dynamic Styling" />
       <input type="hidden" name="wrap" value="b" />
-      <button id="open" alt="JSFiddle" title="JSFiddle">
-        Open JSFiddle
-      </button>
+      <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>
 
     <script type="text/javascript">
