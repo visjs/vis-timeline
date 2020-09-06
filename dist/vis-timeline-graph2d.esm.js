@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-09-06T18:43:11.878Z
+ * @date    2020-09-06T20:01:30.708Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -40166,7 +40166,6 @@ function LineGraph(body, options) {
   this.setOptions(options);
   this.groupsUsingDefaultStyles = [0];
   this.body.emitter.on('rangechanged', function () {
-    me.lastStart = me.body.range.start;
     me.svg.style.left = util$1.option.asSize(-me.props.width);
     me.forceGraphUpdate = true; //Is this local redraw necessary? (Core also does a change event!)
 
@@ -40729,7 +40728,8 @@ LineGraph.prototype._getSortedGroupIds = function () {
 
 
 LineGraph.prototype._updateGraph = function () {
-  // reset the svg elements
+  this.lastStart = this.body.range.start; // reset the svg elements
+
   prepareElements(this.svgElements);
 
   if (this.props.width != 0 && this.itemsData != null) {
