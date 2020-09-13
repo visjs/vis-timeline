@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-09-12T21:07:02.372Z
+ * @date    2020-09-13T12:22:14.745Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -4036,7 +4036,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
       for (i = 0, l = eras.length; i < l; ++i) {
         // truncate time
-        val = this.startOf('day').valueOf();
+        val = this.clone().startOf('day').valueOf();
 
         if (eras[i].since <= val && val <= eras[i].until) {
           return eras[i].name;
@@ -4058,7 +4058,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
       for (i = 0, l = eras.length; i < l; ++i) {
         // truncate time
-        val = this.startOf('day').valueOf();
+        val = this.clone().startOf('day').valueOf();
 
         if (eras[i].since <= val && val <= eras[i].until) {
           return eras[i].narrow;
@@ -4080,7 +4080,7 @@ var moment = createCommonjsModule(function (module, exports) {
 
       for (i = 0, l = eras.length; i < l; ++i) {
         // truncate time
-        val = this.startOf('day').valueOf();
+        val = this.clone().startOf('day').valueOf();
 
         if (eras[i].since <= val && val <= eras[i].until) {
           return eras[i].abbr;
@@ -4104,7 +4104,7 @@ var moment = createCommonjsModule(function (module, exports) {
       for (i = 0, l = eras.length; i < l; ++i) {
         dir = eras[i].since <= eras[i].until ? +1 : -1; // truncate time
 
-        val = this.startOf('day').valueOf();
+        val = this.clone().startOf('day').valueOf();
 
         if (eras[i].since <= val && val <= eras[i].until || eras[i].until <= val && val <= eras[i].since) {
           return (this.year() - hooks(eras[i].since).year()) * dir + eras[i].offset;
@@ -5079,7 +5079,7 @@ var moment = createCommonjsModule(function (module, exports) {
       config._d = new Date(toInt(input));
     }); //! moment.js
 
-    hooks.version = '2.27.0';
+    hooks.version = '2.28.0';
     setHookCallback(createLocal);
     hooks.fn = proto;
     hooks.min = min;
@@ -5291,7 +5291,7 @@ var es = createCommonjsModule(function (module, exports) {
         doy: 4 // The week that contains Jan 4th is the first week of the year.
 
       },
-      invalidDate: 'Fecha invalida'
+      invalidDate: 'Fecha inválida'
     });
     return es;
   });
