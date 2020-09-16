@@ -121,7 +121,7 @@
     "uglifycss": "0.0.29",
     "uuid": "7.0.3",
     "vis-data": "7.0.0",
-    "vis-dev-utils": "2.7.3",
+    "vis-dev-utils": "2.7.4",
     "vis-util": "4.3.4"
   },
   "collective": {
