@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-09-21T08:59:44.869Z
+ * @date    2020-09-21T10:58:40.353Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,11 +28,11 @@ var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof win
 
 function createCommonjsModule(fn, basedir, module) {
 	return module = {
-	  path: basedir,
-	  exports: {},
-	  require: function (path, base) {
-      return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
-    }
+		path: basedir,
+		exports: {},
+		require: function (path, base) {
+			return commonjsRequire(path, (base === undefined || base === null) ? module.path : base);
+		}
 	}, fn(module, module.exports), module.exports;
 }
 
