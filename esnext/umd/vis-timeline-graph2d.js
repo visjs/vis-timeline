@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-09-21T05:49:05.307Z
+ * @date    2020-09-21T06:36:50.583Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -32,24 +32,23 @@
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   function _interopNamespace(e) {
-    if (e && e.__esModule) { return e; } else {
-      var n = Object.create(null);
-      if (e) {
-        Object.keys(e).forEach(function (k) {
-          if (k !== 'default') {
-            var d = Object.getOwnPropertyDescriptor(e, k);
-            Object.defineProperty(n, k, d.get ? d : {
-              enumerable: true,
-              get: function () {
-                return e[k];
-              }
-            });
-          }
-        });
-      }
-      n['default'] = e;
-      return Object.freeze(n);
+    if (e && e.__esModule) return e;
+    var n = Object.create(null);
+    if (e) {
+      Object.keys(e).forEach(function (k) {
+        if (k !== 'default') {
+          var d = Object.getOwnPropertyDescriptor(e, k);
+          Object.defineProperty(n, k, d.get ? d : {
+            enumerable: true,
+            get: function () {
+              return e[k];
+            }
+          });
+        }
+      });
     }
+    n['default'] = e;
+    return Object.freeze(n);
   }
 
   var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
