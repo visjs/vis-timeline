@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-09-21T10:58:40.353Z
+ * @date    2020-09-22T09:44:04.588Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3395,7 +3395,10 @@
 	    function calendar$1(time, formats) {
 	      // Support for single parameter, formats only overload to the calendar function
 	      if (arguments.length === 1) {
-	        if (isMomentInput(arguments[0])) {
+	        if (!arguments[0]) {
+	          time = undefined;
+	          formats = undefined;
+	        } else if (isMomentInput(arguments[0])) {
 	          time = arguments[0];
 	          formats = undefined;
 	        } else if (isCalendarSpec(arguments[0])) {
@@ -5090,7 +5093,7 @@
 	      config._d = new Date(toInt(input));
 	    }); //! moment.js
 
-	    hooks.version = '2.28.0';
+	    hooks.version = '2.29.0';
 	    setHookCallback(createLocal);
 	    hooks.fn = proto;
 	    hooks.min = min;
@@ -5289,6 +5292,8 @@
 	        hh: '%d horas',
 	        d: 'un día',
 	        dd: '%d días',
+	        w: 'una semana',
+	        ww: '%d semanas',
 	        M: 'un mes',
 	        MM: '%d meses',
 	        y: 'un año',
@@ -5359,6 +5364,8 @@
 	        hh: '%d heures',
 	        d: 'un jour',
 	        dd: '%d jours',
+	        w: 'une semaine',
+	        ww: '%d semaines',
 	        M: 'un mois',
 	        MM: '%d mois',
 	        y: 'un an',
@@ -5453,6 +5460,8 @@
 	        hh: '%d ore',
 	        d: 'un giorno',
 	        dd: '%d giorni',
+	        w: 'una settimana',
+	        ww: '%d settimane',
 	        M: 'un mese',
 	        MM: '%d mesi',
 	        y: 'un anno',
@@ -5674,6 +5683,8 @@
 	        hh: '%d uur',
 	        d: 'één dag',
 	        dd: '%d dagen',
+	        w: 'één week',
+	        ww: '%d weken',
 	        M: 'één maand',
 	        MM: '%d maanden',
 	        y: 'één jaar',
@@ -5701,7 +5712,8 @@
 	  })(commonjsGlobal, function (moment) {
 
 	    var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
-	        monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_');
+	        monthsSubjective = 'stycznia_lutego_marca_kwietnia_maja_czerwca_lipca_sierpnia_września_października_listopada_grudnia'.split('_'),
+	        monthsParse = [/^sty/i, /^lut/i, /^mar/i, /^kwi/i, /^maj/i, /^cze/i, /^lip/i, /^sie/i, /^wrz/i, /^paź/i, /^lis/i, /^gru/i];
 
 	    function plural(n) {
 	      return n % 10 < 5 && n % 10 > 1 && ~~(n / 10) % 10 !== 1;
@@ -5726,6 +5738,9 @@
 	        case 'hh':
 	          return result + (plural(number) ? 'godziny' : 'godzin');
 
+	        case 'ww':
+	          return result + (plural(number) ? 'tygodnie' : 'tygodni');
+
 	        case 'MM':
 	          return result + (plural(number) ? 'miesiące' : 'miesięcy');
 
@@ -5738,11 +5753,6 @@
 	      months: function (momentToFormat, format) {
 	        if (!momentToFormat) {
 	          return monthsNominative;
-	        } else if (format === '') {
-	          // Hack: if format empty we know this is used to generate
-	          // RegExp by moment. Give then back both valid forms of months
-	          // in RegExp ready format.
-	          return '(' + monthsSubjective[momentToFormat.month()] + '|' + monthsNominative[momentToFormat.month()] + ')';
 	        } else if (/D MMMM/.test(format)) {
 	          return monthsSubjective[momentToFormat.month()];
 	        } else {
@@ -5750,6 +5760,9 @@
 	        }
 	      },
 	      monthsShort: 'sty_lut_mar_kwi_maj_cze_lip_sie_wrz_paź_lis_gru'.split('_'),
+	      monthsParse: monthsParse,
+	      longMonthsParse: monthsParse,
+	      shortMonthsParse: monthsParse,
 	      weekdays: 'niedziela_poniedziałek_wtorek_środa_czwartek_piątek_sobota'.split('_'),
 	      weekdaysShort: 'ndz_pon_wt_śr_czw_pt_sob'.split('_'),
 	      weekdaysMin: 'Nd_Pn_Wt_Śr_Cz_Pt_So'.split('_'),
@@ -5811,6 +5824,8 @@
 	        hh: translate,
 	        d: '1 dzień',
 	        dd: '%d dni',
+	        w: 'tydzień',
+	        ww: translate,
 	        M: 'miesiąc',
 	        MM: translate,
 	        y: 'rok',
@@ -5846,6 +5861,7 @@
 	        mm: withoutSuffix ? 'минута_минуты_минут' : 'минуту_минуты_минут',
 	        hh: 'час_часа_часов',
 	        dd: 'день_дня_дней',
+	        ww: 'неделя_недели_недель',
 	        MM: 'месяц_месяца_месяцев',
 	        yy: 'год_года_лет'
 	      };
@@ -5962,6 +5978,8 @@
 	        hh: relativeTimeWithPlural,
 	        d: 'день',
 	        dd: relativeTimeWithPlural,
+	        w: 'неделя',
+	        ww: relativeTimeWithPlural,
 	        M: 'месяц',
 	        MM: relativeTimeWithPlural,
 	        y: 'год',
