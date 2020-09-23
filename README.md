@@ -100,8 +100,7 @@ import { Timeline } from "vis-timeline/peer";
 
 For this build to work you have to load Vis Data and Moment (including locales
 except English) packages yourself. The advantage here is that it works well with
-other packages. For more information see the following
-[example](https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html).
+other packages. For more information see the following [example](https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html).
 
 ### ESNext build
 
