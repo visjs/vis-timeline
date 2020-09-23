@@ -83,7 +83,7 @@ import { Timeline } from "vis-timeline/standalone";
 
 This has no dependencies and therefore is great for things like MWEs but has
 more issues with interoperability and bundle bloat. For more information see the
-following (example)[https://visjs.github.io/vis-timeline/examples/timeline/standalone-build.html].
+following [example](https://visjs.github.io/vis-timeline/examples/timeline/standalone-build.html).
 
 ### Peer build
 
