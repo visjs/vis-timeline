@@ -27,14 +27,19 @@
 
   // Create a DataSet (allows two way data-binding)
   var items = new vis.DataSet([
-    {id: 1, content: 'Unqualfied Dates', start: '2020-04-20', end: '2020-04-21'},
-    {id: 2, content: 'dttm 2pm + offset', start: '2020-04-20T14:01:00+10:00'},
-    {id: 3, content: 'midnight - offset', start: '2020-04-20T00:00:00'},
-    {id: 4, content: 'midnight + offset', start: '2020-04-20T00:00:00+00:00'}
+    {id: 1, content: "start: '2020-04-20', end: '2020-04-21'", start: '2020-04-20', end: '2020-04-21'},
+    {id: 2, content: 'dttm 2pm + offset <br> 2020-04-20T14:01:00+10:00', start: '2020-04-20T14:01:00+10:00', type:  "point"},
+    {id: 3, content: 'midnight - offset <br> 2020-04-20T00:00:00', start: '2020-04-20T00:00:00', type: "point"},
+    {id: 4, content: 'midnight + offset <br> 2020-04-20T00:00:00+00:00', start: '2020-04-20T00:00:00+00:00', type: "point"}
   ]);
 
   // Configuration for the Timeline
-  var options = {};
+  var options = {
+    // Display in AEST, +10:00, so others can reproduce
+    moment: function(date) {
+      return vis.moment(date).utcOffset('+10:00');
+    }
+  };
 
   // Create a Timeline
   var timeline = new vis.Timeline(container, items, options);
