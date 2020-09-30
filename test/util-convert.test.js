@@ -42,11 +42,15 @@ describe("util", function() {
     });
 
     it("converts to Date from Number", function() {
-      assert(util.convert(1198908717056, "Date") instanceof Date);
+      const d1 = util.convert(1198908717056, "Date");
+      assert(d1 instanceof Date);
+      assert(!isNaN(d1.valueOf()));
     });
 
-    it("converts to Date from String", function() {
-      assert(util.convert("1198908717056", "Date") instanceof Date);
+    it("converts to Date from epoch int stored as String", function() {
+      const d1 = util.convert("1198908717056", "Date");
+      assert(d1 instanceof Date);
+      assert(!isNaN(d1.valueOf()));
     });
 
     it("converting epoch int stored as String === epoch int stored as int", 
@@ -63,6 +67,10 @@ describe("util", function() {
 
       assert(dateISO instanceof Date);
       assert(dttmISO instanceof Date);
+
+      assert(!isNaN(dateISO.valueOf()));
+      assert(!isNaN(dttmISO.valueOf()));
+
       assert.strictEqual(dateISO.valueOf(),dttmISO.valueOf());
     });
 
