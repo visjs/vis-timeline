@@ -75,7 +75,7 @@ describe("util", function() {
         function() {
           util.convert({}, "Date");
         },
-        Error,
+        TypeError,
         null
       );
     });
@@ -103,7 +103,7 @@ describe("util", function() {
         function() {
           util.convert({}, "Moment");
         },
-        Error,
+        TypeError,
         null
       );
     });
