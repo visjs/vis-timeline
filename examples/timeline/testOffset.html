@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline | Basic demo</title>
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+    }
+  </style>
+
+  <script src="../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<p>
+  A basic timeline. You can move and zoom the timeline, and select items.
+</p>
+
+<div id="visualization"></div>
+
+<script type="text/javascript">
+  // DOM element where the Timeline will be attached
+  var container = document.getElementById('visualization');
+
+  // Create a DataSet (allows two way data-binding)
+  var items = new vis.DataSet([
+    {id: 1, content: 'Unqualfied Dates', start: '2020-04-20', end: '2020-04-21'},
+    {id: 2, content: 'dttm 2pm + offset', start: '2020-04-20T14:01:00+10:00'},
+    {id: 3, content: 'midnight - offset', start: '2020-04-20T00:00:00'},
+    {id: 4, content: 'midnight + offset', start: '2020-04-20T00:00:00+00:00'}
+  ]);
+
+  // Configuration for the Timeline
+  var options = {};
+
+  // Create a Timeline
+  var timeline = new vis.Timeline(container, items, options);
+</script>
+</body>
+</html>
