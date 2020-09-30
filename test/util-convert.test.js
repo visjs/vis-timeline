@@ -49,6 +49,23 @@ describe("util", function() {
       assert(util.convert("1198908717056", "Date") instanceof Date);
     });
 
+    it("converting epoch int stored as String === epoch int stored as int", 
+      function() {
+        const d1 = util.convert("1198908717056", "Date");
+        const d2 =  util.convert(1198908717056, "Date");
+        assert.strictEqual(d1.valueOf(), d2.valueOf());
+      }
+    );
+
+    it("converts ISO dates to midnight in local TZ", function() {
+      const dateISO = util.convert("2020-04-20", "Date");
+      const dttmISO = util.convert("2020-04-20T00:00:00", "Date");
+
+      assert(dateISO instanceof Date);
+      assert(dttmISO instanceof Date);
+      assert.strictEqual(dateISO.valueOf(),dttmISO.valueOf());
+    });
+
     it("converts to Date from Moment", function() {
       assert(util.convert(new moment(), "Date") instanceof Date);
     });
