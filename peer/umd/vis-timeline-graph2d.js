@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-04T16:14:28.716Z
+ * @date    2020-10-05T07:54:57.433Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5308,6 +5308,7 @@
 	// code from http://momentjs.com/
 
 	var ASPDateRegex$1 = /^\/?Date\((-?\d+)/i;
+	var NumericRegex = /^\d+$/;
 	/**
 	 * Convert an object into another type
 	 *
@@ -5359,27 +5360,14 @@
 	      return String(object);
 
 	    case "Date":
-	      if (isNumber(object)) {
-	        return new Date(object);
-	      }
-
-	      if (object instanceof Date) {
-	        return new Date(object.valueOf());
-	      } else if (moment__default['default'].isMoment(object)) {
-	        return new Date(object.valueOf());
-	      }
-
-	      if (isString(object)) {
-	        match = ASPDateRegex$1.exec(object);
-
-	        if (match) {
-	          // object is an ASP date
-	          return new Date(Number(match[1])); // parse number
+	      try {
+	        return convert(object, "Moment").toDate();
+	      } catch (e) {
+	        if (e instanceof TypeError) {
+	          throw new TypeError("Cannot convert object of type " + getType(object) + " to type " + type);
 	        } else {
-	          return moment__default['default'](new Date(object)).toDate(); // parse string
+	          throw e;
 	        }
-	      } else {
-	        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
 	      }
 
 	    case "Moment":
@@ -5399,11 +5387,17 @@
 	        if (match) {
 	          // object is an ASP date
 	          return moment__default['default'](Number(match[1])); // parse number
-	        } else {
-	          return moment__default['default'](object); // parse string
 	        }
+
+	        match = NumericRegex.exec(object);
+
+	        if (match) {
+	          return moment__default['default'](Number(object));
+	        }
+
+	        return moment__default['default'](object); // parse string
 	      } else {
-	        throw new Error("Cannot convert object of type " + getType(object) + " to type Date");
+	        throw new TypeError("Cannot convert object of type " + getType(object) + " to type " + type);
 	      }
 
 	    case "ISODate":
