@@ -186,8 +186,8 @@ describe('have the correct classname for', () => {
     pointItem.setParent(parent);
     pointItem.redraw();
     assert.equal(pointItem.editable.updateTime, true);
-    assert.equal(pointItem.editable.updateGroup, undefined);
-    assert.equal(pointItem.editable.remove, undefined);
+    assert.equal(pointItem.editable.updateGroup, true);
+    assert.equal(pointItem.editable.remove, true);
   });
 
   it('an editable: {updateTime} override item (with boolean option false)', () => {
@@ -196,8 +196,8 @@ describe('have the correct classname for', () => {
     pointItem.setParent(parent);
     pointItem.redraw();
     assert.equal(pointItem.editable.updateTime, true);
-    assert.equal(pointItem.editable.updateGroup, undefined);
-    assert.equal(pointItem.editable.remove, undefined);
+    assert.equal(pointItem.editable.updateGroup, false);
+    assert.equal(pointItem.editable.remove, false);
   });
 
   it('an editable: {updateGroup} override item (with boolean option)', () => {
@@ -205,9 +205,9 @@ describe('have the correct classname for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.editable.updateTime, undefined);
+    assert.equal(pointItem.editable.updateTime, true);
     assert.equal(pointItem.editable.updateGroup, true);
-    assert.equal(pointItem.editable.remove, undefined);
+    assert.equal(pointItem.editable.remove, true);
   });
 
 }); // have the correct classname for
@@ -220,9 +220,9 @@ describe('have the correct property for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.editable.updateTime, undefined);
+    assert.equal(pointItem.editable.updateTime, false);
     assert.equal(pointItem.editable.updateGroup, true);
-    assert.equal(pointItem.editable.remove, undefined);
+    assert.equal(pointItem.editable.remove, false);
   });
 
   it('an editable: {remove} override item (with boolean option)', () => {
@@ -230,8 +230,8 @@ describe('have the correct property for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.editable.updateTime, undefined);
-    assert.equal(pointItem.editable.updateGroup, undefined);
+    assert.equal(pointItem.editable.updateTime, true);
+    assert.equal(pointItem.editable.updateGroup, true);
     assert.equal(pointItem.editable.remove, true);
   });
 
@@ -240,8 +240,8 @@ describe('have the correct property for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.editable.updateTime, undefined);
-    assert.equal(pointItem.editable.updateGroup, undefined);
+    assert.equal(pointItem.editable.updateTime, false);
+    assert.equal(pointItem.editable.updateGroup, false);
     assert.equal(pointItem.editable.remove, true);
   });
 
@@ -251,7 +251,7 @@ describe('have the correct property for', () => {
     pointItem.setParent(parent);
     pointItem.redraw();
     assert.equal(pointItem.editable.updateTime, true);
-    assert.equal(pointItem.editable.updateGroup, undefined);
+    assert.equal(pointItem.editable.updateGroup, true);
     assert.equal(pointItem.editable.remove, true);
   });
 
@@ -261,7 +261,7 @@ describe('have the correct property for', () => {
     pointItem.setParent(parent);
     pointItem.redraw();
     assert.equal(pointItem.editable.updateTime, true);
-    assert.equal(pointItem.editable.updateGroup, undefined);
+    assert.equal(pointItem.editable.updateGroup, false);
     assert.equal(pointItem.editable.remove, true);
   });
 
