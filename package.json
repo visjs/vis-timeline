@@ -115,7 +115,7 @@
     "rollup-plugin-postcss": "2.9.0",
     "rollup-plugin-terser": "7.0.2",
     "rollup-plugin-typescript2": "0.27.3",
-    "semantic-release": "17.1.2",
+    "semantic-release": "17.2.0",
     "snap-shot-it": "7.9.3",
     "uglify-js": "3.11.2",
     "uglifycss": "0.0.29",
