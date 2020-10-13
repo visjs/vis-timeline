@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-13T18:29:07.251Z
+ * @date    2020-10-13T18:47:50.809Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5509,6 +5509,11 @@ function typeCoerceDataSet(rawDS) {
       var _rawDS$getDataSet4;
 
       return (_rawDS$getDataSet4 = rawDS.getDataSet()).updateOnly.apply(_rawDS$getDataSet4, arguments);
+    },
+    clear: function clear() {
+      var _rawDS$getDataSet5;
+
+      return (_rawDS$getDataSet5 = rawDS.getDataSet()).clear.apply(_rawDS$getDataSet5, arguments);
     },
     // Read only.
     forEach: bind$2(_context3 = forEach$2(coercedDS)).call(_context3, coercedDS),

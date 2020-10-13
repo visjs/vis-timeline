@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-13T18:29:07.251Z
+ * @date    2020-10-13T18:47:50.809Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -260,6 +260,7 @@
       remove: (...args) => rawDS.getDataSet().remove(...args),
       update: (...args) => rawDS.getDataSet().update(...args),
       updateOnly: (...args) => rawDS.getDataSet().updateOnly(...args),
+      clear : (...args) => rawDS.getDataSet().clear(...args),
 
       // Read only.
       forEach: coercedDS.forEach.bind(coercedDS),
