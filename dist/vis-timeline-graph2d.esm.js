@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-13T21:56:14.630Z
+ * @date    2020-10-13T23:03:17.159Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -14928,15 +14928,17 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
 
     return _this3;
   }
-  /**
-   * Set new options.
-   *
-   * @param options - The new options.
-   */
+  /** @inheritDoc */
 
 
   createClass(DataSet, [{
     key: "setOptions",
+
+    /**
+     * Set new options.
+     *
+     * @param options - The new options.
+     */
     value: function setOptions(options) {
       if (options && options.queue !== undefined) {
         if (options.queue === false) {
@@ -15939,6 +15941,11 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
         return new DataStream(defineProperty$6({}, iterator$4, bind$2(_context27 = entries$2(__classPrivateFieldGet(this, _data))).call(_context27, __classPrivateFieldGet(this, _data))));
       }
     }
+  }, {
+    key: "idProp",
+    get: function get() {
+      return __classPrivateFieldGet(this, _idProp);
+    }
   }]);
 
   return DataSet;
@@ -16034,24 +16041,26 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
     _this7.setData(data);
 
     return _this7;
-  } // TODO: implement a function .config() to dynamically update things like configured filter
-  // and trigger changes accordingly
-
-  /**
-   * Set a data source for the view.
-   *
-   * @param data - The instance containing data (directly or indirectly).
-   *
-   * @remarks
-   * Note that when the data view is bound to a data set it won't be garbage
-   * collected unless the data set is too. Use `dataView.setData(null)` or
-   * `dataView.dispose()` to enable garbage collection before you lose the last
-   * reference.
-   */
+  }
+  /** @inheritDoc */
 
 
   createClass(DataView, [{
     key: "setData",
+    // TODO: implement a function .config() to dynamically update things like configured filter
+    // and trigger changes accordingly
+
+    /**
+     * Set a data source for the view.
+     *
+     * @param data - The instance containing data (directly or indirectly).
+     *
+     * @remarks
+     * Note that when the data view is bound to a data set it won't be garbage
+     * collected unless the data set is too. Use `dataView.setData(null)` or
+     * `dataView.dispose()` to enable garbage collection before you lose the last
+     * reference.
+     */
     value: function setData(data) {
       if (__classPrivateFieldGet(this, _data$1)) {
         // unsubscribe from current dataset
@@ -16473,6 +16482,11 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
           oldData: removedItems
         }, senderId);
       }
+    }
+  }, {
+    key: "idProp",
+    get: function get() {
+      return this.getDataSet().idProp;
     }
   }]);
 
