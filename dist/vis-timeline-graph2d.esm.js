@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-14T19:33:51.380Z
+ * @date    2020-10-14T19:44:05.316Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -22908,7 +22908,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
       showMajorLabels: true,
       showWeekScale: false,
       maxMinorChars: 7,
-      format: TimeStep.FORMAT,
+      format: util$1.extend({}, TimeStep.FORMAT),
       moment: moment$1,
       timeAxis: null
     };
