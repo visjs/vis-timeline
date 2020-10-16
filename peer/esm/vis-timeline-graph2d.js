@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-16T04:45:22.984Z
+ * @date    2020-10-16T06:04:46.685Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,7 +25,7 @@
  */
 
 import moment$3 from 'moment';
-import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/peer/esm/vis-data.js';
+import { DataSet, createNewDataPipeFrom, isDataViewLike, DataView } from 'vis-data/peer/esm/vis-data.js';
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -22074,10 +22074,10 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (!items) {
         this.itemsData = null;
-      } else if (items instanceof DataSet || items instanceof DataView) {
+      } else if (isDataViewLike("id", items)) {
         this.itemsData = typeCoerceDataSet(items);
       } else {
-        throw new TypeError('Data must be an instance of DataSet or DataView');
+        throw new TypeError('Data must implement the interface of DataSet or DataView');
       }
 
       if (oldItemsData) {
@@ -22152,21 +22152,17 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (!groups) {
         this.groupsData = null;
-      } else if (groups instanceof DataSet || groups instanceof DataView) {
+      } else if (isDataViewLike("id", groups)) {
         this.groupsData = groups;
       } else {
-        throw new TypeError('Data must be an instance of DataSet or DataView');
+        throw new TypeError('Data must implement the interface of DataSet or DataView');
       }
 
       if (this.groupsData) {
         var _context24;
 
         // go over all groups nesting
-        var groupsData = this.groupsData;
-
-        if (this.groupsData instanceof DataView) {
-          groupsData = this.groupsData.getDataSet();
-        }
+        var groupsData = this.groupsData.getDataSet();
 
         forEach$2(_context24 = groupsData.get()).call(_context24, function (group) {
           if (group.nestedGroups) {
@@ -23198,12 +23194,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
     value: function _onGroupDrag(event) {
       if (this.options.groupEditable.order && this.groupTouchParams.group) {
         event.stopPropagation();
-        var groupsData = this.groupsData;
-
-        if (this.groupsData instanceof DataView) {
-          groupsData = this.groupsData.getDataSet();
-        } // drag from one group to another
-
+        var groupsData = this.groupsData.getDataSet(); // drag from one group to another
 
         var group = this.groupFromTarget(event); // try to avoid toggling when groups differ in height
 
@@ -26790,7 +26781,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
     } // if the third element is options, the forth is groups (optionally);
 
 
-    if (!(isArray$3(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+    if (!(isArray$3(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
       var forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -27124,7 +27115,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
       if (!items) {
         newDataSet = null;
-      } else if (items instanceof DataSet || items instanceof DataView) {
+      } else if (isDataViewLike("id", items)) {
         newDataSet = typeCoerceDataSet(items);
       } else {
         // turn an array into a dataset
@@ -27158,7 +27149,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
           return group.visible !== false;
         };
 
-        if (groups instanceof DataSet || groups instanceof DataView) {
+        if (isDataViewLike("id", groups)) {
           newDataSet = new DataView(groups, {
             filter: filter
           });
@@ -27179,7 +27170,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
       // future it will be necessary to rework this!!!!
 
 
-      if (this.groupsData instanceof DataView) {
+      if (this.groupsData != null && typeof this.groupsData.setData === "function") {
         this.groupsData.setData(null);
       }
 
@@ -30306,10 +30297,10 @@ LineGraph.prototype.setItems = function (items) {
 
   if (!items) {
     this.itemsData = null;
-  } else if (items instanceof DataSet || items instanceof DataView) {
+  } else if (isDataViewLike("id", items)) {
     this.itemsData = typeCoerceDataSet(items);
   } else {
-    throw new TypeError('Data must be an instance of DataSet or DataView');
+    throw new TypeError('Data must implement the interface of DataSet or DataView');
   }
 
   if (oldItemsData) {
@@ -30367,10 +30358,10 @@ LineGraph.prototype.setGroups = function (groups) {
 
   if (!groups) {
     this.groupsData = null;
-  } else if (groups instanceof DataSet || groups instanceof DataView) {
+  } else if (isDataViewLike("id", groups)) {
     this.groupsData = groups;
   } else {
-    throw new TypeError('Data must be an instance of DataSet or DataView');
+    throw new TypeError('Data must implement the interface of DataSet or DataView');
   }
 
   if (this.groupsData) {
@@ -31871,7 +31862,7 @@ function Graph2d(container, items, groups, options) {
   var _context, _context2, _context3, _context4, _context5, _context6, _context7;
 
   // if the third element is options, the forth is groups (optionally);
-  if (!(isArray$3(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+  if (!(isArray$3(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -32040,7 +32031,7 @@ Graph2d.prototype.setItems = function (items) {
 
   if (!items) {
     newDataSet = null;
-  } else if (items instanceof DataSet || items instanceof DataView) {
+  } else if (isDataViewLike("id", newDataSet)) {
     newDataSet = typeCoerceDataSet(items);
   } else {
     // turn an array into a dataset
@@ -32082,7 +32073,7 @@ Graph2d.prototype.setGroups = function (groups) {
 
   if (!groups) {
     newDataSet = null;
-  } else if (groups instanceof DataSet || groups instanceof DataView) {
+  } else if (isDataViewLike("id", groups)) {
     newDataSet = groups;
   } else {
     // turn an array into a dataset

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-16T04:45:22.984Z
+ * @date    2020-10-16T06:04:46.685Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -27,7 +27,7 @@
 import moment$3 from 'moment';
 import * as util$1 from 'vis-util/esnext/esm/vis-util.js';
 import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
-import { DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext/esm/vis-data.js';
+import { DataSet, createNewDataPipeFrom, isDataViewLike, DataView } from 'vis-data/esnext/esm/vis-data.js';
 import Emitter from 'component-emitter';
 import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
@@ -10802,11 +10802,11 @@ class ItemSet extends Component {
     if (!items) {
       this.itemsData = null;
     }
-    else if (items instanceof DataSet || items instanceof DataView) {
+    else if (isDataViewLike("id", items)) {
       this.itemsData = typeCoerceDataSet(items);
     }
     else {
-      throw new TypeError('Data must be an instance of DataSet or DataView');
+      throw new TypeError('Data must implement the interface of DataSet or DataView');
     }
 
     if (oldItemsData) {
@@ -10873,19 +10873,16 @@ class ItemSet extends Component {
     if (!groups) {
       this.groupsData = null;
     }
-    else if (groups instanceof DataSet || groups instanceof DataView) {
+    else if (isDataViewLike("id", groups)) {
       this.groupsData = groups;
     }
     else {
-      throw new TypeError('Data must be an instance of DataSet or DataView');
+      throw new TypeError('Data must implement the interface of DataSet or DataView');
     }
 
     if (this.groupsData) {
       // go over all groups nesting
-      let groupsData = this.groupsData;
-      if (this.groupsData instanceof DataView) {
-        groupsData = this.groupsData.getDataSet();
-      }
+      const groupsData = this.groupsData.getDataSet();
 
       groupsData.get().forEach(group => {
         if (group.nestedGroups) {
@@ -11814,10 +11811,7 @@ class ItemSet extends Component {
       if (this.options.groupEditable.order && this.groupTouchParams.group) {
           event.stopPropagation();
           
-      let groupsData = this.groupsData;
-      if (this.groupsData instanceof DataView) {
-        groupsData = this.groupsData.getDataSet();
-      }
+      const groupsData = this.groupsData.getDataSet();
           // drag from one group to another
           const group = this.groupFromTarget(event);
           
@@ -14517,7 +14511,7 @@ class Timeline extends Core {
     }
 
     // if the third element is options, the forth is groups (optionally);
-    if (!(Array.isArray(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+    if (!(Array.isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
       const forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -14796,7 +14790,7 @@ class Timeline extends Core {
     if (!items) {
       newDataSet = null;
     }
-    else if (items instanceof DataSet || items instanceof DataView) {
+    else if (isDataViewLike("id", items)) {
       newDataSet = typeCoerceDataSet(items);
     }
     else {
@@ -14825,7 +14819,7 @@ class Timeline extends Core {
     }
     else {
       const filter = group => group.visible !== false;
-      if (groups instanceof DataSet || groups instanceof DataView) {
+      if (isDataViewLike("id", groups)) {
         newDataSet = new DataView(groups,{filter});
       }
       else {
@@ -14845,7 +14839,7 @@ class Timeline extends Core {
     // method. Even if the original is a DataView already a new one has been
     // created and assigned to `this.groupsData`. In case this changes in the
     // future it will be necessary to rework this!!!!
-    if (this.groupsData instanceof DataView) {
+    if (this.groupsData != null && typeof this.groupsData.setData === "function") {
       this.groupsData.setData(null);
     }
     this.groupsData = newDataSet;
@@ -17770,11 +17764,11 @@ LineGraph.prototype.setItems = function (items) {
   if (!items) {
     this.itemsData = null;
   }
-  else if (items instanceof DataSet || items instanceof DataView) {
+  else if (isDataViewLike("id", items)) {
     this.itemsData = typeCoerceDataSet(items);
   }
   else {
-    throw new TypeError('Data must be an instance of DataSet or DataView');
+    throw new TypeError('Data must implement the interface of DataSet or DataView');
   }
 
   if (oldItemsData) {
@@ -17831,11 +17825,11 @@ LineGraph.prototype.setGroups = function (groups) {
   if (!groups) {
     this.groupsData = null;
   }
-  else if (groups instanceof DataSet || groups instanceof DataView) {
+  else if (isDataViewLike("id", groups)) {
     this.groupsData = groups;
   }
   else {
-    throw new TypeError('Data must be an instance of DataSet or DataView');
+    throw new TypeError('Data must implement the interface of DataSet or DataView');
   }
 
   if (this.groupsData) {
@@ -18917,7 +18911,7 @@ let configureOptions$1 = {
  */
 function Graph2d (container, items, groups, options) {
   // if the third element is options, the forth is groups (optionally);
-  if (!(Array.isArray(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+  if (!(Array.isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -19089,7 +19083,7 @@ Graph2d.prototype.setItems = function(items) {
   if (!items) {
     newDataSet = null;
   }
-  else if (items instanceof DataSet || items instanceof DataView) {
+  else if (isDataViewLike("id", newDataSet)) {
     newDataSet = typeCoerceDataSet(items);
   }
   else {
@@ -19127,7 +19121,7 @@ Graph2d.prototype.setGroups = function(groups) {
   if (!groups) {
     newDataSet = null;
   }
-  else if (groups instanceof DataSet || groups instanceof DataView) {
+  else if (isDataViewLike("id", groups)) {
     newDataSet = groups;
   }
   else {

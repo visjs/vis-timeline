@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-16T04:45:22.984Z
+ * @date    2020-10-16T06:04:46.685Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -16501,6 +16501,31 @@
 	}(DataSetPart);
 
 	_listener = new weakMap$2(), _data$1 = new weakMap$2(), _ids = new weakMap$2(), _options$1 = new weakMap$2();
+	/**
+	 * Check that given value is compatible with Vis Data Set interface.
+	 *
+	 * @param idProp - The expected property to contain item id.
+	 * @param v - The value to be tested.
+	 *
+	 * @returns True if all expected values and methods match, false otherwise.
+	 */
+
+	function isDataSetLike(idProp, v) {
+	  return _typeof_1(v) === "object" && v !== null && idProp === v.idProp && typeof v.add === "function" && typeof v.clear === "function" && typeof v.distinct === "function" && typeof forEach$2(v) === "function" && typeof v.get === "function" && typeof v.getDataSet === "function" && typeof v.getIds === "function" && typeof v.length === "number" && typeof map$2(v) === "function" && typeof v.max === "function" && typeof v.min === "function" && typeof v.off === "function" && typeof v.on === "function" && typeof v.remove === "function" && typeof v.setOptions === "function" && typeof v.stream === "function" && typeof v.update === "function" && typeof v.updateOnly === "function";
+	}
+	/**
+	 * Check that given value is compatible with Vis Data View interface.
+	 *
+	 * @param idProp - The expected property to contain item id.
+	 * @param v - The value to be tested.
+	 *
+	 * @returns True if all expected values and methods match, false otherwise.
+	 */
+
+
+	function isDataViewLike(idProp, v) {
+	  return _typeof_1(v) === "object" && v !== null && idProp === v.idProp && typeof forEach$2(v) === "function" && typeof v.get === "function" && typeof v.getDataSet === "function" && typeof v.getIds === "function" && typeof v.length === "number" && typeof map$2(v) === "function" && typeof v.off === "function" && typeof v.on === "function" && typeof v.stream === "function" && isDataSetLike(idProp, v.getDataSet());
+	}
 
 	// use this instance. Else, load via commonjs.
 	//
@@ -32687,10 +32712,10 @@
 
 	      if (!items) {
 	        this.itemsData = null;
-	      } else if (items instanceof DataSet || items instanceof DataView) {
+	      } else if (isDataViewLike("id", items)) {
 	        this.itemsData = typeCoerceDataSet(items);
 	      } else {
-	        throw new TypeError('Data must be an instance of DataSet or DataView');
+	        throw new TypeError('Data must implement the interface of DataSet or DataView');
 	      }
 
 	      if (oldItemsData) {
@@ -32765,21 +32790,17 @@
 
 	      if (!groups) {
 	        this.groupsData = null;
-	      } else if (groups instanceof DataSet || groups instanceof DataView) {
+	      } else if (isDataViewLike("id", groups)) {
 	        this.groupsData = groups;
 	      } else {
-	        throw new TypeError('Data must be an instance of DataSet or DataView');
+	        throw new TypeError('Data must implement the interface of DataSet or DataView');
 	      }
 
 	      if (this.groupsData) {
 	        var _context24;
 
 	        // go over all groups nesting
-	        var groupsData = this.groupsData;
-
-	        if (this.groupsData instanceof DataView) {
-	          groupsData = this.groupsData.getDataSet();
-	        }
+	        var groupsData = this.groupsData.getDataSet();
 
 	        forEach$2(_context24 = groupsData.get()).call(_context24, function (group) {
 	          if (group.nestedGroups) {
@@ -33811,12 +33832,7 @@
 	    value: function _onGroupDrag(event) {
 	      if (this.options.groupEditable.order && this.groupTouchParams.group) {
 	        event.stopPropagation();
-	        var groupsData = this.groupsData;
-
-	        if (this.groupsData instanceof DataView) {
-	          groupsData = this.groupsData.getDataSet();
-	        } // drag from one group to another
-
+	        var groupsData = this.groupsData.getDataSet(); // drag from one group to another
 
 	        var group = this.groupFromTarget(event); // try to avoid toggling when groups differ in height
 
@@ -37406,7 +37422,7 @@
 	    } // if the third element is options, the forth is groups (optionally);
 
 
-	    if (!(isArray$5(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+	    if (!(isArray$5(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
 	      var forthArgument = options;
 	      options = groups;
 	      groups = forthArgument;
@@ -37740,7 +37756,7 @@
 
 	      if (!items) {
 	        newDataSet = null;
-	      } else if (items instanceof DataSet || items instanceof DataView) {
+	      } else if (isDataViewLike("id", items)) {
 	        newDataSet = typeCoerceDataSet(items);
 	      } else {
 	        // turn an array into a dataset
@@ -37774,7 +37790,7 @@
 	          return group.visible !== false;
 	        };
 
-	        if (groups instanceof DataSet || groups instanceof DataView) {
+	        if (isDataViewLike("id", groups)) {
 	          newDataSet = new DataView(groups, {
 	            filter: filter
 	          });
@@ -37795,7 +37811,7 @@
 	      // future it will be necessary to rework this!!!!
 
 
-	      if (this.groupsData instanceof DataView) {
+	      if (this.groupsData != null && typeof this.groupsData.setData === "function") {
 	        this.groupsData.setData(null);
 	      }
 
@@ -40679,10 +40695,10 @@
 
 	  if (!items) {
 	    this.itemsData = null;
-	  } else if (items instanceof DataSet || items instanceof DataView) {
+	  } else if (isDataViewLike("id", items)) {
 	    this.itemsData = typeCoerceDataSet(items);
 	  } else {
-	    throw new TypeError('Data must be an instance of DataSet or DataView');
+	    throw new TypeError('Data must implement the interface of DataSet or DataView');
 	  }
 
 	  if (oldItemsData) {
@@ -40740,10 +40756,10 @@
 
 	  if (!groups) {
 	    this.groupsData = null;
-	  } else if (groups instanceof DataSet || groups instanceof DataView) {
+	  } else if (isDataViewLike("id", groups)) {
 	    this.groupsData = groups;
 	  } else {
-	    throw new TypeError('Data must be an instance of DataSet or DataView');
+	    throw new TypeError('Data must implement the interface of DataSet or DataView');
 	  }
 
 	  if (this.groupsData) {
@@ -42244,7 +42260,7 @@
 	  var _context, _context2, _context3, _context4, _context5, _context6, _context7;
 
 	  // if the third element is options, the forth is groups (optionally);
-	  if (!(isArray$5(groups) || groups instanceof DataSet || groups instanceof DataView) && groups instanceof Object) {
+	  if (!(isArray$5(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
 	    var forthArgument = options;
 	    options = groups;
 	    groups = forthArgument;
@@ -42413,7 +42429,7 @@
 
 	  if (!items) {
 	    newDataSet = null;
-	  } else if (items instanceof DataSet || items instanceof DataView) {
+	  } else if (isDataViewLike("id", newDataSet)) {
 	    newDataSet = typeCoerceDataSet(items);
 	  } else {
 	    // turn an array into a dataset
@@ -42455,7 +42471,7 @@
 
 	  if (!groups) {
 	    newDataSet = null;
-	  } else if (groups instanceof DataSet || groups instanceof DataView) {
+	  } else if (isDataViewLike("id", groups)) {
 	    newDataSet = groups;
 	  } else {
 	    // turn an array into a dataset
