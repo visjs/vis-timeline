@@ -42,11 +42,36 @@ describe("util", function() {
     });
 
     it("converts to Date from Number", function() {
-      assert(util.convert(1198908717056, "Date") instanceof Date);
+      const d1 = util.convert(1198908717056, "Date");
+      assert(d1 instanceof Date);
+      assert(!isNaN(d1.valueOf()));
     });
 
-    it("converts to Date from String", function() {
-      assert(util.convert("1198908717056", "Date") instanceof Date);
+    it("converts to Date from epoch int stored as String", function() {
+      const d1 = util.convert("1198908717056", "Date");
+      assert(d1 instanceof Date);
+      assert(!isNaN(d1.valueOf()));
+    });
+
+    it("converting epoch int stored as String === epoch int stored as int", 
+      function() {
+        const d1 = util.convert("1198908717056", "Date");
+        const d2 =  util.convert(1198908717056, "Date");
+        assert.strictEqual(d1.valueOf(), d2.valueOf());
+      }
+    );
+
+    it("converts ISO dates to midnight in local TZ", function() {
+      const dateISO = util.convert("2020-04-20", "Date");
+      const dttmISO = util.convert("2020-04-20T00:00:00", "Date");
+
+      assert(dateISO instanceof Date);
+      assert(dttmISO instanceof Date);
+
+      assert(!isNaN(dateISO.valueOf()));
+      assert(!isNaN(dttmISO.valueOf()));
+
+      assert.strictEqual(dateISO.valueOf(),dttmISO.valueOf());
     });
 
     it("converts to Date from Moment", function() {
@@ -58,7 +83,7 @@ describe("util", function() {
         function() {
           util.convert({}, "Date");
         },
-        Error,
+        TypeError,
         null
       );
     });
@@ -86,7 +111,7 @@ describe("util", function() {
         function() {
           util.convert({}, "Moment");
         },
-        Error,
+        TypeError,
         null
       );
     });
