@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-24T04:19:59.566Z
+ * @date    2020-10-24T08:23:29.274Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1335,77 +1335,6 @@ var forEach$2 = forEach_1;
 
 var engineUserAgent = getBuiltIn('navigator', 'userAgent') || '';
 
-var process = global_1.process;
-var versions = process && process.versions;
-var v8 = versions && versions.v8;
-var match, version;
-
-if (v8) {
-  match = v8.split('.');
-  version = match[0] + match[1];
-} else if (engineUserAgent) {
-  match = engineUserAgent.match(/Edge\/(\d+)/);
-
-  if (!match || match[1] >= 74) {
-    match = engineUserAgent.match(/Chrome\/(\d+)/);
-    if (match) version = match[1];
-  }
-}
-
-var engineV8Version = version && +version;
-
-var SPECIES$1 = wellKnownSymbol('species');
-
-var arrayMethodHasSpeciesSupport = function (METHOD_NAME) {
-  // We can't use this feature detection in V8 since it causes
-  // deoptimization and serious performance degradation
-  // https://github.com/zloirock/core-js/issues/677
-  return engineV8Version >= 51 || !fails(function () {
-    var array = [];
-    var constructor = array.constructor = {};
-
-    constructor[SPECIES$1] = function () {
-      return {
-        foo: 1
-      };
-    };
-
-    return array[METHOD_NAME](Boolean).foo !== 1;
-  });
-};
-
-var $filter = arrayIteration.filter;
-var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter'); // Edge 14- issue
-
-var USES_TO_LENGTH$1 = arrayMethodUsesToLength('filter'); // `Array.prototype.filter` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.filter
-// with adding support of @@species
-
-_export({
-  target: 'Array',
-  proto: true,
-  forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH$1
-}, {
-  filter: function filter(callbackfn
-  /* , thisArg */
-  ) {
-    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-var filter = entryVirtual('Array').filter;
-
-var ArrayPrototype$1 = Array.prototype;
-
-var filter_1 = function (it) {
-  var own = it.filter;
-  return it === ArrayPrototype$1 || it instanceof Array && own === ArrayPrototype$1.filter ? filter : own;
-};
-
-var filter$1 = filter_1;
-
-var filter$2 = filter$1;
-
 var slice$1 = [].slice;
 var MSIE = /MSIE .\./.test(engineUserAgent); // <- dirty ie9- check
 
@@ -1683,6 +1612,45 @@ var iterator$2 = iterator$1;
 var createProperty = function (object, key, value) {
   var propertyKey = toPrimitive(key);
   if (propertyKey in object) objectDefineProperty.f(object, propertyKey, createPropertyDescriptor(0, value));else object[propertyKey] = value;
+};
+
+var process = global_1.process;
+var versions = process && process.versions;
+var v8 = versions && versions.v8;
+var match, version;
+
+if (v8) {
+  match = v8.split('.');
+  version = match[0] + match[1];
+} else if (engineUserAgent) {
+  match = engineUserAgent.match(/Edge\/(\d+)/);
+
+  if (!match || match[1] >= 74) {
+    match = engineUserAgent.match(/Chrome\/(\d+)/);
+    if (match) version = match[1];
+  }
+}
+
+var engineV8Version = version && +version;
+
+var SPECIES$1 = wellKnownSymbol('species');
+
+var arrayMethodHasSpeciesSupport = function (METHOD_NAME) {
+  // We can't use this feature detection in V8 since it causes
+  // deoptimization and serious performance degradation
+  // https://github.com/zloirock/core-js/issues/677
+  return engineV8Version >= 51 || !fails(function () {
+    var array = [];
+    var constructor = array.constructor = {};
+
+    constructor[SPECIES$1] = function () {
+      return {
+        foo: 1
+      };
+    };
+
+    return array[METHOD_NAME](Boolean).foo !== 1;
+  });
 };
 
 var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
@@ -2335,6 +2303,38 @@ var getOwnPropertyDescriptor_1 = createCommonjsModule(function (module) {
 var getOwnPropertyDescriptor$2 = getOwnPropertyDescriptor_1;
 
 var getOwnPropertyDescriptor$3 = getOwnPropertyDescriptor$2;
+
+var $filter = arrayIteration.filter;
+var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('filter'); // Edge 14- issue
+
+var USES_TO_LENGTH$1 = arrayMethodUsesToLength('filter'); // `Array.prototype.filter` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.filter
+// with adding support of @@species
+
+_export({
+  target: 'Array',
+  proto: true,
+  forced: !HAS_SPECIES_SUPPORT || !USES_TO_LENGTH$1
+}, {
+  filter: function filter(callbackfn
+  /* , thisArg */
+  ) {
+    return $filter(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+var filter = entryVirtual('Array').filter;
+
+var ArrayPrototype$1 = Array.prototype;
+
+var filter_1 = function (it) {
+  var own = it.filter;
+  return it === ArrayPrototype$1 || it instanceof Array && own === ArrayPrototype$1.filter ? filter : own;
+};
+
+var filter$1 = filter_1;
+
+var filter$2 = filter$1;
 
 var getOwnPropertySymbols = path.Object.getOwnPropertySymbols;
 
@@ -27142,21 +27142,18 @@ var Timeline = /*#__PURE__*/function (_Core) {
       // convert to type DataSet when needed
       var newDataSet;
 
+      var filter = function filter(group) {
+        return group.visible !== false;
+      };
+
       if (!groups) {
         newDataSet = null;
       } else {
-        var filter = function filter(group) {
-          return group.visible !== false;
-        };
-
-        if (isDataViewLike("id", groups)) {
-          newDataSet = new DataView(groups, {
-            filter: filter
-          });
-        } else {
-          // turn an array into a dataset
-          newDataSet = new DataSet(filter$2(groups).call(groups, filter));
-        }
+        // If groups is array, turn to DataSet & build dataview from that
+        if (groups instanceof Array) groups = new DataSet(groups);
+        newDataSet = new DataView(groups, {
+          filter: filter
+        });
       } // This looks weird but it's necessary to prevent memory leaks.
       //
       // The problem is that the DataView will exist as long as the DataSet it's

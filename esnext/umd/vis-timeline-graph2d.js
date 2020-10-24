@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-24T04:19:59.566Z
+ * @date    2020-10-24T08:23:29.274Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -14838,18 +14838,16 @@
     setGroups(groups) {
       // convert to type DataSet when needed
       let newDataSet;
+      const filter = group => group.visible !== false;
+      
       if (!groups) {
         newDataSet = null;
       }
       else {
-        const filter = group => group.visible !== false;
-        if (esnext.isDataViewLike("id", groups)) {
-          newDataSet = new esnext.DataView(groups,{filter});
-        }
-        else {
-          // turn an array into a dataset
-          newDataSet = new esnext.DataSet(groups.filter(filter));
-        }
+        // If groups is array, turn to DataSet & build dataview from that
+        if (groups instanceof Array) groups = new esnext.DataSet(groups);
+        
+        newDataSet = new esnext.DataView(groups,{filter});
       }
 
       // This looks weird but it's necessary to prevent memory leaks.
