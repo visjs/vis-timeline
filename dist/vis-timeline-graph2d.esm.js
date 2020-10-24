@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-24T08:24:44.431Z
+ * @date    2020-10-24T09:46:18.781Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -36479,7 +36479,7 @@ var Configurator = /*#__PURE__*/function () {
 
         if (typeof options === 'string') {
           this.options.filter = options;
-        } else if (options instanceof Array) {
+        } else if (isArray$5(options)) {
           this.options.filter = options.join();
         } else if (_typeof_1(options) === 'object') {
           if (options == null) {
@@ -37122,7 +37122,7 @@ var Configurator = /*#__PURE__*/function () {
             show = filter(subObj, path); // if needed we must go deeper into the object.
 
             if (show === false) {
-              if (!(item instanceof Array) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
+              if (!isArray$5(item) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
                 this.allowCreation = false;
                 show = this._handleObject(item, newPath, true);
                 this.allowCreation = checkOnly === false;
@@ -37135,7 +37135,7 @@ var Configurator = /*#__PURE__*/function () {
 
             var value = this._getValue(newPath);
 
-            if (item instanceof Array) {
+            if (isArray$5(item)) {
               this._handleArray(item, value, newPath);
             } else if (typeof item === 'string') {
               this._makeTextInput(item, value, newPath);
@@ -37713,7 +37713,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
         newDataSet = null;
       } else {
         // If groups is array, turn to DataSet & build dataview from that
-        if (groups instanceof Array) groups = new DataSet(groups);
+        if (isArray$5(groups)) groups = new DataSet(groups);
         newDataSet = new DataView(groups, {
           filter: filter
         });

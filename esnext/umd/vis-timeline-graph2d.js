@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-10-24T08:23:29.274Z
+ * @date    2020-10-24T09:45:09.621Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -13834,7 +13834,7 @@
         if (typeof options === 'string') {
           this.options.filter = options;
         }
-        else if (options instanceof Array) {
+        else if (Array.isArray(options)) {
           this.options.filter = options.join();
         }
         else if (typeof options === 'object') {
@@ -14359,7 +14359,7 @@
 
             // if needed we must go deeper into the object.
             if (show === false) {
-              if (!(item instanceof Array) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
+              if (!Array.isArray(item) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
                 this.allowCreation = false;
                 show = this._handleObject(item, newPath, true);
                 this.allowCreation = checkOnly === false;
@@ -14371,7 +14371,7 @@
             visibleInSet = true;
             let value = this._getValue(newPath);
 
-            if (item instanceof Array) {
+            if (Array.isArray(item)) {
               this._handleArray(item, value, newPath);
             }
             else if (typeof item === 'string') {
@@ -14845,7 +14845,7 @@
       }
       else {
         // If groups is array, turn to DataSet & build dataview from that
-        if (groups instanceof Array) groups = new esnext.DataSet(groups);
+        if (Array.isArray(groups)) groups = new esnext.DataSet(groups);
         
         newDataSet = new esnext.DataView(groups,{filter});
       }
