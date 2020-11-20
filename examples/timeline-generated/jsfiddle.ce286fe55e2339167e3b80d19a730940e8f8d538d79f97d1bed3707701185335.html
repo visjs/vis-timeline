@@ -99,20 +99,20 @@ function getTimelineData() {
   const itemsInClusterCount = $("#orders-per-day-slider").slider("value");
 
   const before = [
-    Array.from(new Array(Math.round(totalDaysCount / 2)), function (
-      val,
-      index
-    ) {
-      return index - totalDaysCount + 1;
-    }),
+    Array.from(
+      new Array(Math.round(totalDaysCount / 2)),
+      function (val, index) {
+        return index - totalDaysCount + 1;
+      }
+    ),
   ];
   const after = [
-    Array.from(new Array(Math.round(totalDaysCount / 2)), function (
-      val,
-      index
-    ) {
-      return index + 1;
-    }),
+    Array.from(
+      new Array(Math.round(totalDaysCount / 2)),
+      function (val, index) {
+        return index + 1;
+      }
+    ),
   ];
 
   for (var i in before) {

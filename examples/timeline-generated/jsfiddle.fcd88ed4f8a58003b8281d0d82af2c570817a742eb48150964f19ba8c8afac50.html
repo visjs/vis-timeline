@@ -108,16 +108,19 @@ var options = {
   },
 
   onUpdate: function (item, callback) {
-    prettyPrompt("Update item", "Edit items text:", item.content, function (
-      value
-    ) {
-      if (value) {
-        item.content = value;
-        callback(item); // send back adjusted item
-      } else {
-        callback(null); // cancel updating the item
+    prettyPrompt(
+      "Update item",
+      "Edit items text:",
+      item.content,
+      function (value) {
+        if (value) {
+          item.content = value;
+          callback(item); // send back adjusted item
+        } else {
+          callback(null); // cancel updating the item
+        }
       }
-    });
+    );
   },
 
   onRemove: function (item, callback) {
