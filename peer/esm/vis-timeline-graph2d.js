@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-11-25T19:48:41.773Z
+ * @date    2020-11-25T22:33:05.223Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -489,7 +489,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.7.0',
+    version: '3.8.0',
     mode:  'pure' ,
     copyright: '© 2020 Denis Pushkarev (zloirock.ru)'
   });
@@ -1183,7 +1183,7 @@ var arraySpeciesCreate = function (originalArray, length) {
   return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
 };
 
-var push = [].push; // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex }` methods implementation
+var push = [].push; // `Array.prototype.{ forEach, map, filter, some, every, find, findIndex, filterOut }` methods implementation
 
 var createMethod$1 = function (TYPE) {
   var IS_MAP = TYPE == 1;
@@ -1191,6 +1191,7 @@ var createMethod$1 = function (TYPE) {
   var IS_SOME = TYPE == 3;
   var IS_EVERY = TYPE == 4;
   var IS_FIND_INDEX = TYPE == 6;
+  var IS_FILTER_OUT = TYPE == 7;
   var NO_HOLES = TYPE == 5 || IS_FIND_INDEX;
   return function ($this, callbackfn, that, specificCreate) {
     var O = toObject($this);
@@ -1199,7 +1200,7 @@ var createMethod$1 = function (TYPE) {
     var length = toLength(self.length);
     var index = 0;
     var create = specificCreate || arraySpeciesCreate;
-    var target = IS_MAP ? create($this, length) : IS_FILTER ? create($this, 0) : undefined;
+    var target = IS_MAP ? create($this, length) : IS_FILTER || IS_FILTER_OUT ? create($this, 0) : undefined;
     var value, result;
 
     for (; length > index; index++) if (NO_HOLES || index in self) {
@@ -1224,7 +1225,15 @@ var createMethod$1 = function (TYPE) {
             case 2:
               push.call(target, value);
             // filter
-          } else if (IS_EVERY) return false; // every
+          } else switch (TYPE) {
+            case 4:
+              return false;
+            // every
+
+            case 7:
+              push.call(target, value);
+            // filterOut
+          }
       }
     }
 
@@ -1253,7 +1262,10 @@ var arrayIteration = {
   find: createMethod$1(5),
   // `Array.prototype.findIndex` method
   // https://tc39.github.io/ecma262/#sec-array.prototype.findIndex
-  findIndex: createMethod$1(6)
+  findIndex: createMethod$1(6),
+  // `Array.prototype.filterOut` method
+  // https://github.com/tc39/proposal-array-filtering
+  filterOut: createMethod$1(7)
 };
 
 var arrayMethodIsStrict = function (METHOD_NAME, argument) {
