@@ -122,7 +122,8 @@
     "uuid": "7.0.3",
     "vis-data": "7.1.1",
     "vis-dev-utils": "2.8.35",
-    "vis-util": "4.3.4"
+    "vis-util": "4.3.4",
+    "xss": "^1.0.8"
   },
   "collective": {
     "type": "opencollective",
@@ -259,5 +260,6 @@
     "synthomat <info@sublink.de>",
     "thomasbarone <thomas.barone@spectraqest.com>",
     "unknown <schneidersb@NB1207305.koehl.eu>"
-  ]
+  ],
+  "dependencies": {}
 }
