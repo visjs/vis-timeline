@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-12-20T13:41:45.370Z
+ * @date    2020-12-20T13:44:38.599Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,10 +25,10 @@
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
-}(this, (function (exports, moment$3, util$1, esnext, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('xss'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.xss, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
+}(this, (function (exports, moment$3, util$1, esnext, xss, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   function _interopNamespace(e) {
@@ -53,6 +53,7 @@
 
   var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
   var util__namespace = /*#__PURE__*/_interopNamespace(util$1);
+  var xss__default = /*#__PURE__*/_interopDefaultLegacy(xss);
   var Emitter__default = /*#__PURE__*/_interopDefaultLegacy(Emitter);
   var PropagatingHammer__default = /*#__PURE__*/_interopDefaultLegacy(PropagatingHammer);
   var Hammer__default = /*#__PURE__*/_interopDefaultLegacy(Hammer$1);
@@ -285,7 +286,8 @@
 
   var util = {
     ...util__namespace,
-    convert
+    convert,
+    xss: xss__default['default']
   };
 
   /** Prototype for visual components */
@@ -2920,7 +2922,7 @@
         this.dom.foreground.appendChild(label);
       }
       this.dom.minorTexts.push(label);
-      label.innerHTML = text;
+      label.innerHTML = util.xss(text);
 
 
       let y = (orientation == 'top') ? this.props.majorLabelHeight : 0;
@@ -2953,7 +2955,7 @@
         this.dom.foreground.appendChild(label);
       }
 
-      label.childNodes[0].innerHTML = text;
+      label.childNodes[0].innerHTML = util.xss(text);
       label.className = `vis-text vis-major ${className}`;
       //label.title = title; // TODO: this is a heavy operation
 
@@ -3568,7 +3570,7 @@
     setCustomMarker(title, editable) {
       const marker = document.createElement('div');
       marker.className = `vis-custom-time-marker`;
-      marker.innerHTML = title;
+      marker.innerHTML = util.xss(title);
       marker.style.position = 'absolute';
 
       if (editable) {
@@ -5770,9 +5772,9 @@
       } else if (content instanceof Object && content.isReactComponent) ; else if (content instanceof Object) {
         templateFunction(data, this.dom.inner);
       } else if (content !== undefined && content !== null) {
-        this.dom.inner.innerHTML = content;
+        this.dom.inner.innerHTML = util.xss(content);
       } else {
-        this.dom.inner.innerHTML = this.groupId || ''; // groupId can be null
+        this.dom.inner.innerHTML = util.xss(this.groupId || ''); // groupId can be null
       }
 
       // update title
@@ -7173,7 +7175,7 @@
             content += `<br> end: ${moment(this.data.end).format('MM/DD/YYYY hh:mm')}`;
           }
         }
-        this.dom.onItemUpdateTimeTooltip.innerHTML = content;
+        this.dom.onItemUpdateTimeTooltip.innerHTML = util.xss(content);
       }
     }
 
@@ -7204,7 +7206,7 @@
 
       if (this.options.visibleFrameTemplate) {
         visibleFrameTemplateFunction = this.options.visibleFrameTemplate.bind(this);
-        itemVisibleFrameContent = visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement);
+        itemVisibleFrameContent = util.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
       } else {
         itemVisibleFrameContent = '';
       }
@@ -7221,7 +7223,7 @@
               itemVisibleFrameContentElement.appendChild(itemVisibleFrameContent);
             }
             else if (itemVisibleFrameContent != undefined) {
-              itemVisibleFrameContentElement.innerHTML = itemVisibleFrameContent;
+              itemVisibleFrameContentElement.innerHTML = util.xss(itemVisibleFrameContent);
             }
             else {
               if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -7252,7 +7254,7 @@
             element.appendChild(content);
           }
           else if (content != undefined) {
-            element.innerHTML = content;
+            element.innerHTML = util.xss(content);
           }
           else {
             if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -8850,7 +8852,7 @@
         this.frame.appendChild(content);
       }
       else {
-        this.frame.innerHTML = content; // string containing text or HTML
+        this.frame.innerHTML = util.xss(content); // string containing text or HTML
       }
     }
 
@@ -14016,7 +14018,7 @@
     _makeHeader(name) {
       let div = document.createElement('div');
       div.className = 'vis-configuration vis-config-header';
-      div.innerHTML = name;
+      div.innerHTML = util.xss(name);
       this._makeItem([],div);
     }
 
@@ -14033,10 +14035,10 @@
       let div = document.createElement('div');
       div.className = 'vis-configuration vis-config-label vis-config-s' + path.length;
       if (objectLabel === true) {
-        div.innerHTML = '<i><b>' + name + ':</b></i>';
+        div.innerHTML = util.xss('<i><b>' + name + ':</b></i>');
       }
       else {
-        div.innerHTML = name + ':';
+        div.innerHTML = util.xss(name + ':');
       }
       return div;
     }
@@ -14178,7 +14180,7 @@
         let div = document.createElement("div");
         div.id = "vis-configuration-popup";
         div.className = "vis-configuration-popup";
-        div.innerHTML = string;
+        div.innerHTML = util.xss(string);
         div.onclick = () => {this._removePopup();};
         this.popupCounter += 1;
         this.popupDiv = {html:div, index:index};
@@ -14594,7 +14596,7 @@
             loadingScreenFragment.appendChild(loadingScreen);
           }
           else if (loadingScreen != undefined) {
-            loadingScreenFragment.innerHTML = loadingScreen;
+            loadingScreenFragment.innerHTML = util.xss(loadingScreen);
           }
         }
       }
@@ -16371,7 +16373,7 @@
       // reuse redundant label
       const label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
       label.className = className;
-      label.innerHTML = text;
+      label.innerHTML = util.xss(text);
       if (orientation === 'left') {
         label.style.left = `-${this.options.labelOffsetX}px`;
         label.style.textAlign = "right";
@@ -16429,7 +16431,7 @@
       if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
         const title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
         title.className = `vis-y-axis vis-title vis-${orientation}`;
-        title.innerHTML = this.options[orientation].title.text;
+        title.innerHTML = util.xss(this.options[orientation].title.text);
 
         // Add style - if provided
         if (this.options[orientation].title.style !== undefined) {
@@ -17510,7 +17512,7 @@
           content += this.groups[groupId].content + '<br />';
         }
       }
-      this.dom.textArea.innerHTML = content;
+      this.dom.textArea.innerHTML = util.xss(content);
       this.dom.textArea.style.lineHeight = ((0.75 * this.options.iconSize) + this.options.iconSpacing) + 'px';
     }
   };

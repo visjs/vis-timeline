@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2020-12-20T13:41:45.370Z
+ * @date    2020-12-20T13:44:38.599Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,6 +28,7 @@ import moment$3 from 'moment';
 import * as util$1 from 'vis-util/esnext/esm/vis-util.js';
 import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
 import { DataSet, createNewDataPipeFrom, isDataViewLike, DataView } from 'vis-data/esnext/esm/vis-data.js';
+import xss from 'xss';
 import Emitter from 'component-emitter';
 import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
@@ -261,7 +262,8 @@ function typeCoerceDataSet(
 
 var util = {
   ...util$1,
-  convert
+  convert,
+  xss
 };
 
 /** Prototype for visual components */
@@ -2896,7 +2898,7 @@ class TimeAxis extends Component {
       this.dom.foreground.appendChild(label);
     }
     this.dom.minorTexts.push(label);
-    label.innerHTML = text;
+    label.innerHTML = util.xss(text);
 
 
     let y = (orientation == 'top') ? this.props.majorLabelHeight : 0;
@@ -2929,7 +2931,7 @@ class TimeAxis extends Component {
       this.dom.foreground.appendChild(label);
     }
 
-    label.childNodes[0].innerHTML = text;
+    label.childNodes[0].innerHTML = util.xss(text);
     label.className = `vis-text vis-major ${className}`;
     //label.title = title; // TODO: this is a heavy operation
 
@@ -3544,7 +3546,7 @@ class CustomTime extends Component {
   setCustomMarker(title, editable) {
     const marker = document.createElement('div');
     marker.className = `vis-custom-time-marker`;
-    marker.innerHTML = title;
+    marker.innerHTML = util.xss(title);
     marker.style.position = 'absolute';
 
     if (editable) {
@@ -5746,9 +5748,9 @@ class Group {
     } else if (content instanceof Object && content.isReactComponent) ; else if (content instanceof Object) {
       templateFunction(data, this.dom.inner);
     } else if (content !== undefined && content !== null) {
-      this.dom.inner.innerHTML = content;
+      this.dom.inner.innerHTML = util.xss(content);
     } else {
-      this.dom.inner.innerHTML = this.groupId || ''; // groupId can be null
+      this.dom.inner.innerHTML = util.xss(this.groupId || ''); // groupId can be null
     }
 
     // update title
@@ -7149,7 +7151,7 @@ class Item {
           content += `<br> end: ${moment(this.data.end).format('MM/DD/YYYY hh:mm')}`;
         }
       }
-      this.dom.onItemUpdateTimeTooltip.innerHTML = content;
+      this.dom.onItemUpdateTimeTooltip.innerHTML = util.xss(content);
     }
   }
 
@@ -7180,7 +7182,7 @@ class Item {
 
     if (this.options.visibleFrameTemplate) {
       visibleFrameTemplateFunction = this.options.visibleFrameTemplate.bind(this);
-      itemVisibleFrameContent = visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement);
+      itemVisibleFrameContent = util.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
     } else {
       itemVisibleFrameContent = '';
     }
@@ -7197,7 +7199,7 @@ class Item {
             itemVisibleFrameContentElement.appendChild(itemVisibleFrameContent);
           }
           else if (itemVisibleFrameContent != undefined) {
-            itemVisibleFrameContentElement.innerHTML = itemVisibleFrameContent;
+            itemVisibleFrameContentElement.innerHTML = util.xss(itemVisibleFrameContent);
           }
           else {
             if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -7228,7 +7230,7 @@ class Item {
           element.appendChild(content);
         }
         else if (content != undefined) {
-          element.innerHTML = content;
+          element.innerHTML = util.xss(content);
         }
         else {
           if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -8826,7 +8828,7 @@ class Popup {
       this.frame.appendChild(content);
     }
     else {
-      this.frame.innerHTML = content; // string containing text or HTML
+      this.frame.innerHTML = util.xss(content); // string containing text or HTML
     }
   }
 
@@ -13992,7 +13994,7 @@ class Configurator {
   _makeHeader(name) {
     let div = document.createElement('div');
     div.className = 'vis-configuration vis-config-header';
-    div.innerHTML = name;
+    div.innerHTML = util.xss(name);
     this._makeItem([],div);
   }
 
@@ -14009,10 +14011,10 @@ class Configurator {
     let div = document.createElement('div');
     div.className = 'vis-configuration vis-config-label vis-config-s' + path.length;
     if (objectLabel === true) {
-      div.innerHTML = '<i><b>' + name + ':</b></i>';
+      div.innerHTML = util.xss('<i><b>' + name + ':</b></i>');
     }
     else {
-      div.innerHTML = name + ':';
+      div.innerHTML = util.xss(name + ':');
     }
     return div;
   }
@@ -14154,7 +14156,7 @@ class Configurator {
       let div = document.createElement("div");
       div.id = "vis-configuration-popup";
       div.className = "vis-configuration-popup";
-      div.innerHTML = string;
+      div.innerHTML = util.xss(string);
       div.onclick = () => {this._removePopup();};
       this.popupCounter += 1;
       this.popupDiv = {html:div, index:index};
@@ -14570,7 +14572,7 @@ class Timeline extends Core {
           loadingScreenFragment.appendChild(loadingScreen);
         }
         else if (loadingScreen != undefined) {
-          loadingScreenFragment.innerHTML = loadingScreen;
+          loadingScreenFragment.innerHTML = util.xss(loadingScreen);
         }
       }
     }
@@ -16347,7 +16349,7 @@ class DataAxis extends Component {
     // reuse redundant label
     const label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
     label.className = className;
-    label.innerHTML = text;
+    label.innerHTML = util.xss(text);
     if (orientation === 'left') {
       label.style.left = `-${this.options.labelOffsetX}px`;
       label.style.textAlign = "right";
@@ -16405,7 +16407,7 @@ class DataAxis extends Component {
     if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
       const title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
       title.className = `vis-y-axis vis-title vis-${orientation}`;
-      title.innerHTML = this.options[orientation].title.text;
+      title.innerHTML = util.xss(this.options[orientation].title.text);
 
       // Add style - if provided
       if (this.options[orientation].title.style !== undefined) {
@@ -17486,7 +17488,7 @@ Legend.prototype.redraw = function() {
         content += this.groups[groupId].content + '<br />';
       }
     }
-    this.dom.textArea.innerHTML = content;
+    this.dom.textArea.innerHTML = util.xss(content);
     this.dom.textArea.style.lineHeight = ((0.75 * this.options.iconSize) + this.options.iconSpacing) + 'px';
   }
 };
