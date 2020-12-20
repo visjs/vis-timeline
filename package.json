@@ -123,7 +123,7 @@
     "vis-data": "7.1.1",
     "vis-dev-utils": "2.8.35",
     "vis-util": "4.3.4",
-    "xss": "^1.0.8"
+    "xss": "1.0.8"
   },
   "collective": {
     "type": "opencollective",
