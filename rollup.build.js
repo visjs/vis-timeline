@@ -11,7 +11,8 @@ export default generateRollupConfiguration({
     "vis-util": "vis",
     keycharm: "keycharm",
     moment: "moment",
-    uuid: "uuid"
+    uuid: "uuid",
+    xss: "filterXSS",
   },
   header: { name: "vis-timeline and vis-graph2d" },
   libraryFilename: "vis-timeline-graph2d",

@@ -63,7 +63,8 @@
     "propagating-hammerjs": "^1.4.0 || ^2.0.0",
     "uuid": "^3.4.0 || ^7.0.0",
     "vis-data": "^6.3.0 || ^7.0.0",
-    "vis-util": "^3.0.0 || ^4.0.0"
+    "vis-util": "^3.0.0 || ^4.0.0",
+    "xss": "^1.0.0"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
