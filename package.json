@@ -63,7 +63,7 @@
     "propagating-hammerjs": "^1.4.0 || ^2.0.0",
     "uuid": "^3.4.0 || ^7.0.0",
     "vis-data": "^6.3.0 || ^7.0.0",
-    "vis-util": "^3.0.0 || ^4.0.0",
+    "vis-util": "^3.0.0 || ^4.0.0 || ^5.0.0",
     "xss": "^1.0.0"
   },
   "devDependencies": {
@@ -123,7 +123,7 @@
     "uuid": "7.0.3",
     "vis-data": "7.1.2",
     "vis-dev-utils": "2.9.4",
-    "vis-util": "4.3.4",
+    "vis-util": "5.0.1",
     "xss": "1.0.8"
   },
   "collective": {
