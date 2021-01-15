@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-01-13T19:21:38.699Z
+ * @date    2021-01-15T08:56:09.767Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -29023,12 +29023,6 @@ var Core = /*#__PURE__*/function () {
 
       function onMouseScrollSide(event) {
         if (!me.options.verticalScroll) return;
-
-        if (me._isProgramaticallyScrolled) {
-          me._isProgramaticallyScrolled = false;
-          return;
-        }
-
         event.preventDefault();
 
         if (me.isActive()) {
@@ -29799,7 +29793,7 @@ var Core = /*#__PURE__*/function () {
       props.left.height = dom.left.offsetHeight;
       props.right.height = dom.right.offsetHeight;
       props.top.height = dom.top.clientHeight || -props.border.top;
-      props.bottom.height = dom.bottom.clientHeight || -props.border.bottom; // TODO: compensate borders when any of the panels is empty.
+      props.bottom.height = Math.round(dom.bottom.getBoundingClientRect().height) || dom.bottom.clientHeight || -props.border.bottom; // TODO: compensate borders when any of the panels is empty.
       // apply auto height
       // TODO: only calculate autoHeight when needed (else we cause an extra reflow/repaint of the DOM)
 
@@ -30209,7 +30203,7 @@ var Core = /*#__PURE__*/function () {
     key: "_updateScrollTop",
     value: function _updateScrollTop() {
       // recalculate the scrollTopMin
-      var scrollTopMin = Math.min(this.props.centerContainer.height - this.props.center.height, 0); // is negative or zero
+      var scrollTopMin = Math.min(this.props.centerContainer.height - this.props.border.top - this.props.border.bottom - this.props.center.height, 0); // is negative or zero    
 
       if (scrollTopMin != this.props.scrollTopMin) {
         // in case of bottom orientation, change the scrollTop such that the contents
@@ -30230,7 +30224,6 @@ var Core = /*#__PURE__*/function () {
         this.dom.right.parentNode.scrollTop = -this.props.scrollTop;
       }
 
-      this._isProgramaticallyScrolled = true;
       return this.props.scrollTop;
     }
     /**
