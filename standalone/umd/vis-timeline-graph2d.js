@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-01-19T00:48:22.375Z
+ * @date    2021-01-19T09:20:36.100Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6786,7 +6786,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.8.2',
+	    version: '3.8.3',
 	    mode:  'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -7523,6 +7523,10 @@
 
 	var ITERATOR = wellKnownSymbol('iterator');
 	var BUGGY_SAFARI_ITERATORS = false;
+
+	var returnThis = function () {
+	  return this;
+	}; // `%IteratorPrototype%` object
 	// https://tc39.es/ecma262/#sec-%iteratorprototype%-object
 
 
@@ -7537,7 +7541,16 @@
 	  }
 	}
 
-	if (IteratorPrototype == undefined) IteratorPrototype = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype == undefined || fails(function () {
+	  var test = {}; // FF44- legacy iterators case
+
+	  return IteratorPrototype[ITERATOR].call(test) !== test;
+	});
+	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+
+	if (( NEW_ITERATOR_PROTOTYPE) && !has(IteratorPrototype, ITERATOR)) {
+	  createNonEnumerableProperty(IteratorPrototype, ITERATOR, returnThis);
+	}
 
 	var iteratorsCore = {
 	  IteratorPrototype: IteratorPrototype,
@@ -7546,7 +7559,7 @@
 
 	var IteratorPrototype$1 = iteratorsCore.IteratorPrototype;
 
-	var returnThis = function () {
+	var returnThis$1 = function () {
 	  return this;
 	};
 
@@ -7556,7 +7569,7 @@
 	    next: createPropertyDescriptor(1, next)
 	  });
 	  setToStringTag(IteratorConstructor, TO_STRING_TAG, false, true);
-	  iterators[TO_STRING_TAG] = returnThis;
+	  iterators[TO_STRING_TAG] = returnThis$1;
 	  return IteratorConstructor;
 	};
 
@@ -7601,7 +7614,7 @@
 	var VALUES = 'values';
 	var ENTRIES = 'entries';
 
-	var returnThis$1 = function () {
+	var returnThis$2 = function () {
 	  return this;
 	};
 
@@ -7649,7 +7662,7 @@
 
 
 	      setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
-	      iterators[TO_STRING_TAG] = returnThis$1;
+	      iterators[TO_STRING_TAG] = returnThis$2;
 	    }
 	  } // fix Array#{values, @@iterator}.name in V8 / FF
 
