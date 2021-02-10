@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-09T02:59:17.692Z
+ * @date    2021-02-10T09:54:41.531Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -16679,7 +16679,7 @@ var Validator = /*#__PURE__*/function () {
 
   createClass(Validator, null, [{
     key: "validate",
-
+    value:
     /**
      * Main function to be called
      *
@@ -16689,7 +16689,7 @@ var Validator = /*#__PURE__*/function () {
      * @returns {boolean}
      * @static
      */
-    value: function validate(options, referenceOptions, subObject) {
+    function validate(options, referenceOptions, subObject) {
       errorFound = false;
       allOptions = referenceOptions;
       var usedOptions = referenceOptions;
@@ -19404,11 +19404,11 @@ var Queue = /*#__PURE__*/function () {
 
   }, {
     key: "destroy",
-
+    value:
     /**
      * Destroy the queue. The queue will first flush all queued actions, and in case it has extended an object, will restore the original object.
      */
-    value: function destroy() {
+    function destroy() {
       this.flush();
 
       if (this._extended) {
@@ -19680,7 +19680,9 @@ var DataStream = /*#__PURE__*/function () {
 
   createClass(DataStream, [{
     key: iterator$4,
-    value: /*#__PURE__*/regenerator.mark(function value() {
+    value:
+    /*#__PURE__*/
+    regenerator.mark(function value() {
       var _iterator, _step, _step$value, id, item;
 
       return regenerator.wrap(function value$(_context10) {
@@ -19736,7 +19738,9 @@ var DataStream = /*#__PURE__*/function () {
 
   }, {
     key: "entries",
-    value: /*#__PURE__*/regenerator.mark(function entries() {
+    value:
+    /*#__PURE__*/
+    regenerator.mark(function entries() {
       var _iterator2, _step2, _step2$value, id, item;
 
       return regenerator.wrap(function entries$(_context11) {
@@ -19792,7 +19796,9 @@ var DataStream = /*#__PURE__*/function () {
 
   }, {
     key: "keys",
-    value: /*#__PURE__*/regenerator.mark(function keys() {
+    value:
+    /*#__PURE__*/
+    regenerator.mark(function keys() {
       var _iterator3, _step3, _step3$value, id;
 
       return regenerator.wrap(function keys$(_context12) {
@@ -19848,7 +19854,9 @@ var DataStream = /*#__PURE__*/function () {
 
   }, {
     key: "values",
-    value: /*#__PURE__*/regenerator.mark(function values() {
+    value:
+    /*#__PURE__*/
+    regenerator.mark(function values() {
       var _iterator4, _step4, _step4$value, item;
 
       return regenerator.wrap(function values$(_context13) {
@@ -20506,13 +20514,18 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
 
 
   createClass(DataSet, [{
-    key: "setOptions",
-
+    key: "idProp",
+    get: function get() {
+      return this._idProp;
+    }
     /**
      * Set new options.
      *
      * @param options - The new options.
      */
+
+  }, {
+    key: "setOptions",
     value: function setOptions(options) {
       if (options && options.queue !== undefined) {
         if (options.queue === false) {
@@ -21507,11 +21520,6 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
         return new DataStream(defineProperty$6({}, iterator$4, bind$2(_context26 = entries$2(this._data)).call(_context26, this._data)));
       }
     }
-  }, {
-    key: "idProp",
-    get: function get() {
-      return this._idProp;
-    }
   }]);
 
   return DataSet;
@@ -21598,8 +21606,10 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
 
 
   createClass(DataView, [{
-    key: "setData",
-    // TODO: implement a function .config() to dynamically update things like configured filter
+    key: "idProp",
+    get: function get() {
+      return this.getDataSet().idProp;
+    } // TODO: implement a function .config() to dynamically update things like configured filter
     // and trigger changes accordingly
 
     /**
@@ -21613,6 +21623,9 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
      * `dataView.dispose()` to enable garbage collection before you lose the last
      * reference.
      */
+
+  }, {
+    key: "setData",
     value: function setData(data) {
       if (this._data) {
         // unsubscribe from current dataset
@@ -22033,11 +22046,6 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
           oldData: removedItems
         }, senderId);
       }
-    }
-  }, {
-    key: "idProp",
-    get: function get() {
-      return this.getDataSet().idProp;
     }
   }]);
 
@@ -25498,13 +25506,13 @@ var Range = /*#__PURE__*/function (_Component) {
 
   }, {
     key: "_onDragStart",
-
+    value:
     /**
      * Start dragging horizontally or vertically
      * @param {Event} event
      * @private
      */
-    value: function _onDragStart(event) {
+    function _onDragStart(event) {
       this.deltaDifference = 0;
       this.previousDelta = 0; // only allow dragging when configured as movable
 
@@ -26836,13 +26844,13 @@ var TimeStep = /*#__PURE__*/function () {
 
   }, {
     key: "isMajor",
-
+    value:
     /**
      * Check if the current value is a major value (for example when the step
      * is DAY, a major value is each first day of the MONTH)
      * @return {boolean} true if current date is major, else false.
      */
-    value: function isMajor() {
+    function isMajor() {
       if (this.switchedYear == true) {
         switch (this.scale) {
           case 'year':
@@ -28762,7 +28770,7 @@ var Core = /*#__PURE__*/function () {
 
   createClass(Core, [{
     key: "_create",
-
+    value:
     /**
      * Create the main DOM for the Core: a root panel containing left, right,
      * top, bottom, content, and background panel.
@@ -28770,7 +28778,7 @@ var Core = /*#__PURE__*/function () {
      *                             be attached.
      * @protected
      */
-    value: function _create(container) {
+    function _create(container) {
       var _this = this,
           _context,
           _context2,
@@ -31440,12 +31448,11 @@ var Group = /*#__PURE__*/function () {
     key: "_updateItemsVerticalPosition",
     value: function _updateItemsVerticalPosition(margin) {
       for (var i = 0, ii = this.visibleItems.length; i < ii; i++) {
-        var _item = this.visibleItems[i];
-
-        _item.repositionY(margin);
+        var item = this.visibleItems[i];
+        item.repositionY(margin);
 
         if (!this.isVisible && this.groupId != ReservedGroupIds.BACKGROUND) {
-          if (_item.displayed) _item.hide();
+          if (item.displayed) item.hide();
         }
       }
     }
@@ -31999,11 +32006,11 @@ var Group = /*#__PURE__*/function () {
       var redrawQueueLength = 0;
 
       for (var _i3 = 0; _i3 < visibleItems.length; _i3++) {
-        var _item2 = visibleItems[_i3];
+        var _item = visibleItems[_i3];
 
-        if (!_item2.displayed) {
+        if (!_item.displayed) {
           var returnQueue = true;
-          redrawQueue[_i3] = _item2.redraw(returnQueue);
+          redrawQueue[_i3] = _item.redraw(returnQueue);
           redrawQueueLength = redrawQueue[_i3].length;
         }
       }
@@ -32043,30 +32050,30 @@ var Group = /*#__PURE__*/function () {
     value: function _traceVisible(initialPos, items, visibleItems, visibleItemsLookup, breakCondition) {
       if (initialPos != -1) {
         for (var i = initialPos; i >= 0; i--) {
-          var _item3 = items[i];
+          var item = items[i];
 
-          if (breakCondition(_item3)) {
+          if (breakCondition(item)) {
             break;
           } else {
-            if (!(_item3.isCluster && !_item3.hasItems()) && !_item3.cluster) {
-              if (visibleItemsLookup[_item3.id] === undefined) {
-                visibleItemsLookup[_item3.id] = true;
-                visibleItems.push(_item3);
+            if (!(item.isCluster && !item.hasItems()) && !item.cluster) {
+              if (visibleItemsLookup[item.id] === undefined) {
+                visibleItemsLookup[item.id] = true;
+                visibleItems.push(item);
               }
             }
           }
         }
 
         for (var _i5 = initialPos + 1; _i5 < items.length; _i5++) {
-          var _item4 = items[_i5];
+          var _item2 = items[_i5];
 
-          if (breakCondition(_item4)) {
+          if (breakCondition(_item2)) {
             break;
           } else {
-            if (!(_item4.isCluster && !_item4.hasItems()) && !_item4.cluster) {
-              if (visibleItemsLookup[_item4.id] === undefined) {
-                visibleItemsLookup[_item4.id] = true;
-                visibleItems.push(_item4);
+            if (!(_item2.isCluster && !_item2.hasItems()) && !_item2.cluster) {
+              if (visibleItemsLookup[_item2.id] === undefined) {
+                visibleItemsLookup[_item2.id] = true;
+                visibleItems.push(_item2);
               }
             }
           }
@@ -32156,11 +32163,11 @@ var Group = /*#__PURE__*/function () {
       var redrawQueueLength = 0;
 
       for (var _i8 = 0; _i8 < visibleClusters.length; _i8++) {
-        var _item5 = visibleClusters[_i8];
+        var item = visibleClusters[_i8];
 
-        if (!_item5.displayed) {
+        if (!item.displayed) {
           var returnQueue = true;
-          redrawQueue[_i8] = _item5.redraw(returnQueue);
+          redrawQueue[_i8] = item.redraw(returnQueue);
           redrawQueueLength = redrawQueue[_i8].length;
         }
       }
@@ -38556,14 +38563,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
   }, {
     key: "itemFromElement",
-
+    value:
     /**
      * Find an item from an element:
      * searches for the attribute 'vis-item' in the element's tree
      * @param {HTMLElement} element
      * @return {Item | null} item
      */
-    value: function itemFromElement(element) {
+    function itemFromElement(element) {
       var cur = element;
 
       while (cur) {
@@ -38651,7 +38658,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
   }, {
     key: "_cloneItemData",
-
+    value:
     /**
      * Clone the data of an item, and "normalize" it: convert the start and end date
      * to the type (Date, Moment, ...) configured in the DataSet. If not configured,
@@ -38661,7 +38668,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
      * @return {Object} The cloned object
      * @private
      */
-    value: function _cloneItemData(itemData, type) {
+    function _cloneItemData(itemData, type) {
       var clone = util$3.extend({}, itemData);
 
       if (!type) {

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-09T02:57:01.175Z
+ * @date    2021-02-10T09:53:25.386Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10785,7 +10785,7 @@
 
 	  createClass(Validator, null, [{
 	    key: "validate",
-
+	    value:
 	    /**
 	     * Main function to be called
 	     *
@@ -10795,7 +10795,7 @@
 	     * @returns {boolean}
 	     * @static
 	     */
-	    value: function validate(options, referenceOptions, subObject) {
+	    function validate(options, referenceOptions, subObject) {
 	      errorFound = false;
 	      allOptions = referenceOptions;
 	      var usedOptions = referenceOptions;
@@ -14677,13 +14677,13 @@
 
 	  }, {
 	    key: "_onDragStart",
-
+	    value:
 	    /**
 	     * Start dragging horizontally or vertically
 	     * @param {Event} event
 	     * @private
 	     */
-	    value: function _onDragStart(event) {
+	    function _onDragStart(event) {
 	      this.deltaDifference = 0;
 	      this.previousDelta = 0; // only allow dragging when configured as movable
 
@@ -16045,13 +16045,13 @@
 
 	  }, {
 	    key: "isMajor",
-
+	    value:
 	    /**
 	     * Check if the current value is a major value (for example when the step
 	     * is DAY, a major value is each first day of the MONTH)
 	     * @return {boolean} true if current date is major, else false.
 	     */
-	    value: function isMajor() {
+	    function isMajor() {
 	      if (this.switchedYear == true) {
 	        switch (this.scale) {
 	          case 'year':
@@ -17971,7 +17971,7 @@
 
 	  createClass(Core, [{
 	    key: "_create",
-
+	    value:
 	    /**
 	     * Create the main DOM for the Core: a root panel containing left, right,
 	     * top, bottom, content, and background panel.
@@ -17979,7 +17979,7 @@
 	     *                             be attached.
 	     * @protected
 	     */
-	    value: function _create(container) {
+	    function _create(container) {
 	      var _this = this,
 	          _context,
 	          _context2,
@@ -21138,12 +21138,11 @@
 	    key: "_updateItemsVerticalPosition",
 	    value: function _updateItemsVerticalPosition(margin) {
 	      for (var i = 0, ii = this.visibleItems.length; i < ii; i++) {
-	        var _item = this.visibleItems[i];
-
-	        _item.repositionY(margin);
+	        var item = this.visibleItems[i];
+	        item.repositionY(margin);
 
 	        if (!this.isVisible && this.groupId != ReservedGroupIds.BACKGROUND) {
-	          if (_item.displayed) _item.hide();
+	          if (item.displayed) item.hide();
 	        }
 	      }
 	    }
@@ -21697,11 +21696,11 @@
 	      var redrawQueueLength = 0;
 
 	      for (var _i3 = 0; _i3 < visibleItems.length; _i3++) {
-	        var _item2 = visibleItems[_i3];
+	        var _item = visibleItems[_i3];
 
-	        if (!_item2.displayed) {
+	        if (!_item.displayed) {
 	          var returnQueue = true;
-	          redrawQueue[_i3] = _item2.redraw(returnQueue);
+	          redrawQueue[_i3] = _item.redraw(returnQueue);
 	          redrawQueueLength = redrawQueue[_i3].length;
 	        }
 	      }
@@ -21741,30 +21740,30 @@
 	    value: function _traceVisible(initialPos, items, visibleItems, visibleItemsLookup, breakCondition) {
 	      if (initialPos != -1) {
 	        for (var i = initialPos; i >= 0; i--) {
-	          var _item3 = items[i];
+	          var item = items[i];
 
-	          if (breakCondition(_item3)) {
+	          if (breakCondition(item)) {
 	            break;
 	          } else {
-	            if (!(_item3.isCluster && !_item3.hasItems()) && !_item3.cluster) {
-	              if (visibleItemsLookup[_item3.id] === undefined) {
-	                visibleItemsLookup[_item3.id] = true;
-	                visibleItems.push(_item3);
+	            if (!(item.isCluster && !item.hasItems()) && !item.cluster) {
+	              if (visibleItemsLookup[item.id] === undefined) {
+	                visibleItemsLookup[item.id] = true;
+	                visibleItems.push(item);
 	              }
 	            }
 	          }
 	        }
 
 	        for (var _i5 = initialPos + 1; _i5 < items.length; _i5++) {
-	          var _item4 = items[_i5];
+	          var _item2 = items[_i5];
 
-	          if (breakCondition(_item4)) {
+	          if (breakCondition(_item2)) {
 	            break;
 	          } else {
-	            if (!(_item4.isCluster && !_item4.hasItems()) && !_item4.cluster) {
-	              if (visibleItemsLookup[_item4.id] === undefined) {
-	                visibleItemsLookup[_item4.id] = true;
-	                visibleItems.push(_item4);
+	            if (!(_item2.isCluster && !_item2.hasItems()) && !_item2.cluster) {
+	              if (visibleItemsLookup[_item2.id] === undefined) {
+	                visibleItemsLookup[_item2.id] = true;
+	                visibleItems.push(_item2);
 	              }
 	            }
 	          }
@@ -21854,11 +21853,11 @@
 	      var redrawQueueLength = 0;
 
 	      for (var _i8 = 0; _i8 < visibleClusters.length; _i8++) {
-	        var _item5 = visibleClusters[_i8];
+	        var item = visibleClusters[_i8];
 
-	        if (!_item5.displayed) {
+	        if (!item.displayed) {
 	          var returnQueue = true;
-	          redrawQueue[_i8] = _item5.redraw(returnQueue);
+	          redrawQueue[_i8] = item.redraw(returnQueue);
 	          redrawQueueLength = redrawQueue[_i8].length;
 	        }
 	      }
@@ -28254,14 +28253,14 @@
 
 	  }, {
 	    key: "itemFromElement",
-
+	    value:
 	    /**
 	     * Find an item from an element:
 	     * searches for the attribute 'vis-item' in the element's tree
 	     * @param {HTMLElement} element
 	     * @return {Item | null} item
 	     */
-	    value: function itemFromElement(element) {
+	    function itemFromElement(element) {
 	      var cur = element;
 
 	      while (cur) {
@@ -28349,7 +28348,7 @@
 
 	  }, {
 	    key: "_cloneItemData",
-
+	    value:
 	    /**
 	     * Clone the data of an item, and "normalize" it: convert the start and end date
 	     * to the type (Date, Moment, ...) configured in the DataSet. If not configured,
@@ -28359,7 +28358,7 @@
 	     * @return {Object} The cloned object
 	     * @private
 	     */
-	    value: function _cloneItemData(itemData, type) {
+	    function _cloneItemData(itemData, type) {
 	      var clone = util$3.extend({}, itemData);
 
 	      if (!type) {
