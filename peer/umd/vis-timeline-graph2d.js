@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-10T09:53:25.386Z
+ * @date    2021-02-11T07:13:52.119Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -487,7 +487,7 @@
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
 	    version: '3.8.3',
-	    mode:  'pure' ,
+	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
 	});
@@ -851,7 +851,7 @@
 	});
 	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
 
-	if (( NEW_ITERATOR_PROTOTYPE) && !has(IteratorPrototype, ITERATOR)) {
+	if ((NEW_ITERATOR_PROTOTYPE) && !has(IteratorPrototype, ITERATOR)) {
 	  createNonEnumerableProperty(IteratorPrototype, ITERATOR, returnThis);
 	}
 
@@ -1038,7 +1038,7 @@
 	  } // define iterator
 
 
-	  if (( FORCED) && IterablePrototype[ITERATOR$1] !== defaultIterator) {
+	  if ((FORCED) && IterablePrototype[ITERATOR$1] !== defaultIterator) {
 	    createNonEnumerableProperty(IterablePrototype, ITERATOR$1, defaultIterator);
 	  }
 
@@ -1077,7 +1077,7 @@
 	// `CreateArrayIterator` internal method
 	// https://tc39.es/ecma262/#sec-createarrayiterator
 
-	var es_array_iterator = defineIterator(Array, 'Array', function (iterated, kind) {
+	defineIterator(Array, 'Array', function (iterated, kind) {
 	  setInternalState(this, {
 	    type: ARRAY_ITERATOR,
 	    target: toIndexedObject(iterated),
@@ -20131,7 +20131,7 @@
 	// https://tc39.es/ecma262/#sec-set-objects
 
 
-	var es_set = collection('Set', function (init) {
+	collection('Set', function (init) {
 	  return function Set() {
 	    return init(this, arguments.length ? arguments[0] : undefined);
 	  };
@@ -21303,7 +21303,7 @@
 	          height = Math.max(height, this.props.label.height);
 	        }
 	      } else {
-	        height =  this.props.label.height;
+	        height = this.props.label.height;
 	      }
 
 	      return height;

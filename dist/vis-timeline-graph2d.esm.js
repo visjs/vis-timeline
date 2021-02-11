@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-10T09:54:41.531Z
+ * @date    2021-02-11T07:15:29.551Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -37,7 +37,7 @@ function createCommonjsModule(fn, module) {
 var moment = createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     module.exports = factory() ;
+    module.exports = factory() ;
   })(commonjsGlobal, function () {
 
     var hookCallback;
@@ -5136,10 +5136,10 @@ var moment = createCommonjsModule(function (module, exports) {
   });
 });
 
-var de = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     function processRelativeTime(number, withoutSuffix, key, isFuture) {
@@ -5212,10 +5212,10 @@ var de = createCommonjsModule(function (module, exports) {
   });
 });
 
-var es = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_'),
@@ -5302,10 +5302,10 @@ var es = createCommonjsModule(function (module, exports) {
   });
 });
 
-var fr = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var monthsStrictRegex = /^(janvier|février|mars|avril|mai|juin|juillet|août|septembre|octobre|novembre|décembre)/i,
@@ -5394,10 +5394,10 @@ var fr = createCommonjsModule(function (module, exports) {
   });
 });
 
-var it = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var it = moment.defineLocale('it', {
@@ -5469,10 +5469,10 @@ var it = createCommonjsModule(function (module, exports) {
   });
 });
 
-var ja = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var ja = moment.defineLocale('ja', {
@@ -5613,10 +5613,10 @@ var ja = createCommonjsModule(function (module, exports) {
   });
 });
 
-var nl = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_'),
@@ -5694,10 +5694,10 @@ var nl = createCommonjsModule(function (module, exports) {
   });
 });
 
-var pl = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     var monthsNominative = 'styczeń_luty_marzec_kwiecień_maj_czerwiec_lipiec_sierpień_wrzesień_październik_listopad_grudzień'.split('_'),
@@ -5833,10 +5833,10 @@ var pl = createCommonjsModule(function (module, exports) {
   });
 });
 
-var ru = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     function plural(word, num) {
@@ -6019,10 +6019,10 @@ var ru = createCommonjsModule(function (module, exports) {
   });
 });
 
-var uk = createCommonjsModule(function (module, exports) {
+createCommonjsModule(function (module, exports) {
 
   (function (global, factory) {
-     typeof commonjsRequire === 'function' ? factory(moment) :  factory(global.moment);
+    typeof commonjsRequire === 'function' ? factory(moment) : factory(global.moment);
   })(commonjsGlobal, function (moment) {
 
     function plural(word, num) {
@@ -6781,7 +6781,7 @@ var shared = createCommonjsModule(function (module) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
     version: '3.8.3',
-    mode:  'pure' ,
+    mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
 });
@@ -7542,7 +7542,7 @@ var NEW_ITERATOR_PROTOTYPE = IteratorPrototype == undefined || fails(function ()
 });
 if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
 
-if (( NEW_ITERATOR_PROTOTYPE) && !has(IteratorPrototype, ITERATOR)) {
+if ((NEW_ITERATOR_PROTOTYPE) && !has(IteratorPrototype, ITERATOR)) {
   createNonEnumerableProperty(IteratorPrototype, ITERATOR, returnThis);
 }
 
@@ -7670,7 +7670,7 @@ var defineIterator = function (Iterable, NAME, IteratorConstructor, next, DEFAUL
   } // define iterator
 
 
-  if (( FORCED) && IterablePrototype[ITERATOR$1] !== defaultIterator) {
+  if ((FORCED) && IterablePrototype[ITERATOR$1] !== defaultIterator) {
     createNonEnumerableProperty(IterablePrototype, ITERATOR$1, defaultIterator);
   }
 
@@ -7709,7 +7709,7 @@ var getInternalState$1 = internalState.getterFor(ARRAY_ITERATOR); // `Array.prot
 // `CreateArrayIterator` internal method
 // https://tc39.es/ecma262/#sec-createarrayiterator
 
-var es_array_iterator = defineIterator(Array, 'Array', function (iterated, kind) {
+defineIterator(Array, 'Array', function (iterated, kind) {
   setInternalState$1(this, {
     type: ARRAY_ITERATOR,
     target: toIndexedObject(iterated),
@@ -17725,10 +17725,10 @@ var internalMetadata = createCommonjsModule(function (module) {
   };
   hiddenKeys[METADATA] = true;
 });
-var internalMetadata_1 = internalMetadata.REQUIRED;
-var internalMetadata_2 = internalMetadata.fastKey;
-var internalMetadata_3 = internalMetadata.getWeakData;
-var internalMetadata_4 = internalMetadata.onFreeze;
+internalMetadata.REQUIRED;
+internalMetadata.fastKey;
+internalMetadata.getWeakData;
+internalMetadata.onFreeze;
 
 var Result = function (stopped, result) {
   this.stopped = stopped;
@@ -18083,7 +18083,7 @@ var collectionStrong = {
 // https://tc39.es/ecma262/#sec-set-objects
 
 
-var es_set = collection('Set', function (init) {
+collection('Set', function (init) {
   return function Set() {
     return init(this, arguments.length ? arguments[0] : undefined);
   };
@@ -18098,7 +18098,7 @@ var set$3 = set$2;
 // https://tc39.es/ecma262/#sec-map-objects
 
 
-var es_map = collection('Map', function (init) {
+collection('Map', function (init) {
   return function Map() {
     return init(this, arguments.length ? arguments[0] : undefined);
   };
@@ -18816,7 +18816,7 @@ var runtime_1 = createCommonjsModule(function (module) {
   // as the regeneratorRuntime namespace. Otherwise create a new empty
   // object. Either way, the resulting object will be used to initialize
   // the regeneratorRuntime variable at the top of this file.
-   module.exports );
+  module.exports );
 
   try {
     regeneratorRuntime = runtime;
@@ -23070,7 +23070,7 @@ var lib = createCommonjsModule(function (module, exports) {
     window.filterCSS = module.exports;
   }
 });
-var lib_1 = lib.FilterCSS;
+lib.FilterCSS;
 
 var util$2 = {
   indexOf: function (arr, item) {
@@ -24056,8 +24056,8 @@ var lib$1 = createCommonjsModule(function (module, exports) {
     self.filterXSS = module.exports;
   }
 });
-var lib_1$1 = lib$1.filterXSS;
-var lib_2 = lib$1.FilterXSS;
+lib$1.filterXSS;
+lib$1.FilterXSS;
 
 function ownKeys$6(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -28265,65 +28265,65 @@ var en = {
 var en_EN = en;
 var en_US = en; // Italiano
 
-var it$1 = {
+var it = {
   current: 'attuale',
   time: 'tempo',
   deleteSelected: 'Cancella la selezione'
 };
-var it_IT = it$1;
-var it_CH = it$1; // Dutch
+var it_IT = it;
+var it_CH = it; // Dutch
 
-var nl$1 = {
+var nl = {
   current: 'huidige',
   time: 'tijd',
   deleteSelected: 'Selectie verwijderen'
 };
-var nl_NL = nl$1;
-var nl_BE = nl$1; // German
+var nl_NL = nl;
+var nl_BE = nl; // German
 
-var de$1 = {
+var de = {
   current: 'Aktuelle',
   time: 'Zeit',
   deleteSelected: "L\xF6sche Auswahl"
 };
-var de_DE = de$1; // French
+var de_DE = de; // French
 
-var fr$1 = {
+var fr = {
   current: 'actuel',
   time: 'heure',
   deleteSelected: 'Effacer la selection'
 };
-var fr_FR = fr$1;
-var fr_CA = fr$1;
-var fr_BE = fr$1; // Espanol
+var fr_FR = fr;
+var fr_CA = fr;
+var fr_BE = fr; // Espanol
 
-var es$1 = {
+var es = {
   current: 'corriente',
   time: 'hora',
   deleteSelected: "Eliminar selecci\xF3n"
 };
-var es_ES = es$1; // Ukrainian
+var es_ES = es; // Ukrainian
 
-var uk$1 = {
+var uk = {
   current: 'поточний',
   time: 'час',
   deleteSelected: 'Видалити обране'
 };
-var uk_UA = uk$1; // Russian
+var uk_UA = uk; // Russian
 
-var ru$1 = {
+var ru = {
   current: 'текущее',
   time: 'время',
   deleteSelected: 'Удалить выбранное'
 };
-var ru_RU = ru$1; // Polish
+var ru_RU = ru; // Polish
 
-var pl$1 = {
+var pl = {
   current: 'aktualny',
   time: 'czas',
   deleteSelected: 'Usuń wybrane'
 };
-var pl_PL = pl$1; // Portuguese
+var pl_PL = pl; // Portuguese
 
 var pt = {
   current: 'atual',
@@ -28333,40 +28333,40 @@ var pt = {
 var pt_BR = pt;
 var pt_PT = pt; // Japanese
 
-var ja$1 = {
+var ja = {
   current: '現在',
   time: '時刻',
   deleteSelected: '選択されたものを削除'
 };
-var ja_JP = ja$1;
+var ja_JP = ja;
 var locales = {
   en: en,
   en_EN: en_EN,
   en_US: en_US,
-  it: it$1,
+  it: it,
   it_IT: it_IT,
   it_CH: it_CH,
-  nl: nl$1,
+  nl: nl,
   nl_NL: nl_NL,
   nl_BE: nl_BE,
-  de: de$1,
+  de: de,
   de_DE: de_DE,
-  fr: fr$1,
+  fr: fr,
   fr_FR: fr_FR,
   fr_CA: fr_CA,
   fr_BE: fr_BE,
-  es: es$1,
+  es: es,
   es_ES: es_ES,
-  uk: uk$1,
+  uk: uk,
   uk_UA: uk_UA,
-  ru: ru$1,
+  ru: ru,
   ru_RU: ru_RU,
-  pl: pl$1,
+  pl: pl,
   pl_PL: pl_PL,
   pt: pt,
   pt_BR: pt_BR,
   pt_PT: pt_PT,
-  ja: ja$1,
+  ja: ja,
   ja_JP: ja_JP
 };
 
@@ -31613,7 +31613,7 @@ var Group = /*#__PURE__*/function () {
           height = Math.max(height, this.props.label.height);
         }
       } else {
-        height =  this.props.label.height;
+        height = this.props.label.height;
       }
 
       return height;
