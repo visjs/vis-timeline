@@ -13,7 +13,19 @@ npm-debug.log
 # temporary files
 .*.sw[op]
 .commits.tmp
-gen/
 .nyc_output/
-coverage/
-package-lock.json
+/coverage/
+/declarations/
+/dist/
+/esnext/
+/examples/graph2d-generated/
+/examples/graph2d/examples.css
+/examples/graph2d/index.html
+/examples/timeline-generated/
+/examples/timeline/examples.css
+/examples/timeline/index.html
+/gen/
+/peer/
+/standalone/
+/styles/
+/vis-timeline-0.0.0-no-version.tgz

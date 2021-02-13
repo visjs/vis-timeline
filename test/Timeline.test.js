@@ -1,25 +1,28 @@
-var { DataSet } = require('vis-data');
-var Timeline = require('../lib/timeline/Timeline');
+import jsdom_global from 'jsdom-global'
+import { DataSet } from'vis-data/esnext'
+import Timeline from'../lib/timeline/Timeline'
 
-describe('Timeline', function () {
-	before(function () {
-		this.jsdom = require('jsdom-global')({
+const internals = {}
+
+describe('Timeline', () => {
+	before(() => {
+		internals.jsdom = jsdom_global({
 			pretendToBeVisual: true
 		});
 		global['Element'] = window.Element;
-		global['requestAnimationFrame'] = function(cb) {
+		global['requestAnimationFrame'] = (cb) => {
 			cb();
 		};
 	});
 
-	after(function () {
-		this.jsdom();
+	after(() => {
+		internals.jsdom();
 	});
 
-	it('should not throw when updating data in close succession', function (done) {
-		var timeline = new Timeline(document.createElement('div'), []);
+	it('should not throw when updating data in close succession', (done) => {
+		const timeline = new Timeline(document.createElement('div'), []);
 
-		var events = [
+		const events = [
 			{start: new Date(), id: 1},
 			{start: new Date(), id: 2}
 		];
@@ -27,7 +30,7 @@ describe('Timeline', function () {
 		timeline
 			.setItems(new DataSet(events));
 
-		setTimeout(function() {
+		setTimeout(() => {
 			timeline
 				.setItems(new DataSet([
 					{start: new Date(), id: 3},
@@ -40,5 +43,11 @@ describe('Timeline', function () {
 
 		timeline
 			.setSelection([events[0].id], {animation: false});
+	});
+
+	it("setItems(null) should not crash", function() {
+		const timeline = new Timeline(document.createElement("div"), []);
+
+		timeline.setItems(null);
 	});
 });

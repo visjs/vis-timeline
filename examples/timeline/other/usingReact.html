@@ -2,7 +2,9 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>React Components in templates</title>
+    <title>Timeline | other | React Components in templates</title>
+
+    <meta name="example-screenshot-selector" content="#root" />
   </head>
   <body>
 
@@ -21,8 +23,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.3.2/react-dom.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-    <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-    <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
     
     <!--
     This is where you link to your React code. Can be .js or .jsx 
@@ -109,13 +111,13 @@
                     <h1>Vis timline with React</h1>
                     <h2>Using react components for items and group templates</h2>      
 
-                    <div id="mytimeline"></div>
+                    <div id="visualization"></div>
                 </div>
             }
         });
 
         function initTimeline() {
-            var container = document.getElementById('mytimeline');
+            var container = document.getElementById('visualization');
             timeline = new vis.Timeline(container, items, groups, options);
         } 
 

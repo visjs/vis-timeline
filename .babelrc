@@ -1,8 +1,0 @@
-{
-  "presets": [
-      ["@babel/preset-env", {
-          "targets": "> 0.1% or not dead"
-      }]
-  ],
-  "plugins": ["css-modules-transform"]
-}

@@ -2,7 +2,10 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>React Components in templates</title>
+    <title>Timeline | other | React 16 Components in templates</title>
+
+    <meta name="example-screenshot-selector" content="#root" />
+
     <style>
         .vis-item-visible-frame {
             z-index: 111111;
@@ -21,8 +24,8 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
 
-    <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-    <link href="../../../dist/vis-timeline-graph2d.css" rel="stylesheet" type="text/css" />
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link href="../../../styles/vis-timeline-graph2d.css" rel="stylesheet" type="text/css" />
     
 
     <script type="text/babel">
@@ -132,13 +135,13 @@
                     <h1>timline with React</h1>
                     <h2>Using react components for items and group templates</h2>      
 
-                    <div id="mytimeline"></div>
+                    <div id="visualization"></div>
                 </div>
             }
         };
 
         function initTimeline() {
-            var container = document.getElementById('mytimeline');
+            var container = document.getElementById('visualization');
             window.timeline = new vis.Timeline(container, items, groups, options);
         } 
 
