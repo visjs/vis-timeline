@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-16T05:42:24.234Z
+ * @date    2021-02-18T18:54:26.413Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -42161,15 +42161,14 @@
 	      });
 
 	      if (start !== null && end !== null) {
-	        var _me = this; // Use the first item for the vertical focus
-
+	        var me = this; // Use the first item for the vertical focus
 
 	        var item = this.itemSet.items[ids[0]];
 	        var startPos = this._getScrollTop() * -1;
 	        var initialVerticalScroll = null; // Setup a handler for each frame of the vertical scroll
 
 	        var verticalAnimationFrame = function verticalAnimationFrame(ease, willDraw, done) {
-	          var verticalScroll = getItemVerticalScroll(_me, item);
+	          var verticalScroll = getItemVerticalScroll(me, item);
 
 	          if (verticalScroll === false) {
 	            return; // We don't need to scroll, so do nothing
@@ -42184,28 +42183,28 @@
 	          } else if (initialVerticalScroll.itemTop != verticalScroll.itemTop && verticalScroll.shouldScroll) {
 	            // The redraw shifted elements, so reset the animation to correct
 	            initialVerticalScroll = verticalScroll;
-	            startPos = _me._getScrollTop() * -1;
+	            startPos = me._getScrollTop() * -1;
 	          }
 
 	          var from = startPos;
 	          var to = initialVerticalScroll.scrollOffset;
 	          var scrollTop = done ? to : from + (to - from) * ease;
 
-	          _me._setScrollTop(-scrollTop);
+	          me._setScrollTop(-scrollTop);
 
 	          if (!willDraw) {
-	            _me._redraw();
+	            me._redraw();
 	          }
 	        }; // Enforces the final vertical scroll position
 
 
 	        var setFinalVerticalPosition = function setFinalVerticalPosition() {
-	          var finalVerticalScroll = getItemVerticalScroll(_me, item);
+	          var finalVerticalScroll = getItemVerticalScroll(me, item);
 
 	          if (finalVerticalScroll.shouldScroll && finalVerticalScroll.itemTop != initialVerticalScroll.itemTop) {
-	            _me._setScrollTop(-finalVerticalScroll.scrollOffset);
+	            me._setScrollTop(-finalVerticalScroll.scrollOffset);
 
-	            _me._redraw();
+	            me._redraw();
 	          }
 	        }; // Perform one last check at the end to make sure the final vertical
 	        // position is correct
