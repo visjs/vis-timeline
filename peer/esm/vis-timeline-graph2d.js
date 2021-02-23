@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-23T02:00:44.597Z
+ * @date    2021-02-23T05:27:26.748Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1406,8 +1406,6 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var classCallCheck = _classCallCheck;
-
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
 _export({
@@ -1450,8 +1448,6 @@ function _createClass(Constructor, protoProps, staticProps) {
   return Constructor;
 }
 
-var createClass = _createClass;
-
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -1459,8 +1455,6 @@ function _assertThisInitialized(self) {
 
   return self;
 }
-
-var assertThisInitialized = _assertThisInitialized;
 
 // https://tc39.es/ecma262/#sec-object.create
 
@@ -1497,18 +1491,14 @@ var setPrototypeOf$1 = setPrototypeOf;
 
 var setPrototypeOf$2 = setPrototypeOf$1;
 
-var setPrototypeOf$3 = createCommonjsModule(function (module) {
-  function _setPrototypeOf(o, p) {
-    module.exports = _setPrototypeOf = setPrototypeOf$2 || function _setPrototypeOf(o, p) {
-      o.__proto__ = p;
-      return o;
-    };
+function _setPrototypeOf(o, p) {
+  _setPrototypeOf = setPrototypeOf$2 || function _setPrototypeOf(o, p) {
+    o.__proto__ = p;
+    return o;
+  };
 
-    return _setPrototypeOf(o, p);
-  }
-
-  module.exports = _setPrototypeOf;
-});
+  return _setPrototypeOf(o, p);
+}
 
 function _inherits(subClass, superClass) {
   if (typeof superClass !== "function" && superClass !== null) {
@@ -1522,85 +1512,8 @@ function _inherits(subClass, superClass) {
       configurable: true
     }
   });
-  if (superClass) setPrototypeOf$3(subClass, superClass);
+  if (superClass) _setPrototypeOf(subClass, superClass);
 }
-
-var inherits = _inherits;
-
-var f$3 = wellKnownSymbol;
-var wellKnownSymbolWrapped = {
-  f: f$3
-};
-
-var defineProperty$3 = objectDefineProperty.f;
-
-var defineWellKnownSymbol = function (NAME) {
-  var Symbol = path.Symbol || (path.Symbol = {});
-  if (!has(Symbol, NAME)) defineProperty$3(Symbol, NAME, {
-    value: wellKnownSymbolWrapped.f(NAME)
-  });
-};
-
-// https://tc39.es/ecma262/#sec-symbol.iterator
-
-defineWellKnownSymbol('iterator');
-
-var createMethod$2 = function (CONVERT_TO_STRING) {
-  return function ($this, pos) {
-    var S = String(requireObjectCoercible($this));
-    var position = toInteger(pos);
-    var size = S.length;
-    var first, second;
-    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
-    first = S.charCodeAt(position);
-    return first < 0xD800 || first > 0xDBFF || position + 1 === size || (second = S.charCodeAt(position + 1)) < 0xDC00 || second > 0xDFFF ? CONVERT_TO_STRING ? S.charAt(position) : first : CONVERT_TO_STRING ? S.slice(position, position + 2) : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
-  };
-};
-
-var stringMultibyte = {
-  // `String.prototype.codePointAt` method
-  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
-  codeAt: createMethod$2(false),
-  // `String.prototype.at` method
-  // https://github.com/mathiasbynens/String.prototype.at
-  charAt: createMethod$2(true)
-};
-
-var charAt = stringMultibyte.charAt;
-var STRING_ITERATOR = 'String Iterator';
-var setInternalState$1 = internalState.set;
-var getInternalState$1 = internalState.getterFor(STRING_ITERATOR); // `String.prototype[@@iterator]` method
-// https://tc39.es/ecma262/#sec-string.prototype-@@iterator
-
-defineIterator(String, 'String', function (iterated) {
-  setInternalState$1(this, {
-    type: STRING_ITERATOR,
-    string: String(iterated),
-    index: 0
-  }); // `%StringIteratorPrototype%.next` method
-  // https://tc39.es/ecma262/#sec-%stringiteratorprototype%.next
-}, function next() {
-  var state = getInternalState$1(this);
-  var string = state.string;
-  var index = state.index;
-  var point;
-  if (index >= string.length) return {
-    value: undefined,
-    done: true
-  };
-  point = charAt(string, index);
-  state.index += point.length;
-  return {
-    value: point,
-    done: false
-  };
-});
-
-var iterator = wellKnownSymbolWrapped.f('iterator');
-
-var iterator$1 = iterator;
-
-var iterator$2 = iterator$1;
 
 var createProperty = function (object, key, value) {
   var propertyKey = toPrimitive(key);
@@ -1703,12 +1616,12 @@ _export({
 var hiddenKeys$1 = enumBugKeys.concat('length', 'prototype'); // `Object.getOwnPropertyNames` method
 // https://tc39.es/ecma262/#sec-object.getownpropertynames
 
-var f$4 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
+var f$3 = Object.getOwnPropertyNames || function getOwnPropertyNames(O) {
   return objectKeysInternal(O, hiddenKeys$1);
 };
 
 var objectGetOwnPropertyNames = {
-  f: f$4
+  f: f$3
 };
 
 var nativeGetOwnPropertyNames = objectGetOwnPropertyNames.f;
@@ -1724,17 +1637,31 @@ var getWindowNames = function (it) {
 }; // fallback for IE11 buggy Object.getOwnPropertyNames with iframe and window
 
 
-var f$5 = function getOwnPropertyNames(it) {
+var f$4 = function getOwnPropertyNames(it) {
   return windowNames && toString$1.call(it) == '[object Window]' ? getWindowNames(it) : nativeGetOwnPropertyNames(toIndexedObject(it));
 };
 
 var objectGetOwnPropertyNamesExternal = {
+  f: f$4
+};
+
+var f$5 = Object.getOwnPropertySymbols;
+var objectGetOwnPropertySymbols = {
   f: f$5
 };
 
-var f$6 = Object.getOwnPropertySymbols;
-var objectGetOwnPropertySymbols = {
+var f$6 = wellKnownSymbol;
+var wellKnownSymbolWrapped = {
   f: f$6
+};
+
+var defineProperty$3 = objectDefineProperty.f;
+
+var defineWellKnownSymbol = function (NAME) {
+  var Symbol = path.Symbol || (path.Symbol = {});
+  if (!has(Symbol, NAME)) defineProperty$3(Symbol, NAME, {
+    value: wellKnownSymbolWrapped.f(NAME)
+  });
 };
 
 var $forEach$1 = arrayIteration.forEach;
@@ -1742,8 +1669,8 @@ var HIDDEN = sharedKey('hidden');
 var SYMBOL = 'Symbol';
 var PROTOTYPE$1 = 'prototype';
 var TO_PRIMITIVE = wellKnownSymbol('toPrimitive');
-var setInternalState$2 = internalState.set;
-var getInternalState$2 = internalState.getterFor(SYMBOL);
+var setInternalState$1 = internalState.set;
+var getInternalState$1 = internalState.getterFor(SYMBOL);
 var ObjectPrototype$1 = Object[PROTOTYPE$1];
 var $Symbol = global$1.Symbol;
 var $stringify = getBuiltIn('JSON', 'stringify');
@@ -1780,7 +1707,7 @@ var setSymbolDescriptor = descriptors && fails(function () {
 
 var wrap$1 = function (tag, description) {
   var symbol = AllSymbols[tag] = objectCreate($Symbol[PROTOTYPE$1]);
-  setInternalState$2(symbol, {
+  setInternalState$1(symbol, {
     type: SYMBOL,
     tag: tag,
     description: description
@@ -1895,7 +1822,7 @@ if (!nativeSymbol) {
   };
 
   redefine($Symbol[PROTOTYPE$1], 'toString', function toString() {
-    return getInternalState$2(this).tag;
+    return getInternalState$1(this).tag;
   });
   redefine($Symbol, 'withoutSetter', function (description) {
     return wrap$1(uid(description), description);
@@ -1915,7 +1842,7 @@ if (!nativeSymbol) {
     nativeDefineProperty$1($Symbol[PROTOTYPE$1], 'description', {
       configurable: true,
       get: function description() {
-        return getInternalState$2(this).description;
+        return getInternalState$1(this).description;
       }
     });
   }
@@ -2065,6 +1992,10 @@ defineWellKnownSymbol('hasInstance');
 
 defineWellKnownSymbol('isConcatSpreadable');
 
+// https://tc39.es/ecma262/#sec-symbol.iterator
+
+defineWellKnownSymbol('iterator');
+
 // https://tc39.es/ecma262/#sec-symbol.match
 
 defineWellKnownSymbol('match');
@@ -2129,35 +2060,86 @@ var symbol$1 = symbol;
 
 var symbol$2 = symbol$1;
 
-var _typeof_1 = createCommonjsModule(function (module) {
-  function _typeof(obj) {
-    "@babel/helpers - typeof";
+var createMethod$2 = function (CONVERT_TO_STRING) {
+  return function ($this, pos) {
+    var S = String(requireObjectCoercible($this));
+    var position = toInteger(pos);
+    var size = S.length;
+    var first, second;
+    if (position < 0 || position >= size) return CONVERT_TO_STRING ? '' : undefined;
+    first = S.charCodeAt(position);
+    return first < 0xD800 || first > 0xDBFF || position + 1 === size || (second = S.charCodeAt(position + 1)) < 0xDC00 || second > 0xDFFF ? CONVERT_TO_STRING ? S.charAt(position) : first : CONVERT_TO_STRING ? S.slice(position, position + 2) : (first - 0xD800 << 10) + (second - 0xDC00) + 0x10000;
+  };
+};
 
-    if (typeof symbol$2 === "function" && typeof iterator$2 === "symbol") {
-      module.exports = _typeof = function _typeof(obj) {
-        return typeof obj;
-      };
-    } else {
-      module.exports = _typeof = function _typeof(obj) {
-        return obj && typeof symbol$2 === "function" && obj.constructor === symbol$2 && obj !== symbol$2.prototype ? "symbol" : typeof obj;
-      };
-    }
+var stringMultibyte = {
+  // `String.prototype.codePointAt` method
+  // https://tc39.es/ecma262/#sec-string.prototype.codepointat
+  codeAt: createMethod$2(false),
+  // `String.prototype.at` method
+  // https://github.com/mathiasbynens/String.prototype.at
+  charAt: createMethod$2(true)
+};
 
-    return _typeof(obj);
-  }
+var charAt = stringMultibyte.charAt;
+var STRING_ITERATOR = 'String Iterator';
+var setInternalState$2 = internalState.set;
+var getInternalState$2 = internalState.getterFor(STRING_ITERATOR); // `String.prototype[@@iterator]` method
+// https://tc39.es/ecma262/#sec-string.prototype-@@iterator
 
-  module.exports = _typeof;
+defineIterator(String, 'String', function (iterated) {
+  setInternalState$2(this, {
+    type: STRING_ITERATOR,
+    string: String(iterated),
+    index: 0
+  }); // `%StringIteratorPrototype%.next` method
+  // https://tc39.es/ecma262/#sec-%stringiteratorprototype%.next
+}, function next() {
+  var state = getInternalState$2(this);
+  var string = state.string;
+  var index = state.index;
+  var point;
+  if (index >= string.length) return {
+    value: undefined,
+    done: true
+  };
+  point = charAt(string, index);
+  state.index += point.length;
+  return {
+    value: point,
+    done: false
+  };
 });
 
+var iterator = wellKnownSymbolWrapped.f('iterator');
+
+var iterator$1 = iterator;
+
+var iterator$2 = iterator$1;
+
+function _typeof(obj) {
+  "@babel/helpers - typeof";
+
+  if (typeof symbol$2 === "function" && typeof iterator$2 === "symbol") {
+    _typeof = function _typeof(obj) {
+      return typeof obj;
+    };
+  } else {
+    _typeof = function _typeof(obj) {
+      return obj && typeof symbol$2 === "function" && obj.constructor === symbol$2 && obj !== symbol$2.prototype ? "symbol" : typeof obj;
+    };
+  }
+
+  return _typeof(obj);
+}
+
 function _possibleConstructorReturn(self, call) {
-  if (call && (_typeof_1(call) === "object" || typeof call === "function")) {
+  if (call && (_typeof(call) === "object" || typeof call === "function")) {
     return call;
   }
 
-  return assertThisInitialized(self);
+  return _assertThisInitialized(self);
 }
-
-var possibleConstructorReturn = _possibleConstructorReturn;
 
 var FAILS_ON_PRIMITIVES = fails(function () {
   objectGetPrototypeOf(1);
@@ -2181,16 +2163,12 @@ var getPrototypeOf$1 = getPrototypeOf;
 
 var getPrototypeOf$2 = getPrototypeOf$1;
 
-var getPrototypeOf$3 = createCommonjsModule(function (module) {
-  function _getPrototypeOf(o) {
-    module.exports = _getPrototypeOf = setPrototypeOf$2 ? getPrototypeOf$2 : function _getPrototypeOf(o) {
-      return o.__proto__ || getPrototypeOf$2(o);
-    };
-    return _getPrototypeOf(o);
-  }
-
-  module.exports = _getPrototypeOf;
-});
+function _getPrototypeOf(o) {
+  _getPrototypeOf = setPrototypeOf$2 ? getPrototypeOf$2 : function _getPrototypeOf(o) {
+    return o.__proto__ || getPrototypeOf$2(o);
+  };
+  return _getPrototypeOf(o);
+}
 
 // use this instance. Else, load via commonjs.
 //
@@ -2345,8 +2323,6 @@ function _defineProperty(obj, key, value) {
 
   return obj;
 }
-
-var defineProperty$6 = _defineProperty;
 
 var FAILS_ON_PRIMITIVES$2 = fails(function () {
   objectKeys(1);
@@ -2895,9 +2871,9 @@ var values$1 = values;
 
 var values$2 = values$1;
 
-var getPrototypeOf$4 = getPrototypeOf;
+var getPrototypeOf$3 = getPrototypeOf;
 
-var getPrototypeOf$5 = getPrototypeOf$4;
+var getPrototypeOf$4 = getPrototypeOf$3;
 
 var $includes = arrayIncludes.includes; // `Array.prototype.includes` method
 // https://tc39.es/ecma262/#sec-array.prototype.includes
@@ -2986,17 +2962,17 @@ var includes$3 = includes$2;
 var includes$4 = includes$3;
 
 var nativeAssign = Object.assign;
-var defineProperty$7 = Object.defineProperty; // `Object.assign` method
+var defineProperty$6 = Object.defineProperty; // `Object.assign` method
 // https://tc39.es/ecma262/#sec-object.assign
 
 var objectAssign = !nativeAssign || fails(function () {
   // should have correct order of operations (Edge bug)
   if (descriptors && nativeAssign({
     b: 1
-  }, nativeAssign(defineProperty$7({}, 'a', {
+  }, nativeAssign(defineProperty$6({}, 'a', {
     enumerable: true,
     get: function () {
-      defineProperty$7(this, 'b', {
+      defineProperty$6(this, 'b', {
         value: 3,
         enumerable: false
       });
@@ -3178,8 +3154,6 @@ function _arrayWithHoles(arr) {
   if (isArray$5(arr)) return arr;
 }
 
-var arrayWithHoles = _arrayWithHoles;
-
 var ITERATOR$5 = wellKnownSymbol('iterator');
 
 var isIterable = function (it) {
@@ -3218,12 +3192,6 @@ function _iterableToArrayLimit(arr, i) {
 
   return _arr;
 }
-
-var iterableToArrayLimit = _iterableToArrayLimit;
-
-var from$3 = from;
-
-var from$4 = from$3;
 
 var HAS_SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport('slice');
 var SPECIES$2 = wellKnownSymbol('species');
@@ -3282,6 +3250,10 @@ var slice$3 = slice_1;
 
 var slice$4 = slice$3;
 
+var from$3 = from;
+
+var from$4 = from$3;
+
 function _arrayLikeToArray(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
 
@@ -3292,34 +3264,26 @@ function _arrayLikeToArray(arr, len) {
   return arr2;
 }
 
-var arrayLikeToArray = _arrayLikeToArray;
-
 function _unsupportedIterableToArray(o, minLen) {
   var _context;
 
   if (!o) return;
-  if (typeof o === "string") return arrayLikeToArray(o, minLen);
+  if (typeof o === "string") return _arrayLikeToArray(o, minLen);
 
   var n = slice$4(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
 
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return from$4(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen);
 }
-
-var unsupportedIterableToArray = _unsupportedIterableToArray;
 
 function _nonIterableRest() {
   throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var nonIterableRest = _nonIterableRest;
-
 function _slicedToArray(arr, i) {
-  return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest();
 }
-
-var slicedToArray = _slicedToArray;
 
 // https://tc39.es/ecma262/#sec-date.now
 
@@ -3358,28 +3322,20 @@ var slice$5 = slice_1;
 var slice$6 = slice$5;
 
 function _arrayWithoutHoles(arr) {
-  if (isArray$5(arr)) return arrayLikeToArray(arr);
+  if (isArray$5(arr)) return _arrayLikeToArray(arr);
 }
-
-var arrayWithoutHoles = _arrayWithoutHoles;
 
 function _iterableToArray(iter) {
   if (typeof symbol$2 !== "undefined" && isIterable$1(Object(iter))) return from$4(iter);
 }
 
-var iterableToArray = _iterableToArray;
-
 function _nonIterableSpread() {
   throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
 
-var nonIterableSpread = _nonIterableSpread;
-
 function _toConsumableArray(arr) {
-  return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
-
-var toConsumableArray = _toConsumableArray;
 
 var concat = entryVirtual('Array').concat;
 
@@ -6528,7 +6484,7 @@ var Hammer = /*#__PURE__*/function () {
 
 function ownKeys$4(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$4(Object(source), true)).call(_context22, function (key) { defineProperty$6(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context23; forEach$2(_context23 = ownKeys$4(Object(source))).call(_context23, function (key) { defineProperty$5(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$4(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context23; forEach$2(_context23 = ownKeys$4(Object(source))).call(_context23, function (key) { defineProperty$5(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
 
 function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof symbol$4 === "undefined" || getIteratorMethod$1(o) == null) { if (isArray$3(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator$1(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
@@ -6595,7 +6551,7 @@ function deepObjectAssignNonentry() {
   } else if (values.length > 2) {
     var _context2;
 
-    return deepObjectAssignNonentry.apply(void 0, concat$2(_context2 = [deepObjectAssign(values[0], values[1])]).call(_context2, toConsumableArray(slice$6(values).call(values, 2))));
+    return deepObjectAssignNonentry.apply(void 0, concat$2(_context2 = [deepObjectAssign(values[0], values[1])]).call(_context2, _toConsumableArray(slice$6(values).call(values, 2))));
   }
 
   var a = values[0];
@@ -6609,7 +6565,7 @@ function deepObjectAssignNonentry() {
       var prop = _step.value;
       if (!Object.prototype.propertyIsEnumerable.call(b, prop)) ;else if (b[prop] === DELETE) {
         delete a[prop];
-      } else if (a[prop] !== null && b[prop] !== null && _typeof_1(a[prop]) === "object" && _typeof_1(b[prop]) === "object" && !isArray$3(a[prop]) && !isArray$3(b[prop])) {
+      } else if (a[prop] !== null && b[prop] !== null && _typeof(a[prop]) === "object" && _typeof(b[prop]) === "object" && !isArray$3(a[prop]) && !isArray$3(b[prop])) {
         a[prop] = deepObjectAssignNonentry(a[prop], b[prop]);
       } else {
         a[prop] = clone(b[prop]);
@@ -6637,7 +6593,7 @@ function clone(a) {
     return map$2(a).call(a, function (value) {
       return clone(value);
     });
-  } else if (_typeof_1(a) === "object" && a !== null) {
+  } else if (_typeof(a) === "object" && a !== null) {
     return deepObjectAssignNonentry({}, a);
   } else {
     return a;
@@ -6656,7 +6612,7 @@ function stripDelete(a) {
 
     if (a[prop] === DELETE) {
       delete a[prop];
-    } else if (_typeof_1(a[prop]) === "object" && a[prop] !== null) {
+    } else if (_typeof(a[prop]) === "object" && a[prop] !== null) {
       stripDelete(a[prop]);
     }
   }
@@ -6698,7 +6654,7 @@ function Alea() {
 
 function AleaImplementation(seed) {
   var _mashSeed = mashSeed(seed),
-      _mashSeed2 = slicedToArray(_mashSeed, 3),
+      _mashSeed2 = _slicedToArray(_mashSeed, 3),
       s0 = _mashSeed2[0],
       s1 = _mashSeed2[1],
       s2 = _mashSeed2[2];
@@ -7061,7 +7017,7 @@ function isString(value) {
 
 
 function isObject$1(value) {
-  return _typeof_1(value) === "object" && value !== null;
+  return _typeof(value) === "object" && value !== null;
 }
 /**
  * Test whether given object is a Date, or a String containing a Date.
@@ -7133,7 +7089,7 @@ function fillIfDefined(a, b) {
   // NOTE: prototype properties iterated over as well
   for (var prop in a) {
     if (b[prop] !== undefined) {
-      if (b[prop] === null || _typeof_1(b[prop]) !== "object") {
+      if (b[prop] === null || _typeof(b[prop]) !== "object") {
         // Note: typeof null === 'object'
         copyOrDelete(a, b, prop, allowDeletion);
       } else {
@@ -7327,10 +7283,10 @@ function deepExtend(a, b) {
 
   for (var prop in b) {
     if (Object.prototype.hasOwnProperty.call(b, prop) || protoExtend === true) {
-      if (_typeof_1(b[prop]) === "object" && b[prop] !== null && getPrototypeOf$5(b[prop]) === Object.prototype) {
+      if (_typeof(b[prop]) === "object" && b[prop] !== null && getPrototypeOf$4(b[prop]) === Object.prototype) {
         if (a[prop] === undefined) {
           a[prop] = deepExtend({}, b[prop], protoExtend); // NOTE: allowDeletion not propagated!
-        } else if (_typeof_1(a[prop]) === "object" && a[prop] !== null && getPrototypeOf$5(a[prop]) === Object.prototype) {
+        } else if (_typeof(a[prop]) === "object" && a[prop] !== null && getPrototypeOf$4(a[prop]) === Object.prototype) {
           deepExtend(a[prop], b[prop], protoExtend); // NOTE: allowDeletion not propagated!
         } else {
           copyOrDelete(a, b, prop, allowDeletion);
@@ -7380,7 +7336,7 @@ function equalArray(a, b) {
 
 
 function getType(object) {
-  var type = _typeof_1(object);
+  var type = _typeof(object);
 
   if (type === "object") {
     if (object === null) {
@@ -7441,7 +7397,7 @@ function getType(object) {
 function copyAndExtendArray(arr, newValue) {
   var _context7;
 
-  return concat$2(_context7 = []).call(_context7, toConsumableArray(arr), [newValue]);
+  return concat$2(_context7 = []).call(_context7, _toConsumableArray(arr), [newValue]);
 }
 /**
  * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -8269,13 +8225,13 @@ function isValidRGBA(rgba) {
 
 
 function selectiveBridgeObject(fields, referenceObject) {
-  if (referenceObject !== null && _typeof_1(referenceObject) === "object") {
+  if (referenceObject !== null && _typeof(referenceObject) === "object") {
     // !!! typeof null === 'object'
     var objectTo = create$4(referenceObject);
 
     for (var i = 0; i < fields.length; i++) {
       if (Object.prototype.hasOwnProperty.call(referenceObject, fields[i])) {
-        if (_typeof_1(referenceObject[fields[i]]) == "object") {
+        if (_typeof(referenceObject[fields[i]]) == "object") {
           objectTo[fields[i]] = bridgeObject(referenceObject[fields[i]]);
         }
       }
@@ -8297,7 +8253,7 @@ function selectiveBridgeObject(fields, referenceObject) {
 
 
 function bridgeObject(referenceObject) {
-  if (referenceObject === null || _typeof_1(referenceObject) !== "object") {
+  if (referenceObject === null || _typeof(referenceObject) !== "object") {
     return null;
   }
 
@@ -8310,7 +8266,7 @@ function bridgeObject(referenceObject) {
 
   for (var i in referenceObject) {
     if (Object.prototype.hasOwnProperty.call(referenceObject, i)) {
-      if (_typeof_1(referenceObject[i]) == "object") {
+      if (_typeof(referenceObject[i]) == "object") {
         objectTo[i] = bridgeObject(referenceObject[i]);
       }
     }
@@ -8366,7 +8322,7 @@ function mergeOptions(mergeTarget, options, option) {
   };
 
   var isObject = function isObject(obj) {
-    return obj !== null && _typeof_1(obj) === "object";
+    return obj !== null && _typeof(obj) === "object";
   }; // https://stackoverflow.com/a/34491287/1223531
 
 
@@ -8971,7 +8927,7 @@ var ColorPicker = /*#__PURE__*/function () {
   function ColorPicker() {
     var pixelRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-    classCallCheck(this, ColorPicker);
+    _classCallCheck(this, ColorPicker);
 
     this.pixelRatio = pixelRatio;
     this.generated = false;
@@ -9010,7 +8966,7 @@ var ColorPicker = /*#__PURE__*/function () {
    */
 
 
-  createClass(ColorPicker, [{
+  _createClass(ColorPicker, [{
     key: "insertTo",
     value: function insertTo(container) {
       if (this.hammer !== undefined) {
@@ -9628,7 +9584,7 @@ function wrapInTag() {
     return document.createTextNode(rest[0]);
   } else {
     var element = document.createElement(rest[0]);
-    element.appendChild(wrapInTag.apply(void 0, toConsumableArray(slice$6(rest).call(rest, 1))));
+    element.appendChild(wrapInTag.apply(void 0, _toConsumableArray(slice$6(rest).call(rest, 1))));
     return element;
   }
 }
@@ -9657,7 +9613,7 @@ var Configurator = /*#__PURE__*/function () {
       return false;
     };
 
-    classCallCheck(this, Configurator);
+    _classCallCheck(this, Configurator);
 
     this.parent = parentModule;
     this.changedOptions = [];
@@ -9693,7 +9649,7 @@ var Configurator = /*#__PURE__*/function () {
    */
 
 
-  createClass(Configurator, [{
+  _createClass(Configurator, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options !== undefined) {
@@ -9708,7 +9664,7 @@ var Configurator = /*#__PURE__*/function () {
           this.options.filter = options;
         } else if (isArray$3(options)) {
           this.options.filter = options.join();
-        } else if (_typeof_1(options) === "object") {
+        } else if (_typeof(options) === "object") {
           if (options == null) {
             throw new TypeError("options cannot be null");
           }
@@ -10212,7 +10168,7 @@ var Configurator = /*#__PURE__*/function () {
         checkbox.checked = value;
 
         if (value !== defaultValue) {
-          if (_typeof_1(defaultValue) === "object") {
+          if (_typeof(defaultValue) === "object") {
             if (value !== defaultValue.enabled) {
               this.changedOptions.push({
                 path: path,
@@ -10566,7 +10522,7 @@ var Popup = /*#__PURE__*/function () {
    * @param {string}  overflowMethod  How the popup should act to overflowing ('flip' or 'cap')
    */
   function Popup(container, overflowMethod) {
-    classCallCheck(this, Popup);
+    _classCallCheck(this, Popup);
 
     this.container = container;
     this.overflowMethod = overflowMethod || "cap";
@@ -10585,7 +10541,7 @@ var Popup = /*#__PURE__*/function () {
    */
 
 
-  createClass(Popup, [{
+  _createClass(Popup, [{
     key: "setPosition",
     value: function setPosition(x, y) {
       this.x = _parseInt$2(x);
@@ -10721,10 +10677,10 @@ var VALIDATOR_PRINT_STYLE = "background: #FFeeee; color: #dd0000";
 
 var Validator = /*#__PURE__*/function () {
   function Validator() {
-    classCallCheck(this, Validator);
+    _classCallCheck(this, Validator);
   }
 
-  createClass(Validator, null, [{
+  _createClass(Validator, null, [{
     key: "validate",
     value:
     /**
@@ -10852,7 +10808,7 @@ var Validator = /*#__PURE__*/function () {
   }, {
     key: "getType",
     value: function getType(object) {
-      var type = _typeof_1(object);
+      var type = _typeof(object);
 
       if (type === "object") {
         if (object === null) {
@@ -13135,7 +13091,7 @@ var lib$1 = createCommonjsModule(function (module, exports) {
 
 function ownKeys$5(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols$2) { var symbols = getOwnPropertySymbols$2(object); if (enumerableOnly) symbols = filter$2(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor$3(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys$5(Object(source), true)).call(_context8, function (key) { defineProperty$6(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context9; forEach$2(_context9 = ownKeys$5(Object(source))).call(_context9, function (key) { defineProperty$5(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys$5(Object(source), true)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors$2) { defineProperties$1(target, getOwnPropertyDescriptors$2(source)); } else { var _context9; forEach$2(_context9 = ownKeys$5(Object(source))).call(_context9, function (key) { defineProperty$5(target, key, getOwnPropertyDescriptor$3(source, key)); }); } } return target; }
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
@@ -13413,7 +13369,7 @@ var Component = /*#__PURE__*/function () {
   * @param {Object} [options]
   */
   function Component(body, options) {
-    classCallCheck(this, Component);
+    _classCallCheck(this, Component);
 
     // eslint-disable-line no-unused-vars
     this.options = null;
@@ -13426,7 +13382,7 @@ var Component = /*#__PURE__*/function () {
    */
 
 
-  createClass(Component, [{
+  _createClass(Component, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
@@ -14126,9 +14082,9 @@ var DateUtil = /*#__PURE__*/Object.freeze({
 	getIsHidden: getIsHidden
 });
 
-function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A Range controls a numeric range with a start and end value.
  * The Range adjusts the range based on mouse events or programmatic changes,
@@ -14136,7 +14092,7 @@ function _isNativeReflectConstruct() { if (typeof Reflect === "undefined" || !co
  */
 
 var Range = /*#__PURE__*/function (_Component) {
-  inherits(Range, _Component);
+  _inherits(Range, _Component);
 
   var _super = _createSuper(Range);
 
@@ -14151,7 +14107,7 @@ var Range = /*#__PURE__*/function (_Component) {
 
     var _this;
 
-    classCallCheck(this, Range);
+    _classCallCheck(this, Range);
 
     _this = _super.call(this);
     var now = moment().hours(0).minutes(0).seconds(0).milliseconds(0);
@@ -14200,22 +14156,22 @@ var Range = /*#__PURE__*/function (_Component) {
     };
     _this.animationTimer = null; // drag listeners for dragging
 
-    _this.body.emitter.on('panstart', bind$2(_context = _this._onDragStart).call(_context, assertThisInitialized(_this)));
+    _this.body.emitter.on('panstart', bind$2(_context = _this._onDragStart).call(_context, _assertThisInitialized(_this)));
 
-    _this.body.emitter.on('panmove', bind$2(_context2 = _this._onDrag).call(_context2, assertThisInitialized(_this)));
+    _this.body.emitter.on('panmove', bind$2(_context2 = _this._onDrag).call(_context2, _assertThisInitialized(_this)));
 
-    _this.body.emitter.on('panend', bind$2(_context3 = _this._onDragEnd).call(_context3, assertThisInitialized(_this))); // mouse wheel for zooming
-
-
-    _this.body.emitter.on('mousewheel', bind$2(_context4 = _this._onMouseWheel).call(_context4, assertThisInitialized(_this))); // pinch to zoom
+    _this.body.emitter.on('panend', bind$2(_context3 = _this._onDragEnd).call(_context3, _assertThisInitialized(_this))); // mouse wheel for zooming
 
 
-    _this.body.emitter.on('touch', bind$2(_context5 = _this._onTouch).call(_context5, assertThisInitialized(_this)));
-
-    _this.body.emitter.on('pinch', bind$2(_context6 = _this._onPinch).call(_context6, assertThisInitialized(_this))); // on click of rolling mode button
+    _this.body.emitter.on('mousewheel', bind$2(_context4 = _this._onMouseWheel).call(_context4, _assertThisInitialized(_this))); // pinch to zoom
 
 
-    _this.body.dom.rollingModeBtn.addEventListener('click', bind$2(_context7 = _this.startRolling).call(_context7, assertThisInitialized(_this)));
+    _this.body.emitter.on('touch', bind$2(_context5 = _this._onTouch).call(_context5, _assertThisInitialized(_this)));
+
+    _this.body.emitter.on('pinch', bind$2(_context6 = _this._onPinch).call(_context6, _assertThisInitialized(_this))); // on click of rolling mode button
+
+
+    _this.body.dom.rollingModeBtn.addEventListener('click', bind$2(_context7 = _this.startRolling).call(_context7, _assertThisInitialized(_this)));
 
     _this.setOptions(options);
 
@@ -14239,7 +14195,7 @@ var Range = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(Range, [{
+  _createClass(Range, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
@@ -14351,8 +14307,8 @@ var Range = /*#__PURE__*/function (_Component) {
         // true or an Object
         var initStart = this.start;
         var initEnd = this.end;
-        var duration = _typeof_1(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
-        var easingName = _typeof_1(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
+        var duration = _typeof(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
+        var easingName = _typeof(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
         var easingFunction = util$3.easingFunctions[easingName];
 
         if (!easingFunction) {
@@ -15447,7 +15403,7 @@ var TimeStep = /*#__PURE__*/function () {
     * @constructor  TimeStep
     */
   function TimeStep(start, end, minimumStep, hiddenDates, options) {
-    classCallCheck(this, TimeStep);
+    _classCallCheck(this, TimeStep);
 
     this.moment = options && options.moment || moment;
     this.options = options ? options : {}; // variables
@@ -15482,7 +15438,7 @@ var TimeStep = /*#__PURE__*/function () {
    */
 
 
-  createClass(TimeStep, [{
+  _createClass(TimeStep, [{
     key: "setMoment",
     value: function setMoment(moment) {
       this.moment = moment; // update the date properties, can have a new utcOffset
@@ -16429,13 +16385,13 @@ TimeStep.FORMAT = {
   }
 };
 
-function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$1(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$1(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$1() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /** A horizontal time axis */
 
 var TimeAxis = /*#__PURE__*/function (_Component) {
-  inherits(TimeAxis, _Component);
+  _inherits(TimeAxis, _Component);
 
   var _super = _createSuper$1(TimeAxis);
 
@@ -16449,7 +16405,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
   function TimeAxis(body, options) {
     var _this;
 
-    classCallCheck(this, TimeAxis);
+    _classCallCheck(this, TimeAxis);
 
     _this = _super.call(this);
     _this.dom = {
@@ -16504,7 +16460,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(TimeAxis, [{
+  _createClass(TimeAxis, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
@@ -16516,7 +16472,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
         if ('orientation' in options) {
           if (typeof options.orientation === 'string') {
             this.options.orientation.axis = options.orientation;
-          } else if (_typeof_1(options.orientation) === 'object' && 'axis' in options.orientation) {
+          } else if (_typeof(options.orientation) === 'object' && 'axis' in options.orientation) {
             this.options.orientation.axis = options.orientation.axis;
           }
         } // apply locale to moment.js
@@ -17511,13 +17467,13 @@ var locales = {
   ja_JP: ja_JP
 };
 
-function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$2(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$2(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$2() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /** A custom time bar */
 
 var CustomTime = /*#__PURE__*/function (_Component) {
-  inherits(CustomTime, _Component);
+  _inherits(CustomTime, _Component);
 
   var _super = _createSuper$2(CustomTime);
 
@@ -17535,7 +17491,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
 
     var _this;
 
-    classCallCheck(this, CustomTime);
+    _classCallCheck(this, CustomTime);
 
     _this = _super.call(this);
     _this.body = body; // default options
@@ -17580,7 +17536,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(CustomTime, [{
+  _createClass(CustomTime, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
@@ -17906,10 +17862,10 @@ var CustomTime = /*#__PURE__*/function (_Component) {
 
 var Core = /*#__PURE__*/function () {
   function Core() {
-    classCallCheck(this, Core);
+    _classCallCheck(this, Core);
   }
 
-  createClass(Core, [{
+  _createClass(Core, [{
     key: "_create",
     value:
     /**
@@ -18327,7 +18283,7 @@ var Core = /*#__PURE__*/function () {
           }
         }
 
-        if (_typeof_1(this.options.orientation) !== 'object') {
+        if (_typeof(this.options.orientation) !== 'object') {
           this.options.orientation = {
             item: undefined,
             axis: undefined
@@ -18340,7 +18296,7 @@ var Core = /*#__PURE__*/function () {
               item: options.orientation,
               axis: options.orientation
             };
-          } else if (_typeof_1(options.orientation) === 'object') {
+          } else if (_typeof(options.orientation) === 'object') {
             if ('item' in options.orientation) {
               this.options.orientation.item = options.orientation.item;
             }
@@ -19418,15 +19374,15 @@ var Core = /*#__PURE__*/function () {
 
 componentEmitter(Core.prototype);
 
-function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$3(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$3(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$3() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * A current time bar
  */
 
 var CurrentTime = /*#__PURE__*/function (_Component) {
-  inherits(CurrentTime, _Component);
+  _inherits(CurrentTime, _Component);
 
   var _super = _createSuper$3(CurrentTime);
 
@@ -19443,7 +19399,7 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
 
     var _this;
 
-    classCallCheck(this, CurrentTime);
+    _classCallCheck(this, CurrentTime);
 
     _this = _super.call(this);
     _this.body = body; // default options
@@ -19479,7 +19435,7 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(CurrentTime, [{
+  _createClass(CurrentTime, [{
     key: "_create",
     value: function _create() {
       var bar = document.createElement('div');
@@ -19787,7 +19743,7 @@ var anInstance = function (it, Constructor, name) {
   return it;
 };
 
-var defineProperty$8 = objectDefineProperty.f;
+var defineProperty$7 = objectDefineProperty.f;
 var forEach$4 = arrayIteration.forEach;
 var setInternalState$3 = internalState.set;
 var internalStateGetterFor = internalState.getterFor;
@@ -19831,7 +19787,7 @@ var collection = function (CONSTRUCTOR_NAME, wrapper, common) {
         });
       }
     });
-    IS_WEAK || defineProperty$8(Constructor.prototype, 'size', {
+    IS_WEAK || defineProperty$7(Constructor.prototype, 'size', {
       configurable: true,
       get: function () {
         return getInternalState(this).collection.size;
@@ -19873,7 +19829,7 @@ var setSpecies = function (CONSTRUCTOR_NAME) {
   }
 };
 
-var defineProperty$9 = objectDefineProperty.f;
+var defineProperty$8 = objectDefineProperty.f;
 var fastKey = internalMetadata.fastKey;
 var setInternalState$4 = internalState.set;
 var internalStateGetterFor$1 = internalState.getterFor;
@@ -20011,7 +19967,7 @@ var collectionStrong = {
         return define(this, value = value === 0 ? 0 : value, value);
       }
     });
-    if (descriptors) defineProperty$9(C.prototype, 'size', {
+    if (descriptors) defineProperty$8(C.prototype, 'size', {
       get: function () {
         return getInternalState(this).size;
       }
@@ -20518,7 +20474,7 @@ var Group = /*#__PURE__*/function () {
   function Group(groupId, data, itemSet) {
     var _this = this;
 
-    classCallCheck(this, Group);
+    _classCallCheck(this, Group);
 
     this.groupId = groupId;
     this.subgroups = {};
@@ -20610,7 +20566,7 @@ var Group = /*#__PURE__*/function () {
    */
 
 
-  createClass(Group, [{
+  _createClass(Group, [{
     key: "_create",
     value: function _create() {
       var label = document.createElement('div');
@@ -20903,12 +20859,12 @@ var Group = /*#__PURE__*/function () {
           })
         };
         var orderedClusters = {
-          byEnd: toConsumableArray(new set$3(filter$2(_context4 = map$2(_context5 = this.orderedItems.byEnd).call(_context5, function (item) {
+          byEnd: _toConsumableArray(new set$3(filter$2(_context4 = map$2(_context5 = this.orderedItems.byEnd).call(_context5, function (item) {
             return item.cluster;
           })).call(_context4, function (item) {
             return !!item;
           }))),
-          byStart: toConsumableArray(new set$3(filter$2(_context6 = map$2(_context7 = this.orderedItems.byStart).call(_context7, function (item) {
+          byStart: _toConsumableArray(new set$3(filter$2(_context6 = map$2(_context7 = this.orderedItems.byStart).call(_context7, function (item) {
             return item.cluster;
           })).call(_context6, function (item) {
             return !!item;
@@ -20930,7 +20886,7 @@ var Group = /*#__PURE__*/function () {
             return item.isCluster;
           }), range);
 
-          return concat$2(_context10 = []).call(_context10, toConsumableArray(visibleItems), toConsumableArray(visibleClusters));
+          return concat$2(_context10 = []).call(_context10, _toConsumableArray(visibleItems), _toConsumableArray(visibleClusters));
         };
         /**
          * Get visible items grouped by subgroup
@@ -21854,16 +21810,16 @@ var Group = /*#__PURE__*/function () {
   return Group;
 }();
 
-function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$4(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$4(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$4() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @constructor BackgroundGroup
  * @extends Group
  */
 
 var BackgroundGroup = /*#__PURE__*/function (_Group) {
-  inherits(BackgroundGroup, _Group);
+  _inherits(BackgroundGroup, _Group);
 
   var _super = _createSuper$4(BackgroundGroup);
 
@@ -21875,7 +21831,7 @@ var BackgroundGroup = /*#__PURE__*/function (_Group) {
   function BackgroundGroup(groupId, data, itemSet) {
     var _this;
 
-    classCallCheck(this, BackgroundGroup);
+    _classCallCheck(this, BackgroundGroup);
 
     _this = _super.call(this, groupId, data, itemSet); // Group.call(this, groupId, data, itemSet);
 
@@ -21894,7 +21850,7 @@ var BackgroundGroup = /*#__PURE__*/function (_Group) {
    */
 
 
-  createClass(BackgroundGroup, [{
+  _createClass(BackgroundGroup, [{
     key: "redraw",
     value: function redraw(range, margin, forceRestack) {
       // eslint-disable-line no-unused-vars
@@ -21951,7 +21907,7 @@ var Item = /*#__PURE__*/function () {
     var _context,
         _this = this;
 
-    classCallCheck(this, Item);
+    _classCallCheck(this, Item);
 
     this.id = null;
     this.parent = null;
@@ -21990,7 +21946,7 @@ var Item = /*#__PURE__*/function () {
    */
 
 
-  createClass(Item, [{
+  _createClass(Item, [{
     key: "select",
     value: function select() {
       if (this.selectable) {
@@ -22517,7 +22473,7 @@ var Item = /*#__PURE__*/function () {
             updateGroup: this.options.editable,
             remove: this.options.editable
           };
-        } else if (_typeof_1(this.options.editable) === 'object') {
+        } else if (_typeof(this.options.editable) === 'object') {
           this.editable = {};
           util$3.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
         }
@@ -22532,7 +22488,7 @@ var Item = /*#__PURE__*/function () {
               updateGroup: this.data.editable,
               remove: this.data.editable
             };
-          } else if (_typeof_1(this.data.editable) === 'object') {
+          } else if (_typeof(this.data.editable) === 'object') {
             // TODO: in timeline.js 5.0, we should change this to not reset options from the timeline configuration.
             // Basically just remove the next line...
             this.editable = {};
@@ -22586,16 +22542,16 @@ var Item = /*#__PURE__*/function () {
 
 Item.prototype.stack = true;
 
-function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$5(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$5(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$5() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @constructor BoxItem
  * @extends Item
  */
 
 var BoxItem = /*#__PURE__*/function (_Item) {
-  inherits(BoxItem, _Item);
+  _inherits(BoxItem, _Item);
 
   var _super = _createSuper$5(BoxItem);
 
@@ -22610,7 +22566,7 @@ var BoxItem = /*#__PURE__*/function (_Item) {
   function BoxItem(data, conversion, options) {
     var _this;
 
-    classCallCheck(this, BoxItem);
+    _classCallCheck(this, BoxItem);
 
     _this = _super.call(this, data, conversion, options);
     _this.props = {
@@ -22639,7 +22595,7 @@ var BoxItem = /*#__PURE__*/function (_Item) {
    */
 
 
-  createClass(BoxItem, [{
+  _createClass(BoxItem, [{
     key: "isVisible",
     value: function isVisible(range) {
       if (this.cluster) {
@@ -23021,16 +22977,16 @@ var BoxItem = /*#__PURE__*/function (_Item) {
   return BoxItem;
 }(Item);
 
-function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$6(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$6(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$6() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @constructor PointItem
  * @extends Item
  */
 
 var PointItem = /*#__PURE__*/function (_Item) {
-  inherits(PointItem, _Item);
+  _inherits(PointItem, _Item);
 
   var _super = _createSuper$6(PointItem);
 
@@ -23045,7 +23001,7 @@ var PointItem = /*#__PURE__*/function (_Item) {
   function PointItem(data, conversion, options) {
     var _this;
 
-    classCallCheck(this, PointItem);
+    _classCallCheck(this, PointItem);
 
     _this = _super.call(this, data, conversion, options);
     _this.props = {
@@ -23076,7 +23032,7 @@ var PointItem = /*#__PURE__*/function (_Item) {
    */
 
 
-  createClass(PointItem, [{
+  _createClass(PointItem, [{
     key: "isVisible",
     value: function isVisible(range) {
       if (this.cluster) {
@@ -23400,16 +23356,16 @@ var PointItem = /*#__PURE__*/function (_Item) {
   return PointItem;
 }(Item);
 
-function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$7(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$7(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$7() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @constructor RangeItem
  * @extends Item
  */
 
 var RangeItem = /*#__PURE__*/function (_Item) {
-  inherits(RangeItem, _Item);
+  _inherits(RangeItem, _Item);
 
   var _super = _createSuper$7(RangeItem);
 
@@ -23424,7 +23380,7 @@ var RangeItem = /*#__PURE__*/function (_Item) {
   function RangeItem(data, conversion, options) {
     var _this;
 
-    classCallCheck(this, RangeItem);
+    _classCallCheck(this, RangeItem);
 
     _this = _super.call(this, data, conversion, options);
     _this.props = {
@@ -23455,7 +23411,7 @@ var RangeItem = /*#__PURE__*/function (_Item) {
    */
 
 
-  createClass(RangeItem, [{
+  _createClass(RangeItem, [{
     key: "isVisible",
     value: function isVisible(range) {
       if (this.cluster) {
@@ -23871,16 +23827,16 @@ var RangeItem = /*#__PURE__*/function (_Item) {
 
 RangeItem.prototype.baseClassName = 'vis-item vis-range';
 
-function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$8(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$8(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$8() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * @constructor BackgroundItem
  * @extends Item
  */
 
 var BackgroundItem = /*#__PURE__*/function (_Item) {
-  inherits(BackgroundItem, _Item);
+  _inherits(BackgroundItem, _Item);
 
   var _super = _createSuper$8(BackgroundItem);
 
@@ -23897,7 +23853,7 @@ var BackgroundItem = /*#__PURE__*/function (_Item) {
   function BackgroundItem(data, conversion, options) {
     var _this;
 
-    classCallCheck(this, BackgroundItem);
+    _classCallCheck(this, BackgroundItem);
 
     _this = _super.call(this, data, conversion, options);
     _this.props = {
@@ -23927,7 +23883,7 @@ var BackgroundItem = /*#__PURE__*/function (_Item) {
    */
 
 
-  createClass(BackgroundItem, [{
+  _createClass(BackgroundItem, [{
     key: "isVisible",
     value: function isVisible(range) {
       // determine visibility
@@ -24172,7 +24128,7 @@ var Popup$2 = /*#__PURE__*/function () {
    * @param {string}  overflowMethod  How the popup should act to overflowing ('flip', 'cap' or 'none')
    */
   function Popup(container, overflowMethod) {
-    classCallCheck(this, Popup);
+    _classCallCheck(this, Popup);
 
     this.container = container;
     this.overflowMethod = overflowMethod || 'cap';
@@ -24191,7 +24147,7 @@ var Popup$2 = /*#__PURE__*/function () {
    */
 
 
-  createClass(Popup, [{
+  _createClass(Popup, [{
     key: "setPosition",
     value: function setPosition(x, y) {
       this.x = _parseInt$2(x);
@@ -24349,15 +24305,15 @@ function _unsupportedIterableToArray$3(o, minLen) { var _context14; if (!o) retu
 
 function _arrayLikeToArray$3(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _createSuper$9(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$9(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$9(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$9(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$9() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * ClusterItem
  */
 
 var ClusterItem = /*#__PURE__*/function (_Item) {
-  inherits(ClusterItem, _Item);
+  _inherits(ClusterItem, _Item);
 
   var _super = _createSuper$9(ClusterItem);
 
@@ -24373,7 +24329,7 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
   function ClusterItem(data, conversion, options) {
     var _this;
 
-    classCallCheck(this, ClusterItem);
+    _classCallCheck(this, ClusterItem);
 
     var modifiedOptions = assign$2({}, {
       fitOnDoubleClick: true
@@ -24411,7 +24367,7 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
    */
 
 
-  createClass(ClusterItem, [{
+  _createClass(ClusterItem, [{
     key: "hasItems",
     value: function hasItems() {
       return this.data.uiItems && this.data.uiItems.length && this.attached;
@@ -24820,10 +24776,10 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
         };
       });
 
-      this.data.min = Math.min.apply(Math, toConsumableArray(map$2(stats).call(stats, function (s) {
+      this.data.min = Math.min.apply(Math, _toConsumableArray(map$2(stats).call(stats, function (s) {
         return Math.min(s.start, s.end || s.start);
       })));
-      this.data.max = Math.max.apply(Math, toConsumableArray(map$2(stats).call(stats, function (s) {
+      this.data.max = Math.max.apply(Math, _toConsumableArray(map$2(stats).call(stats, function (s) {
         return Math.max(s.start, s.end || s.start);
       })));
 
@@ -25136,7 +25092,7 @@ var ClusterGenerator = /*#__PURE__*/function () {
    * @constructor ClusterGenerator
   */
   function ClusterGenerator(itemSet) {
-    classCallCheck(this, ClusterGenerator);
+    _classCallCheck(this, ClusterGenerator);
 
     this.itemSet = itemSet;
     this.groups = {};
@@ -25152,7 +25108,7 @@ var ClusterGenerator = /*#__PURE__*/function () {
   */
 
 
-  createClass(ClusterGenerator, [{
+  _createClass(ClusterGenerator, [{
     key: "createClusterItem",
     value: function createClusterItem(itemData, conversion, options) {
       var newItem = new ClusterItem(itemData, conversion, options);
@@ -25498,9 +25454,9 @@ function _unsupportedIterableToArray$5(o, minLen) { var _context34; if (!o) retu
 
 function _arrayLikeToArray$5(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$a() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 var UNGROUPED$2 = '__ungrouped__'; // reserved group id for ungrouped items
 
 var BACKGROUND$2 = '__background__'; // reserved group id for background items without group
@@ -25511,7 +25467,7 @@ var BACKGROUND$2 = '__background__'; // reserved group id for background items w
  */
 
 var ItemSet = /*#__PURE__*/function (_Component) {
-  inherits(ItemSet, _Component);
+  _inherits(ItemSet, _Component);
 
   var _super = _createSuper$a(ItemSet);
 
@@ -25524,7 +25480,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   function ItemSet(body, options) {
     var _this;
 
-    classCallCheck(this, ItemSet);
+    _classCallCheck(this, ItemSet);
 
     _this = _super.call(this);
     _this.body = body;
@@ -25621,7 +25577,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
     _this.props = {};
     _this.hammer = null;
 
-    var me = assertThisInitialized(_this);
+    var me = _assertThisInitialized(_this);
 
     _this.itemsData = null; // DataSet
 
@@ -25749,7 +25705,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(ItemSet, [{
+  _createClass(ItemSet, [{
     key: "_create",
     value: function _create() {
       var _this2 = this,
@@ -25927,7 +25883,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           if (typeof options.itemsAlwaysDraggable === 'boolean') {
             this.options.itemsAlwaysDraggable.item = options.itemsAlwaysDraggable;
             this.options.itemsAlwaysDraggable.range = false;
-          } else if (_typeof_1(options.itemsAlwaysDraggable) === 'object') {
+          } else if (_typeof(options.itemsAlwaysDraggable) === 'object') {
             util$3.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
 
             if (!this.options.itemsAlwaysDraggable.item) {
@@ -25945,7 +25901,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         if ('orientation' in options) {
           if (typeof options.orientation === 'string') {
             this.options.orientation.item = options.orientation === 'top' ? 'top' : 'bottom';
-          } else if (_typeof_1(options.orientation) === 'object' && 'item' in options.orientation) {
+          } else if (_typeof(options.orientation) === 'object' && 'item' in options.orientation) {
             this.options.orientation.item = options.orientation.item;
           }
         }
@@ -25955,14 +25911,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.margin.axis = options.margin;
             this.options.margin.item.horizontal = options.margin;
             this.options.margin.item.vertical = options.margin;
-          } else if (_typeof_1(options.margin) === 'object') {
+          } else if (_typeof(options.margin) === 'object') {
             util$3.selectiveExtend(['axis'], this.options.margin, options.margin);
 
             if ('item' in options.margin) {
               if (typeof options.margin.item === 'number') {
                 this.options.margin.item.horizontal = options.margin.item;
                 this.options.margin.item.vertical = options.margin.item;
-              } else if (_typeof_1(options.margin.item) === 'object') {
+              } else if (_typeof(options.margin.item) === 'object') {
                 util$3.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
               }
             }
@@ -25982,7 +25938,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.editable.add = options.editable;
             this.options.editable.remove = options.editable;
             this.options.editable.overrideItems = false;
-          } else if (_typeof_1(options.editable) === 'object') {
+          } else if (_typeof(options.editable) === 'object') {
             util$3.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
           }
         }
@@ -25992,7 +25948,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.groupEditable.order = options.groupEditable;
             this.options.groupEditable.add = options.groupEditable;
             this.options.groupEditable.remove = options.groupEditable;
-          } else if (_typeof_1(options.groupEditable) === 'object') {
+          } else if (_typeof(options.groupEditable) === 'object') {
             util$3.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
           }
         } // callback functions
@@ -26214,7 +26170,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         _iterator.f();
       }
 
-      this.selection = toConsumableArray(ids);
+      this.selection = _toConsumableArray(ids);
 
       var _iterator2 = _createForOfIteratorHelper$4(ids),
           _step2;
@@ -28516,7 +28472,7 @@ var Validator$2 = /*#__PURE__*/function () {
    * @ignore
    */
   function Validator() {
-    classCallCheck(this, Validator);
+    _classCallCheck(this, Validator);
   }
   /**
    * Main function to be called
@@ -28528,7 +28484,7 @@ var Validator$2 = /*#__PURE__*/function () {
    */
 
 
-  createClass(Validator, null, [{
+  _createClass(Validator, null, [{
     key: "validate",
     value: function validate(options, referenceOptions, subObject) {
       errorFound$1 = false;
@@ -28644,7 +28600,7 @@ var Validator$2 = /*#__PURE__*/function () {
   }, {
     key: "getType",
     value: function getType(object) {
-      var type = _typeof_1(object);
+      var type = _typeof(object);
 
       if (type === 'object') {
         if (object === null) {
@@ -29686,7 +29642,7 @@ var ColorPicker$2 = /*#__PURE__*/function () {
   function ColorPicker() {
     var pixelRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-    classCallCheck(this, ColorPicker);
+    _classCallCheck(this, ColorPicker);
 
     this.pixelRatio = pixelRatio;
     this.generated = false;
@@ -29724,7 +29680,7 @@ var ColorPicker$2 = /*#__PURE__*/function () {
    */
 
 
-  createClass(ColorPicker, [{
+  _createClass(ColorPicker, [{
     key: "insertTo",
     value: function insertTo(container) {
       if (this.hammer !== undefined) {
@@ -30328,7 +30284,7 @@ var Configurator$2 = /*#__PURE__*/function () {
   function Configurator(parentModule, defaultContainer, configureOptions) {
     var pixelRatio = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
 
-    classCallCheck(this, Configurator);
+    _classCallCheck(this, Configurator);
 
     this.parent = parentModule;
     this.changedOptions = [];
@@ -30361,7 +30317,7 @@ var Configurator$2 = /*#__PURE__*/function () {
    */
 
 
-  createClass(Configurator, [{
+  _createClass(Configurator, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options !== undefined) {
@@ -30376,7 +30332,7 @@ var Configurator$2 = /*#__PURE__*/function () {
           this.options.filter = options;
         } else if (isArray$3(options)) {
           this.options.filter = options.join();
-        } else if (_typeof_1(options) === 'object') {
+        } else if (_typeof(options) === 'object') {
           if (options == null) {
             throw new TypeError('options cannot be null');
           }
@@ -30862,7 +30818,7 @@ var Configurator$2 = /*#__PURE__*/function () {
         checkbox.checked = value;
 
         if (value !== defaultValue) {
-          if (_typeof_1(defaultValue) === 'object') {
+          if (_typeof(defaultValue) === 'object') {
             if (value !== defaultValue.enabled) {
               this.changedOptions.push({
                 path: path,
@@ -31203,16 +31159,16 @@ var Configurator$2 = /*#__PURE__*/function () {
   return Configurator;
 }();
 
-function _createSuper$b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$b(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$b(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$b(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$b() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /**
  * Create a timeline visualization
  * @extends Core
  */
 
 var Timeline = /*#__PURE__*/function (_Core) {
-  inherits(Timeline, _Core);
+  _inherits(Timeline, _Core);
 
   var _super = _createSuper$b(Timeline);
 
@@ -31228,13 +31184,13 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
     var _this;
 
-    classCallCheck(this, Timeline);
+    _classCallCheck(this, Timeline);
 
     _this = _super.call(this);
     _this.initTime = new Date();
     _this.itemsDone = false;
 
-    if (!(assertThisInitialized(_this) instanceof Timeline)) {
+    if (!(_assertThisInitialized(_this) instanceof Timeline)) {
       throw new SyntaxError('Constructor must be called with the new operator');
     } // if the third element is options, the forth is groups (optionally);
 
@@ -31251,7 +31207,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
       console.warn("Timeline option \"throttleRedraw\" is DEPRICATED and no longer supported. It will be removed in the next MAJOR release.");
     }
 
-    var me = assertThisInitialized(_this);
+    var me = _assertThisInitialized(_this);
 
     _this.defaultOptions = {
       autoResize: true,
@@ -31307,7 +31263,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
     if (_this.options.loadingScreenTemplate) {
       var _context;
 
-      var templateFunction = bind$2(_context = _this.options.loadingScreenTemplate).call(_context, assertThisInitialized(_this));
+      var templateFunction = bind$2(_context = _this.options.loadingScreenTemplate).call(_context, _assertThisInitialized(_this));
 
       var loadingScreen = templateFunction(_this.dom.loadingScreen);
 
@@ -31331,9 +31287,9 @@ var Timeline = /*#__PURE__*/function (_Core) {
       dom: _this.dom,
       domProps: _this.props,
       emitter: {
-        on: bind$2(_context2 = _this.on).call(_context2, assertThisInitialized(_this)),
-        off: bind$2(_context3 = _this.off).call(_context3, assertThisInitialized(_this)),
-        emit: bind$2(_context4 = _this.emit).call(_context4, assertThisInitialized(_this))
+        on: bind$2(_context2 = _this.on).call(_context2, _assertThisInitialized(_this)),
+        off: bind$2(_context3 = _this.off).call(_context3, _assertThisInitialized(_this)),
+        emit: bind$2(_context4 = _this.emit).call(_context4, _assertThisInitialized(_this))
       },
       hiddenDates: [],
       util: {
@@ -31503,7 +31459,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
    */
 
 
-  createClass(Timeline, [{
+  _createClass(Timeline, [{
     key: "_createConfigurator",
     value: function _createConfigurator() {
       return new Configurator$2(this, this.dom.container, configureOptions);
@@ -32413,7 +32369,7 @@ var DataScale = /*#__PURE__*/function () {
     var zeroAlign = arguments.length > 6 && arguments[6] !== undefined ? arguments[6] : false;
     var formattingFunction = arguments.length > 7 && arguments[7] !== undefined ? arguments[7] : false;
 
-    classCallCheck(this, DataScale);
+    _classCallCheck(this, DataScale);
 
     this.majorSteps = [1, 2, 5, 10];
     this.minorSteps = [0.25, 0.5, 1, 2];
@@ -32463,7 +32419,7 @@ var DataScale = /*#__PURE__*/function () {
    */
 
 
-  createClass(DataScale, [{
+  _createClass(DataScale, [{
     key: "setCharHeight",
     value: function setCharHeight(majorCharHeight) {
       this.majorCharHeight = majorCharHeight;
@@ -32731,13 +32687,13 @@ function _unsupportedIterableToArray$6(o, minLen) { var _context; if (!o) return
 
 function _arrayLikeToArray$6(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
-function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = getPrototypeOf$3(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = getPrototypeOf$3(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return possibleConstructorReturn(this, result); }; }
+function _createSuper$c(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$c(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct$3(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
-function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Date.prototype.toString.call(construct$3(Date, [], function () {})); return true; } catch (e) { return false; } }
+function _isNativeReflectConstruct$c() { if (typeof Reflect === "undefined" || !construct$3) return false; if (construct$3.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct$3(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 /** A horizontal time axis */
 
 var DataAxis = /*#__PURE__*/function (_Component) {
-  inherits(DataAxis, _Component);
+  _inherits(DataAxis, _Component);
 
   var _super = _createSuper$c(DataAxis);
 
@@ -32753,7 +32709,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
   function DataAxis(body, options, svg, linegraphOptions) {
     var _this;
 
-    classCallCheck(this, DataAxis);
+    _classCallCheck(this, DataAxis);
 
     _this = _super.call(this);
     _this.id = v4();
@@ -32848,7 +32804,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
       groups: _this.groups
     };
 
-    var me = assertThisInitialized(_this);
+    var me = _assertThisInitialized(_this);
 
     _this.body.emitter.on("verticalDrag", function () {
       me.dom.lineContainer.style.top = "".concat(me.body.domProps.scrollTop, "px");
@@ -32863,7 +32819,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
    */
 
 
-  createClass(DataAxis, [{
+  _createClass(DataAxis, [{
     key: "addGroup",
     value: function addGroup(label, graphOptions) {
       if (!this.groups.hasOwnProperty(label)) {
@@ -33438,7 +33394,7 @@ Points.draw = function (dataset, group, framework, offset) {
     } else {
       var callbackResult = callback(dataset[i], group); // result might be true, false or an object
 
-      if (callbackResult === true || _typeof_1(callbackResult) === 'object') {
+      if (callbackResult === true || _typeof(callbackResult) === 'object') {
         drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group, callbackResult), framework.svgElements, framework.svg, dataset[i].label);
       }
     }
@@ -34171,7 +34127,7 @@ GraphGroup.prototype.setOptions = function (options) {
     util$3.mergeOptions(this.options, options, 'shaded');
 
     if (options.interpolation) {
-      if (_typeof_1(options.interpolation) == 'object') {
+      if (_typeof(options.interpolation) == 'object') {
         if (options.interpolation.parametrization) {
           if (options.interpolation.parametrization == 'uniform') {
             this.options.interpolation.alpha = 0;
@@ -34674,7 +34630,7 @@ LineGraph.prototype.setOptions = function (options) {
     util$3.mergeOptions(this.options, options, 'legend');
 
     if (options.interpolation) {
-      if (_typeof_1(options.interpolation) == 'object') {
+      if (_typeof(options.interpolation) == 'object') {
         if (options.interpolation.parametrization) {
           if (options.interpolation.parametrization == 'uniform') {
             this.options.interpolation.alpha = 0;
