@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-26T05:16:36.908Z
+ * @date    2021-02-26T17:00:12.182Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -39,7 +39,7 @@ import { v4 } from 'uuid';
 // use this instance. Else, load via commonjs.
 //
 // Note: This doesn't work in ESM.
-var moment = (typeof window !== 'undefined') && window['moment'] || moment$3;
+var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$3;
 
 // utility functions
 
@@ -867,7 +867,7 @@ class Range extends Component {
  */
   constructor(body, options) {
     super();
-    const now = moment().hours(0).minutes(0).seconds(0).milliseconds(0);
+    const now = moment$2().hours(0).minutes(0).seconds(0).milliseconds(0);
     const start = now.clone().add(-3, 'days').valueOf();
     const end = now.clone().add(3, 'days').valueOf(); 
     this.millisecondsPerPixelCache = undefined;
@@ -893,7 +893,7 @@ class Range extends Component {
       rtl: false,
       start: null,
       end: null,
-      moment,
+      moment: moment$2,
       direction: 'horizontal', // 'horizontal' or 'vertical'
       moveable: true,
       zoomable: true,
@@ -1867,7 +1867,7 @@ class TimeStep {
     * @constructor  TimeStep
     */
   constructor(start, end, minimumStep, hiddenDates, options) {
-    this.moment = (options && options.moment) || moment;
+    this.moment = (options && options.moment) || moment$2;
     this.options = options ? options : {};
 
     // variables
@@ -2180,7 +2180,7 @@ class TimeStep {
    * @return {Date} snappedDate
    */
   static snap(date, scale, step) {
-    const clone = moment(date);
+    const clone = moment$2(date);
 
     if (scale == 'year') {
       const year = clone.year() + Math.round(clone.month() / 12);
@@ -2605,7 +2605,7 @@ class TimeAxis extends Component {
       showWeekScale: false,
       maxMinorChars: 7,
       format: util.extend({}, TimeStep.FORMAT),
-      moment,
+      moment: moment$2,
       timeAxis: null
     };
     this.options = util.extend({}, this.defaultOptions);
@@ -2656,12 +2656,12 @@ class TimeAxis extends Component {
       // apply locale to moment.js
       // TODO: not so nice, this is applied globally to moment.js
       if ('locale' in options) {
-        if (typeof moment.locale === 'function') {
+        if (typeof moment$2.locale === 'function') {
           // moment.js 2.8.1+
-          moment.locale(options.locale);
+          moment$2.locale(options.locale);
         }
         else {
-          moment.lang(options.locale);
+          moment$2.lang(options.locale);
         }
       }
     }
@@ -3364,7 +3364,7 @@ class CustomTime extends Component {
 
     // default options
     this.defaultOptions = {
-      moment,
+      moment: moment$2,
       locales,
       locale: 'en',
       id: undefined,
@@ -5081,7 +5081,7 @@ class CurrentTime extends Component {
       showCurrentTime: true,
       alignCurrentTime: undefined,
 
-      moment,
+      moment: moment$2,
       locales,
       locale: 'en'
     };
@@ -5569,12 +5569,12 @@ var stack$1 = /*#__PURE__*/Object.freeze({
   collisionByTimes: collisionByTimes
 });
 
-const UNGROUPED = '__ungrouped__';   // reserved group id for ungrouped items
-const BACKGROUND = '__background__'; // reserved group id for background items without group
+const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
+const BACKGROUND$2 = '__background__'; // reserved group id for background items without group
 
-const ReservedGroupIds = {
-  UNGROUPED,
-  BACKGROUND
+const ReservedGroupIds$1 = {
+  UNGROUPED: UNGROUPED$3,
+  BACKGROUND: BACKGROUND$2
 };
 
 
@@ -6059,7 +6059,7 @@ class Group {
     for (let i = 0, ii = this.visibleItems.length; i < ii; i++) {
       const item = this.visibleItems[i];
       item.repositionY(margin);
-      if (!this.isVisible && this.groupId != ReservedGroupIds.BACKGROUND) {
+      if (!this.isVisible && this.groupId != ReservedGroupIds$1.BACKGROUND) {
         if (item.displayed) item.hide();
       }
     }
@@ -6469,7 +6469,7 @@ class Group {
     const visibleItems = [];
     const visibleItemsLookup = {}; // we keep this to quickly look up if an item already exists in the list without using indexOf on visibleItems
 
-    if (!this.isVisible && this.groupId != ReservedGroupIds.BACKGROUND) {
+    if (!this.isVisible && this.groupId != ReservedGroupIds$1.BACKGROUND) {
       for (let i = 0; i < oldVisibleItems.length; i++) {
         var item = oldVisibleItems[i];
         if (item.displayed) item.hide();
@@ -7140,9 +7140,9 @@ class Item {
         templateFunction = this.options.tooltipOnItemUpdateTime.template.bind(this);
         content = templateFunction(this.data);
       } else {
-        content = `start: ${moment(this.data.start).format('MM/DD/YYYY hh:mm')}`;
+        content = `start: ${moment$2(this.data.start).format('MM/DD/YYYY hh:mm')}`;
         if (this.data.end) { 
-          content += `<br> end: ${moment(this.data.end).format('MM/DD/YYYY hh:mm')}`;
+          content += `<br> end: ${moment$2(this.data.end).format('MM/DD/YYYY hh:mm')}`;
         }
       }
       this.dom.onItemUpdateTimeTooltip.innerHTML = util.xss(content);
@@ -9558,11 +9558,11 @@ class ClusterItem extends Item {
 
 ClusterItem.prototype.baseClassName = 'vis-item vis-range vis-cluster';
 
-const UNGROUPED$1 = '__ungrouped__';   // reserved group id for ungrouped items
+const UNGROUPED$2 = '__ungrouped__';   // reserved group id for ungrouped items
 const BACKGROUND$1 = '__background__'; // reserved group id for background items without group
 
-const ReservedGroupIds$1 = {
-  UNGROUPED: UNGROUPED$1,
+const ReservedGroupIds = {
+  UNGROUPED: UNGROUPED$2,
   BACKGROUND: BACKGROUND$1
 };
 
@@ -9719,7 +9719,7 @@ class ClusterGenerator {
                             }
 
                             const groupId = this.itemSet.getGroupId(item.data);
-                            const group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds$1.UNGROUPED];
+                            const group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds.UNGROUPED];
                             let cluster = this._getClusterForItems(clusterItems, group, oldClusters, options);
                             clusters.push(cluster);
 
@@ -9862,8 +9862,8 @@ class ClusterGenerator {
     }
 }
 
-const UNGROUPED$2 = '__ungrouped__';   // reserved group id for ungrouped items
-const BACKGROUND$2 = '__background__'; // reserved group id for background items without group
+const UNGROUPED$1 = '__ungrouped__';   // reserved group id for ungrouped items
+const BACKGROUND = '__background__'; // reserved group id for background items without group
 
 /**
  * An ItemSet holds a set of items and ranges which can be displayed in a
@@ -10106,9 +10106,9 @@ class ItemSet extends Component {
     this._updateUngrouped();
 
     // create background Group
-    const backgroundGroup = new BackgroundGroup(BACKGROUND$2, null, this);
+    const backgroundGroup = new BackgroundGroup(BACKGROUND, null, this);
     backgroundGroup.show();
-    this.groups[BACKGROUND$2] = backgroundGroup;
+    this.groups[BACKGROUND] = backgroundGroup;
 
     // attach event listeners
     // Note: we bind to the centerContainer for the case where the height
@@ -10369,7 +10369,7 @@ class ItemSet extends Component {
       
       if (options.restackGroups) {
         util.forEach(this.groups, (group, key) => {
-          if (key === BACKGROUND$2) return;
+          if (key === BACKGROUND) return;
           group.stackDirty = true;
         });
       }
@@ -10654,14 +10654,14 @@ class ItemSet extends Component {
     const minHeight = margin.axis + margin.item.vertical;
 
     // redraw the background group
-    this.groups[BACKGROUND$2].redraw(range, nonFirstMargin, forceRestack);
+    this.groups[BACKGROUND].redraw(range, nonFirstMargin, forceRestack);
 
     const redrawQueue = {};
     let redrawQueueLength = 0;
 
     // collect redraw functions
     util.forEach(this.groups, (group, key) => {
-      if (key === BACKGROUND$2) return;
+      if (key === BACKGROUND) return;
       const groupMargin = group == firstGroup ? firstMargin : nonFirstMargin;
       const returnQueue = true;
       redrawQueue[key] = group.redraw(range, groupMargin, forceRestack, returnQueue);
@@ -10680,7 +10680,7 @@ class ItemSet extends Component {
 
       // redraw all regular groups
       util.forEach(this.groups, (group, key) => {
-        if (key === BACKGROUND$2) return;
+        if (key === BACKGROUND) return;
         const groupResized = redrawResults[key];
         resized = groupResized || resized;
         height += group.height;
@@ -10724,7 +10724,7 @@ class ItemSet extends Component {
   _firstGroup() {
     const firstGroupIndex = (this.options.orientation.item == 'top') ? 0 : (this.groupIds.length - 1);
     const firstGroupId = this.groupIds[firstGroupIndex];
-    const firstGroup = this.groups[firstGroupId] || this.groups[UNGROUPED$2];
+    const firstGroup = this.groups[firstGroupId] || this.groups[UNGROUPED$1];
 
     return firstGroup || null;
   }
@@ -10735,7 +10735,7 @@ class ItemSet extends Component {
    * @protected
    */
   _updateUngrouped() {
-    let ungrouped = this.groups[UNGROUPED$2];
+    let ungrouped = this.groups[UNGROUPED$1];
     let item;
     let itemId;
 
@@ -10743,7 +10743,7 @@ class ItemSet extends Component {
       // remove the group holding all ungrouped items
       if (ungrouped) {
         ungrouped.dispose();
-        delete this.groups[UNGROUPED$2];
+        delete this.groups[UNGROUPED$1];
 
         for (itemId in this.items) {
           if (this.items.hasOwnProperty(itemId)) {
@@ -10762,7 +10762,7 @@ class ItemSet extends Component {
         const id = null;
         const data = null;
         ungrouped = new Group(id, data, this);
-        this.groups[UNGROUPED$2] = ungrouped;
+        this.groups[UNGROUPED$1] = ungrouped;
 
         for (itemId in this.items) {
           if (this.items.hasOwnProperty(itemId)) {
@@ -10965,10 +10965,10 @@ class ItemSet extends Component {
   getGroupId(itemData) {
     const type = this._getType(itemData);
     if (type == 'background' && itemData.group == undefined) {
-     return BACKGROUND$2;
+     return BACKGROUND;
     }
     else {
-      return this.groupsData ? itemData.group : UNGROUPED$2;
+      return this.groupsData ? itemData.group : UNGROUPED$1;
     }
   }
 
@@ -11087,7 +11087,7 @@ class ItemSet extends Component {
 
       if (!group) {
         // check for reserved ids
-        if (id == UNGROUPED$2 || id == BACKGROUND$2) {
+        if (id == UNGROUPED$1 || id == BACKGROUND) {
           throw new Error(`Illegal group id. ${id} is a reserved id.`);
         }
 
@@ -12541,7 +12541,7 @@ ItemSet.types = {
 ItemSet.prototype._onAdd = ItemSet.prototype._onUpdate;
 
 let errorFound = false;
-let allOptions;
+let allOptions$2;
 let printStyle = 'background: #FFeeee; color: #dd0000';
 /**
  *  Used to validate options.
@@ -12563,7 +12563,7 @@ class Validator {
    */
   static validate(options, referenceOptions, subObject) {
     errorFound = false;
-    allOptions = referenceOptions;
+    allOptions$2 = referenceOptions;
     let usedOptions = referenceOptions;
     if (subObject !== undefined) {
       usedOptions = referenceOptions[subObject];
@@ -12726,7 +12726,7 @@ class Validator {
    */
   static getSuggestion(option, options, path) {
     let localSearch = Validator.findInOptions(option,options,path,false);
-    let globalSearch = Validator.findInOptions(option,allOptions,[],true);
+    let globalSearch = Validator.findInOptions(option,allOptions$2,[],true);
 
     let localSearchThreshold = 8;
     let globalSearchThreshold = 4;
@@ -12892,126 +12892,126 @@ class Validator {
  * __any__ means that the name of the property does not matter.
  * __type__ is a required field for all objects and contains the allowed types of all objects
  */
-let string = 'string';
-let bool = 'boolean';
-let number = 'number';
-let array = 'array';
-let date = 'date';
-let object = 'object'; // should only be in a __type__ property
-let dom = 'dom';
+let string$1 = 'string';
+let bool$1 = 'boolean';
+let number$1 = 'number';
+let array$1 = 'array';
+let date$1 = 'date';
+let object$1 = 'object'; // should only be in a __type__ property
+let dom$1 = 'dom';
 let moment$1 = 'moment';
-let any = 'any';
+let any$1 = 'any';
 
 let allOptions$1 = {
   configure: {
-    enabled: { 'boolean': bool},
-    filter: { 'boolean': bool,'function': 'function'},
-    container: {dom},
-    __type__: {object, 'boolean': bool,'function': 'function'}
+    enabled: { 'boolean': bool$1},
+    filter: { 'boolean': bool$1,'function': 'function'},
+    container: {dom: dom$1},
+    __type__: {object: object$1, 'boolean': bool$1,'function': 'function'}
   },
 
   //globals :
-  align: {string},
-  alignCurrentTime: {string, 'undefined': 'undefined'},
-  rtl: { 'boolean': bool, 'undefined': 'undefined'},
+  align: {string: string$1},
+  alignCurrentTime: {string: string$1, 'undefined': 'undefined'},
+  rtl: { 'boolean': bool$1, 'undefined': 'undefined'},
   rollingMode: {
-    follow: { 'boolean': bool },
-    offset: {number,'undefined': 'undefined'},
-    __type__: {object}
+    follow: { 'boolean': bool$1 },
+    offset: {number: number$1,'undefined': 'undefined'},
+    __type__: {object: object$1}
   },
   onTimeout: {
-    timeoutMs: {number},
+    timeoutMs: {number: number$1},
     callback: {'function': 'function'},
-    __type__: {object}
+    __type__: {object: object$1}
   },
-  verticalScroll: { 'boolean': bool, 'undefined': 'undefined'},
-  horizontalScroll: { 'boolean': bool, 'undefined': 'undefined'},
-  autoResize: { 'boolean': bool},
-  throttleRedraw: {number}, // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
-  clickToUse: { 'boolean': bool},
-  dataAttributes: {string, array},
+  verticalScroll: { 'boolean': bool$1, 'undefined': 'undefined'},
+  horizontalScroll: { 'boolean': bool$1, 'undefined': 'undefined'},
+  autoResize: { 'boolean': bool$1},
+  throttleRedraw: {number: number$1}, // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
+  clickToUse: { 'boolean': bool$1},
+  dataAttributes: {string: string$1, array: array$1},
   editable: {
-    add: { 'boolean': bool, 'undefined': 'undefined'},
-    remove: { 'boolean': bool, 'undefined': 'undefined'},
-    updateGroup: { 'boolean': bool, 'undefined': 'undefined'},
-    updateTime: { 'boolean': bool, 'undefined': 'undefined'},
-    overrideItems: { 'boolean': bool, 'undefined': 'undefined'},
-    __type__: { 'boolean': bool, object}
+    add: { 'boolean': bool$1, 'undefined': 'undefined'},
+    remove: { 'boolean': bool$1, 'undefined': 'undefined'},
+    updateGroup: { 'boolean': bool$1, 'undefined': 'undefined'},
+    updateTime: { 'boolean': bool$1, 'undefined': 'undefined'},
+    overrideItems: { 'boolean': bool$1, 'undefined': 'undefined'},
+    __type__: { 'boolean': bool$1, object: object$1}
   },
-  end: {number, date, string, moment: moment$1},
+  end: {number: number$1, date: date$1, string: string$1, moment: moment$1},
   format: {
     minorLabels: {
-      millisecond: {string,'undefined': 'undefined'},
-      second: {string,'undefined': 'undefined'},
-      minute: {string,'undefined': 'undefined'},
-      hour: {string,'undefined': 'undefined'},
-      weekday: {string,'undefined': 'undefined'},
-      day: {string,'undefined': 'undefined'},
-      week: {string,'undefined': 'undefined'},
-      month: {string,'undefined': 'undefined'},
-      year: {string,'undefined': 'undefined'},
-      __type__: {object, 'function': 'function'}
+      millisecond: {string: string$1,'undefined': 'undefined'},
+      second: {string: string$1,'undefined': 'undefined'},
+      minute: {string: string$1,'undefined': 'undefined'},
+      hour: {string: string$1,'undefined': 'undefined'},
+      weekday: {string: string$1,'undefined': 'undefined'},
+      day: {string: string$1,'undefined': 'undefined'},
+      week: {string: string$1,'undefined': 'undefined'},
+      month: {string: string$1,'undefined': 'undefined'},
+      year: {string: string$1,'undefined': 'undefined'},
+      __type__: {object: object$1, 'function': 'function'}
     },
     majorLabels: {
-      millisecond: {string,'undefined': 'undefined'},
-      second: {string,'undefined': 'undefined'},
-      minute: {string,'undefined': 'undefined'},
-      hour: {string,'undefined': 'undefined'},
-      weekday: {string,'undefined': 'undefined'},
-      day: {string,'undefined': 'undefined'},
-      week: {string,'undefined': 'undefined'},
-      month: {string,'undefined': 'undefined'},
-      year: {string,'undefined': 'undefined'},
-      __type__: {object, 'function': 'function'}
+      millisecond: {string: string$1,'undefined': 'undefined'},
+      second: {string: string$1,'undefined': 'undefined'},
+      minute: {string: string$1,'undefined': 'undefined'},
+      hour: {string: string$1,'undefined': 'undefined'},
+      weekday: {string: string$1,'undefined': 'undefined'},
+      day: {string: string$1,'undefined': 'undefined'},
+      week: {string: string$1,'undefined': 'undefined'},
+      month: {string: string$1,'undefined': 'undefined'},
+      year: {string: string$1,'undefined': 'undefined'},
+      __type__: {object: object$1, 'function': 'function'}
     },
-    __type__: {object}
+    __type__: {object: object$1}
   },
   moment: {'function': 'function'},
-  groupHeightMode: {string},
-  groupOrder: {string, 'function': 'function'},
+  groupHeightMode: {string: string$1},
+  groupOrder: {string: string$1, 'function': 'function'},
   groupEditable: {
-    add: { 'boolean': bool, 'undefined': 'undefined'},
-    remove: { 'boolean': bool, 'undefined': 'undefined'},
-    order: { 'boolean': bool, 'undefined': 'undefined'},
-    __type__: { 'boolean': bool, object}
+    add: { 'boolean': bool$1, 'undefined': 'undefined'},
+    remove: { 'boolean': bool$1, 'undefined': 'undefined'},
+    order: { 'boolean': bool$1, 'undefined': 'undefined'},
+    __type__: { 'boolean': bool$1, object: object$1}
   },
   groupOrderSwap: {'function': 'function'},
-  height: {string, number},
+  height: {string: string$1, number: number$1},
   hiddenDates: {
-    start: {date, number, string, moment: moment$1},
-    end: {date, number, string, moment: moment$1},
-    repeat: {string},
-    __type__: {object, array}
+    start: {date: date$1, number: number$1, string: string$1, moment: moment$1},
+    end: {date: date$1, number: number$1, string: string$1, moment: moment$1},
+    repeat: {string: string$1},
+    __type__: {object: object$1, array: array$1}
   },
   itemsAlwaysDraggable: {
-    item: { 'boolean': bool, 'undefined': 'undefined'},
-    range: { 'boolean': bool, 'undefined': 'undefined'},
-    __type__: { 'boolean': bool, object}
+    item: { 'boolean': bool$1, 'undefined': 'undefined'},
+    range: { 'boolean': bool$1, 'undefined': 'undefined'},
+    __type__: { 'boolean': bool$1, object: object$1}
   },
-  limitSize: {'boolean': bool},
-  locale:{string},
+  limitSize: {'boolean': bool$1},
+  locale:{string: string$1},
   locales:{
-    __any__: {any},
-    __type__: {object}
+    __any__: {any: any$1},
+    __type__: {object: object$1}
   },
-  longSelectPressTime: {number},
+  longSelectPressTime: {number: number$1},
   margin: {
-    axis: {number},
+    axis: {number: number$1},
     item: {
-      horizontal: {number,'undefined': 'undefined'},
-      vertical: {number,'undefined': 'undefined'},
-      __type__: {object,number}
+      horizontal: {number: number$1,'undefined': 'undefined'},
+      vertical: {number: number$1,'undefined': 'undefined'},
+      __type__: {object: object$1,number: number$1}
     },
-    __type__: {object,number}
+    __type__: {object: object$1,number: number$1}
   },
-  max: {date, number, string, moment: moment$1},
-  maxHeight: {number, string},
-  maxMinorChars: {number},
-  min: {date, number, string, moment: moment$1},
-  minHeight: {number, string},
-  moveable: { 'boolean': bool},
-  multiselect: { 'boolean': bool},
-  multiselectPerGroup: { 'boolean': bool},
+  max: {date: date$1, number: number$1, string: string$1, moment: moment$1},
+  maxHeight: {number: number$1, string: string$1},
+  maxMinorChars: {number: number$1},
+  min: {date: date$1, number: number$1, string: string$1, moment: moment$1},
+  minHeight: {number: number$1, string: string$1},
+  moveable: { 'boolean': bool$1},
+  multiselect: { 'boolean': bool$1},
+  multiselectPerGroup: { 'boolean': bool$1},
   onAdd: {'function': 'function'},
   onDropObjectOnItem: {'function': 'function'},
   onUpdate: {'function': 'function'},
@@ -13024,62 +13024,62 @@ let allOptions$1 = {
   onInitialDrawComplete: {'function': 'function'},
   order: {'function': 'function'},
   orientation: {
-    axis: {string,'undefined': 'undefined'},
-    item: {string,'undefined': 'undefined'},
-    __type__: {string, object}
+    axis: {string: string$1,'undefined': 'undefined'},
+    item: {string: string$1,'undefined': 'undefined'},
+    __type__: {string: string$1, object: object$1}
   },
-  selectable: { 'boolean': bool},
-  sequentialSelection: { 'boolean': bool },
-  showCurrentTime: { 'boolean': bool},
-  showMajorLabels: { 'boolean': bool},
-  showMinorLabels: { 'boolean': bool},
-  showWeekScale: { 'boolean': bool},
-  stack: { 'boolean': bool},
-  stackSubgroups: { 'boolean': bool},
+  selectable: { 'boolean': bool$1},
+  sequentialSelection: { 'boolean': bool$1 },
+  showCurrentTime: { 'boolean': bool$1},
+  showMajorLabels: { 'boolean': bool$1},
+  showMinorLabels: { 'boolean': bool$1},
+  showWeekScale: { 'boolean': bool$1},
+  stack: { 'boolean': bool$1},
+  stackSubgroups: { 'boolean': bool$1},
   cluster: { 
-    maxItems: {'number': number, 'undefined': 'undefined'},
-    titleTemplate: {'string': string, 'undefined': 'undefined'},
+    maxItems: {'number': number$1, 'undefined': 'undefined'},
+    titleTemplate: {'string': string$1, 'undefined': 'undefined'},
     clusterCriteria: { 'function': 'function', 'undefined': 'undefined'},
-    showStipes: {'boolean': bool, 'undefined': 'undefined'},
-    fitOnDoubleClick: {'boolean': bool, 'undefined': 'undefined'},
-    __type__: {'boolean': bool, object}
+    showStipes: {'boolean': bool$1, 'undefined': 'undefined'},
+    fitOnDoubleClick: {'boolean': bool$1, 'undefined': 'undefined'},
+    __type__: {'boolean': bool$1, object: object$1}
   },
   snap: {'function': 'function', 'null': 'null'},
-  start: {date, number, string, moment: moment$1},
+  start: {date: date$1, number: number$1, string: string$1, moment: moment$1},
   template: {'function': 'function'},
   loadingScreenTemplate: {'function': 'function'},
   groupTemplate: {'function': 'function'},
-  visibleFrameTemplate: {string, 'function': 'function'},
-  showTooltips: { 'boolean': bool},
+  visibleFrameTemplate: {string: string$1, 'function': 'function'},
+  showTooltips: { 'boolean': bool$1},
   tooltip: {
-    followMouse: { 'boolean': bool },
+    followMouse: { 'boolean': bool$1 },
     overflowMethod: { 'string': ['cap', 'flip', 'none'] },
-    delay: {number},
+    delay: {number: number$1},
     template: {'function': 'function'},
-    __type__: {object}
+    __type__: {object: object$1}
   },
   tooltipOnItemUpdateTime: {
     template: {'function': 'function'},
-    __type__: { 'boolean': bool, object}
+    __type__: { 'boolean': bool$1, object: object$1}
   },
   timeAxis: {
-    scale: {string,'undefined': 'undefined'},
-    step: {number,'undefined': 'undefined'},
-    __type__: {object}
+    scale: {string: string$1,'undefined': 'undefined'},
+    step: {number: number$1,'undefined': 'undefined'},
+    __type__: {object: object$1}
   },
-  type: {string},
-  width: {string, number},
-  preferZoom: { 'boolean': bool},
-  zoomable: { 'boolean': bool},
+  type: {string: string$1},
+  width: {string: string$1, number: number$1},
+  preferZoom: { 'boolean': bool$1},
+  zoomable: { 'boolean': bool$1},
   zoomKey: {string: ['ctrlKey', 'altKey', 'shiftKey', 'metaKey', '']},
-  zoomFriction: {number},
-  zoomMax: {number},
-  zoomMin: {number},
+  zoomFriction: {number: number$1},
+  zoomMax: {number: number$1},
+  zoomMin: {number: number$1},
 
-  __type__: {object}
+  __type__: {object: object$1}
 };
 
-let configureOptions = {
+let configureOptions$1 = {
   global: {
     align:  ['center', 'left', 'right'],
     alignCurrentTime: ['none', 'year', 'month', 'quarter', 'week', 'isoWeek', 'day', 'date', 'hour', 'minute', 'second'],
@@ -14527,7 +14527,7 @@ class Timeline extends Core {
         axis: 'bottom',   // axis orientation: 'bottom', 'top', or 'both'
         item: 'bottom'    // not relevant
       },
-      moment,
+      moment: moment$2,
     };
     this.options = util.deepExtend({}, this.defaultOptions);
 
@@ -14729,7 +14729,7 @@ class Timeline extends Core {
    * @private
    */
   _createConfigurator() {
-    return new Configurator(this, this.dom.container, configureOptions);
+    return new Configurator(this, this.dom.container, configureOptions$1);
   }
 
   /**
@@ -17516,7 +17516,7 @@ Legend.prototype.drawLegendIcons = function() {
   }
 };
 
-var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
+var UNGROUPED = '__ungrouped__'; // reserved group id for ungrouped items
 
 /**
  * This is the constructor of the LineGraph. It requires a Timeline body and options.
@@ -17711,8 +17711,8 @@ LineGraph.prototype.setOptions = function (options) {
       }
     }
 
-    if (this.groups.hasOwnProperty(UNGROUPED$3)) {
-      this.groups[UNGROUPED$3].setOptions(options);
+    if (this.groups.hasOwnProperty(UNGROUPED)) {
+      this.groups[UNGROUPED].setOptions(options);
     }
   }
 
@@ -17955,7 +17955,7 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       var item = items[i];
       var groupId = item.group;
       if (groupId === null || groupId === undefined) {
-        groupId = UNGROUPED$3;
+        groupId = UNGROUPED;
       }
       groupCounts.hasOwnProperty(groupId) ? groupCounts[groupId]++ : groupCounts[groupId] = 1;
     }
@@ -17986,7 +17986,7 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       item = items[i];
       groupId = item.group;
       if (groupId === null || groupId === undefined) {
-        groupId = UNGROUPED$3;
+        groupId = UNGROUPED;
       }
       if (!groupIds && ids && (item[fieldId] !== idMap[item[fieldId]]) && existingItemsMap.hasOwnProperty(item[fieldId])) {
         continue;
@@ -18612,177 +18612,177 @@ LineGraph.prototype._convertYcoordinates = function (datapoints, group) {
  * __any__ means that the name of the property does not matter.
  * __type__ is a required field for all objects and contains the allowed types of all objects
  */
-let string$1 = 'string';
-let bool$1 = 'boolean';
-let number$1 = 'number';
-let array$1 = 'array';
-let date$1 = 'date';
-let object$1 = 'object'; // should only be in a __type__ property
-let dom$1 = 'dom';
-let moment$2 = 'moment';
-let any$1 = 'any';
+let string = 'string';
+let bool = 'boolean';
+let number = 'number';
+let array = 'array';
+let date = 'date';
+let object = 'object'; // should only be in a __type__ property
+let dom = 'dom';
+let moment = 'moment';
+let any = 'any';
 
 
-let allOptions$2 = {
+let allOptions = {
   configure: {
-    enabled: {'boolean': bool$1},
-    filter: {'boolean': bool$1,'function': 'function'},
-    container: {dom: dom$1},
-    __type__: {object: object$1,'boolean': bool$1,'function': 'function'}
+    enabled: {'boolean': bool},
+    filter: {'boolean': bool,'function': 'function'},
+    container: {dom},
+    __type__: {object,'boolean': bool,'function': 'function'}
   },
 
   //globals :
-  alignCurrentTime: {string: string$1, 'undefined': 'undefined'},  
+  alignCurrentTime: {string, 'undefined': 'undefined'},  
   yAxisOrientation: {string:['left','right']},
-  defaultGroup: {string: string$1},
-  sort: {'boolean': bool$1},
-  sampling: {'boolean': bool$1},
-  stack:{'boolean': bool$1},
-  graphHeight: {string: string$1, number: number$1},
+  defaultGroup: {string},
+  sort: {'boolean': bool},
+  sampling: {'boolean': bool},
+  stack:{'boolean': bool},
+  graphHeight: {string, number},
   shaded: {
-    enabled: {'boolean': bool$1},
+    enabled: {'boolean': bool},
     orientation: {string:['bottom','top','zero','group']}, // top, bottom, zero, group
-    groupId: {object: object$1},
-    __type__: {'boolean': bool$1,object: object$1}
+    groupId: {object},
+    __type__: {'boolean': bool,object}
   },
   style: {string:['line','bar','points']}, // line, bar
   barChart: {
-    width: {number: number$1},
-    minWidth: {number: number$1},
-    sideBySide: {'boolean': bool$1},
+    width: {number},
+    minWidth: {number},
+    sideBySide: {'boolean': bool},
     align: {string:['left','center','right']},
-    __type__: {object: object$1}
+    __type__: {object}
   },
   interpolation: {
-    enabled: {'boolean': bool$1},
+    enabled: {'boolean': bool},
     parametrization: {string:['centripetal', 'chordal','uniform']}, // uniform (alpha = 0.0), chordal (alpha = 1.0), centripetal (alpha = 0.5)
-    alpha: {number: number$1},
-    __type__: {object: object$1,'boolean': bool$1}
+    alpha: {number},
+    __type__: {object,'boolean': bool}
   },
   drawPoints: {
-    enabled: {'boolean': bool$1},
+    enabled: {'boolean': bool},
     onRender: { 'function': 'function' },
-    size: {number: number$1},
+    size: {number},
     style: {string:['square','circle']}, // square, circle
-    __type__: {object: object$1,'boolean': bool$1,'function': 'function'}
+    __type__: {object,'boolean': bool,'function': 'function'}
   },
   dataAxis: {
-    showMinorLabels: {'boolean': bool$1},
-    showMajorLabels: {'boolean': bool$1},
-    showWeekScale: {'boolean': bool$1},
-    icons: {'boolean': bool$1},
-    width: {string: string$1, number: number$1},
-    visible: {'boolean': bool$1},
-    alignZeros: {'boolean': bool$1},
+    showMinorLabels: {'boolean': bool},
+    showMajorLabels: {'boolean': bool},
+    showWeekScale: {'boolean': bool},
+    icons: {'boolean': bool},
+    width: {string, number},
+    visible: {'boolean': bool},
+    alignZeros: {'boolean': bool},
     left:{
-      range: {min:{number: number$1,'undefined': 'undefined'},max:{number: number$1,'undefined': 'undefined'},__type__: {object: object$1}},
+      range: {min:{number,'undefined': 'undefined'},max:{number,'undefined': 'undefined'},__type__: {object}},
       format: {'function': 'function'},
-      title: {text:{string: string$1,number: number$1,'undefined': 'undefined'},style:{string: string$1,'undefined': 'undefined'},__type__: {object: object$1}},
-      __type__: {object: object$1}
+      title: {text:{string,number,'undefined': 'undefined'},style:{string,'undefined': 'undefined'},__type__: {object}},
+      __type__: {object}
     },
     right:{
-      range: {min:{number: number$1,'undefined': 'undefined'},max:{number: number$1,'undefined': 'undefined'},__type__: {object: object$1}},
+      range: {min:{number,'undefined': 'undefined'},max:{number,'undefined': 'undefined'},__type__: {object}},
       format: {'function': 'function'},
-      title: {text:{string: string$1,number: number$1,'undefined': 'undefined'},style:{string: string$1,'undefined': 'undefined'},__type__: {object: object$1}},
-      __type__: {object: object$1}
+      title: {text:{string,number,'undefined': 'undefined'},style:{string,'undefined': 'undefined'},__type__: {object}},
+      __type__: {object}
     },
-    __type__: {object: object$1}
+    __type__: {object}
   },
   legend: {
-    enabled: {'boolean': bool$1},
-    icons: {'boolean': bool$1},
+    enabled: {'boolean': bool},
+    icons: {'boolean': bool},
     left: {
-      visible: {'boolean': bool$1},
+      visible: {'boolean': bool},
       position: {string:['top-right','bottom-right','top-left','bottom-left']},
-      __type__: {object: object$1}
+      __type__: {object}
     },
     right: {
-      visible: {'boolean': bool$1},
+      visible: {'boolean': bool},
       position: {string:['top-right','bottom-right','top-left','bottom-left']},
-      __type__: {object: object$1}
+      __type__: {object}
     },
-    __type__: {object: object$1,'boolean': bool$1}
+    __type__: {object,'boolean': bool}
   },
   groups: {
-    visibility: {any: any$1},
-    __type__: {object: object$1}
+    visibility: {any},
+    __type__: {object}
   },
 
-  autoResize: {'boolean': bool$1},
-  throttleRedraw: {number: number$1}, // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
-  clickToUse: {'boolean': bool$1},
-  end: {number: number$1, date: date$1, string: string$1, moment: moment$2},
+  autoResize: {'boolean': bool},
+  throttleRedraw: {number}, // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
+  clickToUse: {'boolean': bool},
+  end: {number, date, string, moment},
   format: {
     minorLabels: {
-      millisecond: {string: string$1,'undefined': 'undefined'},
-      second: {string: string$1,'undefined': 'undefined'},
-      minute: {string: string$1,'undefined': 'undefined'},
-      hour: {string: string$1,'undefined': 'undefined'},
-      weekday: {string: string$1,'undefined': 'undefined'},
-      day: {string: string$1,'undefined': 'undefined'},
-      week: {string: string$1,'undefined': 'undefined'},
-      month: {string: string$1,'undefined': 'undefined'},
-      quarter: {string: string$1,'undefined': 'undefined'},
-      year: {string: string$1,'undefined': 'undefined'},
-      __type__: {object: object$1}
+      millisecond: {string,'undefined': 'undefined'},
+      second: {string,'undefined': 'undefined'},
+      minute: {string,'undefined': 'undefined'},
+      hour: {string,'undefined': 'undefined'},
+      weekday: {string,'undefined': 'undefined'},
+      day: {string,'undefined': 'undefined'},
+      week: {string,'undefined': 'undefined'},
+      month: {string,'undefined': 'undefined'},
+      quarter: {string,'undefined': 'undefined'},
+      year: {string,'undefined': 'undefined'},
+      __type__: {object}
     },
     majorLabels: {
-      millisecond: {string: string$1,'undefined': 'undefined'},
-      second: {string: string$1,'undefined': 'undefined'},
-      minute: {string: string$1,'undefined': 'undefined'},
-      hour: {string: string$1,'undefined': 'undefined'},
-      weekday: {string: string$1,'undefined': 'undefined'},
-      day: {string: string$1,'undefined': 'undefined'},
-      week: {string: string$1,'undefined': 'undefined'},
-      month: {string: string$1,'undefined': 'undefined'},
-      quarter: {string: string$1,'undefined': 'undefined'},
-      year: {string: string$1,'undefined': 'undefined'},
-      __type__: {object: object$1}
+      millisecond: {string,'undefined': 'undefined'},
+      second: {string,'undefined': 'undefined'},
+      minute: {string,'undefined': 'undefined'},
+      hour: {string,'undefined': 'undefined'},
+      weekday: {string,'undefined': 'undefined'},
+      day: {string,'undefined': 'undefined'},
+      week: {string,'undefined': 'undefined'},
+      month: {string,'undefined': 'undefined'},
+      quarter: {string,'undefined': 'undefined'},
+      year: {string,'undefined': 'undefined'},
+      __type__: {object}
     },
-    __type__: {object: object$1}
+    __type__: {object}
   },
   moment: {'function': 'function'},
-  height: {string: string$1, number: number$1},
+  height: {string, number},
   hiddenDates: {
-    start: {date: date$1, number: number$1, string: string$1, moment: moment$2},
-    end: {date: date$1, number: number$1, string: string$1, moment: moment$2},
-    repeat: {string: string$1},
-    __type__: {object: object$1, array: array$1}
+    start: {date, number, string, moment},
+    end: {date, number, string, moment},
+    repeat: {string},
+    __type__: {object, array}
   },
-  locale:{string: string$1},
+  locale:{string},
   locales:{
-    __any__: {any: any$1},
-    __type__: {object: object$1}
+    __any__: {any},
+    __type__: {object}
   },
-  max: {date: date$1, number: number$1, string: string$1, moment: moment$2},
-  maxHeight: {number: number$1, string: string$1},
-  maxMinorChars: {number: number$1},
-  min: {date: date$1, number: number$1, string: string$1, moment: moment$2},
-  minHeight: {number: number$1, string: string$1},
-  moveable: {'boolean': bool$1},
-  multiselect: {'boolean': bool$1},
-  orientation: {string: string$1},
-  showCurrentTime: {'boolean': bool$1},
-  showMajorLabels: {'boolean': bool$1},
-  showMinorLabels: {'boolean': bool$1},
-  showWeekScale: {'boolean': bool$1},
+  max: {date, number, string, moment},
+  maxHeight: {number, string},
+  maxMinorChars: {number},
+  min: {date, number, string, moment},
+  minHeight: {number, string},
+  moveable: {'boolean': bool},
+  multiselect: {'boolean': bool},
+  orientation: {string},
+  showCurrentTime: {'boolean': bool},
+  showMajorLabels: {'boolean': bool},
+  showMinorLabels: {'boolean': bool},
+  showWeekScale: {'boolean': bool},
   snap: {'function': 'function', 'null': 'null'},
-  start: {date: date$1, number: number$1, string: string$1, moment: moment$2},
+  start: {date, number, string, moment},
   timeAxis: {
-    scale: {string: string$1,'undefined': 'undefined'},
-    step: {number: number$1,'undefined': 'undefined'},
-    __type__: {object: object$1}
+    scale: {string,'undefined': 'undefined'},
+    step: {number,'undefined': 'undefined'},
+    __type__: {object}
   },
-  width: {string: string$1, number: number$1},
-  zoomable: {'boolean': bool$1},
+  width: {string, number},
+  zoomable: {'boolean': bool},
   zoomKey: {string: ['ctrlKey', 'altKey', 'metaKey', '']},
-  zoomMax: {number: number$1},
-  zoomMin: {number: number$1},
-  zIndex: {number: number$1},
-  __type__: {object: object$1}
+  zoomMax: {number},
+  zoomMin: {number},
+  zIndex: {number},
+  __type__: {object}
 };
 
-let configureOptions$1 = {
+let configureOptions = {
   global: {
     alignCurrentTime: ['none', 'year', 'month', 'quarter', 'week', 'isoWeek', 'day', 'date', 'hour', 'minute', 'second'],   
     //yAxisOrientation: ['left','right'], // TDOO: enable as soon as Grahp2d doesn't crash when changing this on the fly
@@ -18929,7 +18929,7 @@ function Graph2d (container, items, groups, options) {
       item: 'bottom'    // not relevant for Graph2d
     },
 
-    moment: moment,
+    moment: moment$2,
 
     width: null,
     height: null,
@@ -19057,7 +19057,7 @@ Graph2d.prototype = new Core();
 
 Graph2d.prototype.setOptions = function (options) {
   // validate options
-  let errorFound = Validator.validate(options, allOptions$2);
+  let errorFound = Validator.validate(options, allOptions);
   if (errorFound === true) {
     console.log('%cErrors have been found in the supplied options object.', printStyle);
   }
@@ -19247,7 +19247,7 @@ Graph2d.prototype.getEventProperties = function (event) {
  * @private
  */
 Graph2d.prototype._createConfigurator = function () {
-  return new Configurator(this, this.dom.container, configureOptions$1);
+  return new Configurator(this, this.dom.container, configureOptions);
 };
 
 // Locales have to be supplied by the user.
