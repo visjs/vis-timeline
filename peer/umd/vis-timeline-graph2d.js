@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-02-28T21:13:10.252Z
+ * @date    2021-02-28T23:46:35.306Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -487,7 +487,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.9.0',
+	    version: '3.9.1',
 	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -858,11 +858,34 @@
 	  if (propertyKey in object) objectDefineProperty.f(object, propertyKey, createPropertyDescriptor(0, value));else object[propertyKey] = value;
 	};
 
-	var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
-	  // Chrome 38 Symbol has incorrect toString conversion
+	var engineIsNode = classofRaw(global$1.process) == 'process';
 
+	var engineUserAgent = getBuiltIn('navigator', 'userAgent') || '';
+
+	var process = global$1.process;
+	var versions = process && process.versions;
+	var v8 = versions && versions.v8;
+	var match, version;
+
+	if (v8) {
+	  match = v8.split('.');
+	  version = match[0] + match[1];
+	} else if (engineUserAgent) {
+	  match = engineUserAgent.match(/Edge\/(\d+)/);
+
+	  if (!match || match[1] >= 74) {
+	    match = engineUserAgent.match(/Chrome\/(\d+)/);
+	    if (match) version = match[1];
+	  }
+	}
+
+	var engineV8Version = version && +version;
+
+	var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
 	  /* global Symbol -- required for testing */
-	  return !String(Symbol());
+	  return !Symbol.sham && ( // Chrome 38 Symbol has incorrect toString conversion
+	  // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+	  engineIsNode ? engineV8Version === 38 : engineV8Version > 37 && engineV8Version < 41);
 	});
 
 	var useSymbolAsUid = nativeSymbol
@@ -874,8 +897,12 @@
 	var createWellKnownSymbol = useSymbolAsUid ? Symbol$1 : Symbol$1 && Symbol$1.withoutSetter || uid;
 
 	var wellKnownSymbol = function (name) {
-	  if (!has$1(WellKnownSymbolsStore$1, name)) {
-	    if (nativeSymbol && has$1(Symbol$1, name)) WellKnownSymbolsStore$1[name] = Symbol$1[name];else WellKnownSymbolsStore$1[name] = createWellKnownSymbol('Symbol.' + name);
+	  if (!has$1(WellKnownSymbolsStore$1, name) || !(nativeSymbol || typeof WellKnownSymbolsStore$1[name] == 'string')) {
+	    if (nativeSymbol && has$1(Symbol$1, name)) {
+	      WellKnownSymbolsStore$1[name] = Symbol$1[name];
+	    } else {
+	      WellKnownSymbolsStore$1[name] = createWellKnownSymbol('Symbol.' + name);
+	    }
 	  }
 
 	  return WellKnownSymbolsStore$1[name];
@@ -898,27 +925,6 @@
 
 	  return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
 	};
-
-	var engineUserAgent = getBuiltIn('navigator', 'userAgent') || '';
-
-	var process = global$1.process;
-	var versions = process && process.versions;
-	var v8 = versions && versions.v8;
-	var match, version;
-
-	if (v8) {
-	  match = v8.split('.');
-	  version = match[0] + match[1];
-	} else if (engineUserAgent) {
-	  match = engineUserAgent.match(/Edge\/(\d+)/);
-
-	  if (!match || match[1] >= 74) {
-	    match = engineUserAgent.match(/Chrome\/(\d+)/);
-	    if (match) version = match[1];
-	  }
-	}
-
-	var engineV8Version = version && +version;
 
 	var SPECIES$2 = wellKnownSymbol('species');
 
@@ -2265,8 +2271,6 @@
 	  // https://tc39.es/ecma262/#sec-array.prototype.reduceright
 	  right: createMethod$2(true)
 	};
-
-	var engineIsNode = classofRaw(global$1.process) == 'process';
 
 	var $reduce = arrayReduce.left;
 	var STRICT_METHOD$4 = arrayMethodIsStrict('reduce'); // Chrome 80-82 has a critical bug
