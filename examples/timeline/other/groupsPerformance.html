@@ -1,9 +1,9 @@
 <html>
 <head>
-  <title>Timeline | A lot of grouped data</title>
+  <title>Timeline | other | A lot of grouped data</title>
 
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
     body {
@@ -28,7 +28,7 @@
   Current number of items: <span id='count'>100</span>
 </p>
 
-<div id="mytimeline"></div>
+<div id="visualization"></div>
 
 <script>
   /**
@@ -98,7 +98,7 @@
   };
 
   // create a Timeline
-  var container = document.getElementById('mytimeline');
+  var container = document.getElementById('visualization');
   timeline = new vis.Timeline(container, null, options);
   timeline.setGroups(groups);
   timeline.setItems(items);

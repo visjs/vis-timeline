@@ -1,40 +1,42 @@
-var assert = require('assert');
-var canvasMockify = require('./canvas-mock');
+import assert from 'assert'
+import canvasMockify from './canvas-mock'
 
-var DataAxis = require('../lib/timeline/component/DataAxis');
+import DataAxis from '../lib/timeline/component/DataAxis'
 
-describe('DataAxis', function () {
-  beforeEach(function() {
-    this.jsdom_global = canvasMockify("<svg id='svg'></svg>");
-    this.svg = this.container = document.getElementById('svg');
-    this.body = {
+const internals = {}
+
+describe('DataAxis', () => {
+  beforeEach(() => {
+    internals.jsdom = canvasMockify("<svg id='svg'></svg>");
+    internals.svg = internals.container = document.getElementById('svg');
+    internals.body = {
       functions: {},
       emitter: {
-        on: function() {}
+        on: () => {}
       }
     };
   });
 
-  afterEach(function() {
-    this.jsdom_global();
-    this.svg.remove();
-    this.svg = undefined;
+  afterEach(() => {
+    internals.jsdom();
+    internals.svg.remove();
+    internals.svg = undefined;
   });
 
-  it('should work', function () {
-    new DataAxis(this.body, {}, this.svg, {});
+  it('should work', () => {
+    new DataAxis(internals.body, {}, internals.svg, {});
   });
 
-  describe('screenToValue', function () {
-    it('can called be without an explicit redraw', function () {
-      var dataAxis = new DataAxis(this.body, {}, this.svg, {});
+  describe('screenToValue', () => {
+    it('can called be without an explicit redraw', () => {
+      const dataAxis = new DataAxis(internals.body, {}, internals.svg, {});
       assert(isNaN(dataAxis.screenToValue(77)));
     });
   });
 
-  describe('convertValue', function () {
-    it('can called be without an explicit redraw', function () {
-      var dataAxis = new DataAxis(this.body, {}, this.svg, {});
+  describe('convertValue', () => {
+    it('can called be without an explicit redraw', () => {
+      const dataAxis = new DataAxis(internals.body, {}, internals.svg, {});
       assert(isNaN(dataAxis.convertValue(77)));
     });
   });

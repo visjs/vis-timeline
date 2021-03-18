@@ -540,6 +540,12 @@ function (value) {
             <td>Toggle the drawing of the major labels on the Y axis.</td>
         </tr>
         <tr parent="dataAxis" class="hidden">
+            <td class="indent">dataAxis.showWeekScale</td>
+            <td>Boolean</td>
+            <td>false</td>
+            <td>Toggle the drawing of the week scales on the Y axis.</td>
+        </tr>
+        <tr parent="dataAxis" class="hidden">
             <td class="indent">dataAxis.visible</td>
             <td>Boolean</td>
             <td>true</td>
@@ -866,6 +872,7 @@ function (option, path) {
     hour:       'HH:mm',
     weekday:    'ddd D',
     day:        'D',
+    week:       'w',
     month:      'MMM',
     year:       'YYYY'
   },
@@ -876,6 +883,7 @@ function (option, path) {
     hour:       'ddd D MMMM',
     weekday:    'MMMM YYYY',
     day:        'MMMM YYYY',
+    week:       'MMMM YYYY',
     month:      'YYYY',
     year:       ''
   }
@@ -1149,6 +1157,7 @@ function (option, path) {
             <td>
                 Returns an Object with relevant properties from an event:
                 <ul>
+                    <li><code>customTime</code> (Number or null): the id of the clicked custom-time.</li>
                     <li><code>pageX</code> (Number): absolute horizontal position of the click event.</li>
                     <li><code>pageY</code> (Number): absolute vertical position of the click event.</li>
                     <li><code>x</code> (Number): relative horizontal position of the click event.</li>

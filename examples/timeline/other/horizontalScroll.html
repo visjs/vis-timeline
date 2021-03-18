@@ -1,9 +1,9 @@
 <html>
 <head>
-  <title>Timeline | Horizontal Scroll Option</title>
+  <title>Timeline | other | Horizontal Scroll Option</title>
 
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
   
 </head>
@@ -12,7 +12,7 @@
 
 <h1>Timeline horizontal scroll option</h1>
 
-<div id="mytimeline"></div>
+<div id="visualization"></div>
  
 <script>
 
@@ -68,7 +68,7 @@
   };
 
   // create a Timeline
-  var container = document.getElementById('mytimeline');
+  var container = document.getElementById('visualization');
   timeline = new vis.Timeline(container, items, groups, options);
 
 </script>

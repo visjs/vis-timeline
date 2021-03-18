@@ -1,35 +1,37 @@
-var assert = require('assert');
-var { DataSet } = require('vis-data');
-var DateUtil = require('../lib/timeline/DateUtil');
-var Range = require('../lib/timeline/Range');
-var ItemSet = require('../lib/timeline/component/ItemSet');
+import assert from 'assert'
+import jsdom_global from 'jsdom-global'
+import { DataSet } from 'vis-data/esnext'
+import * as DateUtil from '../lib/timeline/DateUtil'
+import Range from '../lib/timeline/Range'
+import ItemSet from '../lib/timeline/component/ItemSet'
+import TestSupport from './TestSupport'
 
+const internals = {}
 
-describe('Timeline ItemSet', function () {
-  before(function () {
-    this.jsdom = require('jsdom-global')();
-    this.TestSupport = require('./TestSupport');
+describe('Timeline ItemSet', () => {
+  before(() => {
+    internals.jsdom = jsdom_global()
 
-    var rangeBody = this.TestSupport.buildSimpleTimelineRangeBody();
-    this.testrange = new Range(rangeBody);
-    this.testrange.setRange(new Date(2017, 1, 26, 13, 26, 3, 320), new Date(2017, 1, 26, 13, 26, 4, 320), false, false, null);
-    this.testitems =  new DataSet({
+    const rangeBody = TestSupport.buildSimpleTimelineRangeBody();
+    internals.testrange = new Range(rangeBody);
+    internals.testrange.setRange(new Date(2017, 1, 26, 13, 26, 3, 320), new Date(2017, 1, 26, 13, 26, 4, 320), false, false, null);
+    internals.testitems =  new DataSet({
       type: {
         start: 'Date',
         end: 'Date'
       }
     });
     // add single items with different date types
-    this.testitems.add({id: 1, content: 'Item 1', start: new Date(2017, 1, 26, 13, 26, 3, 600), type: 'point'});
-    this.testitems.add({id: 2, content: 'Item 2', start: new Date(2017, 1, 26, 13, 26, 5, 600), type: 'point'});
+    internals.testitems.add({id: 1, content: 'Item 1', start: new Date(2017, 1, 26, 13, 26, 3, 600), type: 'point'});
+    internals.testitems.add({id: 2, content: 'Item 2', start: new Date(2017, 1, 26, 13, 26, 5, 600), type: 'point'});
   });
 
-  after(function () {
-    this.jsdom();
+  after(() => {
+    internals.jsdom();
   });
 
-  var getBasicBody = function() {
-    var body = {
+  const getBasicBody = () => {
+    const body = {
       dom: {
         container: document.createElement('div'),
         leftContainer: document.createElement('div'),
@@ -55,8 +57,8 @@ describe('Timeline ItemSet', function () {
         scrollTopMin: 0
       },
       emitter: {
-        on: function() {return {};},
-        emit: function() {}
+        on: () => {return {};},
+        emit: () => {}
       },
       util: {
       }
@@ -64,16 +66,16 @@ describe('Timeline ItemSet', function () {
     return body;
   };
 
-  it('should initialise with minimal data', function () {
-    var body = getBasicBody();
-    var itemset = new ItemSet(body, {});
+  it('should initialise with minimal data', () => {
+    const body = getBasicBody();
+    const itemset = new ItemSet(body, {});
     assert(itemset);
   });
 
-  it('should redraw() and have the right classNames', function () {
-    var body = getBasicBody();
-    body.range = this.testrange;
-    var itemset = new ItemSet(body, {});
+  it('should redraw() and have the right classNames', () => {
+    const body = getBasicBody();
+    body.range = internals.testrange;
+    const itemset = new ItemSet(body, {});
     itemset.redraw();
     assert.equal(itemset.dom.frame.className, 'vis-itemset');
     assert.equal(itemset.dom.background.className, 'vis-background');
@@ -82,30 +84,30 @@ describe('Timeline ItemSet', function () {
     assert.equal(itemset.dom.labelSet.className, 'vis-labelset');
   });
 
-  it('should start with no items', function () {
-    var body = getBasicBody();
-    var itemset = new ItemSet(body, {});
+  it('should start with no items', () => {
+    const body = getBasicBody();
+    const itemset = new ItemSet(body, {});
     assert.equal(itemset.getItems(), null);
   });
 
-  it('should store items correctly', function() {
-    var body = getBasicBody();
-    body.range = this.testrange;
-    body.util.toScreen = function(time) {
+  it('should store items correctly', () => {
+    const body = getBasicBody();
+    body.range = internals.testrange;
+    body.util.toScreen = (time) => {
       return DateUtil.toScreen({
         body: {
           hiddenDates: []
         },
         range: {
-          conversion: function() {
+          conversion: () => {
             return {offset: 0, scale: 100};
           }
         }
       }, time, 900)
     };
-    var itemset = new ItemSet(body, {});
-    itemset.setItems(this.testitems);
+    const itemset = new ItemSet(body, {});
+    itemset.setItems(internals.testitems);
     assert.equal(itemset.getItems().length, 2);
-    assert.deepEqual(itemset.getItems(), this.testitems);
+    assert.deepEqual(itemset.getItems(), internals.testitems);
   });
 });

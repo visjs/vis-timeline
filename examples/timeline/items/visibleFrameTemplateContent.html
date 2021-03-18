@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Timeline | Dynamic Content</title>
+  <title>Timeline | items | Dynamic Content</title>
 
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
     .progress-wrapper {
@@ -34,11 +34,11 @@
 </head>
 <body>
 
-<div id="myTimeline"></div>
+<div id="visualization"></div>
 
 <script type="text/javascript">
   // DOM element where the Timeline will be attached
-  var container = document.getElementById('myTimeline');
+  var container = document.getElementById('visualization');
 
   // Create a DataSet (allows two way data-binding)
   var items = new vis.DataSet([

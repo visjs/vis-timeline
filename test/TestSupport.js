@@ -1,8 +1,8 @@
-var { DataSet } = require('vis-data');
+import { DataSet } from 'vis-data/esnext'
 
-module.exports = {
-  buildMockItemSet: function() {
-    var itemset = {
+const TestSupport = {
+  buildMockItemSet: () => {
+    const itemset = {
       dom: {
         foreground: document.createElement('div'),
         content: document.createElement('div')
@@ -14,8 +14,8 @@ module.exports = {
     return itemset;
   },
 
-  buildSimpleTimelineRangeBody: function () {
-    var body = {
+  buildSimpleTimelineRangeBody: () => {
+    const body = {
       dom: {
         center: {
           clientWidth: 1000
@@ -28,9 +28,9 @@ module.exports = {
         }
       },
       emitter: {
-        on: function () {},
-        off: function () {},
-        emit: function () {}
+        on: () => {},
+        off: () => {},
+        emit: () => {}
       },
       hiddenDates: [],
       util: {}
@@ -39,3 +39,5 @@ module.exports = {
     return body
   }
 };
+
+export default TestSupport

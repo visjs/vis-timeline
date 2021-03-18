@@ -1,0 +1,59 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <title>Timeline | markers | Marker events</title>
+
+  <style type="text/css">
+    body, html {
+      font-family: sans-serif;
+      font-size: 11pt;
+    }
+  </style>
+
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+
+<p>The timeline has two marker events.</p>
+<ol>
+  <li>
+    <p><code>markerchange</code> which is fired when a marker title has been changed.</p>
+  </li>
+  <li>
+    <p><code>markerchanged</code> which is fired when an alteration to a marker title is committed.</p>
+  </li>
+</ol>
+<div id="visualization"></div><br>
+<div id="log"></div>
+
+<script type="text/javascript">
+  var items = new vis.DataSet();
+  var customDate = new Date();
+  var options = {
+    start: new Date(Date.now() - 1000 * 60 * 60 * 24),
+    end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
+  };
+
+  var container = document.getElementById('visualization');
+  var timeline = new vis.Timeline(container, items, options);
+  var id = "id";
+  timeline.addCustomTime(new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 3), id);
+  timeline.setCustomTimeMarker('Enter some text', id, true);
+  timeline.on("markerchange", function (properties) {
+    logEvent("markerchange", properties);
+  });
+  timeline.on("markerchanged", function (properties) {
+    logEvent("markerchanged", properties);
+  });
+
+  function logEvent (event, properties) {
+    var log = document.getElementById('log');
+    var msg = document.createElement('div');
+    msg.innerHTML = 'event=' + event + ', ' + 'properties=' + JSON.stringify(properties);
+    log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
+  }
+</script>
+</body>
+</html>

@@ -27,11 +27,11 @@ of the project.
 <!doctype html>
 <html>
 <head>
-  <title>Network</title>
-  <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.js"></script>
-  <link href="//unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <title>Timeline</title>
+  <script type="text/javascript" src="//unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="//unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
   <style type="text/css">
-    #mynetwork {
+    #visualization {
       width: 600px;
       height: 400px;
       border: 1px solid lightgray;
@@ -63,6 +63,79 @@ of the project.
 </body>
 </html>
 ```
+
+## Builds
+
+There are four builds provided at the moment.
+
+### Standalone build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/standalone";
+```
+
+This has no dependencies and therefore is great for things like MWEs but has
+more issues with interoperability and bundle bloat. For more information see the
+following [example](https://visjs.github.io/vis-timeline/examples/timeline/standalone-build.html).
+
+### Peer build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/peer/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/peer";
+```
+
+For this build to work you have to load Vis Data and Moment (including locales
+except English) packages yourself. The advantage here is that it works well with
+other packages. For more information see the following [example](https://visjs.github.io/vis-timeline/examples/timeline/peer-build.html).
+
+### ESNext build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/esnext/umd/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline/esnext";
+```
+
+This is the same as the peer build but without any bundled dependencies or
+pollyfills. It's indented to be used with bundlers like Rollup or Webpack which
+will fetch the dependencies, prevent duplicate dependencies in the bundle, use
+transpilers to add necessary polyfills etc.
+
+### Legacy build
+
+```html
+<script
+  type="text/javascript"
+  src="https://unpkg.com/vis-timeline@latest/dist/vis-timeline-graph2d.min.js"
+></script>
+```
+
+```javascript
+import { Timeline } from "vis-timeline";
+```
+
+This is solely kept for backwards compatibility. It is deprecated and will be
+removed in case of URLs and replaced by the peer build in case of
+Node.js/bundlers. Don't use this, please.
 
 ## Build
 
@@ -128,16 +201,10 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 
 ## License
 
-Copyright (C) 2010-2018 Almende B.V. and Contributors
+Copyright (c) 2014-2017 Almende B.V. and contributors
+Copyright (c) 2017-2019 vis.js contributors
 
-Vis.js is dual licensed under both
+This work is dual-licensed under [Apache-2.0](./LICENSE.Apache-2.0.txt) and [MIT](./LICENSE.MIT.txt).
+You can choose between one of them if you use this work.
 
-  * The Apache 2.0 License
-    http://www.apache.org/licenses/LICENSE-2.0
-
-and
-
-  * The MIT License
-    http://opensource.org/licenses/MIT
-
-Vis.js may be distributed under either license.
+`SPDX-License-Identifier: Apache-2.0 OR MIT`

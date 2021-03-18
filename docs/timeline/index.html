@@ -106,7 +106,7 @@
   <h2 id="Example">Example</h2>
   <p>
     The following code shows how to create a Timeline and provide it with data.
-    More examples can be found in the <a href="../../timeline_examples.html">timeline examples</a> page.
+    More examples can be found in the <a href="https://visjs.github.io/vis-timeline/examples/timeline">timeline examples</a> page.
   </p>
 
 <pre class="prettyprint lang-html">&lt;!DOCTYPE HTML&gt;
@@ -293,6 +293,15 @@ var items = new vis.DataSet([
         and removing items in a DataSet.</td>
     </tr>
     <tr>
+      <td>selectable</td>
+      <td>Boolean</td>
+      <td>no</td>
+      <td>Ability to enable/disable selectability for specific items. 
+          Defaults to <code>true</code>. Does not override the timeline's
+          <code>selectable</code> configuration option. 
+      </td>
+    </tr>
+    <tr>
       <td>start</td>
       <td>Date or number or string or Moment</td>
       <td>yes</td>
@@ -464,6 +473,14 @@ var groups = [
       </td>
     </tr>
     <tr>
+      <td>subgroupVisibility</td>
+      <td>Object</td>
+      <td>none</td>
+      <td>Ability to hide/show specific subgroups. Example: <code>{'hiddenSubgroup0': false, 'subgroup1': true, 'subgroup2': true}</code> 
+          If a subgroup is missing from the object, it will default as true (visible). 
+      </td>
+    </tr>
+    <tr>
       <td>title</td>
       <td>String</td>
       <td>none</td>
@@ -560,7 +577,7 @@ function (option, path) {
 
     <tr>
       <td>dataAttributes</td>
-      <td>string[] or 'all'</string></td>
+      <td>string[] or 'all'</td>
       <td><code>false</code></td>
       <td>An array of fields optionally defined on the timeline items that will be appended as <code>data-</code> attributes to the DOM element of the items.<br>
         If value is <code>'all'</code> then each field defined on the timeline item will become a <code>data-</code> attribute.</td>
@@ -685,6 +702,18 @@ function (option, path) {
     </tr>
 
     <tr>
+      <td>groupHeightMode</td>
+      <td>String</td>
+      <td>'auto'</td>
+      <td>
+        Specifies how the height of a group is calculated. Choose from 'auto','fixed', and 'fitItems'. <br />
+        If it is set to 'auto' the height will be calculated based on a group label and visible items.<br />
+        If it is set to 'fitItems' the height will be calculated based on the visible items only.<br />
+        While if it is set to 'fixed' the group will keep the same height even if there are no visible items in the window.
+      </td>
+    </tr>
+
+    <tr>
       <td>groupOrder</td>
       <td>String or Function</td>
       <td>'order'</td>
@@ -741,7 +770,7 @@ function (option, path) {
       <td>Boolean</td>
       <td>false</td>
       <td>This option allows you to scroll horizontally to move backwards and forwards in the time range.
-       Only applicable when option <code>zoomCtrl</code> is defined or <code>zoomable</code> is <code>false</code>.
+       Only applicable when option <code>zoomKey</code> is defined or <code>zoomable</code> is <code>false</code>.
       </td>
     </tr>
 
@@ -776,6 +805,15 @@ function (option, path) {
       <td>Object</td>
       <td>none</td>
       <td>A map with i18n locales. See section <a href="#Localization">Localization</a> for more information.</td>
+    </tr>
+
+    <tr>
+      <td>longSelectPressTime</td>
+      <td>number</td>
+      <td><code>251</code></td>
+      <td>
+        The minimal press time in ms for an event to be considered a (long) press.
+      </td>
     </tr>
 
     <tr>
@@ -1001,6 +1039,15 @@ function (option, path) {
       <td>Orientation of the timeline items: 'top' or 'bottom' (default). Determines whether items are aligned to the top or bottom of the Timeline.</td>
     </tr>
 
+    <tr>
+      <td>preferZoom</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>
+      If true, scrolling vertically on timeline center panel will be prevented, and zoom action will be preferred, without need of <code>zoomKey</code>.
+      </td>
+    </tr>
+
     <tr class='toggle collapsible' onclick="toggleTable('optionTable','rollingMode', this);">
       <td><span parent="rollingMode" class="right-caret"></span> rollingMode</td>
       <td>Object</td>
@@ -1039,6 +1086,13 @@ function (option, path) {
     </tr>
 
     <tr>
+      <td>sequentialSelection</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>If true, then only sequential items are allowed to be selected (no gaps) when <code>multiselect</code> is true</td>
+    </tr>
+
+    <tr>
       <td>showCurrentTime</td>
       <td>boolean</td>
       <td><code>true</code></td>
@@ -1071,6 +1125,16 @@ function (option, path) {
     </tr>
 
     <tr>
+      <td>showWeekScale</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>By default, the timeline doesn't show week number scale in the date labels on the
+        time axis.
+        When <code>showWeekScale</code> is <code>true</code>, week number labels
+        are shown.</td>
+    </tr>
+
+    <tr>
       <td>showTooltips</td>
       <td>boolean</td>
       <td><code>true</code></td>
@@ -1090,6 +1154,46 @@ function (option, path) {
       <td><code>true</code></td>
       <td>If true (default), subgroups will be stacked on top of each other such that they do not overlap.</td>
     </tr>
+
+    <tr class='toggle collapsible' onclick="toggleTable('optionTable','cluster', this);">
+      <td><span parent="cluster" class="right-caret"></span> cluster</td>
+      <td>Object or boolean</td>
+      <td><code>false</code></td>
+      <td>If true, overlapped items will be grouped to clusters, zooming will change that grouping. Use this option when a huge amount of items should be rendered.
+      </td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.maxItems</td>
+      <td>number or null</td>
+      <td><code>1</code></td>
+      <td>Overlapped items will be not grouped until the number of items is within maxItems. The default value of <code>maxItems</code> is <code>1</code>, it means that each two overlapped items will be clustered.</td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.titleTemplate</td>
+      <td>string or null</td>
+      <td><code>none</code></td>
+      <td>Cluster item tooltip, will replace <code>{count}</code> with the number of items in the cluster</td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.clusterCriteria</td>
+      <td>function or null</td>
+      <td><code>() => true</code></td>
+      <td>If specified, determines whether overlapped items should go to the same cluster. The signature of the clusterCriteria function is:
+        <pre class="prettyprint lang-js">function clusterCriteria(firstItem: Object, secondItem: Object) : boolean.</pre></td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.showStipes</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>If true, line from cluster to time axis is displayed when content overflows.</td>
+    </tr>
+    <tr parent="cluster" class="hidden">
+      <td class="indent">cluster.fitOnDoubleClick</td>
+      <td>boolean</td>
+      <td><code>true</code></td>
+      <td>If true, the cluster will be centered on double click.</td>
+    </tr>
+
 
     <tr>
       <td>snap</td>
@@ -1122,13 +1226,6 @@ function (option, path) {
       <td>none</td>
       <td>A template function used to generate the visible frame of the items. The function is called by the Timeline with an items' data as the first argument and the item frame element as the second, and must return HTML code, a string or a template as result. When the option template is specified, the items do not need to have a field <code>content</code>. See section <a href="#Templates">Templates</a> for a detailed explanation.
       This would be used as an additional way to add content that is constant in size with the visible frame of the item and does not get visibly hidden with the item's internal container: <code>vis-item-overflow</code> which is <code>overflow:hidden</code>.</td>
-    </tr>
-
-    <tr class='deprecated'>
-      <td>throttleRedraw</td>
-      <td>number</td>
-      <td><code>0</code></td>
-      <td>This option is <b>DEPRECATED</b> and no longer supported. It will be removed in the next MAJOR release.</td>
     </tr>
 
     <tr class='toggle collapsible' onclick="toggleTable('optionTable','timeAxis', this);">
@@ -1178,16 +1275,37 @@ function (option, path) {
       <td><code>false</code></td>
       <td>If true, tooltips will follow the mouse as they move around in the item.</td>
     </tr>
-
     <tr parent="tooltip" class="hidden">
       <td class="indent">tooltip.overflowMethod</td>
       <td>String</td>
       <td><code>'flip'</code></td>
       <td>
         Set how the tooltip should act if it is about to overflow out of the timeline.<br />
-        Choose from <code>'cap'</code> and <code>'flip'</code>. <br />
+        Choose from <code>'cap'</code>, <code>'flip'</code> and <code>'none'</code>. <br />
         If it is set to <code>'cap'</code>, the tooltip will just cap its position to inside to timeline. <br />
-        While if it is set to <code>'flip'</code>, the position of the tooltip will flip around the cursor so that a corner is at the cursor, and the rest of it is visible. <br />
+        If set to <code>'flip'</code>, the position of the tooltip will flip around the cursor so that a corner is at the cursor, and the rest of it is visible. <br />
+        If set to <code>'none'</code>, the tooltip will be positioned independently of the timeline, so parts of the tooltip could possibly be hidden or stick ouf of
+        the timeline, depending how CSS overflow is defined for the timeline (by default it's hidden). <br />
+    </tr>
+    <tr parent="tooltip" class="hidden">
+      <td class="indent">tooltip.delay</td>
+      <td>Number</td>
+      <td><code>500</code></td>
+      <td>
+        Set a value (in ms) that the tooltip is delayed before showing.
+      </td>
+    </tr>
+    <tr parent="tooltip" class="hidden">
+      <td class="indent">tooltip.template</td>
+      <td>Function</td>
+      <td>none</td>
+      <td>
+        A template function used to generate the contents of the tooltip.
+        The function is called by the Timeline with an item's data as the first argument, and the edited data as the second argument.
+        It must return HTML code, a string or a template as result.
+        See section <a href="#Templates">Templates</a> for a detailed explanation.
+        See also: <code>tooltipOnItemUpdateTime.template</code>.
+      </td>
     </tr>
 
     <tr class='toggle collapsible' onclick="toggleTable('optionTable','tooltipOnItemUpdateTime', this);">
@@ -1197,10 +1315,10 @@ function (option, path) {
       <td>Show a tooltip on updating an item's time. Note: <code>editable.updateTime</code> must be <code>true</code></td>
     </tr>
     <tr parent="tooltipOnItemUpdateTime" class="hidden">
-      <td class="indent">template</td>
+      <td class="indent">tooltipOnItemUpdateTime.template</td>
       <td>Function</td>
       <td>none</td>
-      <td>A template function used to generate the contents of the tooltip. The function is called by the Timeline with an item data as the first argument, and must return HTML code, a string or a template as result. See section <a href="#Templates">Templates</a> for a detailed explanation.
+      <td>A template function used to generate the contents of the tooltip. The function is called by the Timeline with an item data as the first argument, and must return HTML code, a string or a template as result. See section <a href="#Templates">Templates</a> for a detailed explanation. See also: <code>tooltip.template</code>.
       </td>
     </tr>
     <tr>
@@ -1228,12 +1346,22 @@ function (option, path) {
       </td>
     </tr>
 
-	<tr>
+    <tr>
+      <td>zoomFriction</td>
+      <td>number</td>
+      <td><code>5</code></td>
+      <td>
+        Specifies how strong the zooming is for each scroll tick. Higher zooming friction will slow
+        zooming speed.
+      </td>
+    </tr>
+
+  	<tr>
       <td>zoomKey</td>
       <td>String</td>
       <td><code>''</code></td>
       <td>Specifies whether the Timeline is only zoomed when an additional key is down.
-      	Available values are '' (does not apply), 'altKey', 'ctrlKey', or 'metaKey'.
+      	Available values are '' (does not apply), 'altKey', 'ctrlKey', 'shiftKey' or 'metaKey'.
         Only applicable when option <code>moveable</code> is set <code>true</code>.
       </td>
     </tr>
@@ -1309,6 +1437,7 @@ function (option, path) {
       <td>Adjust the visible window such that the selected item (or multiple items) are centered on screen. See also function <code>fit()</code>. Available options:
         <ul>
           <li><code>animation: boolean or {duration: number, easingFunction: string}</code><br>If true (default) or an Object, the range is animated smoothly to the new window. An object can be provided to specify duration and easing function. Default duration is 500 ms, and default easing function is <code>'easeInOutQuad'</code>. Available easing functions: <code>"linear"</code>, <code>"easeInQuad"</code>, <code>"easeOutQuad"</code>, <code>"easeInOutQuad"</code>, <code>"easeInCubic"</code>, <code>"easeOutCubic"</code>, <code>"easeInOutCubic"</code>, <code>"easeInQuart"</code>, <code>"easeOutQuart"</code>, <code>"easeInOutQuart"</code>, <code>"easeInQuint"</code>, <code>"easeOutQuint"</code>, <code>"easeInOutQuint"</code>.</li>
+          <li><code>zoom: boolean</code> If true (default), the timeline will zoom on the element after focus it.</li>
         </ul>
       </td>
     </tr>
@@ -1335,6 +1464,7 @@ function (option, path) {
         <ul>
           <li><code>group</code> (Number or null): the id of the clicked group.</li>
           <li><code>item</code> (Number or null): the id of the clicked item.</li>
+          <li><code>customTime</code> (Number or null): the id of the clicked custom-time.</li>
           <li><code>pageX</code> (Number): absolute horizontal position of the click event.</li>
           <li><code>pageY</code> (Number): absolute vertical position of the click event.</li>
           <li><code>x</code> (Number): relative horizontal position of the click event.</li>
@@ -1431,6 +1561,17 @@ document.getElementById('myTimeline').onclick = function (event) {
       <td>Adjust the time of a custom time bar.
         Parameter <code>time</code> can be a Date object, numeric timestamp, or ISO date string.
         Parameter <code>id</code> is the id of the custom time bar, and is <code>undefined</code> by default.
+      </td>
+    </tr>
+
+    <tr>
+      <td>setCustomTimeMarker(title [, id, editable])</td>
+      <td>none</td>
+      <td>Attach a marker to the custom time bar.
+        Parameter <code>title</code> is the string to be set as title of the marker.
+        Parameter <code>id</code> is the id of the custom time bar which the marker is attached to, and is <code>undefined</code> by default.
+        Any marker's style can be overridden by specifying css selectors such as <code>.vis-custom-time > .vis-custom-time-marker</code>, <code>.${The id of the custom time bar} > .vis-custom-time-marker</code>.
+        Parameter <code>editable</code> makes the marker editable if true and is <code>false</code> by default.
       </td>
     </tr>
 
@@ -1617,6 +1758,15 @@ timeline.off('select', onSelect);
     </tr>
 
     <tr>
+      <td>dragover</td>
+      <td>
+        Passes a properties object as returned by the method <a href="#getEventProperties"><code>Timeline.getEventProperties(event)</code></a>.
+      </td>
+      <td>Fired when dragging over a timeline element.
+      </td>
+    </tr>
+
+    <tr>
       <td>drop</td>
       <td>
         Passes a properties object as returned by the method <a href="#getEventProperties"><code>Timeline.getEventProperties(event)</code></a>.
@@ -1624,7 +1774,6 @@ timeline.off('select', onSelect);
       <td>Fired when dropping inside the Timeline.
       </td>
     </tr>
-
 
     <tr>
       <td>mouseOver</td>
@@ -1768,6 +1917,34 @@ timeline.off('select', onSelect);
       </td>
       <td>Fired once after the user has dragged the custom time bar.
         Only available when the custom time bar is enabled.
+      </td>
+    </tr>
+
+    <tr>
+      <td>markerchange</td>
+      <td>
+        <ul>
+          <li><code>id</code> (Number or String): custom time bar id which the marker is attached to.</li>
+          <li><code>title</code> (Date): the marker title.</li>
+          <li><code>event</code> (Object): original event triggering the markerchange.</li>
+        </ul>
+      </td>
+      <td>Fired when the marker title has been changed.
+        Only available when the marker is editable.
+      </td>
+    </tr>
+
+    <tr>
+      <td>markerchanged</td>
+      <td>
+        <ul>
+          <li><code>id</code> (Number or String): custom time bar id which the marker is attached to.</li>
+          <li><code>title</code> (Date): the marker title.</li>
+          <li><code>event</code> (Object): original event triggering the markerchanged.</li>
+        </ul>
+      </td>
+      <td>Fired when an alteration to the marker title is committed.
+        Only available when the marker is editable.
       </td>
     </tr>
 
@@ -1977,6 +2154,7 @@ var options = {
     mylocale: {
       current: 'current',
       time: 'time',
+      deleteSelected: 'Delete selected'
     }
   },
 
@@ -2020,11 +2198,49 @@ var options = {
         <code>nl_BE</code>
       </td>
     </tr>
-	<tr>
+    <tr>
       <td>German</td>
       <td>
         <code>de</code><br>
         <code>de_DE</code><br>
+      </td>
+    </tr>
+    <tr>
+      <td>French</td>
+      <td>
+        <code>fr</code><br>
+        <code>fr_FR</code><br>
+        <code>fr_CA</code><br>
+        <code>fr_BE</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Ukrainian</td>
+      <td>
+        <code>uk</code><br>
+        <code>uk_UA</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Russian</td>
+      <td>
+        <code>ru</code><br>
+        <code>ru_RU</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Polish</td>
+      <td>
+        <code>pl</code><br>
+        <code>pl_PL</code>
+      </td>
+    </tr>
+    <tr>
+      <td>Portuguese</td>
+      <td>
+        <code>pt</code><br>
+        <code>pt_BR</code>
+        <code>pt_PT</code>
       </td>
     </tr>
   </table>

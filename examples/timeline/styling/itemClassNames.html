@@ -1,9 +1,9 @@
 <html>
 <head>
-  <title>Timeline | Item class names</title>
+  <title>Timeline | styling | Item class names</title>
 
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
   <style type="text/css">
     body, input {
@@ -70,7 +70,7 @@
 <body>
 <p>This page demonstrates the Timeline with custom css classes for individual items.</p>
 
-<div id="mytimeline"></div>
+<div id="visualization"></div>
 
 <script type="text/javascript">
   // create data
@@ -109,7 +109,7 @@
   };
 
   // create the timeline
-  var container = document.getElementById('mytimeline');
+  var container = document.getElementById('visualization');
   timeline = new vis.Timeline(container, data, options);
 
 </script>

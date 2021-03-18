@@ -2,10 +2,10 @@
 <html>
 <head>
   <meta charset="utf-8"/>
-  <title>Timeline | Drag & Drop</title>
+  <title>Timeline | other | Drag & Drop</title>
   
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
 
   
 
@@ -57,7 +57,7 @@
 
 <p>For this to work, you will have to define your own <code>'dragstart'</code> eventListener on each item in your list of items (make sure that any new item added to the list is attached to this eventListener 'dragstart' handler). This 'dragstart' handler must set <code>dataTransfer</code> - notice you can set  the item's information as you want this way.</p>
 
-<div id="mytimeline" ></div>
+<div id="visualization" ></div>
 
 <div class='items-panel'>
   <div class='side'>
@@ -138,7 +138,7 @@
   };
 
   // create a Timeline
-  var container = document.getElementById('mytimeline');
+  var container = document.getElementById('visualization');
   timeline1 = new vis.Timeline(container, items, groups, options);
 
   function handleDragStart(event) {

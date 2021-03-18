@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-  <title>Timeline | Show current and custom time bars</title>
+  <title>Timeline | other | Show current and custom time bars tooltip</title>
 
   <style type="text/css">
     body, html {
@@ -10,8 +10,8 @@
     }
   </style>
 
-  <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
   <script src="../../googleAnalytics.js"></script>
 </head>
 <body>
@@ -51,7 +51,7 @@
   customDate = new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 1);
   timeline.addCustomTime(customDate, 't1');
   timeline.setCustomTimeTitle(function(time){
-      return "I'm t1!";
+      return "I'm t1! time:" + time;
   }, "t1");
 
   document.getElementById('add').onclick = function () {
@@ -60,7 +60,7 @@
       var barId = document.getElementById('barId').value || undefined;
       timeline.addCustomTime(customDate, barId);
         timeline.setCustomTimeTitle(function(time){
-            return "I'm "+barId+"!";
+            return "I'm "+barId+"! time:" + time;
         }, barId);
       document.getElementById('barId').value = '';
     }
