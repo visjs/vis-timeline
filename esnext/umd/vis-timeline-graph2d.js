@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-03-28T10:26:42.258Z
+ * @date    2021-03-28T10:32:55.298Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -19126,7 +19126,7 @@
     if (!items) {
       newDataSet = null;
     }
-    else if (esnext.isDataViewLike("id", newDataSet)) {
+    else if (esnext.isDataViewLike("id", items)) {
       newDataSet = typeCoerceDataSet(items);
     }
     else {
