@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-03-27T20:38:29.596Z
+ * @date    2021-03-28T10:28:35.018Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28372,7 +28372,23 @@ var ja = {
   time: '時刻',
   deleteSelected: '選択されたものを削除'
 };
-var ja_JP = ja;
+var ja_JP = ja; // Swedish
+
+var sv = {
+  current: 'nuvarande',
+  time: 'tid',
+  deleteSelected: 'Radera valda'
+};
+var sv_SE = sv; // Norwegian
+
+var nb = {
+  current: 'nåværende',
+  time: 'tid',
+  deleteSelected: 'Slett valgte'
+};
+var nb_NO = nb;
+var nn = nb;
+var nn_NO = nb;
 var locales = {
   en: en,
   en_EN: en_EN,
@@ -28401,7 +28417,13 @@ var locales = {
   pt_BR: pt_BR,
   pt_PT: pt_PT,
   ja: ja,
-  ja_JP: ja_JP
+  ja_JP: ja_JP,
+  sv: sv,
+  sv_SE: sv_SE,
+  nb: nb,
+  nn: nn,
+  nb_NO: nb_NO,
+  nn_NO: nn_NO
 };
 
 function _createSuper$a(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$a(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }

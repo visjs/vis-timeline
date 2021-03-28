@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-03-27T20:37:05.586Z
+ * @date    2021-03-28T10:26:42.258Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3316,6 +3316,25 @@ const ja = {
 };
 const ja_JP = ja;
 
+// Swedish
+const sv = {
+  current: 'nuvarande',
+  time: 'tid',
+  deleteSelected: 'Radera valda',
+};
+const sv_SE = sv;
+
+// Norwegian
+const nb = {
+  current: 'nåværende',
+  time: 'tid',
+  deleteSelected: 'Slett valgte',
+};
+const nb_NO = nb;
+const nn = nb;
+const nn_NO = nb;
+
+
 const locales = {
   en,
   en_EN,
@@ -3345,6 +3364,12 @@ const locales = {
   pt_PT,
   ja,
   ja_JP,
+  sv,
+  sv_SE,
+  nb,
+  nn,
+  nb_NO,
+  nn_NO
 };
 
 /** A custom time bar */
