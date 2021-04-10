@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-10T11:18:33.519Z
+ * @date    2021-04-10T15:27:34.076Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,7 +28,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('xss'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.filterXSS, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
-}(this, (function (exports, moment$3, util$1, esnext, xss, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
+}(this, (function (exports, moment$3, util, esnext, xssFilter, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   function _interopNamespace(e) {
@@ -52,8 +52,8 @@
   }
 
   var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
-  var util__namespace = /*#__PURE__*/_interopNamespace(util$1);
-  var xss__default = /*#__PURE__*/_interopDefaultLegacy(xss);
+  var util__namespace = /*#__PURE__*/_interopNamespace(util);
+  var xssFilter__default = /*#__PURE__*/_interopDefaultLegacy(xssFilter);
   var Emitter__default = /*#__PURE__*/_interopDefaultLegacy(Emitter);
   var PropagatingHammer__default = /*#__PURE__*/_interopDefaultLegacy(PropagatingHammer);
   var Hammer__default = /*#__PURE__*/_interopDefaultLegacy(Hammer$1);
@@ -106,7 +106,7 @@
 
       case "number":
       case "Number":
-        if (util$1.isString(object) && !isNaN(Date.parse(object))) {
+        if (util.isString(object) && !isNaN(Date.parse(object))) {
           return moment__default['default'](object).valueOf();
         } else {
           // @TODO: I don't think that Number and String constructors are a good idea.
@@ -125,7 +125,7 @@
         catch(e){
           if (e instanceof TypeError) {
             throw new TypeError(
-              "Cannot convert object of type " + util$1.getType(object) + " to type " + type
+              "Cannot convert object of type " + util.getType(object) + " to type " + type
             );
           } else {
             throw e;
@@ -133,7 +133,7 @@
         }
 
       case "Moment":
-        if (util$1.isNumber(object)) {
+        if (util.isNumber(object)) {
           return moment__default['default'](object);
         }
         if (object instanceof Date) {
@@ -141,33 +141,33 @@
         } else if (moment__default['default'].isMoment(object)) {
           return moment__default['default'](object);
         }
-        if (util$1.isString(object)) {
+        if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
           if (match) {
             // object is an ASP date
             return moment__default['default'](Number(match[1])); // parse number
-          } 
+          }
           match = NumericRegex.exec(object);
 
           if (match) {
             return moment__default['default'](Number(object));
           }
-          
+
           return moment__default['default'](object); // parse string
         } else {
           throw new TypeError(
-            "Cannot convert object of type " + util$1.getType(object) + " to type " + type
+            "Cannot convert object of type " + util.getType(object) + " to type " + type
           );
         }
 
       case "ISODate":
-        if (util$1.isNumber(object)) {
+        if (util.isNumber(object)) {
           return new Date(object);
         } else if (object instanceof Date) {
           return object.toISOString();
         } else if (moment__default['default'].isMoment(object)) {
           return object.toDate().toISOString();
-        } else if (util$1.isString(object)) {
+        } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
           if (match) {
             // object is an ASP date
@@ -178,17 +178,17 @@
         } else {
           throw new Error(
             "Cannot convert object of type " +
-              util$1.getType(object) +
+              util.getType(object) +
               " to type ISODate"
           );
         }
 
       case "ASPDate":
-        if (util$1.isNumber(object)) {
+        if (util.isNumber(object)) {
           return "/Date(" + object + ")/";
         } else if (object instanceof Date || moment__default['default'].isMoment(object)) {
           return "/Date(" + object.valueOf() + ")/";
-        } else if (util$1.isString(object)) {
+        } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
           let value;
           if (match) {
@@ -201,7 +201,7 @@
         } else {
           throw new Error(
             "Cannot convert object of type " +
-              util$1.getType(object) +
+              util.getType(object) +
               " to type ASPDate"
           );
         }
@@ -284,11 +284,47 @@
     };
   }
 
-  var util = {
+  // Configure XSS protection
+  const setupXSSCleaner = (options) => {
+    const customXSS = new xssFilter__default['default'].FilterXSS(options);
+    return (string) => customXSS.process(string);
+  };
+  const setupNoOpCleaner = (string) => string;
+
+  // when nothing else is configured: filter XSS with the lib's default options
+  let configuredXSSProtection = setupXSSCleaner();
+
+  const setupXSSProtection = (options) => {
+    // No options? Do nothing.
+    if (!options) {
+      return;
+    }
+
+    // Disable XSS protection completely on request
+    if (options.disabled === true) {
+      configuredXSSProtection = setupNoOpCleaner;
+      console.warn('You disabled XSS protection for vis-Timeline. I sure hope you know what you\'re doing!');
+    } else {
+      // Configure XSS protection with some custom options.
+      // For a list of valid options check the lib's documentation:
+      // https://github.com/leizongmin/js-xss#custom-filter-rules
+      if (options.filterOptions) {
+        configuredXSSProtection = setupXSSCleaner(options.filterOptions);
+      }
+    }
+  };
+
+  const availableUtils = {
     ...util__namespace,
     convert,
-    xss: xss__default['default']
+    setupXSSProtection
   };
+
+  Object.defineProperty(availableUtils, 'xss', {
+    get: function() {
+      return configuredXSSProtection;
+    }
+  });
 
   /** Prototype for visual components */
   class Component {
@@ -308,7 +344,7 @@
      */
     setOptions(options) {
       if (options) {
-        util.extend(this.options, options);
+        availableUtils.extend(this.options, options);
       }
     }
 
@@ -930,7 +966,7 @@
           offset: 0.5
         }
       };
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
       this.props = {
         touch: {}
       };
@@ -977,7 +1013,7 @@
           'animation', 'direction', 'min', 'max', 'zoomMin', 'zoomMax', 'moveable', 'zoomable',
           'moment', 'activate', 'hiddenDates', 'zoomKey', 'zoomFriction', 'rtl', 'showCurrentTime', 'rollingMode', 'horizontalScroll'
         ];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
 
         if (options.rollingMode && options.rollingMode.follow) {
           this.startRolling();
@@ -1004,7 +1040,7 @@
 
 
         let interval = me.end - me.start;
-        const t = util.convert(new Date(), 'Date').valueOf();
+        const t = availableUtils.convert(new Date(), 'Date').valueOf();
         const rollingModeOffset = me.options.rollingMode && me.options.rollingMode.offset || 0.5;
 
         const start = t - interval * (rollingModeOffset);
@@ -1069,8 +1105,8 @@
         options.byUser = false;
       }
       const me = this;
-      const finalStart = start != undefined ? util.convert(start, 'Date').valueOf() : null;
-      const finalEnd   = end != undefined   ? util.convert(end, 'Date').valueOf()   : null;
+      const finalStart = start != undefined ? availableUtils.convert(start, 'Date').valueOf() : null;
+      const finalEnd   = end != undefined   ? availableUtils.convert(end, 'Date').valueOf()   : null;
       this._cancelAnimation();
       this.millisecondsPerPixelCache = undefined;
 
@@ -1079,9 +1115,9 @@
         const initEnd = this.end;
         const duration = (typeof options.animation === 'object' && 'duration' in options.animation) ? options.animation.duration : 500;
         const easingName = (typeof options.animation === 'object' && 'easingFunction' in options.animation) ? options.animation.easingFunction : 'easeInOutQuad';
-        const easingFunction = util.easingFunctions[easingName];
+        const easingFunction = availableUtils.easingFunctions[easingName];
         if (!easingFunction) {
-          throw new Error(`Unknown easing function ${JSON.stringify(easingName)}. Choose from: ${Object.keys(util.easingFunctions).join(', ')}`);
+          throw new Error(`Unknown easing function ${JSON.stringify(easingName)}. Choose from: ${Object.keys(availableUtils.easingFunctions).join(', ')}`);
         }
 
         const initTime = Date.now();
@@ -1183,10 +1219,10 @@
      * @private
      */
     _applyRange(start, end) {
-      let newStart = (start != null) ? util.convert(start, 'Date').valueOf() : this.start;
-      let newEnd   = (end != null)   ? util.convert(end, 'Date').valueOf()   : this.end;
-      const max = (this.options.max != null) ? util.convert(this.options.max, 'Date').valueOf() : null;
-      const min = (this.options.min != null) ? util.convert(this.options.min, 'Date').valueOf() : null;
+      let newStart = (start != null) ? availableUtils.convert(start, 'Date').valueOf() : this.start;
+      let newEnd   = (end != null)   ? availableUtils.convert(end, 'Date').valueOf()   : this.end;
+      const max = (this.options.max != null) ? availableUtils.convert(this.options.max, 'Date').valueOf() : null;
+      const min = (this.options.min != null) ? availableUtils.convert(this.options.min, 'Date').valueOf() : null;
       let diff;
 
       // check for valid number
@@ -1550,7 +1586,7 @@
       this.scaleOffset = 0;
       this.deltaDifference = 0;
       // Disable the browser default handling of this event.
-      util.preventDefault(event);
+      availableUtils.preventDefault(event);
     }
 
     /**
@@ -1563,7 +1599,7 @@
       if (!(this.options.zoomable && this.options.moveable)) return;
 
       // Disable the browser default handling of this event.
-      util.preventDefault(event);
+      availableUtils.preventDefault(event);
 
       this.props.touch.allowDragging = false;
 
@@ -1944,8 +1980,8 @@
      * @param {{minorLabels: Object, majorLabels: Object}} format
      */
     setFormat(format) {
-      const defaultFormat = util.deepExtend({}, TimeStep.FORMAT);
-      this.format = util.deepExtend(defaultFormat, format);
+      const defaultFormat = availableUtils.deepExtend({}, TimeStep.FORMAT);
+      this.format = availableUtils.deepExtend(defaultFormat, format);
     }
 
     /**
@@ -2628,11 +2664,11 @@
         showMajorLabels: true,
         showWeekScale: false,
         maxMinorChars: 7,
-        format: util.extend({}, TimeStep.FORMAT),
+        format: availableUtils.extend({}, TimeStep.FORMAT),
         moment: moment$2,
         timeAxis: null
       };
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
 
       this.body = body;
 
@@ -2654,7 +2690,7 @@
     setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend([
+        availableUtils.selectiveExtend([
           'showMinorLabels',
           'showMajorLabels',
           'showWeekScale',
@@ -2666,7 +2702,7 @@
         ], this.options, options);
 
         // deep copy the format options
-        util.selectiveDeepExtend(['format'], this.options, options);
+        availableUtils.selectiveDeepExtend(['format'], this.options, options);
 
         if ('orientation' in options) {
           if (typeof options.orientation === 'string') {
@@ -2783,8 +2819,8 @@
       const orientation = this.options.orientation.axis;
 
       // calculate range and step (step such that we have space for 7 characters per label)
-      const start = util.convert(this.body.range.start, 'Number');
-      const end = util.convert(this.body.range.end, 'Number');
+      const start = availableUtils.convert(this.body.range.start, 'Number');
+      const end = availableUtils.convert(this.body.range.end, 'Number');
       const timeLabelsize = this.body.util.toTime((this.props.minorCharWidth || 10) * this.options.maxMinorChars).valueOf();
       let minimumStep = timeLabelsize - getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this.body.range, timeLabelsize);
       minimumStep -= this.body.util.toTime(0).valueOf();
@@ -2891,7 +2927,7 @@
       }
 
       // Cleanup leftover DOM elements from the redundant list
-      util.forEach(this.dom.redundant, arr => {
+      availableUtils.forEach(this.dom.redundant, arr => {
         while (arr.length) {
           const elem = arr.pop();
           if (elem && elem.parentNode) {
@@ -2922,7 +2958,7 @@
         this.dom.foreground.appendChild(label);
       }
       this.dom.minorTexts.push(label);
-      label.innerHTML = util.xss(text);
+      label.innerHTML = availableUtils.xss(text);
 
 
       let y = (orientation == 'top') ? this.props.majorLabelHeight : 0;
@@ -2955,7 +2991,7 @@
         this.dom.foreground.appendChild(label);
       }
 
-      label.childNodes[0].innerHTML = util.xss(text);
+      label.childNodes[0].innerHTML = availableUtils.xss(text);
       label.className = `vis-text vis-major ${className}`;
       //label.title = title; // TODO: this is a heavy operation
 
@@ -3183,7 +3219,7 @@
 
     this.active = true;
     this.dom.overlay.style.display = 'none';
-    util.addClassName(this.dom.container, 'vis-active');
+    availableUtils.addClassName(this.dom.container, 'vis-active');
 
     this.emit('change');
     this.emit('activate');
@@ -3204,7 +3240,7 @@
 
     this.active = false;
     this.dom.overlay.style.display = '';
-    util.removeClassName(this.dom.container, 'vis-active');
+    availableUtils.removeClassName(this.dom.container, 'vis-active');
     this.keycharm.unbind('esc', this.escListener);
 
     this.emit('change');
@@ -3419,12 +3455,12 @@
         id: undefined,
         title: undefined
       };
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
       this.setOptions(options);
-      this.options.locales = util.extend({}, locales, this.options.locales);
+      this.options.locales = availableUtils.extend({}, locales, this.options.locales);
       const defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
       Object.keys(this.options.locales).forEach(locale => {
-        this.options.locales[locale] = util.extend(
+        this.options.locales[locale] = availableUtils.extend(
           {},
           defaultLocales,
           this.options.locales[locale]
@@ -3453,7 +3489,7 @@
     setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
+        availableUtils.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
       }
     }
 
@@ -3575,7 +3611,7 @@
      * @param {Date | number | string} time
      */
     setCustomTime(time) {
-      this.customTime = util.convert(time, 'Date');
+      this.customTime = availableUtils.convert(time, 'Date');
       this.redraw();
     }
 
@@ -3595,7 +3631,7 @@
     setCustomMarker(title, editable) {
       const marker = document.createElement('div');
       marker.className = `vis-custom-time-marker`;
-      marker.innerHTML = util.xss(title);
+      marker.innerHTML = availableUtils.xss(title);
       marker.style.position = 'absolute';
 
       if (editable) {
@@ -3847,7 +3883,7 @@
 
       const me = this;
       this._origRedraw = this._redraw.bind(this);
-      this._redraw = util.throttle(this._origRedraw);
+      this._redraw = availableUtils.throttle(this._origRedraw);
 
       this.on('_change', properties => {
         if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
@@ -4129,7 +4165,7 @@
           'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey',
           'horizontalScroll', 'verticalScroll', 'longSelectPressTime', 'snap'
         ];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = 'hidden';
 
         if (this.options.rtl) {
@@ -4169,7 +4205,7 @@
           if (!this.timeAxis2) {
             const timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
             timeAxis2.setOptions = options => {
-              const _options = options ? util.extend({}, options) : {};
+              const _options = options ? availableUtils.extend({}, options) : {};
               _options.orientation = 'top'; // override the orientation option, always top
               TimeAxis.prototype.setOptions.call(timeAxis2, _options);
             };
@@ -4228,9 +4264,9 @@
         this.configurator.setOptions(options.configure);
 
         // collect the settings of all components, and pass them to the configuration system
-        const appliedOptions = util.deepExtend({}, this.options);
+        const appliedOptions = availableUtils.deepExtend({}, this.options);
         this.components.forEach(component => {
-          util.deepExtend(appliedOptions, component.options);
+          availableUtils.deepExtend(appliedOptions, component.options);
         });
         this.configurator.setModuleOptions({global: appliedOptions});
       }
@@ -4375,7 +4411,7 @@
      */
     addCustomTime(time, id) {
       const timestamp = time !== undefined
-          ? util.convert(time, 'Date')
+          ? availableUtils.convert(time, 'Date')
           : new Date();
 
       const exists = this.customTimes.some(customTime => customTime.options.id === id);
@@ -4383,7 +4419,7 @@
         throw new Error(`A custom time with id ${JSON.stringify(id)} already exists`);
       }
 
-      const customTime = new CustomTime(this.body, util.extend({}, this.options, {
+      const customTime = new CustomTime(this.body, availableUtils.extend({}, this.options, {
         time: timestamp,
         id,
         snap: this.itemSet ? this.itemSet.options.snap : this.options.snap
@@ -4532,7 +4568,7 @@
         options = {};
       }
       const interval = this.range.end - this.range.start;
-      const t = util.convert(time, 'Date').valueOf();
+      const t = availableUtils.convert(time, 'Date').valueOf();
 
       const start = t - interval / 2;
       const end = t + interval / 2;
@@ -4639,26 +4675,26 @@
 
       // update class names
       if (options.orientation == 'top') {
-        util.addClassName(dom.root, 'vis-top');
-        util.removeClassName(dom.root, 'vis-bottom');
+        availableUtils.addClassName(dom.root, 'vis-top');
+        availableUtils.removeClassName(dom.root, 'vis-bottom');
       }
       else {
-        util.removeClassName(dom.root, 'vis-top');
-        util.addClassName(dom.root, 'vis-bottom');
+        availableUtils.removeClassName(dom.root, 'vis-top');
+        availableUtils.addClassName(dom.root, 'vis-bottom');
       }
 
       if (options.rtl) {
-        util.addClassName(dom.root, 'vis-rtl');
-        util.removeClassName(dom.root, 'vis-ltr');
+        availableUtils.addClassName(dom.root, 'vis-rtl');
+        availableUtils.removeClassName(dom.root, 'vis-ltr');
       } else {
-        util.addClassName(dom.root, 'vis-ltr');
-        util.removeClassName(dom.root, 'vis-rtl');
+        availableUtils.addClassName(dom.root, 'vis-ltr');
+        availableUtils.removeClassName(dom.root, 'vis-rtl');
       }
 
       // update root width and height options
-      dom.root.style.maxHeight = util.option.asSize(options.maxHeight, '');
-      dom.root.style.minHeight = util.option.asSize(options.minHeight, '');
-      dom.root.style.width = util.option.asSize(options.width, '');
+      dom.root.style.maxHeight = availableUtils.option.asSize(options.maxHeight, '');
+      dom.root.style.minHeight = availableUtils.option.asSize(options.minHeight, '');
+      dom.root.style.width = availableUtils.option.asSize(options.width, '');
       const rootOffsetWidth = dom.root.offsetWidth;
 
       // calculate border widths
@@ -4681,7 +4717,7 @@
       // TODO: only calculate autoHeight when needed (else we cause an extra reflow/repaint of the DOM)
       const contentHeight = Math.max(props.left.height, props.center.height, props.right.height);
       const autoHeight = props.top.height + contentHeight + props.bottom.height + props.border.top + props.border.bottom;
-      dom.root.style.height = util.option.asSize(options.height, `${autoHeight}px`);
+      dom.root.style.height = availableUtils.option.asSize(options.height, `${autoHeight}px`);
 
       // calculate heights of the content panels
       props.root.height = dom.root.offsetHeight;
@@ -4696,7 +4732,7 @@
       props.background.width = props.root.width;
 
       if (!this.initialDrawDone) {
-        props.scrollbarWidth = util.getScrollBarWidth();
+        props.scrollbarWidth = availableUtils.getScrollBarWidth();
       }
 
       const leftContainerClientWidth = dom.leftContainer.clientWidth;
@@ -4965,7 +5001,7 @@
             (rootOffsetHeight != me.props.lastHeight)) {
             me.props.lastWidth = rootOffsetWidth;
             me.props.lastHeight = rootOffsetHeight;
-            me.props.scrollbarWidth = util.getScrollBarWidth();
+            me.props.scrollbarWidth = availableUtils.getScrollBarWidth();
 
             me.body.emitter.emit('_change');
           }
@@ -4973,7 +5009,7 @@
       };
 
       // add event listener to window resize
-      util.addEventListener(window, 'resize', this._onResize);
+      availableUtils.addEventListener(window, 'resize', this._onResize);
 
       //Prevent initial unnecessary redraw
       if (me.dom.root) {
@@ -4996,7 +5032,7 @@
 
       // remove event listener on window.resize
       if (this._onResize) {
-        util.removeEventListener(window, 'resize', this._onResize);
+        availableUtils.removeEventListener(window, 'resize', this._onResize);
         this._onResize = null;
       }
     }
@@ -5134,12 +5170,12 @@
         locales,
         locale: 'en'
       };
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
       this.setOptions(options);
-      this.options.locales = util.extend({}, locales, this.options.locales);
+      this.options.locales = availableUtils.extend({}, locales, this.options.locales);
       const defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
       Object.keys(this.options.locales).forEach(locale => {
-        this.options.locales[locale] = util.extend(
+        this.options.locales[locale] = availableUtils.extend(
           {},
           defaultLocales,
           this.options.locales[locale]
@@ -5184,7 +5220,7 @@
     setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
+        availableUtils.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
       }
     }
 
@@ -5287,7 +5323,7 @@
      *                                          ISO date string.
      */
     setCurrentTime(time) {
-      const t = util.convert(time, 'Date').valueOf();
+      const t = availableUtils.convert(time, 'Date').valueOf();
       const now = Date.now();
       this.offset = t - now;
       this.redraw();
@@ -5791,18 +5827,18 @@
       } else if (content instanceof Object && content.isReactComponent) ; else if (content instanceof Object) {
         templateFunction(data, this.dom.inner);
       } else if (content !== undefined && content !== null) {
-        this.dom.inner.innerHTML = util.xss(content);
+        this.dom.inner.innerHTML = availableUtils.xss(content);
       } else {
-        this.dom.inner.innerHTML = util.xss(this.groupId || ''); // groupId can be null
+        this.dom.inner.innerHTML = availableUtils.xss(this.groupId || ''); // groupId can be null
       }
 
       // update title
       this.dom.label.title = data && data.title || '';
       if (!this.dom.inner.firstChild) {
-        util.addClassName(this.dom.inner, 'vis-hidden');
+        availableUtils.addClassName(this.dom.inner, 'vis-hidden');
       }
       else {
-        util.removeClassName(this.dom.inner, 'vis-hidden');
+        availableUtils.removeClassName(this.dom.inner, 'vis-hidden');
       }
 
       if (data && data.nestedGroups) {
@@ -5818,56 +5854,56 @@
           }
         }
 
-        util.addClassName(this.dom.label, 'vis-nesting-group');
+        availableUtils.addClassName(this.dom.label, 'vis-nesting-group');
         if (this.showNested) {
-          util.removeClassName(this.dom.label, 'collapsed');
-          util.addClassName(this.dom.label, 'expanded');
+          availableUtils.removeClassName(this.dom.label, 'collapsed');
+          availableUtils.addClassName(this.dom.label, 'expanded');
         } else {
-          util.removeClassName(this.dom.label, 'expanded');
-          util.addClassName(this.dom.label, 'collapsed');
+          availableUtils.removeClassName(this.dom.label, 'expanded');
+          availableUtils.addClassName(this.dom.label, 'collapsed');
         }
       } else if (this.nestedGroups) {
         this.nestedGroups = null;
-        util.removeClassName(this.dom.label, 'collapsed');
-        util.removeClassName(this.dom.label, 'expanded');
-        util.removeClassName(this.dom.label, 'vis-nesting-group');
+        availableUtils.removeClassName(this.dom.label, 'collapsed');
+        availableUtils.removeClassName(this.dom.label, 'expanded');
+        availableUtils.removeClassName(this.dom.label, 'vis-nesting-group');
       }
 
       if (data && (data.treeLevel|| data.nestedInGroup)) {
-        util.addClassName(this.dom.label, 'vis-nested-group');
+        availableUtils.addClassName(this.dom.label, 'vis-nested-group');
         if (data.treeLevel) {
-          util.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
+          availableUtils.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
         } else {
           // Nesting level is unknown, but we're sure it's at least 1
-          util.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
+          availableUtils.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
         }
       } else {
-        util.addClassName(this.dom.label, 'vis-group-level-0');
+        availableUtils.addClassName(this.dom.label, 'vis-group-level-0');
       }
       
       // update className
       const className = data && data.className || null;
       if (className != this.className) {
         if (this.className) {
-          util.removeClassName(this.dom.label, this.className);
-          util.removeClassName(this.dom.foreground, this.className);
-          util.removeClassName(this.dom.background, this.className);
-          util.removeClassName(this.dom.axis, this.className);
+          availableUtils.removeClassName(this.dom.label, this.className);
+          availableUtils.removeClassName(this.dom.foreground, this.className);
+          availableUtils.removeClassName(this.dom.background, this.className);
+          availableUtils.removeClassName(this.dom.axis, this.className);
         }
-        util.addClassName(this.dom.label, className);
-        util.addClassName(this.dom.foreground, className);
-        util.addClassName(this.dom.background, className);
-        util.addClassName(this.dom.axis, className);
+        availableUtils.addClassName(this.dom.label, className);
+        availableUtils.addClassName(this.dom.foreground, className);
+        availableUtils.addClassName(this.dom.background, className);
+        availableUtils.addClassName(this.dom.axis, className);
         this.className = className;
       }
 
       // update style
       if (this.style) {
-        util.removeCssText(this.dom.label, this.style);
+        availableUtils.removeCssText(this.dom.label, this.style);
         this.style = null;
       }
       if (data && data.style) {
-        util.addCssText(this.dom.label, data.style);
+        availableUtils.addCssText(this.dom.label, data.style);
         this.style = data.style;
       }
     }
@@ -5891,7 +5927,7 @@
         const redrawQueue = {};
         let redrawQueueLength = 0;
 
-        util.forEach(this.items, (item, key) => {
+        availableUtils.forEach(this.items, (item, key) => {
           item.dirty = true;
           if (item.displayed) {
             const returnQueue = true;
@@ -5904,7 +5940,7 @@
         if (needRedraw) {
           // redraw all regular items
           for (let i = 0; i < redrawQueueLength; i++) {
-            util.forEach(redrawQueue, fns => {
+            availableUtils.forEach(redrawQueue, fns => {
               fns[i]();
             });
           }
@@ -6060,7 +6096,7 @@
         }
 
         if (this.itemSet.options.cluster) {
-          util.forEach(this.items, item => {
+          availableUtils.forEach(this.items, item => {
             if (item.cluster && item.displayed) {
               item.hide();
             }
@@ -6081,12 +6117,12 @@
      * @return {boolean} did resize
      */
     _didResize(resized, height) {
-      resized = util.updateProperty(this, 'height', height) || resized;
+      resized = availableUtils.updateProperty(this, 'height', height) || resized;
       // recalculate size of label
       const labelWidth = this.dom.inner.clientWidth;
       const labelHeight = this.dom.inner.clientHeight;
-      resized = util.updateProperty(this.props.label, 'width', labelWidth) || resized;
-      resized = util.updateProperty(this.props.label, 'height', labelHeight) || resized;
+      resized = availableUtils.updateProperty(this.props.label, 'width', labelWidth) || resized;
+      resized = availableUtils.updateProperty(this.props.label, 'height', labelHeight) || resized;
       return resized;
     }
 
@@ -6199,7 +6235,7 @@
 
         this._resetSubgroups();
 
-        util.forEach(this.visibleItems, item => {
+        availableUtils.forEach(this.visibleItems, item => {
           if (item.data.subgroup !== undefined) {
             me.subgroups[item.data.subgroup].height = Math.max(me.subgroups[item.data.subgroup].height, item.height + margin.item.vertical);
             me.subgroups[item.data.subgroup].visible = typeof this.subgroupVisibility[item.data.subgroup] === 'undefined' ? true : Boolean(this.subgroupVisibility[item.data.subgroup]);
@@ -6234,7 +6270,7 @@
       let items;
 
       if (this.heightMode === 'fixed') {
-        items = util.toArray(this.items);
+        items = availableUtils.toArray(this.items);
       } else {
         // default or 'auto'
         items = this.visibleItems;
@@ -6243,7 +6279,7 @@
       if (items.length > 0) {
         let min = items[0].top;
         let max = items[0].top + items[0].height;
-        util.forEach(items, item => {
+        availableUtils.forEach(items, item => {
           min = Math.min(min, item.top);
           max = Math.max(max, (item.top + item.height));
         });
@@ -6251,7 +6287,7 @@
           // there is an empty gap between the lowest item and the axis
           const offset = min - margin.axis;
           max -= offset;
-          util.forEach(items, item => {
+          availableUtils.forEach(items, item => {
             item.top -= offset;
           });
         }
@@ -6487,7 +6523,7 @@
      * Reorder the items
      */
     order() {
-      const array = util.toArray(this.items);
+      const array = availableUtils.toArray(this.items);
       const startArray = [];
       const endArray = [];
 
@@ -6555,7 +6591,7 @@
       }
 
       // we do a binary search for the items that have only start values.
-      const initialPosByStart = util.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data','start');
+      const initialPosByStart = availableUtils.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data','start');
 
       // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
       this._traceVisible(initialPosByStart, orderedItems.byStart, visibleItems, visibleItemsLookup, item => item.data.start < lowerBound || item.data.start > upperBound);
@@ -6570,7 +6606,7 @@
       }
       else {
         // we do a binary search for the items that have defined end times.
-        const initialPosByEnd = util.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data');
+        const initialPosByEnd = availableUtils.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data');
 
         // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
         this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, item => item.data.end < lowerBound || item.data.start > upperBound);
@@ -6592,7 +6628,7 @@
       if (needRedraw) {
         // redraw all regular items
         for (let j = 0; j < redrawQueueLength; j++) {
-          util.forEach(redrawQueue, fns => {
+          availableUtils.forEach(redrawQueue, fns => {
             fns[j]();
           });
         }
@@ -6737,7 +6773,7 @@
       if (needRedraw) {
         // redraw all regular items
         for (var j = 0; j < redrawQueueLength; j++) {
-          util.forEach(redrawQueue, function (fns) {
+          availableUtils.forEach(redrawQueue, function (fns) {
             fns[j]();
           });
         }
@@ -6856,11 +6892,11 @@
         locales,
         locale: 'en'
       };
-      this.options = util.extend({}, this.defaultOptions, options);
-      this.options.locales = util.extend({}, locales, this.options.locales);
+      this.options = availableUtils.extend({}, this.defaultOptions, options);
+      this.options.locales = availableUtils.extend({}, locales, this.options.locales);
       const defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
       Object.keys(this.options.locales).forEach(locale => {
-        this.options.locales[locale] = util.extend(
+        this.options.locales[locale] = availableUtils.extend(
           {},
           defaultLocales,
           this.options.locales[locale]
@@ -7194,7 +7230,7 @@
             content += `<br> end: ${moment$2(this.data.end).format('MM/DD/YYYY hh:mm')}`;
           }
         }
-        this.dom.onItemUpdateTimeTooltip.innerHTML = util.xss(content);
+        this.dom.onItemUpdateTimeTooltip.innerHTML = availableUtils.xss(content);
       }
     }
 
@@ -7225,7 +7261,7 @@
 
       if (this.options.visibleFrameTemplate) {
         visibleFrameTemplateFunction = this.options.visibleFrameTemplate.bind(this);
-        itemVisibleFrameContent = util.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
+        itemVisibleFrameContent = availableUtils.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
       } else {
         itemVisibleFrameContent = '';
       }
@@ -7242,7 +7278,7 @@
               itemVisibleFrameContentElement.appendChild(itemVisibleFrameContent);
             }
             else if (itemVisibleFrameContent != undefined) {
-              itemVisibleFrameContentElement.innerHTML = util.xss(itemVisibleFrameContent);
+              itemVisibleFrameContentElement.innerHTML = availableUtils.xss(itemVisibleFrameContent);
             }
             else {
               if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -7273,7 +7309,7 @@
             element.appendChild(content);
           }
           else if (content != undefined) {
-            element.innerHTML = util.xss(content);
+            element.innerHTML = availableUtils.xss(content);
           }
           else {
             if (!(this.data.type == 'background' && this.data.content === undefined)) {
@@ -7325,13 +7361,13 @@
     _updateStyle(element) {
       // remove old styles
       if (this.style) {
-        util.removeCssText(element, this.style);
+        availableUtils.removeCssText(element, this.style);
         this.style = null;
       }
 
       // append new styles
       if (this.data.style) {
-        util.addCssText(element, this.data.style);
+        availableUtils.addCssText(element, this.data.style);
         this.style = this.data.style;
       }
     }
@@ -7361,7 +7397,7 @@
           };
         } else if(typeof this.options.editable === 'object') {
             this.editable = {};
-            util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
+            availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
         }
       }
       // Item data overrides, except if options.editable.overrideItems is set.
@@ -7377,7 +7413,7 @@
             // TODO: in timeline.js 5.0, we should change this to not reset options from the timeline configuration.
             // Basically just remove the next line...
             this.editable = {};
-            util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
+            availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
           }
         }
       }
@@ -8871,7 +8907,7 @@
         this.frame.appendChild(content);
       }
       else {
-        this.frame.innerHTML = util.xss(content); // string containing text or HTML
+        this.frame.innerHTML = availableUtils.xss(content); // string containing text or HTML
       }
     }
 
@@ -10017,7 +10053,7 @@
       };
 
       // options is shared by this ItemSet and all its items
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
       this.options.rtl = options.rtl;
       this.options.onTimeout = options.onTimeout;
 
@@ -10281,7 +10317,7 @@
           'multiselectPerGroup', 'longSelectPressTime', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate',
           'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'
         ];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
 
         if ('itemsAlwaysDraggable' in options) {
           if (typeof options.itemsAlwaysDraggable === 'boolean') {
@@ -10289,7 +10325,7 @@
             this.options.itemsAlwaysDraggable.range = false;
           }
           else if (typeof options.itemsAlwaysDraggable === 'object') {
-            util.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable);
+            availableUtils.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable);
             // only allow range always draggable when item is always draggable as well
             if (! this.options.itemsAlwaysDraggable.item) {
               this.options.itemsAlwaysDraggable.range = false;
@@ -10319,14 +10355,14 @@
             this.options.margin.item.vertical = options.margin;
           }
           else if (typeof options.margin === 'object') {
-            util.selectiveExtend(['axis'], this.options.margin, options.margin);
+            availableUtils.selectiveExtend(['axis'], this.options.margin, options.margin);
             if ('item' in options.margin) {
               if (typeof options.margin.item === 'number') {
                 this.options.margin.item.horizontal = options.margin.item;
                 this.options.margin.item.vertical = options.margin.item;
               }
               else if (typeof options.margin.item === 'object') {
-                util.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
+                availableUtils.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
               }
             }
           }
@@ -10347,7 +10383,7 @@
             this.options.editable.overrideItems = false;
           }
           else if (typeof options.editable === 'object') {
-            util.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
+            availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
           }
         }
 
@@ -10358,7 +10394,7 @@
             this.options.groupEditable.remove = options.groupEditable;
           }
           else if (typeof options.groupEditable === 'object') {
-            util.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
+            availableUtils.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
           }
         }
 
@@ -10410,14 +10446,14 @@
 
       if (options) {
         if (options.refreshItems) {
-          util.forEach(this.items, item => {
+          availableUtils.forEach(this.items, item => {
             item.dirty = true;
             if (item.displayed) item.redraw();
           });
         }
         
         if (options.restackGroups) {
-          util.forEach(this.groups, (group, key) => {
+          availableUtils.forEach(this.groups, (group, key) => {
             if (key === BACKGROUND) return;
             group.stackDirty = true;
           });
@@ -10651,7 +10687,7 @@
     redraw() {
       const margin = this.options.margin;
       const range = this.body.range;
-      const asSize = util.option.asSize;
+      const asSize = availableUtils.option.asSize;
       const options = this.options;
       const orientation = options.orientation.item;
       let resized = false;
@@ -10709,7 +10745,7 @@
       let redrawQueueLength = 0;
 
       // collect redraw functions
-      util.forEach(this.groups, (group, key) => {
+      availableUtils.forEach(this.groups, (group, key) => {
         if (key === BACKGROUND) return;
         const groupMargin = group == firstGroup ? firstMargin : nonFirstMargin;
         const returnQueue = true;
@@ -10722,13 +10758,13 @@
         const redrawResults = {};
 
         for (let i = 0; i < redrawQueueLength; i++) {
-          util.forEach(redrawQueue, (fns, key) => {
+          availableUtils.forEach(redrawQueue, (fns, key) => {
             redrawResults[key] = fns[i]();
           });
         }
 
         // redraw all regular groups
-        util.forEach(this.groups, (group, key) => {
+        availableUtils.forEach(this.groups, (group, key) => {
           if (key === BACKGROUND) return;
           const groupResized = redrawResults[key];
           resized = groupResized || resized;
@@ -10856,7 +10892,7 @@
 
       if (oldItemsData) {
         // unsubscribe from old dataset
-        util.forEach(this.itemListeners, (callback, event) => {
+        availableUtils.forEach(this.itemListeners, (callback, event) => {
           oldItemsData.off(event, callback);
         });
 
@@ -10871,7 +10907,7 @@
       if (this.itemsData) {
         // subscribe to new dataset
         const id = this.id;
-        util.forEach(this.itemListeners, (callback, event) => {
+        availableUtils.forEach(this.itemListeners, (callback, event) => {
           me.itemsData.on(event, callback, id);
         });
 
@@ -10904,7 +10940,7 @@
 
       // unsubscribe from current dataset
       if (this.groupsData) {
-        util.forEach(this.groupListeners, (callback, event) => {
+        availableUtils.forEach(this.groupListeners, (callback, event) => {
           me.groupsData.off(event, callback);
         });
 
@@ -10944,7 +10980,7 @@
 
         // subscribe to new dataset
         const id = this.id;
-        util.forEach(this.groupListeners, (callback, event) => {
+        availableUtils.forEach(this.groupListeners, (callback, event) => {
           me.groupsData.on(event, callback, id);
         });
 
@@ -11108,7 +11144,7 @@
     _order() {
       // reorder the items in all groups
       // TODO: optimization: only reorder groups affected by the changed items
-      util.forEach(this.groups, group => {
+      availableUtils.forEach(this.groups, group => {
         group.order();
       });
     }
@@ -11141,7 +11177,7 @@
           }
 
           const groupOptions = Object.create(me.options);
-          util.extend(groupOptions, {
+          availableUtils.extend(groupOptions, {
             height: null
           });
 
@@ -11208,7 +11244,7 @@
 
         groupIds = this._orderNestedGroups(groupIds);
 
-        const changed = !util.equalArray(groupIds, this.groupIds);
+        const changed = !availableUtils.equalArray(groupIds, this.groupIds);
         if (changed) {
           // hide all groups, removes them from the DOM
           const groups = this.groups;
@@ -11596,14 +11632,14 @@
               // drag left side of a range item
               if (this.options.rtl) {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset);
                   // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                   itemData.end = snap ? snap(end, scale, step) : end;
                 }
               } else {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = availableUtils.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset);
                   // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                   itemData.start = snap ? snap(start, scale, step) : start;
@@ -11614,14 +11650,14 @@
               // drag right side of a range item
               if (this.options.rtl) {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = availableUtils.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset);
                   // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                   itemData.start = snap ? snap(start, scale, step) : start;
                 }
               } else {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset);
                   // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                   itemData.end = snap ? snap(end, scale, step) : end;
@@ -11632,11 +11668,11 @@
               // drag both start and end
               if (itemData.start != undefined) {
 
-                initialStart = util.convert(props.data.start, 'Date').valueOf();
+                initialStart = availableUtils.convert(props.data.start, 'Date').valueOf();
                 start = new Date(initialStart + offset);
 
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   const duration  = initialEnd.valueOf() - initialStart.valueOf();
 
                   // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
@@ -11804,11 +11840,11 @@
       groupsData.update(nestedGroups.concat(nestingGroup));
 
       if (nestingGroup.showNested) {
-        util.removeClassName(group.dom.label, 'collapsed');
-        util.addClassName(group.dom.label, 'expanded');
+        availableUtils.removeClassName(group.dom.label, 'collapsed');
+        availableUtils.addClassName(group.dom.label, 'expanded');
       } else {
-        util.removeClassName(group.dom.label, 'expanded');
-        util.addClassName(group.dom.label, 'collapsed');
+        availableUtils.removeClassName(group.dom.label, 'expanded');
+        availableUtils.addClassName(group.dom.label, 'collapsed');
       }
     }
     
@@ -11898,7 +11934,7 @@
 
                 
                 // in case of changes since _onGroupDragStart
-                if (!util.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
+                if (!availableUtils.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
                     const origOrder = this.groupTouchParams.originalOrder;
                     const draggedId = this.groupTouchParams.group.groupId;
                     const numGroups = Math.min(origOrder.length, newOrder.length);
@@ -11968,7 +12004,7 @@
         const me = this;
         const id = me.groupTouchParams.group.groupId;
         const dataset = me.groupsData.getDataSet();
-        const groupData = util.extend({}, dataset.get(id)); // clone the data
+        const groupData = availableUtils.extend({}, dataset.get(id)); // clone the data
         me.options.onMoveGroup(groupData, groupData => {
           if (groupData) {
             // apply changes
@@ -11983,7 +12019,7 @@
             });
 
             // restore original order
-            if (!util.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
+            if (!availableUtils.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
               const origOrder = me.groupTouchParams.originalOrder;
               const numGroups = Math.min(origOrder.length, newOrder.length);
               let curPos = 0;
@@ -12484,7 +12520,7 @@
      * @private
      */
     _cloneItemData(itemData, type) {
-      const clone = util.extend({}, itemData);
+      const clone = availableUtils.extend({}, itemData);
 
       if (!type) {
         // convert start and end date to the type (Date, Moment, ...) configured in the DataSet
@@ -12492,10 +12528,10 @@
       }
 
       if (clone.start != undefined) {
-        clone.start = util.convert(clone.start, type && type.start || 'Date');
+        clone.start = availableUtils.convert(clone.start, type && type.start || 'Date');
       }
       if (clone.end != undefined) {
-        clone.end = util.convert(clone.end , type && type.end || 'Date');
+        clone.end = availableUtils.convert(clone.end , type && type.end || 'Date');
       }
 
       return clone;
@@ -12703,7 +12739,7 @@
           errorFound = true;
         }
         else if (optionType === 'object' && referenceOption !== "__any__") {
-          path = util.copyAndExtendArray(path, option);
+          path = availableUtils.copyAndExtendArray(path, option);
           Validator.parse(options[option], referenceOptions[referenceOption], path);
         }
       }
@@ -12821,7 +12857,7 @@
       for (let op in options) {  // eslint-disable-line guard-for-in
         let distance;
         if (options[op].__type__ !== undefined && recursive === true) {
-          let result = Validator.findInOptions(option, options[op], util.copyAndExtendArray(path,op));
+          let result = Validator.findInOptions(option, options[op], availableUtils.copyAndExtendArray(path,op));
           if (min > result.distance) {
             closestMatch = result.closestMatch;
             closestMatchPath = result.path;
@@ -12836,7 +12872,7 @@
           distance = Validator.levenshteinDistance(option, op);
           if (min > distance) {
             closestMatch = op;
-            closestMatchPath = util.copyArray(path);
+            closestMatchPath = availableUtils.copyArray(path);
             min = distance;
           }
         }
@@ -13085,7 +13121,7 @@
     showWeekScale: { 'boolean': bool$1},
     stack: { 'boolean': bool$1},
     stackSubgroups: { 'boolean': bool$1},
-    cluster: { 
+    cluster: {
       maxItems: {'number': number$1, 'undefined': 'undefined'},
       titleTemplate: {'string': string$1, 'undefined': 'undefined'},
       clusterCriteria: { 'function': 'function', 'undefined': 'undefined'},
@@ -13124,7 +13160,14 @@
     zoomFriction: {number: number$1},
     zoomMax: {number: number$1},
     zoomMin: {number: number$1},
-
+    xss: {
+      disabled: { boolean: bool$1 },
+      filterOptions: {
+        __any__: { any: any$1 },
+        __type__: { object: object$1 }
+      },
+      __type__: { object: object$1 }
+    },
     __type__: {object: object$1}
   };
 
@@ -13226,7 +13269,8 @@
       zoomable: true,
       zoomKey: ['ctrlKey', 'altKey', 'shiftKey', 'metaKey', ''],
       zoomMax: [315360000000000, 10, 315360000000000, 1],
-      zoomMin: [10, 10, 315360000000000, 1]
+      zoomMin: [10, 10, 315360000000000, 1],
+      xss: { disabled: false }
     }
   };
 
@@ -13340,17 +13384,17 @@
       }
 
       // check format
-      if (util.isString(color) === true) {
-        if (util.isValidRGB(color) === true) {
+      if (availableUtils.isString(color) === true) {
+        if (availableUtils.isValidRGB(color) === true) {
           let rgbaArray = color.substr(4).substr(0, color.length - 5).split(',');
           rgba = {r:rgbaArray[0], g:rgbaArray[1], b:rgbaArray[2], a:1.0};
         }
-        else if (util.isValidRGBA(color) === true) {
+        else if (availableUtils.isValidRGBA(color) === true) {
           let rgbaArray = color.substr(5).substr(0, color.length - 6).split(',');
           rgba = {r:rgbaArray[0], g:rgbaArray[1], b:rgbaArray[2], a:rgbaArray[3]};
         }
-        else if (util.isValidHex(color) === true) {
-          let rgbObj = util.hexToRGB(color);
+        else if (availableUtils.isValidHex(color) === true) {
+          let rgbObj = availableUtils.hexToRGB(color);
           rgba = {r:rgbObj.r, g:rgbObj.g, b:rgbObj.b, a:1.0};
         }
       }
@@ -13399,7 +13443,7 @@
     _hide(storePrevious = true) {
       // store the previous color for next time;
       if (storePrevious === true) {
-        this.previousColor = util.extend({}, this.color);
+        this.previousColor = availableUtils.extend({}, this.color);
       }
 
       if (this.applied === true) {
@@ -13464,11 +13508,11 @@
     _setColor(rgba, setInitial = true) {
       // store the initial color
       if (setInitial === true) {
-        this.initialColor = util.extend({}, rgba);
+        this.initialColor = availableUtils.extend({}, rgba);
       }
 
       this.color = rgba;
-      let hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      let hsv = availableUtils.RGBToHSV(rgba.r, rgba.g, rgba.b);
 
       let angleConvert = 2 * Math.PI;
       let radius = this.r * hsv.s;
@@ -13499,9 +13543,9 @@
      * @private
      */
     _setBrightness(value) {
-      let hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      let hsv = availableUtils.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.v = value / 100;
-      let rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      let rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba;
       this._updatePicker();
@@ -13514,7 +13558,7 @@
      * @private
      */
     _updatePicker(rgba = this.color) {
-      let hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      let hsv = availableUtils.RGBToHSV(rgba.r, rgba.g, rgba.b);
       let ctx = this.colorPickerCanvas.getContext('2d');
       if (this.pixelRation === undefined) {
         this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio ||
@@ -13737,7 +13781,7 @@
           for (sat = 0; sat < this.r; sat++) {
             x = this.centerCoordinates.x + sat * Math.sin(angleConvert * hue);
             y = this.centerCoordinates.y + sat * Math.cos(angleConvert * hue);
-            rgb = util.HSVToRGB(hue * hfac, sat * sfac, 1);
+            rgb = availableUtils.HSVToRGB(hue * hfac, sat * sfac, 1);
             ctx.fillStyle = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
             ctx.fillRect(x - 0.5, y - 0.5, 2, 2);
           }
@@ -13782,10 +13826,10 @@
       let h = angle / (2 * Math.PI);
       h = h < 0 ? h + 1 : h;
       let s = radius / this.r;
-      let hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      let hsv = availableUtils.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.h = h;
       hsv.s = s;
-      let rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      let rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba;
 
@@ -13826,7 +13870,7 @@
         container: undefined,
         showButton: true
       };
-      util.extend(this.options, this.defaultOptions);
+      availableUtils.extend(this.options, this.defaultOptions);
 
       this.configureOptions = configureOptions;
       this.moduleOptions = {};
@@ -14037,7 +14081,7 @@
     _makeHeader(name) {
       let div = document.createElement('div');
       div.className = 'vis-configuration vis-config-header';
-      div.innerHTML = util.xss(name);
+      div.innerHTML = availableUtils.xss(name);
       this._makeItem([],div);
     }
 
@@ -14054,10 +14098,10 @@
       let div = document.createElement('div');
       div.className = 'vis-configuration vis-config-label vis-config-s' + path.length;
       if (objectLabel === true) {
-        div.innerHTML = util.xss('<i><b>' + name + ':</b></i>');
+        div.innerHTML = availableUtils.xss('<i><b>' + name + ':</b></i>');
       }
       else {
-        div.innerHTML = util.xss(name + ':');
+        div.innerHTML = availableUtils.xss(name + ':');
       }
       return div;
     }
@@ -14199,7 +14243,7 @@
         let div = document.createElement("div");
         div.id = "vis-configuration-popup";
         div.className = "vis-configuration-popup";
-        div.innerHTML = util.xss(string);
+        div.innerHTML = availableUtils.xss(string);
         div.onclick = () => {this._removePopup();};
         this.popupCounter += 1;
         this.popupDiv = {html:div, index:index};
@@ -14374,7 +14418,7 @@
         if (obj.hasOwnProperty(subObj)) {
           show = true;
           let item = obj[subObj];
-          let newPath = util.copyAndExtendArray(path, subObj);
+          let newPath = availableUtils.copyAndExtendArray(path, subObj);
           if (typeof filter === 'function') {
             show = filter(subObj,path);
 
@@ -14413,7 +14457,7 @@
               if (draw === true) {
                 // initially collapse options with an disabled enabled option.
                 if (item.enabled !== undefined) {
-                  let enabledPath = util.copyAndExtendArray(newPath, 'enabled');
+                  let enabledPath = availableUtils.copyAndExtendArray(newPath, 'enabled');
                   let enabledValue = this._getValue(enabledPath);
                   if (enabledValue === true) {
                     let label = this._makeLabel(subObj, newPath, true);
@@ -14578,7 +14622,8 @@
         },
         moment: moment$2,
       };
-      this.options = util.deepExtend({}, this.defaultOptions);
+      this.options = availableUtils.deepExtend({}, this.defaultOptions);
+      options && availableUtils.setupXSSProtection(options.xss);
 
       // Create the DOM, props, and emitter
       this._create(container);
@@ -14615,7 +14660,7 @@
             loadingScreenFragment.appendChild(loadingScreen);
           }
           else if (loadingScreen != undefined) {
-            loadingScreenFragment.innerHTML = util.xss(loadingScreen);
+            loadingScreenFragment.innerHTML = availableUtils.xss(loadingScreen);
           }
         }
       }
@@ -14730,7 +14775,7 @@
           }
         }
 
-        if (!me.initialDrawDone && (me.initialRangeChangeDone || (!me.options.start && !me.options.end) 
+        if (!me.initialDrawDone && (me.initialRangeChangeDone || (!me.options.start && !me.options.end)
           || me.options.rollingMode)) {
           me.initialDrawDone = true;
           me.itemSet.initialDrawDone = true;
@@ -14829,7 +14874,7 @@
      */
     setItems(items) {
       this.itemsDone = false;
-      
+
       // convert to type DataSet when needed
       let newDataSet;
       if (!items) {
@@ -14860,14 +14905,14 @@
       // convert to type DataSet when needed
       let newDataSet;
       const filter = group => group.visible !== false;
-      
+
       if (!groups) {
         newDataSet = null;
       }
       else {
         // If groups is array, turn to DataSet & build dataview from that
         if (Array.isArray(groups)) groups = new esnext.DataSet(groups);
-        
+
         newDataSet = new esnext.DataView(groups,{filter});
       }
 
@@ -15002,7 +15047,7 @@
             // The redraw shifted elements, so reset the animation to correct
             initialVerticalScroll = verticalScroll;
             startPos = me._getScrollTop() * -1;
-          }      
+          }
 
           const from = startPos;
           const to = initialVerticalScroll.scrollOffset;
@@ -15031,7 +15076,7 @@
           // Double check we ended at the proper scroll position
           setFinalVerticalPosition();
 
-          // Let the redraw settle and finalize the position.      
+          // Let the redraw settle and finalize the position.
           setTimeout(setFinalVerticalPosition, 100);
         };
 
@@ -15047,7 +15092,7 @@
           initialVerticalScroll = { shouldScroll: false, scrollOffset: -1, itemTop: -1 };
         }
 
-        this.range.setRange(middle - interval / 2, middle + interval / 2, { animation }, finalVerticalCallback, verticalAnimationFrame);  
+        this.range.setRange(middle - interval / 2, middle + interval / 2, { animation }, finalVerticalCallback, verticalAnimationFrame);
       }
     }
 
@@ -15103,7 +15148,7 @@
         let redrawQueueLength = 0;
 
         // collect redraw functions
-        util.forEach(this.itemSet.items, (item, key) => {
+        availableUtils.forEach(this.itemSet.items, (item, key) => {
           if (item.groupShowing) {
             const returnQueue = true;
             redrawQueue[key] = item.redraw(returnQueue);
@@ -15115,14 +15160,14 @@
         if (needRedraw) {
           // redraw all regular items
           for (let i = 0; i < redrawQueueLength; i++) {
-            util.forEach(redrawQueue, fns => {
+            availableUtils.forEach(redrawQueue, fns => {
               fns[i]();
             });
           }
         }
 
          // calculate the date of the left side and right side of the items given
-        util.forEach(this.itemSet.items, item => {
+        availableUtils.forEach(this.itemSet.items, item => {
           const start = getStart(item);
           const end = getEnd(item);
           let startSide;
@@ -15179,8 +15224,8 @@
 
       if (this.itemsData) {
         this.itemsData.forEach(item => {
-          const start = util.convert(item.start, 'Date').valueOf();
-          const end   = util.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
+          const start = availableUtils.convert(item.start, 'Date').valueOf();
+          const end   = availableUtils.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
           if (min === null || start < min) {
             min = start;
           }
@@ -15208,7 +15253,7 @@
       const centerContainerRect = this.dom.centerContainer.getBoundingClientRect();
       const x = this.options.rtl ? centerContainerRect.right - clientX : clientX - centerContainerRect.left;
       const y = clientY - centerContainerRect.top;
-      
+
       const item  = this.itemSet.itemFromTarget(event);
       const group = this.itemSet.groupFromTarget(event);
       const customTime = CustomTime.customTimeFromTarget(event);
@@ -15219,15 +15264,15 @@
       const time = this._toTime(x);
       const snappedTime = snap ? snap(time, scale, step) : time;
 
-      const element = util.getTarget(event);
+      const element = availableUtils.getTarget(event);
       let what = null;
       if (item != null)                                                    {what = 'item';}
       else if (customTime != null)                                         {what = 'custom-time';}
-      else if (util.hasParent(element, this.timeAxis.dom.foreground))      {what = 'axis';}
-      else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {what = 'axis';}
-      else if (util.hasParent(element, this.itemSet.dom.labelSet))         {what = 'group-label';}
-      else if (util.hasParent(element, this.currentTime.bar))              {what = 'current-time';}
-      else if (util.hasParent(element, this.dom.center))                   {what = 'background';}
+      else if (availableUtils.hasParent(element, this.timeAxis.dom.foreground))      {what = 'axis';}
+      else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {what = 'axis';}
+      else if (availableUtils.hasParent(element, this.itemSet.dom.labelSet))         {what = 'group-label';}
+      else if (availableUtils.hasParent(element, this.currentTime.bar))              {what = 'current-time';}
+      else if (availableUtils.hasParent(element, this.dom.center))                   {what = 'background';}
 
       return {
         event,
@@ -15293,7 +15338,7 @@
    * @returns {number}
    */
   function getStart(item) {
-    return util.convert(item.data.start, 'Date').valueOf()
+    return availableUtils.convert(item.data.start, 'Date').valueOf()
   }
 
   /**
@@ -15303,7 +15348,7 @@
    */
   function getEnd(item) {
     const end = item.data.end != undefined ? item.data.end : item.data.start;
-    return util.convert(end, 'Date').valueOf();
+    return availableUtils.convert(end, 'Date').valueOf();
   }
 
   /**
@@ -15319,12 +15364,12 @@
 
     const itemsetHeight = timeline.options.rtl ? timeline.props.rightContainer.height : timeline.props.leftContainer.height;
     const contentHeight = timeline.props.center.height;
-    
+
     const group = item.parent;
     let offset = group.top;
     let shouldScroll = true;
     const orientation = timeline.timeAxis.options.orientation.axis;
-    
+
     const itemTop = () => {
     if (orientation == "bottom") {
         return group.height - item.top - item.height;
@@ -15952,7 +15997,7 @@
       this.scale = undefined;
       this.range = {start: 0, end: 0};
 
-      this.options = util.extend({}, this.defaultOptions);
+      this.options = availableUtils.extend({}, this.defaultOptions);
       this.conversionFactor = 1;
 
       this.setOptions(options);
@@ -16048,7 +16093,7 @@
           'right',
           'alignZeros'
         ];
-        util.selectiveDeepExtend(fields, this.options, options);
+        availableUtils.selectiveDeepExtend(fields, this.options, options);
 
         this.minWidth = Number((`${this.options.width}`).replace("px", ""));
         if (redraw === true && this.dom.frame) {
@@ -16392,7 +16437,7 @@
       // reuse redundant label
       const label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
       label.className = className;
-      label.innerHTML = util.xss(text);
+      label.innerHTML = availableUtils.xss(text);
       if (orientation === 'left') {
         label.style.left = `-${this.options.labelOffsetX}px`;
         label.style.textAlign = "right";
@@ -16450,11 +16495,11 @@
       if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
         const title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
         title.className = `vis-y-axis vis-title vis-${orientation}`;
-        title.innerHTML = util.xss(this.options[orientation].title.text);
+        title.innerHTML = availableUtils.xss(this.options[orientation].title.text);
 
         // Add style - if provided
         if (this.options[orientation].title.style !== undefined) {
-          util.addCssText(title, this.options[orientation].title.style);
+          availableUtils.addCssText(title, this.options[orientation].title.style);
         }
 
         if (orientation === 'left') {
@@ -17207,7 +17252,7 @@
   function GraphGroup(group, groupId, options, groupsUsingDefaultStyles) {
     this.id = groupId;
     var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'drawPoints', 'shaded', 'interpolation', 'zIndex','excludeFromStacking', 'excludeFromLegend'];
-    this.options = util.selectiveBridgeObject(fields, options);
+    this.options = availableUtils.selectiveBridgeObject(fields, options);
     this.usingDefaultStyle = group.className === undefined;
     this.groupsUsingDefaultStyles = groupsUsingDefaultStyles;
     this.zeroPosition = 0;
@@ -17227,7 +17272,7 @@
     if (items != null) {
       this.itemsData = items;
       if (this.options.sort == true) {
-        util.insertSort(this.itemsData,function (a, b) {
+        availableUtils.insertSort(this.itemsData,function (a, b) {
           return a.x > b.x ? 1 : -1;
         });
       }
@@ -17256,7 +17301,7 @@
   GraphGroup.prototype.setOptions = function (options) {
     if (options !== undefined) {
       var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'zIndex','excludeFromStacking', 'excludeFromLegend'];
-      util.selectiveDeepExtend(fields, this.options, options);
+      availableUtils.selectiveDeepExtend(fields, this.options, options);
 
       // if the group's drawPoints is a function delegate the callback to the onRender property
       if (typeof options.drawPoints == 'function') {
@@ -17265,9 +17310,9 @@
         };
       }
 
-      util.mergeOptions(this.options, options, 'interpolation');
-      util.mergeOptions(this.options, options, 'drawPoints');
-      util.mergeOptions(this.options, options, 'shaded');
+      availableUtils.mergeOptions(this.options, options, 'interpolation');
+      availableUtils.mergeOptions(this.options, options, 'drawPoints');
+      availableUtils.mergeOptions(this.options, options, 'shaded');
 
       if (options.interpolation) {
         if (typeof options.interpolation == 'object') {
@@ -17376,7 +17421,7 @@
     };
 
     this.side = side;
-    this.options = util.extend({}, this.defaultOptions);
+    this.options = availableUtils.extend({}, this.defaultOptions);
     this.linegraphOptions = linegraphOptions;
 
     this.svgElements = {};
@@ -17462,7 +17507,7 @@
 
   Legend.prototype.setOptions = function(options) {
     var fields = ['enabled','orientation','icons','left','right'];
-    util.selectiveDeepExtend(fields, this.options, options);
+    availableUtils.selectiveDeepExtend(fields, this.options, options);
   };
 
   Legend.prototype.redraw = function() {
@@ -17531,7 +17576,7 @@
           content += this.groups[groupId].content + '<br />';
         }
       }
-      this.dom.textArea.innerHTML = util.xss(content);
+      this.dom.textArea.innerHTML = availableUtils.xss(content);
       this.dom.textArea.style.lineHeight = ((0.75 * this.options.iconSize) + this.options.iconSpacing) + 'px';
     }
   };
@@ -17614,7 +17659,7 @@
     };
 
     // options is shared by this lineGraph and all its items
-    this.options = util.extend({}, this.defaultOptions);
+    this.options = availableUtils.extend({}, this.defaultOptions);
     this.dom = {};
     this.props = {};
     this.hammer = null;
@@ -17663,7 +17708,7 @@
     this.setOptions(options);
     this.groupsUsingDefaultStyles = [0];
     this.body.emitter.on('rangechanged', function () {
-      me.svg.style.left = util.option.asSize(-me.props.width);
+      me.svg.style.left = availableUtils.option.asSize(-me.props.width);
 
       me.forceGraphUpdate = true;
       //Is this local redraw necessary? (Core also does a change event!)
@@ -17723,11 +17768,11 @@
           this.updateSVGheight = true;
         }
       }
-      util.selectiveDeepExtend(fields, this.options, options);
-      util.mergeOptions(this.options, options, 'interpolation');
-      util.mergeOptions(this.options, options, 'drawPoints');
-      util.mergeOptions(this.options, options, 'shaded');
-      util.mergeOptions(this.options, options, 'legend');
+      availableUtils.selectiveDeepExtend(fields, this.options, options);
+      availableUtils.mergeOptions(this.options, options, 'interpolation');
+      availableUtils.mergeOptions(this.options, options, 'drawPoints');
+      availableUtils.mergeOptions(this.options, options, 'shaded');
+      availableUtils.mergeOptions(this.options, options, 'legend');
 
       if (options.interpolation) {
         if (typeof options.interpolation == 'object') {
@@ -17816,7 +17861,7 @@
 
     if (oldItemsData) {
       // unsubscribe from old dataset
-      util.forEach(this.itemListeners, function (callback, event) {
+      availableUtils.forEach(this.itemListeners, function (callback, event) {
         oldItemsData.off(event, callback);
       });
 
@@ -17831,7 +17876,7 @@
     if (this.itemsData) {
       // subscribe to new dataset
       var id = this.id;
-      util.forEach(this.itemListeners, function (callback, event) {
+      availableUtils.forEach(this.itemListeners, function (callback, event) {
         me.itemsData.on(event, callback, id);
       });
 
@@ -17852,7 +17897,7 @@
 
     // unsubscribe from current dataset
     if (this.groupsData) {
-      util.forEach(this.groupListeners, function (callback, event) {
+      availableUtils.forEach(this.groupListeners, function (callback, event) {
         me.groupsData.off(event, callback);
       });
 
@@ -17878,7 +17923,7 @@
     if (this.groupsData) {
       // subscribe to new dataset
       var id = this.id;
-      util.forEach(this.groupListeners, function (callback, event) {
+      availableUtils.forEach(this.groupListeners, function (callback, event) {
         me.groupsData.on(event, callback, id);
       });
 
@@ -18044,9 +18089,9 @@
           groupsContent[groupId] = new Array(groupCounts[groupId]);
         }
         //Copy data (because of unmodifiable DataView input.
-        var extended = util.bridgeObject(item);
-        extended.x = util.convert(item.x, 'Date');
-        extended.end = util.convert(item.end, 'Date');
+        var extended = availableUtils.bridgeObject(item);
+        extended.x = availableUtils.convert(item.x, 'Date');
+        extended.end = availableUtils.convert(item.end, 'Date');
         extended.orginalY = item.y; //real Y
         extended.y = Number(item.y);
         extended[fieldId] = item[fieldId];
@@ -18114,8 +18159,8 @@
     // the svg element is three times as big as the width, this allows for fully dragging left and right
     // without reloading the graph. the controls for this are bound to events in the constructor
     if (resized == true) {
-      this.svg.style.width = util.option.asSize(3 * this.props.width);
-      this.svg.style.left = util.option.asSize(-this.props.width);
+      this.svg.style.width = availableUtils.option.asSize(3 * this.props.width);
+      this.svg.style.left = availableUtils.option.asSize(-this.props.width);
 
       // if the height of the graph is set as proportional, change the height of the svg
       if ((this.options.height + '').indexOf("%") != -1 || this.updateSVGheightOnResize == true) {
@@ -18171,7 +18216,7 @@
         }
       }
     }
-    util.insertSort(grouplist,function(a,b){
+    availableUtils.insertSort(grouplist,function(a,b){
       var az = a.zIndex;
       var bz = b.zIndex;
       if (az === undefined) az=0;
@@ -18388,8 +18433,8 @@
           var dateComparator = function (a, b) {
             return a.getTime() == b.getTime() ? 0 : a < b ? -1 : 1
           };
-          var first = Math.max(0, util.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
-          var last = Math.min(itemsData.length, util.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
+          var first = Math.max(0, availableUtils.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
+          var last = Math.min(itemsData.length, availableUtils.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
           if (last <= 0) {
             last = itemsData.length;
           }
@@ -18985,7 +19030,7 @@
       maxHeight: null,
       minHeight: null
     };
-    this.options = util.deepExtend({}, this.defaultOptions);
+    this.options = availableUtils.deepExtend({}, this.defaultOptions);
 
     // Create the DOM, props, and emitter
     this._create(container);
@@ -19225,7 +19270,7 @@
         if (this.linegraph.groups[groupId].visible == true) {
           for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
             var item = this.linegraph.groups[groupId].itemsData[i];
-            var value = util.convert(item.x, 'Date').valueOf();
+            var value = availableUtils.convert(item.x, 'Date').valueOf();
             min = min == null ? value : min > value ? value : min;
             max = max == null ? value : max < value ? value : max;
           }
@@ -19249,23 +19294,23 @@
   Graph2d.prototype.getEventProperties = function (event) {
     var clientX = event.center ? event.center.x : event.clientX;
     var clientY = event.center ? event.center.y : event.clientY;
-    var x = clientX - util.getAbsoluteLeft(this.dom.centerContainer);
-    var y = clientY - util.getAbsoluteTop(this.dom.centerContainer);
+    var x = clientX - availableUtils.getAbsoluteLeft(this.dom.centerContainer);
+    var y = clientY - availableUtils.getAbsoluteTop(this.dom.centerContainer);
     var time = this._toTime(x);
 
     var customTime = CustomTime.customTimeFromTarget(event);
 
-    var element = util.getTarget(event);
+    var element = availableUtils.getTarget(event);
     var what = null;
-    if (util.hasParent(element, this.timeAxis.dom.foreground))              {what = 'axis';}
-    else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {what = 'axis';}
-    else if (util.hasParent(element, this.linegraph.yAxisLeft.dom.frame))   {what = 'data-axis';}
-    else if (util.hasParent(element, this.linegraph.yAxisRight.dom.frame))  {what = 'data-axis';}
-    else if (util.hasParent(element, this.linegraph.legendLeft.dom.frame))  {what = 'legend';}
-    else if (util.hasParent(element, this.linegraph.legendRight.dom.frame)) {what = 'legend';}
+    if (availableUtils.hasParent(element, this.timeAxis.dom.foreground))              {what = 'axis';}
+    else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {what = 'axis';}
+    else if (availableUtils.hasParent(element, this.linegraph.yAxisLeft.dom.frame))   {what = 'data-axis';}
+    else if (availableUtils.hasParent(element, this.linegraph.yAxisRight.dom.frame))  {what = 'data-axis';}
+    else if (availableUtils.hasParent(element, this.linegraph.legendLeft.dom.frame))  {what = 'legend';}
+    else if (availableUtils.hasParent(element, this.linegraph.legendRight.dom.frame)) {what = 'legend';}
     else if (customTime != null)                {what = 'custom-time';}
-    else if (util.hasParent(element, this.currentTime.bar))                 {what = 'current-time';}
-    else if (util.hasParent(element, this.dom.center))                      {what = 'background';}
+    else if (availableUtils.hasParent(element, this.currentTime.bar))                 {what = 'current-time';}
+    else if (availableUtils.hasParent(element, this.dom.center))                      {what = 'background';}
 
     var value = [];
     var yAxisLeft = this.linegraph.yAxisLeft;

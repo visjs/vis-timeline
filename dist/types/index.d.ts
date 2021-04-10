@@ -212,6 +212,11 @@ export interface TimelineTooltipOption {
   template?: (item: TimelineItem, editedData?: TimelineItem) => string;
 }
 
+export interface TimelineXSSProtectionOption {
+  disabled: boolean;
+  filterOptions?: XSS.IFilterXSSOptions;
+}
+
 export type TimelineOptionsConfigureFunction = (option: string, path: string[]) => boolean;
 export type TimelineOptionsConfigureType = boolean | TimelineOptionsConfigureFunction;
 export type TimelineOptionsDataAttributesType = boolean | string | string[];
@@ -312,6 +317,7 @@ export interface TimelineOptions {
   zoomFriction?: number;
   zoomMax?: number;
   zoomMin?: number;
+  xss?: TimelineXSSProtectionOption;
 }
 
 /**

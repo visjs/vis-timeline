@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-10T11:18:33.519Z
+ * @date    2021-04-10T15:27:34.076Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2196,143 +2196,6 @@ var forEach$2 = forEach_1;
 
 var moment$2 = typeof window !== 'undefined' && window['moment'] || moment$3;
 
-function _defineProperty(obj, key, value) {
-  if (key in obj) {
-    defineProperty$7(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-}
-
-var $map = arrayIteration.map;
-var HAS_SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport('map'); // `Array.prototype.map` method
-// https://tc39.es/ecma262/#sec-array.prototype.map
-// with adding support of @@species
-
-_export({
-  target: 'Array',
-  proto: true,
-  forced: !HAS_SPECIES_SUPPORT$3
-}, {
-  map: function map(callbackfn
-  /* , thisArg */
-  ) {
-    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-var map$2 = entryVirtual('Array').map;
-
-var ArrayPrototype$e = Array.prototype;
-
-var map_1 = function (it) {
-  var own = it.map;
-  return it === ArrayPrototype$e || it instanceof Array && own === ArrayPrototype$e.map ? map$2 : own;
-};
-
-var map$1 = map_1;
-
-var map = map$1;
-
-var createMethod$2 = function (IS_RIGHT) {
-  return function (that, callbackfn, argumentsLength, memo) {
-    aFunction$1(callbackfn);
-    var O = toObject(that);
-    var self = indexedObject(O);
-    var length = toLength(O.length);
-    var index = IS_RIGHT ? length - 1 : 0;
-    var i = IS_RIGHT ? -1 : 1;
-    if (argumentsLength < 2) while (true) {
-      if (index in self) {
-        memo = self[index];
-        index += i;
-        break;
-      }
-
-      index += i;
-
-      if (IS_RIGHT ? index < 0 : length <= index) {
-        throw TypeError('Reduce of empty array with no initial value');
-      }
-    }
-
-    for (; IS_RIGHT ? index >= 0 : length > index; index += i) if (index in self) {
-      memo = callbackfn(memo, self[index], index, O);
-    }
-
-    return memo;
-  };
-};
-
-var arrayReduce = {
-  // `Array.prototype.reduce` method
-  // https://tc39.es/ecma262/#sec-array.prototype.reduce
-  left: createMethod$2(false),
-  // `Array.prototype.reduceRight` method
-  // https://tc39.es/ecma262/#sec-array.prototype.reduceright
-  right: createMethod$2(true)
-};
-
-var $reduce = arrayReduce.left;
-var STRICT_METHOD$4 = arrayMethodIsStrict('reduce'); // Chrome 80-82 has a critical bug
-// https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
-
-var CHROME_BUG = !engineIsNode && engineV8Version > 79 && engineV8Version < 83; // `Array.prototype.reduce` method
-// https://tc39.es/ecma262/#sec-array.prototype.reduce
-
-_export({
-  target: 'Array',
-  proto: true,
-  forced: !STRICT_METHOD$4 || CHROME_BUG
-}, {
-  reduce: function reduce(callbackfn
-  /* , initialValue */
-  ) {
-    return $reduce(this, callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined);
-  }
-});
-
-var reduce$2 = entryVirtual('Array').reduce;
-
-var ArrayPrototype$d = Array.prototype;
-
-var reduce_1 = function (it) {
-  var own = it.reduce;
-  return it === ArrayPrototype$d || it instanceof Array && own === ArrayPrototype$d.reduce ? reduce$2 : own;
-};
-
-var reduce$1 = reduce_1;
-
-var reduce = reduce$1;
-
-var FAILS_ON_PRIMITIVES$1 = fails(function () {
-  objectKeys(1);
-}); // `Object.keys` method
-// https://tc39.es/ecma262/#sec-object.keys
-
-_export({
-  target: 'Object',
-  stat: true,
-  forced: FAILS_ON_PRIMITIVES$1
-}, {
-  keys: function keys(it) {
-    return objectKeys(toObject(it));
-  }
-});
-
-var keys$2 = path.Object.keys;
-
-var keys$1 = keys$2;
-
-var keys = keys$1;
-
 var getOwnPropertySymbols$2 = path.Object.getOwnPropertySymbols;
 
 var getOwnPropertySymbols$1 = getOwnPropertySymbols$2;
@@ -2340,14 +2203,14 @@ var getOwnPropertySymbols$1 = getOwnPropertySymbols$2;
 var getOwnPropertySymbols = getOwnPropertySymbols$1;
 
 var $filter = arrayIteration.filter;
-var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('filter'); // `Array.prototype.filter` method
+var HAS_SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport('filter'); // `Array.prototype.filter` method
 // https://tc39.es/ecma262/#sec-array.prototype.filter
 // with adding support of @@species
 
 _export({
   target: 'Array',
   proto: true,
-  forced: !HAS_SPECIES_SUPPORT$2
+  forced: !HAS_SPECIES_SUPPORT$3
 }, {
   filter: function filter(callbackfn
   /* , thisArg */
@@ -2358,11 +2221,11 @@ _export({
 
 var filter$2 = entryVirtual('Array').filter;
 
-var ArrayPrototype$c = Array.prototype;
+var ArrayPrototype$e = Array.prototype;
 
 var filter_1 = function (it) {
   var own = it.filter;
-  return it === ArrayPrototype$c || it instanceof Array && own === ArrayPrototype$c.filter ? filter$2 : own;
+  return it === ArrayPrototype$e || it instanceof Array && own === ArrayPrototype$e.filter ? filter$2 : own;
 };
 
 var filter$1 = filter_1;
@@ -2370,10 +2233,10 @@ var filter$1 = filter_1;
 var filter = filter$1;
 
 var nativeGetOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
-var FAILS_ON_PRIMITIVES = fails(function () {
+var FAILS_ON_PRIMITIVES$1 = fails(function () {
   nativeGetOwnPropertyDescriptor(1);
 });
-var FORCED$4 = !descriptors || FAILS_ON_PRIMITIVES; // `Object.getOwnPropertyDescriptor` method
+var FORCED$4 = !descriptors || FAILS_ON_PRIMITIVES$1; // `Object.getOwnPropertyDescriptor` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 
 _export({
@@ -2461,6 +2324,143 @@ var defineProperties_1 = createCommonjsModule(function (module) {
 var defineProperties$1 = defineProperties_1;
 
 var defineProperties = defineProperties$1;
+
+function _defineProperty(obj, key, value) {
+  if (key in obj) {
+    defineProperty$7(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+}
+
+var $map = arrayIteration.map;
+var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('map'); // `Array.prototype.map` method
+// https://tc39.es/ecma262/#sec-array.prototype.map
+// with adding support of @@species
+
+_export({
+  target: 'Array',
+  proto: true,
+  forced: !HAS_SPECIES_SUPPORT$2
+}, {
+  map: function map(callbackfn
+  /* , thisArg */
+  ) {
+    return $map(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+var map$2 = entryVirtual('Array').map;
+
+var ArrayPrototype$d = Array.prototype;
+
+var map_1 = function (it) {
+  var own = it.map;
+  return it === ArrayPrototype$d || it instanceof Array && own === ArrayPrototype$d.map ? map$2 : own;
+};
+
+var map$1 = map_1;
+
+var map = map$1;
+
+var createMethod$2 = function (IS_RIGHT) {
+  return function (that, callbackfn, argumentsLength, memo) {
+    aFunction$1(callbackfn);
+    var O = toObject(that);
+    var self = indexedObject(O);
+    var length = toLength(O.length);
+    var index = IS_RIGHT ? length - 1 : 0;
+    var i = IS_RIGHT ? -1 : 1;
+    if (argumentsLength < 2) while (true) {
+      if (index in self) {
+        memo = self[index];
+        index += i;
+        break;
+      }
+
+      index += i;
+
+      if (IS_RIGHT ? index < 0 : length <= index) {
+        throw TypeError('Reduce of empty array with no initial value');
+      }
+    }
+
+    for (; IS_RIGHT ? index >= 0 : length > index; index += i) if (index in self) {
+      memo = callbackfn(memo, self[index], index, O);
+    }
+
+    return memo;
+  };
+};
+
+var arrayReduce = {
+  // `Array.prototype.reduce` method
+  // https://tc39.es/ecma262/#sec-array.prototype.reduce
+  left: createMethod$2(false),
+  // `Array.prototype.reduceRight` method
+  // https://tc39.es/ecma262/#sec-array.prototype.reduceright
+  right: createMethod$2(true)
+};
+
+var $reduce = arrayReduce.left;
+var STRICT_METHOD$4 = arrayMethodIsStrict('reduce'); // Chrome 80-82 has a critical bug
+// https://bugs.chromium.org/p/chromium/issues/detail?id=1049982
+
+var CHROME_BUG = !engineIsNode && engineV8Version > 79 && engineV8Version < 83; // `Array.prototype.reduce` method
+// https://tc39.es/ecma262/#sec-array.prototype.reduce
+
+_export({
+  target: 'Array',
+  proto: true,
+  forced: !STRICT_METHOD$4 || CHROME_BUG
+}, {
+  reduce: function reduce(callbackfn
+  /* , initialValue */
+  ) {
+    return $reduce(this, callbackfn, arguments.length, arguments.length > 1 ? arguments[1] : undefined);
+  }
+});
+
+var reduce$2 = entryVirtual('Array').reduce;
+
+var ArrayPrototype$c = Array.prototype;
+
+var reduce_1 = function (it) {
+  var own = it.reduce;
+  return it === ArrayPrototype$c || it instanceof Array && own === ArrayPrototype$c.reduce ? reduce$2 : own;
+};
+
+var reduce$1 = reduce_1;
+
+var reduce = reduce$1;
+
+var FAILS_ON_PRIMITIVES = fails(function () {
+  objectKeys(1);
+}); // `Object.keys` method
+// https://tc39.es/ecma262/#sec-object.keys
+
+_export({
+  target: 'Object',
+  stat: true,
+  forced: FAILS_ON_PRIMITIVES
+}, {
+  keys: function keys(it) {
+    return objectKeys(toObject(it));
+  }
+});
+
+var keys$2 = path.Object.keys;
+
+var keys$1 = keys$2;
+
+var keys = keys$1;
 
 var defineProperty$4 = defineProperty_1;
 
@@ -11080,7 +11080,7 @@ var Popup$1$1 = Popup$1;
 var VALIDATOR_PRINT_STYLE$1 = VALIDATOR_PRINT_STYLE;
 var Validator$1$1 = Validator$1;
 
-var util$3 = /*#__PURE__*/Object.freeze({
+var util$2 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
 	Activator: Activator$1$1,
 	Alea: Alea,
@@ -11883,7 +11883,7 @@ var _default$1 = {
   safeAttrValue: safeAttrValue_1$1
 };
 
-var util$2 = {
+var util$1 = {
   indexOf: function (arr, item) {
     var i, j;
 
@@ -11941,7 +11941,7 @@ var util$2 = {
  */
 
 function parseStyle(css, onAttr) {
-  css = util$2.trimRight(css);
+  css = util$1.trimRight(css);
   if (css[css.length - 1] !== ';') css += ';';
   var cssLength = css.length;
   var isParenthesisOpen = false;
@@ -11952,14 +11952,14 @@ function parseStyle(css, onAttr) {
   function addNewAttr() {
     // 如果没有正常的闭合圆括号，则直接忽略当前属性
     if (!isParenthesisOpen) {
-      var source = util$2.trim(css.slice(lastPos, i));
+      var source = util$1.trim(css.slice(lastPos, i));
 
       var j = source.indexOf(':');
 
       if (j !== -1) {
-        var name = util$2.trim(source.slice(0, j));
+        var name = util$1.trim(source.slice(0, j));
 
-        var value = util$2.trim(source.slice(j + 1)); // 必须有属性名称
+        var value = util$1.trim(source.slice(j + 1)); // 必须有属性名称
 
 
         if (name) {
@@ -11997,7 +11997,7 @@ function parseStyle(css, onAttr) {
     }
   }
 
-  return util$2.trim(retCSS);
+  return util$1.trim(retCSS);
 }
 
 var parser$1 = parseStyle;
@@ -12131,7 +12131,7 @@ var lib$1 = createCommonjsModule(function (module, exports) {
   }
 });
 
-var util$1 = {
+var util = {
   indexOf: function (arr, item) {
     var i, j;
 
@@ -12324,7 +12324,7 @@ function safeAttrValue(tag, name, value, cssFilter) {
   if (name === "href" || name === "src") {
     // filter `href` and `src` attribute
     // only allow the value that starts with `http://` | `https://` | `mailto:` | `/` | `#`
-    value = util$1.trim(value);
+    value = util.trim(value);
     if (value === "#") return "#";
 
     if (!(value.substr(0, 7) === "http://" || value.substr(0, 8) === "https://" || value.substr(0, 7) === "mailto:" || value.substr(0, 4) === "tel:" || value.substr(0, 11) === "data:image/" || value.substr(0, 6) === "ftp://" || value.substr(0, 2) === "./" || value.substr(0, 3) === "../" || value[0] === "#" || value[0] === "/")) {
@@ -12439,7 +12439,7 @@ function clearNonPrintableCharacter(str) {
     str2 += str.charCodeAt(i) < 32 ? " " : str.charAt(i);
   }
 
-  return util$1.trim(str2);
+  return util.trim(str2);
 }
 /**
  * get friendly attribute value
@@ -12495,7 +12495,7 @@ function StripTagBody(tags, next) {
 
   function isRemoveTag(tag) {
     if (isRemoveAllTag) return true;
-    return util$1.indexOf(tags, tag) !== -1;
+    return util.indexOf(tags, tag) !== -1;
   }
 
   var removeList = [];
@@ -12524,7 +12524,7 @@ function StripTagBody(tags, next) {
       var rethtml = "";
       var lastPos = 0;
 
-      util$1.forEach(removeList, function (pos) {
+      util.forEach(removeList, function (pos) {
         rethtml += html.slice(lastPos, pos[0]);
         lastPos = pos[1];
       });
@@ -12628,7 +12628,7 @@ var _default = {
  */
 
 function getTagName(html) {
-  var i = util$1.spaceIndex(html);
+  var i = util.spaceIndex(html);
 
   if (i === -1) {
     var tagName = html.slice(1, -1);
@@ -12636,7 +12636,7 @@ function getTagName(html) {
     var tagName = html.slice(1, i + 1);
   }
 
-  tagName = util$1.trim(tagName).toLowerCase();
+  tagName = util.trim(tagName).toLowerCase();
   if (tagName.slice(0, 1) === "/") tagName = tagName.slice(1);
   if (tagName.slice(-1) === "/") tagName = tagName.slice(0, -1);
   return tagName;
@@ -12746,7 +12746,7 @@ function parseAttr$1(html, onAttr) {
   var len = html.length;
 
   function addAttr(name, value) {
-    name = util$1.trim(name);
+    name = util.trim(name);
     name = name.replace(REGEXP_ILLEGAL_ATTR_NAME, "").toLowerCase();
     if (name.length < 1) return;
     var ret = onAttr(name, value || "");
@@ -12771,7 +12771,7 @@ function parseAttr$1(html, onAttr) {
         if (j === -1) {
           break;
         } else {
-          v = util$1.trim(html.slice(lastPos + 1, j));
+          v = util.trim(html.slice(lastPos + 1, j));
           addAttr(tmpName, v);
           tmpName = false;
           i = j;
@@ -12788,7 +12788,7 @@ function parseAttr$1(html, onAttr) {
         j = findNextEqual(html, i);
 
         if (j === -1) {
-          v = util$1.trim(html.slice(lastPos, i));
+          v = util.trim(html.slice(lastPos, i));
           addAttr(v);
           tmpName = false;
           lastPos = i + 1;
@@ -12801,7 +12801,7 @@ function parseAttr$1(html, onAttr) {
         j = findBeforeEqual(html, i - 1);
 
         if (j === -1) {
-          v = util$1.trim(html.slice(lastPos, i));
+          v = util.trim(html.slice(lastPos, i));
           v = stripQuoteWrap(v);
           addAttr(tmpName, v);
           tmpName = false;
@@ -12818,11 +12818,11 @@ function parseAttr$1(html, onAttr) {
     if (tmpName === false) {
       addAttr(html.slice(lastPos));
     } else {
-      addAttr(tmpName, stripQuoteWrap(util$1.trim(html.slice(lastPos))));
+      addAttr(tmpName, stripQuoteWrap(util.trim(html.slice(lastPos))));
     }
   }
 
-  return util$1.trim(retAttrs.join(" "));
+  return util.trim(retAttrs.join(" "));
 }
 
 function findNextEqual(str, i) {
@@ -12895,7 +12895,7 @@ function isNull(obj) {
 
 
 function getAttrs(html) {
-  var i = util$1.spaceIndex(html);
+  var i = util.spaceIndex(html);
 
   if (i === -1) {
     return {
@@ -12904,9 +12904,9 @@ function getAttrs(html) {
     };
   }
 
-  html = util$1.trim(html.slice(i + 1, -1));
+  html = util.trim(html.slice(i + 1, -1));
   var isClosing = html[html.length - 1] === "/";
-  if (isClosing) html = util$1.trim(html.slice(0, -1));
+  if (isClosing) html = util.trim(html.slice(0, -1));
   return {
     html: html,
     closing: isClosing
@@ -13028,7 +13028,7 @@ FilterXSS.prototype.process = function (html) {
       var whiteAttrList = whiteList[tag];
       var attrsHtml = parseAttr(attrs.html, function (name, value) {
         // call `onTagAttr()`
-        var isWhiteAttr = util$1.indexOf(whiteAttrList, name) !== -1;
+        var isWhiteAttr = util.indexOf(whiteAttrList, name) !== -1;
         var ret = onTagAttr(tag, name, value, isWhiteAttr);
         if (!isNull(ret)) return ret;
 
@@ -13352,10 +13352,51 @@ function typeCoerceDataSet(rawDS) {
       return pipe.stop();
     }
   };
-}
-var util = _objectSpread(_objectSpread({}, util$3), {}, {
+} // Configure XSS protection
+
+var setupXSSCleaner = function setupXSSCleaner(options) {
+  var customXSS = new lib.FilterXSS(options);
+  return function (string) {
+    return customXSS.process(string);
+  };
+};
+
+var setupNoOpCleaner = function setupNoOpCleaner(string) {
+  return string;
+}; // when nothing else is configured: filter XSS with the lib's default options
+
+
+var configuredXSSProtection = setupXSSCleaner();
+
+var setupXSSProtection = function setupXSSProtection(options) {
+  // No options? Do nothing.
+  if (!options) {
+    return;
+  } // Disable XSS protection completely on request
+
+
+  if (options.disabled === true) {
+    configuredXSSProtection = setupNoOpCleaner;
+    console.warn('You disabled XSS protection for vis-Timeline. I sure hope you know what you\'re doing!');
+  } else {
+    // Configure XSS protection with some custom options.
+    // For a list of valid options check the lib's documentation:
+    // https://github.com/leizongmin/js-xss#custom-filter-rules
+    if (options.filterOptions) {
+      configuredXSSProtection = setupXSSCleaner(options.filterOptions);
+    }
+  }
+};
+
+var availableUtils = _objectSpread(_objectSpread({}, util$2), {}, {
   convert: convert,
-  xss: lib
+  setupXSSProtection: setupXSSProtection
+});
+
+defineProperty$3(availableUtils, 'xss', {
+  get: function get() {
+    return configuredXSSProtection;
+  }
 });
 
 var trim = stringTrim.trim;
@@ -13409,7 +13450,7 @@ var Component = /*#__PURE__*/function () {
     key: "setOptions",
     value: function setOptions(options) {
       if (options) {
-        util.extend(this.options, options);
+        availableUtils.extend(this.options, options);
       }
     }
     /**
@@ -14173,7 +14214,7 @@ var Range = /*#__PURE__*/function (_Component) {
         offset: 0.5
       }
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
     _this.props = {
       touch: {}
     };
@@ -14224,7 +14265,7 @@ var Range = /*#__PURE__*/function (_Component) {
       if (options) {
         // copy the options that we know
         var fields = ['animation', 'direction', 'min', 'max', 'zoomMin', 'zoomMax', 'moveable', 'zoomable', 'moment', 'activate', 'hiddenDates', 'zoomKey', 'zoomFriction', 'rtl', 'showCurrentTime', 'rollingMode', 'horizontalScroll'];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
 
         if (options.rollingMode && options.rollingMode.follow) {
           this.startRolling();
@@ -14252,7 +14293,7 @@ var Range = /*#__PURE__*/function (_Component) {
         me.stopRolling();
         me.rolling = true;
         var interval = me.end - me.start;
-        var t = util.convert(new Date(), 'Date').valueOf();
+        var t = availableUtils.convert(new Date(), 'Date').valueOf();
         var rollingModeOffset = me.options.rollingMode && me.options.rollingMode.offset || 0.5;
         var start = t - interval * rollingModeOffset;
         var end = t + interval * (1 - rollingModeOffset);
@@ -14319,8 +14360,8 @@ var Range = /*#__PURE__*/function (_Component) {
       }
 
       var me = this;
-      var finalStart = start != undefined ? util.convert(start, 'Date').valueOf() : null;
-      var finalEnd = end != undefined ? util.convert(end, 'Date').valueOf() : null;
+      var finalStart = start != undefined ? availableUtils.convert(start, 'Date').valueOf() : null;
+      var finalEnd = end != undefined ? availableUtils.convert(end, 'Date').valueOf() : null;
 
       this._cancelAnimation();
 
@@ -14332,12 +14373,12 @@ var Range = /*#__PURE__*/function (_Component) {
         var initEnd = this.end;
         var duration = _typeof(options.animation) === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
         var easingName = _typeof(options.animation) === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
-        var easingFunction = util.easingFunctions[easingName];
+        var easingFunction = availableUtils.easingFunctions[easingName];
 
         if (!easingFunction) {
           var _context8;
 
-          throw new Error(concat(_context8 = "Unknown easing function ".concat(stringify(easingName), ". Choose from: ")).call(_context8, keys(util.easingFunctions).join(', ')));
+          throw new Error(concat(_context8 = "Unknown easing function ".concat(stringify(easingName), ". Choose from: ")).call(_context8, keys(availableUtils.easingFunctions).join(', ')));
         }
 
         var initTime = now$1();
@@ -14453,10 +14494,10 @@ var Range = /*#__PURE__*/function (_Component) {
   }, {
     key: "_applyRange",
     value: function _applyRange(start, end) {
-      var newStart = start != null ? util.convert(start, 'Date').valueOf() : this.start;
-      var newEnd = end != null ? util.convert(end, 'Date').valueOf() : this.end;
-      var max = this.options.max != null ? util.convert(this.options.max, 'Date').valueOf() : null;
-      var min = this.options.min != null ? util.convert(this.options.min, 'Date').valueOf() : null;
+      var newStart = start != null ? availableUtils.convert(start, 'Date').valueOf() : this.start;
+      var newEnd = end != null ? availableUtils.convert(end, 'Date').valueOf() : this.end;
+      var max = this.options.max != null ? availableUtils.convert(this.options.max, 'Date').valueOf() : null;
+      var min = this.options.min != null ? availableUtils.convert(this.options.min, 'Date').valueOf() : null;
       var diff; // check for valid number
 
       if (isNaN(newStart) || newStart === null) {
@@ -14806,7 +14847,7 @@ var Range = /*#__PURE__*/function (_Component) {
       this.scaleOffset = 0;
       this.deltaDifference = 0; // Disable the browser default handling of this event.
 
-      util.preventDefault(event);
+      availableUtils.preventDefault(event);
     }
     /**
      * Handle pinch event
@@ -14820,7 +14861,7 @@ var Range = /*#__PURE__*/function (_Component) {
       // only allow zooming when configured as zoomable and moveable
       if (!(this.options.zoomable && this.options.moveable)) return; // Disable the browser default handling of this event.
 
-      util.preventDefault(event);
+      availableUtils.preventDefault(event);
       this.props.touch.allowDragging = false;
 
       if (!this.props.touch.center) {
@@ -15480,8 +15521,8 @@ var TimeStep = /*#__PURE__*/function () {
   }, {
     key: "setFormat",
     value: function setFormat(format) {
-      var defaultFormat = util.deepExtend({}, TimeStep.FORMAT);
-      this.format = util.deepExtend(defaultFormat, format);
+      var defaultFormat = availableUtils.deepExtend({}, TimeStep.FORMAT);
+      this.format = availableUtils.deepExtend(defaultFormat, format);
     }
     /**
      * Set a new range
@@ -16459,11 +16500,11 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
       showMajorLabels: true,
       showWeekScale: false,
       maxMinorChars: 7,
-      format: util.extend({}, TimeStep.FORMAT),
+      format: availableUtils.extend({}, TimeStep.FORMAT),
       moment: moment$2,
       timeAxis: null
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
     _this.body = body; // create the HTML DOM
 
     _this._create();
@@ -16488,9 +16529,9 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'showWeekScale', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
+        availableUtils.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'showWeekScale', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options); // deep copy the format options
 
-        util.selectiveDeepExtend(['format'], this.options, options);
+        availableUtils.selectiveDeepExtend(['format'], this.options, options);
 
         if ('orientation' in options) {
           if (typeof options.orientation === 'string') {
@@ -16607,8 +16648,8 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
     value: function _repaintLabels() {
       var orientation = this.options.orientation.axis; // calculate range and step (step such that we have space for 7 characters per label)
 
-      var start = util.convert(this.body.range.start, 'Number');
-      var end = util.convert(this.body.range.end, 'Number');
+      var start = availableUtils.convert(this.body.range.start, 'Number');
+      var end = availableUtils.convert(this.body.range.end, 'Number');
       var timeLabelsize = this.body.util.toTime((this.props.minorCharWidth || 10) * this.options.maxMinorChars).valueOf();
       var minimumStep = timeLabelsize - getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this.body.range, timeLabelsize);
       minimumStep -= this.body.util.toTime(0).valueOf();
@@ -16721,7 +16762,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
       } // Cleanup leftover DOM elements from the redundant list
 
 
-      forEach$2(util).call(util, this.dom.redundant, function (arr) {
+      forEach$2(availableUtils).call(availableUtils, this.dom.redundant, function (arr) {
         while (arr.length) {
           var elem = arr.pop();
 
@@ -16756,7 +16797,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
       }
 
       this.dom.minorTexts.push(label);
-      label.innerHTML = util.xss(text);
+      label.innerHTML = availableUtils.xss(text);
       var y = orientation == 'top' ? this.props.majorLabelHeight : 0;
 
       this._setXY(label, x, y);
@@ -16789,7 +16830,7 @@ var TimeAxis = /*#__PURE__*/function (_Component) {
         this.dom.foreground.appendChild(label);
       }
 
-      label.childNodes[0].innerHTML = util.xss(text);
+      label.childNodes[0].innerHTML = availableUtils.xss(text);
       label.className = "vis-text vis-major ".concat(className); //label.title = title; // TODO: this is a heavy operation
 
       var y = orientation == 'top' ? 0 : this.props.minorLabelHeight;
@@ -17312,7 +17353,7 @@ Activator.prototype.activate = function () {
   Activator.current = this;
   this.active = true;
   this.dom.overlay.style.display = 'none';
-  util.addClassName(this.dom.container, 'vis-active');
+  availableUtils.addClassName(this.dom.container, 'vis-active');
   this.emit('change');
   this.emit('activate'); // ugly hack: bind ESC after emitting the events, as the Network rebinds all
   // keyboard events on a 'change' event
@@ -17332,7 +17373,7 @@ Activator.prototype.deactivate = function () {
 
   this.active = false;
   this.dom.overlay.style.display = '';
-  util.removeClassName(this.dom.container, 'vis-active');
+  availableUtils.removeClassName(this.dom.container, 'vis-active');
   this.keycharm.unbind('esc', this.escListener);
   this.emit('change');
   this.emit('deactivate');
@@ -17548,15 +17589,15 @@ var CustomTime = /*#__PURE__*/function (_Component) {
       id: undefined,
       title: undefined
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
 
     _this.setOptions(options);
 
-    _this.options.locales = util.extend({}, locales, _this.options.locales);
+    _this.options.locales = availableUtils.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
 
     forEach$2(_context = keys(_this.options.locales)).call(_context, function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = availableUtils.extend({}, defaultLocales, _this.options.locales[locale]);
     });
 
     if (options && options.time != null) {
@@ -17586,7 +17627,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
+        availableUtils.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
       }
     }
     /**
@@ -17726,7 +17767,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
   }, {
     key: "setCustomTime",
     value: function setCustomTime(time) {
-      this.customTime = util.convert(time, 'Date');
+      this.customTime = availableUtils.convert(time, 'Date');
       this.redraw();
     }
     /**
@@ -17750,7 +17791,7 @@ var CustomTime = /*#__PURE__*/function (_Component) {
     value: function setCustomMarker(title, editable) {
       var marker = document.createElement('div');
       marker.className = "vis-custom-time-marker";
-      marker.innerHTML = util.xss(title);
+      marker.innerHTML = availableUtils.xss(title);
       marker.style.position = 'absolute';
 
       if (editable) {
@@ -18017,7 +18058,7 @@ var Core = /*#__PURE__*/function () {
       this.on('panmove', bind(_context2 = this._onDrag).call(_context2, this));
       var me = this;
       this._origRedraw = bind(_context3 = this._redraw).call(_context3, this);
-      this._redraw = util.throttle(this._origRedraw);
+      this._redraw = availableUtils.throttle(this._origRedraw);
       this.on('_change', function (properties) {
         if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
           me._redraw();
@@ -18312,7 +18353,7 @@ var Core = /*#__PURE__*/function () {
       if (options) {
         // copy the known options
         var fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll', 'longSelectPressTime', 'snap'];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = 'hidden';
 
         if (this.options.rtl) {
@@ -18357,7 +18398,7 @@ var Core = /*#__PURE__*/function () {
             var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
 
             timeAxis2.setOptions = function (options) {
-              var _options = options ? util.extend({}, options) : {};
+              var _options = options ? availableUtils.extend({}, options) : {};
 
               _options.orientation = 'top'; // override the orientation option, always top
 
@@ -18426,10 +18467,10 @@ var Core = /*#__PURE__*/function () {
 
         this.configurator.setOptions(options.configure); // collect the settings of all components, and pass them to the configuration system
 
-        var appliedOptions = util.deepExtend({}, this.options);
+        var appliedOptions = availableUtils.deepExtend({}, this.options);
 
         forEach$2(_context8 = this.components).call(_context8, function (component) {
-          util.deepExtend(appliedOptions, component.options);
+          availableUtils.deepExtend(appliedOptions, component.options);
         });
 
         this.configurator.setModuleOptions({
@@ -18617,7 +18658,7 @@ var Core = /*#__PURE__*/function () {
     value: function addCustomTime(time, id) {
       var _context14;
 
-      var timestamp = time !== undefined ? util.convert(time, 'Date') : new Date();
+      var timestamp = time !== undefined ? availableUtils.convert(time, 'Date') : new Date();
 
       var exists = some(_context14 = this.customTimes).call(_context14, function (customTime) {
         return customTime.options.id === id;
@@ -18627,7 +18668,7 @@ var Core = /*#__PURE__*/function () {
         throw new Error("A custom time with id ".concat(stringify(id), " already exists"));
       }
 
-      var customTime = new CustomTime(this.body, util.extend({}, this.options, {
+      var customTime = new CustomTime(this.body, availableUtils.extend({}, this.options, {
         time: timestamp,
         id: id,
         snap: this.itemSet ? this.itemSet.options.snap : this.options.snap
@@ -18807,7 +18848,7 @@ var Core = /*#__PURE__*/function () {
       }
 
       var interval = this.range.end - this.range.start;
-      var t = util.convert(time, 'Date').valueOf();
+      var t = availableUtils.convert(time, 'Date').valueOf();
       var start = t - interval / 2;
       var end = t + interval / 2;
       var animation = options && options.animation !== undefined ? options.animation : true;
@@ -18925,25 +18966,25 @@ var Core = /*#__PURE__*/function () {
       updateHiddenDates(this.options.moment, this.body, this.options.hiddenDates); // update class names
 
       if (options.orientation == 'top') {
-        util.addClassName(dom.root, 'vis-top');
-        util.removeClassName(dom.root, 'vis-bottom');
+        availableUtils.addClassName(dom.root, 'vis-top');
+        availableUtils.removeClassName(dom.root, 'vis-bottom');
       } else {
-        util.removeClassName(dom.root, 'vis-top');
-        util.addClassName(dom.root, 'vis-bottom');
+        availableUtils.removeClassName(dom.root, 'vis-top');
+        availableUtils.addClassName(dom.root, 'vis-bottom');
       }
 
       if (options.rtl) {
-        util.addClassName(dom.root, 'vis-rtl');
-        util.removeClassName(dom.root, 'vis-ltr');
+        availableUtils.addClassName(dom.root, 'vis-rtl');
+        availableUtils.removeClassName(dom.root, 'vis-ltr');
       } else {
-        util.addClassName(dom.root, 'vis-ltr');
-        util.removeClassName(dom.root, 'vis-rtl');
+        availableUtils.addClassName(dom.root, 'vis-ltr');
+        availableUtils.removeClassName(dom.root, 'vis-rtl');
       } // update root width and height options
 
 
-      dom.root.style.maxHeight = util.option.asSize(options.maxHeight, '');
-      dom.root.style.minHeight = util.option.asSize(options.minHeight, '');
-      dom.root.style.width = util.option.asSize(options.width, '');
+      dom.root.style.maxHeight = availableUtils.option.asSize(options.maxHeight, '');
+      dom.root.style.minHeight = availableUtils.option.asSize(options.minHeight, '');
+      dom.root.style.width = availableUtils.option.asSize(options.width, '');
       var rootOffsetWidth = dom.root.offsetWidth; // calculate border widths
 
       props.border.left = 1;
@@ -18962,7 +19003,7 @@ var Core = /*#__PURE__*/function () {
 
       var contentHeight = Math.max(props.left.height, props.center.height, props.right.height);
       var autoHeight = props.top.height + contentHeight + props.bottom.height + props.border.top + props.border.bottom;
-      dom.root.style.height = util.option.asSize(options.height, "".concat(autoHeight, "px")); // calculate heights of the content panels
+      dom.root.style.height = availableUtils.option.asSize(options.height, "".concat(autoHeight, "px")); // calculate heights of the content panels
 
       props.root.height = dom.root.offsetHeight;
       props.background.height = props.root.height;
@@ -18975,7 +19016,7 @@ var Core = /*#__PURE__*/function () {
       props.background.width = props.root.width;
 
       if (!this.initialDrawDone) {
-        props.scrollbarWidth = util.getScrollBarWidth();
+        props.scrollbarWidth = availableUtils.getScrollBarWidth();
       }
 
       var leftContainerClientWidth = dom.leftContainer.clientWidth;
@@ -19252,14 +19293,14 @@ var Core = /*#__PURE__*/function () {
           if (rootOffsetWidth != me.props.lastWidth || rootOffsetHeight != me.props.lastHeight) {
             me.props.lastWidth = rootOffsetWidth;
             me.props.lastHeight = rootOffsetHeight;
-            me.props.scrollbarWidth = util.getScrollBarWidth();
+            me.props.scrollbarWidth = availableUtils.getScrollBarWidth();
             me.body.emitter.emit('_change');
           }
         }
       }; // add event listener to window resize
 
 
-      util.addEventListener(window, 'resize', this._onResize); //Prevent initial unnecessary redraw
+      availableUtils.addEventListener(window, 'resize', this._onResize); //Prevent initial unnecessary redraw
 
       if (me.dom.root) {
         me.props.lastWidth = me.dom.root.offsetWidth;
@@ -19283,7 +19324,7 @@ var Core = /*#__PURE__*/function () {
 
 
       if (this._onResize) {
-        util.removeEventListener(window, 'resize', this._onResize);
+        availableUtils.removeEventListener(window, 'resize', this._onResize);
         this._onResize = null;
       }
     }
@@ -19457,15 +19498,15 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
       locales: locales,
       locale: 'en'
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
 
     _this.setOptions(options);
 
-    _this.options.locales = util.extend({}, locales, _this.options.locales);
+    _this.options.locales = availableUtils.extend({}, locales, _this.options.locales);
     var defaultLocales = _this.defaultOptions.locales[_this.defaultOptions.locale];
 
     forEach$2(_context = keys(_this.options.locales)).call(_context, function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = availableUtils.extend({}, defaultLocales, _this.options.locales[locale]);
     });
 
     _this.offset = 0;
@@ -19514,7 +19555,7 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
     value: function setOptions(options) {
       if (options) {
         // copy all options that we know
-        util.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
+        availableUtils.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
       }
     }
     /**
@@ -19629,7 +19670,7 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
   }, {
     key: "setCurrentTime",
     value: function setCurrentTime(time) {
-      var t = util.convert(time, 'Date').valueOf();
+      var t = availableUtils.convert(time, 'Date').valueOf();
 
       var now = now$1();
 
@@ -20682,18 +20723,18 @@ var Group = /*#__PURE__*/function () {
       } else if (content instanceof Object && content.isReactComponent) ; else if (content instanceof Object) {
         templateFunction(data, this.dom.inner);
       } else if (content !== undefined && content !== null) {
-        this.dom.inner.innerHTML = util.xss(content);
+        this.dom.inner.innerHTML = availableUtils.xss(content);
       } else {
-        this.dom.inner.innerHTML = util.xss(this.groupId || ''); // groupId can be null
+        this.dom.inner.innerHTML = availableUtils.xss(this.groupId || ''); // groupId can be null
       } // update title
 
 
       this.dom.label.title = data && data.title || '';
 
       if (!this.dom.inner.firstChild) {
-        util.addClassName(this.dom.inner, 'vis-hidden');
+        availableUtils.addClassName(this.dom.inner, 'vis-hidden');
       } else {
-        util.removeClassName(this.dom.inner, 'vis-hidden');
+        availableUtils.removeClassName(this.dom.inner, 'vis-hidden');
       }
 
       if (data && data.nestedGroups) {
@@ -20709,33 +20750,33 @@ var Group = /*#__PURE__*/function () {
           }
         }
 
-        util.addClassName(this.dom.label, 'vis-nesting-group');
+        availableUtils.addClassName(this.dom.label, 'vis-nesting-group');
 
         if (this.showNested) {
-          util.removeClassName(this.dom.label, 'collapsed');
-          util.addClassName(this.dom.label, 'expanded');
+          availableUtils.removeClassName(this.dom.label, 'collapsed');
+          availableUtils.addClassName(this.dom.label, 'expanded');
         } else {
-          util.removeClassName(this.dom.label, 'expanded');
-          util.addClassName(this.dom.label, 'collapsed');
+          availableUtils.removeClassName(this.dom.label, 'expanded');
+          availableUtils.addClassName(this.dom.label, 'collapsed');
         }
       } else if (this.nestedGroups) {
         this.nestedGroups = null;
-        util.removeClassName(this.dom.label, 'collapsed');
-        util.removeClassName(this.dom.label, 'expanded');
-        util.removeClassName(this.dom.label, 'vis-nesting-group');
+        availableUtils.removeClassName(this.dom.label, 'collapsed');
+        availableUtils.removeClassName(this.dom.label, 'expanded');
+        availableUtils.removeClassName(this.dom.label, 'vis-nesting-group');
       }
 
       if (data && (data.treeLevel || data.nestedInGroup)) {
-        util.addClassName(this.dom.label, 'vis-nested-group');
+        availableUtils.addClassName(this.dom.label, 'vis-nested-group');
 
         if (data.treeLevel) {
-          util.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
+          availableUtils.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
         } else {
           // Nesting level is unknown, but we're sure it's at least 1
-          util.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
+          availableUtils.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
         }
       } else {
-        util.addClassName(this.dom.label, 'vis-group-level-0');
+        availableUtils.addClassName(this.dom.label, 'vis-group-level-0');
       } // update className
 
 
@@ -20743,27 +20784,27 @@ var Group = /*#__PURE__*/function () {
 
       if (className != this.className) {
         if (this.className) {
-          util.removeClassName(this.dom.label, this.className);
-          util.removeClassName(this.dom.foreground, this.className);
-          util.removeClassName(this.dom.background, this.className);
-          util.removeClassName(this.dom.axis, this.className);
+          availableUtils.removeClassName(this.dom.label, this.className);
+          availableUtils.removeClassName(this.dom.foreground, this.className);
+          availableUtils.removeClassName(this.dom.background, this.className);
+          availableUtils.removeClassName(this.dom.axis, this.className);
         }
 
-        util.addClassName(this.dom.label, className);
-        util.addClassName(this.dom.foreground, className);
-        util.addClassName(this.dom.background, className);
-        util.addClassName(this.dom.axis, className);
+        availableUtils.addClassName(this.dom.label, className);
+        availableUtils.addClassName(this.dom.foreground, className);
+        availableUtils.addClassName(this.dom.background, className);
+        availableUtils.addClassName(this.dom.axis, className);
         this.className = className;
       } // update style
 
 
       if (this.style) {
-        util.removeCssText(this.dom.label, this.style);
+        availableUtils.removeCssText(this.dom.label, this.style);
         this.style = null;
       }
 
       if (data && data.style) {
-        util.addCssText(this.dom.label, data.style);
+        availableUtils.addCssText(this.dom.label, data.style);
         this.style = data.style;
       }
     }
@@ -20792,7 +20833,7 @@ var Group = /*#__PURE__*/function () {
         var redrawQueue = {};
         var redrawQueueLength = 0;
 
-        forEach$2(util).call(util, this.items, function (item, key) {
+        forEach$2(availableUtils).call(availableUtils, this.items, function (item, key) {
           item.dirty = true;
 
           if (item.displayed) {
@@ -20806,7 +20847,7 @@ var Group = /*#__PURE__*/function () {
 
         if (needRedraw) {
           var _loop = function _loop(i) {
-            forEach$2(util).call(util, redrawQueue, function (fns) {
+            forEach$2(availableUtils).call(availableUtils, redrawQueue, function (fns) {
               fns[i]();
             });
           };
@@ -21026,7 +21067,7 @@ var Group = /*#__PURE__*/function () {
         }
 
         if (this.itemSet.options.cluster) {
-          forEach$2(util).call(util, this.items, function (item) {
+          forEach$2(availableUtils).call(availableUtils, this.items, function (item) {
             if (item.cluster && item.displayed) {
               item.hide();
             }
@@ -21050,12 +21091,12 @@ var Group = /*#__PURE__*/function () {
   }, {
     key: "_didResize",
     value: function _didResize(resized, height) {
-      resized = util.updateProperty(this, 'height', height) || resized; // recalculate size of label
+      resized = availableUtils.updateProperty(this, 'height', height) || resized; // recalculate size of label
 
       var labelWidth = this.dom.inner.clientWidth;
       var labelHeight = this.dom.inner.clientHeight;
-      resized = util.updateProperty(this.props.label, 'width', labelWidth) || resized;
-      resized = util.updateProperty(this.props.label, 'height', labelHeight) || resized;
+      resized = availableUtils.updateProperty(this.props.label, 'width', labelWidth) || resized;
+      resized = availableUtils.updateProperty(this.props.label, 'height', labelHeight) || resized;
       return resized;
     }
     /**
@@ -21176,7 +21217,7 @@ var Group = /*#__PURE__*/function () {
 
         this._resetSubgroups();
 
-        forEach$2(util).call(util, this.visibleItems, function (item) {
+        forEach$2(availableUtils).call(availableUtils, this.visibleItems, function (item) {
           if (item.data.subgroup !== undefined) {
             me.subgroups[item.data.subgroup].height = Math.max(me.subgroups[item.data.subgroup].height, item.height + margin.item.vertical);
             me.subgroups[item.data.subgroup].visible = typeof _this4.subgroupVisibility[item.data.subgroup] === 'undefined' ? true : Boolean(_this4.subgroupVisibility[item.data.subgroup]);
@@ -21213,7 +21254,7 @@ var Group = /*#__PURE__*/function () {
       var items;
 
       if (this.heightMode === 'fixed') {
-        items = util.toArray(this.items);
+        items = availableUtils.toArray(this.items);
       } else {
         // default or 'auto'
         items = this.visibleItems;
@@ -21223,7 +21264,7 @@ var Group = /*#__PURE__*/function () {
         var min = items[0].top;
         var max = items[0].top + items[0].height;
 
-        forEach$2(util).call(util, items, function (item) {
+        forEach$2(availableUtils).call(availableUtils, items, function (item) {
           min = Math.min(min, item.top);
           max = Math.max(max, item.top + item.height);
         });
@@ -21233,7 +21274,7 @@ var Group = /*#__PURE__*/function () {
           var offset = min - margin.axis;
           max -= offset;
 
-          forEach$2(util).call(util, items, function (item) {
+          forEach$2(availableUtils).call(availableUtils, items, function (item) {
             item.top -= offset;
           });
         }
@@ -21529,7 +21570,7 @@ var Group = /*#__PURE__*/function () {
   }, {
     key: "order",
     value: function order() {
-      var array = util.toArray(this.items);
+      var array = availableUtils.toArray(this.items);
       var startArray = [];
       var endArray = [];
 
@@ -21610,7 +21651,7 @@ var Group = /*#__PURE__*/function () {
       } // we do a binary search for the items that have only start values.
 
 
-      var initialPosByStart = util.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data', 'start'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
+      var initialPosByStart = availableUtils.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data', 'start'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
 
       this._traceVisible(initialPosByStart, orderedItems.byStart, visibleItems, visibleItemsLookup, function (item) {
         return item.data.start < lowerBound || item.data.start > upperBound;
@@ -21626,7 +21667,7 @@ var Group = /*#__PURE__*/function () {
         }
       } else {
         // we do a binary search for the items that have defined end times.
-        var initialPosByEnd = util.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
+        var initialPosByEnd = availableUtils.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data'); // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
 
         this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, function (item) {
           return item.data.end < lowerBound || item.data.start > upperBound;
@@ -21650,7 +21691,7 @@ var Group = /*#__PURE__*/function () {
 
       if (needRedraw) {
         var _loop4 = function _loop4(j) {
-          forEach$2(util).call(util, redrawQueue, function (fns) {
+          forEach$2(availableUtils).call(availableUtils, redrawQueue, function (fns) {
             fns[j]();
           });
         };
@@ -21808,7 +21849,7 @@ var Group = /*#__PURE__*/function () {
       if (needRedraw) {
         // redraw all regular items
         for (var j = 0; j < redrawQueueLength; j++) {
-          forEach$2(util).call(util, redrawQueue, function (fns) {
+          forEach$2(availableUtils).call(availableUtils, redrawQueue, function (fns) {
             fns[j]();
           });
         }
@@ -21964,12 +22005,12 @@ var Item = /*#__PURE__*/function () {
       locales: locales,
       locale: 'en'
     };
-    this.options = util.extend({}, this.defaultOptions, options);
-    this.options.locales = util.extend({}, locales, this.options.locales);
+    this.options = availableUtils.extend({}, this.defaultOptions, options);
+    this.options.locales = availableUtils.extend({}, locales, this.options.locales);
     var defaultLocales = this.defaultOptions.locales[this.defaultOptions.locale];
 
     forEach$2(_context = keys(this.options.locales)).call(_context, function (locale) {
-      _this.options.locales[locale] = util.extend({}, defaultLocales, _this.options.locales[locale]);
+      _this.options.locales[locale] = availableUtils.extend({}, defaultLocales, _this.options.locales[locale]);
     });
 
     this.selected = false;
@@ -22330,7 +22371,7 @@ var Item = /*#__PURE__*/function () {
           }
         }
 
-        this.dom.onItemUpdateTimeTooltip.innerHTML = util.xss(content);
+        this.dom.onItemUpdateTimeTooltip.innerHTML = availableUtils.xss(content);
       }
     }
     /**
@@ -22369,7 +22410,7 @@ var Item = /*#__PURE__*/function () {
         var _context5;
 
         visibleFrameTemplateFunction = bind(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
-        itemVisibleFrameContent = util.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
+        itemVisibleFrameContent = availableUtils.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
       } else {
         itemVisibleFrameContent = '';
       }
@@ -22386,7 +22427,7 @@ var Item = /*#__PURE__*/function () {
               itemVisibleFrameContentElement.innerHTML = '';
               itemVisibleFrameContentElement.appendChild(itemVisibleFrameContent);
             } else if (itemVisibleFrameContent != undefined) {
-              itemVisibleFrameContentElement.innerHTML = util.xss(itemVisibleFrameContent);
+              itemVisibleFrameContentElement.innerHTML = availableUtils.xss(itemVisibleFrameContent);
             } else {
               if (!(this.data.type == 'background' && this.data.content === undefined)) {
                 throw new Error("Property \"content\" missing in item ".concat(this.id));
@@ -22418,7 +22459,7 @@ var Item = /*#__PURE__*/function () {
             element.innerHTML = '';
             element.appendChild(content);
           } else if (content != undefined) {
-            element.innerHTML = util.xss(content);
+            element.innerHTML = availableUtils.xss(content);
           } else {
             if (!(this.data.type == 'background' && this.data.content === undefined)) {
               throw new Error("Property \"content\" missing in item ".concat(this.id));
@@ -22481,13 +22522,13 @@ var Item = /*#__PURE__*/function () {
     value: function _updateStyle(element) {
       // remove old styles
       if (this.style) {
-        util.removeCssText(element, this.style);
+        availableUtils.removeCssText(element, this.style);
         this.style = null;
       } // append new styles
 
 
       if (this.data.style) {
-        util.addCssText(element, this.data.style);
+        availableUtils.addCssText(element, this.data.style);
         this.style = this.data.style;
       }
     }
@@ -22521,7 +22562,7 @@ var Item = /*#__PURE__*/function () {
           };
         } else if (_typeof(this.options.editable) === 'object') {
           this.editable = {};
-          util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
+          availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
         }
       } // Item data overrides, except if options.editable.overrideItems is set.
 
@@ -22538,7 +22579,7 @@ var Item = /*#__PURE__*/function () {
             // TODO: in timeline.js 5.0, we should change this to not reset options from the timeline configuration.
             // Basically just remove the next line...
             this.editable = {};
-            util.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
+            availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
           }
         }
       }
@@ -24211,7 +24252,7 @@ var Popup = /*#__PURE__*/function () {
         this.frame.innerHTML = '';
         this.frame.appendChild(content);
       } else {
-        this.frame.innerHTML = util.xss(content); // string containing text or HTML
+        this.frame.innerHTML = availableUtils.xss(content); // string containing text or HTML
       }
     }
     /**
@@ -25612,7 +25653,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       tooltipOnItemUpdateTime: false
     }; // options is shared by this ItemSet and all its items
 
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
     _this.options.rtl = options.rtl;
     _this.options.onTimeout = options.onTimeout;
     _this.conversion = {
@@ -25923,14 +25964,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
         // copy all options that we know
         var fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'longSelectPressTime', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
-        util.selectiveExtend(fields, this.options, options);
+        availableUtils.selectiveExtend(fields, this.options, options);
 
         if ('itemsAlwaysDraggable' in options) {
           if (typeof options.itemsAlwaysDraggable === 'boolean') {
             this.options.itemsAlwaysDraggable.item = options.itemsAlwaysDraggable;
             this.options.itemsAlwaysDraggable.range = false;
           } else if (_typeof(options.itemsAlwaysDraggable) === 'object') {
-            util.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
+            availableUtils.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable); // only allow range always draggable when item is always draggable as well
 
             if (!this.options.itemsAlwaysDraggable.item) {
               this.options.itemsAlwaysDraggable.range = false;
@@ -25958,14 +25999,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.margin.item.horizontal = options.margin;
             this.options.margin.item.vertical = options.margin;
           } else if (_typeof(options.margin) === 'object') {
-            util.selectiveExtend(['axis'], this.options.margin, options.margin);
+            availableUtils.selectiveExtend(['axis'], this.options.margin, options.margin);
 
             if ('item' in options.margin) {
               if (typeof options.margin.item === 'number') {
                 this.options.margin.item.horizontal = options.margin.item;
                 this.options.margin.item.vertical = options.margin.item;
               } else if (_typeof(options.margin.item) === 'object') {
-                util.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
+                availableUtils.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
               }
             }
           }
@@ -25985,7 +26026,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.editable.remove = options.editable;
             this.options.editable.overrideItems = false;
           } else if (_typeof(options.editable) === 'object') {
-            util.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
+            availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
           }
         }
 
@@ -25995,7 +26036,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             this.options.groupEditable.add = options.groupEditable;
             this.options.groupEditable.remove = options.groupEditable;
           } else if (_typeof(options.groupEditable) === 'object') {
-            util.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
+            availableUtils.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
           }
         } // callback functions
 
@@ -26063,14 +26104,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (options) {
         if (options.refreshItems) {
-          forEach$2(util).call(util, this.items, function (item) {
+          forEach$2(availableUtils).call(availableUtils, this.items, function (item) {
             item.dirty = true;
             if (item.displayed) item.redraw();
           });
         }
 
         if (options.restackGroups) {
-          forEach$2(util).call(util, this.groups, function (group, key) {
+          forEach$2(availableUtils).call(availableUtils, this.groups, function (group, key) {
             if (key === BACKGROUND) return;
             group.stackDirty = true;
           });
@@ -26374,7 +26415,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       var margin = this.options.margin;
       var range = this.body.range;
-      var asSize = util.option.asSize;
+      var asSize = availableUtils.option.asSize;
       var options = this.options;
       var orientation = options.orientation.item;
       var resized = false;
@@ -26428,7 +26469,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       var redrawQueue = {};
       var redrawQueueLength = 0; // collect redraw functions
 
-      forEach$2(util).call(util, this.groups, function (group, key) {
+      forEach$2(availableUtils).call(availableUtils, this.groups, function (group, key) {
         if (key === BACKGROUND) return;
         var groupMargin = group == firstGroup ? firstMargin : nonFirstMargin;
         var returnQueue = true;
@@ -26443,7 +26484,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           var redrawResults = {};
 
           var _loop = function _loop(i) {
-            forEach$2(util).call(util, redrawQueue, function (fns, key) {
+            forEach$2(availableUtils).call(availableUtils, redrawQueue, function (fns, key) {
               redrawResults[key] = fns[i]();
             });
           };
@@ -26453,7 +26494,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           } // redraw all regular groups
 
 
-          forEach$2(util).call(util, _this4.groups, function (group, key) {
+          forEach$2(availableUtils).call(availableUtils, _this4.groups, function (group, key) {
             if (key === BACKGROUND) return;
             var groupResized = redrawResults[key];
             resized = groupResized || resized;
@@ -26582,7 +26623,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (oldItemsData) {
         // unsubscribe from old dataset
-        forEach$2(util).call(util, this.itemListeners, function (callback, event) {
+        forEach$2(availableUtils).call(availableUtils, this.itemListeners, function (callback, event) {
           oldItemsData.off(event, callback);
         }); // stop maintaining a coerced version of the old data set
 
@@ -26598,7 +26639,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         // subscribe to new dataset
         var id = this.id;
 
-        forEach$2(util).call(util, this.itemListeners, function (callback, event) {
+        forEach$2(availableUtils).call(availableUtils, this.itemListeners, function (callback, event) {
           me.itemsData.on(event, callback, id);
         }); // add all new items
 
@@ -26637,7 +26678,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       var ids; // unsubscribe from current dataset
 
       if (this.groupsData) {
-        forEach$2(util).call(util, this.groupListeners, function (callback, event) {
+        forEach$2(availableUtils).call(availableUtils, this.groupListeners, function (callback, event) {
           me.groupsData.off(event, callback);
         }); // remove all drawn groups
 
@@ -26684,7 +26725,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
         var id = this.id;
 
-        forEach$2(util).call(util, this.groupListeners, function (callback, event) {
+        forEach$2(availableUtils).call(availableUtils, this.groupListeners, function (callback, event) {
           me.groupsData.on(event, callback, id);
         }); // draw all ms
 
@@ -26886,7 +26927,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
     value: function _order() {
       // reorder the items in all groups
       // TODO: optimization: only reorder groups affected by the changed items
-      forEach$2(util).call(util, this.groups, function (group) {
+      forEach$2(availableUtils).call(availableUtils, this.groups, function (group) {
         group.order();
       });
     }
@@ -26924,7 +26965,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
           var groupOptions = create(me.options);
 
-          util.extend(groupOptions, {
+          availableUtils.extend(groupOptions, {
             height: null
           });
           group = new Group(id, groupData, me);
@@ -27000,7 +27041,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           order: this.options.groupOrder
         });
         groupIds = this._orderNestedGroups(groupIds);
-        var changed = !util.equalArray(groupIds, this.groupIds);
+        var changed = !availableUtils.equalArray(groupIds, this.groupIds);
 
         if (changed) {
           // hide all groups, removes them from the DOM
@@ -27416,14 +27457,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
               // drag left side of a range item
               if (_this10.options.rtl) {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.end = snap ? snap(end, scale, step) : end;
                 }
               } else {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = availableUtils.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
@@ -27433,14 +27474,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
               // drag right side of a range item
               if (_this10.options.rtl) {
                 if (itemData.start != undefined) {
-                  initialStart = util.convert(props.data.start, 'Date');
+                  initialStart = availableUtils.convert(props.data.start, 'Date');
                   start = new Date(initialStart.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
                 }
               } else {
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   end = new Date(initialEnd.valueOf() + offset); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.end = snap ? snap(end, scale, step) : end;
@@ -27449,11 +27490,11 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             } else {
               // drag both start and end
               if (itemData.start != undefined) {
-                initialStart = util.convert(props.data.start, 'Date').valueOf();
+                initialStart = availableUtils.convert(props.data.start, 'Date').valueOf();
                 start = new Date(initialStart + offset);
 
                 if (itemData.end != undefined) {
-                  initialEnd = util.convert(props.data.end, 'Date');
+                  initialEnd = availableUtils.convert(props.data.end, 'Date');
                   var duration = initialEnd.valueOf() - initialStart.valueOf(); // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
 
                   itemData.start = snap ? snap(start, scale, step) : start;
@@ -27639,11 +27680,11 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       groupsData.update(concat(nestedGroups).call(nestedGroups, nestingGroup));
 
       if (nestingGroup.showNested) {
-        util.removeClassName(group.dom.label, 'collapsed');
-        util.addClassName(group.dom.label, 'expanded');
+        availableUtils.removeClassName(group.dom.label, 'collapsed');
+        availableUtils.addClassName(group.dom.label, 'expanded');
       } else {
-        util.removeClassName(group.dom.label, 'expanded');
-        util.addClassName(group.dom.label, 'collapsed');
+        availableUtils.removeClassName(group.dom.label, 'expanded');
+        availableUtils.addClassName(group.dom.label, 'collapsed');
       }
     }
     /**
@@ -27734,7 +27775,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
             order: this.options.groupOrder
           }); // in case of changes since _onGroupDragStart
 
-          if (!util.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
+          if (!availableUtils.equalArray(newOrder, this.groupTouchParams.originalOrder)) {
             var origOrder = this.groupTouchParams.originalOrder;
             var draggedId = this.groupTouchParams.group.groupId;
             var numGroups = Math.min(origOrder.length, newOrder.length);
@@ -27798,7 +27839,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         var me = this;
         var id = me.groupTouchParams.group.groupId;
         var dataset = me.groupsData.getDataSet();
-        var groupData = util.extend({}, dataset.get(id)); // clone the data
+        var groupData = availableUtils.extend({}, dataset.get(id)); // clone the data
 
         me.options.onMoveGroup(groupData, function (groupData) {
           if (groupData) {
@@ -27812,7 +27853,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
               order: me.options.groupOrder
             }); // restore original order
 
-            if (!util.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
+            if (!availableUtils.equalArray(newOrder, me.groupTouchParams.originalOrder)) {
               var origOrder = me.groupTouchParams.originalOrder;
               var numGroups = Math.min(origOrder.length, newOrder.length);
               var curPos = 0;
@@ -28299,7 +28340,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
      * @private
      */
     function _cloneItemData(itemData, type) {
-      var clone = util.extend({}, itemData);
+      var clone = availableUtils.extend({}, itemData);
 
       if (!type) {
         // convert start and end date to the type (Date, Moment, ...) configured in the DataSet
@@ -28307,11 +28348,11 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       }
 
       if (clone.start != undefined) {
-        clone.start = util.convert(clone.start, type && type.start || 'Date');
+        clone.start = availableUtils.convert(clone.start, type && type.start || 'Date');
       }
 
       if (clone.end != undefined) {
-        clone.end = util.convert(clone.end, type && type.end || 'Date');
+        clone.end = availableUtils.convert(clone.end, type && type.end || 'Date');
       }
 
       return clone;
@@ -28627,7 +28668,7 @@ var Validator = /*#__PURE__*/function () {
           log('Invalid option detected in "' + option + '".' + ' Allowed values are:' + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
           errorFound = true;
         } else if (optionType === 'object' && referenceOption !== "__any__") {
-          path = util.copyAndExtendArray(path, option);
+          path = availableUtils.copyAndExtendArray(path, option);
           Validator.parse(options[option], referenceOptions[referenceOption], path);
         }
       } else if (refOptionObj['any'] === undefined) {
@@ -28748,7 +28789,7 @@ var Validator = /*#__PURE__*/function () {
         var distance = void 0;
 
         if (options[op].__type__ !== undefined && recursive === true) {
-          var result = Validator.findInOptions(option, options[op], util.copyAndExtendArray(path, op));
+          var result = Validator.findInOptions(option, options[op], availableUtils.copyAndExtendArray(path, op));
 
           if (min > result.distance) {
             closestMatch = result.closestMatch;
@@ -28767,7 +28808,7 @@ var Validator = /*#__PURE__*/function () {
 
           if (min > distance) {
             closestMatch = op;
-            closestMatchPath = util.copyArray(path);
+            closestMatchPath = availableUtils.copyArray(path);
             min = distance;
           }
         }
@@ -29429,6 +29470,22 @@ var allOptions$1 = {
   zoomMin: {
     number: number$1
   },
+  xss: {
+    disabled: {
+      boolean: bool$1
+    },
+    filterOptions: {
+      __any__: {
+        any: any$1
+      },
+      __type__: {
+        object: object$1
+      }
+    },
+    __type__: {
+      object: object$1
+    }
+  },
   __type__: {
     object: object$1
   }
@@ -29531,7 +29588,10 @@ var configureOptions$1 = {
     zoomable: true,
     zoomKey: ['ctrlKey', 'altKey', 'shiftKey', 'metaKey', ''],
     zoomMax: [315360000000000, 10, 315360000000000, 1],
-    zoomMin: [10, 10, 315360000000000, 1]
+    zoomMin: [10, 10, 315360000000000, 1],
+    xss: {
+      disabled: false
+    }
   }
 };
 
@@ -29814,8 +29874,8 @@ var ColorPicker = /*#__PURE__*/function () {
       } // check format
 
 
-      if (util.isString(color) === true) {
-        if (util.isValidRGB(color) === true) {
+      if (availableUtils.isString(color) === true) {
+        if (availableUtils.isValidRGB(color) === true) {
           var rgbaArray = color.substr(4).substr(0, color.length - 5).split(',');
           rgba = {
             r: rgbaArray[0],
@@ -29823,7 +29883,7 @@ var ColorPicker = /*#__PURE__*/function () {
             b: rgbaArray[2],
             a: 1.0
           };
-        } else if (util.isValidRGBA(color) === true) {
+        } else if (availableUtils.isValidRGBA(color) === true) {
           var _rgbaArray = color.substr(5).substr(0, color.length - 6).split(',');
 
           rgba = {
@@ -29832,8 +29892,8 @@ var ColorPicker = /*#__PURE__*/function () {
             b: _rgbaArray[2],
             a: _rgbaArray[3]
           };
-        } else if (util.isValidHex(color) === true) {
-          var rgbObj = util.hexToRGB(color);
+        } else if (availableUtils.isValidHex(color) === true) {
+          var rgbObj = availableUtils.hexToRGB(color);
           rgba = {
             r: rgbObj.r,
             g: rgbObj.g,
@@ -29897,7 +29957,7 @@ var ColorPicker = /*#__PURE__*/function () {
 
       // store the previous color for next time;
       if (storePrevious === true) {
-        this.previousColor = util.extend({}, this.color);
+        this.previousColor = availableUtils.extend({}, this.color);
       }
 
       if (this.applied === true) {
@@ -29969,11 +30029,11 @@ var ColorPicker = /*#__PURE__*/function () {
 
       // store the initial color
       if (setInitial === true) {
-        this.initialColor = util.extend({}, rgba);
+        this.initialColor = availableUtils.extend({}, rgba);
       }
 
       this.color = rgba;
-      var hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      var hsv = availableUtils.RGBToHSV(rgba.r, rgba.g, rgba.b);
       var angleConvert = 2 * Math.PI;
       var radius = this.r * hsv.s;
       var x = this.centerCoordinates.x + radius * Math.sin(angleConvert * hsv.h);
@@ -30005,9 +30065,9 @@ var ColorPicker = /*#__PURE__*/function () {
   }, {
     key: "_setBrightness",
     value: function _setBrightness(value) {
-      var hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      var hsv = availableUtils.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.v = value / 100;
-      var rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      var rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba;
 
@@ -30023,7 +30083,7 @@ var ColorPicker = /*#__PURE__*/function () {
     key: "_updatePicker",
     value: function _updatePicker() {
       var rgba = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.color;
-      var hsv = util.RGBToHSV(rgba.r, rgba.g, rgba.b);
+      var hsv = availableUtils.RGBToHSV(rgba.r, rgba.g, rgba.b);
       var ctx = this.colorPickerCanvas.getContext('2d');
 
       if (this.pixelRation === undefined) {
@@ -30254,7 +30314,7 @@ var ColorPicker = /*#__PURE__*/function () {
           for (sat = 0; sat < this.r; sat++) {
             x = this.centerCoordinates.x + sat * Math.sin(angleConvert * hue);
             y = this.centerCoordinates.y + sat * Math.cos(angleConvert * hue);
-            rgb = util.HSVToRGB(hue * hfac, sat * sfac, 1);
+            rgb = availableUtils.HSVToRGB(hue * hfac, sat * sfac, 1);
             ctx.fillStyle = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
             ctx.fillRect(x - 0.5, y - 0.5, 2, 2);
           }
@@ -30295,10 +30355,10 @@ var ColorPicker = /*#__PURE__*/function () {
       var h = angle / (2 * Math.PI);
       h = h < 0 ? h + 1 : h;
       var s = radius / this.r;
-      var hsv = util.RGBToHSV(this.color.r, this.color.g, this.color.b);
+      var hsv = availableUtils.RGBToHSV(this.color.r, this.color.g, this.color.b);
       hsv.h = h;
       hsv.s = s;
-      var rgba = util.HSVToRGB(hsv.h, hsv.s, hsv.v);
+      var rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
       rgba['a'] = this.color.a;
       this.color = rgba; // update previews
 
@@ -30345,7 +30405,7 @@ var Configurator = /*#__PURE__*/function () {
       container: undefined,
       showButton: true
     };
-    util.extend(this.options, this.defaultOptions);
+    availableUtils.extend(this.options, this.defaultOptions);
     this.configureOptions = configureOptions;
     this.moduleOptions = {};
     this.domElements = [];
@@ -30589,7 +30649,7 @@ var Configurator = /*#__PURE__*/function () {
     value: function _makeHeader(name) {
       var div = document.createElement('div');
       div.className = 'vis-configuration vis-config-header';
-      div.innerHTML = util.xss(name);
+      div.innerHTML = availableUtils.xss(name);
 
       this._makeItem([], div);
     }
@@ -30610,9 +30670,9 @@ var Configurator = /*#__PURE__*/function () {
       div.className = 'vis-configuration vis-config-label vis-config-s' + path.length;
 
       if (objectLabel === true) {
-        div.innerHTML = util.xss('<i><b>' + name + ':</b></i>');
+        div.innerHTML = availableUtils.xss('<i><b>' + name + ':</b></i>');
       } else {
-        div.innerHTML = util.xss(name + ':');
+        div.innerHTML = availableUtils.xss(name + ':');
       }
 
       return div;
@@ -30791,7 +30851,7 @@ var Configurator = /*#__PURE__*/function () {
         var div = document.createElement("div");
         div.id = "vis-configuration-popup";
         div.className = "vis-configuration-popup";
-        div.innerHTML = util.xss(string);
+        div.innerHTML = availableUtils.xss(string);
 
         div.onclick = function () {
           _this2._removePopup();
@@ -31013,7 +31073,7 @@ var Configurator = /*#__PURE__*/function () {
         if (obj.hasOwnProperty(subObj)) {
           show = true;
           var item = obj[subObj];
-          var newPath = util.copyAndExtendArray(path, subObj);
+          var newPath = availableUtils.copyAndExtendArray(path, subObj);
 
           if (typeof filter$1 === 'function') {
             show = filter$1(subObj, path); // if needed we must go deeper into the object.
@@ -31051,7 +31111,7 @@ var Configurator = /*#__PURE__*/function () {
               if (draw === true) {
                 // initially collapse options with an disabled enabled option.
                 if (item.enabled !== undefined) {
-                  var enabledPath = util.copyAndExtendArray(newPath, 'enabled');
+                  var enabledPath = availableUtils.copyAndExtendArray(newPath, 'enabled');
 
                   var enabledValue = this._getValue(enabledPath);
 
@@ -31266,7 +31326,8 @@ var Timeline = /*#__PURE__*/function (_Core) {
       },
       moment: moment$2
     };
-    _this.options = util.deepExtend({}, _this.defaultOptions); // Create the DOM, props, and emitter
+    _this.options = availableUtils.deepExtend({}, _this.defaultOptions);
+    options && availableUtils.setupXSSProtection(options.xss); // Create the DOM, props, and emitter
 
     _this._create(container);
 
@@ -31320,7 +31381,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
           loadingScreenFragment.innerHTML = '';
           loadingScreenFragment.appendChild(loadingScreen);
         } else if (loadingScreen != undefined) {
-          loadingScreenFragment.innerHTML = util.xss(loadingScreen);
+          loadingScreenFragment.innerHTML = availableUtils.xss(loadingScreen);
         }
       }
     }
@@ -31779,7 +31840,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
         var finalVerticalCallback = function finalVerticalCallback() {
           // Double check we ended at the proper scroll position
-          setFinalVerticalPosition(); // Let the redraw settle and finalize the position.      
+          setFinalVerticalPosition(); // Let the redraw settle and finalize the position.
 
           setTimeout$1(setFinalVerticalPosition, 100);
         }; // calculate the new middle and interval for the window
@@ -31866,7 +31927,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
         var redrawQueue = {};
         var redrawQueueLength = 0; // collect redraw functions
 
-        forEach$2(util).call(util, this.itemSet.items, function (item, key) {
+        forEach$2(availableUtils).call(availableUtils, this.itemSet.items, function (item, key) {
           if (item.groupShowing) {
             var returnQueue = true;
             redrawQueue[key] = item.redraw(returnQueue);
@@ -31878,7 +31939,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
         if (needRedraw) {
           var _loop = function _loop(i) {
-            forEach$2(util).call(util, redrawQueue, function (fns) {
+            forEach$2(availableUtils).call(availableUtils, redrawQueue, function (fns) {
               fns[i]();
             });
           };
@@ -31890,7 +31951,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
         } // calculate the date of the left side and right side of the items given
 
 
-        forEach$2(util).call(util, this.itemSet.items, function (item) {
+        forEach$2(availableUtils).call(availableUtils, this.itemSet.items, function (item) {
           var start = getStart(item);
           var end = getEnd(item);
           var startSide;
@@ -31954,8 +32015,8 @@ var Timeline = /*#__PURE__*/function (_Core) {
         var _context9;
 
         forEach$2(_context9 = this.itemsData).call(_context9, function (item) {
-          var start = util.convert(item.start, 'Date').valueOf();
-          var end = util.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
+          var start = availableUtils.convert(item.start, 'Date').valueOf();
+          var end = availableUtils.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
 
           if (min === null || start < min) {
             min = start;
@@ -31997,22 +32058,22 @@ var Timeline = /*#__PURE__*/function (_Core) {
       var time = this._toTime(x);
 
       var snappedTime = snap ? snap(time, scale, step) : time;
-      var element = util.getTarget(event);
+      var element = availableUtils.getTarget(event);
       var what = null;
 
       if (item != null) {
         what = 'item';
       } else if (customTime != null) {
         what = 'custom-time';
-      } else if (util.hasParent(element, this.timeAxis.dom.foreground)) {
+      } else if (availableUtils.hasParent(element, this.timeAxis.dom.foreground)) {
         what = 'axis';
-      } else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {
+      } else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {
         what = 'axis';
-      } else if (util.hasParent(element, this.itemSet.dom.labelSet)) {
+      } else if (availableUtils.hasParent(element, this.itemSet.dom.labelSet)) {
         what = 'group-label';
-      } else if (util.hasParent(element, this.currentTime.bar)) {
+      } else if (availableUtils.hasParent(element, this.currentTime.bar)) {
         what = 'current-time';
-      } else if (util.hasParent(element, this.dom.center)) {
+      } else if (availableUtils.hasParent(element, this.dom.center)) {
         what = 'background';
       }
 
@@ -32088,7 +32149,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
 }(Core);
 
 function getStart(item) {
-  return util.convert(item.data.start, 'Date').valueOf();
+  return availableUtils.convert(item.data.start, 'Date').valueOf();
 }
 /**
  *
@@ -32099,7 +32160,7 @@ function getStart(item) {
 
 function getEnd(item) {
   var end = item.data.end != undefined ? item.data.end : item.data.start;
-  return util.convert(end, 'Date').valueOf();
+  return availableUtils.convert(end, 'Date').valueOf();
 }
 /**
  * @param {vis.Timeline} timeline
@@ -32817,7 +32878,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
       start: 0,
       end: 0
     };
-    _this.options = util.extend({}, _this.defaultOptions);
+    _this.options = availableUtils.extend({}, _this.defaultOptions);
     _this.conversionFactor = 1;
 
     _this.setOptions(options);
@@ -32918,7 +32979,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
         }
 
         var fields = ['orientation', 'showMinorLabels', 'showMajorLabels', 'icons', 'majorLinesOffset', 'minorLinesOffset', 'labelOffsetX', 'labelOffsetY', 'iconWidth', 'width', 'visible', 'left', 'right', 'alignZeros'];
-        util.selectiveDeepExtend(fields, this.options, options);
+        availableUtils.selectiveDeepExtend(fields, this.options, options);
         this.minWidth = Number("".concat(this.options.width).replace("px", ""));
 
         if (redraw === true && this.dom.frame) {
@@ -33283,7 +33344,7 @@ var DataAxis = /*#__PURE__*/function (_Component) {
       var label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
 
       label.className = className;
-      label.innerHTML = util.xss(text);
+      label.innerHTML = availableUtils.xss(text);
 
       if (orientation === 'left') {
         label.style.left = "-".concat(this.options.labelOffsetX, "px");
@@ -33343,10 +33404,10 @@ var DataAxis = /*#__PURE__*/function (_Component) {
       if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
         var title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
         title.className = "vis-y-axis vis-title vis-".concat(orientation);
-        title.innerHTML = util.xss(this.options[orientation].title.text); // Add style - if provided
+        title.innerHTML = availableUtils.xss(this.options[orientation].title.text); // Add style - if provided
 
         if (this.options[orientation].title.style !== undefined) {
-          util.addCssText(title, this.options[orientation].title.style);
+          availableUtils.addCssText(title, this.options[orientation].title.style);
         }
 
         if (orientation === 'left') {
@@ -34106,7 +34167,7 @@ Line._linear = function (data) {
 function GraphGroup(group, groupId, options, groupsUsingDefaultStyles) {
   this.id = groupId;
   var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'drawPoints', 'shaded', 'interpolation', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
-  this.options = util.selectiveBridgeObject(fields, options);
+  this.options = availableUtils.selectiveBridgeObject(fields, options);
   this.usingDefaultStyle = group.className === undefined;
   this.groupsUsingDefaultStyles = groupsUsingDefaultStyles;
   this.zeroPosition = 0;
@@ -34130,7 +34191,7 @@ GraphGroup.prototype.setItems = function (items) {
     this.itemsData = items;
 
     if (sort(this.options) == true) {
-      util.insertSort(this.itemsData, function (a, b) {
+      availableUtils.insertSort(this.itemsData, function (a, b) {
         return a.x > b.x ? 1 : -1;
       });
     }
@@ -34160,7 +34221,7 @@ GraphGroup.prototype.setZeroPosition = function (pos) {
 GraphGroup.prototype.setOptions = function (options) {
   if (options !== undefined) {
     var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
-    util.selectiveDeepExtend(fields, this.options, options); // if the group's drawPoints is a function delegate the callback to the onRender property
+    availableUtils.selectiveDeepExtend(fields, this.options, options); // if the group's drawPoints is a function delegate the callback to the onRender property
 
     if (typeof options.drawPoints == 'function') {
       options.drawPoints = {
@@ -34168,9 +34229,9 @@ GraphGroup.prototype.setOptions = function (options) {
       };
     }
 
-    util.mergeOptions(this.options, options, 'interpolation');
-    util.mergeOptions(this.options, options, 'drawPoints');
-    util.mergeOptions(this.options, options, 'shaded');
+    availableUtils.mergeOptions(this.options, options, 'interpolation');
+    availableUtils.mergeOptions(this.options, options, 'drawPoints');
+    availableUtils.mergeOptions(this.options, options, 'shaded');
 
     if (options.interpolation) {
       if (_typeof(options.interpolation) == 'object') {
@@ -34302,7 +34363,7 @@ function Legend(body, options, side, linegraphOptions) {
     }
   };
   this.side = side;
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = availableUtils.extend({}, this.defaultOptions);
   this.linegraphOptions = linegraphOptions;
   this.svgElements = {};
   this.dom = {};
@@ -34392,7 +34453,7 @@ Legend.prototype.show = function () {
 
 Legend.prototype.setOptions = function (options) {
   var fields = ['enabled', 'orientation', 'icons', 'left', 'right'];
-  util.selectiveDeepExtend(fields, this.options, options);
+  availableUtils.selectiveDeepExtend(fields, this.options, options);
 };
 
 Legend.prototype.redraw = function () {
@@ -34464,7 +34525,7 @@ Legend.prototype.redraw = function () {
       }
     }
 
-    this.dom.textArea.innerHTML = util.xss(content);
+    this.dom.textArea.innerHTML = availableUtils.xss(content);
     this.dom.textArea.style.lineHeight = 0.75 * this.options.iconSize + this.options.iconSpacing + 'px';
   }
 };
@@ -34553,7 +34614,7 @@ function LineGraph(body, options) {
     }
   }; // options is shared by this lineGraph and all its items
 
-  this.options = util.extend({}, this.defaultOptions);
+  this.options = availableUtils.extend({}, this.defaultOptions);
   this.dom = {};
   this.props = {};
   this.hammer = null;
@@ -34608,7 +34669,7 @@ function LineGraph(body, options) {
   this.setOptions(options);
   this.groupsUsingDefaultStyles = [0];
   this.body.emitter.on('rangechanged', function () {
-    me.svg.style.left = util.option.asSize(-me.props.width);
+    me.svg.style.left = availableUtils.option.asSize(-me.props.width);
     me.forceGraphUpdate = true; //Is this local redraw necessary? (Core also does a change event!)
 
     me.redraw.call(me);
@@ -34669,11 +34730,11 @@ LineGraph.prototype.setOptions = function (options) {
       }
     }
 
-    util.selectiveDeepExtend(fields, this.options, options);
-    util.mergeOptions(this.options, options, 'interpolation');
-    util.mergeOptions(this.options, options, 'drawPoints');
-    util.mergeOptions(this.options, options, 'shaded');
-    util.mergeOptions(this.options, options, 'legend');
+    availableUtils.selectiveDeepExtend(fields, this.options, options);
+    availableUtils.mergeOptions(this.options, options, 'interpolation');
+    availableUtils.mergeOptions(this.options, options, 'drawPoints');
+    availableUtils.mergeOptions(this.options, options, 'shaded');
+    availableUtils.mergeOptions(this.options, options, 'legend');
 
     if (options.interpolation) {
       if (_typeof(options.interpolation) == 'object') {
@@ -34761,7 +34822,7 @@ LineGraph.prototype.setItems = function (items) {
 
   if (oldItemsData) {
     // unsubscribe from old dataset
-    forEach$2(util).call(util, this.itemListeners, function (callback, event) {
+    forEach$2(availableUtils).call(availableUtils, this.itemListeners, function (callback, event) {
       oldItemsData.off(event, callback);
     }); // stop maintaining a coerced version of the old data set
 
@@ -34777,7 +34838,7 @@ LineGraph.prototype.setItems = function (items) {
     // subscribe to new dataset
     var id = this.id;
 
-    forEach$2(util).call(util, this.itemListeners, function (callback, event) {
+    forEach$2(availableUtils).call(availableUtils, this.itemListeners, function (callback, event) {
       me.itemsData.on(event, callback, id);
     }); // add all new items
 
@@ -34798,7 +34859,7 @@ LineGraph.prototype.setGroups = function (groups) {
   var ids; // unsubscribe from current dataset
 
   if (this.groupsData) {
-    forEach$2(util).call(util, this.groupListeners, function (callback, event) {
+    forEach$2(availableUtils).call(availableUtils, this.groupListeners, function (callback, event) {
       me.groupsData.off(event, callback);
     }); // remove all drawn groups
 
@@ -34824,7 +34885,7 @@ LineGraph.prototype.setGroups = function (groups) {
     // subscribe to new dataset
     var id = this.id;
 
-    forEach$2(util).call(util, this.groupListeners, function (callback, event) {
+    forEach$2(availableUtils).call(availableUtils, this.groupListeners, function (callback, event) {
       me.groupsData.on(event, callback, id);
     }); // draw all ms
 
@@ -35010,9 +35071,9 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       } //Copy data (because of unmodifiable DataView input.
 
 
-      var extended = util.bridgeObject(item);
-      extended.x = util.convert(item.x, 'Date');
-      extended.end = util.convert(item.end, 'Date');
+      var extended = availableUtils.bridgeObject(item);
+      extended.x = availableUtils.convert(item.x, 'Date');
+      extended.end = availableUtils.convert(item.end, 'Date');
       extended.orginalY = item.y; //real Y
 
       extended.y = Number(item.y);
@@ -35086,8 +35147,8 @@ LineGraph.prototype.redraw = function () {
   if (resized == true) {
     var _context;
 
-    this.svg.style.width = util.option.asSize(3 * this.props.width);
-    this.svg.style.left = util.option.asSize(-this.props.width); // if the height of the graph is set as proportional, change the height of the svg
+    this.svg.style.width = availableUtils.option.asSize(3 * this.props.width);
+    this.svg.style.left = availableUtils.option.asSize(-this.props.width); // if the height of the graph is set as proportional, change the height of the svg
 
     if (indexOf(_context = this.options.height + '').call(_context, "%") != -1 || this.updateSVGheightOnResize == true) {
       this.updateSVGheight = true;
@@ -35148,7 +35209,7 @@ LineGraph.prototype._getSortedGroupIds = function () {
     }
   }
 
-  util.insertSort(grouplist, function (a, b) {
+  availableUtils.insertSort(grouplist, function (a, b) {
     var az = a.zIndex;
     var bz = b.zIndex;
     if (az === undefined) az = 0;
@@ -35388,8 +35449,8 @@ LineGraph.prototype._getRelevantData = function (groupIds, groupsData, minDate, 
           return a.getTime() == b.getTime() ? 0 : a < b ? -1 : 1;
         };
 
-        var first = Math.max(0, util.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
-        var last = Math.min(itemsData.length, util.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
+        var first = Math.max(0, availableUtils.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
+        var last = Math.min(itemsData.length, availableUtils.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
 
         if (last <= 0) {
           last = itemsData.length;
@@ -36347,7 +36408,7 @@ function Graph2d(container, items, groups, options) {
     maxHeight: null,
     minHeight: null
   };
-  this.options = util.deepExtend({}, this.defaultOptions); // Create the DOM, props, and emitter
+  this.options = availableUtils.deepExtend({}, this.defaultOptions); // Create the DOM, props, and emitter
 
   this._create(container); // all components listed here will be repainted automatically
 
@@ -36594,7 +36655,7 @@ Graph2d.prototype.getDataRange = function () {
       if (this.linegraph.groups[groupId].visible == true) {
         for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
           var item = this.linegraph.groups[groupId].itemsData[i];
-          var value = util.convert(item.x, 'Date').valueOf();
+          var value = availableUtils.convert(item.x, 'Date').valueOf();
           min = min == null ? value : min > value ? value : min;
           max = max == null ? value : max < value ? value : max;
         }
@@ -36618,32 +36679,32 @@ Graph2d.prototype.getDataRange = function () {
 Graph2d.prototype.getEventProperties = function (event) {
   var clientX = event.center ? event.center.x : event.clientX;
   var clientY = event.center ? event.center.y : event.clientY;
-  var x = clientX - util.getAbsoluteLeft(this.dom.centerContainer);
-  var y = clientY - util.getAbsoluteTop(this.dom.centerContainer);
+  var x = clientX - availableUtils.getAbsoluteLeft(this.dom.centerContainer);
+  var y = clientY - availableUtils.getAbsoluteTop(this.dom.centerContainer);
 
   var time = this._toTime(x);
 
   var customTime = CustomTime.customTimeFromTarget(event);
-  var element = util.getTarget(event);
+  var element = availableUtils.getTarget(event);
   var what = null;
 
-  if (util.hasParent(element, this.timeAxis.dom.foreground)) {
+  if (availableUtils.hasParent(element, this.timeAxis.dom.foreground)) {
     what = 'axis';
-  } else if (this.timeAxis2 && util.hasParent(element, this.timeAxis2.dom.foreground)) {
+  } else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {
     what = 'axis';
-  } else if (util.hasParent(element, this.linegraph.yAxisLeft.dom.frame)) {
+  } else if (availableUtils.hasParent(element, this.linegraph.yAxisLeft.dom.frame)) {
     what = 'data-axis';
-  } else if (util.hasParent(element, this.linegraph.yAxisRight.dom.frame)) {
+  } else if (availableUtils.hasParent(element, this.linegraph.yAxisRight.dom.frame)) {
     what = 'data-axis';
-  } else if (util.hasParent(element, this.linegraph.legendLeft.dom.frame)) {
+  } else if (availableUtils.hasParent(element, this.linegraph.legendLeft.dom.frame)) {
     what = 'legend';
-  } else if (util.hasParent(element, this.linegraph.legendRight.dom.frame)) {
+  } else if (availableUtils.hasParent(element, this.linegraph.legendRight.dom.frame)) {
     what = 'legend';
   } else if (customTime != null) {
     what = 'custom-time';
-  } else if (util.hasParent(element, this.currentTime.bar)) {
+  } else if (availableUtils.hasParent(element, this.currentTime.bar)) {
     what = 'current-time';
-  } else if (util.hasParent(element, this.dom.center)) {
+  } else if (availableUtils.hasParent(element, this.dom.center)) {
     what = 'background';
   }
 
