@@ -94,7 +94,7 @@
     "git-authors-cli": "1.0.33",
     "husky": "5.2.0",
     "jsdoc": "3.6.6",
-    "jsdom": "16.5.2",
+    "jsdom": "16.5.3",
     "jsdom-global": "3.0.2",
     "keycharm": "0.4.0",
     "mocha": "8.3.2",
