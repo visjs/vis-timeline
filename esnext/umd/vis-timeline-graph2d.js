@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-13T17:12:59.511Z
+ * @date    2021-04-13T17:13:52.232Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25,10 +25,10 @@
  */
 
 (function (global, factory) {
-  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('xss'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm'), require('uuid')) :
-  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm', 'uuid'], factory) :
-  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.filterXSS, global.Emitter, global.propagating, global.Hammer, global.keycharm, global.uuid));
-}(this, (function (exports, moment$3, util, esnext, xssFilter, Emitter, PropagatingHammer, Hammer$1, keycharm, uuid) {
+  typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('xss'), require('uuid'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm')) :
+  typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'uuid', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm'], factory) :
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.filterXSS, global.uuid, global.Emitter, global.propagating, global.Hammer, global.keycharm));
+}(this, (function (exports, moment$3, util, esnext, xssFilter, uuid, Emitter, PropagatingHammer, Hammer$1, keycharm) {
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   function _interopNamespace(e) {
