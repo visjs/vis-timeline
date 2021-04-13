@@ -25,6 +25,7 @@ export type DataViewDataGroup = DataView<DataGroup, 'id'>;
 export type DataViewDataItem = DataView<DataItem, 'id'>;
 
 import { MomentInput, MomentFormatSpecification, Moment } from 'moment';
+import { IFilterXSSOptions } from 'xss';
 export type MomentConstructor1 =
   (inp?: MomentInput, format?: MomentFormatSpecification, strict?: boolean) => Moment;
 export type MomentConstructor2 =
@@ -214,7 +215,7 @@ export interface TimelineTooltipOption {
 
 export interface TimelineXSSProtectionOption {
   disabled: boolean;
-  filterOptions?: XSS.IFilterXSSOptions;
+  filterOptions?: IFilterXSSOptions;
 }
 
 export type TimelineOptionsConfigureFunction = (option: string, path: string[]) => boolean;
