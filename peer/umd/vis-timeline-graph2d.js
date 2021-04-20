@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-19T22:04:50.799Z
+ * @date    2021-04-20T01:13:48.607Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -492,7 +492,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.10.1',
+	    version: '3.10.2',
 	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -1133,6 +1133,7 @@
 	var WeakMap$1 = global$1.WeakMap;
 	var nativeWeakMap = typeof WeakMap$1 === 'function' && /native code/.test(inspectSource(WeakMap$1));
 
+	var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
 	var WeakMap = global$1.WeakMap;
 	var set$3, get, has;
 
@@ -1159,6 +1160,7 @@
 	  var wmset = store.set;
 
 	  set$3 = function (it, metadata) {
+	    if (wmhas.call(store, it)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);
 	    metadata.facade = it;
 	    wmset.call(store, it, metadata);
 	    return metadata;
@@ -1176,6 +1178,7 @@
 	  hiddenKeys$1[STATE] = true;
 
 	  set$3 = function (it, metadata) {
+	    if (has$1(it, STATE)) throw new TypeError(OBJECT_ALREADY_INITIALIZED);
 	    metadata.facade = it;
 	    createNonEnumerableProperty(it, STATE, metadata);
 	    return metadata;
