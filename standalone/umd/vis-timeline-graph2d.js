@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-20T01:13:48.607Z
+ * @date    2021-04-20T14:39:52.940Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6743,7 +6743,7 @@
 	  return WellKnownSymbolsStore$1[name];
 	};
 
-	var ITERATOR$5 = wellKnownSymbol('iterator');
+	var ITERATOR$4 = wellKnownSymbol('iterator');
 	var BUGGY_SAFARI_ITERATORS$1 = false;
 
 	var returnThis$2 = function () {
@@ -6767,12 +6767,12 @@
 	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype$2 == undefined || fails(function () {
 	  var test = {}; // FF44- legacy iterators case
 
-	  return IteratorPrototype$2[ITERATOR$5].call(test) !== test;
+	  return IteratorPrototype$2[ITERATOR$4].call(test) !== test;
 	});
 	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$2 = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
 
-	if ((NEW_ITERATOR_PROTOTYPE) && !has$1(IteratorPrototype$2, ITERATOR$5)) {
-	  createNonEnumerableProperty(IteratorPrototype$2, ITERATOR$5, returnThis$2);
+	if ((NEW_ITERATOR_PROTOTYPE) && !has$1(IteratorPrototype$2, ITERATOR$4)) {
+	  createNonEnumerableProperty(IteratorPrototype$2, ITERATOR$4, returnThis$2);
 	}
 
 	var iteratorsCore = {
@@ -7065,7 +7065,7 @@
 
 	var IteratorPrototype = iteratorsCore.IteratorPrototype;
 	var BUGGY_SAFARI_ITERATORS = iteratorsCore.BUGGY_SAFARI_ITERATORS;
-	var ITERATOR$4 = wellKnownSymbol('iterator');
+	var ITERATOR$3 = wellKnownSymbol('iterator');
 	var KEYS = 'keys';
 	var VALUES = 'values';
 	var ENTRIES = 'entries';
@@ -7106,7 +7106,7 @@
 	  var TO_STRING_TAG = NAME + ' Iterator';
 	  var INCORRECT_VALUES_NAME = false;
 	  var IterablePrototype = Iterable.prototype;
-	  var nativeIterator = IterablePrototype[ITERATOR$4] || IterablePrototype['@@iterator'] || DEFAULT && IterablePrototype[DEFAULT];
+	  var nativeIterator = IterablePrototype[ITERATOR$3] || IterablePrototype['@@iterator'] || DEFAULT && IterablePrototype[DEFAULT];
 	  var defaultIterator = !BUGGY_SAFARI_ITERATORS && nativeIterator || getIterationMethod(DEFAULT);
 	  var anyNativeIterator = NAME == 'Array' ? IterablePrototype.entries || nativeIterator : nativeIterator;
 	  var CurrentIteratorPrototype, methods, KEY; // fix native
@@ -7132,8 +7132,8 @@
 	  } // define iterator
 
 
-	  if ((FORCED) && IterablePrototype[ITERATOR$4] !== defaultIterator) {
-	    createNonEnumerableProperty(IterablePrototype, ITERATOR$4, defaultIterator);
+	  if ((FORCED) && IterablePrototype[ITERATOR$3] !== defaultIterator) {
+	    createNonEnumerableProperty(IterablePrototype, ITERATOR$3, defaultIterator);
 	  }
 
 	  iterators[NAME] = defaultIterator; // export additional methods
@@ -7205,11 +7205,11 @@
 	  }
 	};
 
-	var ITERATOR$3 = wellKnownSymbol('iterator');
+	var ITERATOR$2 = wellKnownSymbol('iterator');
 	var ArrayPrototype$j = Array.prototype; // check on default Array iterator
 
 	var isArrayIteratorMethod = function (it) {
-	  return it !== undefined && (iterators.Array === it || ArrayPrototype$j[ITERATOR$3] === it);
+	  return it !== undefined && (iterators.Array === it || ArrayPrototype$j[ITERATOR$2] === it);
 	};
 
 	var createProperty = function (object, key, value) {
@@ -7217,10 +7217,10 @@
 	  if (propertyKey in object) objectDefineProperty.f(object, propertyKey, createPropertyDescriptor(0, value));else object[propertyKey] = value;
 	};
 
-	var ITERATOR$2 = wellKnownSymbol('iterator');
+	var ITERATOR$1 = wellKnownSymbol('iterator');
 
 	var getIteratorMethod$1 = function (it) {
-	  if (it != undefined) return it[ITERATOR$2] || it['@@iterator'] || iterators[classof(it)];
+	  if (it != undefined) return it[ITERATOR$1] || it['@@iterator'] || iterators[classof(it)];
 	};
 
 	// https://tc39.es/ecma262/#sec-array.from
@@ -7262,7 +7262,7 @@
 	  return result;
 	};
 
-	var ITERATOR$1 = wellKnownSymbol('iterator');
+	var ITERATOR = wellKnownSymbol('iterator');
 	var SAFE_CLOSING = false;
 
 	try {
@@ -7278,7 +7278,7 @@
 	    }
 	  };
 
-	  iteratorWithReturn[ITERATOR$1] = function () {
+	  iteratorWithReturn[ITERATOR] = function () {
 	    return this;
 	  }; // eslint-disable-next-line es/no-array-from, no-throw-literal -- required for testing
 
@@ -7297,7 +7297,7 @@
 	  try {
 	    var object = {};
 
-	    object[ITERATOR$1] = function () {
+	    object[ITERATOR] = function () {
 	      return {
 	        next: function () {
 	          return {
@@ -7443,20 +7443,6 @@
 	var getIteratorMethod_1 = getIteratorMethod$1;
 
 	var getIteratorMethod = getIteratorMethod_1;
-
-	var getIterator$1 = function (it) {
-	  var iteratorMethod = getIteratorMethod$1(it);
-
-	  if (typeof iteratorMethod != 'function') {
-	    throw TypeError(String(it) + ' is not iterable');
-	  }
-
-	  return anObject(iteratorMethod.call(it));
-	};
-
-	var getIterator_1 = getIterator$1;
-
-	var getIterator = getIterator_1;
 
 	// https://tc39.es/ecma262/#sec-isarray
 	// eslint-disable-next-line es/no-array-isarray -- safe
@@ -8277,27 +8263,17 @@
 
 	var symbol$2 = symbol$3;
 
-	var ITERATOR = wellKnownSymbol('iterator');
-
-	var isIterable$1 = function (it) {
-	  var O = Object(it);
-	  return O[ITERATOR] !== undefined || '@@iterator' in O // eslint-disable-next-line no-prototype-builtins -- safe
-	  || iterators.hasOwnProperty(classof(O));
-	};
-
-	var isIterable_1 = isIterable$1;
-
-	var isIterable = isIterable_1;
-
 	function _iterableToArrayLimit(arr, i) {
-	  if (typeof symbol$2 === "undefined" || !isIterable(Object(arr))) return;
+	  var _i = arr && (typeof symbol$2 !== "undefined" && getIteratorMethod(arr) || arr["@@iterator"]);
+
+	  if (_i == null) return;
 	  var _arr = [];
 	  var _n = true;
 	  var _d = false;
 	  var _e = undefined;
 
 	  try {
-	    for (var _i = getIterator(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
+	    for (_i = _i.call(arr), _s; !(_n = (_s = _i.next()).done); _n = true) {
 	      _arr.push(_s.value);
 
 	      if (i && _arr.length === i) break;
@@ -8439,7 +8415,7 @@
 	}
 
 	function _iterableToArray(iter) {
-	  if (typeof symbol$2 !== "undefined" && isIterable(Object(iter))) return from(iter);
+	  if (typeof symbol$2 !== "undefined" && getIteratorMethod(iter) != null || iter["@@iterator"] != null) return from(iter);
 	}
 
 	function _nonIterableSpread() {
@@ -12437,7 +12413,7 @@
 
 	function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$2(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context23; forEach$2(_context23 = ownKeys$2(Object(source))).call(_context23, function (key) { defineProperty$5(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-	function _createForOfIteratorHelper$6(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$6(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$6(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$6(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$6(o, minLen) { var _context21; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$6(o, minLen); var n = slice$2(_context21 = Object.prototype.toString.call(o)).call(_context21, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$6(o, minLen); }
 
@@ -18790,6 +18766,20 @@
 
 	var set = set$1;
 
+	var getIterator$1 = function (it) {
+	  var iteratorMethod = getIteratorMethod$1(it);
+
+	  if (typeof iteratorMethod != 'function') {
+	    throw TypeError(String(it) + ' is not iterable');
+	  }
+
+	  return anObject(iteratorMethod.call(it));
+	};
+
+	var getIterator_1 = getIterator$1;
+
+	var getIterator = getIterator_1;
+
 	var test = [];
 	var nativeSort = test.sort; // IE8-
 
@@ -18975,7 +18965,7 @@
 
 	function _isNativeReflectConstruct$d() { if (typeof Reflect === "undefined" || !construct) return false; if (construct.sham) return false; if (typeof Proxy === "function") return true; try { Boolean.prototype.valueOf.call(construct(Boolean, [], function () {})); return true; } catch (e) { return false; } }
 
-	function _createForOfIteratorHelper$5(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$5(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$5(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$5(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$5(o, minLen) { var _context31; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$5(o, minLen); var n = slice$2(_context31 = Object.prototype.toString.call(o)).call(_context31, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$5(o, minLen); }
 
@@ -32341,7 +32331,7 @@
 	var css_248z$5 = "\n.vis-item {\n  position: absolute;\n  color: #1A1A1A;\n  border-color: #97B0F8;\n  border-width: 1px;\n  background-color: #D5DDF6;\n  display: inline-block;\n  z-index: 1;\n  /*overflow: hidden;*/\n}\n\n.vis-item.vis-selected {\n  border-color: #FFC200;\n  background-color: #FFF785;\n\n  /* z-index must be higher than the z-index of custom time bar and current time bar */\n  z-index: 2;\n}\n\n.vis-editable.vis-selected {\n  cursor: move;\n}\n\n.vis-item.vis-point.vis-selected {\n  background-color: #FFF785;\n}\n\n.vis-item.vis-box {\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-point {\n  background: none;\n}\n\n.vis-item.vis-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}\n\n.vis-item.vis-range {\n  border-style: solid;\n  border-radius: 2px;\n  box-sizing: border-box;\n}\n\n.vis-item.vis-background {\n  border: none;\n  background-color: rgba(213, 221, 246, 0.4);\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n}\n\n.vis-item .vis-item-overflow {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n}\n\n.vis-item-visible-frame {\n  white-space: nowrap;\n}\n\n.vis-item.vis-range .vis-item-content {\n  position: relative;\n  display: inline-block;\n}\n\n.vis-item.vis-background .vis-item-content {\n  position: absolute;\n  display: inline-block;\n}\n\n.vis-item.vis-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item .vis-item-content {\n  white-space: nowrap;\n  box-sizing: border-box;\n  padding: 5px;\n}\n\n.vis-item .vis-onUpdateTime-tooltip {\n  position: absolute;\n  background: #4f81bd;\n  color: white;\n  width: 200px;\n  text-align: center;\n  white-space: nowrap;\n  padding: 5px;\n  border-radius: 1px;\n  transition: 0.4s;\n  -o-transition: 0.4s;\n  -moz-transition: 0.4s;\n  -webkit-transition: 0.4s;\n}\n\n.vis-item .vis-delete, .vis-item .vis-delete-rtl {\n  position: absolute;\n  top: 0px;\n  width: 24px;\n  height: 24px;\n  box-sizing: border-box;\n  padding: 0px 5px;\n  cursor: pointer;\n\n  -webkit-transition: background 0.2s linear;\n  -moz-transition: background 0.2s linear;\n  -ms-transition: background 0.2s linear;\n  -o-transition: background 0.2s linear;\n  transition: background 0.2s linear;\n}\n\n.vis-item .vis-delete {\n  right: -24px;\n}\n\n.vis-item .vis-delete-rtl {\n  left: -24px;\n}\n\n.vis-item .vis-delete:after, .vis-item .vis-delete-rtl:after {\n  content: \"\\00D7\"; /* MULTIPLICATION SIGN */\n  color: red;\n  font-family: arial, sans-serif;\n  font-size: 22px;\n  font-weight: bold;\n\n  -webkit-transition: color 0.2s linear;\n  -moz-transition: color 0.2s linear;\n  -ms-transition: color 0.2s linear;\n  -o-transition: color 0.2s linear;\n  transition: color 0.2s linear;\n}\n\n.vis-item .vis-delete:hover, .vis-item .vis-delete-rtl:hover {\n  background: red;\n}\n\n.vis-item .vis-delete:hover:after, .vis-item .vis-delete-rtl:hover:after {\n  color: white;\n}\n\n.vis-item .vis-drag-center {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0px;\n  cursor: move;\n}\n\n.vis-item.vis-range .vis-drag-left {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  left: -4px;\n\n  cursor: w-resize;\n}\n\n.vis-item.vis-range .vis-drag-right {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  right: -4px;\n\n  cursor: e-resize;\n}\n\n.vis-range.vis-item.vis-readonly .vis-drag-left,\n.vis-range.vis-item.vis-readonly .vis-drag-right {\n  cursor: auto;\n}\n\n.vis-item.vis-cluster {\n  vertical-align: center;\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-cluster-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item.vis-cluster-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}";
 	styleInject(css_248z$5);
 
-	function _createForOfIteratorHelper$4(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$4(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$4(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$4(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$4(o, minLen) { var _context8; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$4(o, minLen); var n = slice$2(_context8 = Object.prototype.toString.call(o)).call(_context8, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$4(o, minLen); }
 
@@ -34759,7 +34749,7 @@
 
 	var every = every$1;
 
-	function _createForOfIteratorHelper$3(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$3(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$3(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$3(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$3(o, minLen) { var _context14; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$3(o, minLen); var n = slice$2(_context14 = Object.prototype.toString.call(o)).call(_context14, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$3(o, minLen); }
 
@@ -35529,7 +35519,7 @@
 
 	ClusterItem.prototype.baseClassName = 'vis-item vis-range vis-cluster';
 
-	function _createForOfIteratorHelper$2(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$2(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$2(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$2(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$2(o, minLen) { var _context4; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$2(o, minLen); var n = slice$2(_context4 = Object.prototype.toString.call(o)).call(_context4, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$2(o, minLen); }
 
@@ -35914,7 +35904,7 @@
 	var css_248z$2 = "\n.vis-labelset {\n  position: relative;\n\n  overflow: hidden;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  position: relative;\n  left: 0;\n  top: 0;\n  width: 100%;\n  color: #4d4d4d;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  border-bottom: 1px solid #bfbfbf;\n}\n\n.vis-labelset .vis-label.draggable {\n  cursor: pointer;\n}\n\n.vis-group-is-dragging {\n  background: rgba(0, 0, 0, .1);\n}\n\n.vis-labelset .vis-label:last-child {\n  border-bottom: none;\n}\n\n.vis-labelset .vis-label .vis-inner {\n  display: inline-block;\n  padding: 5px;\n}\n\n.vis-labelset .vis-label .vis-inner.vis-hidden {\n  padding: 0;\n}\n";
 	styleInject(css_248z$2);
 
-	function _createForOfIteratorHelper$1(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper$1(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray$1(o, minLen) { var _context34; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$2(_context34 = Object.prototype.toString.call(o)).call(_context34, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
 
@@ -42927,7 +42917,7 @@
 	var css_248z = "\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  border-bottom: 1px solid;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-minor {\n  border-color: #e5e5e5;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-major {\n  border-color: #bfbfbf;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-major {\n  width: 100%;\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-major.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-minor {\n  position: absolute;\n  width: 100%;\n  color: #bebebe;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-minor.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title {\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n  bottom: 20px;\n  text-align: center;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-measure {\n  padding: 0;\n  margin: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-left {\n  bottom: 0;\n  -webkit-transform-origin: left top;\n  -moz-transform-origin: left top;\n  -ms-transform-origin: left top;\n  -o-transform-origin: left top;\n  transform-origin: left bottom;\n  -webkit-transform: rotate(-90deg);\n  -moz-transform: rotate(-90deg);\n  -ms-transform: rotate(-90deg);\n  -o-transform: rotate(-90deg);\n  transform: rotate(-90deg);\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-right {\n  bottom: 0;\n  -webkit-transform-origin: right bottom;\n  -moz-transform-origin: right bottom;\n  -ms-transform-origin: right bottom;\n  -o-transform-origin: right bottom;\n  transform-origin: right bottom;\n  -webkit-transform: rotate(90deg);\n  -moz-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  -o-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.vis-legend {\n  background-color: rgba(247, 252, 255, 0.65);\n  padding: 5px;\n  border: 1px solid #b3b3b3;\n  box-shadow: 2px 2px 10px rgba(154, 154, 154, 0.55);\n}\n\n.vis-legend-text {\n  /*font-size: 10px;*/\n  white-space: nowrap;\n  display: inline-block\n}";
 	styleInject(css_248z);
 
-	function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof symbol === "undefined" || getIteratorMethod(o) == null) { if (isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = getIterator(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+	function _createForOfIteratorHelper(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
 	function _unsupportedIterableToArray(o, minLen) { var _context; if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = slice$2(_context = Object.prototype.toString.call(o)).call(_context, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
 
