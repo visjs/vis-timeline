@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-22T14:29:58.684Z
+ * @date    2021-04-22T18:43:59.676Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6344,17 +6344,23 @@ var inspectSource = sharedStore.inspectSource;
 var WeakMap$1 = global$1.WeakMap;
 var nativeWeakMap = typeof WeakMap$1 === 'function' && /native code/.test(inspectSource(WeakMap$1));
 
+// https://tc39.es/ecma262/#sec-toobject
+
+var toObject = function (argument) {
+  return Object(requireObjectCoercible(argument));
+};
+
 var hasOwnProperty = {}.hasOwnProperty;
 
-var has$1 = function (it, key) {
-  return hasOwnProperty.call(it, key);
+var has$1 = function hasOwn(it, key) {
+  return hasOwnProperty.call(toObject(it), key);
 };
 
 var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.10.2',
+    version: '3.11.0',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -6647,12 +6653,6 @@ var _export = function (options, source) {
       }
     }
   }
-};
-
-// https://tc39.es/ecma262/#sec-toobject
-
-var toObject = function (argument) {
-  return Object(requireObjectCoercible(argument));
 };
 
 var correctPrototypeGetter = !fails(function () {

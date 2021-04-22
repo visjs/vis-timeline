@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-22T14:29:58.684Z
+ * @date    2021-04-22T18:43:59.676Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -139,10 +139,16 @@
 	  throw TypeError("Can't convert object to primitive value");
 	};
 
+	// https://tc39.es/ecma262/#sec-toobject
+
+	var toObject = function (argument) {
+	  return Object(requireObjectCoercible(argument));
+	};
+
 	var hasOwnProperty = {}.hasOwnProperty;
 
-	var has$1 = function (it, key) {
-	  return hasOwnProperty.call(it, key);
+	var has$1 = function hasOwn(it, key) {
+	  return hasOwnProperty.call(toObject(it), key);
 	};
 
 	var document$1 = global$1.document; // typeof document.createElement is 'object' in old IE
@@ -492,7 +498,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.10.2',
+	    version: '3.11.0',
 	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -853,12 +859,6 @@
 
 	var isArray$5 = Array.isArray || function isArray(arg) {
 	  return classofRaw(arg) == 'Array';
-	};
-
-	// https://tc39.es/ecma262/#sec-toobject
-
-	var toObject = function (argument) {
-	  return Object(requireObjectCoercible(argument));
 	};
 
 	var createProperty = function (object, key, value) {
