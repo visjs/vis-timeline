@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-29T19:56:39.538Z
+ * @date    2021-04-29T22:24:58.145Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6485,7 +6485,7 @@ var Hammer$2 = /*#__PURE__*/function () {
   return Hammer;
 }(); //  style loader but by script tag, not by the loader.
 
-function ownKeys$1(object, enumerableOnly) { var keys$1 = keys(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); keys$1.push.apply(keys$1, symbols); } return keys$1; }
+function ownKeys$1(object, enumerableOnly) { var keys$1 = keys(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys$1.push.apply(keys$1, symbols); } return keys$1; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$1(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context23; forEach$2(_context23 = ownKeys$1(Object(source))).call(_context23, function (key) { defineProperty$3(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -13148,7 +13148,7 @@ function v4(options, buf, offset) {
   return buf || bytesToUuid(rnds);
 }
 
-function ownKeys(object, enumerableOnly) { var keys$1 = keys(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); keys$1.push.apply(keys$1, symbols); } return keys$1; }
+function ownKeys(object, enumerableOnly) { var keys$1 = keys(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys$1.push.apply(keys$1, symbols); } return keys$1; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys(Object(source), true)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context9; forEach$2(_context9 = ownKeys(Object(source))).call(_context9, function (key) { defineProperty$3(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'

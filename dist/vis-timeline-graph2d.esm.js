@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-04-29T19:58:34.669Z
+ * @date    2021-04-29T22:26:54.304Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -12500,7 +12500,7 @@ var Hammer$2 = /*#__PURE__*/function () {
   return Hammer;
 }(); //  style loader but by script tag, not by the loader.
 
-function ownKeys$2(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$2(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$2(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context23; forEach$2(_context23 = ownKeys$2(Object(source))).call(_context23, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -19086,7 +19086,7 @@ function v4(options, buf, offset) {
   return buf || bytesToUuid(rnds);
 }
 
-function ownKeys$1(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$1(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context32; forEach$2(_context32 = ownKeys$1(Object(source), true)).call(_context32, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context33; forEach$2(_context33 = ownKeys$1(Object(source))).call(_context33, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
@@ -24109,7 +24109,7 @@ var lib = createCommonjsModule(function (module, exports) {
 lib.filterXSS;
 lib.FilterXSS;
 
-function ownKeys(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys(Object(source), true)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context9; forEach$2(_context9 = ownKeys(Object(source))).call(_context9, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
