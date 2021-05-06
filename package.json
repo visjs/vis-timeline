@@ -124,7 +124,7 @@
     "vis-data": "7.1.2",
     "vis-dev-utils": "2.9.54",
     "vis-util": "5.0.2",
-    "xss": "1.0.8"
+    "xss": "1.0.9"
   },
   "collective": {
     "type": "opencollective",
