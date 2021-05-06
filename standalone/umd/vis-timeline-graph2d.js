@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-06T11:30:01.831Z
+ * @date    2021-05-06T13:28:53.325Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6365,7 +6365,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.11.3',
+	    version: '3.12.0',
 	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -6686,8 +6686,6 @@
 	  return O instanceof Object ? ObjectPrototype$1 : null;
 	};
 
-	var engineIsNode = classofRaw(global$1.process) == 'process';
-
 	var aFunction = function (variable) {
 	  return typeof variable == 'function' ? variable : undefined;
 	};
@@ -6705,7 +6703,7 @@
 
 	if (v8) {
 	  match = v8.split('.');
-	  version = match[0] + match[1];
+	  version = match[0] < 4 ? 1 : match[0] + match[1];
 	} else if (engineUserAgent) {
 	  match = engineUserAgent.match(/Edge\/(\d+)/);
 
@@ -6717,11 +6715,12 @@
 
 	var engineV8Version = version && +version;
 
+	/* eslint-disable es/no-symbol -- required for testing */
+
 	var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
-	  // eslint-disable-next-line es/no-symbol -- required for testing
-	  return !Symbol.sham && ( // Chrome 38 Symbol has incorrect toString conversion
+	  return !String(Symbol()) || // Chrome 38 Symbol has incorrect toString conversion
 	  // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
-	  engineIsNode ? engineV8Version === 38 : engineV8Version > 37 && engineV8Version < 41);
+	  !Symbol.sham && engineV8Version && engineV8Version < 41;
 	});
 
 	/* eslint-disable es/no-symbol -- required for testing */
@@ -8249,15 +8248,26 @@
 
 	defineWellKnownSymbol('dispose');
 
+	// https://github.com/tc39/proposal-pattern-matching
+
+	defineWellKnownSymbol('matcher');
+
+	// https://github.com/tc39/proposal-decorators
+
+	defineWellKnownSymbol('metadata');
+
 	// https://github.com/tc39/proposal-observable
 
 	defineWellKnownSymbol('observable');
 
+	// `Symbol.patternMatch` well-known symbol
 	// https://github.com/tc39/proposal-pattern-matching
 
 	defineWellKnownSymbol('patternMatch');
 
 	defineWellKnownSymbol('replaceAll');
+
+	// TODO: Remove from `core-js@4`
 
 	var symbol$3 = symbol$4;
 
@@ -18217,6 +18227,8 @@
 	  // https://tc39.es/ecma262/#sec-array.prototype.reduceright
 	  right: createMethod(true)
 	};
+
+	var engineIsNode = classofRaw(global$1.process) == 'process';
 
 	var $reduce = arrayReduce.left;
 	var STRICT_METHOD$3 = arrayMethodIsStrict('reduce'); // Chrome 80-82 has a critical bug
