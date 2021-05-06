@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-06T13:31:46.450Z
+ * @date    2021-05-06T18:49:23.602Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23193,7 +23193,7 @@ function getDefaultWhiteList() {
     area: ["shape", "coords", "href", "alt"],
     article: [],
     aside: [],
-    audio: ["autoplay", "controls", "loop", "preload", "src"],
+    audio: ["autoplay", "controls", "crossorigin", "loop", "muted", "preload", "src"],
     b: [],
     bdi: ["dir"],
     bdo: ["dir"],
@@ -23213,6 +23213,8 @@ function getDefaultWhiteList() {
     dl: [],
     dt: [],
     em: [],
+    figcaption: [],
+    figure: [],
     font: ["color", "size", "face"],
     footer: [],
     h1: [],
@@ -23237,8 +23239,10 @@ function getDefaultWhiteList() {
     small: [],
     span: [],
     sub: [],
+    summary: [],
     sup: [],
     strong: [],
+    strike: [],
     table: ["width", "border", "align", "valign"],
     tbody: ["align", "valign"],
     td: ["width", "rowspan", "colspan", "align", "valign"],
@@ -23249,7 +23253,7 @@ function getDefaultWhiteList() {
     tt: [],
     u: [],
     ul: [],
-    video: ["autoplay", "controls", "loop", "preload", "src", "height", "width"]
+    video: ["autoplay", "controls", "crossorigin", "loop", "muted", "playsinline", "poster", "preload", "src", "height", "width"]
   };
 }
 
@@ -23385,7 +23389,7 @@ var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c
 var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
 /**
- * escape doube quote
+ * escape double quote
  *
  * @param {String} str
  * @return {String} str
@@ -23710,7 +23714,7 @@ function parseTag$1(html, onTag, escapeHtml) {
           var i = 1;
           var ic = html.charAt(currentPos - i);
 
-          while (ic === " " || ic === "=") {
+          while (ic.trim() === "" || ic === "=") {
             if (ic === "=") {
               quoteStart = c;
               continue chariterator;
@@ -24112,7 +24116,7 @@ var lib = createCommonjsModule(function (module, exports) {
 
 
   function isWorkerEnv() {
-    return typeof self !== 'undefined' && typeof DedicatedWorkerGlobalScope !== 'undefined' && self instanceof DedicatedWorkerGlobalScope;
+    return typeof self !== "undefined" && typeof DedicatedWorkerGlobalScope !== "undefined" && self instanceof DedicatedWorkerGlobalScope;
   }
 
   if (isWorkerEnv()) {

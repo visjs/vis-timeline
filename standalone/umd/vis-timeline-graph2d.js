@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-06T13:28:53.325Z
+ * @date    2021-05-06T18:47:25.704Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23059,7 +23059,7 @@
 	    area: ["shape", "coords", "href", "alt"],
 	    article: [],
 	    aside: [],
-	    audio: ["autoplay", "controls", "loop", "preload", "src"],
+	    audio: ["autoplay", "controls", "crossorigin", "loop", "muted", "preload", "src"],
 	    b: [],
 	    bdi: ["dir"],
 	    bdo: ["dir"],
@@ -23079,6 +23079,8 @@
 	    dl: [],
 	    dt: [],
 	    em: [],
+	    figcaption: [],
+	    figure: [],
 	    font: ["color", "size", "face"],
 	    footer: [],
 	    h1: [],
@@ -23103,8 +23105,10 @@
 	    small: [],
 	    span: [],
 	    sub: [],
+	    summary: [],
 	    sup: [],
 	    strong: [],
+	    strike: [],
 	    table: ["width", "border", "align", "valign"],
 	    tbody: ["align", "valign"],
 	    td: ["width", "rowspan", "colspan", "align", "valign"],
@@ -23115,7 +23119,7 @@
 	    tt: [],
 	    u: [],
 	    ul: [],
-	    video: ["autoplay", "controls", "loop", "preload", "src", "height", "width"]
+	    video: ["autoplay", "controls", "crossorigin", "loop", "muted", "playsinline", "poster", "preload", "src", "height", "width"]
 	  };
 	}
 
@@ -23251,7 +23255,7 @@
 	var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 	var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
 	/**
-	 * escape doube quote
+	 * escape double quote
 	 *
 	 * @param {String} str
 	 * @return {String} str
@@ -23575,7 +23579,7 @@
 	          var i = 1;
 	          var ic = html.charAt(currentPos - i);
 
-	          while (ic === " " || ic === "=") {
+	          while (ic.trim() === "" || ic === "=") {
 	            if (ic === "=") {
 	              quoteStart = c;
 	              continue chariterator;
@@ -23975,7 +23979,7 @@
 
 
 	  function isWorkerEnv() {
-	    return typeof self !== 'undefined' && typeof DedicatedWorkerGlobalScope !== 'undefined' && self instanceof DedicatedWorkerGlobalScope;
+	    return typeof self !== "undefined" && typeof DedicatedWorkerGlobalScope !== "undefined" && self instanceof DedicatedWorkerGlobalScope;
 	  }
 
 	  if (isWorkerEnv()) {
