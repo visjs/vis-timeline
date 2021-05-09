@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-08T23:37:10.571Z
+ * @date    2021-05-09T01:58:18.483Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -492,7 +492,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.12.0',
+    version: '3.12.1',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -1146,7 +1146,7 @@ var getterFor = function (TYPE) {
   };
 };
 
-if (nativeWeakMap) {
+if (nativeWeakMap || sharedStore.state) {
   var store = sharedStore.state || (sharedStore.state = new WeakMap());
   var wmget = store.get;
   var wmhas = store.has;
