@@ -383,6 +383,11 @@ export interface TimelineEventPropertiesResult {
    * The original click event.
    */
   event: Event;
+
+  /**
+   * If the event is clustered.
+   */
+  isCluster: boolean;
 }
 
 export type DataItemCollectionType = DataItem[] | DataInterfaceDataItem;
