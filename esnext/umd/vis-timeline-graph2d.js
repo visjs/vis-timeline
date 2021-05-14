@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-14T06:48:01.360Z
+ * @date    2021-05-14T06:53:57.382Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -7092,7 +7092,7 @@
         this.hammerDragCenter.on('panmove',  me.parent.itemSet._onDrag.bind(me.parent.itemSet));
         this.hammerDragCenter.on('panend',   me.parent.itemSet._onDragEnd.bind(me.parent.itemSet));
         // delay addition on item click for trackpads...
-        this.hammer.get('press').set({time:10000});
+        this.hammerDragCenter.get('press').set({time:10000});
 
         if (this.dom.box) {
           if (this.dom.dragLeft) {
