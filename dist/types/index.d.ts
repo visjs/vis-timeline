@@ -329,7 +329,7 @@ export interface TimelineOptions {
 export type TimelineAnimationType = boolean | AnimationOptions;
 
 export interface TimelineAnimationOptions {
-  animation?: TimelineAnimationType;
+  animation?: Partial<TimelineAnimationType>;
   zoom?: boolean;
 }
 
