@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-13T07:02:31.268Z
+ * @date    2021-05-14T06:48:01.360Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -7889,7 +7889,7 @@ class PointItem extends Item {
     }
     // determine visibility
     const widthInMs = this.width * range.getMillisecondsPerPixel();
-    
+
     return (this.data.start.getTime() + widthInMs > range.start ) && (this.data.start < range.end);
   }
 
@@ -7999,9 +7999,9 @@ class PointItem extends Item {
 
     // resize contents
     if (this.options.rtl) {
-      this.dom.content.style.marginRight = `${2 * this.props.dot.width}px`;
+      this.dom.content.style.marginRight = `${this.props.dot.width / 2}px`;
     } else {
-      this.dom.content.style.marginLeft = `${2 * this.props.dot.width}px`;
+      this.dom.content.style.marginLeft = `${this.props.dot.width / 2}px`;
     }
     //this.dom.content.style.marginRight = ... + 'px'; // TODO: margin right
 
@@ -8011,9 +8011,9 @@ class PointItem extends Item {
 
     // reposition the dot
     this.dom.dot.style.top = `${(this.height - this.props.dot.height) / 2}px`;
-    
+
     const dotWidth = this.props.dot.width;
-    const translateX = this.options.rtl ? (dotWidth / 2) * -1 : dotWidth / 2;
+    const translateX = this.options.rtl ? dotWidth / 2 : (dotWidth / 2) * -1;
     this.dom.dot.style.transform = `translateX(${translateX}px`;
     this.dirty = false;
   }
@@ -8072,13 +8072,13 @@ class PointItem extends Item {
     }
   }
 
-  
+
   /**
    * Reposition XY
    */
   repositionXY() {
     const rtl = this.options.rtl;
-    
+
     const repositionXY = (element, x, y, rtl = false) => {
       if (x === undefined && y === undefined) return;
       // If rtl invert the number.

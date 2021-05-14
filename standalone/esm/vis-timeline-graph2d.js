@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-13T07:02:31.268Z
+ * @date    2021-05-14T06:48:01.360Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -33636,9 +33636,9 @@ var PointItem = /*#__PURE__*/function (_Item) {
       this.props.content.height = sizes.content.height; // resize contents
 
       if (this.options.rtl) {
-        this.dom.content.style.marginRight = "".concat(2 * this.props.dot.width, "px");
+        this.dom.content.style.marginRight = "".concat(this.props.dot.width / 2, "px");
       } else {
-        this.dom.content.style.marginLeft = "".concat(2 * this.props.dot.width, "px");
+        this.dom.content.style.marginLeft = "".concat(this.props.dot.width / 2, "px");
       } //this.dom.content.style.marginRight = ... + 'px'; // TODO: margin right
       // recalculate size
 
@@ -33648,7 +33648,7 @@ var PointItem = /*#__PURE__*/function (_Item) {
 
       this.dom.dot.style.top = "".concat((this.height - this.props.dot.height) / 2, "px");
       var dotWidth = this.props.dot.width;
-      var translateX = this.options.rtl ? dotWidth / 2 * -1 : dotWidth / 2;
+      var translateX = this.options.rtl ? dotWidth / 2 : dotWidth / 2 * -1;
       this.dom.dot.style.transform = "translateX(".concat(translateX, "px");
       this.dirty = false;
     }
