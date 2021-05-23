@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-23T08:52:34.678Z
+ * @date    2021-05-23T15:30:06.211Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -32761,7 +32761,7 @@ var Item = /*#__PURE__*/function () {
         });
         anchor.appendChild(deleteButton);
         this.dom.deleteButton = deleteButton;
-      } else if (!this.selected && this.dom.deleteButton) {
+      } else if ((!this.selected || !editable) && this.dom.deleteButton) {
         // remove button
         if (this.dom.deleteButton.parentNode) {
           this.dom.deleteButton.parentNode.removeChild(this.dom.deleteButton);
