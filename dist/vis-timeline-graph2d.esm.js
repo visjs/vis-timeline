@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-22T04:21:03.226Z
+ * @date    2021-05-23T08:52:34.678Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -18877,6 +18877,8 @@ var collectionStrong = {
     setSpecies(CONSTRUCTOR_NAME);
   }
 };
+collectionStrong.getConstructor;
+collectionStrong.setStrong;
 
 // https://tc39.es/ecma262/#sec-map-objects
 
