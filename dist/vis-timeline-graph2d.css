@@ -5,39 +5,6 @@
   width: auto;
 }
 
-.vis-timeline {
-  /*
-  -webkit-transition: height .4s ease-in-out;
-  transition:         height .4s ease-in-out;
-  */
-}
-
-.vis-panel {
-  /*
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-  */
-}
-
-.vis-axis {
-  /*
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-  */
-}
-
-/* TODO: get animation working nicely
-
-.vis-item {
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-}
-
-.vis-item.line {
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-}
-/**/
 .vis-current-time {
   background-color: #FF7F6E;
   width: 2px;
@@ -148,6 +115,39 @@
   bottom: -1px;
   left: 0;
 }
+.vis-timeline {
+  /*
+  -webkit-transition: height .4s ease-in-out;
+  transition:         height .4s ease-in-out;
+  */
+}
+
+.vis-panel {
+  /*
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+  */
+}
+
+.vis-axis {
+  /*
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+  */
+}
+
+/* TODO: get animation working nicely
+
+.vis-item {
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+}
+
+.vis-item.line {
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+}
+/**/
 
 .vis-timeline {
   position: relative;
@@ -272,23 +272,6 @@
     stroke: none;
 }
 
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
-}
-
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
-}
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
@@ -392,6 +375,23 @@
   white-space: nowrap;
   display: inline-block
 }
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
+}
+
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
+}
 .vis-time-axis {
   position: relative;
   overflow: hidden;
@@ -446,6 +446,50 @@
 
 .vis-time-axis .vis-grid.vis-major {
   border-color: #bfbfbf;
+}
+
+
+.vis-labelset {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #4d4d4d;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.vis-labelset .vis-label.draggable {
+  cursor: pointer;
+}
+
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
+}
+
+.vis-labelset .vis-label:last-child {
+  border-bottom: none;
+}
+
+.vis-labelset .vis-label .vis-inner {
+  display: inline-block;
+  padding: 5px;
+}
+
+.vis-labelset .vis-label .vis-inner.vis-hidden {
+  padding: 0;
 }
 
 
@@ -627,50 +671,6 @@
   height: 100%;
   z-index: 10;
 }
-
-.vis-labelset {
-  position: relative;
-
-  overflow: hidden;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  color: #4d4d4d;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  border-bottom: 1px solid #bfbfbf;
-}
-
-.vis-labelset .vis-label.draggable {
-  cursor: pointer;
-}
-
-.vis-group-is-dragging {
-  background: rgba(0, 0, 0, .1);
-}
-
-.vis-labelset .vis-label:last-child {
-  border-bottom: none;
-}
-
-.vis-labelset .vis-label .vis-inner {
-  display: inline-block;
-  padding: 5px;
-}
-
-.vis-labelset .vis-label .vis-inner.vis-hidden {
-  padding: 0;
-}
-
 
 .vis-item {
   position: absolute;
