@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-05-29T13:20:31.838Z
+ * @date    2021-05-29T15:35:50.209Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6336,7 +6336,7 @@
 	var store$1 = global$1[SHARED] || setGlobal(SHARED, {});
 	var sharedStore = store$1;
 
-	var functionToString = Function.toString; // this helper broken in `3.4.1-3.4.4`, so we can't use `shared` helper
+	var functionToString = Function.toString; // this helper broken in `core-js@3.4.1-3.4.4`, so we can't use `shared` helper
 
 	if (typeof sharedStore.inspectSource != 'function') {
 	  sharedStore.inspectSource = function (it) {
@@ -6357,7 +6357,7 @@
 
 	var hasOwnProperty = {}.hasOwnProperty;
 
-	var has$1 = function hasOwn(it, key) {
+	var has$1 = Object.hasOwn || function hasOwn(it, key) {
 	  return hasOwnProperty.call(toObject(it), key);
 	};
 
@@ -6365,7 +6365,7 @@
 	  (module.exports = function (key, value) {
 	    return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
 	  })('versions', []).push({
-	    version: '3.13.0',
+	    version: '3.13.1',
 	    mode: 'pure' ,
 	    copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	  });
@@ -6718,8 +6718,10 @@
 	/* eslint-disable es/no-symbol -- required for testing */
 
 	var nativeSymbol = !!Object.getOwnPropertySymbols && !fails(function () {
-	  return !String(Symbol()) || // Chrome 38 Symbol has incorrect toString conversion
-	  // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
+	  var symbol = Symbol(); // Chrome 38 Symbol has incorrect toString conversion
+	  // `get-own-property-symbols` polyfill symbols converted to object are not Symbol instances
+
+	  return !String(symbol) || !(Object(symbol) instanceof Symbol) || // Chrome 38-40 symbols are not inherited from DOM collections prototypes to instances
 	  !Symbol.sham && engineV8Version && engineV8Version < 41;
 	});
 
@@ -6768,7 +6770,8 @@
 
 	  return IteratorPrototype$2[ITERATOR$4].call(test) !== test;
 	});
-	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$2 = {}; // 25.1.2.1.1 %IteratorPrototype%[@@iterator]()
+	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$2 = {}; // `%IteratorPrototype%[@@iterator]()` method
+	// https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
 
 	if ((NEW_ITERATOR_PROTOTYPE) && !has$1(IteratorPrototype$2, ITERATOR$4)) {
 	  createNonEnumerableProperty(IteratorPrototype$2, ITERATOR$4, returnThis$2);
@@ -7119,7 +7122,7 @@
 	      setToStringTag(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
 	      iterators[TO_STRING_TAG] = returnThis;
 	    }
-	  } // fix Array#{values, @@iterator}.name in V8 / FF
+	  } // fix Array.prototype.{ values, @@iterator }.name in V8 / FF
 
 
 	  if (DEFAULT == VALUES && nativeIterator && nativeIterator.name !== VALUES) {
@@ -7197,7 +7200,7 @@
 
 	var callWithSafeIterationClosing = function (iterator, fn, value, ENTRIES) {
 	  try {
-	    return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value); // 7.4.6 IteratorClose(iterator, completion)
+	    return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
 	  } catch (error) {
 	    iteratorClose(iterator);
 	    throw error;
@@ -18616,8 +18619,9 @@
 	    };
 
 	    redefineAll(C.prototype, {
-	      // 23.1.3.1 Map.prototype.clear()
-	      // 23.2.3.2 Set.prototype.clear()
+	      // `{ Map, Set }.prototype.clear()` methods
+	      // https://tc39.es/ecma262/#sec-map.prototype.clear
+	      // https://tc39.es/ecma262/#sec-set.prototype.clear
 	      clear: function clear() {
 	        var that = this;
 	        var state = getInternalState(that);
@@ -18634,8 +18638,9 @@
 	        state.first = state.last = undefined;
 	        if (descriptors) state.size = 0;else that.size = 0;
 	      },
-	      // 23.1.3.3 Map.prototype.delete(key)
-	      // 23.2.3.4 Set.prototype.delete(value)
+	      // `{ Map, Set }.prototype.delete(key)` methods
+	      // https://tc39.es/ecma262/#sec-map.prototype.delete
+	      // https://tc39.es/ecma262/#sec-set.prototype.delete
 	      'delete': function (key) {
 	        var that = this;
 	        var state = getInternalState(that);
@@ -18655,8 +18660,9 @@
 
 	        return !!entry;
 	      },
-	      // 23.2.3.6 Set.prototype.forEach(callbackfn, thisArg = undefined)
-	      // 23.1.3.5 Map.prototype.forEach(callbackfn, thisArg = undefined)
+	      // `{ Map, Set }.prototype.forEach(callbackfn, thisArg = undefined)` methods
+	      // https://tc39.es/ecma262/#sec-map.prototype.foreach
+	      // https://tc39.es/ecma262/#sec-set.prototype.foreach
 	      forEach: function forEach(callbackfn
 	      /* , that = undefined */
 	      ) {
@@ -18670,24 +18676,28 @@
 	          while (entry && entry.removed) entry = entry.previous;
 	        }
 	      },
-	      // 23.1.3.7 Map.prototype.has(key)
-	      // 23.2.3.7 Set.prototype.has(value)
+	      // `{ Map, Set}.prototype.has(key)` methods
+	      // https://tc39.es/ecma262/#sec-map.prototype.has
+	      // https://tc39.es/ecma262/#sec-set.prototype.has
 	      has: function has(key) {
 	        return !!getEntry(this, key);
 	      }
 	    });
 	    redefineAll(C.prototype, IS_MAP ? {
-	      // 23.1.3.6 Map.prototype.get(key)
+	      // `Map.prototype.get(key)` method
+	      // https://tc39.es/ecma262/#sec-map.prototype.get
 	      get: function get(key) {
 	        var entry = getEntry(this, key);
 	        return entry && entry.value;
 	      },
-	      // 23.1.3.9 Map.prototype.set(key, value)
+	      // `Map.prototype.set(key, value)` method
+	      // https://tc39.es/ecma262/#sec-map.prototype.set
 	      set: function set(key, value) {
 	        return define(this, key === 0 ? 0 : key, value);
 	      }
 	    } : {
-	      // 23.2.3.1 Set.prototype.add(value)
+	      // `Set.prototype.add(value)` method
+	      // https://tc39.es/ecma262/#sec-set.prototype.add
 	      add: function add(value) {
 	        return define(this, value = value === 0 ? 0 : value, value);
 	      }
@@ -18702,8 +18712,15 @@
 	  setStrong: function (C, CONSTRUCTOR_NAME, IS_MAP) {
 	    var ITERATOR_NAME = CONSTRUCTOR_NAME + ' Iterator';
 	    var getInternalCollectionState = internalStateGetterFor(CONSTRUCTOR_NAME);
-	    var getInternalIteratorState = internalStateGetterFor(ITERATOR_NAME); // add .keys, .values, .entries, [@@iterator]
-	    // 23.1.3.4, 23.1.3.8, 23.1.3.11, 23.1.3.12, 23.2.3.5, 23.2.3.8, 23.2.3.10, 23.2.3.11
+	    var getInternalIteratorState = internalStateGetterFor(ITERATOR_NAME); // `{ Map, Set }.prototype.{ keys, values, entries, @@iterator }()` methods
+	    // https://tc39.es/ecma262/#sec-map.prototype.entries
+	    // https://tc39.es/ecma262/#sec-map.prototype.keys
+	    // https://tc39.es/ecma262/#sec-map.prototype.values
+	    // https://tc39.es/ecma262/#sec-map.prototype-@@iterator
+	    // https://tc39.es/ecma262/#sec-set.prototype.entries
+	    // https://tc39.es/ecma262/#sec-set.prototype.keys
+	    // https://tc39.es/ecma262/#sec-set.prototype.values
+	    // https://tc39.es/ecma262/#sec-set.prototype-@@iterator
 
 	    defineIterator(C, CONSTRUCTOR_NAME, function (iterated, kind) {
 	      setInternalState(this, {
@@ -18743,7 +18760,9 @@
 	        value: [entry.key, entry.value],
 	        done: false
 	      };
-	    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true); // add [@@species], 23.1.2.2, 23.2.2.2
+	    }, IS_MAP ? 'entries' : 'values', !IS_MAP, true); // `{ Map, Set }.prototype[@@species]` accessors
+	    // https://tc39.es/ecma262/#sec-get-map-@@species
+	    // https://tc39.es/ecma262/#sec-get-set-@@species
 
 	    setSpecies(CONSTRUCTOR_NAME);
 	  }
