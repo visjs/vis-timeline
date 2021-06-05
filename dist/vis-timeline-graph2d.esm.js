@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-06-05T13:03:39.679Z
+ * @date    2021-06-05T14:16:16.718Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6178,11 +6178,11 @@ createCommonjsModule(function (module, exports) {
 });
 
 var ceil = Math.ceil;
-var floor = Math.floor; // `ToInteger` abstract operation
+var floor$1 = Math.floor; // `ToInteger` abstract operation
 // https://tc39.es/ecma262/#sec-tointeger
 
 var toInteger = function (argument) {
-  return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor : ceil)(argument);
+  return isNaN(argument = +argument) ? 0 : (argument > 0 ? floor$1 : ceil)(argument);
 };
 
 // `RequireObjectCoercible` abstract operation
@@ -6363,7 +6363,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.13.1',
+    version: '3.14.0',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -12392,7 +12392,7 @@ var extend$1 = deprecate(function (dest, src, merge) {
  * @returns {Object} dest
  */
 
-var merge = deprecate(function (dest, src) {
+var merge$1 = deprecate(function (dest, src) {
   return extend$1(dest, src, true);
 }, 'merge', 'Use `assign`.');
 /**
@@ -12493,7 +12493,7 @@ var Hammer$2 = /*#__PURE__*/function () {
   Hammer.on = addEventListeners;
   Hammer.off = removeEventListeners;
   Hammer.each = each;
-  Hammer.merge = merge;
+  Hammer.merge = merge$1;
   Hammer.extend = extend$1;
   Hammer.bindFn = bindFn;
   Hammer.assign = assign$1;
@@ -18943,6 +18943,62 @@ var getIterator_1 = getIterator$1;
 
 var getIterator = getIterator_1;
 
+// TODO: use something more complex like timsort?
+var floor = Math.floor;
+
+var mergeSort = function (array, comparefn) {
+  var length = array.length;
+  var middle = floor(length / 2);
+  return length < 8 ? insertionSort(array, comparefn) : merge(mergeSort(array.slice(0, middle), comparefn), mergeSort(array.slice(middle), comparefn), comparefn);
+};
+
+var insertionSort = function (array, comparefn) {
+  var length = array.length;
+  var i = 1;
+  var element, j;
+
+  while (i < length) {
+    j = i;
+    element = array[i];
+
+    while (j && comparefn(array[j - 1], element) > 0) {
+      array[j] = array[--j];
+    }
+
+    if (j !== i++) array[j] = element;
+  }
+
+  return array;
+};
+
+var merge = function (left, right, comparefn) {
+  var llength = left.length;
+  var rlength = right.length;
+  var lindex = 0;
+  var rindex = 0;
+  var result = [];
+
+  while (lindex < llength || rindex < rlength) {
+    if (lindex < llength && rindex < rlength) {
+      result.push(comparefn(left[lindex], right[rindex]) <= 0 ? left[lindex++] : right[rindex++]);
+    } else {
+      result.push(lindex < llength ? left[lindex++] : right[rindex++]);
+    }
+  }
+
+  return result;
+};
+
+var arraySort = mergeSort;
+
+var firefox = engineUserAgent.match(/firefox\/(\d+)/i);
+var engineFfVersion = !!firefox && +firefox[1];
+
+var engineIsIeOrEdge = /MSIE|Trident/.test(engineUserAgent);
+
+var webkit = engineUserAgent.match(/AppleWebKit\/(\d+)\./);
+var engineWebkitVersion = !!webkit && +webkit[1];
+
 var test = [];
 var nativeSort = test.sort; // IE8-
 
@@ -18955,8 +19011,66 @@ var FAILS_ON_NULL = fails(function () {
 }); // Old WebKit
 
 var STRICT_METHOD$2 = arrayMethodIsStrict('sort');
-var FORCED$1 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$2; // `Array.prototype.sort` method
+var STABLE_SORT = !fails(function () {
+  // feature detection can be too slow, so check engines versions
+  if (engineV8Version) return engineV8Version < 70;
+  if (engineFfVersion && engineFfVersion > 3) return;
+  if (engineIsIeOrEdge) return true;
+  if (engineWebkitVersion) return engineWebkitVersion < 603;
+  var result = '';
+  var code, chr, value, index; // generate an array with more 512 elements (Chakra and old V8 fails only in this case)
+
+  for (code = 65; code < 76; code++) {
+    chr = String.fromCharCode(code);
+
+    switch (code) {
+      case 66:
+      case 69:
+      case 70:
+      case 72:
+        value = 3;
+        break;
+
+      case 68:
+      case 71:
+        value = 4;
+        break;
+
+      default:
+        value = 2;
+    }
+
+    for (index = 0; index < 47; index++) {
+      test.push({
+        k: chr + index,
+        v: value
+      });
+    }
+  }
+
+  test.sort(function (a, b) {
+    return b.v - a.v;
+  });
+
+  for (index = 0; index < test.length; index++) {
+    chr = test[index].k.charAt(0);
+    if (result.charAt(result.length - 1) !== chr) result += chr;
+  }
+
+  return result !== 'DGBEFHACIJK';
+});
+var FORCED$1 = FAILS_ON_UNDEFINED || !FAILS_ON_NULL || !STRICT_METHOD$2 || !STABLE_SORT;
+
+var getSortCompare = function (comparefn) {
+  return function (x, y) {
+    if (y === undefined) return -1;
+    if (x === undefined) return 1;
+    if (comparefn !== undefined) return +comparefn(x, y) || 0;
+    return String(x) > String(y) ? 1 : -1;
+  };
+}; // `Array.prototype.sort` method
 // https://tc39.es/ecma262/#sec-array.prototype.sort
+
 
 _export({
   target: 'Array',
@@ -18964,7 +19078,26 @@ _export({
   forced: FORCED$1
 }, {
   sort: function sort(comparefn) {
-    return comparefn === undefined ? nativeSort.call(toObject(this)) : nativeSort.call(toObject(this), aFunction$1(comparefn));
+    if (comparefn !== undefined) aFunction$1(comparefn);
+    var array = toObject(this);
+    if (STABLE_SORT) return comparefn === undefined ? nativeSort.call(array) : nativeSort.call(array, comparefn);
+    var items = [];
+    var arrayLength = toLength(array.length);
+    var itemsLength, index;
+
+    for (index = 0; index < arrayLength; index++) {
+      if (index in array) items.push(array[index]);
+    }
+
+    items = arraySort(items, getSortCompare(comparefn));
+    itemsLength = items.length;
+    index = 0;
+
+    while (index < itemsLength) array[index] = items[index++];
+
+    while (index < arrayLength) delete array[index++];
+
+    return array;
   }
 });
 
