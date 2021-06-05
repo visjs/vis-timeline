@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-06-05T14:16:16.718Z
+ * @date    2021-06-05T17:17:04.461Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -36167,7 +36167,7 @@ var ClusterGenerator = /*#__PURE__*/function () {
 
 function _createForOfIteratorHelper$1(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$1(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray$1(o, minLen) { var _context33; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$2(_context33 = Object.prototype.toString.call(o)).call(_context33, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
+function _unsupportedIterableToArray$1(o, minLen) { var _context34; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$1(o, minLen); var n = slice$2(_context34 = Object.prototype.toString.call(o)).call(_context34, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from_1$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$1(o, minLen); }
 
 function _arrayLikeToArray$1(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 
@@ -36439,7 +36439,8 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           _context13,
           _context14,
           _context15,
-          _context16;
+          _context16,
+          _context17;
 
       var frame = document.createElement('div');
       frame.className = 'vis-itemset';
@@ -36500,7 +36501,8 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       this.hammer.get('press').set({
         time: 10000
       }); // add item on doubletap
-      //this.hammer.on('doubletap', this._onAddItem.bind(this));
+
+      this.hammer.on('doubletap', bind(_context8 = this._onAddItem).call(_context8, this));
 
       if (this.options.rtl) {
         this.groupHammer = new Hammer(this.body.dom.rightContainer);
@@ -36508,20 +36510,20 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         this.groupHammer = new Hammer(this.body.dom.leftContainer);
       }
 
-      this.groupHammer.on('tap', bind(_context8 = this._onGroupClick).call(_context8, this));
-      this.groupHammer.on('panstart', bind(_context9 = this._onGroupDragStart).call(_context9, this));
-      this.groupHammer.on('panmove', bind(_context10 = this._onGroupDrag).call(_context10, this));
-      this.groupHammer.on('panend', bind(_context11 = this._onGroupDragEnd).call(_context11, this));
+      this.groupHammer.on('tap', bind(_context9 = this._onGroupClick).call(_context9, this));
+      this.groupHammer.on('panstart', bind(_context10 = this._onGroupDragStart).call(_context10, this));
+      this.groupHammer.on('panmove', bind(_context11 = this._onGroupDrag).call(_context11, this));
+      this.groupHammer.on('panend', bind(_context12 = this._onGroupDragEnd).call(_context12, this));
       this.groupHammer.get('pan').set({
         threshold: 5,
         direction: Hammer.DIRECTION_VERTICAL
       });
-      this.body.dom.centerContainer.addEventListener('mouseover', bind(_context12 = this._onMouseOver).call(_context12, this));
-      this.body.dom.centerContainer.addEventListener('mouseout', bind(_context13 = this._onMouseOut).call(_context13, this));
-      this.body.dom.centerContainer.addEventListener('mousemove', bind(_context14 = this._onMouseMove).call(_context14, this)); // right-click on timeline 
+      this.body.dom.centerContainer.addEventListener('mouseover', bind(_context13 = this._onMouseOver).call(_context13, this));
+      this.body.dom.centerContainer.addEventListener('mouseout', bind(_context14 = this._onMouseOut).call(_context14, this));
+      this.body.dom.centerContainer.addEventListener('mousemove', bind(_context15 = this._onMouseMove).call(_context15, this)); // right-click on timeline 
 
-      this.body.dom.centerContainer.addEventListener('contextmenu', bind(_context15 = this._onDragEnd).call(_context15, this));
-      this.body.dom.centerContainer.addEventListener('mousewheel', bind(_context16 = this._onMouseWheel).call(_context16, this)); // attach to the DOM
+      this.body.dom.centerContainer.addEventListener('contextmenu', bind(_context16 = this._onDragEnd).call(_context16, this));
+      this.body.dom.centerContainer.addEventListener('mousewheel', bind(_context17 = this._onMouseWheel).call(_context17, this)); // attach to the DOM
 
       this.show();
     }
@@ -36596,7 +36598,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       var _this3 = this;
 
       if (options) {
-        var _context17, _context19;
+        var _context18, _context20;
 
         // copy all options that we know
         var fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'longSelectPressTime', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
@@ -36648,7 +36650,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           }
         }
 
-        forEach$2(_context17 = ['locale', 'locales']).call(_context17, function (key) {
+        forEach$2(_context18 = ['locale', 'locales']).call(_context18, function (key) {
           if (key in options) {
             _this3.options[key] = options[key];
           }
@@ -36682,16 +36684,16 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
           if (fn) {
             if (!(typeof fn === 'function')) {
-              var _context18;
+              var _context19;
 
-              throw new Error(concat(_context18 = "option ".concat(name, " must be a function ")).call(_context18, name, "(item, callback)"));
+              throw new Error(concat(_context19 = "option ".concat(name, " must be a function ")).call(_context19, name, "(item, callback)"));
             }
 
             _this3.options[name] = fn;
           }
         };
 
-        forEach$2(_context19 = ['onDropObjectOnItem', 'onAdd', 'onUpdate', 'onRemove', 'onMove', 'onMoving', 'onAddGroup', 'onMoveGroup', 'onRemoveGroup']).call(_context19, addCallback);
+        forEach$2(_context20 = ['onDropObjectOnItem', 'onAdd', 'onUpdate', 'onRemove', 'onMove', 'onMoving', 'onAddGroup', 'onMoveGroup', 'onRemoveGroup']).call(_context20, addCallback);
 
         if (options.cluster) {
           assign$2(this.options, {
@@ -36859,7 +36861,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "setSelection",
     value: function setSelection(ids) {
-      var _context20;
+      var _context21;
 
       if (ids == undefined) {
         ids = [];
@@ -36869,7 +36871,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         ids = [ids];
       }
 
-      var idsToDeselect = filter(_context20 = this.selection).call(_context20, function (id) {
+      var idsToDeselect = filter(_context21 = this.selection).call(_context21, function (id) {
         return indexOf(ids).call(ids, id) === -1;
       }); // unselect currently selected items
 
@@ -36922,9 +36924,9 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "getSelection",
     value: function getSelection() {
-      var _context21;
+      var _context22;
 
-      return concat(_context21 = this.selection).call(_context21, []);
+      return concat(_context22 = this.selection).call(_context22, []);
     }
     /**
      * Get the id's of the currently visible items.
@@ -37067,9 +37069,9 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "getItemById",
     value: function getItemById(id) {
-      var _context22;
+      var _context23;
 
-      return this.items[id] || find(_context22 = this.clusters).call(_context22, function (cluster) {
+      return this.items[id] || find(_context23 = this.clusters).call(_context23, function (cluster) {
         return cluster.id === id;
       });
     }
@@ -37390,16 +37392,16 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       }
 
       if (this.groupsData) {
-        var _context23;
+        var _context24;
 
         // go over all groups nesting
         var groupsData = this.groupsData.getDataSet();
 
-        forEach$2(_context23 = groupsData.get()).call(_context23, function (group) {
+        forEach$2(_context24 = groupsData.get()).call(_context24, function (group) {
           if (group.nestedGroups) {
-            var _context24;
+            var _context25;
 
-            forEach$2(_context24 = group.nestedGroups).call(_context24, function (nestedGroupId) {
+            forEach$2(_context25 = group.nestedGroups).call(_context25, function (nestedGroupId) {
               var updatedNestedGroup = groupsData.get(nestedGroupId);
               updatedNestedGroup.nestedInGroup = group.id;
 
@@ -37783,14 +37785,14 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           var groupData = t.groupsData.get(groupId);
 
           if (groupData.nestedGroups) {
-            var _context25;
+            var _context26;
 
-            var nestedGroupIds = map$3(_context25 = t.groupsData.get({
+            var nestedGroupIds = map$3(_context26 = t.groupsData.get({
               filter: function filter(nestedGroup) {
                 return nestedGroup.nestedInGroup == groupId;
               },
               order: t.options.groupOrder
-            })).call(_context25, function (nestedGroup) {
+            })).call(_context26, function (nestedGroup) {
               return nestedGroup.id;
             });
 
@@ -37860,16 +37862,16 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "_removeItem",
     value: function _removeItem(item) {
-      var _context26, _context27;
+      var _context27, _context28;
 
       // remove from DOM
       item.hide(); // remove from items
 
       delete this.items[item.id]; // remove from selection
 
-      var index = indexOf(_context26 = this.selection).call(_context26, item.id);
+      var index = indexOf(_context27 = this.selection).call(_context27, item.id);
 
-      if (index != -1) splice(_context27 = this.selection).call(_context27, index, 1); // remove from group
+      if (index != -1) splice(_context28 = this.selection).call(_context28, index, 1); // remove from group
 
       item.parent && item.parent.remove(item); // remove Tooltip from DOM
 
@@ -38090,7 +38092,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
       }
 
       if (this.touchParams.itemProps) {
-        var _context28;
+        var _context29;
 
         event.stopPropagation();
         var me = this;
@@ -38118,7 +38120,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         } // move
 
 
-        forEach$2(_context28 = this.touchParams.itemProps).call(_context28, function (props) {
+        forEach$2(_context29 = this.touchParams.itemProps).call(_context29, function (props) {
           var current = me.body.util.toTime(event.center.x - xOffset);
           var initial = me.body.util.toTime(props.initialX - xOffset);
           var offset;
@@ -38324,7 +38326,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "toggleGroupShowNested",
     value: function toggleGroupShowNested(group) {
-      var _context29;
+      var _context30;
 
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
       if (!group || !group.nestedGroups) return;
@@ -38358,7 +38360,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         }
       }
 
-      var nestedGroups = map$3(_context29 = groupsData.get(fullNestedGroups)).call(_context29, function (nestedGroup) {
+      var nestedGroups = map$3(_context30 = groupsData.get(fullNestedGroups)).call(_context30, function (nestedGroup) {
         if (nestedGroup.visible == undefined) {
           nestedGroup.visible = true;
         }
@@ -39125,13 +39127,13 @@ var ItemSet = /*#__PURE__*/function (_Component) {
     key: "_updateClusters",
     value: function _updateClusters(clusters) {
       if (this.clusters && this.clusters.length) {
-        var _context30;
+        var _context31;
 
         var newClustersIds = new set(map$3(clusters).call(clusters, function (cluster) {
           return cluster.id;
         }));
 
-        var clustersToUnselect = filter(_context30 = this.clusters).call(_context30, function (cluster) {
+        var clustersToUnselect = filter(_context31 = this.clusters).call(_context31, function (cluster) {
           return !newClustersIds.has(cluster.id);
         });
 
@@ -39142,18 +39144,18 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
         try {
           for (_iterator7.s(); !(_step7 = _iterator7.n()).done;) {
-            var _context31;
+            var _context32;
 
             var cluster = _step7.value;
 
-            var selectedIdx = indexOf(_context31 = this.selection).call(_context31, cluster.id);
+            var selectedIdx = indexOf(_context32 = this.selection).call(_context32, cluster.id);
 
             if (selectedIdx !== -1) {
-              var _context32;
+              var _context33;
 
               cluster.unselect();
 
-              splice(_context32 = this.selection).call(_context32, selectedIdx, 1);
+              splice(_context33 = this.selection).call(_context33, selectedIdx, 1);
 
               selectionChanged = true;
             }

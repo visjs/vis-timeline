@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-06-05T14:14:41.503Z
+ * @date    2021-06-05T17:15:40.801Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10216,7 +10216,7 @@ class ItemSet extends Component {
     this.hammer.get('press').set({time:10000});
 
     // add item on doubletap
-    //this.hammer.on('doubletap', this._onAddItem.bind(this));
+    this.hammer.on('doubletap', this._onAddItem.bind(this));
 
     if (this.options.rtl) {
       this.groupHammer = new Hammer(this.body.dom.rightContainer);
