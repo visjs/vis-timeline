@@ -38,6 +38,113 @@
   transition:         height .4s ease-in-out, top .4s ease-in-out;
 }
 /**/
+.vis-graph-group0 {
+    fill:#4f81bd;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #4f81bd;
+}
+
+.vis-graph-group1 {
+    fill:#f79646;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #f79646;
+}
+
+.vis-graph-group2 {
+    fill: #8c51cf;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #8c51cf;
+}
+
+.vis-graph-group3 {
+    fill: #75c841;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #75c841;
+}
+
+.vis-graph-group4 {
+    fill: #ff0100;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #ff0100;
+}
+
+.vis-graph-group5 {
+    fill: #37d8e6;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #37d8e6;
+}
+
+.vis-graph-group6 {
+    fill: #042662;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #042662;
+}
+
+.vis-graph-group7 {
+    fill:#00ff26;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #00ff26;
+}
+
+.vis-graph-group8 {
+    fill:#ff00ff;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #ff00ff;
+}
+
+.vis-graph-group9 {
+    fill: #8f3938;
+    fill-opacity:0;
+    stroke-width:2px;
+    stroke: #8f3938;
+}
+
+.vis-timeline .vis-fill {
+    fill-opacity:0.1;
+    stroke: none;
+}
+
+
+.vis-timeline .vis-bar {
+    fill-opacity:0.5;
+    stroke-width:1px;
+}
+
+.vis-timeline .vis-point {
+    stroke-width:2px;
+    fill-opacity:1.0;
+}
+
+
+.vis-timeline .vis-legend-background {
+    stroke-width:1px;
+    fill-opacity:0.9;
+    fill: #ffffff;
+    stroke: #c2c2c2;
+}
+
+
+.vis-timeline .vis-outline {
+    stroke-width:1px;
+    fill-opacity:1;
+    fill: #ffffff;
+    stroke: #e5e5e5;
+}
+
+.vis-timeline .vis-icon-fill {
+    fill-opacity:0.3;
+    stroke: none;
+}
+
 .vis-current-time {
   background-color: #FF7F6E;
   width: 2px;
@@ -165,113 +272,6 @@
   top: 0;
   left: 0;
 }
-.vis-graph-group0 {
-    fill:#4f81bd;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #4f81bd;
-}
-
-.vis-graph-group1 {
-    fill:#f79646;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #f79646;
-}
-
-.vis-graph-group2 {
-    fill: #8c51cf;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #8c51cf;
-}
-
-.vis-graph-group3 {
-    fill: #75c841;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #75c841;
-}
-
-.vis-graph-group4 {
-    fill: #ff0100;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #ff0100;
-}
-
-.vis-graph-group5 {
-    fill: #37d8e6;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #37d8e6;
-}
-
-.vis-graph-group6 {
-    fill: #042662;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #042662;
-}
-
-.vis-graph-group7 {
-    fill:#00ff26;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #00ff26;
-}
-
-.vis-graph-group8 {
-    fill:#ff00ff;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #ff00ff;
-}
-
-.vis-graph-group9 {
-    fill: #8f3938;
-    fill-opacity:0;
-    stroke-width:2px;
-    stroke: #8f3938;
-}
-
-.vis-timeline .vis-fill {
-    fill-opacity:0.1;
-    stroke: none;
-}
-
-
-.vis-timeline .vis-bar {
-    fill-opacity:0.5;
-    stroke-width:1px;
-}
-
-.vis-timeline .vis-point {
-    stroke-width:2px;
-    fill-opacity:1.0;
-}
-
-
-.vis-timeline .vis-legend-background {
-    stroke-width:1px;
-    fill-opacity:0.9;
-    fill: #ffffff;
-    stroke: #c2c2c2;
-}
-
-
-.vis-timeline .vis-outline {
-    stroke-width:1px;
-    fill-opacity:1;
-    fill: #ffffff;
-    stroke: #e5e5e5;
-}
-
-.vis-timeline .vis-icon-fill {
-    fill-opacity:0.3;
-    stroke: none;
-}
-
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
@@ -392,50 +392,6 @@
   cursor: initial;
   z-index: inherit;
 }
-
-.vis-labelset {
-  position: relative;
-
-  overflow: hidden;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  color: #4d4d4d;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  border-bottom: 1px solid #bfbfbf;
-}
-
-.vis-labelset .vis-label.draggable {
-  cursor: pointer;
-}
-
-.vis-group-is-dragging {
-  background: rgba(0, 0, 0, .1);
-}
-
-.vis-labelset .vis-label:last-child {
-  border-bottom: none;
-}
-
-.vis-labelset .vis-label .vis-inner {
-  display: inline-block;
-  padding: 5px;
-}
-
-.vis-labelset .vis-label .vis-inner.vis-hidden {
-  padding: 0;
-}
-
 
 .vis-itemset {
   position: relative;
@@ -615,6 +571,50 @@
   height: 100%;
   z-index: 10;
 }
+
+.vis-labelset {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #4d4d4d;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.vis-labelset .vis-label.draggable {
+  cursor: pointer;
+}
+
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
+}
+
+.vis-labelset .vis-label:last-child {
+  border-bottom: none;
+}
+
+.vis-labelset .vis-label .vis-inner {
+  display: inline-block;
+  padding: 5px;
+}
+
+.vis-labelset .vis-label .vis-inner.vis-hidden {
+  padding: 0;
+}
+
 .vis-time-axis {
   position: relative;
   overflow: hidden;
