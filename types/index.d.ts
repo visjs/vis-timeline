@@ -731,6 +731,8 @@ export interface TimelineItemEditableOption {
   remove?: boolean;
   updateGroup?: boolean;
   updateTime?: boolean;
+  updateStartTime?: boolean;
+  updateEndTime?: boolean;
 }
 
 export type TimelineItemEditableType = boolean | TimelineItemEditableOption;
