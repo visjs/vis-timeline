@@ -8,7 +8,7 @@ import TestSupport from './TestSupport'
 const internals = {}
 
 describe('Timeline PointItem', () => {
-  
+
   const now = moment();
 
   before(() => {
@@ -113,8 +113,8 @@ describe('have the correct classname for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable");
-    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable");
+    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable vis-group-editable");
+    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable vis-group-editable");
   });
 
   it('an editable:false override item (with boolean option)', () => {
@@ -131,8 +131,8 @@ describe('have the correct classname for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable");
-    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable");
+    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable vis-group-editable");
+    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable vis-group-editable");
   });
 
   it('an editable:false override item (with object option)', () => {
@@ -158,8 +158,8 @@ describe('have the correct classname for', () => {
     const parent = TestSupport.buildMockItemSet();
     pointItem.setParent(parent);
     pointItem.redraw();
-    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable");
-    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable");
+    assert.equal(pointItem.dom.dot.className, "vis-item vis-dot vis-editable vis-group-editable");
+    assert.equal(pointItem.dom.point.className, "vis-item vis-point vis-editable vis-group-editable");
   });
 
   it('an editable:true non-override item (with object option)', () => {
