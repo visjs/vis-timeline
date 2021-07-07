@@ -19,7 +19,7 @@
 }
 
 .vis-editable.vis-selected {
-  cursor: move;
+  /* cursor: move; */
 }
 
 .vis-item.vis-point.vis-selected {
