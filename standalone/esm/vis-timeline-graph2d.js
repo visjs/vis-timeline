@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-07-19T23:22:44.835Z
+ * @date    2021-07-20T19:48:51.895Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6555,9 +6555,7 @@ var functionBindContext = function (fn, that, length) {
       };
   }
 
-  return function ()
-  /* ...args */
-  {
+  return function () {
     return fn.apply(that, arguments);
   };
 };
@@ -6629,8 +6627,8 @@ var _export = function (options, source) {
 
     if (options.bind && USE_NATIVE) resultProperty = functionBindContext(sourceProperty, global$1); // wrap global constructors for prevent changs in this version
     else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor(sourceProperty); // make static versions for prototype methods
-      else if (PROTO && typeof sourceProperty == 'function') resultProperty = functionBindContext(Function.call, sourceProperty); // default case
-        else resultProperty = sourceProperty; // add a flag to not completely full polyfills
+    else if (PROTO && typeof sourceProperty == 'function') resultProperty = functionBindContext(Function.call, sourceProperty); // default case
+    else resultProperty = sourceProperty; // add a flag to not completely full polyfills
 
     if (options.sham || sourceProperty && sourceProperty.sham || targetProperty && targetProperty.sham) {
       createNonEnumerableProperty(resultProperty, 'sham', true);
@@ -7547,30 +7545,30 @@ var createMethod$3 = function (TYPE) {
       if (TYPE) {
         if (IS_MAP) target[index] = result; // map
         else if (result) switch (TYPE) {
-            case 3:
-              return true;
-            // some
+          case 3:
+            return true;
+          // some
 
-            case 5:
-              return value;
-            // find
+          case 5:
+            return value;
+          // find
 
-            case 6:
-              return index;
-            // findIndex
+          case 6:
+            return index;
+          // findIndex
 
-            case 2:
-              push.call(target, value);
-            // filter
-          } else switch (TYPE) {
-            case 4:
-              return false;
-            // every
+          case 2:
+            push.call(target, value);
+          // filter
+        } else switch (TYPE) {
+          case 4:
+            return false;
+          // every
 
-            case 7:
-              push.call(target, value);
-            // filterOut
-          }
+          case 7:
+            push.call(target, value);
+          // filterOut
+        }
       }
     }
 
@@ -8565,9 +8563,7 @@ var functionBind = Function.bind || function bind(that
   var fn = aFunction$1(this);
   var partArgs = slice$1.call(arguments, 1);
 
-  var boundFunction = function bound()
-  /* args... */
-  {
+  var boundFunction = function bound() {
     var args = partArgs.concat(slice$1.call(arguments));
     return this instanceof boundFunction ? construct$3(fn, args.length, args) : fn.apply(that, args);
   };
@@ -12782,8 +12778,8 @@ function Activator$1(container) {
     if ("key" in event ? event.key === "Escape" : event.keyCode === 27
     /* the keyCode is for IE11 */
     ) {
-        _this.deactivate();
-      }
+      _this.deactivate();
+    }
   };
 } // turn into an event emitter
 
@@ -24776,13 +24772,13 @@ function removeDuplicates(body) {
           hiddenDates[j].remove = true;
         } // j start inside i
         else if (hiddenDates[j].start >= hiddenDates[i].start && hiddenDates[j].start <= hiddenDates[i].end) {
-            hiddenDates[i].end = hiddenDates[j].end;
-            hiddenDates[j].remove = true;
-          } // j end inside i
-          else if (hiddenDates[j].end >= hiddenDates[i].start && hiddenDates[j].end <= hiddenDates[i].end) {
-              hiddenDates[i].start = hiddenDates[j].start;
-              hiddenDates[j].remove = true;
-            }
+          hiddenDates[i].end = hiddenDates[j].end;
+          hiddenDates[j].remove = true;
+        } // j end inside i
+        else if (hiddenDates[j].end >= hiddenDates[i].start && hiddenDates[j].end <= hiddenDates[i].end) {
+          hiddenDates[i].start = hiddenDates[j].start;
+          hiddenDates[j].remove = true;
+        }
       }
     }
   }
@@ -34706,19 +34702,19 @@ var BackgroundItem = /*#__PURE__*/function (_Item) {
         this.dom.box.style.bottom = '';
       } // and in the case of no subgroups:
       else {
-          // we want backgrounds with groups to only show in groups.
-          if (this.parent instanceof BackgroundGroup) {
-            // if the item is not in a group:
-            height = Math.max(this.parent.height, this.parent.itemSet.body.domProps.center.height, this.parent.itemSet.body.domProps.centerContainer.height);
-            this.dom.box.style.bottom = orientation == 'bottom' ? '0' : '';
-            this.dom.box.style.top = orientation == 'top' ? '0' : '';
-          } else {
-            height = this.parent.height; // same alignment for items when orientation is top or bottom
+        // we want backgrounds with groups to only show in groups.
+        if (this.parent instanceof BackgroundGroup) {
+          // if the item is not in a group:
+          height = Math.max(this.parent.height, this.parent.itemSet.body.domProps.center.height, this.parent.itemSet.body.domProps.centerContainer.height);
+          this.dom.box.style.bottom = orientation == 'bottom' ? '0' : '';
+          this.dom.box.style.top = orientation == 'top' ? '0' : '';
+        } else {
+          height = this.parent.height; // same alignment for items when orientation is top or bottom
 
-            this.dom.box.style.top = "".concat(this.parent.top, "px");
-            this.dom.box.style.bottom = '';
-          }
+          this.dom.box.style.top = "".concat(this.parent.top, "px");
+          this.dom.box.style.bottom = '';
         }
+      }
 
       this.dom.box.style.height = "".concat(height, "px");
     }
@@ -38414,22 +38410,22 @@ var ItemSet = /*#__PURE__*/function (_Component) {
                 newOffset = 1;
               } // if dragged group was move downwards everything above should have an offset
               else if (origOrder[curPos + orgOffset] == draggedId) {
-                  orgOffset = 1;
-                } // found a group (apart from dragged group) that has the wrong position -> switch with the 
-                // group at the position where other one should be, fix index arrays and continue
-                else {
-                    var slippedPosition = indexOf(newOrder).call(newOrder, origOrder[curPos + orgOffset]);
+                orgOffset = 1;
+              } // found a group (apart from dragged group) that has the wrong position -> switch with the 
+              // group at the position where other one should be, fix index arrays and continue
+              else {
+                var slippedPosition = indexOf(newOrder).call(newOrder, origOrder[curPos + orgOffset]);
 
-                    var switchGroup = groupsData.get(newOrder[curPos + newOffset]);
-                    var shouldBeGroup = groupsData.get(origOrder[curPos + orgOffset]);
-                    this.options.groupOrderSwap(switchGroup, shouldBeGroup, groupsData);
-                    groupsData.update(switchGroup);
-                    groupsData.update(shouldBeGroup);
-                    var switchGroupId = newOrder[curPos + newOffset];
-                    newOrder[curPos + newOffset] = origOrder[curPos + orgOffset];
-                    newOrder[slippedPosition] = switchGroupId;
-                    curPos++;
-                  }
+                var switchGroup = groupsData.get(newOrder[curPos + newOffset]);
+                var shouldBeGroup = groupsData.get(origOrder[curPos + orgOffset]);
+                this.options.groupOrderSwap(switchGroup, shouldBeGroup, groupsData);
+                groupsData.update(switchGroup);
+                groupsData.update(shouldBeGroup);
+                var switchGroupId = newOrder[curPos + newOffset];
+                newOrder[curPos + newOffset] = origOrder[curPos + orgOffset];
+                newOrder[slippedPosition] = switchGroupId;
+                curPos++;
+              }
             }
           }
         }
@@ -43664,17 +43660,17 @@ var DataAxis = /*#__PURE__*/function (_Component) {
         resized = true;
       } // this will resize the yAxis if it is too big for the labels.
       else if (this.maxLabelSize < this.width - offset && this.options.visible === true && this.width > this.minWidth) {
-          this.width = Math.max(this.minWidth, this.maxLabelSize + offset);
-          this.options.width = "".concat(this.width, "px");
-          cleanupElements(this.DOMelements.lines);
-          cleanupElements(this.DOMelements.labels);
-          this.redraw();
-          resized = true;
-        } else {
-          cleanupElements(this.DOMelements.lines);
-          cleanupElements(this.DOMelements.labels);
-          resized = false;
-        }
+        this.width = Math.max(this.minWidth, this.maxLabelSize + offset);
+        this.options.width = "".concat(this.width, "px");
+        cleanupElements(this.DOMelements.lines);
+        cleanupElements(this.DOMelements.labels);
+        this.redraw();
+        resized = true;
+      } else {
+        cleanupElements(this.DOMelements.lines);
+        cleanupElements(this.DOMelements.labels);
+        resized = false;
+      }
 
       return resized;
     }
