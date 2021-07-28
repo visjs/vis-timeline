@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-07-27T12:00:27.783Z
+ * @date    2021-07-28T08:04:55.542Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -12509,6 +12509,7 @@ var Hammer$2 = /*#__PURE__*/function () {
   });
   return Hammer;
 }(); //  style loader but by script tag, not by the loader.
+var Hammer$3 = Hammer$2;
 
 function ownKeys$2(object, enumerableOnly) { var keys = keys$3(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -12802,7 +12803,7 @@ function hammerMock$1() {
   };
 }
 
-var Hammer$1 = typeof window !== "undefined" ? window.Hammer || Hammer$2 : function () {
+var Hammer$1 = typeof window !== "undefined" ? window.Hammer || Hammer$3 : function () {
   // hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
   return hammerMock$1();
 };
@@ -26466,7 +26467,7 @@ function hammerMock() {
 var modifiedHammer;
 
 if (typeof window !== 'undefined') {
-  var OurHammer = window['Hammer'] || Hammer$2;
+  var OurHammer = window['Hammer'] || Hammer$3;
   modifiedHammer = propagating(OurHammer, {
     preventDefault: 'mouse'
   });
@@ -47231,6 +47232,5 @@ var bundleLegacy = {
   keycharm: keycharm
 };
 
-export default bundleLegacy;
-export { DOMutil, DataSet, DataView, Graph2d, Hammer, Queue, Timeline, keycharm, moment$2 as moment, timeline, util$2 as util };
+export { DOMutil, DataSet, DataView, Graph2d, Hammer, Queue, Timeline, bundleLegacy as default, keycharm, moment$2 as moment, timeline, util$2 as util };
 //# sourceMappingURL=vis-timeline-graph2d.esm.js.map
