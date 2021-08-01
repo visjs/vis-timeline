@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-07-31T00:40:11.751Z
+ * @date    2021-08-01T10:47:04.413Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -17602,11 +17602,9 @@
 
 
 	    var IteratorPrototype = {};
-
-	    IteratorPrototype[iteratorSymbol] = function () {
+	    define(IteratorPrototype, iteratorSymbol, function () {
 	      return this;
-	    };
-
+	    });
 	    var getProto = Object.getPrototypeOf;
 	    var NativeIteratorPrototype = getProto && getProto(getProto(values([])));
 
@@ -17617,8 +17615,9 @@
 	    }
 
 	    var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
-	    GeneratorFunction.prototype = Gp.constructor = GeneratorFunctionPrototype;
-	    GeneratorFunctionPrototype.constructor = GeneratorFunction;
+	    GeneratorFunction.prototype = GeneratorFunctionPrototype;
+	    define(Gp, "constructor", GeneratorFunctionPrototype);
+	    define(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
 	    GeneratorFunction.displayName = define(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction"); // Helper for defining the .next, .throw, and .return methods of the
 	    // Iterator interface in terms of a single ._invoke method.
 
@@ -17723,11 +17722,9 @@
 	    }
 
 	    defineIteratorMethods(AsyncIterator.prototype);
-
-	    AsyncIterator.prototype[asyncIteratorSymbol] = function () {
+	    define(AsyncIterator.prototype, asyncIteratorSymbol, function () {
 	      return this;
-	    };
-
+	    });
 	    exports.AsyncIterator = AsyncIterator; // Note that simple async functions are implemented on top of
 	    // AsyncIterator objects; they just return a Promise for the value of
 	    // the final result produced by the iterator.
@@ -17904,13 +17901,12 @@
 	    // object to not be returned from this call. This ensures that doesn't happen.
 	    // See https://github.com/facebook/regenerator/issues/274 for more details.
 
-	    Gp[iteratorSymbol] = function () {
+	    define(Gp, iteratorSymbol, function () {
 	      return this;
-	    };
-
-	    Gp.toString = function () {
+	    });
+	    define(Gp, "toString", function () {
 	      return "[object Generator]";
-	    };
+	    });
 
 	    function pushTryEntry(locs) {
 	      var entry = {
@@ -18222,14 +18218,19 @@
 	  } catch (accidentalStrictMode) {
 	    // This module should not be running in strict mode, so the above
 	    // assignment should always work unless something is misconfigured. Just
-	    // in case runtime.js accidentally runs in strict mode, we can escape
+	    // in case runtime.js accidentally runs in strict mode, in modern engines
+	    // we can explicitly access globalThis. In older engines we can escape
 	    // strict mode using a global Function call. This could conceivably fail
 	    // if a Content Security Policy forbids using Function, but in that case
 	    // the proper solution is to fix the accidental strict mode problem. If
 	    // you've misconfigured your bundler to force strict mode and applied a
 	    // CSP to forbid Function, and you're not willing to fix either of those
 	    // problems, please detail your unique predicament in a GitHub issue.
-	    Function("r", "regeneratorRuntime = r")(runtime);
+	    if (typeof globalThis === "object") {
+	      globalThis.regeneratorRuntime = runtime;
+	    } else {
+	      Function("r", "regeneratorRuntime = r")(runtime);
+	    }
 	  }
 	});
 
@@ -18371,10 +18372,6 @@
 	var flatMap$1 = flatMap_1;
 
 	var flatMap = flatMap$1;
-
-	var iterator$1 = iterator$4;
-
-	var iterator = iterator$1;
 
 	var freezing = !fails(function () {
 	  // eslint-disable-next-line es/no-object-isextensible, es/no-object-preventextensions -- required for testing
@@ -18876,6 +18873,10 @@
 	var set$1 = set$2;
 
 	var set = set$1;
+
+	var iterator$1 = iterator$4;
+
+	var iterator = iterator$1;
 
 	var getIterator$1 = function (it) {
 	  var iteratorMethod = getIteratorMethod$1(it);
@@ -19827,7 +19828,7 @@
 	 */
 
 
-	var DataStream = /*#__PURE__*/function () {
+	var DataStream = /*#__PURE__*/function (_Symbol$iterator) {
 	  /**
 	   * Create a new data stream.
 	   *
@@ -19844,7 +19845,7 @@
 
 
 	  _createClass(DataStream, [{
-	    key: iterator,
+	    key: _Symbol$iterator,
 	    value:
 	    /*#__PURE__*/
 	    regenerator.mark(function value() {
@@ -20549,7 +20550,7 @@
 	  }]);
 
 	  return DataStream;
-	}();
+	}(iterator);
 	/**
 	 * Add an id to given item if it doesn't have one already.
 	 *
