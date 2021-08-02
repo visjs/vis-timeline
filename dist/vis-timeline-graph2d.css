@@ -272,23 +272,6 @@
   top: 0;
   left: 0;
 }
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
-}
-
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
-}
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
@@ -391,6 +374,23 @@
   /*font-size: 10px;*/
   white-space: nowrap;
   display: inline-block
+}
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
+}
+
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
 }
 
 .vis-itemset {
