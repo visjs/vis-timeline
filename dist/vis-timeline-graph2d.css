@@ -5,35 +5,6 @@
   width: auto;
 }
 
-.vis-current-time {
-  background-color: #FF7F6E;
-  width: 2px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.vis-rolling-mode-btn {
-  height: 40px;
-  width: 40px;
-  position: absolute;
-  top: 7px;
-  right: 20px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.8;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  background: #3876c2;
-}
-.vis-rolling-mode-btn:before {
-  content: "\26F6";
-}
-
-.vis-rolling-mode-btn:hover {
-  opacity: 1;
-}
 .vis-timeline {
   /*
   -webkit-transition: height .4s ease-in-out;
@@ -67,6 +38,35 @@
   transition:         height .4s ease-in-out, top .4s ease-in-out;
 }
 /**/
+.vis-current-time {
+  background-color: #FF7F6E;
+  width: 2px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vis-rolling-mode-btn {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #3876c2;
+}
+.vis-rolling-mode-btn:before {
+  content: "\26F6";
+}
+
+.vis-rolling-mode-btn:hover {
+  opacity: 1;
+}
 .vis-graph-group0 {
     fill:#4f81bd;
     fill-opacity:0;
@@ -174,23 +174,6 @@
     stroke: none;
 }
 
-
-.vis-timeline {
-  position: relative;
-  border: 1px solid #bfbfbf;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.vis-loading-screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .vis-panel {
   position: absolute;
 
@@ -272,22 +255,22 @@
   bottom: -1px;
   left: 0;
 }
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
+
+.vis-timeline {
+  position: relative;
+  border: 1px solid #bfbfbf;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
+.vis-loading-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
@@ -391,6 +374,23 @@
   /*font-size: 10px;*/
   white-space: nowrap;
   display: inline-block
+}
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
+}
+
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
 }
 
 .vis-itemset {
