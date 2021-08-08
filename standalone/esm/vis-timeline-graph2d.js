@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-08-08T19:33:49.488Z
+ * @date    2021-08-08T21:22:15.072Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6371,7 +6371,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.16.0',
+    version: '3.16.1',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -7260,7 +7260,7 @@ var createProperty = function (object, key, value) {
 
 var ITERATOR$1 = wellKnownSymbol('iterator');
 
-var getIteratorMethod$1 = function (it) {
+var getIteratorMethod$3 = function (it) {
   if (it != undefined) return it[ITERATOR$1] || it['@@iterator'] || iterators[classof(it)];
 };
 
@@ -7275,7 +7275,7 @@ var arrayFrom = function from(arrayLike
   var argumentsLength = arguments.length;
   var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
   var mapping = mapfn !== undefined;
-  var iteratorMethod = getIteratorMethod$1(O);
+  var iteratorMethod = getIteratorMethod$3(O);
   var index = 0;
   var length, result, step, iterator, next, value;
   if (mapping) mapfn = functionBindContext(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2); // if the target is not iterable or it's an array with the default iterator - use a simple case
@@ -7432,6 +7432,8 @@ defineIterator(Array, 'Array', function (iterated, kind) {
 
 iterators.Arguments = iterators.Array; // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
 
+var getIteratorMethod_1 = getIteratorMethod$3;
+
 // iterable DOM collections
 // flag - `iterable` interface - 'entries', 'keys', 'values', 'forEach' methods
 var domIterables = {
@@ -7481,9 +7483,11 @@ for (var COLLECTION_NAME in domIterables) {
   iterators[COLLECTION_NAME] = iterators.Array;
 }
 
-var getIteratorMethod_1 = getIteratorMethod$1;
+var getIteratorMethod$2 = getIteratorMethod_1;
 
-var getIteratorMethod = getIteratorMethod_1;
+var getIteratorMethod$1 = getIteratorMethod$2;
+
+var getIteratorMethod = getIteratorMethod$1;
 
 // https://tc39.es/ecma262/#sec-isarray
 // eslint-disable-next-line es/no-array-isarray -- safe
@@ -8095,7 +8099,7 @@ function _classCallCheck(instance, Constructor) {
   }
 }
 
-var defineProperty$4 = defineProperty_1;
+var defineProperty$4 = defineProperty$6;
 
 var defineProperty$3 = defineProperty$4;
 
@@ -8146,8 +8150,10 @@ var isArray$3 = isArray$4;
 
 var isArray$2 = isArray$3;
 
+var isArray$1 = isArray$2;
+
 function _arrayWithHoles(arr) {
-  if (isArray$2(arr)) return arr;
+  if (isArray$1(arr)) return arr;
 }
 
 var SPECIES$2 = wellKnownSymbol('species');
@@ -8282,6 +8288,8 @@ setToStringTag(global$1.JSON, 'JSON', true);
 
 var symbol$4 = path.Symbol;
 
+var symbol$3 = symbol$4;
+
 // https://github.com/tc39/proposal-using-statement
 
 defineWellKnownSymbol('asyncDispose');
@@ -8311,12 +8319,12 @@ defineWellKnownSymbol('replaceAll');
 
 // TODO: Remove from `core-js@4`
 
-var symbol$3 = symbol$4;
-
 var symbol$2 = symbol$3;
 
+var symbol$1 = symbol$2;
+
 function _iterableToArrayLimit(arr, i) {
-  var _i = arr == null ? null : typeof symbol$2 !== "undefined" && getIteratorMethod(arr) || arr["@@iterator"];
+  var _i = arr == null ? null : typeof symbol$1 !== "undefined" && getIteratorMethod(arr) || arr["@@iterator"];
 
   if (_i == null) return;
   var _arr = [];
@@ -8406,7 +8414,9 @@ var slice$5 = slice_1;
 
 var slice$4 = slice$5;
 
-var from$1 = from$4;
+var slice$3 = slice$4;
+
+var from$1 = from$3;
 
 var from = from$1;
 
@@ -8426,7 +8436,7 @@ function _unsupportedIterableToArray$7(o, minLen) {
   if (!o) return;
   if (typeof o === "string") return _arrayLikeToArray$7(o, minLen);
 
-  var n = slice$4(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
+  var n = slice$3(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
 
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return from(o);
@@ -8447,16 +8457,18 @@ var iterator$3 = iterator$4;
 
 var iterator$2 = iterator$3;
 
+var iterator$1 = iterator$2;
+
 function _typeof(obj) {
   "@babel/helpers - typeof";
 
-  if (typeof symbol$2 === "function" && typeof iterator$2 === "symbol") {
+  if (typeof symbol$1 === "function" && typeof iterator$1 === "symbol") {
     _typeof = function _typeof(obj) {
       return typeof obj;
     };
   } else {
     _typeof = function _typeof(obj) {
-      return obj && typeof symbol$2 === "function" && obj.constructor === symbol$2 && obj !== symbol$2.prototype ? "symbol" : typeof obj;
+      return obj && typeof symbol$1 === "function" && obj.constructor === symbol$1 && obj !== symbol$1.prototype ? "symbol" : typeof obj;
     };
   }
 
@@ -8464,11 +8476,11 @@ function _typeof(obj) {
 }
 
 function _arrayWithoutHoles(arr) {
-  if (isArray$2(arr)) return _arrayLikeToArray$7(arr);
+  if (isArray$1(arr)) return _arrayLikeToArray$7(arr);
 }
 
 function _iterableToArray(iter) {
-  if (typeof symbol$2 !== "undefined" && getIteratorMethod(iter) != null || iter["@@iterator"] != null) return from(iter);
+  if (typeof symbol$1 !== "undefined" && getIteratorMethod(iter) != null || iter["@@iterator"] != null) return from(iter);
 }
 
 function _nonIterableSpread() {
@@ -8479,9 +8491,7 @@ function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray$7(arr) || _nonIterableSpread();
 }
 
-var symbol$1 = symbol$4;
-
-var symbol = symbol$1;
+var symbol = symbol$3;
 
 var concat$2 = entryVirtual('Array').concat;
 
@@ -8496,9 +8506,7 @@ var concat$1 = concat_1;
 
 var concat = concat$1;
 
-var slice$3 = slice_1;
-
-var slice$2 = slice$3;
+var slice$2 = slice$5;
 
 // https://tc39.es/ecma262/#sec-reflect.ownkeys
 
@@ -8515,9 +8523,7 @@ var ownKeys$4 = ownKeys$5;
 
 var ownKeys$3 = ownKeys$4;
 
-var isArray$1 = isArray$4;
-
-var isArray = isArray$1;
+var isArray = isArray$3;
 
 var $map = arrayIteration.map;
 var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport('map'); // `Array.prototype.map` method
@@ -17442,7 +17448,7 @@ function _assertThisInitialized(self) {
   return self;
 }
 
-var create$1 = create$4;
+var create$1 = create$3;
 
 var create = create$1;
 
@@ -17455,7 +17461,9 @@ _export({
   setPrototypeOf: objectSetPrototypeOf
 });
 
-var setPrototypeOf$2 = path.Object.setPrototypeOf;
+var setPrototypeOf$3 = path.Object.setPrototypeOf;
+
+var setPrototypeOf$2 = setPrototypeOf$3;
 
 var setPrototypeOf$1 = setPrototypeOf$2;
 
@@ -17493,7 +17501,7 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized(self);
 }
 
-var getPrototypeOf$1 = getPrototypeOf$4;
+var getPrototypeOf$1 = getPrototypeOf$3;
 
 var getPrototypeOf = getPrototypeOf$1;
 
@@ -18503,7 +18511,7 @@ var iterate = function (iterable, unboundFunction, options) {
   if (IS_ITERATOR) {
     iterator = iterable;
   } else {
-    iterFn = getIteratorMethod$1(iterable);
+    iterFn = getIteratorMethod$3(iterable);
     if (typeof iterFn != 'function') throw TypeError('Target is not iterable'); // optimisation for array iterators
 
     if (isArrayIteratorMethod(iterFn)) {
@@ -18869,12 +18877,10 @@ var set$1 = set$2;
 
 var set = set$1;
 
-var iterator$1 = iterator$4;
+var iterator = iterator$3;
 
-var iterator = iterator$1;
-
-var getIterator$1 = function (it) {
-  var iteratorMethod = getIteratorMethod$1(it);
+var getIterator$3 = function (it) {
+  var iteratorMethod = getIteratorMethod$3(it);
 
   if (typeof iteratorMethod != 'function') {
     throw TypeError(String(it) + ' is not iterable');
@@ -18883,9 +18889,13 @@ var getIterator$1 = function (it) {
   return anObject(iteratorMethod.call(it));
 };
 
-var getIterator_1 = getIterator$1;
+var getIterator_1 = getIterator$3;
 
-var getIterator = getIterator_1;
+var getIterator$2 = getIterator_1;
+
+var getIterator$1 = getIterator$2;
+
+var getIterator = getIterator$1;
 
 // TODO: use something more complex like timsort?
 var floor = Math.floor;
