@@ -26,6 +26,7 @@
   "module": "peer/esm/vis-timeline-graph2d.js",
   "types": "declarations/index.d.ts",
   "files": [
+    "HISTORY.md",
     "declarations",
     "dist",
     "esnext",
