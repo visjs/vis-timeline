@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-08-24T22:00:14.363Z
+ * @date    2021-08-24T23:27:44.396Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6414,7 +6414,7 @@
 	(shared$4.exports = function (key, value) {
 	  return store$1[key] || (store$1[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.16.2',
+	  version: '3.16.3',
 	  mode: 'pure' ,
 	  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	});
@@ -6797,7 +6797,7 @@
 	  var STATIC = options.stat;
 	  var PROTO = options.proto;
 	  var nativeSource = GLOBAL ? global$9 : STATIC ? global$9[TARGET] : (global$9[TARGET] || {}).prototype;
-	  var target = GLOBAL ? path$p : path$p[TARGET] || (path$p[TARGET] = {});
+	  var target = GLOBAL ? path$p : path$p[TARGET] || createNonEnumerableProperty$7(path$p, TARGET, {})[TARGET];
 	  var targetPrototype = target.prototype;
 	  var FORCED, USE_NATIVE, VIRTUAL_PROTOTYPE;
 	  var key, sourceProperty, targetProperty, nativeProperty, resultProperty, descriptor;
@@ -6824,7 +6824,7 @@
 	      createNonEnumerableProperty$7(resultProperty, 'sham', true);
 	    }
 
-	    target[key] = resultProperty;
+	    createNonEnumerableProperty$7(target, key, resultProperty);
 
 	    if (PROTO) {
 	      VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
@@ -6834,7 +6834,7 @@
 	      } // export virtual prototype methods
 
 
-	      path$p[VIRTUAL_PROTOTYPE][key] = sourceProperty; // export real prototype methods
+	      createNonEnumerableProperty$7(path$p[VIRTUAL_PROTOTYPE], key, sourceProperty); // export real prototype methods
 
 	      if (options.real && targetPrototype && !targetPrototype[key]) {
 	        createNonEnumerableProperty$7(targetPrototype, key, sourceProperty);

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-08-24T22:01:29.999Z
+ * @date    2021-08-24T23:29:36.829Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6376,7 +6376,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.16.2',
+    version: '3.16.3',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -6711,7 +6711,7 @@ var _export = function (options, source) {
   var STATIC = options.stat;
   var PROTO = options.proto;
   var nativeSource = GLOBAL ? global_1 : STATIC ? global_1[TARGET] : (global_1[TARGET] || {}).prototype;
-  var target = GLOBAL ? path : path[TARGET] || (path[TARGET] = {});
+  var target = GLOBAL ? path : path[TARGET] || createNonEnumerableProperty(path, TARGET, {})[TARGET];
   var targetPrototype = target.prototype;
   var FORCED, USE_NATIVE, VIRTUAL_PROTOTYPE;
   var key, sourceProperty, targetProperty, nativeProperty, resultProperty, descriptor;
@@ -6738,7 +6738,7 @@ var _export = function (options, source) {
       createNonEnumerableProperty(resultProperty, 'sham', true);
     }
 
-    target[key] = resultProperty;
+    createNonEnumerableProperty(target, key, resultProperty);
 
     if (PROTO) {
       VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
@@ -6748,7 +6748,7 @@ var _export = function (options, source) {
       } // export virtual prototype methods
 
 
-      path[VIRTUAL_PROTOTYPE][key] = sourceProperty; // export real prototype methods
+      createNonEnumerableProperty(path[VIRTUAL_PROTOTYPE], key, sourceProperty); // export real prototype methods
 
       if (options.real && targetPrototype && !targetPrototype[key]) {
         createNonEnumerableProperty(targetPrototype, key, sourceProperty);
