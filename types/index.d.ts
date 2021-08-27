@@ -25,6 +25,7 @@ export type DataViewDataGroup = DataView<DataGroup, 'id'>;
 export type DataViewDataItem = DataView<DataItem, 'id'>;
 
 import { MomentInput, MomentFormatSpecification, Moment } from 'moment';
+import { IFilterXSSOptions } from 'xss';
 export type MomentConstructor1 =
   (inp?: MomentInput, format?: MomentFormatSpecification, strict?: boolean) => Moment;
 export type MomentConstructor2 =
@@ -212,6 +213,11 @@ export interface TimelineTooltipOption {
   template?: (item: TimelineItem, editedData?: TimelineItem) => string;
 }
 
+export interface TimelineXSSProtectionOption {
+  disabled: boolean;
+  filterOptions?: IFilterXSSOptions;
+}
+
 export type TimelineOptionsConfigureFunction = (option: string, path: string[]) => boolean;
 export type TimelineOptionsConfigureType = boolean | TimelineOptionsConfigureFunction;
 export type TimelineOptionsDataAttributesType = boolean | string | string[];
@@ -312,6 +318,7 @@ export interface TimelineOptions {
   zoomFriction?: number;
   zoomMax?: number;
   zoomMin?: number;
+  xss?: TimelineXSSProtectionOption;
 }
 
 /**
@@ -322,7 +329,7 @@ export interface TimelineOptions {
 export type TimelineAnimationType = boolean | AnimationOptions;
 
 export interface TimelineAnimationOptions {
-  animation?: TimelineAnimationType;
+  animation?: Partial<TimelineAnimationType>;
   zoom?: boolean;
 }
 
@@ -376,6 +383,11 @@ export interface TimelineEventPropertiesResult {
    * The original click event.
    */
   event: Event;
+
+  /**
+   * If the event is clustered.
+   */
+  isCluster: boolean;
 }
 
 export type DataItemCollectionType = DataItem[] | DataInterfaceDataItem;
