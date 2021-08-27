@@ -1,0 +1,41 @@
+name: Deploy to NPM on release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  publish_npm:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Inject slug/short variables
+        uses: rlespinasse/github-slug-action@v3.x
+      - name: Find and Replace NPM name
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "\"vis-timeline\""
+          replace: "\"@vizlib/vis-timeline\""
+          include: "package.json"
+      - name: Find and Replace contributors script
+        uses: jacobtomlinson/gha-find-replace@master
+        with:
+          find: "\"contributors:update\": \"git-authors-cli\""
+          replace: "\"contributors:update\": \"echo Vizlib\""
+          include: "package.json"
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '12.x'
+          registry-url: 'https://registry.npmjs.org'
+      - name: Replace NPM version
+        run: |
+          npm --no-git-tag-version version ${{ env.GITHUB_REF_SLUG }}
+      - name: Install dependencies
+        run: |
+          npm ci
+      - name: Build & publish
+        run: |
+          npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
