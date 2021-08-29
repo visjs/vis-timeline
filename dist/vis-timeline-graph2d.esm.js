@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-08-29T19:37:11.967Z
+ * @date    2021-08-29T21:31:42.877Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6376,7 +6376,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.16.3',
+    version: '3.16.4',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -7233,20 +7233,35 @@ defineIterator(String, 'String', function (iterated) {
   };
 });
 
-var iteratorClose = function (iterator) {
-  var returnMethod = iterator['return'];
+var iteratorClose = function (iterator, kind, value) {
+  var innerResult, innerError;
+  anObject(iterator);
 
-  if (returnMethod !== undefined) {
-    return anObject(returnMethod.call(iterator)).value;
+  try {
+    innerResult = iterator['return'];
+
+    if (innerResult === undefined) {
+      if (kind === 'throw') throw value;
+      return value;
+    }
+
+    innerResult = innerResult.call(iterator);
+  } catch (error) {
+    innerError = true;
+    innerResult = error;
   }
+
+  if (kind === 'throw') throw value;
+  if (innerError) throw innerResult;
+  anObject(innerResult);
+  return value;
 };
 
 var callWithSafeIterationClosing = function (iterator, fn, value, ENTRIES) {
   try {
     return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
   } catch (error) {
-    iteratorClose(iterator);
-    throw error;
+    iteratorClose(iterator, 'throw', error);
   }
 };
 
@@ -7268,6 +7283,16 @@ var getIteratorMethod$3 = function (it) {
   if (it != undefined) return it[ITERATOR$1] || it['@@iterator'] || iterators[classof(it)];
 };
 
+var getIterator$3 = function (it, usingIterator) {
+  var iteratorMethod = arguments.length < 2 ? getIteratorMethod$3(it) : usingIterator;
+
+  if (typeof iteratorMethod != 'function') {
+    throw TypeError(String(it) + ' is not iterable');
+  }
+
+  return anObject(iteratorMethod.call(it));
+};
+
 // https://tc39.es/ecma262/#sec-array.from
 
 
@@ -7285,7 +7310,7 @@ var arrayFrom = function from(arrayLike
   if (mapping) mapfn = functionBindContext(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2); // if the target is not iterable or it's an array with the default iterator - use a simple case
 
   if (iteratorMethod != undefined && !(C == Array && isArrayIteratorMethod(iteratorMethod))) {
-    iterator = iteratorMethod.call(O);
+    iterator = getIterator$3(O, iteratorMethod);
     next = iterator.next;
     result = new C();
 
@@ -18629,7 +18654,7 @@ var iterate = function (iterable, unboundFunction, options) {
   var iterator, iterFn, index, length, result, next, step;
 
   var stop = function (condition) {
-    if (iterator) iteratorClose(iterator);
+    if (iterator) iteratorClose(iterator, 'return', condition);
     return new Result(true, condition);
   };
 
@@ -18657,7 +18682,7 @@ var iterate = function (iterable, unboundFunction, options) {
       return new Result(false);
     }
 
-    iterator = iterFn.call(iterable);
+    iterator = getIterator$3(iterable, iterFn);
   }
 
   next = iterator.next;
@@ -18666,8 +18691,7 @@ var iterate = function (iterable, unboundFunction, options) {
     try {
       result = callFn(step.value);
     } catch (error) {
-      iteratorClose(iterator);
-      throw error;
+      iteratorClose(iterator, 'throw', error);
     }
 
     if (typeof result == 'object' && result && result instanceof Result) return result;
@@ -19014,16 +19038,6 @@ var set$1 = set$2;
 var set = set$1;
 
 var iterator = iterator$3;
-
-var getIterator$3 = function (it) {
-  var iteratorMethod = getIteratorMethod$3(it);
-
-  if (typeof iteratorMethod != 'function') {
-    throw TypeError(String(it) + ' is not iterable');
-  }
-
-  return anObject(iteratorMethod.call(it));
-};
 
 var getIterator_1 = getIterator$3;
 

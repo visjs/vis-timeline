@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-08-29T19:35:57.940Z
+ * @date    2021-08-29T21:30:14.837Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -232,7 +232,7 @@
 	(shared$4.exports = function (key, value) {
 	  return store$2[key] || (store$2[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.16.3',
+	  version: '3.16.4',
 	  mode: 'pure' ,
 	  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	});
@@ -419,7 +419,7 @@
 
 	var isObject$c = isObject$g;
 
-	var anObject$a = function (it) {
+	var anObject$b = function (it) {
 	  if (!isObject$c(it)) {
 	    throw TypeError(String(it) + ' is not an object');
 	  }
@@ -429,16 +429,16 @@
 
 	var DESCRIPTORS$d = descriptors;
 	var IE8_DOM_DEFINE = ie8DomDefine;
-	var anObject$9 = anObject$a;
+	var anObject$a = anObject$b;
 	var toPropertyKey$2 = toPropertyKey$4; // eslint-disable-next-line es/no-object-defineproperty -- safe
 
 	var $defineProperty$1 = Object.defineProperty; // `Object.defineProperty` method
 	// https://tc39.es/ecma262/#sec-object.defineproperty
 
 	objectDefineProperty.f = DESCRIPTORS$d ? $defineProperty$1 : function defineProperty(O, P, Attributes) {
-	  anObject$9(O);
+	  anObject$a(O);
 	  P = toPropertyKey$2(P);
-	  anObject$9(Attributes);
+	  anObject$a(Attributes);
 	  if (IE8_DOM_DEFINE) try {
 	    return $defineProperty$1(O, P, Attributes);
 	  } catch (error) {
@@ -653,13 +653,13 @@
 
 	var DESCRIPTORS$b = descriptors;
 	var definePropertyModule$3 = objectDefineProperty;
-	var anObject$8 = anObject$a;
+	var anObject$9 = anObject$b;
 	var objectKeys$3 = objectKeys$4; // `Object.defineProperties` method
 	// https://tc39.es/ecma262/#sec-object.defineproperties
 	// eslint-disable-next-line es/no-object-defineproperties -- safe
 
 	var objectDefineProperties = DESCRIPTORS$b ? Object.defineProperties : function defineProperties(O, Properties) {
-	  anObject$8(O);
+	  anObject$9(O);
 	  var keys = objectKeys$3(Properties);
 	  var length = keys.length;
 	  var index = 0;
@@ -682,7 +682,7 @@
 	};
 
 	/* global ActiveXObject -- old IE, WSH */
-	var anObject$7 = anObject$a;
+	var anObject$8 = anObject$b;
 	var defineProperties$5 = objectDefineProperties;
 	var enumBugKeys$1 = enumBugKeys$3;
 	var hiddenKeys$4 = hiddenKeys$6;
@@ -761,7 +761,7 @@
 	  var result;
 
 	  if (O !== null) {
-	    EmptyConstructor[PROTOTYPE$1] = anObject$7(O);
+	    EmptyConstructor[PROTOTYPE$1] = anObject$8(O);
 	    result = new EmptyConstructor();
 	    EmptyConstructor[PROTOTYPE$1] = null; // add "__proto__" for Object.getPrototypeOf polyfill
 
@@ -807,7 +807,7 @@
 	var $$F = _export;
 	var getBuiltIn$4 = getBuiltIn$8;
 	var aFunction$2 = aFunction$5;
-	var anObject$6 = anObject$a;
+	var anObject$7 = anObject$b;
 	var isObject$a = isObject$g;
 	var create$8 = objectCreate;
 	var bind$9 = functionBind;
@@ -842,7 +842,7 @@
 	  /* , newTarget */
 	  ) {
 	    aFunction$2(Target);
-	    anObject$6(args);
+	    anObject$7(args);
 	    var newTarget = arguments.length < 3 ? Target : aFunction$2(arguments[2]);
 	    if (ARGS_BUG && !NEW_TARGET_BUG) return nativeConstruct(Target, args, newTarget);
 
@@ -990,7 +990,7 @@
 	};
 
 	/* eslint-disable no-proto -- safe */
-	var anObject$5 = anObject$a;
+	var anObject$6 = anObject$b;
 	var aPossiblePrototype = aPossiblePrototype$1; // `Object.setPrototypeOf` method
 	// https://tc39.es/ecma262/#sec-object.setprototypeof
 	// Works with __proto__ only. Old v8 can't work with null proto objects.
@@ -1011,7 +1011,7 @@
 	  }
 
 	  return function setPrototypeOf(O, proto) {
-	    anObject$5(O);
+	    anObject$6(O);
 	    aPossiblePrototype(proto);
 	    if (CORRECT_SETTER) setter.call(O, proto);else O.__proto__ = proto;
 	    return O;
@@ -1521,7 +1521,7 @@
 	var isArray$8 = isArray$b;
 	var isObject$5 = isObject$g;
 	var isSymbol = isSymbol$4;
-	var anObject$4 = anObject$a;
+	var anObject$5 = anObject$b;
 	var toObject$9 = toObject$d;
 	var toIndexedObject$5 = toIndexedObject$a;
 	var toPropertyKey = toPropertyKey$4;
@@ -1600,9 +1600,9 @@
 
 	var $defineProperty = function defineProperty(O, P, Attributes) {
 	  if (O === ObjectPrototype$1) $defineProperty(ObjectPrototypeSymbols, P, Attributes);
-	  anObject$4(O);
+	  anObject$5(O);
 	  var key = toPropertyKey(P);
-	  anObject$4(Attributes);
+	  anObject$5(Attributes);
 
 	  if (has$3(AllSymbols, key)) {
 	    if (!Attributes.enumerable) {
@@ -1622,7 +1622,7 @@
 	};
 
 	var $defineProperties = function defineProperties(O, Properties) {
-	  anObject$4(O);
+	  anObject$5(O);
 	  var properties = toIndexedObject$5(Properties);
 	  var keys = objectKeys$2(properties).concat($getOwnPropertySymbols(properties));
 	  $forEach$1(keys, function (key) {
@@ -2661,10 +2661,10 @@
 	var getBuiltIn$2 = getBuiltIn$8;
 	var getOwnPropertyNamesModule$1 = objectGetOwnPropertyNames;
 	var getOwnPropertySymbolsModule$1 = objectGetOwnPropertySymbols;
-	var anObject$3 = anObject$a; // all object keys, includes non-enumerable and symbols
+	var anObject$4 = anObject$b; // all object keys, includes non-enumerable and symbols
 
 	var ownKeys$7 = getBuiltIn$2('Reflect', 'ownKeys') || function ownKeys(it) {
-	  var keys = getOwnPropertyNamesModule$1.f(anObject$3(it));
+	  var keys = getOwnPropertyNamesModule$1.f(anObject$4(it));
 	  var getOwnPropertySymbols = getOwnPropertySymbolsModule$1.f;
 	  return getOwnPropertySymbols ? keys.concat(getOwnPropertySymbols(it)) : keys;
 	};
@@ -2903,25 +2903,40 @@
 
 	var defineProperty$4 = defineProperty$9;
 
-	var anObject$2 = anObject$a;
+	var anObject$3 = anObject$b;
 
-	var iteratorClose$2 = function (iterator) {
-	  var returnMethod = iterator['return'];
+	var iteratorClose$2 = function (iterator, kind, value) {
+	  var innerResult, innerError;
+	  anObject$3(iterator);
 
-	  if (returnMethod !== undefined) {
-	    return anObject$2(returnMethod.call(iterator)).value;
+	  try {
+	    innerResult = iterator['return'];
+
+	    if (innerResult === undefined) {
+	      if (kind === 'throw') throw value;
+	      return value;
+	    }
+
+	    innerResult = innerResult.call(iterator);
+	  } catch (error) {
+	    innerError = true;
+	    innerResult = error;
 	  }
+
+	  if (kind === 'throw') throw value;
+	  if (innerError) throw innerResult;
+	  anObject$3(innerResult);
+	  return value;
 	};
 
-	var anObject$1 = anObject$a;
+	var anObject$2 = anObject$b;
 	var iteratorClose$1 = iteratorClose$2; // call something on iterator step with safe closing on error
 
 	var callWithSafeIterationClosing$1 = function (iterator, fn, value, ENTRIES) {
 	  try {
-	    return ENTRIES ? fn(anObject$1(value)[0], value[1]) : fn(value);
+	    return ENTRIES ? fn(anObject$2(value)[0], value[1]) : fn(value);
 	  } catch (error) {
-	    iteratorClose$1(iterator);
-	    throw error;
+	    iteratorClose$1(iterator, 'throw', error);
 	  }
 	};
 
@@ -2939,8 +2954,21 @@
 	var wellKnownSymbol$5 = wellKnownSymbol$j;
 	var ITERATOR$1 = wellKnownSymbol$5('iterator');
 
-	var getIteratorMethod$6 = function (it) {
+	var getIteratorMethod$7 = function (it) {
 	  if (it != undefined) return it[ITERATOR$1] || it['@@iterator'] || Iterators[classof$1(it)];
+	};
+
+	var anObject$1 = anObject$b;
+	var getIteratorMethod$6 = getIteratorMethod$7;
+
+	var getIterator$2 = function (it, usingIterator) {
+	  var iteratorMethod = arguments.length < 2 ? getIteratorMethod$6(it) : usingIterator;
+
+	  if (typeof iteratorMethod != 'function') {
+	    throw TypeError(String(it) + ' is not iterable');
+	  }
+
+	  return anObject$1(iteratorMethod.call(it));
 	};
 
 	var bind$2 = functionBindContext;
@@ -2949,7 +2977,8 @@
 	var isArrayIteratorMethod$1 = isArrayIteratorMethod$2;
 	var toLength$5 = toLength$a;
 	var createProperty$2 = createProperty$5;
-	var getIteratorMethod$5 = getIteratorMethod$6; // `Array.from` method implementation
+	var getIterator$1 = getIterator$2;
+	var getIteratorMethod$5 = getIteratorMethod$7; // `Array.from` method implementation
 	// https://tc39.es/ecma262/#sec-array.from
 
 	var arrayFrom = function from(arrayLike
@@ -2966,7 +2995,7 @@
 	  if (mapping) mapfn = bind$2(mapfn, argumentsLength > 2 ? arguments[2] : undefined, 2); // if the target is not iterable or it's an array with the default iterator - use a simple case
 
 	  if (iteratorMethod != undefined && !(C == Array && isArrayIteratorMethod$1(iteratorMethod))) {
-	    iterator = iteratorMethod.call(O);
+	    iterator = getIterator$1(O, iteratorMethod);
 	    next = iterator.next;
 	    result = new C();
 
@@ -3067,7 +3096,7 @@
 
 	var from$2 = from$3;
 
-	var getIteratorMethod$4 = getIteratorMethod$6;
+	var getIteratorMethod$4 = getIteratorMethod$7;
 	var getIteratorMethod_1 = getIteratorMethod$4;
 
 	var parent$p = getIteratorMethod_1;
@@ -20636,11 +20665,12 @@
 	};
 	hiddenKeys[METADATA] = true;
 
-	var anObject = anObject$a;
+	var anObject = anObject$b;
 	var isArrayIteratorMethod = isArrayIteratorMethod$2;
 	var toLength = toLength$a;
 	var bind$1 = functionBindContext;
-	var getIteratorMethod = getIteratorMethod$6;
+	var getIterator = getIterator$2;
+	var getIteratorMethod = getIteratorMethod$7;
 	var iteratorClose = iteratorClose$2;
 
 	var Result = function (stopped, result) {
@@ -20657,7 +20687,7 @@
 	  var iterator, iterFn, index, length, result, next, step;
 
 	  var stop = function (condition) {
-	    if (iterator) iteratorClose(iterator);
+	    if (iterator) iteratorClose(iterator, 'return', condition);
 	    return new Result(true, condition);
 	  };
 
@@ -20685,7 +20715,7 @@
 	      return new Result(false);
 	    }
 
-	    iterator = iterFn.call(iterable);
+	    iterator = getIterator(iterable, iterFn);
 	  }
 
 	  next = iterator.next;
@@ -20694,8 +20724,7 @@
 	    try {
 	      result = callFn(step.value);
 	    } catch (error) {
-	      iteratorClose(iterator);
-	      throw error;
+	      iteratorClose(iterator, 'throw', error);
 	    }
 
 	    if (typeof result == 'object' && result && result instanceof Result) return result;
