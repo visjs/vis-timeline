@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-09-09T10:06:05.149Z
+ * @date    2021-09-09T10:32:47.563Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6414,7 +6414,7 @@
 	(shared$4.exports = function (key, value) {
 	  return store$1[key] || (store$1[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.17.2',
+	  version: '3.17.3',
 	  mode: 'pure' ,
 	  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	});
@@ -6429,7 +6429,7 @@
 	var toObject$d = toObject$e;
 	var hasOwnProperty = {}.hasOwnProperty;
 
-	var has$b = Object.hasOwn || function hasOwn(it, key) {
+	var has$a = Object.hasOwn || function hasOwn(it, key) {
 	  return hasOwnProperty.call(toObject$d(it), key);
 	};
 
@@ -6442,7 +6442,7 @@
 
 	var global$b = global$i;
 	var shared$3 = shared$4.exports;
-	var has$a = has$b;
+	var has$9 = has$a;
 	var uid$3 = uid$4;
 	var NATIVE_SYMBOL$1 = nativeSymbol;
 	var USE_SYMBOL_AS_UID = useSymbolAsUid;
@@ -6451,8 +6451,8 @@
 	var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol$1 : Symbol$1 && Symbol$1.withoutSetter || uid$3;
 
 	var wellKnownSymbol$j = function (name) {
-	  if (!has$a(WellKnownSymbolsStore$1, name) || !(NATIVE_SYMBOL$1 || typeof WellKnownSymbolsStore$1[name] == 'string')) {
-	    if (NATIVE_SYMBOL$1 && has$a(Symbol$1, name)) {
+	  if (!has$9(WellKnownSymbolsStore$1, name) || !(NATIVE_SYMBOL$1 || typeof WellKnownSymbolsStore$1[name] == 'string')) {
+	    if (NATIVE_SYMBOL$1 && has$9(Symbol$1, name)) {
 	      WellKnownSymbolsStore$1[name] = Symbol$1[name];
 	    } else {
 	      WellKnownSymbolsStore$1[name] = createWellKnownSymbol('Symbol.' + name);
@@ -6549,16 +6549,16 @@
 	var global$a = global$i;
 	var isObject$b = isObject$g;
 	var createNonEnumerableProperty$8 = createNonEnumerableProperty$9;
-	var objectHas = has$b;
+	var objectHas = has$a;
 	var shared$1 = sharedStore;
 	var sharedKey$3 = sharedKey$4;
 	var hiddenKeys$5 = hiddenKeys$6;
 	var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
 	var WeakMap = global$a.WeakMap;
-	var set$3, get, has$9;
+	var set$3, get, has$8;
 
 	var enforce = function (it) {
-	  return has$9(it) ? get(it) : set$3(it, {});
+	  return has$8(it) ? get(it) : set$3(it, {});
 	};
 
 	var getterFor = function (TYPE) {
@@ -6590,7 +6590,7 @@
 	    return wmget.call(store, it) || {};
 	  };
 
-	  has$9 = function (it) {
+	  has$8 = function (it) {
 	    return wmhas.call(store, it);
 	  };
 	} else {
@@ -6608,7 +6608,7 @@
 	    return objectHas(it, STATE) ? it[STATE] : {};
 	  };
 
-	  has$9 = function (it) {
+	  has$8 = function (it) {
 	    return objectHas(it, STATE);
 	  };
 	}
@@ -6616,7 +6616,7 @@
 	var internalState = {
 	  set: set$3,
 	  get: get,
-	  has: has$9,
+	  has: has$8,
 	  enforce: enforce,
 	  getterFor: getterFor
 	};
@@ -6669,7 +6669,7 @@
 	var createPropertyDescriptor$3 = createPropertyDescriptor$5;
 	var toIndexedObject$9 = toIndexedObject$a;
 	var toPropertyKey$2 = toPropertyKey$4;
-	var has$8 = has$b;
+	var has$7 = has$a;
 	var IE8_DOM_DEFINE = ie8DomDefine; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
 	var $getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
@@ -6683,7 +6683,7 @@
 	  } catch (error) {
 	    /* empty */
 	  }
-	  if (has$8(O, P)) return createPropertyDescriptor$3(!propertyIsEnumerableModule$2.f.call(O, P), O[P]);
+	  if (has$7(O, P)) return createPropertyDescriptor$3(!propertyIsEnumerableModule$2.f.call(O, P), O[P]);
 	};
 
 	var fails$g = fails$l;
@@ -6750,7 +6750,7 @@
 	var path$p = path$r;
 	var bind$b = functionBindContext;
 	var createNonEnumerableProperty$7 = createNonEnumerableProperty$9;
-	var has$7 = has$b;
+	var has$6 = has$a;
 
 	var wrapConstructor = function (NativeConstructor) {
 	  var Wrapper = function (a, b, c) {
@@ -6805,7 +6805,7 @@
 	  for (key in source) {
 	    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contains in native
 
-	    USE_NATIVE = !FORCED && nativeSource && has$7(nativeSource, key);
+	    USE_NATIVE = !FORCED && nativeSource && has$6(nativeSource, key);
 	    targetProperty = target[key];
 	    if (USE_NATIVE) if (options.noTargetGet) {
 	      descriptor = getOwnPropertyDescriptor$4(nativeSource, key);
@@ -6829,7 +6829,7 @@
 	    if (PROTO) {
 	      VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
 
-	      if (!has$7(path$p, VIRTUAL_PROTOTYPE)) {
+	      if (!has$6(path$p, VIRTUAL_PROTOTYPE)) {
 	        createNonEnumerableProperty$7(path$p, VIRTUAL_PROTOTYPE, {});
 	      } // export virtual prototype methods
 
@@ -6841,80 +6841,6 @@
 	      }
 	    }
 	  }
-	};
-
-	var fails$f = fails$l;
-	var correctPrototypeGetter = !fails$f(function () {
-	  function F() {
-	    /* empty */
-	  }
-
-	  F.prototype.constructor = null; // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
-
-	  return Object.getPrototypeOf(new F()) !== F.prototype;
-	});
-
-	var has$6 = has$b;
-	var toObject$c = toObject$e;
-	var sharedKey$2 = sharedKey$4;
-	var CORRECT_PROTOTYPE_GETTER$1 = correctPrototypeGetter;
-	var IE_PROTO$1 = sharedKey$2('IE_PROTO');
-	var ObjectPrototype$1 = Object.prototype; // `Object.getPrototypeOf` method
-	// https://tc39.es/ecma262/#sec-object.getprototypeof
-	// eslint-disable-next-line es/no-object-getprototypeof -- safe
-
-	var objectGetPrototypeOf = CORRECT_PROTOTYPE_GETTER$1 ? Object.getPrototypeOf : function (O) {
-	  O = toObject$c(O);
-	  if (has$6(O, IE_PROTO$1)) return O[IE_PROTO$1];
-
-	  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
-	    return O.constructor.prototype;
-	  }
-
-	  return O instanceof Object ? ObjectPrototype$1 : null;
-	};
-
-	var fails$e = fails$l;
-	var getPrototypeOf$6 = objectGetPrototypeOf;
-	var createNonEnumerableProperty$6 = createNonEnumerableProperty$9;
-	var has$5 = has$b;
-	var wellKnownSymbol$h = wellKnownSymbol$j;
-	var ITERATOR$4 = wellKnownSymbol$h('iterator');
-	var BUGGY_SAFARI_ITERATORS$1 = false;
-
-	var returnThis$2 = function () {
-	  return this;
-	}; // `%IteratorPrototype%` object
-	// https://tc39.es/ecma262/#sec-%iteratorprototype%-object
-
-
-	var IteratorPrototype$2, PrototypeOfArrayIteratorPrototype, arrayIterator;
-	/* eslint-disable es/no-array-prototype-keys -- safe */
-
-	if ([].keys) {
-	  arrayIterator = [].keys(); // Safari 8 has buggy iterators w/o `next`
-
-	  if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS$1 = true;else {
-	    PrototypeOfArrayIteratorPrototype = getPrototypeOf$6(getPrototypeOf$6(arrayIterator));
-	    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype$2 = PrototypeOfArrayIteratorPrototype;
-	  }
-	}
-
-	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype$2 == undefined || fails$e(function () {
-	  var test = {}; // FF44- legacy iterators case
-
-	  return IteratorPrototype$2[ITERATOR$4].call(test) !== test;
-	});
-	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$2 = {}; // `%IteratorPrototype%[@@iterator]()` method
-	// https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
-
-	if ((NEW_ITERATOR_PROTOTYPE) && !has$5(IteratorPrototype$2, ITERATOR$4)) {
-	  createNonEnumerableProperty$6(IteratorPrototype$2, ITERATOR$4, returnThis$2);
-	}
-
-	var iteratorsCore = {
-	  IteratorPrototype: IteratorPrototype$2,
-	  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 	};
 
 	var toInteger$3 = toInteger$5;
@@ -6968,7 +6894,7 @@
 	  indexOf: createMethod$4(false)
 	};
 
-	var has$4 = has$b;
+	var has$5 = has$a;
 	var toIndexedObject$7 = toIndexedObject$a;
 	var indexOf$4 = arrayIncludes$1.indexOf;
 	var hiddenKeys$4 = hiddenKeys$6;
@@ -6979,10 +6905,10 @@
 	  var result = [];
 	  var key;
 
-	  for (key in O) !has$4(hiddenKeys$4, key) && has$4(O, key) && result.push(key); // Don't enum bug & hidden keys
+	  for (key in O) !has$5(hiddenKeys$4, key) && has$5(O, key) && result.push(key); // Don't enum bug & hidden keys
 
 
-	  while (names.length > i) if (has$4(O, key = names[i++])) {
+	  while (names.length > i) if (has$5(O, key = names[i++])) {
 	    ~indexOf$4(result, key) || result.push(key);
 	  }
 
@@ -7029,12 +6955,12 @@
 	var hiddenKeys$3 = hiddenKeys$6;
 	var html = html$1;
 	var documentCreateElement = documentCreateElement$1;
-	var sharedKey$1 = sharedKey$4;
+	var sharedKey$2 = sharedKey$4;
 	var GT = '>';
 	var LT = '<';
 	var PROTOTYPE$1 = 'prototype';
 	var SCRIPT = 'script';
-	var IE_PROTO = sharedKey$1('IE_PROTO');
+	var IE_PROTO$1 = sharedKey$2('IE_PROTO');
 
 	var EmptyConstructor = function () {
 	  /* empty */
@@ -7095,7 +7021,7 @@
 	  return NullProtoObject();
 	};
 
-	hiddenKeys$3[IE_PROTO] = true; // `Object.create` method
+	hiddenKeys$3[IE_PROTO$1] = true; // `Object.create` method
 	// https://tc39.es/ecma262/#sec-object.create
 
 	var objectCreate = Object.create || function create(O, Properties) {
@@ -7106,10 +7032,81 @@
 	    result = new EmptyConstructor();
 	    EmptyConstructor[PROTOTYPE$1] = null; // add "__proto__" for Object.getPrototypeOf polyfill
 
-	    result[IE_PROTO] = O;
+	    result[IE_PROTO$1] = O;
 	  } else result = NullProtoObject();
 
 	  return Properties === undefined ? result : defineProperties$5(result, Properties);
+	};
+
+	var fails$f = fails$l;
+	var correctPrototypeGetter = !fails$f(function () {
+	  function F() {
+	    /* empty */
+	  }
+
+	  F.prototype.constructor = null; // eslint-disable-next-line es/no-object-getprototypeof -- required for testing
+
+	  return Object.getPrototypeOf(new F()) !== F.prototype;
+	});
+
+	var has$4 = has$a;
+	var toObject$c = toObject$e;
+	var sharedKey$1 = sharedKey$4;
+	var CORRECT_PROTOTYPE_GETTER$1 = correctPrototypeGetter;
+	var IE_PROTO = sharedKey$1('IE_PROTO');
+	var ObjectPrototype$1 = Object.prototype; // `Object.getPrototypeOf` method
+	// https://tc39.es/ecma262/#sec-object.getprototypeof
+	// eslint-disable-next-line es/no-object-getprototypeof -- safe
+
+	var objectGetPrototypeOf = CORRECT_PROTOTYPE_GETTER$1 ? Object.getPrototypeOf : function (O) {
+	  O = toObject$c(O);
+	  if (has$4(O, IE_PROTO)) return O[IE_PROTO];
+
+	  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
+	    return O.constructor.prototype;
+	  }
+
+	  return O instanceof Object ? ObjectPrototype$1 : null;
+	};
+
+	var fails$e = fails$l;
+	var create$9 = objectCreate;
+	var getPrototypeOf$6 = objectGetPrototypeOf;
+	var createNonEnumerableProperty$6 = createNonEnumerableProperty$9;
+	var wellKnownSymbol$h = wellKnownSymbol$j;
+	var ITERATOR$4 = wellKnownSymbol$h('iterator');
+	var BUGGY_SAFARI_ITERATORS$1 = false; // `%IteratorPrototype%` object
+	// https://tc39.es/ecma262/#sec-%iteratorprototype%-object
+
+	var IteratorPrototype$1, PrototypeOfArrayIteratorPrototype, arrayIterator;
+	/* eslint-disable es/no-array-prototype-keys -- safe */
+
+	if ([].keys) {
+	  arrayIterator = [].keys(); // Safari 8 has buggy iterators w/o `next`
+
+	  if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS$1 = true;else {
+	    PrototypeOfArrayIteratorPrototype = getPrototypeOf$6(getPrototypeOf$6(arrayIterator));
+	    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype$1 = PrototypeOfArrayIteratorPrototype;
+	  }
+	}
+
+	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype$1 == undefined || fails$e(function () {
+	  var test = {}; // FF44- legacy iterators case
+
+	  return IteratorPrototype$1[ITERATOR$4].call(test) !== test;
+	});
+	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$1 = {};else IteratorPrototype$1 = create$9(IteratorPrototype$1); // `%IteratorPrototype%[@@iterator]()` method
+	// https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
+
+	if (typeof IteratorPrototype$1[ITERATOR$4] !== 'function') {
+	  createNonEnumerableProperty$6(IteratorPrototype$1, ITERATOR$4, function () {
+	    return this;
+	  });
+	}
+
+	var iteratorsCore = {
+	  IteratorPrototype: IteratorPrototype$1,
+	  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 	};
 
 	var wellKnownSymbol$g = wellKnownSymbol$j;
@@ -7155,7 +7152,7 @@
 	var TO_STRING_TAG_SUPPORT = toStringTagSupport;
 	var defineProperty$b = objectDefineProperty.f;
 	var createNonEnumerableProperty$5 = createNonEnumerableProperty$9;
-	var has$3 = has$b;
+	var has$3 = has$a;
 	var toString$8 = objectToString;
 	var wellKnownSymbol$e = wellKnownSymbol$j;
 	var TO_STRING_TAG$1 = wellKnownSymbol$e('toStringTag');
@@ -7179,7 +7176,7 @@
 
 	var iterators = {};
 
-	var IteratorPrototype$1 = iteratorsCore.IteratorPrototype;
+	var IteratorPrototype = iteratorsCore.IteratorPrototype;
 	var create$8 = objectCreate;
 	var createPropertyDescriptor$2 = createPropertyDescriptor$5;
 	var setToStringTag$4 = setToStringTag$5;
@@ -7191,7 +7188,7 @@
 
 	var createIteratorConstructor$1 = function (IteratorConstructor, NAME, next) {
 	  var TO_STRING_TAG = NAME + ' Iterator';
-	  IteratorConstructor.prototype = create$8(IteratorPrototype$1, {
+	  IteratorConstructor.prototype = create$8(IteratorPrototype, {
 	    next: createPropertyDescriptor$2(1, next)
 	  });
 	  setToStringTag$4(IteratorConstructor, TO_STRING_TAG, false, true);
@@ -7253,7 +7250,6 @@
 	var wellKnownSymbol$d = wellKnownSymbol$j;
 	var Iterators$4 = iterators;
 	var IteratorsCore = iteratorsCore;
-	var IteratorPrototype = IteratorsCore.IteratorPrototype;
 	var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
 	var ITERATOR$3 = wellKnownSymbol$d('iterator');
 	var KEYS = 'keys';
@@ -7304,7 +7300,7 @@
 	  if (anyNativeIterator) {
 	    CurrentIteratorPrototype = getPrototypeOf$5(anyNativeIterator.call(new Iterable()));
 
-	    if (IteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
+	    if (CurrentIteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
 
 
 	      setToStringTag$3(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
@@ -7760,7 +7756,7 @@
 	wellKnownSymbolWrapped.f = wellKnownSymbol$8;
 
 	var path$n = path$r;
-	var has$2 = has$b;
+	var has$2 = has$a;
 	var wrappedWellKnownSymbolModule$1 = wellKnownSymbolWrapped;
 	var defineProperty$a = objectDefineProperty.f;
 
@@ -7895,7 +7891,7 @@
 	var DESCRIPTORS$a = descriptors;
 	var NATIVE_SYMBOL = nativeSymbol;
 	var fails$d = fails$l;
-	var has$1 = has$b;
+	var has$1 = has$a;
 	var isArray$a = isArray$c;
 	var isObject$8 = isObject$g;
 	var isSymbol = isSymbol$4;
@@ -18937,7 +18933,7 @@
 	var $$7 = _export;
 	var hiddenKeys = hiddenKeys$6;
 	var isObject$1 = isObject$g;
-	var has = has$b;
+	var has = has$a;
 	var defineProperty$2 = objectDefineProperty.f;
 	var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
 	var getOwnPropertyNamesExternalModule = objectGetOwnPropertyNamesExternal;

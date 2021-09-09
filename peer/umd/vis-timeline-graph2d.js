@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-09-09T10:06:05.149Z
+ * @date    2021-09-09T10:32:47.563Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -232,7 +232,7 @@
 	(shared$4.exports = function (key, value) {
 	  return store$2[key] || (store$2[key] = value !== undefined ? value : {});
 	})('versions', []).push({
-	  version: '3.17.2',
+	  version: '3.17.3',
 	  mode: 'pure' ,
 	  copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
 	});
@@ -247,7 +247,7 @@
 	var toObject$c = toObject$d;
 	var hasOwnProperty = {}.hasOwnProperty;
 
-	var has$b = Object.hasOwn || function hasOwn(it, key) {
+	var has$a = Object.hasOwn || function hasOwn(it, key) {
 	  return hasOwnProperty.call(toObject$c(it), key);
 	};
 
@@ -260,7 +260,7 @@
 
 	var global$d = global$i;
 	var shared$3 = shared$4.exports;
-	var has$a = has$b;
+	var has$9 = has$a;
 	var uid$3 = uid$4;
 	var NATIVE_SYMBOL$1 = nativeSymbol;
 	var USE_SYMBOL_AS_UID = useSymbolAsUid;
@@ -269,8 +269,8 @@
 	var createWellKnownSymbol = USE_SYMBOL_AS_UID ? Symbol$1 : Symbol$1 && Symbol$1.withoutSetter || uid$3;
 
 	var wellKnownSymbol$j = function (name) {
-	  if (!has$a(WellKnownSymbolsStore$1, name) || !(NATIVE_SYMBOL$1 || typeof WellKnownSymbolsStore$1[name] == 'string')) {
-	    if (NATIVE_SYMBOL$1 && has$a(Symbol$1, name)) {
+	  if (!has$9(WellKnownSymbolsStore$1, name) || !(NATIVE_SYMBOL$1 || typeof WellKnownSymbolsStore$1[name] == 'string')) {
+	    if (NATIVE_SYMBOL$1 && has$9(Symbol$1, name)) {
 	      WellKnownSymbolsStore$1[name] = Symbol$1[name];
 	    } else {
 	      WellKnownSymbolsStore$1[name] = createWellKnownSymbol('Symbol.' + name);
@@ -340,7 +340,7 @@
 	var createPropertyDescriptor$4 = createPropertyDescriptor$5;
 	var toIndexedObject$9 = toIndexedObject$a;
 	var toPropertyKey$3 = toPropertyKey$4;
-	var has$9 = has$b;
+	var has$8 = has$a;
 	var IE8_DOM_DEFINE$1 = ie8DomDefine; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
 	var $getOwnPropertyDescriptor$1 = Object.getOwnPropertyDescriptor; // `Object.getOwnPropertyDescriptor` method
@@ -354,7 +354,7 @@
 	  } catch (error) {
 	    /* empty */
 	  }
-	  if (has$9(O, P)) return createPropertyDescriptor$4(!propertyIsEnumerableModule$2.f.call(O, P), O[P]);
+	  if (has$8(O, P)) return createPropertyDescriptor$4(!propertyIsEnumerableModule$2.f.call(O, P), O[P]);
 	};
 
 	var fails$g = fails$l;
@@ -465,7 +465,7 @@
 	var path$o = path$q;
 	var bind$a = functionBindContext;
 	var createNonEnumerableProperty$8 = createNonEnumerableProperty$9;
-	var has$8 = has$b;
+	var has$7 = has$a;
 
 	var wrapConstructor = function (NativeConstructor) {
 	  var Wrapper = function (a, b, c) {
@@ -520,7 +520,7 @@
 	  for (key in source) {
 	    FORCED = isForced(GLOBAL ? key : TARGET + (STATIC ? '.' : '#') + key, options.forced); // contains in native
 
-	    USE_NATIVE = !FORCED && nativeSource && has$8(nativeSource, key);
+	    USE_NATIVE = !FORCED && nativeSource && has$7(nativeSource, key);
 	    targetProperty = target[key];
 	    if (USE_NATIVE) if (options.noTargetGet) {
 	      descriptor = getOwnPropertyDescriptor$4(nativeSource, key);
@@ -544,7 +544,7 @@
 	    if (PROTO) {
 	      VIRTUAL_PROTOTYPE = TARGET + 'Prototype';
 
-	      if (!has$8(path$o, VIRTUAL_PROTOTYPE)) {
+	      if (!has$7(path$o, VIRTUAL_PROTOTYPE)) {
 	        createNonEnumerableProperty$8(path$o, VIRTUAL_PROTOTYPE, {});
 	      } // export virtual prototype methods
 
@@ -619,7 +619,7 @@
 
 	var hiddenKeys$6 = {};
 
-	var has$7 = has$b;
+	var has$6 = has$a;
 	var toIndexedObject$7 = toIndexedObject$a;
 	var indexOf$4 = arrayIncludes$1.indexOf;
 	var hiddenKeys$5 = hiddenKeys$6;
@@ -630,10 +630,10 @@
 	  var result = [];
 	  var key;
 
-	  for (key in O) !has$7(hiddenKeys$5, key) && has$7(O, key) && result.push(key); // Don't enum bug & hidden keys
+	  for (key in O) !has$6(hiddenKeys$5, key) && has$6(O, key) && result.push(key); // Don't enum bug & hidden keys
 
 
-	  while (names.length > i) if (has$7(O, key = names[i++])) {
+	  while (names.length > i) if (has$6(O, key = names[i++])) {
 	    ~indexOf$4(result, key) || result.push(key);
 	  }
 
@@ -809,7 +809,7 @@
 	var aFunction$2 = aFunction$5;
 	var anObject$7 = anObject$b;
 	var isObject$a = isObject$g;
-	var create$8 = objectCreate;
+	var create$9 = objectCreate;
 	var bind$9 = functionBind;
 	var fails$f = fails$l;
 	var nativeConstruct = getBuiltIn$4('Reflect', 'construct'); // `Reflect.construct` method
@@ -873,7 +873,7 @@
 
 
 	    var proto = newTarget.prototype;
-	    var instance = create$8(isObject$a(proto) ? proto : Object.prototype);
+	    var instance = create$9(isObject$a(proto) ? proto : Object.prototype);
 	    var result = Function.apply.call(Target, instance, args);
 	    return isObject$a(result) ? result : instance;
 	  }
@@ -953,7 +953,7 @@
 
 	var $$D = _export;
 	var DESCRIPTORS$9 = descriptors;
-	var create$7 = objectCreate; // `Object.create` method
+	var create$8 = objectCreate; // `Object.create` method
 	// https://tc39.es/ecma262/#sec-object.create
 
 	$$D({
@@ -961,23 +961,23 @@
 	  stat: true,
 	  sham: !DESCRIPTORS$9
 	}, {
-	  create: create$7
+	  create: create$8
 	});
 
 	var path$l = path$q;
 	var Object$3 = path$l.Object;
 
-	var create$6 = function create(P, D) {
+	var create$7 = function create(P, D) {
 	  return Object$3.create(P, D);
 	};
 
-	var parent$L = create$6;
-	var create$5 = parent$L;
+	var parent$L = create$7;
+	var create$6 = parent$L;
 
-	var parent$K = create$5;
-	var create$4 = parent$K;
+	var parent$K = create$6;
+	var create$5 = parent$K;
 
-	var create$3 = create$4;
+	var create$4 = create$5;
 
 	var isObject$9 = isObject$g;
 
@@ -1054,7 +1054,7 @@
 	    throw new TypeError("Super expression must either be null or a function");
 	  }
 
-	  subClass.prototype = create$3(superClass && superClass.prototype, {
+	  subClass.prototype = create$4(superClass && superClass.prototype, {
 	    constructor: {
 	      value: subClass,
 	      writable: true,
@@ -1253,13 +1253,13 @@
 	wellKnownSymbolWrapped.f = wellKnownSymbol$e;
 
 	var path$j = path$q;
-	var has$6 = has$b;
+	var has$5 = has$a;
 	var wrappedWellKnownSymbolModule$1 = wellKnownSymbolWrapped;
 	var defineProperty$6 = objectDefineProperty.f;
 
 	var defineWellKnownSymbol$l = function (NAME) {
 	  var Symbol = path$j.Symbol || (path$j.Symbol = {});
-	  if (!has$6(Symbol, NAME)) defineProperty$6(Symbol, NAME, {
+	  if (!has$5(Symbol, NAME)) defineProperty$6(Symbol, NAME, {
 	    value: wrappedWellKnownSymbolModule$1.f(NAME)
 	  });
 	};
@@ -1307,7 +1307,7 @@
 	var TO_STRING_TAG_SUPPORT = toStringTagSupport;
 	var defineProperty$5 = objectDefineProperty.f;
 	var createNonEnumerableProperty$6 = createNonEnumerableProperty$9;
-	var has$5 = has$b;
+	var has$4 = has$a;
 	var toString$8 = objectToString;
 	var wellKnownSymbol$b = wellKnownSymbol$j;
 	var TO_STRING_TAG$1 = wellKnownSymbol$b('toStringTag');
@@ -1316,7 +1316,7 @@
 	  if (it) {
 	    var target = STATIC ? it : it.prototype;
 
-	    if (!has$5(target, TO_STRING_TAG$1)) {
+	    if (!has$4(target, TO_STRING_TAG$1)) {
 	      defineProperty$5(target, TO_STRING_TAG$1, {
 	        configurable: true,
 	        value: TAG
@@ -1349,16 +1349,16 @@
 	var global$9 = global$i;
 	var isObject$6 = isObject$g;
 	var createNonEnumerableProperty$5 = createNonEnumerableProperty$9;
-	var objectHas = has$b;
+	var objectHas = has$a;
 	var shared$1 = sharedStore;
 	var sharedKey$2 = sharedKey$4;
 	var hiddenKeys$2 = hiddenKeys$6;
 	var OBJECT_ALREADY_INITIALIZED = 'Object already initialized';
 	var WeakMap = global$9.WeakMap;
-	var set$3, get, has$4;
+	var set$3, get, has$3;
 
 	var enforce = function (it) {
-	  return has$4(it) ? get(it) : set$3(it, {});
+	  return has$3(it) ? get(it) : set$3(it, {});
 	};
 
 	var getterFor = function (TYPE) {
@@ -1390,7 +1390,7 @@
 	    return wmget.call(store, it) || {};
 	  };
 
-	  has$4 = function (it) {
+	  has$3 = function (it) {
 	    return wmhas.call(store, it);
 	  };
 	} else {
@@ -1408,7 +1408,7 @@
 	    return objectHas(it, STATE) ? it[STATE] : {};
 	  };
 
-	  has$4 = function (it) {
+	  has$3 = function (it) {
 	    return objectHas(it, STATE);
 	  };
 	}
@@ -1416,7 +1416,7 @@
 	var internalState = {
 	  set: set$3,
 	  get: get,
-	  has: has$4,
+	  has: has$3,
 	  enforce: enforce,
 	  getterFor: getterFor
 	};
@@ -1517,7 +1517,7 @@
 	var DESCRIPTORS$8 = descriptors;
 	var NATIVE_SYMBOL = nativeSymbol;
 	var fails$c = fails$l;
-	var has$3 = has$b;
+	var has$2 = has$a;
 	var isArray$8 = isArray$b;
 	var isObject$5 = isObject$g;
 	var isSymbol = isSymbol$4;
@@ -1604,12 +1604,12 @@
 	  var key = toPropertyKey(P);
 	  anObject$5(Attributes);
 
-	  if (has$3(AllSymbols, key)) {
+	  if (has$2(AllSymbols, key)) {
 	    if (!Attributes.enumerable) {
-	      if (!has$3(O, HIDDEN)) nativeDefineProperty(O, HIDDEN, createPropertyDescriptor$1(1, {}));
+	      if (!has$2(O, HIDDEN)) nativeDefineProperty(O, HIDDEN, createPropertyDescriptor$1(1, {}));
 	      O[HIDDEN][key] = true;
 	    } else {
-	      if (has$3(O, HIDDEN) && O[HIDDEN][key]) O[HIDDEN][key] = false;
+	      if (has$2(O, HIDDEN) && O[HIDDEN][key]) O[HIDDEN][key] = false;
 	      Attributes = nativeObjectCreate(Attributes, {
 	        enumerable: createPropertyDescriptor$1(0, false)
 	      });
@@ -1638,17 +1638,17 @@
 	var $propertyIsEnumerable = function propertyIsEnumerable(V) {
 	  var P = toPropertyKey(V);
 	  var enumerable = nativePropertyIsEnumerable.call(this, P);
-	  if (this === ObjectPrototype$1 && has$3(AllSymbols, P) && !has$3(ObjectPrototypeSymbols, P)) return false;
-	  return enumerable || !has$3(this, P) || !has$3(AllSymbols, P) || has$3(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
+	  if (this === ObjectPrototype$1 && has$2(AllSymbols, P) && !has$2(ObjectPrototypeSymbols, P)) return false;
+	  return enumerable || !has$2(this, P) || !has$2(AllSymbols, P) || has$2(this, HIDDEN) && this[HIDDEN][P] ? enumerable : true;
 	};
 
 	var $getOwnPropertyDescriptor = function getOwnPropertyDescriptor(O, P) {
 	  var it = toIndexedObject$5(O);
 	  var key = toPropertyKey(P);
-	  if (it === ObjectPrototype$1 && has$3(AllSymbols, key) && !has$3(ObjectPrototypeSymbols, key)) return;
+	  if (it === ObjectPrototype$1 && has$2(AllSymbols, key) && !has$2(ObjectPrototypeSymbols, key)) return;
 	  var descriptor = nativeGetOwnPropertyDescriptor$1(it, key);
 
-	  if (descriptor && has$3(AllSymbols, key) && !(has$3(it, HIDDEN) && it[HIDDEN][key])) {
+	  if (descriptor && has$2(AllSymbols, key) && !(has$2(it, HIDDEN) && it[HIDDEN][key])) {
 	    descriptor.enumerable = true;
 	  }
 
@@ -1659,7 +1659,7 @@
 	  var names = nativeGetOwnPropertyNames(toIndexedObject$5(O));
 	  var result = [];
 	  $forEach$1(names, function (key) {
-	    if (!has$3(AllSymbols, key) && !has$3(hiddenKeys$1, key)) result.push(key);
+	    if (!has$2(AllSymbols, key) && !has$2(hiddenKeys$1, key)) result.push(key);
 	  });
 	  return result;
 	};
@@ -1669,7 +1669,7 @@
 	  var names = nativeGetOwnPropertyNames(IS_OBJECT_PROTOTYPE ? ObjectPrototypeSymbols : toIndexedObject$5(O));
 	  var result = [];
 	  $forEach$1(names, function (key) {
-	    if (has$3(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || has$3(ObjectPrototype$1, key))) {
+	    if (has$2(AllSymbols, key) && (!IS_OBJECT_PROTOTYPE || has$2(ObjectPrototype$1, key))) {
 	      result.push(AllSymbols[key]);
 	    }
 	  });
@@ -1686,7 +1686,7 @@
 
 	    var setter = function (value) {
 	      if (this === ObjectPrototype$1) setter.call(ObjectPrototypeSymbols, value);
-	      if (has$3(this, HIDDEN) && has$3(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
+	      if (has$2(this, HIDDEN) && has$2(this[HIDDEN], tag)) this[HIDDEN][tag] = false;
 	      setSymbolDescriptor(this, tag, createPropertyDescriptor$1(1, value));
 	    };
 
@@ -1744,7 +1744,7 @@
 	  // https://tc39.es/ecma262/#sec-symbol.for
 	  'for': function (key) {
 	    var string = $toString(key);
-	    if (has$3(StringToSymbolRegistry, string)) return StringToSymbolRegistry[string];
+	    if (has$2(StringToSymbolRegistry, string)) return StringToSymbolRegistry[string];
 	    var symbol = $Symbol(string);
 	    StringToSymbolRegistry[string] = symbol;
 	    SymbolToStringRegistry[symbol] = string;
@@ -1754,7 +1754,7 @@
 	  // https://tc39.es/ecma262/#sec-symbol.keyfor
 	  keyFor: function keyFor(sym) {
 	    if (!isSymbol(sym)) throw TypeError(sym + ' is not a symbol');
-	    if (has$3(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym];
+	    if (has$2(SymbolToStringRegistry, sym)) return SymbolToStringRegistry[sym];
 	  },
 	  useSetter: function () {
 	    USE_SETTER = true;
@@ -1943,7 +1943,7 @@
 	  return Object.getPrototypeOf(new F()) !== F.prototype;
 	});
 
-	var has$2 = has$b;
+	var has$1 = has$a;
 	var toObject$8 = toObject$d;
 	var sharedKey = sharedKey$4;
 	var CORRECT_PROTOTYPE_GETTER$1 = correctPrototypeGetter;
@@ -1954,7 +1954,7 @@
 
 	var objectGetPrototypeOf = CORRECT_PROTOTYPE_GETTER$1 ? Object.getPrototypeOf : function (O) {
 	  O = toObject$8(O);
-	  if (has$2(O, IE_PROTO)) return O[IE_PROTO];
+	  if (has$1(O, IE_PROTO)) return O[IE_PROTO];
 
 	  if (typeof O.constructor == 'function' && O instanceof O.constructor) {
 	    return O.constructor.prototype;
@@ -1964,20 +1964,15 @@
 	};
 
 	var fails$a = fails$l;
+	var create$3 = objectCreate;
 	var getPrototypeOf$6 = objectGetPrototypeOf;
 	var createNonEnumerableProperty$3 = createNonEnumerableProperty$9;
-	var has$1 = has$b;
 	var wellKnownSymbol$9 = wellKnownSymbol$j;
 	var ITERATOR$4 = wellKnownSymbol$9('iterator');
-	var BUGGY_SAFARI_ITERATORS$1 = false;
-
-	var returnThis$2 = function () {
-	  return this;
-	}; // `%IteratorPrototype%` object
+	var BUGGY_SAFARI_ITERATORS$1 = false; // `%IteratorPrototype%` object
 	// https://tc39.es/ecma262/#sec-%iteratorprototype%-object
 
-
-	var IteratorPrototype$2, PrototypeOfArrayIteratorPrototype, arrayIterator;
+	var IteratorPrototype$1, PrototypeOfArrayIteratorPrototype, arrayIterator;
 	/* eslint-disable es/no-array-prototype-keys -- safe */
 
 	if ([].keys) {
@@ -1985,28 +1980,30 @@
 
 	  if (!('next' in arrayIterator)) BUGGY_SAFARI_ITERATORS$1 = true;else {
 	    PrototypeOfArrayIteratorPrototype = getPrototypeOf$6(getPrototypeOf$6(arrayIterator));
-	    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype$2 = PrototypeOfArrayIteratorPrototype;
+	    if (PrototypeOfArrayIteratorPrototype !== Object.prototype) IteratorPrototype$1 = PrototypeOfArrayIteratorPrototype;
 	  }
 	}
 
-	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype$2 == undefined || fails$a(function () {
+	var NEW_ITERATOR_PROTOTYPE = IteratorPrototype$1 == undefined || fails$a(function () {
 	  var test = {}; // FF44- legacy iterators case
 
-	  return IteratorPrototype$2[ITERATOR$4].call(test) !== test;
+	  return IteratorPrototype$1[ITERATOR$4].call(test) !== test;
 	});
-	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$2 = {}; // `%IteratorPrototype%[@@iterator]()` method
+	if (NEW_ITERATOR_PROTOTYPE) IteratorPrototype$1 = {};else IteratorPrototype$1 = create$3(IteratorPrototype$1); // `%IteratorPrototype%[@@iterator]()` method
 	// https://tc39.es/ecma262/#sec-%iteratorprototype%-@@iterator
 
-	if ((NEW_ITERATOR_PROTOTYPE) && !has$1(IteratorPrototype$2, ITERATOR$4)) {
-	  createNonEnumerableProperty$3(IteratorPrototype$2, ITERATOR$4, returnThis$2);
+	if (typeof IteratorPrototype$1[ITERATOR$4] !== 'function') {
+	  createNonEnumerableProperty$3(IteratorPrototype$1, ITERATOR$4, function () {
+	    return this;
+	  });
 	}
 
 	var iteratorsCore = {
-	  IteratorPrototype: IteratorPrototype$2,
+	  IteratorPrototype: IteratorPrototype$1,
 	  BUGGY_SAFARI_ITERATORS: BUGGY_SAFARI_ITERATORS$1
 	};
 
-	var IteratorPrototype$1 = iteratorsCore.IteratorPrototype;
+	var IteratorPrototype = iteratorsCore.IteratorPrototype;
 	var create$2 = objectCreate;
 	var createPropertyDescriptor = createPropertyDescriptor$5;
 	var setToStringTag$2 = setToStringTag$5;
@@ -2018,7 +2015,7 @@
 
 	var createIteratorConstructor$1 = function (IteratorConstructor, NAME, next) {
 	  var TO_STRING_TAG = NAME + ' Iterator';
-	  IteratorConstructor.prototype = create$2(IteratorPrototype$1, {
+	  IteratorConstructor.prototype = create$2(IteratorPrototype, {
 	    next: createPropertyDescriptor(1, next)
 	  });
 	  setToStringTag$2(IteratorConstructor, TO_STRING_TAG, false, true);
@@ -2035,7 +2032,6 @@
 	var wellKnownSymbol$8 = wellKnownSymbol$j;
 	var Iterators$4 = iterators;
 	var IteratorsCore = iteratorsCore;
-	var IteratorPrototype = IteratorsCore.IteratorPrototype;
 	var BUGGY_SAFARI_ITERATORS = IteratorsCore.BUGGY_SAFARI_ITERATORS;
 	var ITERATOR$3 = wellKnownSymbol$8('iterator');
 	var KEYS = 'keys';
@@ -2086,7 +2082,7 @@
 	  if (anyNativeIterator) {
 	    CurrentIteratorPrototype = getPrototypeOf$5(anyNativeIterator.call(new Iterable()));
 
-	    if (IteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
+	    if (CurrentIteratorPrototype !== Object.prototype && CurrentIteratorPrototype.next) {
 
 
 	      setToStringTag$1(CurrentIteratorPrototype, TO_STRING_TAG, true, true);
@@ -3848,7 +3844,7 @@
 
 	var trim$1 = trim$2;
 
-	var create$1 = create$5;
+	var create$1 = create$6;
 
 	var $$9 = _export;
 	var getBuiltIn$1 = getBuiltIn$8;
@@ -20562,7 +20558,7 @@
 	var $$2 = _export;
 	var hiddenKeys = hiddenKeys$6;
 	var isObject$1 = isObject$g;
-	var has = has$b;
+	var has = has$a;
 	var defineProperty$2 = objectDefineProperty.f;
 	var getOwnPropertyNamesModule = objectGetOwnPropertyNames;
 	var getOwnPropertyNamesExternalModule = objectGetOwnPropertyNamesExternal;
