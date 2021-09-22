@@ -98,7 +98,7 @@
     "jsdom": "16.7.0",
     "jsdom-global": "3.0.2",
     "keycharm": "0.4.0",
-    "mocha": "8.4.0",
+    "mocha": "9.1.1",
     "moment": "2.29.1",
     "nyc": "15.1.0",
     "opencollective": "1.0.3",
