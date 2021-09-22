@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-09-19T22:24:27.210Z
+ * @date    2021-09-22T09:01:11.912Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28,7 +28,7 @@
   typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('moment'), require('vis-util/esnext/umd/vis-util.js'), require('vis-data/esnext/umd/vis-data.js'), require('xss'), require('uuid'), require('component-emitter'), require('propagating-hammerjs'), require('@egjs/hammerjs'), require('keycharm')) :
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'uuid', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.filterXSS, global.uuid, global.Emitter, global.propagating, global.Hammer, global.keycharm));
-}(this, (function (exports, moment$3, util, esnext, xssFilter, uuid, Emitter, PropagatingHammer, Hammer$1, keycharm) {
+})(this, (function (exports, moment$3, util, esnext, xssFilter, uuid, Emitter, PropagatingHammer, Hammer$1, keycharm) {
   function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
   function _interopNamespace(e) {
@@ -40,14 +40,12 @@
           var d = Object.getOwnPropertyDescriptor(e, k);
           Object.defineProperty(n, k, d.get ? d : {
             enumerable: true,
-            get: function () {
-              return e[k];
-            }
+            get: function () { return e[k]; }
           });
         }
       });
     }
-    n['default'] = e;
+    n["default"] = e;
     return Object.freeze(n);
   }
 
@@ -63,7 +61,7 @@
   // use this instance. Else, load via commonjs.
   //
   // Note: This doesn't work in ESM.
-  var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment__default['default'];
+  var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment__default["default"];
 
   // utility functions
 
@@ -107,7 +105,7 @@
       case "number":
       case "Number":
         if (util.isString(object) && !isNaN(Date.parse(object))) {
-          return moment__default['default'](object).valueOf();
+          return moment__default["default"](object).valueOf();
         } else {
           // @TODO: I don't think that Number and String constructors are a good idea.
           // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -134,26 +132,26 @@
 
       case "Moment":
         if (util.isNumber(object)) {
-          return moment__default['default'](object);
+          return moment__default["default"](object);
         }
         if (object instanceof Date) {
-          return moment__default['default'](object.valueOf());
-        } else if (moment__default['default'].isMoment(object)) {
-          return moment__default['default'](object);
+          return moment__default["default"](object.valueOf());
+        } else if (moment__default["default"].isMoment(object)) {
+          return moment__default["default"](object);
         }
         if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
           if (match) {
             // object is an ASP date
-            return moment__default['default'](Number(match[1])); // parse number
+            return moment__default["default"](Number(match[1])); // parse number
           }
           match = NumericRegex.exec(object);
 
           if (match) {
-            return moment__default['default'](Number(object));
+            return moment__default["default"](Number(object));
           }
 
-          return moment__default['default'](object); // parse string
+          return moment__default["default"](object); // parse string
         } else {
           throw new TypeError(
             "Cannot convert object of type " + util.getType(object) + " to type " + type
@@ -165,7 +163,7 @@
           return new Date(object);
         } else if (object instanceof Date) {
           return object.toISOString();
-        } else if (moment__default['default'].isMoment(object)) {
+        } else if (moment__default["default"].isMoment(object)) {
           return object.toDate().toISOString();
         } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -173,7 +171,7 @@
             // object is an ASP date
             return new Date(Number(match[1])).toISOString(); // parse number
           } else {
-            return moment__default['default'](object).format(); // ISO 8601
+            return moment__default["default"](object).format(); // ISO 8601
           }
         } else {
           throw new Error(
@@ -186,7 +184,7 @@
       case "ASPDate":
         if (util.isNumber(object)) {
           return "/Date(" + object + ")/";
-        } else if (object instanceof Date || moment__default['default'].isMoment(object)) {
+        } else if (object instanceof Date || moment__default["default"].isMoment(object)) {
           return "/Date(" + object.valueOf() + ")/";
         } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -286,7 +284,7 @@
 
   // Configure XSS protection
   const setupXSSCleaner = (options) => {
-    const customXSS = new xssFilter__default['default'].FilterXSS(options);
+    const customXSS = new xssFilter__default["default"].FilterXSS(options);
     return (string) => customXSS.process(string);
   };
   const setupNoOpCleaner = (string) => string;
@@ -1833,8 +1831,8 @@
   let modifiedHammer;
 
   if (typeof window !== 'undefined') {
-    const OurHammer = window['Hammer'] || Hammer__default['default'];
-    modifiedHammer = PropagatingHammer__default['default'](OurHammer, {
+    const OurHammer = window['Hammer'] || Hammer__default["default"];
+    modifiedHammer = PropagatingHammer__default["default"](OurHammer, {
       preventDefault: 'mouse'
     });
   } else {
@@ -3170,14 +3168,14 @@
     if (this.keycharm !== undefined) {
       this.keycharm.destroy();
     }
-    this.keycharm = keycharm__default['default']();
+    this.keycharm = keycharm__default["default"]();
 
     // keycharm listener only bounded when active)
     this.escListener = this.deactivate.bind(this);
   }
 
   // turn into an event emitter
-  Emitter__default['default'](Activator.prototype);
+  Emitter__default["default"](Activator.prototype);
 
   // The currently active activator
   Activator.current = null;
@@ -5157,7 +5155,7 @@
   }
 
   // turn Core into an event emitter
-  Emitter__default['default'](Core.prototype);
+  Emitter__default["default"](Core.prototype);
 
   /**
    * A current time bar
@@ -19407,7 +19405,7 @@
 
   // Locales have to be supplied by the user.
   const defaultLanguage = getNavigatorLanguage();
-  moment__default['default'].locale(defaultLanguage);
+  moment__default["default"].locale(defaultLanguage);
 
   const timeline = {
     Core,
@@ -19447,5 +19445,5 @@
 
   Object.defineProperty(exports, '__esModule', { value: true });
 
-})));
+}));
 //# sourceMappingURL=vis-timeline-graph2d.js.map
