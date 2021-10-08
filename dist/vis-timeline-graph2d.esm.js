@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-10-06T23:32:28.308Z
+ * @date    2021-10-08T13:40:07.867Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23900,16 +23900,36 @@ function StripTagBody(tags, next) {
 
 
 function stripCommentTag(html) {
-  return html.replace(STRIP_COMMENT_TAG_REGEXP, "");
-}
+  var retHtml = "";
+  var lastPos = 0;
 
-var STRIP_COMMENT_TAG_REGEXP = /<!--[\s\S]*?-->/g;
+  while (lastPos < html.length) {
+    var i = html.indexOf("<!--", lastPos);
+
+    if (i === -1) {
+      retHtml += html.slice(lastPos);
+      break;
+    }
+
+    retHtml += html.slice(lastPos, i);
+    var j = html.indexOf("-->", i);
+
+    if (j === -1) {
+      break;
+    }
+
+    lastPos = j + 3;
+  }
+
+  return retHtml;
+}
 /**
  * remove invisible characters
  *
  * @param {String} html
  * @return {String}
  */
+
 
 function stripBlankChar(html) {
   var chars = html.split("");
