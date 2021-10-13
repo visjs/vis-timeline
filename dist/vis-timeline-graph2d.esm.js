@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-10-12T22:07:16.111Z
+ * @date    2021-10-12T23:57:16.546Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6222,7 +6222,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.18.2',
+    version: '3.18.3',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -9302,7 +9302,7 @@ var trim$4 = stringTrim.trim;
 var $parseInt = global_1.parseInt;
 var Symbol$2 = global_1.Symbol;
 var ITERATOR$1 = Symbol$2 && Symbol$2.iterator;
-var hex = /^[+-]?0[Xx]/;
+var hex = /^[+-]?0x/i;
 var FORCED$4 = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22 // MS Edge 18- broken with boxed symbols
 || ITERATOR$1 && !fails(function () {
   $parseInt(Object(ITERATOR$1));
