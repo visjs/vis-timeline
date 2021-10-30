@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-10-25T16:49:29.065Z
+ * @date    2021-10-30T04:26:53.700Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6748,7 +6748,9 @@ var bind$4 = functionUncurryThis(functionUncurryThis.bind); // optional / simple
 
 var functionBindContext = function (fn, that) {
   aCallable(fn);
-  return that === undefined ? fn : bind$4 ? bind$4(fn, that) : function () {
+  return that === undefined ? fn : bind$4 ? bind$4(fn, that) : function
+    /* ...args */
+  () {
     return fn.apply(that, arguments);
   };
 };
@@ -8877,7 +8879,9 @@ var functionBind = Function$2.bind || function bind(that
   var Prototype = F.prototype;
   var partArgs = arraySlice(arguments, 1);
 
-  var boundFunction = function bound() {
+  var boundFunction = function
+    /* args... */
+  bound() {
     var args = concat$1(partArgs, arraySlice(arguments));
     return this instanceof boundFunction ? construct$3(F, args.length, args) : F.apply(that, args);
   };
