@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-02T22:41:49.673Z
+ * @date    2021-11-03T00:57:13.442Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6235,7 +6235,7 @@ var shared = createCommonjsModule(function (module) {
   (module.exports = function (key, value) {
     return sharedStore[key] || (sharedStore[key] = value !== undefined ? value : {});
   })('versions', []).push({
-    version: '3.18.3',
+    version: '3.19.1',
     mode: 'pure' ,
     copyright: '© 2021 Denis Pushkarev (zloirock.ru)'
   });
@@ -8144,10 +8144,10 @@ var getOwnPropertySymbols$1 = getOwnPropertySymbols$2;
 var getOwnPropertySymbols = getOwnPropertySymbols$1;
 
 var nativeGetOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
-var FAILS_ON_PRIMITIVES$2 = fails(function () {
+var FAILS_ON_PRIMITIVES$3 = fails(function () {
   nativeGetOwnPropertyDescriptor(1);
 });
-var FORCED$6 = !descriptors || FAILS_ON_PRIMITIVES$2; // `Object.getOwnPropertyDescriptor` method
+var FORCED$6 = !descriptors || FAILS_ON_PRIMITIVES$3; // `Object.getOwnPropertyDescriptor` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 
 _export({
@@ -8815,7 +8815,7 @@ var map$4 = map$5;
 
 var map$3 = map$4;
 
-var FAILS_ON_PRIMITIVES$1 = fails(function () {
+var FAILS_ON_PRIMITIVES$2 = fails(function () {
   objectKeys(1);
 }); // `Object.keys` method
 // https://tc39.es/ecma262/#sec-object.keys
@@ -8823,7 +8823,7 @@ var FAILS_ON_PRIMITIVES$1 = fails(function () {
 _export({
   target: 'Object',
   stat: true,
-  forced: FAILS_ON_PRIMITIVES$1
+  forced: FAILS_ON_PRIMITIVES$2
 }, {
   keys: function keys(it) {
     return objectKeys(toObject(it));
@@ -9237,7 +9237,7 @@ var includes$1 = includes$2;
 
 var includes = includes$1;
 
-var FAILS_ON_PRIMITIVES = fails(function () {
+var FAILS_ON_PRIMITIVES$1 = fails(function () {
   objectGetPrototypeOf(1);
 }); // `Object.getPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.getprototypeof
@@ -9245,7 +9245,7 @@ var FAILS_ON_PRIMITIVES = fails(function () {
 _export({
   target: 'Object',
   stat: true,
-  forced: FAILS_ON_PRIMITIVES,
+  forced: FAILS_ON_PRIMITIVES$1,
   sham: !correctPrototypeGetter
 }, {
   getPrototypeOf: function getPrototypeOf(it) {
@@ -18713,6 +18713,28 @@ var flatMap$1 = flatMap$2;
 
 var flatMap = flatMap$1;
 
+var arrayBufferNonExtensible = fails(function () {
+  if (typeof ArrayBuffer == 'function') {
+    var buffer = new ArrayBuffer(8); // eslint-disable-next-line es/no-object-isextensible, es/no-object-defineproperty -- safe
+
+    if (Object.isExtensible(buffer)) Object.defineProperty(buffer, 'a', {
+      value: 8
+    });
+  }
+});
+
+var $isExtensible = Object.isExtensible;
+var FAILS_ON_PRIMITIVES = fails(function () {
+  $isExtensible(1);
+}); // `Object.isExtensible` method
+// https://tc39.es/ecma262/#sec-object.isextensible
+
+var objectIsExtensible = FAILS_ON_PRIMITIVES || arrayBufferNonExtensible ? function isExtensible(it) {
+  if (!isObject$1(it)) return false;
+  if (arrayBufferNonExtensible && classofRaw(it) == 'ArrayBuffer') return false;
+  return $isExtensible ? $isExtensible(it) : true;
+} : $isExtensible;
+
 var freezing = !fails(function () {
   // eslint-disable-next-line es/no-object-isextensible, es/no-object-preventextensions -- required for testing
   return Object.isExtensible(Object.preventExtensions({}));
@@ -18722,11 +18744,7 @@ var internalMetadata = createCommonjsModule(function (module) {
   var defineProperty = objectDefineProperty.f;
   var REQUIRED = false;
   var METADATA = uid('meta');
-  var id = 0; // eslint-disable-next-line es/no-object-isextensible -- safe
-
-  var isExtensible = Object.isExtensible || function () {
-    return true;
-  };
+  var id = 0;
 
   var setMetadata = function (it) {
     defineProperty(it, METADATA, {
@@ -18745,7 +18763,7 @@ var internalMetadata = createCommonjsModule(function (module) {
 
     if (!hasOwnProperty_1(it, METADATA)) {
       // can't set metadata to uncaught frozen object
-      if (!isExtensible(it)) return 'F'; // not necessary to add metadata
+      if (!objectIsExtensible(it)) return 'F'; // not necessary to add metadata
 
       if (!create) return 'E'; // add missing metadata
 
@@ -18758,7 +18776,7 @@ var internalMetadata = createCommonjsModule(function (module) {
   var getWeakData = function (it, create) {
     if (!hasOwnProperty_1(it, METADATA)) {
       // can't set metadata to uncaught frozen object
-      if (!isExtensible(it)) return true; // not necessary to add metadata
+      if (!objectIsExtensible(it)) return true; // not necessary to add metadata
 
       if (!create) return false; // add missing metadata
 
@@ -18770,7 +18788,7 @@ var internalMetadata = createCommonjsModule(function (module) {
 
 
   var onFreeze = function (it) {
-    if (freezing && REQUIRED && isExtensible(it) && !hasOwnProperty_1(it, METADATA)) setMetadata(it);
+    if (freezing && REQUIRED && objectIsExtensible(it) && !hasOwnProperty_1(it, METADATA)) setMetadata(it);
     return it;
   };
 
