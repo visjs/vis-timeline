@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-06T19:07:07.540Z
+ * @date    2021-11-06T19:07:20.397Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3392,14 +3392,6 @@
   const nn = nb;
   const nn_NO = nb;
 
-  // Lithuanian
-  const lt = {
-    current: 'einamas',
-    time: 'laikas',
-    deleteSelected: 'Pašalinti pasirinktą',
-  };
-  const lt_LT = lt;
-
 
   const locales = {
     en,
@@ -3430,8 +3422,6 @@
     pt_PT,
     ja,
     ja_JP,
-    lt,
-    lt_LT,
     sv,
     sv_SE,
     nb,
