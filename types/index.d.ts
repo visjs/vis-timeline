@@ -97,6 +97,7 @@ export interface DataItem {
   type?: string;
   editable?: TimelineItemEditableType;
   selectable?: boolean;
+  limitSize?: boolean;
 }
 
 export interface SubGroupStackOptions {
