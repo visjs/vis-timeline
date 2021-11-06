@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-03T00:56:05.557Z
+ * @date    2021-11-06T19:07:07.540Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -231,14 +231,14 @@ var useSymbolAsUid = NATIVE_SYMBOL$2 && !Symbol.sham && typeof Symbol.iterator =
 var global$G = global$L;
 var getBuiltIn$7 = getBuiltIn$9;
 var isCallable$e = isCallable$h;
-var isPrototypeOf$l = objectIsPrototypeOf;
+var isPrototypeOf$m = objectIsPrototypeOf;
 var USE_SYMBOL_AS_UID$1 = useSymbolAsUid;
 var Object$8 = global$G.Object;
 var isSymbol$3 = USE_SYMBOL_AS_UID$1 ? function (it) {
   return typeof it == 'symbol';
 } : function (it) {
   var $Symbol = getBuiltIn$7('Symbol');
-  return isCallable$e($Symbol) && isPrototypeOf$l($Symbol.prototype, Object$8(it));
+  return isCallable$e($Symbol) && isPrototypeOf$m($Symbol.prototype, Object$8(it));
 };
 
 var global$F = global$L;
@@ -1015,7 +1015,7 @@ var objectCreate = Object.create || function create(O, Properties) {
   return Properties === undefined ? result : defineProperties$5(result, Properties);
 };
 
-var $$F = _export;
+var $$G = _export;
 var getBuiltIn$4 = getBuiltIn$9;
 var apply$4 = functionApply;
 var bind$9 = functionBind;
@@ -1046,7 +1046,7 @@ var ARGS_BUG = !fails$j(function () {
   });
 });
 var FORCED$6 = NEW_TARGET_BUG || ARGS_BUG;
-$$F({
+$$G({
   target: 'Reflect',
   stat: true,
   forced: FORCED$6,
@@ -1096,8 +1096,8 @@ $$F({
 var path$o = path$r;
 var construct$2 = path$o.Reflect.construct;
 
-var parent$O = construct$2;
-var construct$1 = parent$O;
+var parent$P = construct$2;
+var construct$1 = parent$P;
 
 var construct = construct$1;
 
@@ -1109,12 +1109,12 @@ function _classCallCheck(instance, Constructor) {
 
 var defineProperty$b = {exports: {}};
 
-var $$E = _export;
+var $$F = _export;
 var DESCRIPTORS$b = descriptors;
 var objectDefinePropertyModile = objectDefineProperty; // `Object.defineProperty` method
 // https://tc39.es/ecma262/#sec-object.defineproperty
 
-$$E({
+$$F({
   target: 'Object',
   stat: true,
   forced: !DESCRIPTORS$b,
@@ -1132,11 +1132,11 @@ var defineProperty$a = defineProperty$b.exports = function defineProperty(it, ke
 
 if (Object$5.defineProperty.sham) defineProperty$a.sham = true;
 
-var parent$N = defineProperty$b.exports;
-var defineProperty$9 = parent$N;
+var parent$O = defineProperty$b.exports;
+var defineProperty$9 = parent$O;
 
-var parent$M = defineProperty$9;
-var defineProperty$8 = parent$M;
+var parent$N = defineProperty$9;
+var defineProperty$8 = parent$N;
 
 var defineProperty$7 = defineProperty$8;
 
@@ -1165,12 +1165,12 @@ function _assertThisInitialized$1(self) {
   return self;
 }
 
-var $$D = _export;
+var $$E = _export;
 var DESCRIPTORS$a = descriptors;
 var create$8 = objectCreate; // `Object.create` method
 // https://tc39.es/ecma262/#sec-object.create
 
-$$D({
+$$E({
   target: 'Object',
   stat: true,
   sham: !DESCRIPTORS$a
@@ -1185,11 +1185,11 @@ var create$7 = function create(P, D) {
   return Object$4.create(P, D);
 };
 
-var parent$L = create$7;
-var create$6 = parent$L;
+var parent$M = create$7;
+var create$6 = parent$M;
 
-var parent$K = create$6;
-var create$5 = parent$K;
+var parent$L = create$6;
+var create$5 = parent$L;
 
 var create$4 = create$5;
 
@@ -1233,11 +1233,11 @@ var objectSetPrototypeOf = Object.setPrototypeOf || ('__proto__' in {} ? functio
   };
 }() : undefined);
 
-var $$C = _export;
+var $$D = _export;
 var setPrototypeOf$4 = objectSetPrototypeOf; // `Object.setPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.setprototypeof
 
-$$C({
+$$D({
   target: 'Object',
   stat: true
 }, {
@@ -1247,11 +1247,11 @@ $$C({
 var path$l = path$r;
 var setPrototypeOf$3 = path$l.Object.setPrototypeOf;
 
-var parent$J = setPrototypeOf$3;
-var setPrototypeOf$2 = parent$J;
+var parent$K = setPrototypeOf$3;
+var setPrototypeOf$2 = parent$K;
 
-var parent$I = setPrototypeOf$2;
-var setPrototypeOf$1 = parent$I;
+var parent$J = setPrototypeOf$2;
+var setPrototypeOf$1 = parent$J;
 
 var setPrototypeOf = setPrototypeOf$1;
 
@@ -1350,7 +1350,7 @@ var arrayMethodHasSpeciesSupport$5 = function (METHOD_NAME) {
   });
 };
 
-var $$B = _export;
+var $$C = _export;
 var global$o = global$L;
 var fails$h = fails$q;
 var isArray$9 = isArray$b;
@@ -1386,7 +1386,7 @@ var FORCED$5 = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT; // `Array.prot
 // https://tc39.es/ecma262/#sec-array.prototype.concat
 // with adding support of @@isConcatSpreadable and @@species
 
-$$B({
+$$C({
   target: 'Array',
   proto: true,
   forced: FORCED$5
@@ -1695,7 +1695,7 @@ var arrayIteration = {
   filterReject: createMethod$4(7)
 };
 
-var $$A = _export;
+var $$B = _export;
 var global$k = global$L;
 var getBuiltIn$3 = getBuiltIn$9;
 var apply$3 = functionApply;
@@ -1708,7 +1708,7 @@ var hasOwn$4 = hasOwnProperty_1;
 var isArray$8 = isArray$b;
 var isCallable$4 = isCallable$h;
 var isObject$6 = isObject$g;
-var isPrototypeOf$k = objectIsPrototypeOf;
+var isPrototypeOf$l = objectIsPrototypeOf;
 var isSymbol = isSymbol$3;
 var anObject$5 = anObject$b;
 var toObject$9 = toObject$d;
@@ -1872,7 +1872,7 @@ var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
 
 if (!NATIVE_SYMBOL) {
   $Symbol = function Symbol() {
-    if (isPrototypeOf$k(SymbolPrototype, this)) throw TypeError$7('Symbol is not a constructor');
+    if (isPrototypeOf$l(SymbolPrototype, this)) throw TypeError$7('Symbol is not a constructor');
     var description = !arguments.length || arguments[0] === undefined ? undefined : $toString(arguments[0]);
     var tag = uid$1(description);
 
@@ -1917,7 +1917,7 @@ if (!NATIVE_SYMBOL) {
   }
 }
 
-$$A({
+$$B({
   global: true,
   wrap: true,
   forced: !NATIVE_SYMBOL,
@@ -1928,7 +1928,7 @@ $$A({
 $forEach$1(objectKeys$2(WellKnownSymbolsStore), function (name) {
   defineWellKnownSymbol$k(name);
 });
-$$A({
+$$B({
   target: SYMBOL,
   stat: true,
   forced: !NATIVE_SYMBOL
@@ -1956,7 +1956,7 @@ $$A({
     USE_SETTER = false;
   }
 });
-$$A({
+$$B({
   target: 'Object',
   stat: true,
   forced: !NATIVE_SYMBOL,
@@ -1975,7 +1975,7 @@ $$A({
   // https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
   getOwnPropertyDescriptor: $getOwnPropertyDescriptor
 });
-$$A({
+$$B({
   target: 'Object',
   stat: true,
   forced: !NATIVE_SYMBOL
@@ -1989,7 +1989,7 @@ $$A({
 }); // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
 // https://bugs.chromium.org/p/v8/issues/detail?id=3443
 
-$$A({
+$$B({
   target: 'Object',
   stat: true,
   forced: fails$g(function () {
@@ -2012,7 +2012,7 @@ if ($stringify$1) {
     }) != '{}' // V8 throws on boxed symbols
     || $stringify$1(Object(symbol)) != '{}';
   });
-  $$A({
+  $$B({
     target: 'JSON',
     stat: true,
     forced: FORCED_JSON_STRINGIFY
@@ -2238,7 +2238,7 @@ var createIteratorConstructor$1 = function (IteratorConstructor, NAME, next) {
   return IteratorConstructor;
 };
 
-var $$z = _export;
+var $$A = _export;
 var call$5 = functionCall;
 var FunctionName = functionName;
 var createIteratorConstructor = createIteratorConstructor$1;
@@ -2329,7 +2329,7 @@ var defineIterator$3 = function (Iterable, NAME, IteratorConstructor, next, DEFA
       if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
         redefine$1(IterablePrototype, KEY, methods[KEY]);
       }
-    } else $$z({
+    } else $$A({
       target: NAME,
       proto: true,
       forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME
@@ -2462,8 +2462,8 @@ for (var COLLECTION_NAME in DOMIterables$1) {
   Iterators$2[COLLECTION_NAME] = Iterators$2.Array;
 }
 
-var parent$H = symbol$4;
-var symbol$3 = parent$H;
+var parent$I = symbol$4;
+var symbol$3 = parent$I;
 
 var defineWellKnownSymbol$6 = defineWellKnownSymbol$l; // `Symbol.asyncDispose` well-known symbol
 // https://github.com/tc39/proposal-using-statement
@@ -2498,10 +2498,10 @@ defineWellKnownSymbol$1('patternMatch');
 var defineWellKnownSymbol = defineWellKnownSymbol$l;
 defineWellKnownSymbol('replaceAll');
 
-var parent$G = symbol$3; // TODO: Remove from `core-js@4`
+var parent$H = symbol$3; // TODO: Remove from `core-js@4`
 // TODO: Remove from `core-js@4`
 
-var symbol$2 = parent$G;
+var symbol$2 = parent$H;
 
 var symbol$1 = symbol$2;
 
@@ -2570,11 +2570,11 @@ defineIterator$1(String, 'String', function (iterated) {
 var WrappedWellKnownSymbolModule = wellKnownSymbolWrapped;
 var iterator$3 = WrappedWellKnownSymbolModule.f('iterator');
 
-var parent$F = iterator$3;
-var iterator$2 = parent$F;
+var parent$G = iterator$3;
+var iterator$2 = parent$G;
 
-var parent$E = iterator$2;
-var iterator$1 = parent$E;
+var parent$F = iterator$2;
+var iterator$1 = parent$F;
 
 var iterator = iterator$1;
 
@@ -2604,7 +2604,7 @@ function _possibleConstructorReturn(self, call) {
   return _assertThisInitialized$1(self);
 }
 
-var $$y = _export;
+var $$z = _export;
 var fails$d = fails$q;
 var toObject$7 = toObject$d;
 var nativeGetPrototypeOf = objectGetPrototypeOf;
@@ -2614,7 +2614,7 @@ var FAILS_ON_PRIMITIVES$3 = fails$d(function () {
 }); // `Object.getPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.getprototypeof
 
-$$y({
+$$z({
   target: 'Object',
   stat: true,
   forced: FAILS_ON_PRIMITIVES$3,
@@ -2628,11 +2628,11 @@ $$y({
 var path$i = path$r;
 var getPrototypeOf$4 = path$i.Object.getPrototypeOf;
 
-var parent$D = getPrototypeOf$4;
-var getPrototypeOf$3 = parent$D;
+var parent$E = getPrototypeOf$4;
+var getPrototypeOf$3 = parent$E;
 
-var parent$C = getPrototypeOf$3;
-var getPrototypeOf$2 = parent$C;
+var parent$D = getPrototypeOf$3;
+var getPrototypeOf$2 = parent$D;
 
 var getPrototypeOf$1 = getPrototypeOf$2;
 
@@ -2643,11 +2643,11 @@ function _getPrototypeOf(o) {
   return _getPrototypeOf(o);
 }
 
-var $$x = _export;
+var $$y = _export;
 var isArray$7 = isArray$b; // `Array.isArray` method
 // https://tc39.es/ecma262/#sec-array.isarray
 
-$$x({
+$$y({
   target: 'Array',
   stat: true
 }, {
@@ -2657,16 +2657,16 @@ $$x({
 var path$h = path$r;
 var isArray$6 = path$h.Array.isArray;
 
-var parent$B = isArray$6;
-var isArray$5 = parent$B;
+var parent$C = isArray$6;
+var isArray$5 = parent$C;
 
 var isArray$4 = isArray$5;
 
-var $$w = _export;
+var $$x = _export;
 var bind$7 = functionBind; // `Function.prototype.bind` method
 // https://tc39.es/ecma262/#sec-function.prototype.bind
 
-$$w({
+$$x({
   target: 'Function',
   proto: true
 }, {
@@ -2675,28 +2675,28 @@ $$w({
 
 var path$g = path$r;
 
-var entryVirtual$j = function (CONSTRUCTOR) {
+var entryVirtual$k = function (CONSTRUCTOR) {
   return path$g[CONSTRUCTOR + 'Prototype'];
 };
 
-var entryVirtual$i = entryVirtual$j;
-var bind$6 = entryVirtual$i('Function').bind;
+var entryVirtual$j = entryVirtual$k;
+var bind$6 = entryVirtual$j('Function').bind;
 
-var isPrototypeOf$j = objectIsPrototypeOf;
-var method$g = bind$6;
+var isPrototypeOf$k = objectIsPrototypeOf;
+var method$h = bind$6;
 var FunctionPrototype = Function.prototype;
 
 var bind$5 = function (it) {
   var own = it.bind;
-  return it === FunctionPrototype || isPrototypeOf$j(FunctionPrototype, it) && own === FunctionPrototype.bind ? method$g : own;
+  return it === FunctionPrototype || isPrototypeOf$k(FunctionPrototype, it) && own === FunctionPrototype.bind ? method$h : own;
 };
 
-var parent$A = bind$5;
-var bind$4 = parent$A;
+var parent$B = bind$5;
+var bind$4 = parent$B;
 
 var bind$3 = bind$4;
 
-var $$v = _export;
+var $$w = _export;
 var global$g = global$L;
 var apply$2 = functionApply;
 var isCallable$1 = isCallable$h;
@@ -2720,7 +2720,7 @@ var wrap = function (scheduler) {
 // https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers
 
 
-$$v({
+$$w({
   global: true,
   bind: true,
   forced: MSIE
@@ -2761,12 +2761,12 @@ var arrayForEach = !STRICT_METHOD$5 ? function forEach(callbackfn
   return $forEach(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined); // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 } : [].forEach;
 
-var $$u = _export;
+var $$v = _export;
 var forEach$6 = arrayForEach; // `Array.prototype.forEach` method
 // https://tc39.es/ecma262/#sec-array.prototype.foreach
 // eslint-disable-next-line es/no-array-prototype-foreach -- safe
 
-$$u({
+$$v({
   target: 'Array',
   proto: true,
   forced: [].forEach != forEach$6
@@ -2774,17 +2774,17 @@ $$u({
   forEach: forEach$6
 });
 
-var entryVirtual$h = entryVirtual$j;
-var forEach$5 = entryVirtual$h('Array').forEach;
+var entryVirtual$i = entryVirtual$k;
+var forEach$5 = entryVirtual$i('Array').forEach;
 
-var parent$z = forEach$5;
-var forEach$4 = parent$z;
+var parent$A = forEach$5;
+var forEach$4 = parent$A;
 
 var classof$4 = classof$b;
 var hasOwn$1 = hasOwnProperty_1;
-var isPrototypeOf$i = objectIsPrototypeOf;
-var method$f = forEach$4;
-var ArrayPrototype$f = Array.prototype;
+var isPrototypeOf$j = objectIsPrototypeOf;
+var method$g = forEach$4;
+var ArrayPrototype$g = Array.prototype;
 var DOMIterables = {
   DOMTokenList: true,
   NodeList: true
@@ -2792,7 +2792,7 @@ var DOMIterables = {
 
 var forEach$3 = function (it) {
   var own = it.forEach;
-  return it === ArrayPrototype$f || isPrototypeOf$i(ArrayPrototype$f, it) && own === ArrayPrototype$f.forEach || hasOwn$1(DOMIterables, classof$4(it)) ? method$f : own;
+  return it === ArrayPrototype$g || isPrototypeOf$j(ArrayPrototype$g, it) && own === ArrayPrototype$g.forEach || hasOwn$1(DOMIterables, classof$4(it)) ? method$g : own;
 };
 
 var forEach$2 = forEach$3;
@@ -2806,19 +2806,19 @@ var moment$2 = typeof window !== 'undefined' && window['moment'] || moment$3;
 var path$e = path$r;
 var getOwnPropertySymbols$2 = path$e.Object.getOwnPropertySymbols;
 
-var parent$y = getOwnPropertySymbols$2;
-var getOwnPropertySymbols$1 = parent$y;
+var parent$z = getOwnPropertySymbols$2;
+var getOwnPropertySymbols$1 = parent$z;
 
 var getOwnPropertySymbols = getOwnPropertySymbols$1;
 
-var $$t = _export;
+var $$u = _export;
 var $filter = arrayIteration.filter;
 var arrayMethodHasSpeciesSupport$3 = arrayMethodHasSpeciesSupport$5;
 var HAS_SPECIES_SUPPORT$3 = arrayMethodHasSpeciesSupport$3('filter'); // `Array.prototype.filter` method
 // https://tc39.es/ecma262/#sec-array.prototype.filter
 // with adding support of @@species
 
-$$t({
+$$u({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT$3
@@ -2830,26 +2830,26 @@ $$t({
   }
 });
 
-var entryVirtual$g = entryVirtual$j;
-var filter$3 = entryVirtual$g('Array').filter;
+var entryVirtual$h = entryVirtual$k;
+var filter$3 = entryVirtual$h('Array').filter;
 
-var isPrototypeOf$h = objectIsPrototypeOf;
-var method$e = filter$3;
-var ArrayPrototype$e = Array.prototype;
+var isPrototypeOf$i = objectIsPrototypeOf;
+var method$f = filter$3;
+var ArrayPrototype$f = Array.prototype;
 
 var filter$2 = function (it) {
   var own = it.filter;
-  return it === ArrayPrototype$e || isPrototypeOf$h(ArrayPrototype$e, it) && own === ArrayPrototype$e.filter ? method$e : own;
+  return it === ArrayPrototype$f || isPrototypeOf$i(ArrayPrototype$f, it) && own === ArrayPrototype$f.filter ? method$f : own;
 };
 
-var parent$x = filter$2;
-var filter$1 = parent$x;
+var parent$y = filter$2;
+var filter$1 = parent$y;
 
 var filter = filter$1;
 
 var getOwnPropertyDescriptor$3 = {exports: {}};
 
-var $$s = _export;
+var $$t = _export;
 var fails$b = fails$q;
 var toIndexedObject$3 = toIndexedObject$b;
 var nativeGetOwnPropertyDescriptor = objectGetOwnPropertyDescriptor.f;
@@ -2860,7 +2860,7 @@ var FAILS_ON_PRIMITIVES$2 = fails$b(function () {
 var FORCED$4 = !DESCRIPTORS$7 || FAILS_ON_PRIMITIVES$2; // `Object.getOwnPropertyDescriptor` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptor
 
-$$s({
+$$t({
   target: 'Object',
   stat: true,
   forced: FORCED$4,
@@ -2880,8 +2880,8 @@ var getOwnPropertyDescriptor$2 = getOwnPropertyDescriptor$3.exports = function g
 
 if (Object$2.getOwnPropertyDescriptor.sham) getOwnPropertyDescriptor$2.sham = true;
 
-var parent$w = getOwnPropertyDescriptor$3.exports;
-var getOwnPropertyDescriptor$1 = parent$w;
+var parent$x = getOwnPropertyDescriptor$3.exports;
+var getOwnPropertyDescriptor$1 = parent$x;
 
 var getOwnPropertyDescriptor = getOwnPropertyDescriptor$1;
 
@@ -2898,7 +2898,7 @@ var ownKeys$7 = getBuiltIn$2('Reflect', 'ownKeys') || function ownKeys(it) {
   return getOwnPropertySymbols ? concat$5(keys, getOwnPropertySymbols(it)) : keys;
 };
 
-var $$r = _export;
+var $$s = _export;
 var DESCRIPTORS$6 = descriptors;
 var ownKeys$6 = ownKeys$7;
 var toIndexedObject$2 = toIndexedObject$b;
@@ -2906,7 +2906,7 @@ var getOwnPropertyDescriptorModule = objectGetOwnPropertyDescriptor;
 var createProperty$3 = createProperty$5; // `Object.getOwnPropertyDescriptors` method
 // https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
 
-$$r({
+$$s({
   target: 'Object',
   stat: true,
   sham: !DESCRIPTORS$6
@@ -2931,19 +2931,19 @@ $$r({
 var path$c = path$r;
 var getOwnPropertyDescriptors$2 = path$c.Object.getOwnPropertyDescriptors;
 
-var parent$v = getOwnPropertyDescriptors$2;
-var getOwnPropertyDescriptors$1 = parent$v;
+var parent$w = getOwnPropertyDescriptors$2;
+var getOwnPropertyDescriptors$1 = parent$w;
 
 var getOwnPropertyDescriptors = getOwnPropertyDescriptors$1;
 
 var defineProperties$4 = {exports: {}};
 
-var $$q = _export;
+var $$r = _export;
 var DESCRIPTORS$5 = descriptors;
 var defineProperties$3 = objectDefineProperties; // `Object.defineProperties` method
 // https://tc39.es/ecma262/#sec-object.defineproperties
 
-$$q({
+$$r({
   target: 'Object',
   stat: true,
   forced: !DESCRIPTORS$5,
@@ -2961,8 +2961,8 @@ var defineProperties$2 = defineProperties$4.exports = function defineProperties(
 
 if (Object$1.defineProperties.sham) defineProperties$2.sham = true;
 
-var parent$u = defineProperties$4.exports;
-var defineProperties$1 = parent$u;
+var parent$v = defineProperties$4.exports;
+var defineProperties$1 = parent$v;
 
 var defineProperties = defineProperties$1;
 
@@ -2981,14 +2981,14 @@ function _defineProperty(obj, key, value) {
   return obj;
 }
 
-var $$p = _export;
+var $$q = _export;
 var $map = arrayIteration.map;
 var arrayMethodHasSpeciesSupport$2 = arrayMethodHasSpeciesSupport$5;
 var HAS_SPECIES_SUPPORT$2 = arrayMethodHasSpeciesSupport$2('map'); // `Array.prototype.map` method
 // https://tc39.es/ecma262/#sec-array.prototype.map
 // with adding support of @@species
 
-$$p({
+$$q({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT$2
@@ -3000,20 +3000,20 @@ $$p({
   }
 });
 
-var entryVirtual$f = entryVirtual$j;
-var map$3 = entryVirtual$f('Array').map;
+var entryVirtual$g = entryVirtual$k;
+var map$3 = entryVirtual$g('Array').map;
 
-var isPrototypeOf$g = objectIsPrototypeOf;
-var method$d = map$3;
-var ArrayPrototype$d = Array.prototype;
+var isPrototypeOf$h = objectIsPrototypeOf;
+var method$e = map$3;
+var ArrayPrototype$e = Array.prototype;
 
 var map$2 = function (it) {
   var own = it.map;
-  return it === ArrayPrototype$d || isPrototypeOf$g(ArrayPrototype$d, it) && own === ArrayPrototype$d.map ? method$d : own;
+  return it === ArrayPrototype$e || isPrototypeOf$h(ArrayPrototype$e, it) && own === ArrayPrototype$e.map ? method$e : own;
 };
 
-var parent$t = map$2;
-var map$1 = parent$t;
+var parent$u = map$2;
+var map$1 = parent$u;
 
 var map = map$1;
 
@@ -3067,7 +3067,7 @@ var classof$3 = classofRaw$1;
 var global$e = global$L;
 var engineIsNode = classof$3(global$e.process) == 'process';
 
-var $$o = _export;
+var $$p = _export;
 var $reduce = arrayReduce.left;
 var arrayMethodIsStrict$4 = arrayMethodIsStrict$6;
 var CHROME_VERSION = engineV8Version;
@@ -3078,7 +3078,7 @@ var STRICT_METHOD$4 = arrayMethodIsStrict$4('reduce'); // Chrome 80-82 has a cri
 var CHROME_BUG = !IS_NODE && CHROME_VERSION > 79 && CHROME_VERSION < 83; // `Array.prototype.reduce` method
 // https://tc39.es/ecma262/#sec-array.prototype.reduce
 
-$$o({
+$$p({
   target: 'Array',
   proto: true,
   forced: !STRICT_METHOD$4 || CHROME_BUG
@@ -3091,24 +3091,24 @@ $$o({
   }
 });
 
-var entryVirtual$e = entryVirtual$j;
-var reduce$3 = entryVirtual$e('Array').reduce;
+var entryVirtual$f = entryVirtual$k;
+var reduce$3 = entryVirtual$f('Array').reduce;
 
-var isPrototypeOf$f = objectIsPrototypeOf;
-var method$c = reduce$3;
-var ArrayPrototype$c = Array.prototype;
+var isPrototypeOf$g = objectIsPrototypeOf;
+var method$d = reduce$3;
+var ArrayPrototype$d = Array.prototype;
 
 var reduce$2 = function (it) {
   var own = it.reduce;
-  return it === ArrayPrototype$c || isPrototypeOf$f(ArrayPrototype$c, it) && own === ArrayPrototype$c.reduce ? method$c : own;
+  return it === ArrayPrototype$d || isPrototypeOf$g(ArrayPrototype$d, it) && own === ArrayPrototype$d.reduce ? method$d : own;
 };
 
-var parent$s = reduce$2;
-var reduce$1 = parent$s;
+var parent$t = reduce$2;
+var reduce$1 = parent$t;
 
 var reduce = reduce$1;
 
-var $$n = _export;
+var $$o = _export;
 var toObject$5 = toObject$d;
 var nativeKeys = objectKeys$4;
 var fails$a = fails$q;
@@ -3117,7 +3117,7 @@ var FAILS_ON_PRIMITIVES$1 = fails$a(function () {
 }); // `Object.keys` method
 // https://tc39.es/ecma262/#sec-object.keys
 
-$$n({
+$$o({
   target: 'Object',
   stat: true,
   forced: FAILS_ON_PRIMITIVES$1
@@ -3130,8 +3130,8 @@ $$n({
 var path$a = path$r;
 var keys$2 = path$a.Object.keys;
 
-var parent$r = keys$2;
-var keys$1 = parent$r;
+var parent$s = keys$2;
+var keys$1 = parent$s;
 
 var keys = keys$1;
 
@@ -3179,10 +3179,10 @@ var callWithSafeIterationClosing$1 = function (iterator, fn, value, ENTRIES) {
 var wellKnownSymbol$6 = wellKnownSymbol$j;
 var Iterators$1 = iterators;
 var ITERATOR$4 = wellKnownSymbol$6('iterator');
-var ArrayPrototype$b = Array.prototype; // check on default Array iterator
+var ArrayPrototype$c = Array.prototype; // check on default Array iterator
 
 var isArrayIteratorMethod$2 = function (it) {
-  return it !== undefined && (Iterators$1.Array === it || ArrayPrototype$b[ITERATOR$4] === it);
+  return it !== undefined && (Iterators$1.Array === it || ArrayPrototype$c[ITERATOR$4] === it);
 };
 
 var classof$2 = classof$b;
@@ -3313,7 +3313,7 @@ var checkCorrectnessOfIteration$1 = function (exec, SKIP_CLOSING) {
   return ITERATION_SUPPORT;
 };
 
-var $$m = _export;
+var $$n = _export;
 var from$5 = arrayFrom;
 var checkCorrectnessOfIteration = checkCorrectnessOfIteration$1;
 var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
@@ -3322,7 +3322,7 @@ var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
 }); // `Array.from` method
 // https://tc39.es/ecma262/#sec-array.from
 
-$$m({
+$$n({
   target: 'Array',
   stat: true,
   forced: INCORRECT_ITERATION
@@ -3333,24 +3333,24 @@ $$m({
 var path$9 = path$r;
 var from$4 = path$9.Array.from;
 
-var parent$q = from$4;
-var from$3 = parent$q;
+var parent$r = from$4;
+var from$3 = parent$r;
 
 var from$2 = from$3;
 
 var getIteratorMethod$4 = getIteratorMethod$7;
 var getIteratorMethod_1 = getIteratorMethod$4;
 
-var parent$p = getIteratorMethod_1;
-var getIteratorMethod$3 = parent$p;
+var parent$q = getIteratorMethod_1;
+var getIteratorMethod$3 = parent$q;
 
-var parent$o = getIteratorMethod$3;
-var getIteratorMethod$2 = parent$o;
+var parent$p = getIteratorMethod$3;
+var getIteratorMethod$2 = parent$p;
 
 var getIteratorMethod$1 = getIteratorMethod$2;
 
-var parent$n = isArray$5;
-var isArray$3 = parent$n;
+var parent$o = isArray$5;
+var isArray$3 = parent$o;
 
 var isArray$2 = isArray$3;
 
@@ -3388,7 +3388,7 @@ function _iterableToArrayLimit(arr, i) {
   return _arr;
 }
 
-var $$l = _export;
+var $$m = _export;
 var global$b = global$L;
 var isArray$1 = isArray$b;
 var isConstructor = isConstructor$4;
@@ -3407,7 +3407,7 @@ var max$1 = Math.max; // `Array.prototype.slice` method
 // https://tc39.es/ecma262/#sec-array.prototype.slice
 // fallback for not array-like ES3 strings and DOM objects
 
-$$l({
+$$m({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT$1
@@ -3444,32 +3444,32 @@ $$l({
   }
 });
 
-var entryVirtual$d = entryVirtual$j;
-var slice$5 = entryVirtual$d('Array').slice;
+var entryVirtual$e = entryVirtual$k;
+var slice$5 = entryVirtual$e('Array').slice;
 
-var isPrototypeOf$e = objectIsPrototypeOf;
-var method$b = slice$5;
-var ArrayPrototype$a = Array.prototype;
+var isPrototypeOf$f = objectIsPrototypeOf;
+var method$c = slice$5;
+var ArrayPrototype$b = Array.prototype;
 
 var slice$4 = function (it) {
   var own = it.slice;
-  return it === ArrayPrototype$a || isPrototypeOf$e(ArrayPrototype$a, it) && own === ArrayPrototype$a.slice ? method$b : own;
+  return it === ArrayPrototype$b || isPrototypeOf$f(ArrayPrototype$b, it) && own === ArrayPrototype$b.slice ? method$c : own;
 };
 
-var parent$m = slice$4;
-var slice$3 = parent$m;
+var parent$n = slice$4;
+var slice$3 = parent$n;
 
-var parent$l = slice$3;
-var slice$2 = parent$l;
+var parent$m = slice$3;
+var slice$2 = parent$m;
 
 var slice$1 = slice$2;
 
-var parent$k = from$3;
-var from$1 = parent$k;
+var parent$l = from$3;
+var from$1 = parent$l;
 
 var from = from$1;
 
-function _arrayLikeToArray$6(arr, len) {
+function _arrayLikeToArray$7(arr, len) {
   if (len == null || len > arr.length) len = arr.length;
 
   for (var i = 0, arr2 = new Array(len); i < len; i++) {
@@ -3479,17 +3479,17 @@ function _arrayLikeToArray$6(arr, len) {
   return arr2;
 }
 
-function _unsupportedIterableToArray$6(o, minLen) {
+function _unsupportedIterableToArray$7(o, minLen) {
   var _context;
 
   if (!o) return;
-  if (typeof o === "string") return _arrayLikeToArray$6(o, minLen);
+  if (typeof o === "string") return _arrayLikeToArray$7(o, minLen);
 
   var n = slice$1(_context = Object.prototype.toString.call(o)).call(_context, 8, -1);
 
   if (n === "Object" && o.constructor) n = o.constructor.name;
   if (n === "Map" || n === "Set") return from(o);
-  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$6(o, minLen);
+  if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$7(o, minLen);
 }
 
 function _nonIterableRest() {
@@ -3497,11 +3497,11 @@ function _nonIterableRest() {
 }
 
 function _slicedToArray(arr, i) {
-  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray$6(arr, i) || _nonIterableRest();
+  return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray$7(arr, i) || _nonIterableRest();
 }
 
 function _arrayWithoutHoles(arr) {
-  if (isArray$2(arr)) return _arrayLikeToArray$6(arr);
+  if (isArray$2(arr)) return _arrayLikeToArray$7(arr);
 }
 
 function _iterableToArray(iter) {
@@ -3513,35 +3513,35 @@ function _nonIterableSpread() {
 }
 
 function _toConsumableArray(arr) {
-  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray$6(arr) || _nonIterableSpread();
+  return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray$7(arr) || _nonIterableSpread();
 }
 
 var symbol = symbol$3;
 
-var entryVirtual$c = entryVirtual$j;
-var concat$4 = entryVirtual$c('Array').concat;
+var entryVirtual$d = entryVirtual$k;
+var concat$4 = entryVirtual$d('Array').concat;
 
-var isPrototypeOf$d = objectIsPrototypeOf;
-var method$a = concat$4;
-var ArrayPrototype$9 = Array.prototype;
+var isPrototypeOf$e = objectIsPrototypeOf;
+var method$b = concat$4;
+var ArrayPrototype$a = Array.prototype;
 
 var concat$3 = function (it) {
   var own = it.concat;
-  return it === ArrayPrototype$9 || isPrototypeOf$d(ArrayPrototype$9, it) && own === ArrayPrototype$9.concat ? method$a : own;
+  return it === ArrayPrototype$a || isPrototypeOf$e(ArrayPrototype$a, it) && own === ArrayPrototype$a.concat ? method$b : own;
 };
 
-var parent$j = concat$3;
-var concat$2 = parent$j;
+var parent$k = concat$3;
+var concat$2 = parent$k;
 
 var concat$1 = concat$2;
 
 var slice = slice$3;
 
-var $$k = _export;
+var $$l = _export;
 var ownKeys$5 = ownKeys$7; // `Reflect.ownKeys` method
 // https://tc39.es/ecma262/#sec-reflect.ownkeys
 
-$$k({
+$$l({
   target: 'Reflect',
   stat: true
 }, {
@@ -3551,19 +3551,19 @@ $$k({
 var path$8 = path$r;
 var ownKeys$4 = path$8.Reflect.ownKeys;
 
-var parent$i = ownKeys$4;
-var ownKeys$3 = parent$i;
+var parent$j = ownKeys$4;
+var ownKeys$3 = parent$j;
 
 var ownKeys$2 = ownKeys$3;
 
-var $$j = _export;
+var $$k = _export;
 var global$a = global$L;
 var uncurryThis$b = functionUncurryThis;
 var Date$1 = global$a.Date;
 var getTime = uncurryThis$b(Date$1.prototype.getTime); // `Date.now` method
 // https://tc39.es/ecma262/#sec-date.now
 
-$$j({
+$$k({
   target: 'Date',
   stat: true
 }, {
@@ -3575,12 +3575,12 @@ $$j({
 var path$7 = path$r;
 var now$3 = path$7.Date.now;
 
-var parent$h = now$3;
-var now$2 = parent$h;
+var parent$i = now$3;
+var now$2 = parent$i;
 
 var now$1 = now$2;
 
-var $$i = _export;
+var $$j = _export;
 var uncurryThis$a = functionUncurryThis;
 var isArray = isArray$b;
 var un$Reverse = uncurryThis$a([].reverse);
@@ -3589,7 +3589,7 @@ var test$1 = [1, 2]; // `Array.prototype.reverse` method
 // fix for Safari 12.0 bug
 // https://bugs.webkit.org/show_bug.cgi?id=188794
 
-$$i({
+$$j({
   target: 'Array',
   proto: true,
   forced: String(test$1) === String(test$1.reverse())
@@ -3601,24 +3601,24 @@ $$i({
   }
 });
 
-var entryVirtual$b = entryVirtual$j;
-var reverse$3 = entryVirtual$b('Array').reverse;
+var entryVirtual$c = entryVirtual$k;
+var reverse$3 = entryVirtual$c('Array').reverse;
 
-var isPrototypeOf$c = objectIsPrototypeOf;
-var method$9 = reverse$3;
-var ArrayPrototype$8 = Array.prototype;
+var isPrototypeOf$d = objectIsPrototypeOf;
+var method$a = reverse$3;
+var ArrayPrototype$9 = Array.prototype;
 
 var reverse$2 = function (it) {
   var own = it.reverse;
-  return it === ArrayPrototype$8 || isPrototypeOf$c(ArrayPrototype$8, it) && own === ArrayPrototype$8.reverse ? method$9 : own;
+  return it === ArrayPrototype$9 || isPrototypeOf$d(ArrayPrototype$9, it) && own === ArrayPrototype$9.reverse ? method$a : own;
 };
 
-var parent$g = reverse$2;
-var reverse$1 = parent$g;
+var parent$h = reverse$2;
+var reverse$1 = parent$h;
 
 var reverse = reverse$1;
 
-var $$h = _export;
+var $$i = _export;
 var global$9 = global$L;
 var toAbsoluteIndex$1 = toAbsoluteIndex$4;
 var toIntegerOrInfinity$1 = toIntegerOrInfinity$5;
@@ -3636,7 +3636,7 @@ var MAXIMUM_ALLOWED_LENGTH_EXCEEDED = 'Maximum allowed length exceeded'; // `Arr
 // https://tc39.es/ecma262/#sec-array.prototype.splice
 // with adding support of @@species
 
-$$h({
+$$i({
   target: 'Array',
   proto: true,
   forced: !HAS_SPECIES_SUPPORT
@@ -3698,20 +3698,20 @@ $$h({
   }
 });
 
-var entryVirtual$a = entryVirtual$j;
-var splice$3 = entryVirtual$a('Array').splice;
+var entryVirtual$b = entryVirtual$k;
+var splice$3 = entryVirtual$b('Array').splice;
 
-var isPrototypeOf$b = objectIsPrototypeOf;
-var method$8 = splice$3;
-var ArrayPrototype$7 = Array.prototype;
+var isPrototypeOf$c = objectIsPrototypeOf;
+var method$9 = splice$3;
+var ArrayPrototype$8 = Array.prototype;
 
 var splice$2 = function (it) {
   var own = it.splice;
-  return it === ArrayPrototype$7 || isPrototypeOf$b(ArrayPrototype$7, it) && own === ArrayPrototype$7.splice ? method$8 : own;
+  return it === ArrayPrototype$8 || isPrototypeOf$c(ArrayPrototype$8, it) && own === ArrayPrototype$8.splice ? method$9 : own;
 };
 
-var parent$f = splice$2;
-var splice$1 = parent$f;
+var parent$g = splice$2;
+var splice$1 = parent$g;
 
 var splice = splice$1;
 
@@ -3781,12 +3781,12 @@ var objectAssign = !$assign || fails$9(function () {
   return T;
 } : $assign;
 
-var $$g = _export;
+var $$h = _export;
 var assign$5 = objectAssign; // `Object.assign` method
 // https://tc39.es/ecma262/#sec-object.assign
 // eslint-disable-next-line es/no-object-assign -- required for testing
 
-$$g({
+$$h({
   target: 'Object',
   stat: true,
   forced: Object.assign !== assign$5
@@ -3797,16 +3797,16 @@ $$g({
 var path$6 = path$r;
 var assign$4 = path$6.Object.assign;
 
-var parent$e = assign$4;
-var assign$3 = parent$e;
+var parent$f = assign$4;
+var assign$3 = parent$f;
 
 var assign$2 = assign$3;
 
-var $$f = _export;
+var $$g = _export;
 var $includes = arrayIncludes.includes;
 // https://tc39.es/ecma262/#sec-array.prototype.includes
 
-$$f({
+$$g({
   target: 'Array',
   proto: true
 }, {
@@ -3817,8 +3817,8 @@ $$f({
   }
 }); // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
 
-var entryVirtual$9 = entryVirtual$j;
-var includes$4 = entryVirtual$9('Array').includes;
+var entryVirtual$a = entryVirtual$k;
+var includes$4 = entryVirtual$a('Array').includes;
 
 var isObject$4 = isObject$g;
 var classof$1 = classofRaw$1;
@@ -3863,7 +3863,7 @@ var correctIsRegexpLogic = function (METHOD_NAME) {
   return false;
 };
 
-var $$e = _export;
+var $$f = _export;
 var uncurryThis$8 = functionUncurryThis;
 var notARegExp = notARegexp;
 var requireObjectCoercible$2 = requireObjectCoercible$6;
@@ -3872,7 +3872,7 @@ var correctIsRegExpLogic = correctIsRegexpLogic;
 var stringIndexOf = uncurryThis$8(''.indexOf); // `String.prototype.includes` method
 // https://tc39.es/ecma262/#sec-string.prototype.includes
 
-$$e({
+$$f({
   target: 'String',
   proto: true,
   forced: !correctIsRegExpLogic('includes')
@@ -3884,28 +3884,28 @@ $$e({
   }
 });
 
-var entryVirtual$8 = entryVirtual$j;
-var includes$3 = entryVirtual$8('String').includes;
+var entryVirtual$9 = entryVirtual$k;
+var includes$3 = entryVirtual$9('String').includes;
 
-var isPrototypeOf$a = objectIsPrototypeOf;
+var isPrototypeOf$b = objectIsPrototypeOf;
 var arrayMethod = includes$4;
 var stringMethod = includes$3;
-var ArrayPrototype$6 = Array.prototype;
+var ArrayPrototype$7 = Array.prototype;
 var StringPrototype$2 = String.prototype;
 
 var includes$2 = function (it) {
   var own = it.includes;
-  if (it === ArrayPrototype$6 || isPrototypeOf$a(ArrayPrototype$6, it) && own === ArrayPrototype$6.includes) return arrayMethod;
+  if (it === ArrayPrototype$7 || isPrototypeOf$b(ArrayPrototype$7, it) && own === ArrayPrototype$7.includes) return arrayMethod;
 
-  if (typeof it == 'string' || it === StringPrototype$2 || isPrototypeOf$a(StringPrototype$2, it) && own === StringPrototype$2.includes) {
+  if (typeof it == 'string' || it === StringPrototype$2 || isPrototypeOf$b(StringPrototype$2, it) && own === StringPrototype$2.includes) {
     return stringMethod;
   }
 
   return own;
 };
 
-var parent$d = includes$2;
-var includes$1 = parent$d;
+var parent$e = includes$2;
+var includes$1 = parent$e;
 
 var includes = includes$1;
 
@@ -3949,11 +3949,11 @@ var objectToArray = {
   values: createMethod$1(false)
 };
 
-var $$d = _export;
+var $$e = _export;
 var $values = objectToArray.values; // `Object.values` method
 // https://tc39.es/ecma262/#sec-object.values
 
-$$d({
+$$e({
   target: 'Object',
   stat: true
 }, {
@@ -3965,8 +3965,8 @@ $$d({
 var path$5 = path$r;
 var values$2 = path$5.Object.values;
 
-var parent$c = values$2;
-var values$1 = parent$c;
+var parent$d = values$2;
+var values$1 = parent$d;
 
 var values = values$1;
 
@@ -4024,11 +4024,11 @@ var numberParseInt = FORCED$3 ? function parseInt(string, radix) {
   return $parseInt$1(S, radix >>> 0 || (exec$1(hex, S) ? 16 : 10));
 } : $parseInt$1;
 
-var $$c = _export;
+var $$d = _export;
 var $parseInt = numberParseInt; // `parseInt` method
 // https://tc39.es/ecma262/#sec-parseint-string-radix
 
-$$c({
+$$d({
   global: true,
   forced: parseInt != $parseInt
 }, {
@@ -4038,15 +4038,15 @@ $$c({
 var path$4 = path$r;
 var _parseInt$2 = path$4.parseInt;
 
-var parent$b = _parseInt$2;
-var _parseInt$1 = parent$b;
+var parent$c = _parseInt$2;
+var _parseInt$1 = parent$c;
 
 var _parseInt = _parseInt$1;
 
 /* eslint-disable es/no-array-prototype-indexof -- required for testing */
 
 
-var $$b = _export;
+var $$c = _export;
 var uncurryThis$4 = functionUncurryThis;
 var $IndexOf = arrayIncludes.indexOf;
 var arrayMethodIsStrict$3 = arrayMethodIsStrict$6;
@@ -4055,7 +4055,7 @@ var NEGATIVE_ZERO = !!un$IndexOf && 1 / un$IndexOf([1], 1, -0) < 0;
 var STRICT_METHOD$3 = arrayMethodIsStrict$3('indexOf'); // `Array.prototype.indexOf` method
 // https://tc39.es/ecma262/#sec-array.prototype.indexof
 
-$$b({
+$$c({
   target: 'Array',
   proto: true,
   forced: NEGATIVE_ZERO || !STRICT_METHOD$3
@@ -4069,20 +4069,20 @@ $$b({
   }
 });
 
-var entryVirtual$7 = entryVirtual$j;
-var indexOf$3 = entryVirtual$7('Array').indexOf;
+var entryVirtual$8 = entryVirtual$k;
+var indexOf$3 = entryVirtual$8('Array').indexOf;
 
-var isPrototypeOf$9 = objectIsPrototypeOf;
-var method$7 = indexOf$3;
-var ArrayPrototype$5 = Array.prototype;
+var isPrototypeOf$a = objectIsPrototypeOf;
+var method$8 = indexOf$3;
+var ArrayPrototype$6 = Array.prototype;
 
 var indexOf$2 = function (it) {
   var own = it.indexOf;
-  return it === ArrayPrototype$5 || isPrototypeOf$9(ArrayPrototype$5, it) && own === ArrayPrototype$5.indexOf ? method$7 : own;
+  return it === ArrayPrototype$6 || isPrototypeOf$a(ArrayPrototype$6, it) && own === ArrayPrototype$6.indexOf ? method$8 : own;
 };
 
-var parent$a = indexOf$2;
-var indexOf$1 = parent$a;
+var parent$b = indexOf$2;
+var indexOf$1 = parent$b;
 
 var indexOf = indexOf$1;
 
@@ -4098,12 +4098,12 @@ var stringTrimForced = function (METHOD_NAME) {
   });
 };
 
-var $$a = _export;
+var $$b = _export;
 var $trim = stringTrim.trim;
 var forcedStringTrimMethod = stringTrimForced; // `String.prototype.trim` method
 // https://tc39.es/ecma262/#sec-string.prototype.trim
 
-$$a({
+$$b({
   target: 'String',
   proto: true,
   forced: forcedStringTrimMethod('trim')
@@ -4113,26 +4113,26 @@ $$a({
   }
 });
 
-var entryVirtual$6 = entryVirtual$j;
-var trim$4 = entryVirtual$6('String').trim;
+var entryVirtual$7 = entryVirtual$k;
+var trim$4 = entryVirtual$7('String').trim;
 
-var isPrototypeOf$8 = objectIsPrototypeOf;
-var method$6 = trim$4;
+var isPrototypeOf$9 = objectIsPrototypeOf;
+var method$7 = trim$4;
 var StringPrototype$1 = String.prototype;
 
 var trim$3 = function (it) {
   var own = it.trim;
-  return typeof it == 'string' || it === StringPrototype$1 || isPrototypeOf$8(StringPrototype$1, it) && own === StringPrototype$1.trim ? method$6 : own;
+  return typeof it == 'string' || it === StringPrototype$1 || isPrototypeOf$9(StringPrototype$1, it) && own === StringPrototype$1.trim ? method$7 : own;
 };
 
-var parent$9 = trim$3;
-var trim$2 = parent$9;
+var parent$a = trim$3;
+var trim$2 = parent$a;
 
 var trim$1 = trim$2;
 
 var create$1 = create$6;
 
-var $$9 = _export;
+var $$a = _export;
 var global$6 = global$L;
 var getBuiltIn$1 = getBuiltIn$9;
 var apply$1 = functionApply;
@@ -4168,7 +4168,7 @@ if ($stringify) {
   // `JSON.stringify` method
   // https://tc39.es/ecma262/#sec-json.stringify
   // https://github.com/tc39/proposal-well-formed-stringify
-  $$9({
+  $$a({
     target: 'JSON',
     stat: true,
     forced: FORCED$2
@@ -4194,8 +4194,8 @@ var stringify$2 = function stringify(it, replacer, space) {
   return apply(path$3.JSON.stringify, null, arguments);
 };
 
-var parent$8 = stringify$2;
-var stringify$1 = parent$8;
+var parent$9 = stringify$2;
+var stringify$1 = parent$9;
 
 var stringify = stringify$1;
 
@@ -4219,31 +4219,31 @@ var arrayFill = function fill(value
   return O;
 };
 
-var $$8 = _export;
+var $$9 = _export;
 var fill$4 = arrayFill;
 // https://tc39.es/ecma262/#sec-array.prototype.fill
 
-$$8({
+$$9({
   target: 'Array',
   proto: true
 }, {
   fill: fill$4
 }); // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
 
-var entryVirtual$5 = entryVirtual$j;
-var fill$3 = entryVirtual$5('Array').fill;
+var entryVirtual$6 = entryVirtual$k;
+var fill$3 = entryVirtual$6('Array').fill;
 
-var isPrototypeOf$7 = objectIsPrototypeOf;
-var method$5 = fill$3;
-var ArrayPrototype$4 = Array.prototype;
+var isPrototypeOf$8 = objectIsPrototypeOf;
+var method$6 = fill$3;
+var ArrayPrototype$5 = Array.prototype;
 
 var fill$2 = function (it) {
   var own = it.fill;
-  return it === ArrayPrototype$4 || isPrototypeOf$7(ArrayPrototype$4, it) && own === ArrayPrototype$4.fill ? method$5 : own;
+  return it === ArrayPrototype$5 || isPrototypeOf$8(ArrayPrototype$5, it) && own === ArrayPrototype$5.fill ? method$6 : own;
 };
 
-var parent$7 = fill$2;
-var fill$1 = parent$7;
+var parent$8 = fill$2;
+var fill$1 = parent$8;
 
 var fill = fill$1;
 
@@ -7384,11 +7384,11 @@ function ownKeys$1(object, enumerableOnly) { var keys$1 = keys(object); if (getO
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$1(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context23; forEach$2(_context23 = ownKeys$1(Object(source))).call(_context23, function (key) { defineProperty$4(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
 
-function _createForOfIteratorHelper$5(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod$1(o) || o["@@iterator"]; if (!it) { if (isArray$4(o) || (it = _unsupportedIterableToArray$5(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+function _createForOfIteratorHelper$6(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod$1(o) || o["@@iterator"]; if (!it) { if (isArray$4(o) || (it = _unsupportedIterableToArray$6(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
-function _unsupportedIterableToArray$5(o, minLen) { var _context21; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$5(o, minLen); var n = slice(_context21 = Object.prototype.toString.call(o)).call(_context21, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$5(o, minLen); }
+function _unsupportedIterableToArray$6(o, minLen) { var _context21; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$6(o, minLen); var n = slice(_context21 = Object.prototype.toString.call(o)).call(_context21, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$6(o, minLen); }
 
-function _arrayLikeToArray$5(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+function _arrayLikeToArray$6(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 /**
  * Use this symbol to delete properies in deepObjectAssign.
  */
@@ -7455,7 +7455,7 @@ function deepObjectAssignNonentry() {
   var a = values[0];
   var b = values[1];
 
-  var _iterator = _createForOfIteratorHelper$5(ownKeys$2(b)),
+  var _iterator = _createForOfIteratorHelper$6(ownKeys$2(b)),
       _step;
 
   try {
@@ -7762,7 +7762,7 @@ Activator$1.prototype.destroy = function () {
 
   this.deactivate();
 
-  var _iterator2 = _createForOfIteratorHelper$5(reverse(_context4 = splice(_context5 = this._cleanupQueue).call(_context5, 0)).call(_context4)),
+  var _iterator2 = _createForOfIteratorHelper$6(reverse(_context4 = splice(_context5 = this._cleanupQueue).call(_context5, 0)).call(_context4)),
       _step2;
 
   try {
@@ -9642,7 +9642,7 @@ function topMost(pile, accessors) {
     accessors = [accessors];
   }
 
-  var _iterator3 = _createForOfIteratorHelper$5(pile),
+  var _iterator3 = _createForOfIteratorHelper$6(pile),
       _step3;
 
   try {
@@ -14029,8 +14029,8 @@ function rng() {
  */
 var byteToHex = [];
 
-for (var i = 0; i < 256; ++i) {
-  byteToHex[i] = (i + 0x100).toString(16).substr(1);
+for (var i$1 = 0; i$1 < 256; ++i$1) {
+  byteToHex[i$1] = (i$1 + 0x100).toString(16).substr(1);
 }
 
 function bytesToUuid(buf, offset) {
@@ -14372,11 +14372,11 @@ var numberParseFloat = FORCED$1 ? function parseFloat(string) {
   return result === 0 && charAt(trimmedString, 0) == '-' ? -0 : result;
 } : n$ParseFloat;
 
-var $$7 = _export;
+var $$8 = _export;
 var $parseFloat = numberParseFloat; // `parseFloat` method
 // https://tc39.es/ecma262/#sec-parsefloat-string
 
-$$7({
+$$8({
   global: true,
   forced: parseFloat != $parseFloat
 }, {
@@ -14386,8 +14386,8 @@ $$7({
 var path$2 = path$r;
 var _parseFloat$2 = path$2.parseFloat;
 
-var parent$6 = _parseFloat$2;
-var _parseFloat$1 = parent$6;
+var parent$7 = _parseFloat$2;
+var _parseFloat$1 = parent$7;
 
 var _parseFloat = _parseFloat$1;
 
@@ -14476,31 +14476,31 @@ var stringRepeat = function repeat(count) {
   return result;
 };
 
-var $$6 = _export;
+var $$7 = _export;
 var repeat$4 = stringRepeat; // `String.prototype.repeat` method
 // https://tc39.es/ecma262/#sec-string.prototype.repeat
 
-$$6({
+$$7({
   target: 'String',
   proto: true
 }, {
   repeat: repeat$4
 });
 
-var entryVirtual$4 = entryVirtual$j;
-var repeat$3 = entryVirtual$4('String').repeat;
+var entryVirtual$5 = entryVirtual$k;
+var repeat$3 = entryVirtual$5('String').repeat;
 
-var isPrototypeOf$6 = objectIsPrototypeOf;
-var method$4 = repeat$3;
+var isPrototypeOf$7 = objectIsPrototypeOf;
+var method$5 = repeat$3;
 var StringPrototype = String.prototype;
 
 var repeat$2 = function (it) {
   var own = it.repeat;
-  return typeof it == 'string' || it === StringPrototype || isPrototypeOf$6(StringPrototype, it) && own === StringPrototype.repeat ? method$4 : own;
+  return typeof it == 'string' || it === StringPrototype || isPrototypeOf$7(StringPrototype, it) && own === StringPrototype.repeat ? method$5 : own;
 };
 
-var parent$5 = repeat$2;
-var repeat$1 = parent$5;
+var parent$6 = repeat$2;
+var repeat$1 = parent$6;
 
 var repeat = repeat$1;
 
@@ -14558,7 +14558,7 @@ var userAgent = engineUserAgent;
 var webkit = userAgent.match(/AppleWebKit\/(\d+)\./);
 var engineWebkitVersion = !!webkit && +webkit[1];
 
-var $$5 = _export;
+var $$6 = _export;
 var uncurryThis$1 = functionUncurryThis;
 var aCallable = aCallable$6;
 var toObject = toObject$d;
@@ -14645,7 +14645,7 @@ var getSortCompare = function (comparefn) {
 // https://tc39.es/ecma262/#sec-array.prototype.sort
 
 
-$$5({
+$$6({
   target: 'Array',
   proto: true,
   forced: FORCED
@@ -14674,20 +14674,20 @@ $$5({
   }
 });
 
-var entryVirtual$3 = entryVirtual$j;
-var sort$3 = entryVirtual$3('Array').sort;
+var entryVirtual$4 = entryVirtual$k;
+var sort$3 = entryVirtual$4('Array').sort;
 
-var isPrototypeOf$5 = objectIsPrototypeOf;
-var method$3 = sort$3;
-var ArrayPrototype$3 = Array.prototype;
+var isPrototypeOf$6 = objectIsPrototypeOf;
+var method$4 = sort$3;
+var ArrayPrototype$4 = Array.prototype;
 
 var sort$2 = function (it) {
   var own = it.sort;
-  return it === ArrayPrototype$3 || isPrototypeOf$5(ArrayPrototype$3, it) && own === ArrayPrototype$3.sort ? method$3 : own;
+  return it === ArrayPrototype$4 || isPrototypeOf$6(ArrayPrototype$4, it) && own === ArrayPrototype$4.sort ? method$4 : own;
 };
 
-var parent$4 = sort$2;
-var sort$1 = parent$4;
+var parent$5 = sort$2;
+var sort$1 = parent$5;
 
 var sort = sort$1;
 
@@ -16214,13 +16214,13 @@ function validateDirection(direction) {
   }
 }
 
-var $$4 = _export;
+var $$5 = _export;
 var $some = arrayIteration.some;
 var arrayMethodIsStrict$1 = arrayMethodIsStrict$6;
 var STRICT_METHOD$1 = arrayMethodIsStrict$1('some'); // `Array.prototype.some` method
 // https://tc39.es/ecma262/#sec-array.prototype.some
 
-$$4({
+$$5({
   target: 'Array',
   proto: true,
   forced: !STRICT_METHOD$1
@@ -16232,20 +16232,20 @@ $$4({
   }
 });
 
-var entryVirtual$2 = entryVirtual$j;
-var some$3 = entryVirtual$2('Array').some;
+var entryVirtual$3 = entryVirtual$k;
+var some$3 = entryVirtual$3('Array').some;
 
-var isPrototypeOf$4 = objectIsPrototypeOf;
-var method$2 = some$3;
-var ArrayPrototype$2 = Array.prototype;
+var isPrototypeOf$5 = objectIsPrototypeOf;
+var method$3 = some$3;
+var ArrayPrototype$3 = Array.prototype;
 
 var some$2 = function (it) {
   var own = it.some;
-  return it === ArrayPrototype$2 || isPrototypeOf$4(ArrayPrototype$2, it) && own === ArrayPrototype$2.some ? method$2 : own;
+  return it === ArrayPrototype$3 || isPrototypeOf$5(ArrayPrototype$3, it) && own === ArrayPrototype$3.some ? method$3 : own;
 };
 
-var parent$3 = some$2;
-var some$1 = parent$3;
+var parent$4 = some$2;
+var some$1 = parent$4;
 
 var some = some$1;
 
@@ -18647,7 +18647,14 @@ var nb = {
 };
 var nb_NO = nb;
 var nn = nb;
-var nn_NO = nb;
+var nn_NO = nb; // Lithuanian
+
+var lt = {
+  current: 'einamas',
+  time: 'laikas',
+  deleteSelected: 'Pašalinti pasirinktą'
+};
+var lt_LT = lt;
 var locales = {
   en: en,
   en_EN: en_EN,
@@ -18677,6 +18684,8 @@ var locales = {
   pt_PT: pt_PT,
   ja: ja,
   ja_JP: ja_JP,
+  lt: lt,
+  lt_LT: lt_LT,
   sv: sv,
   sv_SE: sv_SE,
   nb: nb,
@@ -20839,20 +20848,20 @@ var CurrentTime = /*#__PURE__*/function (_Component) {
   return CurrentTime;
 }(Component);
 
-var $$3 = _export;
+var $$4 = _export;
 var $find = arrayIteration.find;
 var FIND = 'find';
-var SKIPS_HOLES = true; // Shouldn't skip holes
+var SKIPS_HOLES$1 = true; // Shouldn't skip holes
 
 if (FIND in []) Array(1)[FIND](function () {
-  SKIPS_HOLES = false;
+  SKIPS_HOLES$1 = false;
 }); // `Array.prototype.find` method
 // https://tc39.es/ecma262/#sec-array.prototype.find
 
-$$3({
+$$4({
   target: 'Array',
   proto: true,
-  forced: SKIPS_HOLES
+  forced: SKIPS_HOLES$1
 }, {
   find: function find(callbackfn
   /* , that = undefined */
@@ -20861,20 +20870,20 @@ $$3({
   }
 }); // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
 
-var entryVirtual$1 = entryVirtual$j;
-var find$3 = entryVirtual$1('Array').find;
+var entryVirtual$2 = entryVirtual$k;
+var find$3 = entryVirtual$2('Array').find;
 
-var isPrototypeOf$3 = objectIsPrototypeOf;
-var method$1 = find$3;
-var ArrayPrototype$1 = Array.prototype;
+var isPrototypeOf$4 = objectIsPrototypeOf;
+var method$2 = find$3;
+var ArrayPrototype$2 = Array.prototype;
 
 var find$2 = function (it) {
   var own = it.find;
-  return it === ArrayPrototype$1 || isPrototypeOf$3(ArrayPrototype$1, it) && own === ArrayPrototype$1.find ? method$1 : own;
+  return it === ArrayPrototype$2 || isPrototypeOf$4(ArrayPrototype$2, it) && own === ArrayPrototype$2.find ? method$2 : own;
 };
 
-var parent$2 = find$2;
-var find$1 = parent$2;
+var parent$3 = find$2;
+var find$1 = parent$3;
 
 var find = find$1;
 
@@ -20914,7 +20923,7 @@ var freezing = !fails$1(function () {
   return Object.isExtensible(Object.preventExtensions({}));
 });
 
-var $$2 = _export;
+var $$3 = _export;
 var uncurryThis = functionUncurryThis;
 var hiddenKeys = hiddenKeys$6;
 var isObject$1 = isObject$g;
@@ -21000,7 +21009,7 @@ var enable = function () {
       return result;
     };
 
-    $$2({
+    $$3({
       target: 'Object',
       stat: true,
       forced: true
@@ -21025,7 +21034,7 @@ var anObject = anObject$b;
 var tryToString = tryToString$4;
 var isArrayIteratorMethod = isArrayIteratorMethod$2;
 var lengthOfArrayLike = lengthOfArrayLike$a;
-var isPrototypeOf$2 = objectIsPrototypeOf;
+var isPrototypeOf$3 = objectIsPrototypeOf;
 var getIterator = getIterator$2;
 var getIteratorMethod = getIteratorMethod$7;
 var iteratorClose = iteratorClose$2;
@@ -21069,7 +21078,7 @@ var iterate$2 = function (iterable, unboundFunction, options) {
     if (isArrayIteratorMethod(iterFn)) {
       for (index = 0, length = lengthOfArrayLike(iterable); length > index; index++) {
         result = callFn(iterable[index]);
-        if (result && isPrototypeOf$2(ResultPrototype, result)) return result;
+        if (result && isPrototypeOf$3(ResultPrototype, result)) return result;
       }
 
       return new Result(false);
@@ -21087,22 +21096,22 @@ var iterate$2 = function (iterable, unboundFunction, options) {
       iteratorClose(iterator, 'throw', error);
     }
 
-    if (typeof result == 'object' && result && isPrototypeOf$2(ResultPrototype, result)) return result;
+    if (typeof result == 'object' && result && isPrototypeOf$3(ResultPrototype, result)) return result;
   }
 
   return new Result(false);
 };
 
 var global$2 = global$L;
-var isPrototypeOf$1 = objectIsPrototypeOf;
+var isPrototypeOf$2 = objectIsPrototypeOf;
 var TypeError$1 = global$2.TypeError;
 
 var anInstance$2 = function (it, Prototype) {
-  if (isPrototypeOf$1(Prototype, it)) return it;
+  if (isPrototypeOf$2(Prototype, it)) return it;
   throw TypeError$1('Incorrect invocation');
 };
 
-var $$1 = _export;
+var $$2 = _export;
 var global$1 = global$L;
 var InternalMetadataModule = internalMetadata.exports;
 var fails = fails$q;
@@ -21169,7 +21178,7 @@ var collection$1 = function (CONSTRUCTOR_NAME, wrapper, common) {
 
   setToStringTag(Constructor, CONSTRUCTOR_NAME, false, true);
   exported[CONSTRUCTOR_NAME] = Constructor;
-  $$1({
+  $$2({
     global: true,
     forced: true
   }, exported);
@@ -21441,11 +21450,55 @@ collection('Set', function (init) {
 var path = path$r;
 var set$2 = path.Set;
 
-var parent$1 = set$2;
-var set$1 = parent$1;
+var parent$2 = set$2;
+var set$1 = parent$2;
 
 var set = set$1;
 
+var $$1 = _export;
+var $findIndex = arrayIteration.findIndex;
+var FIND_INDEX = 'findIndex';
+var SKIPS_HOLES = true; // Shouldn't skip holes
+
+if (FIND_INDEX in []) Array(1)[FIND_INDEX](function () {
+  SKIPS_HOLES = false;
+}); // `Array.prototype.findIndex` method
+// https://tc39.es/ecma262/#sec-array.prototype.findindex
+
+$$1({
+  target: 'Array',
+  proto: true,
+  forced: SKIPS_HOLES
+}, {
+  findIndex: function findIndex(callbackfn
+  /* , that = undefined */
+  ) {
+    return $findIndex(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
+  }
+}); // https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+
+var entryVirtual$1 = entryVirtual$k;
+var findIndex$3 = entryVirtual$1('Array').findIndex;
+
+var isPrototypeOf$1 = objectIsPrototypeOf;
+var method$1 = findIndex$3;
+var ArrayPrototype$1 = Array.prototype;
+
+var findIndex$2 = function (it) {
+  var own = it.findIndex;
+  return it === ArrayPrototype$1 || isPrototypeOf$1(ArrayPrototype$1, it) && own === ArrayPrototype$1.findIndex ? method$1 : own;
+};
+
+var parent$1 = findIndex$2;
+var findIndex$1 = parent$1;
+
+var findIndex = findIndex$1;
+
+function _createForOfIteratorHelper$5(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod$1(o) || o["@@iterator"]; if (!it) { if (isArray$4(o) || (it = _unsupportedIterableToArray$5(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray$5(o, minLen) { var _context5; if (!o) return; if (typeof o === "string") return _arrayLikeToArray$5(o, minLen); var n = slice(_context5 = Object.prototype.toString.call(o)).call(_context5, 8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return from$2(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray$5(o, minLen); }
+
+function _arrayLikeToArray$5(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
 // Utility functions for ordering and stacking of items
 var EPSILON = 0.001; // used when checking collisions, to prevent round-off errors
 
@@ -21488,51 +21541,15 @@ function orderByEnd(items) {
  */
 
 function stack(items, margin, force, shouldBailItemsRedrawFunction) {
-  if (force) {
-    // reset top position of all items
-    for (var i = 0; i < items.length; i++) {
-      items[i].top = null;
-    }
-  } // calculate new, non-overlapping positions
+  var stackingResult = performStacking(items, margin.item, false, function (item) {
+    return item.stack && (force || item.top === null);
+  }, function (item) {
+    return item.stack;
+  }, function (item) {
+    return margin.axis;
+  }, shouldBailItemsRedrawFunction); // If shouldBail function returned true during stacking calculation
 
-
-  for (var i = 0; i < items.length; i++) {
-    // eslint-disable-line no-redeclare
-    var item = items[i];
-
-    if (item.stack && item.top === null) {
-      // initialize top position
-      item.top = margin.axis;
-      var shouldBail = false;
-
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
-
-        for (var j = 0, jj = items.length; j < jj; j++) {
-          var other = items[j];
-          shouldBail = shouldBailItemsRedrawFunction() || false;
-
-          if (shouldBail) {
-            return true;
-          }
-
-          if (other.top !== null && other !== item && other.stack && collision(item, other, margin.item, other.options.rtl)) {
-            collidingItem = other;
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the items above the colliding element
-          item.top = collidingItem.top + collidingItem.height + margin.item.vertical;
-        }
-      } while (collidingItem);
-    }
-  }
-
-  return shouldBail;
+  return stackingResult === null;
 }
 /**
  * Adjust vertical positions of the items within a single subgroup such that they
@@ -21546,49 +21563,13 @@ function stack(items, margin, force, shouldBailItemsRedrawFunction) {
  */
 
 function substack(items, margin, subgroup) {
-  for (var i = 0; i < items.length; i++) {
-    items[i].top = null;
-  } // Set the initial height
-
-
-  var subgroupHeight = subgroup.height; // calculate new, non-overlapping positions
-
-  for (i = 0; i < items.length; i++) {
-    var item = items[i];
-
-    if (item.stack && item.top === null) {
-      // initialize top position
-      item.top = item.baseTop; //margin.axis + item.baseTop;
-
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
-
-        for (var j = 0, jj = items.length; j < jj; j++) {
-          var other = items[j];
-
-          if (other.top !== null && other !== item
-          /*&& other.stack*/
-          && collision(item, other, margin.item, other.options.rtl)) {
-            collidingItem = other;
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the items above the colliding element
-          item.top = collidingItem.top + collidingItem.height + margin.item.vertical; // + item.baseTop;
-        }
-
-        if (item.top + item.height > subgroupHeight) {
-          subgroupHeight = item.top + item.height;
-        }
-      } while (collidingItem);
-    }
-  } // Set the new height
-
-
+  var subgroupHeight = performStacking(items, margin.item, false, function (item) {
+    return item.stack;
+  }, function (item) {
+    return true;
+  }, function (item) {
+    return item.baseTop;
+  });
   subgroup.height = subgroupHeight - subgroup.top + 0.5 * margin.item.vertical;
 }
 /**
@@ -21603,22 +21584,22 @@ function substack(items, margin, subgroup) {
  */
 
 function nostack(items, margin, subgroups, isStackSubgroups) {
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].data.subgroup == undefined) {
-      items[i].top = margin.item.vertical;
-    } else if (items[i].data.subgroup !== undefined && isStackSubgroups) {
+  for (var _i = 0; _i < items.length; _i++) {
+    if (items[_i].data.subgroup == undefined) {
+      items[_i].top = margin.item.vertical;
+    } else if (items[_i].data.subgroup !== undefined && isStackSubgroups) {
       var newTop = 0;
 
       for (var subgroup in subgroups) {
         if (subgroups.hasOwnProperty(subgroup)) {
-          if (subgroups[subgroup].visible == true && subgroups[subgroup].index < subgroups[items[i].data.subgroup].index) {
+          if (subgroups[subgroup].visible == true && subgroups[subgroup].index < subgroups[items[_i].data.subgroup].index) {
             newTop += subgroups[subgroup].height;
-            subgroups[items[i].data.subgroup].top = newTop;
+            subgroups[items[_i].data.subgroup].top = newTop;
           }
         }
       }
 
-      items[i].top = newTop + 0.5 * margin.item.vertical;
+      items[_i].top = newTop + 0.5 * margin.item.vertical;
     }
   }
 
@@ -21636,33 +21617,25 @@ function nostack(items, margin, subgroups, isStackSubgroups) {
  */
 
 function stackSubgroups(items, margin, subgroups) {
-  for (var subgroup in subgroups) {
-    if (subgroups.hasOwnProperty(subgroup)) {
-      subgroups[subgroup].top = 0;
+  var _context;
 
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
+  performStacking(sort(_context = values(subgroups)).call(_context, function (a, b) {
+    if (a.index > b.index) return 1;
+    if (a.index < b.index) return -1;
+    return 0;
+  }), {
+    vertical: 0
+  }, true, function (item) {
+    return true;
+  }, function (item) {
+    return true;
+  }, function (item) {
+    return 0;
+  });
 
-        for (var otherSubgroup in subgroups) {
-          if (subgroups[otherSubgroup].top !== null && otherSubgroup !== subgroup && subgroups[subgroup].index > subgroups[otherSubgroup].index && collisionByTimes(subgroups[subgroup], subgroups[otherSubgroup])) {
-            collidingItem = subgroups[otherSubgroup];
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the subgroups above the colliding element
-          subgroups[subgroup].top = collidingItem.top + collidingItem.height;
-        }
-      } while (collidingItem);
-    }
-  }
-
-  for (var i = 0; i < items.length; i++) {
-    if (items[i].data.subgroup !== undefined) {
-      items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
+  for (var _i2 = 0; _i2 < items.length; _i2++) {
+    if (items[_i2].data.subgroup !== undefined) {
+      items[_i2].top = subgroups[items[_i2].data.subgroup].top + 0.5 * margin.item.vertical;
     }
   }
 }
@@ -21705,12 +21678,12 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
 
       var items = subgroupItems[subgroup];
 
-      for (var i = 0; i < items.length; i++) {
-        if (items[i].data.subgroup !== undefined) {
-          items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
+      for (var _i3 = 0; _i3 < items.length; _i3++) {
+        if (items[_i3].data.subgroup !== undefined) {
+          items[_i3].top = subgroups[items[_i3].data.subgroup].top + 0.5 * margin.item.vertical;
 
           if (subgroups[subgroup].stack) {
-            items[i].baseTop = items[i].top;
+            items[_i3].baseTop = items[_i3].top;
           }
         }
       }
@@ -21722,38 +21695,277 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
   }
 }
 /**
+ * Reusable stacking function
+ * 
+ * @param {Item[]} items 
+ * An array of items to consider during stacking.
+ * @param {{horizontal: number, vertical: number}} margins
+ * Margins to be used for collision checking and placement of items.
+ * @param {boolean} compareTimes
+ * By default, horizontal collision is checked based on the spatial position of the items (left/right and width).
+ * If this argument is true, horizontal collision will instead be checked based on the start/end times of each item.
+ * Vertical collision is always checked spatially.
+ * @param {(Item) => number | null} shouldStack
+ * A callback function which is called before we start to process an item. The return value indicates whether the item will be processed.
+ * @param {(Item) => boolean} shouldOthersStack
+ * A callback function which indicates whether other items should consider this item when being stacked.
+ * @param {(Item) => number} getInitialHeight
+ * A callback function which determines the height items are initially placed at
+ * @param {() => boolean} shouldBail 
+ * A callback function which should indicate if the stacking process should be aborted.
+ * 
+ * @returns {null|number}
+ * if shouldBail was triggered, returns null
+ * otherwise, returns the maximum height
+ */
+
+function performStacking(items, margins, compareTimes, shouldStack, shouldOthersStack, getInitialHeight, shouldBail) {
+  // Time-based horizontal comparison
+  var getItemStart = function getItemStart(item) {
+    return item.start;
+  };
+
+  var getItemEnd = function getItemEnd(item) {
+    return item.end;
+  };
+
+  if (!compareTimes) {
+    // Spatial horizontal comparisons
+    var rtl = !!(items[0] && items[0].options.rtl);
+
+    if (rtl) {
+      getItemStart = function getItemStart(item) {
+        return item.right;
+      };
+    } else {
+      getItemStart = function getItemStart(item) {
+        return item.left;
+      };
+    }
+
+    getItemEnd = function getItemEnd(item) {
+      return getItemStart(item) + item.width + margins.horizontal;
+    };
+  }
+
+  var itemsToPosition = [];
+  var itemsAlreadyPositioned = []; // It's vital that this array is kept sorted based on the start of each item
+  // If the order we needed to place items was based purely on the start of each item, we could calculate stacking very efficiently.
+  // Unfortunately for us, this is not guaranteed. But the order is often based on the start of items at least to some degree, and
+  // we can use this to make some optimisations. While items are proceeding in order of start, we can keep moving our search indexes
+  // forwards. Then if we encounter an item that's out of order, we reset our indexes and search from the beginning of the array again.
+
+  var previousStart = null;
+  var insertionIndex = 0; // First let's handle any immoveable items
+
+  var _iterator = _createForOfIteratorHelper$5(items),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var item = _step.value;
+
+      if (shouldStack(item)) {
+        itemsToPosition.push(item);
+      } else {
+        if (shouldOthersStack(item)) {
+          (function () {
+            var itemStart = getItemStart(item); // We need to put immoveable items into itemsAlreadyPositioned and ensure that this array is sorted.
+            // We could simply insert them, and then use JavaScript's sort function to sort them afterwards.
+            // This would achieve an average complexity of O(n log n).
+            // 
+            // Instead, I'm gambling that the start of each item will usually be the same or later than the
+            // start of the previous item. While this holds (best case), we can insert items in O(n).
+            // In the worst case (where each item starts before the previous item) this grows to O(n^2).
+            // 
+            // I am making the assumption that for most datasets, the "order" function will have relatively low cardinality,
+            // and therefore this tradeoff should be easily worth it.
+
+            if (previousStart !== null && itemStart < previousStart - EPSILON) {
+              insertionIndex = 0;
+            }
+
+            previousStart = itemStart;
+            insertionIndex = findIndexFrom(itemsAlreadyPositioned, function (i) {
+              return getItemStart(i) - EPSILON > itemStart;
+            }, insertionIndex);
+
+            splice(itemsAlreadyPositioned).call(itemsAlreadyPositioned, insertionIndex, 0, item);
+
+            insertionIndex++;
+          })();
+        }
+      }
+    } // Now we can loop through each item (in order) and find a position for them
+
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  previousStart = null;
+  var previousEnd = null;
+  insertionIndex = 0;
+  var horizontalOverlapStartIndex = 0;
+  var horizontalOverlapEndIndex = 0;
+  var maxHeight = 0;
+
+  var _loop = function _loop() {
+    var _context2, _context3;
+
+    var item = itemsToPosition.shift();
+    item.top = getInitialHeight(item);
+    var itemStart = getItemStart(item);
+    var itemEnd = getItemEnd(item);
+
+    if (previousStart !== null && itemStart < previousStart - EPSILON) {
+      horizontalOverlapStartIndex = 0;
+      horizontalOverlapEndIndex = 0;
+      insertionIndex = 0;
+      previousEnd = null;
+    }
+
+    previousStart = itemStart; // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
+
+    horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, function (i) {
+      return itemStart < getItemEnd(i) - EPSILON;
+    }, horizontalOverlapStartIndex); // Since items aren't sorted by end time, it might increase or decrease from one item to the next. In order to keep an efficient search area, we will seek forwards/backwards accordingly.
+
+    if (previousEnd === null || previousEnd < itemEnd - EPSILON) {
+      horizontalOverlapEndIndex = findIndexFrom(itemsAlreadyPositioned, function (i) {
+        return itemEnd < getItemStart(i) - EPSILON;
+      }, Math.max(horizontalOverlapStartIndex, horizontalOverlapEndIndex));
+    }
+
+    if (previousEnd !== null && previousEnd - EPSILON > itemEnd) {
+      horizontalOverlapEndIndex = findLastIndexBetween(itemsAlreadyPositioned, function (i) {
+        return itemEnd + EPSILON >= getItemStart(i);
+      }, horizontalOverlapStartIndex, horizontalOVerlapEndIndex) + 1;
+    } // Sort by vertical position so we don't have to reconsider past items if we move an item
+
+
+    var horizontallyCollidingItems = sort(_context2 = filter(_context3 = slice(itemsAlreadyPositioned).call(itemsAlreadyPositioned, horizontalOverlapStartIndex, horizontalOverlapEndIndex)).call(_context3, function (i) {
+      return itemStart < getItemEnd(i) - EPSILON && itemEnd - EPSILON > getItemStart(i);
+    })).call(_context2, function (a, b) {
+      return a.top - b.top;
+    }); // Keep moving the item down until it stops colliding with any other items
+
+
+    for (var i2 = 0; i2 < horizontallyCollidingItems.length; i2++) {
+      var otherItem = horizontallyCollidingItems[i2];
+
+      if (checkVerticalSpatialCollision(item, otherItem, margins)) {
+        item.top = otherItem.top + otherItem.height + margins.vertical;
+      }
+    }
+
+    if (shouldOthersStack(item)) {
+      // Insert the item into itemsAlreadyPositioned, ensuring itemsAlreadyPositioned remains sorted.
+      // In the best case, we can insert an item in constant time O(1). In the worst case, we insert an item in linear time O(n).
+      // In both cases, this is better than doing a naive insert and then sort, which would cost on average O(n log n).
+      insertionIndex = findIndexFrom(itemsAlreadyPositioned, function (i) {
+        return getItemStart(i) - EPSILON > itemStart;
+      }, insertionIndex);
+
+      splice(itemsAlreadyPositioned).call(itemsAlreadyPositioned, insertionIndex, 0, item);
+
+      insertionIndex++;
+    } // Keep track of the tallest item we've seen before
+
+
+    var currentHeight = item.top + item.height;
+
+    if (currentHeight > maxHeight) {
+      maxHeight = currentHeight;
+    }
+
+    if (shouldBail && shouldBail()) {
+      return {
+        v: null
+      };
+    }
+  };
+
+  while (itemsToPosition.length > 0) {
+    var _ret = _loop();
+
+    if (_typeof(_ret) === "object") return _ret.v;
+  }
+
+  return maxHeight;
+}
+/**
  * Test if the two provided items collide
  * The items must have parameters left, width, top, and height.
  * @param {Item} a          The first item
  * @param {Item} b          The second item
- * @param {{horizontal: number, vertical: number}} margin
+ * @param {{vertical: number}} margin
  *                          An object containing a horizontal and vertical
  *                          minimum required margin.
- * @param {boolean} rtl
  * @return {boolean}        true if a and b collide, else false
  */
 
-function collision(a, b, margin, rtl) {
-  if (rtl) {
-    return a.right - margin.horizontal + EPSILON < b.right + b.width && a.right + a.width + margin.horizontal - EPSILON > b.right && a.top - margin.vertical + EPSILON < b.top + b.height && a.top + a.height + margin.vertical - EPSILON > b.top;
-  } else {
-    return a.left - margin.horizontal + EPSILON < b.left + b.width && a.left + a.width + margin.horizontal - EPSILON > b.left && a.top - margin.vertical + EPSILON < b.top + b.height && a.top + a.height + margin.vertical - EPSILON > b.top;
-  }
+
+function checkVerticalSpatialCollision(a, b, margin) {
+  return a.top - margin.vertical + EPSILON < b.top + b.height && a.top + a.height + margin.vertical - EPSILON > b.top;
 }
 /**
- * Test if the two provided objects collide
- * The objects must have parameters start, end, top, and height.
- * @param {Object} a          The first Object
- * @param {Object} b          The second Object
- * @return {boolean}        true if a and b collide, else false
+ * Find index of first item to meet predicate after a certain index.
+ * If no such item is found, returns the length of the array.
+ * 
+ * @param {any[]} arr The array
+ * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+ * @param {number|undefined} startIndex The index to start search from (inclusive). Optional, if not provided will search from the beginning of the array.
+ * 
+ * @return {number}
  */
 
-function collisionByTimes(a, b) {
-  // Check for overlap by time and height. Abutting is OK and
-  // not considered a collision while overlap is considered a collision.
-  var timeOverlap = a.start < b.end && a.end > b.start;
-  var heightOverlap = a.top < b.top + b.height && a.top + a.height > b.top;
-  return timeOverlap && heightOverlap;
+
+function findIndexFrom(arr, predicate, startIndex) {
+  var _context4;
+
+  if (!startIndex) {
+    startIndex = 0;
+  }
+
+  var matchIndex = findIndex(_context4 = slice(arr).call(arr, startIndex)).call(_context4, predicate);
+
+  if (matchIndex === -1) {
+    return arr.length;
+  }
+
+  return matchIndex + startIndex;
+}
+/**
+ * Find index of last item to meet predicate within a given range.
+ * If no such item is found, returns the index prior to the start of the range.
+ * 
+ * @param {any[]} arr The array
+ * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+ * @param {number|undefined} startIndex The earliest index to search to (inclusive). Optional, if not provided will continue until the start of the array.
+ * @param {number|undefined} endIndex The end of the search range (exclusive). The search will begin on the index prior to this value. Optional, defaults to the end of array.
+ * 
+ * @return {number}
+ */
+
+
+function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
+  if (!startIndex) {
+    startIndex = 0;
+  }
+
+  if (!endIndex) {
+    endIndex = arr.length;
+  }
+
+  for (i = endIndex - 1; i >= startIndex; i--) {
+    if (predicate(arr[i])) {
+      return i;
+    }
+  }
+
+  return startIndex - 1;
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
@@ -21764,9 +21976,7 @@ var stack$1 = /*#__PURE__*/Object.freeze({
 	substack: substack,
 	nostack: nostack,
 	stackSubgroups: stackSubgroups,
-	stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
-	collision: collision,
-	collisionByTimes: collisionByTimes
+	stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack
 });
 
 var UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
@@ -25609,7 +25819,7 @@ $({
   }
 });
 
-var entryVirtual = entryVirtual$j;
+var entryVirtual = entryVirtual$k;
 var every$3 = entryVirtual('Array').every;
 
 var isPrototypeOf = objectIsPrototypeOf;

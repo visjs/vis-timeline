@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-03T00:56:05.557Z
+ * @date    2021-11-06T19:07:07.540Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3370,6 +3370,14 @@ const nb_NO = nb;
 const nn = nb;
 const nn_NO = nb;
 
+// Lithuanian
+const lt = {
+  current: 'einamas',
+  time: 'laikas',
+  deleteSelected: 'Pašalinti pasirinktą',
+};
+const lt_LT = lt;
+
 
 const locales = {
   en,
@@ -3400,6 +3408,8 @@ const locales = {
   pt_PT,
   ja,
   ja_JP,
+  lt,
+  lt_LT,
   sv,
   sv_SE,
   nb,
@@ -5369,45 +5379,18 @@ function orderByEnd(items) {
  * @return {boolean} shouldBail
  */
 function stack(items, margin, force, shouldBailItemsRedrawFunction) {
-  if (force) {
-    // reset top position of all items
-    for (var i = 0; i < items.length; i++) {
-      items[i].top = null;
-    }
-  }
+  const stackingResult = performStacking(
+    items,
+    margin.item,
+    false,
+    item => item.stack && (force || item.top === null),
+    item => item.stack,
+    item => margin.axis,
+    shouldBailItemsRedrawFunction
+  );
 
-  // calculate new, non-overlapping positions
-  for (var i = 0; i < items.length; i++) {  // eslint-disable-line no-redeclare
-    const item = items[i];
-    if (item.stack && item.top === null) {
-      // initialize top position
-      item.top = margin.axis;
-      var shouldBail = false;
-
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
-        for (let j = 0, jj = items.length; j < jj; j++) {
-          const other = items[j];
-          shouldBail = shouldBailItemsRedrawFunction() || false;
-
-          if (shouldBail) { return true; }
-
-          if (other.top !== null && other !== item && other.stack && collision(item, other, margin.item, other.options.rtl)) {
-            collidingItem = other;
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the items above the colliding element
-          item.top = collidingItem.top + collidingItem.height + margin.item.vertical;
-        }
-      } while (collidingItem);
-    }
-  }
-  return shouldBail;
+  // If shouldBail function returned true during stacking calculation
+  return stackingResult === null;
 }
 
 /**
@@ -5421,46 +5404,14 @@ function stack(items, margin, force, shouldBailItemsRedrawFunction) {
  *            The subgroup that is being stacked
  */
 function substack(items, margin, subgroup) {
-  for (var i = 0; i < items.length; i++) {
-    items[i].top = null;
-  }
-
-  // Set the initial height
-  let subgroupHeight = subgroup.height;
-
-  // calculate new, non-overlapping positions
-  for (i = 0; i < items.length; i++) {
-    const item = items[i];
-
-    if (item.stack && item.top === null) {
-      // initialize top position
-      item.top = item.baseTop;//margin.axis + item.baseTop;
-
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
-        for (let j = 0, jj = items.length; j < jj; j++) {
-          const other = items[j];
-          if (other.top !== null && other !== item /*&& other.stack*/ && collision(item, other, margin.item, other.options.rtl)) {
-            collidingItem = other;
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the items above the colliding element
-          item.top = collidingItem.top + collidingItem.height + margin.item.vertical;// + item.baseTop;
-        }
-
-        if (item.top + item.height > subgroupHeight) {
-          subgroupHeight = item.top + item.height;
-        }
-      } while (collidingItem);
-    }
-  }
-
-  // Set the new height
+  const subgroupHeight = performStacking(
+    items,
+    margin.item,
+    false,
+    item => item.stack,
+    item => true,
+    item => item.baseTop
+  );
   subgroup.height = subgroupHeight - subgroup.top + 0.5 * margin.item.vertical;
 }
 
@@ -5505,29 +5456,21 @@ function nostack(items, margin, subgroups, isStackSubgroups) {
  *            All subgroups
  */
 function stackSubgroups(items, margin, subgroups) {
-  for (const subgroup in subgroups) {
-    if (subgroups.hasOwnProperty(subgroup)) {
+  performStacking(
+    Object.values(subgroups).sort((a, b) => {
+      if(a.index > b.index) return 1; 
+      if(a.index < b.index) return -1; 
+      return 0; 
+    }),
+    {
+      vertical: 0
+    },
+    true,
+    item => true,
+    item => true,
+    item => 0
+  );
 
-
-      subgroups[subgroup].top = 0;
-      do {
-        // TODO: optimize checking for overlap. when there is a gap without items,
-        //       you only need to check for items from the next item on, not from zero
-        var collidingItem = null;
-        for (const otherSubgroup in subgroups) {
-          if (subgroups[otherSubgroup].top !== null && otherSubgroup !== subgroup && subgroups[subgroup].index > subgroups[otherSubgroup].index && collisionByTimes(subgroups[subgroup], subgroups[otherSubgroup])) {
-            collidingItem = subgroups[otherSubgroup];
-            break;
-          }
-        }
-
-        if (collidingItem != null) {
-          // There is a collision. Reposition the subgroups above the colliding element
-          subgroups[subgroup].top = collidingItem.top + collidingItem.height;
-        }
-      } while (collidingItem);
-    }
-  }
   for (let i = 0; i < items.length; i++) {
     if (items[i].data.subgroup !== undefined) {
       items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
@@ -5591,45 +5534,218 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
   }
 }
 
+
+
+/**
+ * Reusable stacking function
+ * 
+ * @param {Item[]} items 
+ * An array of items to consider during stacking.
+ * @param {{horizontal: number, vertical: number}} margins
+ * Margins to be used for collision checking and placement of items.
+ * @param {boolean} compareTimes
+ * By default, horizontal collision is checked based on the spatial position of the items (left/right and width).
+ * If this argument is true, horizontal collision will instead be checked based on the start/end times of each item.
+ * Vertical collision is always checked spatially.
+ * @param {(Item) => number | null} shouldStack
+ * A callback function which is called before we start to process an item. The return value indicates whether the item will be processed.
+ * @param {(Item) => boolean} shouldOthersStack
+ * A callback function which indicates whether other items should consider this item when being stacked.
+ * @param {(Item) => number} getInitialHeight
+ * A callback function which determines the height items are initially placed at
+ * @param {() => boolean} shouldBail 
+ * A callback function which should indicate if the stacking process should be aborted.
+ * 
+ * @returns {null|number}
+ * if shouldBail was triggered, returns null
+ * otherwise, returns the maximum height
+ */
+function performStacking(items, margins, compareTimes, shouldStack, shouldOthersStack, getInitialHeight, shouldBail) {
+  // Time-based horizontal comparison
+  let getItemStart = item => item.start;
+  let getItemEnd = item => item.end;
+  if(!compareTimes) {
+    // Spatial horizontal comparisons
+    const rtl = !!(items[0] && items[0].options.rtl);
+    if(rtl) {
+      getItemStart = item => item.right;
+    } else {
+      getItemStart = item => item.left;
+    }
+    getItemEnd = item => getItemStart(item) + item.width + margins.horizontal;
+  }
+
+  const itemsToPosition = [];
+  const itemsAlreadyPositioned = []; // It's vital that this array is kept sorted based on the start of each item
+
+  // If the order we needed to place items was based purely on the start of each item, we could calculate stacking very efficiently.
+  // Unfortunately for us, this is not guaranteed. But the order is often based on the start of items at least to some degree, and
+  // we can use this to make some optimisations. While items are proceeding in order of start, we can keep moving our search indexes
+  // forwards. Then if we encounter an item that's out of order, we reset our indexes and search from the beginning of the array again.
+  let previousStart = null;
+  let insertionIndex = 0;
+
+  // First let's handle any immoveable items
+  for(const item of items) {
+    if(shouldStack(item)) {
+      itemsToPosition.push(item);
+    } else {
+      if(shouldOthersStack(item)) {
+        const itemStart = getItemStart(item);
+
+        // We need to put immoveable items into itemsAlreadyPositioned and ensure that this array is sorted.
+        // We could simply insert them, and then use JavaScript's sort function to sort them afterwards.
+        // This would achieve an average complexity of O(n log n).
+        // 
+        // Instead, I'm gambling that the start of each item will usually be the same or later than the
+        // start of the previous item. While this holds (best case), we can insert items in O(n).
+        // In the worst case (where each item starts before the previous item) this grows to O(n^2).
+        // 
+        // I am making the assumption that for most datasets, the "order" function will have relatively low cardinality,
+        // and therefore this tradeoff should be easily worth it.
+        if(previousStart !== null && itemStart < previousStart - EPSILON) {
+          insertionIndex = 0;
+        }
+        previousStart = itemStart;
+
+        insertionIndex = findIndexFrom(itemsAlreadyPositioned, i => getItemStart(i) - EPSILON > itemStart, insertionIndex);
+
+        itemsAlreadyPositioned.splice(insertionIndex, 0, item);
+        insertionIndex++;
+      }
+    }
+  }
+
+  // Now we can loop through each item (in order) and find a position for them
+  previousStart = null;
+  let previousEnd = null;
+  insertionIndex = 0;
+  let horizontalOverlapStartIndex = 0;
+  let horizontalOverlapEndIndex = 0;
+  let maxHeight = 0;
+  while(itemsToPosition.length > 0) {
+    const item = itemsToPosition.shift();
+
+    item.top = getInitialHeight(item);
+
+    const itemStart = getItemStart(item);
+    const itemEnd = getItemEnd(item);
+    if(previousStart !== null && itemStart < previousStart - EPSILON) {
+      horizontalOverlapStartIndex = 0;
+      horizontalOverlapEndIndex = 0;
+      insertionIndex = 0;
+      previousEnd = null;
+    }
+    previousStart = itemStart;
+
+    // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
+    horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex);
+    // Since items aren't sorted by end time, it might increase or decrease from one item to the next. In order to keep an efficient search area, we will seek forwards/backwards accordingly.
+    if(previousEnd === null || previousEnd < itemEnd - EPSILON) {
+      horizontalOverlapEndIndex = findIndexFrom(itemsAlreadyPositioned, i => itemEnd < getItemStart(i) - EPSILON, Math.max(horizontalOverlapStartIndex, horizontalOverlapEndIndex));
+    }
+    if(previousEnd !== null && previousEnd - EPSILON > itemEnd) {
+      horizontalOverlapEndIndex = findLastIndexBetween(itemsAlreadyPositioned, i => itemEnd + EPSILON >= getItemStart(i), horizontalOverlapStartIndex, horizontalOVerlapEndIndex) + 1;
+    }
+
+    // Sort by vertical position so we don't have to reconsider past items if we move an item
+    const horizontallyCollidingItems = itemsAlreadyPositioned
+      .slice(horizontalOverlapStartIndex, horizontalOverlapEndIndex)
+      .filter(i => itemStart < getItemEnd(i) - EPSILON && itemEnd - EPSILON > getItemStart(i))
+      .sort((a, b) => a.top - b.top);
+
+    // Keep moving the item down until it stops colliding with any other items
+    for(let i2 = 0; i2 < horizontallyCollidingItems.length; i2++) {
+      const otherItem = horizontallyCollidingItems[i2];
+      
+      if(checkVerticalSpatialCollision(item, otherItem, margins)) {
+        item.top = otherItem.top + otherItem.height + margins.vertical;
+      }
+    }
+
+    if(shouldOthersStack(item)) {
+      // Insert the item into itemsAlreadyPositioned, ensuring itemsAlreadyPositioned remains sorted.
+      // In the best case, we can insert an item in constant time O(1). In the worst case, we insert an item in linear time O(n).
+      // In both cases, this is better than doing a naive insert and then sort, which would cost on average O(n log n).
+      insertionIndex = findIndexFrom(itemsAlreadyPositioned, i => getItemStart(i) - EPSILON > itemStart, insertionIndex);
+
+      itemsAlreadyPositioned.splice(insertionIndex, 0, item);
+      insertionIndex++;
+    }
+
+    // Keep track of the tallest item we've seen before
+    const currentHeight = item.top + item.height;
+    if(currentHeight > maxHeight) {
+      maxHeight = currentHeight;
+    }
+
+    if(shouldBail && shouldBail()) { return null; }
+  }
+
+  return maxHeight;
+}
+
 /**
  * Test if the two provided items collide
  * The items must have parameters left, width, top, and height.
  * @param {Item} a          The first item
  * @param {Item} b          The second item
- * @param {{horizontal: number, vertical: number}} margin
+ * @param {{vertical: number}} margin
  *                          An object containing a horizontal and vertical
  *                          minimum required margin.
- * @param {boolean} rtl
  * @return {boolean}        true if a and b collide, else false
  */
-function collision(a, b, margin, rtl) {
-  if (rtl) {
-    return  ((a.right - margin.horizontal + EPSILON)  < (b.right + b.width) &&
-    (a.right + a.width + margin.horizontal - EPSILON) > b.right &&
-    (a.top - margin.vertical + EPSILON)              < (b.top + b.height) &&
-    (a.top + a.height + margin.vertical - EPSILON)   > b.top);
-  } else {
-    return ((a.left - margin.horizontal + EPSILON)   < (b.left + b.width) &&
-    (a.left + a.width + margin.horizontal - EPSILON) > b.left &&
-    (a.top - margin.vertical + EPSILON)              < (b.top + b.height) &&
-    (a.top + a.height + margin.vertical - EPSILON)   > b.top);
+function checkVerticalSpatialCollision(a, b, margin) {
+  return (a.top - margin.vertical + EPSILON) < (b.top + b.height) &&
+  (a.top + a.height + margin.vertical - EPSILON) > b.top;
+}
+
+
+/**
+ * Find index of first item to meet predicate after a certain index.
+ * If no such item is found, returns the length of the array.
+ * 
+ * @param {any[]} arr The array
+ * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+ * @param {number|undefined} startIndex The index to start search from (inclusive). Optional, if not provided will search from the beginning of the array.
+ * 
+ * @return {number}
+ */
+function findIndexFrom(arr, predicate, startIndex) {
+  if(!startIndex) {
+    startIndex = 0;
   }
+  const matchIndex = arr.slice(startIndex).findIndex(predicate);
+  if(matchIndex === -1) {
+    return arr.length;
+  }
+  return matchIndex + startIndex;
 }
 
 /**
- * Test if the two provided objects collide
- * The objects must have parameters start, end, top, and height.
- * @param {Object} a          The first Object
- * @param {Object} b          The second Object
- * @return {boolean}        true if a and b collide, else false
+ * Find index of last item to meet predicate within a given range.
+ * If no such item is found, returns the index prior to the start of the range.
+ * 
+ * @param {any[]} arr The array
+ * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+ * @param {number|undefined} startIndex The earliest index to search to (inclusive). Optional, if not provided will continue until the start of the array.
+ * @param {number|undefined} endIndex The end of the search range (exclusive). The search will begin on the index prior to this value. Optional, defaults to the end of array.
+ * 
+ * @return {number}
  */
-function collisionByTimes(a, b) {
-
-  // Check for overlap by time and height. Abutting is OK and
-  // not considered a collision while overlap is considered a collision.
-  const timeOverlap = a.start < b.end && a.end > b.start;
-  const heightOverlap = a.top < (b.top + b.height) && (a.top + a.height) > b.top;
-  return timeOverlap && heightOverlap;
+function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
+  if(!startIndex) {
+    startIndex = 0;
+  }
+  if(!endIndex) {
+    endIndex = arr.length;
+  }
+  for(i = endIndex - 1; i >= startIndex; i--) {
+    if(predicate(arr[i])) {
+      return i;
+    }
+  }
+  return startIndex - 1;
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
@@ -5640,9 +5756,7 @@ var stack$1 = /*#__PURE__*/Object.freeze({
   substack: substack,
   nostack: nostack,
   stackSubgroups: stackSubgroups,
-  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
-  collision: collision,
-  collisionByTimes: collisionByTimes
+  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack
 });
 
 const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
