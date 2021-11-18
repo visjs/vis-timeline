@@ -1,3 +1,4 @@
+import assert from 'assert'
 import jsdom_global from 'jsdom-global'
 import { DataSet } from'vis-data/esnext'
 import Timeline from'../lib/timeline/Timeline'
@@ -49,5 +50,18 @@ describe('Timeline', () => {
 		const timeline = new Timeline(document.createElement("div"), []);
 
 		timeline.setItems(null);
+	});
+	it("setItems(with custom ID property) should work", function() {
+		const timeline = new Timeline(document.createElement("div"), []);
+                const events = [
+			{start: new Date(), fooid: 1},
+			{start: new Date(), fooid: 2}
+		]
+		const dataSet = new DataSet(events,{fieldId:"fooid"});
+		timeline.setItems(dataSet);
+		timeline.setSelection([2], {animation: false});
+		const selectedIds = timeline.getSelection();
+		assert( selectedIds.length === 1 )
+		assert( dataSet.get(selectedIds[0]).fooid === 2 )
 	});
 });
