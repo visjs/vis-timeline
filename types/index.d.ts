@@ -247,6 +247,10 @@ export type TimelineOptionsCluster = {
 };
 export type TimelineOptionsEventType = 'box' | 'point' | 'range' | 'background';
 export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';
+export type TimelineOptionsHorizontalScrollOnDrag = {
+  enabled: boolean;
+  scrollSpeed?: number;
+}
 
 export interface TimelineOptions {
   align?: TimelineAlignType;
@@ -295,6 +299,7 @@ export interface TimelineOptions {
   preferZoom?: boolean;
   rollingMode?: TimelineRollingModeOption;
   rtl?: boolean;
+  scrollHorizontallyOnDrag?: TimelineOptionsHorizontalScrollOnDrag;
   selectable?: boolean;
   sequentialSelection?: boolean;
   showCurrentTime?: boolean;
