@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-25T17:46:24.636Z
+ * @date    2022-03-01T18:20:51.854Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -64,6 +64,20 @@
   var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment__default["default"];
 
   // utility functions
+  /**
+   * Test if an object implements the DataView interface from vis-data.
+   * Uses the idProp property instead of expecting a hardcoded id field "id".
+   */
+  function isDataViewLike(obj) {
+      if(!obj) {
+          return false;
+      }
+      let idProp = obj.idProp ?? obj._idProp;
+      if(!idProp) {
+          return false;
+      }
+      return esnext.isDataViewLike(idProp, obj);
+  }
 
   // parse ASP.Net Date pattern,
   // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
@@ -11056,7 +11070,7 @@
       if (!items) {
         this.itemsData = null;
       }
-      else if (esnext.isDataViewLike("id", items)) {
+      else if (isDataViewLike(items)) {
         this.itemsData = typeCoerceDataSet(items);
       }
       else {
@@ -11127,7 +11141,7 @@
       if (!groups) {
         this.groupsData = null;
       }
-      else if (esnext.isDataViewLike("id", groups)) {
+      else if (isDataViewLike(groups)) {
         this.groupsData = groups;
       }
       else {
@@ -14773,7 +14787,7 @@
       }
 
       // if the third element is options, the forth is groups (optionally);
-      if (!(Array.isArray(groups) || esnext.isDataViewLike("id", groups)) && groups instanceof Object) {
+      if (!(Array.isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
         const forthArgument = options;
         options = groups;
         groups = forthArgument;
@@ -15053,7 +15067,7 @@
       if (!items) {
         newDataSet = null;
       }
-      else if (esnext.isDataViewLike("id", items)) {
+      else if (isDataViewLike(items)) {
         newDataSet = typeCoerceDataSet(items);
       }
       else {
@@ -18025,7 +18039,7 @@
     if (!items) {
       this.itemsData = null;
     }
-    else if (esnext.isDataViewLike("id", items)) {
+    else if (isDataViewLike(items)) {
       this.itemsData = typeCoerceDataSet(items);
     }
     else {
@@ -18086,7 +18100,7 @@
     if (!groups) {
       this.groupsData = null;
     }
-    else if (esnext.isDataViewLike("id", groups)) {
+    else if (isDataViewLike(groups)) {
       this.groupsData = groups;
     }
     else {
@@ -19172,7 +19186,7 @@
    */
   function Graph2d (container, items, groups, options) {
     // if the third element is options, the forth is groups (optionally);
-    if (!(Array.isArray(groups) || esnext.isDataViewLike("id", groups)) && groups instanceof Object) {
+    if (!(Array.isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
       var forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -19344,7 +19358,7 @@
     if (!items) {
       newDataSet = null;
     }
-    else if (esnext.isDataViewLike("id", items)) {
+    else if (isDataViewLike(items)) {
       newDataSet = typeCoerceDataSet(items);
     }
     else {
@@ -19382,7 +19396,7 @@
     if (!groups) {
       newDataSet = null;
     }
-    else if (esnext.isDataViewLike("id", groups)) {
+    else if (isDataViewLike(groups)) {
       newDataSet = groups;
     }
     else {

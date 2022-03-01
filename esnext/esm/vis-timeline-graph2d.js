@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-25T17:46:24.636Z
+ * @date    2022-03-01T18:20:51.854Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -27,7 +27,7 @@
 import moment$3 from 'moment';
 import * as util from 'vis-util/esnext/esm/vis-util.js';
 import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
-import { DataSet, createNewDataPipeFrom, isDataViewLike, DataView } from 'vis-data/esnext/esm/vis-data.js';
+import { isDataViewLike as isDataViewLike$1, DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext/esm/vis-data.js';
 import xssFilter from 'xss';
 import { v4 } from 'uuid';
 import Emitter from 'component-emitter';
@@ -42,6 +42,20 @@ import keycharm from 'keycharm';
 var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$3;
 
 // utility functions
+/**
+ * Test if an object implements the DataView interface from vis-data.
+ * Uses the idProp property instead of expecting a hardcoded id field "id".
+ */
+function isDataViewLike(obj) {
+    if(!obj) {
+        return false;
+    }
+    let idProp = obj.idProp ?? obj._idProp;
+    if(!idProp) {
+        return false;
+    }
+    return isDataViewLike$1(idProp, obj);
+}
 
 // parse ASP.Net Date pattern,
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
@@ -11034,7 +11048,7 @@ class ItemSet extends Component {
     if (!items) {
       this.itemsData = null;
     }
-    else if (isDataViewLike("id", items)) {
+    else if (isDataViewLike(items)) {
       this.itemsData = typeCoerceDataSet(items);
     }
     else {
@@ -11105,7 +11119,7 @@ class ItemSet extends Component {
     if (!groups) {
       this.groupsData = null;
     }
-    else if (isDataViewLike("id", groups)) {
+    else if (isDataViewLike(groups)) {
       this.groupsData = groups;
     }
     else {
@@ -14751,7 +14765,7 @@ class Timeline extends Core {
     }
 
     // if the third element is options, the forth is groups (optionally);
-    if (!(Array.isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
+    if (!(Array.isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
       const forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -15031,7 +15045,7 @@ class Timeline extends Core {
     if (!items) {
       newDataSet = null;
     }
-    else if (isDataViewLike("id", items)) {
+    else if (isDataViewLike(items)) {
       newDataSet = typeCoerceDataSet(items);
     }
     else {
@@ -18003,7 +18017,7 @@ LineGraph.prototype.setItems = function (items) {
   if (!items) {
     this.itemsData = null;
   }
-  else if (isDataViewLike("id", items)) {
+  else if (isDataViewLike(items)) {
     this.itemsData = typeCoerceDataSet(items);
   }
   else {
@@ -18064,7 +18078,7 @@ LineGraph.prototype.setGroups = function (groups) {
   if (!groups) {
     this.groupsData = null;
   }
-  else if (isDataViewLike("id", groups)) {
+  else if (isDataViewLike(groups)) {
     this.groupsData = groups;
   }
   else {
@@ -19150,7 +19164,7 @@ let configureOptions = {
  */
 function Graph2d (container, items, groups, options) {
   // if the third element is options, the forth is groups (optionally);
-  if (!(Array.isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
+  if (!(Array.isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -19322,7 +19336,7 @@ Graph2d.prototype.setItems = function(items) {
   if (!items) {
     newDataSet = null;
   }
-  else if (isDataViewLike("id", items)) {
+  else if (isDataViewLike(items)) {
     newDataSet = typeCoerceDataSet(items);
   }
   else {
@@ -19360,7 +19374,7 @@ Graph2d.prototype.setGroups = function(groups) {
   if (!groups) {
     newDataSet = null;
   }
-  else if (isDataViewLike("id", groups)) {
+  else if (isDataViewLike(groups)) {
     newDataSet = groups;
   }
   else {

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2021-11-25T17:48:12.429Z
+ * @date    2022-03-01T18:22:28.387Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -22592,7 +22592,7 @@ function isDataSetLike(idProp, v) {
  */
 
 
-function isDataViewLike(idProp, v) {
+function isDataViewLike$1(idProp, v) {
   return _typeof(v) === "object" && v !== null && idProp === v.idProp && typeof forEach$2(v) === "function" && typeof v.get === "function" && typeof v.getDataSet === "function" && typeof v.getIds === "function" && typeof v.length === "number" && typeof map$3(v) === "function" && typeof v.off === "function" && typeof v.on === "function" && typeof v.stream === "function" && isDataSetLike(idProp, v.getDataSet());
 }
 
@@ -24604,6 +24604,26 @@ lib.FilterXSS;
 function ownKeys(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys(Object(source), true)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context9; forEach$2(_context9 = ownKeys(Object(source))).call(_context9, function (key) { defineProperty$6(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
+/**
+ * Test if an object implements the DataView interface from vis-data.
+ * Uses the idProp property instead of expecting a hardcoded id field "id".
+ */
+
+function isDataViewLike(obj) {
+  var _obj$idProp;
+
+  if (!obj) {
+    return false;
+  }
+
+  var idProp = (_obj$idProp = obj.idProp) !== null && _obj$idProp !== void 0 ? _obj$idProp : obj._idProp;
+
+  if (!idProp) {
+    return false;
+  }
+
+  return isDataViewLike$1(idProp, obj);
+} // parse ASP.Net Date pattern,
 // for example '/Date(1198908717056)/' or '/Date(1198908717056-0700)/'
 // code from http://momentjs.com/
 
@@ -37839,7 +37859,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (!items) {
         this.itemsData = null;
-      } else if (isDataViewLike("id", items)) {
+      } else if (isDataViewLike(items)) {
         this.itemsData = typeCoerceDataSet(items);
       } else {
         throw new TypeError('Data must implement the interface of DataSet or DataView');
@@ -37917,7 +37937,7 @@ var ItemSet = /*#__PURE__*/function (_Component) {
 
       if (!groups) {
         this.groupsData = null;
-      } else if (isDataViewLike("id", groups)) {
+      } else if (isDataViewLike(groups)) {
         this.groupsData = groups;
       } else {
         throw new TypeError('Data must implement the interface of DataSet or DataView');
@@ -42525,7 +42545,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
     } // if the third element is options, the forth is groups (optionally);
 
 
-    if (!(isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
+    if (!(isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
       var forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -42860,7 +42880,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
 
       if (!items) {
         newDataSet = null;
-      } else if (isDataViewLike("id", items)) {
+      } else if (isDataViewLike(items)) {
         newDataSet = typeCoerceDataSet(items);
       } else {
         // turn an array into a dataset
@@ -45792,7 +45812,7 @@ LineGraph.prototype.setItems = function (items) {
 
   if (!items) {
     this.itemsData = null;
-  } else if (isDataViewLike("id", items)) {
+  } else if (isDataViewLike(items)) {
     this.itemsData = typeCoerceDataSet(items);
   } else {
     throw new TypeError('Data must implement the interface of DataSet or DataView');
@@ -45853,7 +45873,7 @@ LineGraph.prototype.setGroups = function (groups) {
 
   if (!groups) {
     this.groupsData = null;
-  } else if (isDataViewLike("id", groups)) {
+  } else if (isDataViewLike(groups)) {
     this.groupsData = groups;
   } else {
     throw new TypeError('Data must implement the interface of DataSet or DataView');
@@ -47357,7 +47377,7 @@ function Graph2d(container, items, groups, options) {
   var _context, _context2, _context3, _context4, _context5, _context6, _context7;
 
   // if the third element is options, the forth is groups (optionally);
-  if (!(isArray(groups) || isDataViewLike("id", groups)) && groups instanceof Object) {
+  if (!(isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
@@ -47526,7 +47546,7 @@ Graph2d.prototype.setItems = function (items) {
 
   if (!items) {
     newDataSet = null;
-  } else if (isDataViewLike("id", items)) {
+  } else if (isDataViewLike(items)) {
     newDataSet = typeCoerceDataSet(items);
   } else {
     // turn an array into a dataset
@@ -47568,7 +47588,7 @@ Graph2d.prototype.setGroups = function (groups) {
 
   if (!groups) {
     newDataSet = null;
-  } else if (isDataViewLike("id", groups)) {
+  } else if (isDataViewLike(groups)) {
     newDataSet = groups;
   } else {
     // turn an array into a dataset
