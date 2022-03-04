@@ -29,8 +29,8 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;This example demonstrates custom ordering of groups.&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<p>This example demonstrates custom ordering of groups.</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -94,8 +94,8 @@ var container = document.getElementById("visualization");
 var options = {
   // option groupOrder can be a property name or a sort function
   // the sort function must compare two groups and return a value
-  //     &gt; 0 when a &gt; b
-  //     &lt; 0 when a &lt; b
+  //     > 0 when a > b
+  //     < 0 when a < b
   //       0 when a == b
   groupOrder: function (a, b) {
     return a.value - b.value;

@@ -23,9 +23,9 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Tooltip Templates&lt;/h1&gt;
+        value='<h1>Tooltip Templates</h1>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -47,7 +47,7 @@ var options = {
   tooltip: {
     template: function (originalItemData, parsedItemData) {
       var color = originalItemData.title == "IN_PROGRESS" ? "red" : "green";
-      return `&lt;span style="color:${color}"&gt;${originalItemData.title}&lt;/span&gt;`;
+      return `<span style="color:${color}">${originalItemData.title}</span>`;
     },
   },
 };

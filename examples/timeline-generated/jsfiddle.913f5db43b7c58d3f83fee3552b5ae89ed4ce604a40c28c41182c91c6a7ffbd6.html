@@ -23,50 +23,52 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Set selection&lt;/h1&gt;
-&lt;p style="max-width: 600px"&gt;
+        value='<h1>Set selection</h1>
+<p style="max-width: 600px">
   Enter one or multiple ids of items, then press select to select the items.
-  This demo uses the function &lt;code&gt;Timeline.setSelection(ids)&lt;/code&gt;.
+  This demo uses the function <code>Timeline.setSelection(ids)</code>.
   Optionally, the window can be moved to the selected items.
-&lt;/p&gt;
+</p>
 
-&lt;p&gt;
-  Select item(s): &lt;input type="text" id="selection" value="5, 6" /&gt;&lt;input
+<p>
+  Select item(s): <input type="text" id="selection" value="5, 6" /><input
     type="button"
     id="select"
     value="Select"
-  /&gt;&lt;br /&gt;
-  &lt;label&gt;&lt;input type="checkbox" id="focus" checked /&gt; Focus on selection&lt;/label&gt;
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+  /><br />
+  <label
+    ><input type="checkbox" id="focus" checked="" /> Focus on selection</label
+  >
+</p>
+<div id="visualization"></div>
 
-&lt;br /&gt;
-&lt;p&gt;
+<br />
+<p>
   If the height of the timeline is limited some items may be vertically
   offscreen. This demo uses
-  &lt;code&gt;Timeline.setSelection(ids, {focus: true})&lt;/code&gt; and demonstrates that
+  <code>Timeline.setSelection(ids, {focus: true})</code> and demonstrates that
   focusing on an item will cause the timeline to scroll vertically to the item
   that is being focused on. You can use the buttons below select a random item
   either above or below the currently selected item.
-&lt;/p&gt;
-&lt;button id="prevFocus"&gt;Select Item Above&lt;/button&gt;
-&lt;button id="nextFocus"&gt;Select Item Below&lt;/button&gt;
-&lt;br /&gt;
+</p>
+<button id="prevFocus">Select Item Above</button>
+<button id="nextFocus">Select Item Below</button>
+<br />
 
-&lt;p&gt;
+<p>
   If focusing on multiple items only the first item will be scrolled to. Try
-  entering several ids and hitting &lt;em&gt;select&lt;/em&gt;.
-&lt;/p&gt;
-&lt;p&gt;
+  entering several ids and hitting <em>select</em>.
+</p>
+<p>
   Select item(s):
-  &lt;input type="text" id="selectionVertical" value="g1_5, g2_3" /&gt;&lt;input
+  <input type="text" id="selectionVertical" value="g1_5, g2_3" /><input
     type="button"
     id="selectVertical"
     value="Select"
-  /&gt;&lt;br /&gt;
-&lt;/p&gt;
+  /><br />
+</p>
 
-&lt;div id="vertical-visualization"&gt;&lt;/div&gt;
+<div id="vertical-visualization"></div>
 '
       />
       <input
@@ -82,7 +84,7 @@ var items = new vis.DataSet({
 
 // add items to the DataSet
 items.add([
-  { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-23" },
+  { id: 1, content: "item 1<br>start", start: "2014-01-23" },
   { id: 2, content: "item 2", start: "2014-01-18" },
   { id: 3, content: "item 3", start: "2014-01-21" },
   { id: 4, content: "item 4", start: "2014-01-19", end: "2014-01-24" },
@@ -118,7 +120,7 @@ var groups = [];
 var items = [];
 var groupItems = {};
 
-for (var g = 0; g &lt; 10; g++) {
+for (var g = 0; g < 10; g++) {
   groups.push({
     id: g,
     content: "Group " + g,
@@ -126,7 +128,7 @@ for (var g = 0; g &lt; 10; g++) {
 
   groupItems[g] = [];
 
-  for (var i = 0; i &lt; 30; i++) {
+  for (var i = 0; i < 30; i++) {
     items.push({
       id: "g" + g + "_" + i,
       content: "g" + g + "_" + i,
@@ -156,17 +158,17 @@ var moveToItem = function (direction) {
   itemIndex += direction;
   groupIndex += direction;
 
-  if (groupIndex &lt; 0) {
+  if (groupIndex < 0) {
     groupIndex = groups.length - 1;
-  } else if (groupIndex &gt;= groups.length) {
+  } else if (groupIndex >= groups.length) {
     groupIndex = 0;
   }
 
   var items = groupItems[groupIndex];
 
-  if (itemIndex &lt; 0) {
+  if (itemIndex < 0) {
     itemIndex = items.length - 1;
-  } else if (itemIndex &gt;= items.length) {
+  } else if (itemIndex >= items.length) {
     itemIndex = 0;
   }
 

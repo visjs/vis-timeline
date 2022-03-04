@@ -40,7 +40,7 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<div id="visualization"></div>
 '
       />
       <input
@@ -78,7 +78,7 @@ var items = new vis.DataSet([
     start: "2014-04-16",
     end: "2014-04-26",
     visibleFrameTemplate:
-      &apos;&lt;div class="progress-wrapper"&gt;&lt;div class="progress" style="width:80%"&gt;&lt;/div&gt;&lt;label class="progress-label"&gt;80%&lt;label&gt;&lt;/div&gt;&apos;,
+      &apos;<div class="progress-wrapper"><div class="progress" style="width:80%"></div><label class="progress-label">80%<label></div>&apos;,
   },
 ]);
 
@@ -90,11 +90,11 @@ var options = {
     }
     var percentage = item.value * 100 + "%";
     return (
-      &apos;&lt;div class="progress-wrapper"&gt;&lt;div class="progress" style="width:&apos; +
+      &apos;<div class="progress-wrapper"><div class="progress" style="width:&apos; +
       percentage +
-      &apos;"&gt;&lt;/div&gt;&lt;label class="progress-label"&gt;&apos; +
+      &apos;"></div><label class="progress-label">&apos; +
       percentage +
-      "&lt;label&gt;&lt;/div&gt;"
+      "<label></div>"
     );
   },
 };

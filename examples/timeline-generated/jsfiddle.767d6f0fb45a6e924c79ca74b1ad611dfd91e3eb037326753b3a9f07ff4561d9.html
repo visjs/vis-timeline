@@ -23,19 +23,19 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   Test the performance with a lot of items. The Timeline can load hundreds of
   thousands of items, but the performance of rendering them in the browser is
   limited. Rendering typically runs smooth for up to a few hundreds of items at
-  once (you can set a &lt;code&gt;zoomMax&lt;/code&gt; to prevent the user from zooming out
+  once (you can set a <code>zoomMax</code> to prevent the user from zooming out
   too far).
-&lt;/p&gt;
-&lt;p&gt;
-  &lt;label for="count"&gt;Number of items&lt;/label&gt;
-  &lt;input id="count" value="10000" /&gt;
-  &lt;input id="draw" type="button" value="draw" /&gt;
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+</p>
+<p>
+  <label for="count">Number of items</label>
+  <input id="count" value="10000" />
+  <input id="draw" type="button" value="draw" />
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -52,7 +52,7 @@ function createData() {
   var count = parseInt(document.getElementById("count").value) || 100;
   var newData = [];
   var start = now;
-  for (var i = 0; i &lt; count; i++) {
+  for (var i = 0; i < count; i++) {
     newData.push({
       id: i,
       content: "item " + i,

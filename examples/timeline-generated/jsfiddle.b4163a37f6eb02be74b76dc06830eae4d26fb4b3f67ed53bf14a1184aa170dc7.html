@@ -10,16 +10,16 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
-  The &lt;code&gt;itemsAlwaysDraggable&lt;/code&gt; option allows to drag items around
-  without first selecting them. When &lt;code&gt;itemsAlwaysDraggable.range&lt;/code&gt; is
-  set to &lt;code&gt;true&lt;/code&gt;, the range can be changed without selection as well.
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<p>
+  The <code>itemsAlwaysDraggable</code> option allows to drag items around
+  without first selecting them. When <code>itemsAlwaysDraggable.range</code> is
+  set to <code>true</code>, the range can be changed without selection as well.
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -28,7 +28,7 @@
         value='var container = document.getElementById("visualization"),
   items = new vis.DataSet();
 
-for (var i = 10; i &gt;= 0; i--) {
+for (var i = 10; i >= 0; i--) {
   var start = new Date(new Date().getTime() + i * 100000);
   items.add({
     id: i,

@@ -10,12 +10,12 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline with loading screen&lt;/h1&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<h1>Timeline with loading screen</h1>
+<div id="visualization"></div>
 '
       />
       <input
@@ -27,7 +27,7 @@ var itemCount = 400;
 
 // create a data set with groups
 var groups = new vis.DataSet();
-for (var g = 0; g &lt; groupCount; g++) {
+for (var g = 0; g < groupCount; g++) {
   groups.add({
     id: g,
     content: "group " + g,
@@ -37,7 +37,7 @@ for (var g = 0; g &lt; groupCount; g++) {
 var types = ["point", "range", "box", "background"];
 // create a dataset with items
 var items = new vis.DataSet();
-for (var i = 0; i &lt; itemCount; i++) {
+for (var i = 0; i < itemCount; i++) {
   var start = now.clone().add(Math.random() * 180, "days");
   var end = start.clone().add(Math.random() * 30, "days");
   var group = Math.floor(Math.random() * groupCount);
@@ -57,7 +57,7 @@ var options = {
   start: new Date(),
   end: new Date(100000 * 60 * 60 * 24 + new Date().valueOf()),
   loadingScreenTemplate: function () {
-    return "&lt;h1&gt;Loading...&lt;/h1&gt;";
+    return "<h1>Loading...</h1>";
   },
 };
 

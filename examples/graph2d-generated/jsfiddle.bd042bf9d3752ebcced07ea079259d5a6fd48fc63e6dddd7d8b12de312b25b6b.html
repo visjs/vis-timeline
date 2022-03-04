@@ -198,15 +198,15 @@ div.external-legend {
       <input
         type="hidden"
         name="html"
-        value='&lt;h2&gt;Graph2d | External custom legend&lt;/h2&gt;
-&lt;div style="width: 800px; font-size: 14px; text-align: justify"&gt;
+        value='<h2>Graph2d | External custom legend</h2>
+<div style="width: 800px; font-size: 14px; text-align: justify">
   This example shows how to create an external custom legend using the getLegend
   function. We use normal JavaScript to show and hide the groups by updating the
   dataset.
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;div id="Legend" class="external-legend"&gt;&lt;/div&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+</div>
+<br />
+<div id="Legend" class="external-legend"></div>
+<div id="visualization"></div>
 '
       />
       <input
@@ -303,7 +303,7 @@ function populateExternalLegend() {
   legendDiv.innerHTML = "";
 
   // get for all groups:
-  for (var i = 0; i &lt; groupsData.length; i++) {
+  for (var i = 0; i < groupsData.length; i++) {
     // create divs
     var containerDiv = document.createElement("div");
     var iconDiv = document.createElement("div");

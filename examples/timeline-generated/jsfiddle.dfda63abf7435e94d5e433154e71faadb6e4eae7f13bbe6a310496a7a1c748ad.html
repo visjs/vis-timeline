@@ -10,58 +10,56 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;div id="title"&gt;
-  &lt;h1&gt;Timeline&lt;/h1&gt;
-  &lt;h2&gt;Standalone Build&lt;/h2&gt;
-&lt;/div&gt;
+        value='<div id="title">
+  <h1>Timeline</h1>
+  <h2>Standalone Build</h2>
+</div>
 
-&lt;p&gt;A basic timeline. You can move and zoom the timeline, and select items.&lt;/p&gt;
+<p>A basic timeline. You can move and zoom the timeline, and select items.</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 
-&lt;p&gt;
-  Standalone build doesn&amp;apos;t work with other packages from the Vis family
-  because it bundles all dependencies. This leads to situation where DataSets
-  (and other dependencies) from one package (e.g. Network) don&amp;apos;t work in
-  Timeline because Timeline expects it&amp;apos;s own bundled DataSets to be used.
-  It is inteded as a convenience build for cases where multiple packages are not
-  necessary but ease of use is (like JSFiddle MWEs or examples). This build is
-  available in ESM and UMD versions each of them has minified and unminified
-  variant.
-&lt;/p&gt;
+<p>
+  Standalone build doesn&apos;t work with other packages from the Vis family because
+  it bundles all dependencies. This leads to situation where DataSets (and other
+  dependencies) from one package (e.g. Network) don&apos;t work in Timeline because
+  Timeline expects it&apos;s own bundled DataSets to be used. It is inteded as a
+  convenience build for cases where multiple packages are not necessary but ease
+  of use is (like JSFiddle MWEs or examples). This build is available in ESM and
+  UMD versions each of them has minified and unminified variant.
+</p>
 
-&lt;h4&gt;When to use&lt;/h4&gt;
-&lt;p&gt;
-  When the only thing you need is Timeline (no Network, Graph3D etc.) and
-  don&amp;apos;t want to deal with dependencies (all are bundled in this build ready
-  to use).
-&lt;/p&gt;
+<h4>When to use</h4>
+<p>
+  When the only thing you need is Timeline (no Network, Graph3D etc.) and don&apos;t
+  want to deal with dependencies (all are bundled in this build ready to use).
+</p>
 
-&lt;h4&gt;How to use&lt;/h4&gt;
+<h4>How to use</h4>
 
-&lt;h5&gt;Browser UMD&lt;/h5&gt;
-&lt;pre&gt;&lt;code&gt;&amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js&amp;quot;&amp;gt;&amp;lt;/script&amp;gt;
+<h5>Browser UMD</h5>
+<pre><code>&amp;lt;script type="text/javascript" src="https://unpkg.com/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"&amp;gt;&amp;lt;/script&amp;gt;
 &amp;lt;!--
-  Including other packages like Vis Network or Vis Graph3D here won&amp;apos;t work.
+  Including other packages like Vis Network or Vis Graph3D here won&apos;t work.
   You need the peer build to do that.
 --&amp;gt;
 
-&amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt;
+&amp;lt;script type="text/javascript"&amp;gt;
 // DOM element where the Timeline will be attached
-const container = document.getElementById(&amp;quot;visualization&amp;quot;);
+const container = document.getElementById("visualization");
 
 // Create a DataSet (allows two way data-binding)
 const items = new vis.DataSet([
-  { id: 1, content: &amp;quot;item 1&amp;quot;, start: &amp;quot;2014-04-20&amp;quot; },
-  { id: 2, content: &amp;quot;item 2&amp;quot;, start: &amp;quot;2014-04-14&amp;quot; },
-  { id: 3, content: &amp;quot;item 3&amp;quot;, start: &amp;quot;2014-04-18&amp;quot; },
-  { id: 4, content: &amp;quot;item 4&amp;quot;, start: &amp;quot;2014-04-16&amp;quot;, end: &amp;quot;2014-04-19&amp;quot; },
-  { id: 5, content: &amp;quot;item 5&amp;quot;, start: &amp;quot;2014-04-25&amp;quot; },
-  { id: 6, content: &amp;quot;item 6&amp;quot;, start: &amp;quot;2014-04-27&amp;quot;, type: &amp;quot;point&amp;quot; }
+  { id: 1, content: "item 1", start: "2014-04-20" },
+  { id: 2, content: "item 2", start: "2014-04-14" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+  { id: 5, content: "item 5", start: "2014-04-25" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
 ]);
 
 // Configuration for the Timeline
@@ -69,30 +67,30 @@ const options = {};
 
 // Create a Timeline
 const timeline = new vis.Timeline(container, items, options);
-&amp;lt;/script&amp;gt;&lt;/code&gt;&lt;/pre&gt;
+&amp;lt;/script&amp;gt;</code></pre>
 
-&lt;h5&gt;Bundled ESM&lt;/h5&gt;
-&lt;pre&gt;&lt;code&gt;import { DataSet, Timeline } from &amp;quot;vis-timeline/standalone&amp;quot;;
-import &amp;quot;vis-timeline/styles/vis-timeline-graph2d.css&amp;quot;;
+<h5>Bundled ESM</h5>
+<pre><code>import { DataSet, Timeline } from "vis-timeline/standalone";
+import "vis-timeline/styles/vis-timeline-graph2d.css";
 
 // DOM element where the Timeline will be attached
-const container = document.getElementById(&amp;quot;visualization&amp;quot;);
+const container = document.getElementById("visualization");
 
 // Create a DataSet (allows two way data-binding)
 const items = new DataSet([
-  { id: 1, content: &amp;quot;item 1&amp;quot;, start: &amp;quot;2014-04-20&amp;quot; },
-  { id: 2, content: &amp;quot;item 2&amp;quot;, start: &amp;quot;2014-04-14&amp;quot; },
-  { id: 3, content: &amp;quot;item 3&amp;quot;, start: &amp;quot;2014-04-18&amp;quot; },
-  { id: 4, content: &amp;quot;item 4&amp;quot;, start: &amp;quot;2014-04-16&amp;quot;, end: &amp;quot;2014-04-19&amp;quot; },
-  { id: 5, content: &amp;quot;item 5&amp;quot;, start: &amp;quot;2014-04-25&amp;quot; },
-  { id: 6, content: &amp;quot;item 6&amp;quot;, start: &amp;quot;2014-04-27&amp;quot;, type: &amp;quot;point&amp;quot; }
+  { id: 1, content: "item 1", start: "2014-04-20" },
+  { id: 2, content: "item 2", start: "2014-04-14" },
+  { id: 3, content: "item 3", start: "2014-04-18" },
+  { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+  { id: 5, content: "item 5", start: "2014-04-25" },
+  { id: 6, content: "item 6", start: "2014-04-27", type: "point" }
 ]);
 
 // Configuration for the Timeline
 const options = {};
 
 // Create a Timeline
-const timeline = new Timeline(container, items, options);&lt;/code&gt;&lt;/pre&gt;
+const timeline = new Timeline(container, items, options);</code></pre>
 '
       />
       <input

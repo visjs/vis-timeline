@@ -30,14 +30,14 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;div id="main"&gt;
-  &lt;h1&gt;Timeline click to use&lt;/h1&gt;
-  &lt;p&gt;
-    This example demonstrates how to use the &lt;code&gt;clickToUse&lt;/code&gt; option:
+        value='<div id="main">
+  <h1>Timeline click to use</h1>
+  <p>
+    This example demonstrates how to use the <code>clickToUse</code> option:
     before you can scroll and drag in the timeline, you first have to click in
     the timeline to activate.
-  &lt;/p&gt;
-&lt;/div&gt;
+  </p>
+</div>
 '
       />
       <input
@@ -53,7 +53,7 @@ var items = new vis.DataSet({
 
 // add items to the DataSet
 items.add([
-  { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-23" },
+  { id: 1, content: "item 1<br>start", start: "2014-01-23" },
   { id: 2, content: "item 2", start: "2014-01-18" },
   { id: 3, content: "item 3", start: "2014-01-21" },
   { id: 4, content: "item 4", start: "2014-01-19", end: "2014-01-24" },
@@ -76,7 +76,7 @@ function createTimeline(main) {
 }
 
 var timelines = [];
-for (var i = 0; i &lt; 10; i++) {
+for (var i = 0; i < 10; i++) {
   timelines.push(createTimeline());
 }
 '

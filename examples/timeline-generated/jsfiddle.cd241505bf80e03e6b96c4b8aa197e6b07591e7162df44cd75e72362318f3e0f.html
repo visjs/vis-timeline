@@ -22,18 +22,18 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline grouping performance&lt;/h1&gt;
+        value='<h1>Timeline grouping performance</h1>
 
-&lt;p&gt;
+<p>
   Choose a number of items:
-  &lt;a href="?count=100"&gt;100&lt;/a&gt;, &lt;a href="?count=1000"&gt;1000&lt;/a&gt;,
-  &lt;a href="?count=10000"&gt;10000&lt;/a&gt;,
-  &lt;a href="?count=100000"&gt;100000&lt;/a&gt;
-&lt;/p&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;p&gt;Current number of items: &lt;span id="count"&gt;100&lt;/span&gt;&lt;/p&gt;
+  <a href="?count=100">100</a>, <a href="?count=1000">1000</a>,
+  <a href="?count=10000">10000</a>,
+  <a href="?count=100000">100000</a>
+</p>
+<p></p>
+<p>Current number of items: <span id="count">100</span></p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -68,10 +68,10 @@ var items = new vis.DataSet();
 
 var order = 1;
 var truck = 1;
-for (var j = 0; j &lt; 4; j++) {
+for (var j = 0; j < 4; j++) {
   var date = new Date();
-  for (var i = 0; i &lt; count / 4; i++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var i = 0; i < count / 4; i++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
 
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
@@ -111,7 +111,7 @@ timeline.setItems(items);
 
 document.getElementById("count").innerHTML = count;
 
-window.addEventListener("resize", () =&gt; {
+window.addEventListener("resize", () => {
   /*timeline.checkResize();*/
 });
 '

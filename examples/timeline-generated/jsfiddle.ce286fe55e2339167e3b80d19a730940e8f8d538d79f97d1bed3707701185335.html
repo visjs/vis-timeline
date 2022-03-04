@@ -43,35 +43,40 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;This example demonstrate using clustering.&lt;/p&gt;
-&lt;button class="zoom" data-dir="1"&gt;Zoom in&lt;/button&gt;
-&lt;button class="zoom" data-dir="-1"&gt;Zoom out&lt;/button&gt;
-&lt;br /&gt;
-&lt;input type="checkbox" id="clusterCheckbox" /&gt;Enable clustering
-&lt;br /&gt;
-&lt;input type="checkbox" id="groupItemsCheckBox" /&gt;Enable grouping
-&lt;br /&gt;
-&lt;br /&gt;
+        value='<p>This example demonstrate using clustering.</p>
+<button class="zoom" data-dir="1">Zoom in</button>
+<button class="zoom" data-dir="-1">Zoom out</button>
+<br />
+<input type="checkbox" id="clusterCheckbox" />Enable clustering
+<br />
+<input type="checkbox" id="groupItemsCheckBox" />Enable grouping
+<br />
+<br />
 
-&lt;div&gt;
-  &lt;label for="total-days-number"&gt;Days number:&lt;/label&gt;
-  &lt;input class="slider-value" type="text" id="total-days-number" readonly /&gt;
-  &lt;div class="slider" id="total-days-slider"&gt;&lt;/div&gt;
-&lt;/div&gt;
+<div>
+  <label for="total-days-number">Days number:</label>
+  <input class="slider-value" type="text" id="total-days-number" readonly="" />
+  <div class="slider" id="total-days-slider"></div>
+</div>
 
-&lt;div&gt;
-  &lt;label for="orders-per-day-number"&gt;Orders per day number:&lt;/label&gt;
-  &lt;input class="slider-value" type="text" id="orders-per-day-number" readonly /&gt;
-  &lt;div class="slider" id="orders-per-day-slider"&gt;&lt;/div&gt;
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;div&gt;
-  &lt;label for="total-orders-count"&gt;Total orders:&lt;/label&gt;
-  &lt;input class="slider-value" type="text" id="total-orders-count" readonly /&gt;
-&lt;/div&gt;
+<div>
+  <label for="orders-per-day-number">Orders per day number:</label>
+  <input
+    class="slider-value"
+    type="text"
+    id="orders-per-day-number"
+    readonly=""
+  />
+  <div class="slider" id="orders-per-day-slider"></div>
+</div>
+<br />
+<div>
+  <label for="total-orders-count">Total orders:</label>
+  <input class="slider-value" type="text" id="total-orders-count" readonly="" />
+</div>
 
-&lt;br /&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<br />
+<div id="visualization"></div>
 '
       />
       <input
@@ -137,7 +142,7 @@ function getTimelineData() {
     let clusterCenter = clusterCenters[i];
     for (
       let clusterNodeIdx = 0;
-      clusterNodeIdx &lt; itemsInClusterCount;
+      clusterNodeIdx < itemsInClusterCount;
       ++clusterNodeIdx
     ) {
       const minutesShift = getRandomArbitrary(1, 60) * getRandomSignum();
@@ -182,7 +187,7 @@ $("#orders-per-day-slider").slider({
   min: 1,
   max: 1000,
   slide: function (event, ui) {
-    setTimeout(() =&gt; {
+    setTimeout(() => {
       $("#orders-per-day-number").val(ui.value);
       timeLineData = getTimelineData();
       $("#total-orders-count").val(timeLineData.length);
@@ -197,7 +202,7 @@ $("#total-days-slider").slider({
   max: 10,
   step: 2,
   slide: function (event, ui) {
-    setTimeout(() =&gt; {
+    setTimeout(() => {
       $("#total-days-number").val(ui.value);
       timeLineData = getTimelineData();
       $("#total-orders-count").val(timeLineData.length);
@@ -217,11 +222,11 @@ var defaultOptions = {
   maxHeight: 800,
   height: 600,
   groupOrder: "content", // groupOrder can be a property name or a sorting function,
-  template: (itemData, element, data) =&gt; {
+  template: (itemData, element, data) => {
     if (data.isCluster) {
-      return `&lt;span class="cluster-header"&gt;Cluster&lt;/span&gt;&lt;div&gt;containg ${data.items.length} items &lt;/div&gt;`;
+      return `<span class="cluster-header">Cluster</span><div>containg ${data.items.length} items </div>`;
     } else {
-      return `&lt;div&gt;${data.content}&lt;/div&gt;`;
+      return `<div>${data.content}</div>`;
     }
   },
 };

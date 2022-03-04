@@ -10,11 +10,11 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<div id="visualization"></div>
 '
       />
       <input
@@ -26,7 +26,7 @@ var itemCount = 300;
 var types = ["point", "range", "box"];
 // create a dataset with items
 var items = new vis.DataSet();
-for (var i = 0; i &lt; itemCount; i++) {
+for (var i = 0; i < itemCount; i++) {
   var start = now.clone().add(Math.random() * 180, "days");
   var end = start.clone().add(Math.random() * 30, "days");
   items.add({

@@ -21,19 +21,19 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline Tooltip on item onUpdateTime Option&lt;/h1&gt;
+        value='<h1>Timeline Tooltip on item onUpdateTime Option</h1>
 
-&lt;h2&gt;With &lt;code&gt;tooltipOnItemUpdateTime: true&lt;/code&gt;&lt;/h2&gt;
+<h2>With <code>tooltipOnItemUpdateTime: true</code></h2>
 
-&lt;div id="mytimeline1"&gt;&lt;/div&gt;
+<div id="mytimeline1"></div>
 
-&lt;h2&gt;With &lt;code&gt;tooltipOnItemUpdateTime: { template: [Function] }&lt;/code&gt;&lt;/h2&gt;
+<h2>With <code>tooltipOnItemUpdateTime: { template: [Function] }</code></h2>
 
-&lt;div id="mytimeline2"&gt;&lt;/div&gt;
+<div id="mytimeline2"></div>
 
-&lt;h2&gt;With groups&lt;/h2&gt;
+<h2>With groups</h2>
 
-&lt;div id="mytimeline3"&gt;&lt;/div&gt;
+<div id="mytimeline3"></div>
 '
       />
       <input
@@ -44,7 +44,7 @@ var numberOfItems = 10;
 var items = new vis.DataSet();
 var types = ["box", "point", "range"];
 
-for (var order = 0; order &lt; numberOfItems; order++) {
+for (var order = 0; order < numberOfItems; order++) {
   var date = vis.moment();
 
   date.add(Math.round(Math.random() * 2), "hour");
@@ -76,7 +76,7 @@ var options2 = jQuery.extend(options, {
   orientation: "top",
   tooltipOnItemUpdateTime: {
     template: function (item) {
-      return "html template for tooltip with &lt;b&gt;item.start&lt;/b&gt;: " + item.start;
+      return "html template for tooltip with <b>item.start</b>: " + item.start;
     },
   },
 });
@@ -86,7 +86,7 @@ timeline2 = new vis.Timeline(container2, items, null, options2);
 // create groups
 var numberOfGroups = 25;
 var groups = new vis.DataSet();
-for (var i = 0; i &lt; numberOfGroups; i++) {
+for (var i = 0; i < numberOfGroups; i++) {
   groups.add({
     id: i,
     content: "Truck&amp;nbsp;" + i,
@@ -99,10 +99,10 @@ var itemsWithGroups = new vis.DataSet();
 
 var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
 
-for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+for (var truck = 0; truck < numberOfGroups; truck++) {
   var date = new Date();
-  for (var order = 0; order &lt; itemsPerGroup; order++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var order = 0; order < itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
 
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));

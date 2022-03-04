@@ -23,28 +23,27 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Tooltips&lt;/h1&gt;
+        value='<h1>Tooltips</h1>
 
-&lt;p&gt;Setting the tooltip in various ways.&lt;/p&gt;
+<p>Setting the tooltip in various ways.</p>
 
-&lt;div id="tooltips"&gt;&lt;/div&gt;
+<div id="tooltips"></div>
 
-&lt;p&gt;The example below has the tooltip follow the mouse.&lt;/p&gt;
+<p>The example below has the tooltip follow the mouse.</p>
 
-&lt;div id="tooltips-follow"&gt;&lt;/div&gt;
+<div id="tooltips-follow"></div>
 
-&lt;p&gt;
-  The example below has the tooltip overflow set to &amp;apos;cap&amp;apos;. Compare
-  this to the one above, to see how they differ. For the best results, move the
-  cursor to the top right, where the tool-tip is going to overflow out of the
-  timeline.
-&lt;/p&gt;
+<p>
+  The example below has the tooltip overflow set to &apos;cap&apos;. Compare this to the
+  one above, to see how they differ. For the best results, move the cursor to
+  the top right, where the tool-tip is going to overflow out of the timeline.
+</p>
 
-&lt;div id="tooltips-cap"&gt;&lt;/div&gt;
+<div id="tooltips-cap"></div>
 
-&lt;p&gt;Disable item tooltips.&lt;/p&gt;
+<p>Disable item tooltips.</p>
 
-&lt;div id="tooltips-hide"&gt;&lt;/div&gt;
+<div id="tooltips-hide"></div>
 '
       />
       <input
@@ -59,20 +58,20 @@ var items = new vis.DataSet([
     end: "2016-01-02",
     title: "Normal text",
   },
-  { id: 2, content: "Item 2", start: "2016-01-02", title: "&lt;b&gt;Bold&lt;/b&gt;" },
+  { id: 2, content: "Item 2", start: "2016-01-02", title: "<b>Bold</b>" },
   {
     id: 3,
     content: "Item 3",
     start: "2016-01-03",
     type: "point",
-    title: &apos;&lt;span style="color: red"&gt;Red&lt;/span&gt; text&apos;,
+    title: &apos;<span style="color: red">Red</span> text&apos;,
   },
   {
     id: 4,
-    content: "&lt;h1&gt;HTML&lt;/h1&gt; Item",
+    content: "<h1>HTML</h1> Item",
     start: "2016-01-03",
     end: "2016-01-04",
-    title: &apos;&lt;table border="1"&gt;&lt;tr&gt;&lt;td&gt;Cell 1&lt;/td&gt;&lt;td&gt;Cell 2&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&apos;,
+    title: &apos;<table border="1"><tr><td>Cell 1</td><td>Cell 2</td></tr></table>&apos;,
   },
 ]);
 

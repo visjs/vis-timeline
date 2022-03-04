@@ -23,25 +23,25 @@ select {
       <input
         type="hidden"
         name="html"
-        value='&lt;h2&gt;Graph2d | Streaming data&lt;/h2&gt;
-&lt;p style="max-width: 700px"&gt;
+        value='<h2>Graph2d | Streaming data</h2>
+<p style="max-width: 700px">
   This example demonstrates how to apply streaming data input to the Graph2d.
   The example shows two different ways to let the window move along with the new
   data, and there are more strategies for that. Note also that it is possible to
   disable moving and/or zooming the graph by setting options
-  &lt;code&gt;moveable&lt;/code&gt; and &lt;code&gt;zoomable&lt;/code&gt; false.
-&lt;/p&gt;
+  <code>moveable</code> and <code>zoomable</code> false.
+</p>
 
-&lt;p&gt;
-  &lt;label for="strategy"&gt;Strategy:&lt;/label&gt;
-  &lt;select id="strategy"&gt;
-    &lt;option value="continuous" selected&gt;Continuous (CPU intensive)&lt;/option&gt;
-    &lt;option value="discrete"&gt;Discrete&lt;/option&gt;
-    &lt;option value="static"&gt;Static&lt;/option&gt;
-  &lt;/select&gt;
-&lt;/p&gt;
+<p>
+  <label for="strategy">Strategy:</label>
+  <select id="strategy">
+    <option value="continuous" selected="">Continuous (CPU intensive)</option>
+    <option value="discrete">Discrete</option>
+    <option value="static">Static</option>
+  </select>
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -100,7 +100,7 @@ function renderStep() {
     default:
       // &apos;static&apos;
       // move the window 90% to the left when now is larger than the end of the window
-      if (now &gt; range.end) {
+      if (now > range.end) {
         graph2d.setWindow(now - 0.1 * interval, now + 0.9 * interval);
       }
       setTimeout(renderStep, DELAY);
@@ -125,7 +125,7 @@ function addDataPoint() {
   var interval = range.end - range.start;
   var oldIds = dataset.getIds({
     filter: function (item) {
-      return item.x &lt; range.start - interval;
+      return item.x < range.start - interval;
     },
   });
   dataset.remove(oldIds);

@@ -24,7 +24,7 @@
   padding: 5px 12px;
 }
 li.item:before {
-  content: "&#x2263;";
+  content: "≣";
   font-family: Arial, sans-serif;
   display: inline-block;
   font-size: inherit;
@@ -41,7 +41,7 @@ li.object-item {
   padding: 5px 12px;
 }
 li.object-item:before {
-  content: "&#x2263;";
+  content: "≣";
   font-family: Arial, sans-serif;
   display: inline-block;
   font-size: inherit;
@@ -56,40 +56,38 @@ li.object-item:before {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline Drag &amp;amp; Drop Example&lt;/h1&gt;
+        value='<h1>Timeline Drag &amp;amp; Drop Example</h1>
 
-&lt;p&gt;
+<p>
   For this to work, you will have to define your own
-  &lt;code&gt;&amp;apos;dragstart&amp;apos;&lt;/code&gt; eventListener on each item in your list of
-  items (make sure that any new item added to the list is attached to this
-  eventListener &amp;apos;dragstart&amp;apos; handler). This &amp;apos;dragstart&amp;apos;
-  handler must set &lt;code&gt;dataTransfer&lt;/code&gt; - notice you can set the
-  item&amp;apos;s information as you want this way.
-&lt;/p&gt;
+  <code>&apos;dragstart&apos;</code> eventListener on each item in your list of items
+  (make sure that any new item added to the list is attached to this
+  eventListener &apos;dragstart&apos; handler). This &apos;dragstart&apos; handler must set
+  <code>dataTransfer</code> - notice you can set the item&apos;s information as you
+  want this way.
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 
-&lt;div class="items-panel"&gt;
-  &lt;div class="side"&gt;
-    &lt;h3&gt;Items:&lt;/h3&gt;
-    &lt;ul class="items"&gt;
-      &lt;li draggable="true" class="item"&gt;item 1 - box&lt;/li&gt;
-      &lt;li draggable="true" class="item"&gt;item 2 - point&lt;/li&gt;
-      &lt;li draggable="true" class="item"&gt;item 3 - range&lt;/li&gt;
-      &lt;li draggable="true" class="item"&gt;
-        item 3 - range - fixed times - &lt;br /&gt;
+<div class="items-panel">
+  <div class="side">
+    <h3>Items:</h3>
+    <ul class="items">
+      <li draggable="true" class="item">item 1 - box</li>
+      <li draggable="true" class="item">item 2 - point</li>
+      <li draggable="true" class="item">item 3 - range</li>
+      <li draggable="true" class="item">
+        item 3 - range - fixed times - <br />
         (start: now, end: now + 10 min)
-      &lt;/li&gt;
-    &lt;/ul&gt;
-  &lt;/div&gt;
+      </li>
+    </ul>
+  </div>
 
-  &lt;div class="side"&gt;
-    &lt;h3&gt;Object with &amp;quot;target:&amp;apos;item&amp;apos;&amp;quot;:&lt;/h3&gt;
-    &lt;li draggable="true" class="object-item"&gt;
-      object with target:&amp;apos;item&amp;apos;
-    &lt;/li&gt;
-  &lt;/div&gt;
-&lt;/div&gt;
+  <div class="side">
+    <h3>Object with "target:&apos;item&apos;":</h3>
+    <li draggable="true" class="object-item">object with target:&apos;item&apos;</li>
+  </div>
+</div>
 '
       />
       <input
@@ -98,7 +96,7 @@ li.object-item:before {
         value='// create groups
 var numberOfGroups = 3;
 var groups = new vis.DataSet();
-for (var i = 0; i &lt; numberOfGroups; i++) {
+for (var i = 0; i < numberOfGroups; i++) {
   groups.add({
     id: i,
     content: "Truck&amp;nbsp;" + i,
@@ -111,10 +109,10 @@ var items = new vis.DataSet();
 
 var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
 
-for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+for (var truck = 0; truck < numberOfGroups; truck++) {
   var date = new Date();
-  for (var order = 0; order &lt; itemsPerGroup; order++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var order = 0; order < itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
 
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
@@ -191,12 +189,12 @@ var items = document.querySelectorAll(".items .item");
 
 var objectItems = document.querySelectorAll(".object-item");
 
-for (var i = items.length - 1; i &gt;= 0; i--) {
+for (var i = items.length - 1; i >= 0; i--) {
   var item = items[i];
   item.addEventListener("dragstart", handleDragStart.bind(this), false);
 }
 
-for (var i = objectItems.length - 1; i &gt;= 0; i--) {
+for (var i = objectItems.length - 1; i >= 0; i--) {
   var objectItem = objectItems[i];
   objectItem.addEventListener(
     "dragstart",

@@ -22,37 +22,37 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;h2&gt;Graph2d | Interpolation&lt;/h2&gt;
-&lt;div style="width: 700px; font-size: 14px; text-align: justify"&gt;
+        value='<h2>Graph2d | Interpolation</h2>
+<div style="width: 700px; font-size: 14px; text-align: justify">
   The Graph2d makes use of
-  &lt;a
+  <a
     href="https://en.wikipedia.org/wiki/Centripetal_Catmull%E2%80%93Rom_spline"
     target="_blank"
-    &gt;Catmull-Rom spline interpolation&lt;/a
-  &gt;. The user can configure these per group, or globally. In this example we
+    >Catmull-Rom spline interpolation</a
+  >. The user can configure these per group, or globally. In this example we
   show all 4 possiblities. The differences are in the parametrization of the
-  curves. The options are &lt;code&gt;uniform&lt;/code&gt;, &lt;code&gt;chordal&lt;/code&gt; and
-  &lt;code&gt;centripetal&lt;/code&gt;. Alternatively you can disable the Catmull-Rom
+  curves. The options are <code>uniform</code>, <code>chordal</code> and
+  <code>centripetal</code>. Alternatively you can disable the Catmull-Rom
   interpolation and a linear interpolation will be used. The
-  &lt;code&gt;centripetal&lt;/code&gt; parametrization produces the best result (no self
+  <code>centripetal</code> parametrization produces the best result (no self
   intersection, yet follows the line closely) and is therefore the default
-  setting. &lt;br /&gt;&lt;br /&gt;
-  For both the &lt;code&gt;centripetal&lt;/code&gt; and
-  &lt;code&gt;chordal&lt;/code&gt; parametrization, the distances between the points have to
+  setting. <br /><br />
+  For both the <code>centripetal</code> and
+  <code>chordal</code> parametrization, the distances between the points have to
   be calculated and this makes these methods computationally intensive if there
-  are very many points. The &lt;code&gt;uniform&lt;/code&gt; parametrization still has to do
+  are very many points. The <code>uniform</code> parametrization still has to do
   transformations, though it does not have to calculate the distance between
   point. Finally, the linear interpolation is the fastest method. For more on
   the Catmull-Rom method,
-  &lt;a
+  <a
     href="https://www.cemyuksel.com/research/catmullrom_param/catmullrom.pdf"
     target="_blank"
-    &gt;C. Yuksel et al. have an interesting paper titled &amp;#x2033;On the
-    parametrization of Catmull-Rom Curves&amp;#x2033;&lt;/a
-  &gt;.
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+    >C. Yuksel et al. have an interesting paper titled ″On the parametrization
+    of Catmull-Rom Curves″</a
+  >.
+</div>
+<br />
+<div id="visualization"></div>
 '
       />
       <input
@@ -105,7 +105,7 @@ groups.add({
 
 var container = document.getElementById("visualization");
 var dataset = new vis.DataSet();
-for (var i = 0; i &lt; names.length; i++) {
+for (var i = 0; i < names.length; i++) {
   dataset.add([
     { x: "2014-06-12", y: 0, group: i },
     { x: "2014-06-13", y: 40, group: i },

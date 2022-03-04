@@ -22,16 +22,16 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline vertical visibility&lt;/h1&gt;
+        value='<h1>Timeline vertical visibility</h1>
 
-&lt;button onclick="showVisibleItems()"&gt;Show current visible items&lt;/button&gt;
-&lt;div&gt;
-  &lt;h2&gt;visible items:&lt;/h2&gt;
-  &lt;h3 id="visibleItemsContainer"&gt;&lt;/h3&gt;
-&lt;/div&gt;
+<button onclick="showVisibleItems()">Show current visible items</button>
+<div>
+  <h2>visible items:</h2>
+  <h3 id="visibleItemsContainer"></h3>
+</div>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
-&lt;br /&gt;
+<div id="visualization"></div>
+<br />
 '
       />
       <input
@@ -81,10 +81,10 @@ var items = new vis.DataSet();
 var types = ["box", "point", "range", "background"];
 var order = 1;
 var truck = 1;
-for (var j = 0; j &lt; 25; j++) {
+for (var j = 0; j < 25; j++) {
   var date = new Date();
-  for (var i = 0; i &lt; count / 25; i++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var i = 0; i < count / 25; i++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
 
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
@@ -120,7 +120,7 @@ timeline = new vis.Timeline(container, null, options);
 timeline.setGroups(groups);
 timeline.setItems(items);
 
-window.addEventListener("resize", () =&gt; {
+window.addEventListener("resize", () => {
   /*timeline.checkResize();*/
 });
 '

@@ -22,20 +22,20 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline visible Groups&lt;/h1&gt;
+        value='<h1>Timeline visible Groups</h1>
 
-&lt;button onclick="showVisibleGroups()"&gt;Show current visible items&lt;/button&gt;
-&lt;div&gt;
-  &lt;h2&gt;visible groups:&lt;/h2&gt;
-  &lt;h3 id="visibleGroupsContainer"&gt;&lt;/h3&gt;
-  &lt;h2&gt;
+<button onclick="showVisibleGroups()">Show current visible items</button>
+<div>
+  <h2>visible groups:</h2>
+  <h3 id="visibleGroupsContainer"></h3>
+  <h2>
     (Scroll with the mouse and see the items being focus automatically on the
     timeline)
-  &lt;/h2&gt;
-&lt;/div&gt;
+  </h2>
+</div>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
-&lt;br /&gt;
+<div id="visualization"></div>
+<br />
 '
       />
       <input
@@ -67,7 +67,7 @@ var items = new vis.DataSet();
 
 var count = 300;
 
-for (var i = 0; i &lt; count; i++) {
+for (var i = 0; i < count; i++) {
   var start = now + 1000 * 60 * 60 * 24 * (i + Math.floor(Math.random() * 7));
   var end = start + 1000 * 60 * 60 * 24 * (1 + Math.floor(Math.random() * 5));
 
@@ -97,15 +97,15 @@ function debounce(func, wait = 100) {
   let timeout;
   return function (...args) {
     clearTimeout(timeout);
-    timeout = setTimeout(() =&gt; {
+    timeout = setTimeout(() => {
       func.apply(this, args);
     }, wait);
   };
 }
 
-let groupFocus = (e) =&gt; {
+let groupFocus = (e) => {
   let vGroups = timeline.getVisibleGroups();
-  let vItems = vGroups.reduce((res, groupId) =&gt; {
+  let vItems = vGroups.reduce((res, groupId) => {
     let group = timeline.itemSet.groups[groupId];
     if (group.items) {
       res = res.concat(Object.keys(group.items));

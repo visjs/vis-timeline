@@ -29,12 +29,12 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   This example demonstrate using groups. Note that a DataSet is used for both
   items and groups, allowing to dynamically add, update or remove both items and
   groups via the DataSet.
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -92,7 +92,7 @@ groups.add([
 var items = new vis.DataSet();
 var groupIds = groups.getIds();
 var types = ["box", "point", "range", "background"];
-for (var i = 0; i &lt; itemCount; i++) {
+for (var i = 0; i < itemCount; i++) {
   var start = now.clone().add(Math.random() * 200, "hours");
   var end = start.clone().add(2, "hours");
   var randomGroupId = groupIds[Math.floor(Math.random() * groupIds.length)];

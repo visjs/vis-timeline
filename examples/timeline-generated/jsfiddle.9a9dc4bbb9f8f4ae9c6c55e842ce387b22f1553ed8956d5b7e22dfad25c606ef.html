@@ -26,39 +26,39 @@ input {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   This example demonstrates functions to programmatically adjust the visible
   window of the Timeline.
-&lt;/p&gt;
+</p>
 
-&lt;p&gt;
-  &lt;input
+<p>
+  <input
     type="button"
     id="window1"
     value="Set window from 2014-01-01 to 2014-04-01"
-  /&gt;&lt;br /&gt;
-  &lt;input
+  /><br />
+  <input
     type="button"
     id="window2"
     value="Set window from 2014-01-01 to 2014-04-01 without animation"
-  /&gt;&lt;br /&gt;
-  &lt;input type="button" id="moveTo" value="Move to 2014-02-01" /&gt;&lt;br /&gt;
-  &lt;input type="button" id="fit" value="Fit all items" /&gt;&lt;br /&gt;
-  &lt;input
+  /><br />
+  <input type="button" id="moveTo" value="Move to 2014-02-01" /><br />
+  <input type="button" id="fit" value="Fit all items" /><br />
+  <input
     type="button"
     id="select"
     value="Select &amp;amp; focus items 5 and 6"
-  /&gt;&lt;br /&gt;
-  &lt;input type="button" id="focus1" value="Focus item 2" /&gt;&lt;br /&gt;
-  &lt;input
+  /><br />
+  <input type="button" id="focus1" value="Focus item 2" /><br />
+  <input
     type="button"
     id="focus2"
     value="Focus items 5 and 6 (slow and linear animation)"
-  /&gt;&lt;br /&gt;
-  &lt;input type="button" id="focus3" value="Focus current selection" /&gt;&lt;br /&gt;
-&lt;/p&gt;
+  /><br />
+  <input type="button" id="focus3" value="Focus current selection" /><br />
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -74,7 +74,7 @@ var items = new vis.DataSet({
 
 // add items to the DataSet
 items.add([
-  { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-23" },
+  { id: 1, content: "item 1<br>start", start: "2014-01-23" },
   { id: 2, content: "item 2", start: "2014-01-18" },
   { id: 3, content: "item 3", start: "2014-01-21" },
   { id: 4, content: "item 4", start: "2014-01-19", end: "2014-01-24" },

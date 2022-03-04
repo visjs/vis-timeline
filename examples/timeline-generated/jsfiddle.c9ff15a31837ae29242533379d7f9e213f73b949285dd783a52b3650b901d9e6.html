@@ -36,67 +36,67 @@ textarea {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Serialization and deserialization&lt;/h1&gt;
+        value='<h1>Serialization and deserialization</h1>
 
-&lt;p&gt;
+<p>
   This example shows how to serialize and deserialize JSON data, and load this
   in the Timeline via a DataSet. Serialization and deserialization is needed
   when loading or saving data from a server.
-&lt;/p&gt;
+</p>
 
-&lt;textarea id="data"&gt;
+<textarea id="data">
 [
   {
-    &amp;quot;id&amp;quot;: 1,
-    &amp;quot;content&amp;quot;: &amp;quot;item 1&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T01:00:00&amp;quot;
+    "id": 1,
+    "content": "item 1",
+    "start": "2014-01-01T01:00:00"
   },
   {
-    &amp;quot;id&amp;quot;: 2,
-    &amp;quot;content&amp;quot;: &amp;quot;item 2&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T02:00:00&amp;quot;
+    "id": 2,
+    "content": "item 2",
+    "start": "2014-01-01T02:00:00"
   },
   {
-    &amp;quot;id&amp;quot;: 3,
-    &amp;quot;content&amp;quot;: &amp;quot;item 3&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T03:00:00&amp;quot;
+    "id": 3,
+    "content": "item 3",
+    "start": "2014-01-01T03:00:00"
   },
   {
-    &amp;quot;id&amp;quot;: 4,
-    &amp;quot;content&amp;quot;: &amp;quot;item 4&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T04:00:00&amp;quot;,
-    &amp;quot;end&amp;quot;: &amp;quot;2014-01-01T04:30:00&amp;quot;
+    "id": 4,
+    "content": "item 4",
+    "start": "2014-01-01T04:00:00",
+    "end": "2014-01-01T04:30:00"
   },
   {
-    &amp;quot;id&amp;quot;: 5,
-    &amp;quot;content&amp;quot;: &amp;quot;item 5&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T05:00:00&amp;quot;,
-    &amp;quot;type&amp;quot;: &amp;quot;point&amp;quot;
+    "id": 5,
+    "content": "item 5",
+    "start": "2014-01-01T05:00:00",
+    "type": "point"
   },
   {
-    &amp;quot;id&amp;quot;: 6,
-    &amp;quot;content&amp;quot;: &amp;quot;item 6&amp;quot;,
-    &amp;quot;start&amp;quot;: &amp;quot;2014-01-01T06:00:00&amp;quot;
+    "id": 6,
+    "content": "item 6",
+    "start": "2014-01-01T06:00:00"
   }
 ]
-&lt;/textarea&gt;
+</textarea>
 
-&lt;div class="buttons"&gt;
-  &lt;input
+<div class="buttons">
+  <input
     type="button"
     id="load"
-    value="&amp;#x2193; Load"
+    value="↓ Load"
     title="Load data from textarea into the Timeline"
-  /&gt;
-  &lt;input
+  />
+  <input
     type="button"
     id="save"
-    value="&amp;#x2191; Save"
+    value="↑ Save"
     title="Save data from the Timeline into the textarea"
-  /&gt;
-&lt;/div&gt;
+  />
+</div>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input

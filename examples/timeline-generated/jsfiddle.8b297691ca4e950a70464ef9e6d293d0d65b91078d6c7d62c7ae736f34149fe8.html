@@ -26,17 +26,17 @@
       <input
         type="hidden"
         name="html"
-        value='&lt;p style="width: 600px"&gt;
+        value='<p style="width: 600px">
   When the custom time bar is shown, the user can drag this bar to a specific
   time. The Timeline sends an event that the custom time is changed, after which
   the contents of the timeline can be changed according to the specified time in
   past or future.
-&lt;/p&gt;
+</p>
 
-&lt;div id="customTime"&gt;&amp;#xA0;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
+<div id="customTime">&amp;nbsp;</div>
+<p></p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -69,13 +69,13 @@ timeline.on("timechange", function (event) {
     "Custom Time: " + event.time;
 
   var item = data.get(1);
-  if (event.time &gt; item.start) {
+  if (event.time > item.start) {
     item.end = new Date(event.time);
     var now = new Date();
-    if (event.time &lt; now) {
+    if (event.time < now) {
       item.content = "Dynamic event (past)";
       item.className = "past";
-    } else if (event.time &gt; now) {
+    } else if (event.time > now) {
       item.content = "Dynamic event (future)";
       item.className = "future";
     } else {

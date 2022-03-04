@@ -49,46 +49,46 @@ code {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;This example shows the ability to hide specific subgroups.&lt;/p&gt;
-&lt;p&gt;
-  Subgroups can be hidden using the &lt;code&gt;subgroupVisibility&lt;/code&gt; parameter in
+        value='<p>This example shows the ability to hide specific subgroups.</p>
+<p>
+  Subgroups can be hidden using the <code>subgroupVisibility</code> parameter in
   the timeline configuration options.
-&lt;/p&gt;
-&lt;table&gt;
-  &lt;thead&gt;
-    &lt;tr&gt;
-      &lt;th&gt;Option&lt;/th&gt;
-      &lt;th&gt;Status&lt;/th&gt;
-      &lt;th&gt;Toggle&lt;/th&gt;
-    &lt;/tr&gt;
-  &lt;/thead&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td&gt;sg_1 visibility&lt;/td&gt;
-      &lt;td id="subgVissg_1"&gt;true&lt;/td&gt;
-      &lt;td&gt;
-        &lt;button onclick="toggleSubgroupVisibility(&apos;sg_1&apos;)"&gt;Toggle&lt;/button&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;sg_2 visibility&lt;/td&gt;
-      &lt;td id="subgVissg_2"&gt;true&lt;/td&gt;
-      &lt;td&gt;
-        &lt;button onclick="toggleSubgroupVisibility(&apos;sg_2&apos;)"&gt;Toggle&lt;/button&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-      &lt;td&gt;sg_3 visibility&lt;/td&gt;
-      &lt;td id="subgVissg_3"&gt;true&lt;/td&gt;
-      &lt;td&gt;
-        &lt;button onclick="toggleSubgroupVisibility(&apos;sg_3&apos;)"&gt;Toggle&lt;/button&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
-&lt;br /&gt;
+</p>
+<table>
+  <thead>
+    <tr>
+      <th>Option</th>
+      <th>Status</th>
+      <th>Toggle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>sg_1 visibility</td>
+      <td id="subgVissg_1">true</td>
+      <td>
+        <button onclick="toggleSubgroupVisibility(&apos;sg_1&apos;)">Toggle</button>
+      </td>
+    </tr>
+    <tr>
+      <td>sg_2 visibility</td>
+      <td id="subgVissg_2">true</td>
+      <td>
+        <button onclick="toggleSubgroupVisibility(&apos;sg_2&apos;)">Toggle</button>
+      </td>
+    </tr>
+    <tr>
+      <td>sg_3 visibility</td>
+      <td id="subgVissg_3">true</td>
+      <td>
+        <button onclick="toggleSubgroupVisibility(&apos;sg_3&apos;)">Toggle</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+<br />
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -268,8 +268,8 @@ var options = {
 var timeline = new vis.Timeline(container, items, groups, options);
 
 function toggleSubgroupVisibility(subgroup) {
-  groups.get("bar").subgroupVisibility[subgroup] = !groups.get("bar")
-    .subgroupVisibility[subgroup];
+  groups.get("bar").subgroupVisibility[subgroup] =
+    !groups.get("bar").subgroupVisibility[subgroup];
   document.getElementById("subgVis" + subgroup).innerHTML = groups
     .get("bar")
     .subgroupVisibility[subgroup].toString();

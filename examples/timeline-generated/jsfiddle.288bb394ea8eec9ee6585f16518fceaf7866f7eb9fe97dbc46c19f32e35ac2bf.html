@@ -10,25 +10,22 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;Timeline vertical scroll option&lt;/h1&gt;
+        value="<h1>Timeline vertical scroll option</h1>
 
-&lt;h2&gt;With &lt;code&gt; verticalScroll: true, zoomKey: &amp;apos;ctrlKey&amp;apos;&lt;/code&gt;&lt;/h2&gt;
+<h2>With <code> verticalScroll: true, zoomKey: 'ctrlKey'</code></h2>
 
-&lt;div id="mytimeline1"&gt;&lt;/div&gt;
+<div id=&quot;mytimeline1&quot;></div>
 
-&lt;h2&gt;
+<h2>
   With
-  &lt;code&gt;
-    horizontalScroll: true, verticalScroll: true, zoomKey:
-    &amp;apos;ctrlKey&amp;apos;&lt;/code
-  &gt;
-&lt;/h2&gt;
-&lt;div id="mytimeline2"&gt;&lt;/div&gt;
-'
+  <code> horizontalScroll: true, verticalScroll: true, zoomKey: 'ctrlKey'</code>
+</h2>
+<div id=&quot;mytimeline2&quot;></div>
+"
       />
       <input
         type="hidden"
@@ -36,7 +33,7 @@
         value='// create groups
 var numberOfGroups = 25;
 var groups = new vis.DataSet();
-for (var i = 0; i &lt; numberOfGroups; i++) {
+for (var i = 0; i < numberOfGroups; i++) {
   groups.add({
     id: i,
     content: "Truck&amp;nbsp;" + i,
@@ -49,10 +46,10 @@ var items = new vis.DataSet();
 
 var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
 
-for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+for (var truck = 0; truck < numberOfGroups; truck++) {
   var date = new Date();
-  for (var order = 0; order &lt; itemsPerGroup; order++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var order = 0; order < itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
 
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));

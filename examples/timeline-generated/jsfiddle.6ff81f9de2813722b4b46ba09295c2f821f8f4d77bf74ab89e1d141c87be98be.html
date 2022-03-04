@@ -45,11 +45,11 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   This example demonstrates editable groups (reordering and hiding).
-  &lt;button onclick="showAllGroups()"&gt;Restore Hidden&lt;/button&gt;
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+  <button onclick="showAllGroups()">Restore Hidden</button>
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -1026,7 +1026,7 @@ var items = new vis.DataSet([
     end: new Date(2015, 6, 26),
     group: "SGP",
     className: "rally",
-    content: "M&#xE5;lilla",
+    content: "Målilla",
     id: "734@motocal.net",
   },
   {
@@ -1266,7 +1266,7 @@ var items = new vis.DataSet([
     end: new Date(2015, 7, 30),
     group: "SGP",
     className: "rally",
-    content: "Gorz&#xF3;w",
+    content: "Gorzów",
     id: "737@motocal.net",
   },
   {
@@ -1378,7 +1378,7 @@ var items = new vis.DataSet([
     end: new Date(2015, 8, 13),
     group: "SGP",
     className: "rally",
-    content: "Kr&#x161;ko",
+    content: "Krško",
     id: "738@motocal.net",
   },
   {
@@ -1426,7 +1426,7 @@ var items = new vis.DataSet([
     end: new Date(2015, 8, 21),
     group: "EWC",
     className: "endurance",
-    content: "Bol d&#x2019;Or",
+    content: "Bol d’Or",
     id: "704@motocal.net",
   },
   {
@@ -1522,7 +1522,7 @@ var items = new vis.DataSet([
     end: new Date(2015, 9, 4),
     group: "SGP",
     className: "rally",
-    content: "Toru&#x144;",
+    content: "Toruń",
     id: "740@motocal.net",
   },
   {
@@ -1868,8 +1868,8 @@ var container = document.getElementById("visualization");
 var options = {
   // option groupOrder can be a property name or a sort function
   // the sort function must compare two groups and return a value
-  //     &gt; 0 when a &gt; b
-  //     &lt; 0 when a &lt; b
+  //     > 0 when a > b
+  //     < 0 when a < b
   //       0 when a == b
   groupOrder: function (a, b) {
     return a.value - b.value;

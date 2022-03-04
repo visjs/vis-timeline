@@ -23,20 +23,20 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p style="max-width: 800px"&gt;
-  This example shows how to use callback functions &lt;code&gt;onAdd&lt;/code&gt;,
-  &lt;code&gt;onMove&lt;/code&gt;, &lt;code&gt;onMoving&lt;/code&gt;, &lt;code&gt;onUpdate&lt;/code&gt;, and
-  &lt;code&gt;onRemove&lt;/code&gt;. The &lt;code&gt;onMoving&lt;/code&gt; function updates an item
+        value='<p style="max-width: 800px">
+  This example shows how to use callback functions <code>onAdd</code>,
+  <code>onMove</code>, <code>onMoving</code>, <code>onUpdate</code>, and
+  <code>onRemove</code>. The <code>onMoving</code> function updates an item
   while dragging, and can be used to prevent the item from being drawn at
   disallowed or infeasible timeslots. In this example, the items cannot be moved
   outside of the month April 2013. The other callback functions are called after
   an add, move, update, or remove action has taken place, and can be used to
   cancel these actions.
-&lt;/p&gt;
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
-&lt;p&gt;&lt;/p&gt;
-&lt;div id="log"&gt;&lt;/div&gt;
+<div id="visualization"></div>
+<p></p>
+<div id="log"></div>
 '
       />
       <input
@@ -100,9 +100,9 @@ var options = {
   },
 
   onMoving: function (item, callback) {
-    if (item.start &lt; min) item.start = min;
-    if (item.start &gt; max) item.start = max;
-    if (item.end &gt; max) item.end = max;
+    if (item.start < min) item.start = min;
+    if (item.start > max) item.start = max;
+    if (item.end > max) item.end = max;
 
     callback(item); // send back the (possibly) changed item
   },

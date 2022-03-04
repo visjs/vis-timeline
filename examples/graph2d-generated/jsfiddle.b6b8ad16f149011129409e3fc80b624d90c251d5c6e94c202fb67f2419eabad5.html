@@ -22,182 +22,182 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;h2&gt;Graph2d | Dynamic Styling Example&lt;/h2&gt;
+        value='<h2>Graph2d | Dynamic Styling Example</h2>
 
-&lt;div style="width: 800px; font-size: 14px; text-align: justify"&gt;
+<div style="width: 800px; font-size: 14px; text-align: justify">
   This example shows how to programmatically change the styling of a group.
   While this can also be done in CSS, this must be statically defined, and the
   programmatic interface allows the user to define the look of the graph at
   runtime.
-&lt;/div&gt;
-&lt;br /&gt;
+</div>
+<br />
 
-&lt;table&gt;
-  &lt;colgroup&gt;
-    &lt;col width="600" /&gt;
-    &lt;col width="220" /&gt;
-  &lt;/colgroup&gt;
-  &lt;tbody&gt;
-    &lt;tr&gt;
-      &lt;td style="padding-right: 20px; border-right: 1px solid"&gt;
-        &lt;div id="visualization"&gt;&lt;/div&gt;
-      &lt;/td&gt;
-      &lt;td style="padding-left: 5px"&gt;
-        &lt;table style="font-size: 12px"&gt;
-          &lt;colgroup&gt;
-            &lt;col width="150" /&gt;
-            &lt;col width="50" /&gt;
-          &lt;/colgroup&gt;
-          &lt;tbody&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Line Color&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="color" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke:green;"&gt;green&lt;/option&gt;
-                  &lt;option value="stroke:red;"&gt;red&lt;/option&gt;
-                  &lt;option value="stroke:blue;" selected="selected"&gt;blue&lt;/option&gt;
-                  &lt;option value="stroke:black;"&gt;black&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Line Style&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="line" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke-dasharray:1 0;" selected="selected"&gt;
+<table>
+  <colgroup>
+    <col width="600" />
+    <col width="220" />
+  </colgroup>
+  <tbody>
+    <tr>
+      <td style="padding-right: 20px; border-right: 1px solid">
+        <div id="visualization"></div>
+      </td>
+      <td style="padding-left: 5px">
+        <table style="font-size: 12px">
+          <colgroup>
+            <col width="150" />
+            <col width="50" />
+          </colgroup>
+          <tbody>
+            <tr>
+              <td>Line Color</td>
+              <td>
+                <select id="color" onchange="updateStyle()">
+                  <option value="stroke:green;">green</option>
+                  <option value="stroke:red;">red</option>
+                  <option value="stroke:blue;" selected="selected">blue</option>
+                  <option value="stroke:black;">black</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Line Style</td>
+              <td>
+                <select id="line" onchange="updateStyle()">
+                  <option value="stroke-dasharray:1 0;" selected="selected">
                     line
-                  &lt;/option&gt;
-                  &lt;option value="stroke-dasharray:10 10;"&gt;dash&lt;/option&gt;
-                  &lt;option value="stroke-dasharray:2 2;"&gt;dot&lt;/option&gt;
-                  &lt;option value="stroke-dasharray:10 5 2 5;"&gt;dash-dot&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Line thickness&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="thickness" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke-width:0;"&gt;0&lt;/option&gt;
-                  &lt;option value="stroke-width:1;"&gt;1&lt;/option&gt;
-                  &lt;option value="stroke-width:2;" selected="selected"&gt;2&lt;/option&gt;
-                  &lt;option value="stroke-width:3;"&gt;3&lt;/option&gt;
-                  &lt;option value="stroke-width:4;"&gt;4&lt;/option&gt;
-                  &lt;option value="stroke-width:5;"&gt;5&lt;/option&gt;
-                  &lt;option value="stroke-width:6;"&gt;6&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Fill Position&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="fill" onchange="updateStyle()"&gt;
-                  &lt;option value&gt;none&lt;/option&gt;
-                  &lt;option value="top"&gt;top&lt;/option&gt;
-                  &lt;option value="bottom"&gt;bottom&lt;/option&gt;
-                  &lt;option value="zero" selected="selected"&gt;zero&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Fill Color&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="fillcolor" onchange="updateStyle()"&gt;
-                  &lt;option value="fill:green;"&gt;green&lt;/option&gt;
-                  &lt;option value="fill:red;"&gt;red&lt;/option&gt;
-                  &lt;option value="fill:blue;" selected="selected"&gt;blue&lt;/option&gt;
-                  &lt;option value="fill:black;"&gt;black&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Fill Opacity&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="fillopacity" onchange="updateStyle()"&gt;
-                  &lt;option value="fill-opacity:0.1;"&gt;0.1&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.2;"&gt;0.2&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.3;"&gt;0.3&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.4;"&gt;0.4&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.5;"&gt;0.5&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.6;" selected="selected"&gt;
+                  </option>
+                  <option value="stroke-dasharray:10 10;">dash</option>
+                  <option value="stroke-dasharray:2 2;">dot</option>
+                  <option value="stroke-dasharray:10 5 2 5;">dash-dot</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Line thickness</td>
+              <td>
+                <select id="thickness" onchange="updateStyle()">
+                  <option value="stroke-width:0;">0</option>
+                  <option value="stroke-width:1;">1</option>
+                  <option value="stroke-width:2;" selected="selected">2</option>
+                  <option value="stroke-width:3;">3</option>
+                  <option value="stroke-width:4;">4</option>
+                  <option value="stroke-width:5;">5</option>
+                  <option value="stroke-width:6;">6</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Fill Position</td>
+              <td>
+                <select id="fill" onchange="updateStyle()">
+                  <option value="">none</option>
+                  <option value="top">top</option>
+                  <option value="bottom">bottom</option>
+                  <option value="zero" selected="selected">zero</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Fill Color</td>
+              <td>
+                <select id="fillcolor" onchange="updateStyle()">
+                  <option value="fill:green;">green</option>
+                  <option value="fill:red;">red</option>
+                  <option value="fill:blue;" selected="selected">blue</option>
+                  <option value="fill:black;">black</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Fill Opacity</td>
+              <td>
+                <select id="fillopacity" onchange="updateStyle()">
+                  <option value="fill-opacity:0.1;">0.1</option>
+                  <option value="fill-opacity:0.2;">0.2</option>
+                  <option value="fill-opacity:0.3;">0.3</option>
+                  <option value="fill-opacity:0.4;">0.4</option>
+                  <option value="fill-opacity:0.5;">0.5</option>
+                  <option value="fill-opacity:0.6;" selected="selected">
                     0.6
-                  &lt;/option&gt;
-                  &lt;option value="fill-opacity:0.7;"&gt;0.7&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.8;"&gt;0.8&lt;/option&gt;
-                  &lt;option value="fill-opacity:0.9;"&gt;0.9&lt;/option&gt;
-                  &lt;option value="fill-opacity:1;"&gt;1&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Points Shape&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="points" onchange="updateStyle()"&gt;
-                  &lt;option value&gt;none&lt;/option&gt;
-                  &lt;option value="circle"&gt;circle&lt;/option&gt;
-                  &lt;option value="square" selected="selected"&gt;square&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Points Size&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="pointsize" onchange="updateStyle()"&gt;
-                  &lt;option value="1"&gt;1&lt;/option&gt;
-                  &lt;option value="2"&gt;2&lt;/option&gt;
-                  &lt;option value="3"&gt;3&lt;/option&gt;
-                  &lt;option value="4"&gt;4&lt;/option&gt;
-                  &lt;option value="5"&gt;5&lt;/option&gt;
-                  &lt;option value="6" selected="selected"&gt;6&lt;/option&gt;
-                  &lt;option value="8"&gt;8&lt;/option&gt;
-                  &lt;option value="10"&gt;10&lt;/option&gt;
-                  &lt;option value="15"&gt;15&lt;/option&gt;
-                  &lt;option value="20"&gt;20&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Points Color&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="pointcolor" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke:green;"&gt;green&lt;/option&gt;
-                  &lt;option value="stroke:red;"&gt;red&lt;/option&gt;
-                  &lt;option value="stroke:blue;" selected="selected"&gt;blue&lt;/option&gt;
-                  &lt;option value="stroke:black;"&gt;black&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Point Line Thickness&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="pointthickness" onchange="updateStyle()"&gt;
-                  &lt;option value="stroke-width:0;"&gt;0&lt;/option&gt;
-                  &lt;option value="stroke-width:1;"&gt;1&lt;/option&gt;
-                  &lt;option value="stroke-width:2;" selected="selected"&gt;2&lt;/option&gt;
-                  &lt;option value="stroke-width:3;"&gt;3&lt;/option&gt;
-                  &lt;option value="stroke-width:4;"&gt;4&lt;/option&gt;
-                  &lt;option value="stroke-width:5;"&gt;5&lt;/option&gt;
-                  &lt;option value="stroke-width:6;"&gt;6&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-            &lt;tr&gt;&lt;/tr&gt;
-            &lt;tr&gt;
-              &lt;td&gt;Points Fill Color&lt;/td&gt;
-              &lt;td&gt;
-                &lt;select id="pointfill" onchange="updateStyle()"&gt;
-                  &lt;option value="fill:green;"&gt;green&lt;/option&gt;
-                  &lt;option value="fill:red;"&gt;red&lt;/option&gt;
-                  &lt;option value="fill:blue;" selected="selected"&gt;blue&lt;/option&gt;
-                  &lt;option value="fill:black;"&gt;black&lt;/option&gt;
-                &lt;/select&gt;
-              &lt;/td&gt;
-            &lt;/tr&gt;
-          &lt;/tbody&gt;
-        &lt;/table&gt;
-      &lt;/td&gt;
-    &lt;/tr&gt;
-  &lt;/tbody&gt;
-&lt;/table&gt;
+                  </option>
+                  <option value="fill-opacity:0.7;">0.7</option>
+                  <option value="fill-opacity:0.8;">0.8</option>
+                  <option value="fill-opacity:0.9;">0.9</option>
+                  <option value="fill-opacity:1;">1</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Points Shape</td>
+              <td>
+                <select id="points" onchange="updateStyle()">
+                  <option value="">none</option>
+                  <option value="circle">circle</option>
+                  <option value="square" selected="selected">square</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Points Size</td>
+              <td>
+                <select id="pointsize" onchange="updateStyle()">
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6" selected="selected">6</option>
+                  <option value="8">8</option>
+                  <option value="10">10</option>
+                  <option value="15">15</option>
+                  <option value="20">20</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Points Color</td>
+              <td>
+                <select id="pointcolor" onchange="updateStyle()">
+                  <option value="stroke:green;">green</option>
+                  <option value="stroke:red;">red</option>
+                  <option value="stroke:blue;" selected="selected">blue</option>
+                  <option value="stroke:black;">black</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td>Point Line Thickness</td>
+              <td>
+                <select id="pointthickness" onchange="updateStyle()">
+                  <option value="stroke-width:0;">0</option>
+                  <option value="stroke-width:1;">1</option>
+                  <option value="stroke-width:2;" selected="selected">2</option>
+                  <option value="stroke-width:3;">3</option>
+                  <option value="stroke-width:4;">4</option>
+                  <option value="stroke-width:5;">5</option>
+                  <option value="stroke-width:6;">6</option>
+                </select>
+              </td>
+            </tr>
+            <tr></tr>
+            <tr>
+              <td>Points Fill Color</td>
+              <td>
+                <select id="pointfill" onchange="updateStyle()">
+                  <option value="fill:green;">green</option>
+                  <option value="fill:red;">red</option>
+                  <option value="fill:blue;" selected="selected">blue</option>
+                  <option value="fill:black;">black</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </td>
+    </tr>
+  </tbody>
+</table>
 '
       />
       <input
@@ -251,15 +251,12 @@ function updateStyle() {
   groupData.options.drawPoints = {};
   groupData.options.drawPoints.styles = "";
   groupData.options.drawPoints.style = document.getElementById("points").value;
-  groupData.options.drawPoints.styles += document.getElementById(
-    "pointcolor"
-  ).value;
-  groupData.options.drawPoints.styles += document.getElementById(
-    "pointthickness"
-  ).value;
-  groupData.options.drawPoints.styles += document.getElementById(
-    "pointfill"
-  ).value;
+  groupData.options.drawPoints.styles +=
+    document.getElementById("pointcolor").value;
+  groupData.options.drawPoints.styles +=
+    document.getElementById("pointthickness").value;
+  groupData.options.drawPoints.styles +=
+    document.getElementById("pointfill").value;
   groupData.options.drawPoints.size = Number(
     document.getElementById("pointsize").value
   );
@@ -270,9 +267,8 @@ function updateStyle() {
   groupData.options.shaded = {};
   groupData.options.shaded.style = "";
   groupData.options.shaded.style += document.getElementById("fillcolor").value;
-  groupData.options.shaded.style += document.getElementById(
-    "fillopacity"
-  ).value;
+  groupData.options.shaded.style +=
+    document.getElementById("fillopacity").value;
   groupData.options.shaded.orientation = document.getElementById("fill").value;
   if (groupData.options.shaded.orientation == "") {
     groupData.options.shaded = false;

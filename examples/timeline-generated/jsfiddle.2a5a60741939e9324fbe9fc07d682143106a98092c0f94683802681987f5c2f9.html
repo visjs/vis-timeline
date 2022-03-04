@@ -10,13 +10,13 @@
       method="post"
       target="_self"
     >
-      <input type="hidden" name="css" value />
+      <input type="hidden" name="css" value="" />
       <input
         type="hidden"
         name="html"
-        value='&lt;div id="root"&gt;&lt;/div&gt;
+        value='<div id="root"></div>
 
-&lt;!--
+<!--
     For ease of use, we are including the React, ReactDOM and Babel CDN
     builds to make getting started as fast as possible.
     
@@ -24,18 +24,18 @@
     like Gulp, Grunt or WebPack (my personal recommendation) 
     to compile JSX into JavaScript. Also, check out:
     https://facebook.github.io/react/docs/tooling-integration.html
-    --&gt;
+    -->
 
-&lt;link
+<link
   href="../../../styles/vis-timeline-graph2d.css"
   rel="stylesheet"
   type="text/css"
-/&gt;
+/>
 
-&lt;!--
+<!--
     This is where you link to your React code. Can be .js or .jsx 
     extension, doesn&apos;t really matter.
-    --&gt;
+    -->
 '
       />
       <input
@@ -44,7 +44,7 @@
         value='// create groups
 var numberOfGroups = 25;
 var groups = new vis.DataSet();
-for (var i = 0; i &lt; numberOfGroups; i++) {
+for (var i = 0; i < numberOfGroups; i++) {
   groups.add({
     id: i,
     content: "Truck " + i,
@@ -55,10 +55,10 @@ for (var i = 0; i &lt; numberOfGroups; i++) {
 var numberOfItems = 1000;
 var items = new vis.DataSet();
 var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
-for (var truck = 0; truck &lt; numberOfGroups; truck++) {
+for (var truck = 0; truck < numberOfGroups; truck++) {
   var date = new Date();
-  for (var order = 0; order &lt; itemsPerGroup; order++) {
-    date.setHours(date.getHours() + 4 * (Math.random() &lt; 0.2));
+  for (var order = 0; order < itemsPerGroup; order++) {
+    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
     var start = new Date(date);
     date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
     var end = new Date(date);
@@ -76,9 +76,9 @@ var GroupTemplate = React.createClass({
   render: function () {
     var { group } = this.props;
     return (
-      &lt;div&gt;
-        &lt;label&gt;{group.content}&lt;/label&gt;
-      &lt;/div&gt;
+      <div>
+        <label>{group.content}</label>
+      </div>
     );
   },
 });
@@ -87,9 +87,9 @@ var ItemTemplate = React.createClass({
   render: function () {
     var { item } = this.props;
     return (
-      &lt;div&gt;
-        &lt;label&gt;{item.content}&lt;/label&gt;
-      &lt;/div&gt;
+      <div>
+        <label>{item.content}</label>
+      </div>
     );
   },
 });
@@ -106,14 +106,14 @@ var options = {
       return;
     }
     ReactDOM.unmountComponentAtNode(element);
-    return ReactDOM.render(&lt;ItemTemplate item={item} /&gt;, element);
+    return ReactDOM.render(<ItemTemplate item={item} />, element);
   },
   groupTemplate: function (group, element) {
     if (!group) {
       return;
     }
     ReactDOM.unmountComponentAtNode(element);
-    return ReactDOM.render(&lt;GroupTemplate group={group} /&gt;, element);
+    return ReactDOM.render(<GroupTemplate group={group} />, element);
   },
 };
 
@@ -123,12 +123,12 @@ var Timeline = React.createClass({
   },
   render: function () {
     return (
-      &lt;div&gt;
-        &lt;h1&gt;timline with React&lt;/h1&gt;
-        &lt;h2&gt;Using react components for items and group templates&lt;/h2&gt;
+      <div>
+        <h1>timline with React</h1>
+        <h2>Using react components for items and group templates</h2>
 
-        &lt;div id="visualization"&gt;&lt;/div&gt;
-      &lt;/div&gt;
+        <div id="visualization"></div>
+      </div>
     );
   },
 });
@@ -138,7 +138,7 @@ function initTimeline() {
   timeline = new vis.Timeline(container, items, groups, options);
 }
 
-ReactDOM.render(&lt;Timeline /&gt;, document.getElementById("root"));
+ReactDOM.render(<Timeline />, document.getElementById("root"));
 '
       />
       <input

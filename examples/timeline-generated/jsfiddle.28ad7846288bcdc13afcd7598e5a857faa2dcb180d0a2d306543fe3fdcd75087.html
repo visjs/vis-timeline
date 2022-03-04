@@ -23,16 +23,13 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
-  This example demonstrates the item type &amp;quot;background&amp;quot; when using
-  groups.
-&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;Background items having a group are displayed in that group&lt;/li&gt;
-  &lt;li&gt;Background items without a group are spread over the whole timeline&lt;/li&gt;
-  &lt;li&gt;Background items with a non-existing group are not displayed&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<p>This example demonstrates the item type "background" when using groups.</p>
+<ul>
+  <li>Background items having a group are displayed in that group</li>
+  <li>Background items without a group are spread over the whole timeline</li>
+  <li>Background items with a non-existing group are not displayed</li>
+</ul>
+<div id="visualization"></div>
 '
       />
       <input
@@ -70,7 +67,7 @@ html {
     type: "background",
     group: "non-existing",
   },
-  { id: 1, content: "item 1&lt;br&gt;start", start: "2014-01-30", group: 1 },
+  { id: 1, content: "item 1<br>start", start: "2014-01-30", group: 1 },
   { id: 2, content: "item 2", start: "2014-01-18", group: 1 },
   { id: 3, content: "item 3", start: "2014-01-21", group: 2 },
   {

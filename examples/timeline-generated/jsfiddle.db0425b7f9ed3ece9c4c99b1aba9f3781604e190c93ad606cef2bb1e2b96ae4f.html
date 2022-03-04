@@ -47,53 +47,53 @@ table .description {
       <input
         type="hidden"
         name="html"
-        value='&lt;h1&gt;WK 2014&lt;/h1&gt;
-&lt;p style="max-width: 600px"&gt;
+        value='<h1>WK 2014</h1>
+<p style="max-width: 600px">
   This example demonstrates using templates to format item contents. In this
-  case &lt;a href="https://handlebarsjs.com"&gt;handlebars&lt;/a&gt; is used as template
+  case <a href="https://handlebarsjs.com">handlebars</a> is used as template
   engine, but you can just use your favorite template engine or manually craft
   HTML from the data of an item.
-&lt;/p&gt;
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
         type="hidden"
         name="js"
-        value='&lt;table class="score"&gt;
-  &lt;tr&gt;
-    &lt;td colspan="3" class="description"&gt;
+        value='<table class="score">
+  <tr>
+    <td colspan="3" class="description">
       {{ description }}
-    &lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;{{ player1 }}&lt;/td&gt;
-    &lt;th&gt;
+    </td>
+  </tr>
+  <tr>
+    <td>{{ player1 }}</td>
+    <th>
       {{ score1 }} - {{ score2 }}
-    &lt;/th&gt;
-    &lt;td&gt;{{ player2 }}&lt;/td&gt;
-  &lt;/tr&gt;
-  &lt;tr&gt;
-    &lt;td&gt;
-      &lt;img
+    </th>
+    <td>{{ player2 }}</td>
+  </tr>
+  <tr>
+    <td>
+      <img
         src="https://flagpedia.net/data/flags/mini/{{abbr1}}.png"
         width="31"
         height="20"
         alt="{{abbr1}}"
-      /&gt;
-    &lt;/td&gt;
-    &lt;th&gt;&lt;/th&gt;
-    &lt;td&gt;
-      &lt;img
+      />
+    </td>
+    <th></th>
+    <td>
+      <img
         src="https://flagpedia.net/data/flags/mini/{{abbr2}}.png"
         width="31"
         height="20"
         alt="{{abbr2}}"
-      /&gt;
-    &lt;/td&gt;
-  &lt;/tr&gt;
-&lt;/table&gt;;
+      />
+    </td>
+  </tr>
+</table>;
 
 // create a handlebars template
 var source = document.getElementById("item-template").innerHTML;

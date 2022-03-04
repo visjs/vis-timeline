@@ -24,16 +24,16 @@ select {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
-  &lt;label for="locale"&gt;Select a locale:&lt;/label&gt;
-  &lt;select id="locale"&gt;
-    &lt;option value="tr" selected&gt;tr&lt;/option&gt;
-    &lt;option value="sq"&gt;hy&lt;/option&gt;
-    &lt;option value="ar"&gt;ar&lt;/option&gt;
-  &lt;/select&gt;
-&lt;/p&gt;
+        value='<p>
+  <label for="locale">Select a locale:</label>
+  <select id="locale">
+    <option value="tr" selected="">tr</option>
+    <option value="sq">hy</option>
+    <option value="ar">ar</option>
+  </select>
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -56,16 +56,16 @@ var options = {
   locale: "tr",
   locales: {
     tr: {
-      current: "ge&#xE7;erli",
+      current: "geçerli",
       time: "kere",
     },
     sq: {
-      current: "&#x568;&#x576;&#x569;&#x561;&#x581;&#x56B;&#x56F;",
-      time: "&#x56A;&#x561;&#x574;",
+      current: "ընթացիկ",
+      time: "ժամ",
     },
     ar: {
-      current: "&#x62D;&#x627;&#x644;&#x64A;",
-      time: "&#x648;&#x642;&#x62A;",
+      current: "حالي",
+      time: "وقت",
     },
   },
 };

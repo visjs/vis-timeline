@@ -29,8 +29,8 @@ span.large {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;Load HTML contents in the Timeline in various ways.&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+        value='<p>Load HTML contents in the Timeline in various ways.</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -42,7 +42,7 @@ var item1 = document.createElement("div");
 item1.appendChild(document.createTextNode("item 1"));
 
 var item2 = document.createElement("div");
-item2.innerHTML = "&lt;span&gt;item 2&lt;/span&gt;";
+item2.innerHTML = "<span>item 2</span>";
 
 var item3 = document.createElement("div");
 var span3 = document.createElement("span");
@@ -50,7 +50,7 @@ span3.className = "large";
 span3.appendChild(document.createTextNode("item 3"));
 item3.appendChild(span3);
 
-var item4 = &apos;item &lt;span class="large"&gt;4&lt;/span&gt;&apos;;
+var item4 = &apos;item <span class="large">4</span>&apos;;
 
 var item5 = document.createElement("div");
 item5.appendChild(document.createTextNode("item 5"));
@@ -62,10 +62,10 @@ img5.style.height = "48px";
 item5.appendChild(img5);
 
 var item6 =
-  &apos;item6&lt;br&gt;&lt;img src="../resources/img/comments-icon.png" style="width: 48px; height: 48px;"&gt;&apos;;
+  &apos;item6<br><img src="../resources/img/comments-icon.png" style="width: 48px; height: 48px;">&apos;;
 
 var item7 =
-  &apos;item7&lt;br&gt;&lt;a href="https://visjs.org" target="_blank"&gt;click here&lt;/a&gt;&apos;;
+  &apos;item7<br><a href="https://visjs.org" target="_blank">click here</a>&apos;;
 
 // create data and a Timeline
 var container = document.getElementById("visualization");

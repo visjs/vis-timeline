@@ -29,12 +29,12 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   This example demonstrate nested groups that are 3 levels deep. Note that a
   DataSet is used for both items and groups, allowing to dynamically add, update
   or remove both items and groups via the DataSet.
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -192,7 +192,7 @@ groups.add(sdt[0].group3);
 var items = new vis.DataSet();
 var groupIds = groups.getIds();
 var types = ["box", "point", "range", "background"];
-for (var i = 0; i &lt; itemCount; i++) {
+for (var i = 0; i < itemCount; i++) {
   var rInt = randomIntFromInterval(1, 30);
   var start = startDay.clone().add(rInt, "days");
   var end = start.clone().add(24, "hours");

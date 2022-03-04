@@ -27,44 +27,44 @@ span.label {
       <input
         type="hidden"
         name="html"
-        value='&lt;h2&gt;Graph2d | Performance&lt;/h2&gt;
-&lt;div style="width: 700px; font-size: 14px; text-align: justify"&gt;
+        value='<h2>Graph2d | Performance</h2>
+<div style="width: 700px; font-size: 14px; text-align: justify">
   This example is a test of the performance of the Graph2d. Select the amount of
   datapoints you want to plot and press draw. You can choose between the style
   of the points as well as the interpolation method. This can only be toggled
   with the buttons. The interpolation options may not look different for this
   dataset but you can see their effects clearly in example 7.
-  &lt;br /&gt;&lt;br /&gt;
+  <br /><br />
   Linear interpolation and no points are the settings that will render quickest.
   By default, Graph2d will downsample when there are more than 1 point per
   pixel. This can be manually disabled at the cost of performance by using the
-  &lt;code&gt;sampling&lt;/code&gt; option.
-&lt;/div&gt;
-&lt;br /&gt;
-&lt;p&gt;
-  &lt;span class="label"&gt;Number of items:&lt;/span&gt;&lt;input id="count" value="50000" /&gt;
-  &lt;input id="draw" type="button" value="draw" style="width: 200px" /&gt;
-  &lt;span id="description"&gt;&lt;b&gt;Click the draw button to load the data!&lt;/b&gt;&lt;/span&gt;
-  &lt;br /&gt;
+  <code>sampling</code> option.
+</div>
+<br />
+<p>
+  <span class="label">Number of items:</span><input id="count" value="50000" />
+  <input id="draw" type="button" value="draw" style="width: 200px" />
+  <span id="description"><b>Click the draw button to load the data!</b></span>
+  <br />
 
-  &lt;span class="label"&gt;Interpolation method:&lt;/span
-  &gt;&lt;input id="interpolation" value="linear" /&gt;
-  &lt;input
+  <span class="label">Interpolation method:</span
+  ><input id="interpolation" value="linear" />
+  <input
     id="toggleInterpolation"
     type="button"
     value="toggle Interpolation"
     style="width: 200px"
-  /&gt;
-  &lt;br /&gt;
-  &lt;span class="label"&gt;Points style:&lt;/span&gt;&lt;input id="points" value="none" /&gt;
-  &lt;input
+  />
+  <br />
+  <span class="label">Points style:</span><input id="points" value="none" />
+  <input
     id="togglePoints"
     type="button"
     value="toggle Points"
     style="width: 200px"
-  /&gt;
-&lt;/p&gt;
-&lt;div id="visualization"&gt;&lt;/div&gt;
+  />
+</p>
+<div id="visualization"></div>
 '
       />
       <input
@@ -138,7 +138,7 @@ function generateData() {
   var newData = [];
   var span = document.getElementById("description");
   var start = now;
-  for (var i = 0; i &lt; count; i++) {
+  for (var i = 0; i < count; i++) {
     var yval =
       Math.sin(i / 100) * Math.cos(i / 50) * 50 + Math.sin(i / 1000) * 50;
     newData.push({ id: i, x: start + 3600000 * i, y: yval });

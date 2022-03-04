@@ -5,23 +5,6 @@
   width: auto;
 }
 
-.vis-custom-time {
-  background-color: #6E94FF;
-  width: 2px;
-  cursor: move;
-  z-index: 1;
-}
-
-.vis-custom-time > .vis-custom-time-marker {
-  background-color: inherit;
-  color: white;
-  font-size: 12px;
-  white-space: nowrap;
-  padding: 3px 5px;
-  top: 0px;
-  cursor: initial;
-  z-index: inherit;
-}
 .vis-timeline {
   /*
   -webkit-transition: height .4s ease-in-out;
@@ -289,6 +272,23 @@
   top: 0;
   left: 0;
 }
+.vis-custom-time {
+  background-color: #6E94FF;
+  width: 2px;
+  cursor: move;
+  z-index: 1;
+}
+
+.vis-custom-time > .vis-custom-time-marker {
+  background-color: inherit;
+  color: white;
+  font-size: 12px;
+  white-space: nowrap;
+  padding: 3px 5px;
+  top: 0px;
+  cursor: initial;
+  z-index: inherit;
+}
 
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
@@ -391,6 +391,229 @@
   /*font-size: 10px;*/
   white-space: nowrap;
   display: inline-block
+}
+
+.vis-labelset {
+  position: relative;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  position: relative;
+  left: 0;
+  top: 0;
+  width: 100%;
+  color: #4d4d4d;
+
+  box-sizing: border-box;
+}
+
+.vis-labelset .vis-label {
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.vis-labelset .vis-label.draggable {
+  cursor: pointer;
+}
+
+.vis-group-is-dragging {
+  background: rgba(0, 0, 0, .1);
+}
+
+.vis-labelset .vis-label:last-child {
+  border-bottom: none;
+}
+
+.vis-labelset .vis-label .vis-inner {
+  display: inline-block;
+  padding: 5px;
+}
+
+.vis-labelset .vis-label .vis-inner.vis-hidden {
+  padding: 0;
+}
+
+
+.vis-itemset {
+  position: relative;
+  padding: 0;
+  margin: 0;
+
+  box-sizing: border-box;
+}
+
+.vis-itemset .vis-background,
+.vis-itemset .vis-foreground {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.vis-axis {
+  position: absolute;
+  width: 100%;
+  height: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.vis-foreground .vis-group {
+  position: relative;
+  box-sizing: border-box;
+  border-bottom: 1px solid #bfbfbf;
+}
+
+.vis-foreground .vis-group:last-child {
+  border-bottom: none;
+}
+
+.vis-nesting-group {
+  cursor: pointer;
+}
+
+.vis-label.vis-nested-group.vis-group-level-unknown-but-gte1 {
+  background: #f5f5f5;
+}
+.vis-label.vis-nested-group.vis-group-level-0 {
+  background-color: #ffffff;
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
+  padding-left: 0;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
+  padding-right: 0;
+}
+.vis-label.vis-nested-group.vis-group-level-1 {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
+  padding-left: 15px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
+  padding-right: 15px;
+}
+.vis-label.vis-nested-group.vis-group-level-2 {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
+  padding-left: 30px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
+  padding-right: 30px;
+}
+.vis-label.vis-nested-group.vis-group-level-3 {
+  background-color: rgba(0, 0, 0, 0.15);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
+  padding-left: 45px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
+  padding-right: 45px;
+}
+.vis-label.vis-nested-group.vis-group-level-4 {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
+  padding-left: 60px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
+  padding-right: 60px;
+}
+.vis-label.vis-nested-group.vis-group-level-5 {
+  background-color: rgba(0, 0, 0, 0.25);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
+  padding-left: 75px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
+  padding-right: 75px;
+}
+.vis-label.vis-nested-group.vis-group-level-6 {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
+  padding-left: 90px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
+  padding-right: 90px;
+}
+.vis-label.vis-nested-group.vis-group-level-7 {
+  background-color: rgba(0, 0, 0, 0.35);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
+  padding-left: 105px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
+  padding-right: 105px;
+}
+.vis-label.vis-nested-group.vis-group-level-8 {
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
+  padding-left: 120px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
+  padding-right: 120px;
+}
+.vis-label.vis-nested-group.vis-group-level-9 {
+  background-color: rgba(0, 0, 0, 0.45);
+}
+.vis-ltr .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
+  padding-left: 135px;
+}
+.vis-rtl .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
+  padding-right: 135px;
+}
+/* default takes over beginning with level-10 (thats why we add .vis-nested-group
+  to the selectors above, to have higher specifity than these rules for the defaults) */
+.vis-label.vis-nested-group {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.vis-ltr .vis-label.vis-nested-group .vis-inner {
+  padding-left: 150px;
+}
+.vis-rtl .vis-label.vis-nested-group .vis-inner {
+  padding-right: 150px;
+}
+
+.vis-group-level-unknown-but-gte1 {
+  border: 1px solid red;
+}
+
+/* expanded/collapsed indicators */
+.vis-label.vis-nesting-group:before,
+.vis-label.vis-nesting-group:before {
+  display: inline-block;
+  width: 15px;
+}
+.vis-label.vis-nesting-group.expanded:before {
+  content: "\25BC";
+}
+.vis-label.vis-nesting-group.collapsed:before {
+  content: "\25B6";
+}
+.vis-rtl .vis-label.vis-nesting-group.collapsed:before {
+  content: "\25C0";
+}
+/* compensate missing expanded/collapsed indicator, but only at levels > 0 */
+.vis-ltr .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
+  padding-left: 15px;
+}
+.vis-rtl .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
+  padding-right: 15px;
+}
+
+.vis-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
 }
 .vis-time-axis {
   position: relative;
@@ -666,229 +889,6 @@
   border-style: solid;
   border-radius: 4px;
 }
-
-.vis-itemset {
-  position: relative;
-  padding: 0;
-  margin: 0;
-
-  box-sizing: border-box;
-}
-
-.vis-itemset .vis-background,
-.vis-itemset .vis-foreground {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: visible;
-}
-
-.vis-axis {
-  position: absolute;
-  width: 100%;
-  height: 0;
-  left: 0;
-  z-index: 1;
-}
-
-.vis-foreground .vis-group {
-  position: relative;
-  box-sizing: border-box;
-  border-bottom: 1px solid #bfbfbf;
-}
-
-.vis-foreground .vis-group:last-child {
-  border-bottom: none;
-}
-
-.vis-nesting-group {
-  cursor: pointer;
-}
-
-.vis-label.vis-nested-group.vis-group-level-unknown-but-gte1 {
-  background: #f5f5f5;
-}
-.vis-label.vis-nested-group.vis-group-level-0 {
-  background-color: #ffffff;
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
-  padding-left: 0;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {
-  padding-right: 0;
-}
-.vis-label.vis-nested-group.vis-group-level-1 {
-  background-color: rgba(0, 0, 0, 0.05);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
-  padding-left: 15px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {
-  padding-right: 15px;
-}
-.vis-label.vis-nested-group.vis-group-level-2 {
-  background-color: rgba(0, 0, 0, 0.1);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
-  padding-left: 30px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {
-  padding-right: 30px;
-}
-.vis-label.vis-nested-group.vis-group-level-3 {
-  background-color: rgba(0, 0, 0, 0.15);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
-  padding-left: 45px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {
-  padding-right: 45px;
-}
-.vis-label.vis-nested-group.vis-group-level-4 {
-  background-color: rgba(0, 0, 0, 0.2);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
-  padding-left: 60px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {
-  padding-right: 60px;
-}
-.vis-label.vis-nested-group.vis-group-level-5 {
-  background-color: rgba(0, 0, 0, 0.25);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
-  padding-left: 75px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {
-  padding-right: 75px;
-}
-.vis-label.vis-nested-group.vis-group-level-6 {
-  background-color: rgba(0, 0, 0, 0.3);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
-  padding-left: 90px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {
-  padding-right: 90px;
-}
-.vis-label.vis-nested-group.vis-group-level-7 {
-  background-color: rgba(0, 0, 0, 0.35);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
-  padding-left: 105px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {
-  padding-right: 105px;
-}
-.vis-label.vis-nested-group.vis-group-level-8 {
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
-  padding-left: 120px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {
-  padding-right: 120px;
-}
-.vis-label.vis-nested-group.vis-group-level-9 {
-  background-color: rgba(0, 0, 0, 0.45);
-}
-.vis-ltr .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
-  padding-left: 135px;
-}
-.vis-rtl .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {
-  padding-right: 135px;
-}
-/* default takes over beginning with level-10 (thats why we add .vis-nested-group
-  to the selectors above, to have higher specifity than these rules for the defaults) */
-.vis-label.vis-nested-group {
-  background-color: rgba(0, 0, 0, 0.5);
-}
-.vis-ltr .vis-label.vis-nested-group .vis-inner {
-  padding-left: 150px;
-}
-.vis-rtl .vis-label.vis-nested-group .vis-inner {
-  padding-right: 150px;
-}
-
-.vis-group-level-unknown-but-gte1 {
-  border: 1px solid red;
-}
-
-/* expanded/collapsed indicators */
-.vis-label.vis-nesting-group:before,
-.vis-label.vis-nesting-group:before {
-  display: inline-block;
-  width: 15px;
-}
-.vis-label.vis-nesting-group.expanded:before {
-  content: "\25BC";
-}
-.vis-label.vis-nesting-group.collapsed:before {
-  content: "\25B6";
-}
-.vis-rtl .vis-label.vis-nesting-group.collapsed:before {
-  content: "\25C0";
-}
-/* compensate missing expanded/collapsed indicator, but only at levels > 0 */
-.vis-ltr .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
-  padding-left: 15px;
-}
-.vis-rtl .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {
-  padding-right: 15px;
-}
-
-.vis-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 10;
-}
-
-.vis-labelset {
-  position: relative;
-
-  overflow: hidden;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  position: relative;
-  left: 0;
-  top: 0;
-  width: 100%;
-  color: #4d4d4d;
-
-  box-sizing: border-box;
-}
-
-.vis-labelset .vis-label {
-  border-bottom: 1px solid #bfbfbf;
-}
-
-.vis-labelset .vis-label.draggable {
-  cursor: pointer;
-}
-
-.vis-group-is-dragging {
-  background: rgba(0, 0, 0, .1);
-}
-
-.vis-labelset .vis-label:last-child {
-  border-bottom: none;
-}
-
-.vis-labelset .vis-label .vis-inner {
-  display: inline-block;
-  padding: 5px;
-}
-
-.vis-labelset .vis-label .vis-inner.vis-hidden {
-  padding: 0;
-}
-
 div.vis-configuration {
     position:relative;
     display:block;

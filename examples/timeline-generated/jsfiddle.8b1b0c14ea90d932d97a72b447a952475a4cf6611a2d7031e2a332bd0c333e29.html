@@ -27,38 +27,37 @@ html {
       <input
         type="hidden"
         name="html"
-        value='&lt;p&gt;
+        value='<p>
   To set a locale for the timeline, specify the option
-  &lt;code&gt;{locale: STRING}&lt;/code&gt;.
-&lt;/p&gt;
-&lt;p&gt;
+  <code>{locale: STRING}</code>.
+</p>
+<p>
   To set the scale to use week numbers, use the following options:
-  &lt;code&gt;
-    { timeAxis: { scale: &amp;apos;week&amp;apos;, step: 1 }, format: { minorLabels:
-    {week: &amp;apos;w&amp;apos;} } }
-  &lt;/code&gt;
-&lt;/p&gt;
+  <code>
+    { timeAxis: { scale: &apos;week&apos;, step: 1 }, format: { minorLabels: {week: &apos;w&apos;} }
+    }
+  </code>
+</p>
 
-&lt;p&gt;
-  The following timeline is initialized with the &amp;apos;de&amp;apos; locale and items
-  are added with locally localized moment.js objects. The timeline locale can be
-  switched to another locale at runtime. If you choose the &amp;apos;en&amp;apos;
-  locale, the week numbers will be calculated according to the US week calendar
-  numbering scheme.
-&lt;/p&gt;
+<p>
+  The following timeline is initialized with the &apos;de&apos; locale and items are added
+  with locally localized moment.js objects. The timeline locale can be switched
+  to another locale at runtime. If you choose the &apos;en&apos; locale, the week numbers
+  will be calculated according to the US week calendar numbering scheme.
+</p>
 
-&lt;p&gt;
-  &lt;label for="locale"&gt;Select a locale:&lt;/label&gt;
-  &lt;select id="locale"&gt;
-    &lt;option value="en"&gt;en&lt;/option&gt;
-    &lt;option value="fr"&gt;fr&lt;/option&gt;
-    &lt;option value="it"&gt;it&lt;/option&gt;
-    &lt;option value="nl"&gt;nl&lt;/option&gt;
-    &lt;option value="de" selected&gt;de&lt;/option&gt;
-  &lt;/select&gt;
-&lt;/p&gt;
+<p>
+  <label for="locale">Select a locale:</label>
+  <select id="locale">
+    <option value="en">en</option>
+    <option value="fr">fr</option>
+    <option value="it">it</option>
+    <option value="nl">nl</option>
+    <option value="de" selected="">de</option>
+  </select>
+</p>
 
-&lt;div id="visualization"&gt;&lt;/div&gt;
+<div id="visualization"></div>
 '
       />
       <input
@@ -91,7 +90,7 @@ var USdate = moment()
 USdate.weekday(0);
 
 // Iterate and just add a week to use it again in the next iteration
-for (var i = 0; i &lt; itemCount; i++) {
+for (var i = 0; i < itemCount; i++) {
   var USweekNumber = USdate.format("w");
   var USweekStart = USdate.format();
   var USweekEnd = USdate.add(1, "week").format();
@@ -112,7 +111,7 @@ var DEdate = moment()
   .seconds(0)
   .milliseconds(0);
 DEdate.weekday(0);
-for (var j = 0; j &lt; itemCount; j++) {
+for (var j = 0; j < itemCount; j++) {
   var DEweekNumber = DEdate.format("w");
   var DEweekStart = DEdate.format();
   var DEweekEnd = DEdate.add(1, "week").format();
