@@ -70,7 +70,7 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-object-rest-spread": "7.17.3",
-    "@babel/runtime": "7.16.3",
+    "@babel/runtime": "7.17.2",
     "@commitlint/cli": "12.1.4",
     "@commitlint/config-conventional": "12.1.4",
     "@egjs/hammerjs": "2.0.17",
