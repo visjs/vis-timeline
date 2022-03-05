@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-03-04T17:01:41.655Z
+ * @date    2022-03-05T00:00:18.348Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -12777,7 +12777,7 @@ function bindFn(fn, context) {
  */
 
 
-var Hammer$2 = /*#__PURE__*/function () {
+var Hammer$3 = /*#__PURE__*/function () {
   var Hammer =
   /**
     * @private
@@ -12853,7 +12853,7 @@ var Hammer$2 = /*#__PURE__*/function () {
   });
   return Hammer;
 }(); //  style loader but by script tag, not by the loader.
-var Hammer$3 = Hammer$2;
+var Hammer$4 = Hammer$3;
 
 function ownKeys$2(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -12874,7 +12874,6 @@ var DELETE = symbol("DELETE");
  *
  * @param base - The base object that fullfils the whole interface T.
  * @param updates - Updates that may change or delete props.
- *
  * @returns A brand new instance with all the supplied objects deeply merged.
  */
 
@@ -12892,7 +12891,6 @@ function pureDeepObjectAssign(base) {
  * Deep version of object assign with additional deleting by the DELETE symbol.
  *
  * @param values - Objects to be deeply merged.
- *
  * @returns The first object from values.
  */
 
@@ -12907,9 +12905,7 @@ function deepObjectAssign() {
  *
  * @remarks
  * This doesn't strip the DELETE symbols so they may end up in the final object.
- *
  * @param values - Objects to be deeply merged.
- *
  * @returns The first object from values.
  */
 
@@ -12956,7 +12952,6 @@ function deepObjectAssignNonentry() {
  * Deep clone given object or array. In case of primitive simply return.
  *
  * @param a - Anything.
- *
  * @returns Deep cloned object/array or unchanged a.
  */
 
@@ -13004,7 +12999,6 @@ function stripDelete(a) {
  *
  * @param seed - All supplied arguments will be used as a seed. In case nothing
  * is supplied the current time will be used to seed the generator.
- *
  * @returns A ready to use seeded generator.
  */
 
@@ -13020,7 +13014,6 @@ function Alea() {
  * An implementation of [[Alea]] without user input validation.
  *
  * @param seed - The data that will be used to seed the generator.
- *
  * @returns A ready to use seeded generator.
  */
 
@@ -13062,7 +13055,6 @@ function AleaImplementation(seed) {
  * random numbers.
  *
  * @param seed - Arbitrary data that will be used as the seed.
- *
  * @returns Three numbers to use as initial values for [[AleaImplementation]].
  */
 
@@ -13147,7 +13139,7 @@ function hammerMock$1() {
   };
 }
 
-var Hammer$1 = typeof window !== "undefined" ? window.Hammer || Hammer$3 : function () {
+var Hammer$1 = typeof window !== "undefined" ? window.Hammer || Hammer$4 : function () {
   // hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
   return hammerMock$1();
 };
@@ -13342,7 +13334,6 @@ var rgbaRE = /^rgba\( *(1?\d{1,2}|2[0-4]\d|25[0-5]) *, *(1?\d{1,2}|2[0-4]\d|25[0
  * Test whether given object is a number.
  *
  * @param value - Input value of unknown type.
- *
  * @returns True if number, false otherwise.
  */
 
@@ -13372,7 +13363,6 @@ function recursiveDOMDelete(DOMobject) {
  * Test whether given object is a string.
  *
  * @param value - Input value of unknown type.
- *
  * @returns True if string, false otherwise.
  */
 
@@ -13384,7 +13374,6 @@ function isString(value) {
  * Test whether given object is a object (not primitive or null).
  *
  * @param value - Input value of unknown type.
- *
  * @returns True if not null object, false otherwise.
  */
 
@@ -13396,7 +13385,6 @@ function isObject(value) {
  * Test whether given object is a Date, or a String containing a Date.
  *
  * @param value - Input value of unknown type.
- *
  * @returns True if Date instance or string date representation, false otherwise.
  */
 
@@ -13482,7 +13470,6 @@ function fillIfDefined(a, b) {
  *
  * @param target - The target object to copy to.
  * @param source - The source object from which to copy properties.
- *
  * @returns The target object.
  */
 
@@ -13493,11 +13480,9 @@ var extend = assign$2;
  *
  * @remarks
  * Only properties with defined values are copied.
- *
  * @param props - Properties to be copied to a.
  * @param a - The target.
  * @param others - The sources.
- *
  * @returns Argument a.
  */
 
@@ -13532,12 +13517,10 @@ function selectiveExtend(props, a) {
  * Previous version of this routine implied that multiple source objects could
  * be used; however, the implementation was **wrong**. Since multiple (\>1)
  * sources weren't used anywhere in the `vis.js` code, this has been removed
- *
  * @param props - Names of first-level properties to copy over.
  * @param a - Target object.
  * @param b - Source object.
  * @param allowDeletion - If true, delete property in a if explicitly set to null in b.
- *
  * @returns Argument a.
  */
 
@@ -13582,13 +13565,11 @@ function selectiveDeepExtend(props, a, b) {
  * The properties of `b` are considered for copying. Properties which are
  * themselves objects are are also extended. Only properties with defined
  * values are copied.
- *
  * @param propsToExclude - Names of properties which should *not* be copied.
  * @param a - Object to extend.
  * @param b - Object to take properties from for extension.
  * @param allowDeletion - If true, delete properties in a that are explicitly
  * set to null in b.
- *
  * @returns Argument a.
  */
 
@@ -13645,7 +13626,6 @@ function selectiveNotDeepExtend(propsToExclude, a, b) {
  * (That is the options objects that inherit from others will also get the
  * inherited options).
  * @param allowDeletion - If true, the values of fields that are null will be deleted.
- *
  * @returns Argument a.
  */
 
@@ -13681,7 +13661,6 @@ function deepExtend(a, b) {
  *
  * @param a - First array.
  * @param b - Second array.
- *
  * @returns True if both arrays have the same length and same elements (1 = '1').
  */
 
@@ -13703,7 +13682,6 @@ function equalArray(a, b) {
  * Get the type of an object, for example exports.getType([]) returns 'Array'.
  *
  * @param object - Input value of unknown type.
- *
  * @returns Detected type.
  */
 
@@ -13762,7 +13740,6 @@ function getType(object) {
  *
  * @param arr - First part.
  * @param newValue - The value to be aadded into the array.
- *
  * @returns A new array with all items from arr and newValue (which is last).
  */
 
@@ -13776,7 +13753,6 @@ function copyAndExtendArray(arr, newValue) {
  * Used to extend an array and copy it. This is used to propagate paths recursively.
  *
  * @param arr - The array to be copied.
- *
  * @returns Shallow copy of arr.
  */
 
@@ -13788,7 +13764,6 @@ function copyArray(arr) {
  * Retrieve the absolute left value of a DOM element.
  *
  * @param elem - A dom element, for example a div.
- *
  * @returns The absolute left position of this element in the browser page.
  */
 
@@ -13800,7 +13775,6 @@ function getAbsoluteLeft(elem) {
  * Retrieve the absolute right value of a DOM element.
  *
  * @param elem - A dom element, for example a div.
- *
  * @returns The absolute right position of this element in the browser page.
  */
 
@@ -13812,7 +13786,6 @@ function getAbsoluteRight(elem) {
  * Retrieve the absolute top value of a DOM element.
  *
  * @param elem - A dom element, for example a div.
- *
  * @returns The absolute top position of this element in the browser page.
  */
 
@@ -13883,7 +13856,6 @@ function forEach$1(object, callback) {
  * Convert an object into an array: all objects properties are put into the array. The resulting array is unordered.
  *
  * @param o - Object that contains the properties and methods.
- *
  * @returns An array of unordered values.
  */
 
@@ -13895,7 +13867,6 @@ var toArray = values$4;
  * @param object - The object whose property will be updated.
  * @param key - Name of the property to be updated.
  * @param value - The new value to be assigned.
- *
  * @returns Whether the value was updated (true) or already strictly the same in the original object (false).
  */
 
@@ -13911,7 +13882,6 @@ function updateProperty(object, key, value) {
  * Throttle the given function to be only executed once per animation frame.
  *
  * @param fn - The original function.
- *
  * @returns The throttled function.
  */
 
@@ -14008,7 +13978,6 @@ function preventDefault(event) {
  * Get HTML element which is the target of the event.
  *
  * @param event - The event.
- *
  * @returns The element or null if not obtainable.
  */
 
@@ -14044,7 +14013,6 @@ function getTarget() {
  *
  * @param element - The element to be tested.
  * @param parent - The ancestor (not necessarily parent) of the element.
- *
  * @returns True if parent is an ancestor of the element, false otherwise.
  */
 
@@ -14071,7 +14039,6 @@ var option = {
    *
    * @param value - Value to be converted intoboolean, a function will be executed as `(() => unknown)`.
    * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-   *
    * @returns Corresponding boolean value, if none then the default value, if none then null.
    */
   asBoolean: function asBoolean(value, defaultValue) {
@@ -14091,7 +14058,6 @@ var option = {
    *
    * @param value - Value to be converted intonumber, a function will be executed as `(() => unknown)`.
    * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-   *
    * @returns Corresponding **boxed** number value, if none then the default value, if none then null.
    */
   asNumber: function asNumber(value, defaultValue) {
@@ -14111,7 +14077,6 @@ var option = {
    *
    * @param value - Value to be converted intostring, a function will be executed as `(() => unknown)`.
    * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-   *
    * @returns Corresponding **boxed** string value, if none then the default value, if none then null.
    */
   asString: function asString(value, defaultValue) {
@@ -14131,7 +14096,6 @@ var option = {
    *
    * @param value - Value to be converted intosize, a function will be executed as `(() => unknown)`.
    * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-   *
    * @returns Corresponding string value (number + 'px'), if none then the default value, if none then null.
    */
   asSize: function asSize(value, defaultValue) {
@@ -14153,7 +14117,6 @@ var option = {
    *
    * @param value - Value to be converted into DOM Element, a function will be executed as `(() => unknown)`.
    * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-   *
    * @returns The DOM Element, if none then the default value, if none then null.
    */
   asElement: function asElement(value, defaultValue) {
@@ -14169,9 +14132,7 @@ var option = {
  *
  * @remarks
  * {@link http://stackoverflow.com/questions/5623838/rgb-to-hex-and-hex-to-rgb}
- *
  * @param hex - Hex color string (3 or 6 digits, with or without #).
- *
  * @returns RGB color object.
  */
 
@@ -14206,7 +14167,6 @@ function hexToRGB(hex) {
  *
  * @param color - The color string (hex, RGB, RGBA).
  * @param opacity - The new opacity.
- *
  * @returns RGBA string, for example 'rgba(255, 0, 127, 0.3)'.
  */
 
@@ -14233,7 +14193,6 @@ function overrideOpacity(color, opacity) {
  * @param red - Red channel.
  * @param green - Green channel.
  * @param blue - Blue channel.
- *
  * @returns Hex color string (for example: '#0acdc0').
  */
 
@@ -14248,7 +14207,6 @@ function RGBToHex(red, green, blue) {
  *
  * @param inputColor - Shorthand color string or input color object.
  * @param defaultColor - Full color object to fill in missing values in inputColor.
- *
  * @returns Color object.
  */
 
@@ -14356,11 +14314,9 @@ function parseColor(inputColor, defaultColor) {
  *
  * @remarks
  * {@link http://www.javascripter.net/faq/rgb2hsv.htm}
- *
  * @param red - Red channel.
  * @param green - Green channel.
  * @param blue - Blue channel.
- *
  * @returns HSV color object.
  */
 
@@ -14465,11 +14421,9 @@ function removeCssText(element, cssText) {
  *
  * @remarks
  * {@link https://gist.github.com/mjijackson/5311256}
- *
  * @param h - Hue.
  * @param s - Saturation.
  * @param v - Value.
- *
  * @returns RGB color object.
  */
 
@@ -14522,7 +14476,6 @@ function HSVToRGB(h, s, v) {
  * @param h - Hue.
  * @param s - Saturation.
  * @param v - Value.
- *
  * @returns Hex color string.
  */
 
@@ -14535,7 +14488,6 @@ function HSVToHex(h, s, v) {
  * Convert hex color string into HSV \<0, 1\>.
  *
  * @param hex - Hex color string.
- *
  * @returns HSV color object.
  */
 
@@ -14553,7 +14505,6 @@ function hexToHSV(hex) {
  * Validate hex color string.
  *
  * @param hex - Unknown string that may contain a color.
- *
  * @returns True if the string is valid, false otherwise.
  */
 
@@ -14566,7 +14517,6 @@ function isValidHex(hex) {
  * Validate RGB color string.
  *
  * @param rgb - Unknown string that may contain a color.
- *
  * @returns True if the string is valid, false otherwise.
  */
 
@@ -14578,7 +14528,6 @@ function isValidRGB(rgb) {
  * Validate RGBA color string.
  *
  * @param rgba - Unknown string that may contain a color.
- *
  * @returns True if the string is valid, false otherwise.
  */
 
@@ -14592,7 +14541,6 @@ function isValidRGBA(rgba) {
  *
  * @param fields - Names of properties to be bridged.
  * @param referenceObject - The original object.
- *
  * @returns A new object inheriting from the referenceObject.
  */
 
@@ -14620,7 +14568,6 @@ function selectiveBridgeObject(fields, referenceObject) {
  * This is used for default options.
  *
  * @param referenceObject - The original object.
- *
  * @returns The Element if the referenceObject is an Element, or a new object inheriting from the referenceObject.
  */
 
@@ -14652,7 +14599,6 @@ function bridgeObject(referenceObject) {
  *
  * @param a - The array to be sorted (in-place).
  * @param compare - An order comparator.
- *
  * @returns The argument a.
  */
 
@@ -14805,7 +14751,6 @@ function mergeOptions(mergeTarget, options, option) {
  * @param comparator - -1 is lower, 0 is equal, 1 is higher.
  * @param field - Property name on an item (That is item[field]).
  * @param field2 - Second property name on an item (That is item[field][field2]).
- *
  * @returns Index of the found item or -1 if nothing was found.
  */
 
@@ -14849,7 +14794,6 @@ function binarySearchCustom(orderedItems, comparator, field, field2) {
  * @param field - Name of the property in items to be searched.
  * @param sidePreference - If the target is between two values, should the index of the before or the after be returned?
  * @param comparator - An optional comparator, returning -1, 0, 1 for \<, ===, \>.
- *
  * @returns The index of found value or -1 if nothing was found.
  */
 
@@ -14914,7 +14858,6 @@ var easingFunctions = {
    * Provides no easing and no acceleration.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   linear: function linear(t) {
@@ -14925,7 +14868,6 @@ var easingFunctions = {
    * Accelerate from zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInQuad: function easeInQuad(t) {
@@ -14936,7 +14878,6 @@ var easingFunctions = {
    * Decelerate to zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeOutQuad: function easeOutQuad(t) {
@@ -14947,7 +14888,6 @@ var easingFunctions = {
    * Accelerate until halfway, then decelerate.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInOutQuad: function easeInOutQuad(t) {
@@ -14958,7 +14898,6 @@ var easingFunctions = {
    * Accelerate from zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInCubic: function easeInCubic(t) {
@@ -14969,7 +14908,6 @@ var easingFunctions = {
    * Decelerate to zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeOutCubic: function easeOutCubic(t) {
@@ -14980,7 +14918,6 @@ var easingFunctions = {
    * Accelerate until halfway, then decelerate.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInOutCubic: function easeInOutCubic(t) {
@@ -14991,7 +14928,6 @@ var easingFunctions = {
    * Accelerate from zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInQuart: function easeInQuart(t) {
@@ -15002,7 +14938,6 @@ var easingFunctions = {
    * Decelerate to zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeOutQuart: function easeOutQuart(t) {
@@ -15013,7 +14948,6 @@ var easingFunctions = {
    * Accelerate until halfway, then decelerate.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInOutQuart: function easeInOutQuart(t) {
@@ -15024,7 +14958,6 @@ var easingFunctions = {
    * Accelerate from zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInQuint: function easeInQuint(t) {
@@ -15035,7 +14968,6 @@ var easingFunctions = {
    * Decelerate to zero velocity.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeOutQuint: function easeOutQuint(t) {
@@ -15046,7 +14978,6 @@ var easingFunctions = {
    * Accelerate until halfway, then decelerate.
    *
    * @param t - Time.
-   *
    * @returns Value at time t.
    */
   easeInOutQuint: function easeInOutQuint(t) {
@@ -15105,7 +15036,6 @@ function getScrollBarWidth() {
  * @param pile - Array of objects, no required format.
  * @param accessors - Array of property names.
  * For example `object['foo']['bar']` → `['foo', 'bar']`.
- *
  * @returns Value of the property with given accessors path from the first pile item where it's not undefined.
  */
 
@@ -15297,10 +15227,10 @@ var ColorPicker$1 = /*#__PURE__*/function () {
   /**
    * @param {number} [pixelRatio=1]
    */
-  function ColorPicker() {
+  function ColorPicker$1() {
     var pixelRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-    _classCallCheck(this, ColorPicker);
+    _classCallCheck(this, ColorPicker$1);
 
     this.pixelRatio = pixelRatio;
     this.generated = false;
@@ -15339,7 +15269,7 @@ var ColorPicker$1 = /*#__PURE__*/function () {
    */
 
 
-  _createClass(ColorPicker, [{
+  _createClass(ColorPicker$1, [{
     key: "insertTo",
     value: function insertTo(container) {
       if (this.hammer !== undefined) {
@@ -15935,13 +15865,12 @@ var ColorPicker$1 = /*#__PURE__*/function () {
     }
   }]);
 
-  return ColorPicker;
+  return ColorPicker$1;
 }();
 /**
  * Wrap given text (last argument) in HTML elements (all preceding arguments).
  *
  * @param {...any} rest - List of tag names followed by inner text.
- *
  * @returns An element or a text node.
  */
 
@@ -15980,13 +15909,13 @@ var Configurator$1 = /*#__PURE__*/function () {
    * @param {number} pixelRatio          | canvas pixel ratio
    * @param {Function} hideOption        | custom logic to dynamically hide options
    */
-  function Configurator(parentModule, defaultContainer, configureOptions) {
+  function Configurator$1(parentModule, defaultContainer, configureOptions) {
     var pixelRatio = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
     var hideOption = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : function () {
       return false;
     };
 
-    _classCallCheck(this, Configurator);
+    _classCallCheck(this, Configurator$1);
 
     this.parent = parentModule;
     this.changedOptions = [];
@@ -16022,7 +15951,7 @@ var Configurator$1 = /*#__PURE__*/function () {
    */
 
 
-  _createClass(Configurator, [{
+  _createClass(Configurator$1, [{
     key: "setOptions",
     value: function setOptions(options) {
       if (options !== undefined) {
@@ -16882,7 +16811,7 @@ var Configurator$1 = /*#__PURE__*/function () {
     }
   }]);
 
-  return Configurator;
+  return Configurator$1;
 }();
 /**
  * Popup is a class to create a popup window with some text
@@ -16894,8 +16823,8 @@ var Popup$1 = /*#__PURE__*/function () {
    * @param {Element} container       The container object.
    * @param {string}  overflowMethod  How the popup should act to overflowing ('flip' or 'cap')
    */
-  function Popup(container, overflowMethod) {
-    _classCallCheck(this, Popup);
+  function Popup$1(container, overflowMethod) {
+    _classCallCheck(this, Popup$1);
 
     this.container = container;
     this.overflowMethod = overflowMethod || "cap";
@@ -16914,7 +16843,7 @@ var Popup$1 = /*#__PURE__*/function () {
    */
 
 
-  _createClass(Popup, [{
+  _createClass(Popup$1, [{
     key: "setPosition",
     value: function setPosition(x, y) {
       this.x = _parseInt(x);
@@ -17038,22 +16967,22 @@ var Popup$1 = /*#__PURE__*/function () {
     }
   }]);
 
-  return Popup;
+  return Popup$1;
 }();
 
 var errorFound$1 = false;
 var allOptions$3;
-var VALIDATOR_PRINT_STYLE = "background: #FFeeee; color: #dd0000";
+var VALIDATOR_PRINT_STYLE$1 = "background: #FFeeee; color: #dd0000";
 /**
  *  Used to validate options.
  */
 
 var Validator$1 = /*#__PURE__*/function () {
-  function Validator() {
-    _classCallCheck(this, Validator);
+  function Validator$1() {
+    _classCallCheck(this, Validator$1);
   }
 
-  _createClass(Validator, null, [{
+  _createClass(Validator$1, null, [{
     key: "validate",
     value:
     /**
@@ -17074,7 +17003,7 @@ var Validator$1 = /*#__PURE__*/function () {
         usedOptions = referenceOptions[subObject];
       }
 
-      Validator.parse(options, usedOptions, []);
+      Validator$1.parse(options, usedOptions, []);
       return errorFound$1;
     }
     /**
@@ -17091,7 +17020,7 @@ var Validator$1 = /*#__PURE__*/function () {
     value: function parse(options, referenceOptions, path) {
       for (var _option3 in options) {
         if (Object.prototype.hasOwnProperty.call(options, _option3)) {
-          Validator.check(_option3, options, referenceOptions, path);
+          Validator$1.check(_option3, options, referenceOptions, path);
         }
       }
     }
@@ -17109,7 +17038,7 @@ var Validator$1 = /*#__PURE__*/function () {
     key: "check",
     value: function check(option, options, referenceOptions, path) {
       if (referenceOptions[option] === undefined && referenceOptions.__any__ === undefined) {
-        Validator.getSuggestion(option, referenceOptions, path);
+        Validator$1.getSuggestion(option, referenceOptions, path);
         return;
       }
 
@@ -17124,7 +17053,7 @@ var Validator$1 = /*#__PURE__*/function () {
         referenceOption = "__any__"; // if the any-subgroup is not a predefined object in the configurator,
         // we do not look deeper into the object.
 
-        is_object = Validator.getType(options[option]) === "object";
+        is_object = Validator$1.getType(options[option]) === "object";
       }
 
       var refOptionObj = referenceOptions[referenceOption];
@@ -17133,7 +17062,7 @@ var Validator$1 = /*#__PURE__*/function () {
         refOptionObj = refOptionObj.__type__;
       }
 
-      Validator.checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path);
+      Validator$1.checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path);
     }
     /**
      *
@@ -17150,24 +17079,24 @@ var Validator$1 = /*#__PURE__*/function () {
     key: "checkFields",
     value: function checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path) {
       var log = function log(message) {
-        console.error("%c" + message + Validator.printLocation(path, option), VALIDATOR_PRINT_STYLE);
+        console.error("%c" + message + Validator$1.printLocation(path, option), VALIDATOR_PRINT_STYLE$1);
       };
 
-      var optionType = Validator.getType(options[option]);
+      var optionType = Validator$1.getType(options[option]);
       var refOptionType = refOptionObj[optionType];
 
       if (refOptionType !== undefined) {
         // if the type is correct, we check if it is supposed to be one of a few select values
-        if (Validator.getType(refOptionType) === "array" && indexOf(refOptionType).call(refOptionType, options[option]) === -1) {
-          log('Invalid option detected in "' + option + '".' + " Allowed values are:" + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
+        if (Validator$1.getType(refOptionType) === "array" && indexOf(refOptionType).call(refOptionType, options[option]) === -1) {
+          log('Invalid option detected in "' + option + '".' + " Allowed values are:" + Validator$1.print(refOptionType) + ' not "' + options[option] + '". ');
           errorFound$1 = true;
         } else if (optionType === "object" && referenceOption !== "__any__") {
           path = copyAndExtendArray(path, option);
-          Validator.parse(options[option], referenceOptions[referenceOption], path);
+          Validator$1.parse(options[option], referenceOptions[referenceOption], path);
         }
       } else if (refOptionObj["any"] === undefined) {
         // type of the field is incorrect and the field cannot be any
-        log('Invalid type received for "' + option + '". Expected: ' + Validator.print(keys$4(refOptionObj)) + ". Received [" + optionType + '] "' + options[option] + '"');
+        log('Invalid type received for "' + option + '". Expected: ' + Validator$1.print(keys$4(refOptionObj)) + ". Received [" + optionType + '] "' + options[option] + '"');
         errorFound$1 = true;
       }
     }
@@ -17239,23 +17168,23 @@ var Validator$1 = /*#__PURE__*/function () {
   }, {
     key: "getSuggestion",
     value: function getSuggestion(option, options, path) {
-      var localSearch = Validator.findInOptions(option, options, path, false);
-      var globalSearch = Validator.findInOptions(option, allOptions$3, [], true);
+      var localSearch = Validator$1.findInOptions(option, options, path, false);
+      var globalSearch = Validator$1.findInOptions(option, allOptions$3, [], true);
       var localSearchThreshold = 8;
       var globalSearchThreshold = 4;
       var msg;
 
       if (localSearch.indexMatch !== undefined) {
-        msg = " in " + Validator.printLocation(localSearch.path, option, "") + 'Perhaps it was incomplete? Did you mean: "' + localSearch.indexMatch + '"?\n\n';
+        msg = " in " + Validator$1.printLocation(localSearch.path, option, "") + 'Perhaps it was incomplete? Did you mean: "' + localSearch.indexMatch + '"?\n\n';
       } else if (globalSearch.distance <= globalSearchThreshold && localSearch.distance > globalSearch.distance) {
-        msg = " in " + Validator.printLocation(localSearch.path, option, "") + "Perhaps it was misplaced? Matching option found at: " + Validator.printLocation(globalSearch.path, globalSearch.closestMatch, "");
+        msg = " in " + Validator$1.printLocation(localSearch.path, option, "") + "Perhaps it was misplaced? Matching option found at: " + Validator$1.printLocation(globalSearch.path, globalSearch.closestMatch, "");
       } else if (localSearch.distance <= localSearchThreshold) {
-        msg = '. Did you mean "' + localSearch.closestMatch + '"?' + Validator.printLocation(localSearch.path, option);
+        msg = '. Did you mean "' + localSearch.closestMatch + '"?' + Validator$1.printLocation(localSearch.path, option);
       } else {
-        msg = ". Did you mean one of these: " + Validator.print(keys$4(options)) + Validator.printLocation(path, option);
+        msg = ". Did you mean one of these: " + Validator$1.print(keys$4(options)) + Validator$1.printLocation(path, option);
       }
 
-      console.error('%cUnknown option detected: "' + option + '"' + msg, VALIDATOR_PRINT_STYLE);
+      console.error('%cUnknown option detected: "' + option + '"' + msg, VALIDATOR_PRINT_STYLE$1);
       errorFound$1 = true;
     }
     /**
@@ -17283,7 +17212,7 @@ var Validator$1 = /*#__PURE__*/function () {
         var distance = void 0;
 
         if (options[op].__type__ !== undefined && recursive === true) {
-          var result = Validator.findInOptions(option, options[op], copyAndExtendArray(path, op));
+          var result = Validator$1.findInOptions(option, options[op], copyAndExtendArray(path, op));
 
           if (min > result.distance) {
             closestMatch = result.closestMatch;
@@ -17298,7 +17227,7 @@ var Validator$1 = /*#__PURE__*/function () {
             indexMatch = op;
           }
 
-          distance = Validator.levenshteinDistance(option, op);
+          distance = Validator$1.levenshteinDistance(option, op);
 
           if (min > distance) {
             closestMatch = op;
@@ -17419,32 +17348,32 @@ var Validator$1 = /*#__PURE__*/function () {
     }
   }]);
 
-  return Validator;
+  return Validator$1;
 }();
 
-var Activator$1$1 = Activator$1;
-var ColorPicker$1$1 = ColorPicker$1;
-var Configurator$1$1 = Configurator$1;
-var Hammer$1$1 = Hammer$1;
-var Popup$1$1 = Popup$1;
-var VALIDATOR_PRINT_STYLE$1 = VALIDATOR_PRINT_STYLE;
-var Validator$1$1 = Validator$1;
+var Activator$2 = Activator$1;
+var ColorPicker$2 = ColorPicker$1;
+var Configurator$2 = Configurator$1;
+var Hammer$2 = Hammer$1;
+var Popup$2 = Popup$1;
+var VALIDATOR_PRINT_STYLE = VALIDATOR_PRINT_STYLE$1;
+var Validator$2 = Validator$1;
 
 var util$2 = /*#__PURE__*/Object.freeze({
 	__proto__: null,
-	Activator: Activator$1$1,
+	Activator: Activator$2,
 	Alea: Alea,
-	ColorPicker: ColorPicker$1$1,
-	Configurator: Configurator$1$1,
+	ColorPicker: ColorPicker$2,
+	Configurator: Configurator$2,
 	DELETE: DELETE,
 	HSVToHex: HSVToHex,
 	HSVToRGB: HSVToRGB,
-	Hammer: Hammer$1$1,
-	Popup: Popup$1$1,
+	Hammer: Hammer$2,
+	Popup: Popup$2,
 	RGBToHSV: RGBToHSV,
 	RGBToHex: RGBToHex,
-	VALIDATOR_PRINT_STYLE: VALIDATOR_PRINT_STYLE$1,
-	Validator: Validator$1$1,
+	VALIDATOR_PRINT_STYLE: VALIDATOR_PRINT_STYLE,
+	Validator: Validator$2,
 	addClassName: addClassName,
 	addCssText: addCssText,
 	addEventListener: addEventListener,
@@ -26871,7 +26800,7 @@ function hammerMock() {
 var modifiedHammer;
 
 if (typeof window !== 'undefined') {
-  var OurHammer = window['Hammer'] || Hammer$3;
+  var OurHammer = window['Hammer'] || Hammer$4;
   modifiedHammer = propagating(OurHammer, {
     preventDefault: 'mouse'
   });
