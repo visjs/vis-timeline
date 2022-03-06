@@ -85,7 +85,7 @@
     "git-authors-cli": "1.0.37",
     "husky": "7.0.4",
     "jsdoc": "3.6.10",
-    "jsdom": "16.7.0",
+    "jsdom": "19.0.0",
     "jsdom-global": "3.0.2",
     "keycharm": "0.4.0",
     "lint-staged": "12.3.5",
