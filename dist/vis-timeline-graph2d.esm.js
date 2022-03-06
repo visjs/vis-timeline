@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-03-06T10:00:02.957Z
+ * @date    2022-03-06T12:02:41.035Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24402,7 +24402,7 @@ function shallowCopyObject(obj) {
  * FilterXSS class
  *
  * @param {Object} options
- *        whiteList, onTag, onTagAttr, onIgnoreTag,
+ *        whiteList (or allowList), onTag, onTagAttr, onIgnoreTag,
  *        onIgnoreTagAttr, safeAttrValue, escapeHtml
  *        stripIgnoreTagBody, allowCommentTag, stripBlankChar
  *        css{whiteList, onAttr, onIgnoreAttr} `css=false` means don't use `cssfilter`
@@ -24420,7 +24420,7 @@ function FilterXSS(options) {
     options.onIgnoreTag = _default.onIgnoreTagStripAll;
   }
 
-  options.whiteList = options.whiteList || _default.whiteList;
+  options.whiteList = options.whiteList || options.allowList || _default.whiteList;
   options.onTag = options.onTag || _default.onTag;
   options.onTagAttr = options.onTagAttr || _default.onTagAttr;
   options.onIgnoreTag = options.onIgnoreTag || _default.onIgnoreTag;
