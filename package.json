@@ -93,7 +93,7 @@
     "moment": "2.29.1",
     "nyc": "15.1.0",
     "opencollective": "1.0.3",
-    "postcss": "8.4.7",
+    "postcss": "8.4.8",
     "propagating-hammerjs": "2.0.1",
     "rimraf": "3.0.2",
     "rollup": "2.69.2",
