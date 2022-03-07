@@ -101,7 +101,7 @@
     "rollup-plugin-css-porter": "1.0.2",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-resolve": "5.2.0",
-    "semantic-release": "17.4.2",
+    "semantic-release": "19.0.2",
     "snap-shot-it": "7.9.6",
     "uglify-js": "3.14.3",
     "uglifycss": "0.0.29",
