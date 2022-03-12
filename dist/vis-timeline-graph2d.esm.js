@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-03-11T20:25:24.496Z
+ * @date    2022-03-12T14:22:00.123Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -8349,8 +8349,7 @@ var classCallCheck = createCommonjsModule(function (module) {
     }
   }
 
-  module.exports = _classCallCheck;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _classCallCheck, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _classCallCheck = unwrapExports(classCallCheck);
 
@@ -8375,11 +8374,15 @@ var createClass = createCommonjsModule(function (module) {
   function _createClass(Constructor, protoProps, staticProps) {
     if (protoProps) _defineProperties(Constructor.prototype, protoProps);
     if (staticProps) _defineProperties(Constructor, staticProps);
+
+    defineProperty$4(Constructor, "prototype", {
+      writable: false
+    });
+
     return Constructor;
   }
 
-  module.exports = _createClass;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _createClass, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _createClass = unwrapExports(createClass);
 
@@ -8399,8 +8402,7 @@ var defineProperty$3 = createCommonjsModule(function (module) {
     return obj;
   }
 
-  module.exports = _defineProperty;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _defineProperty = unwrapExports(defineProperty$3);
 
@@ -8428,8 +8430,7 @@ var arrayWithHoles = createCommonjsModule(function (module) {
     if (isArray$1(arr)) return arr;
   }
 
-  module.exports = _arrayWithHoles;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _arrayWithHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(arrayWithHoles);
 
@@ -8634,8 +8635,7 @@ var iterableToArrayLimit = createCommonjsModule(function (module) {
     return _arr;
   }
 
-  module.exports = _iterableToArrayLimit;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(iterableToArrayLimit);
 
@@ -8721,8 +8721,7 @@ var arrayLikeToArray = createCommonjsModule(function (module) {
     return arr2;
   }
 
-  module.exports = _arrayLikeToArray;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(arrayLikeToArray);
 
@@ -8740,8 +8739,7 @@ var unsupportedIterableToArray = createCommonjsModule(function (module) {
     if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return arrayLikeToArray(o, minLen);
   }
 
-  module.exports = _unsupportedIterableToArray;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(unsupportedIterableToArray);
 
@@ -8750,8 +8748,7 @@ var nonIterableRest = createCommonjsModule(function (module) {
     throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  module.exports = _nonIterableRest;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _nonIterableRest, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(nonIterableRest);
 
@@ -8760,8 +8757,7 @@ var slicedToArray = createCommonjsModule(function (module) {
     return arrayWithHoles(arr) || iterableToArrayLimit(arr, i) || unsupportedIterableToArray(arr, i) || nonIterableRest();
   }
 
-  module.exports = _slicedToArray;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _slicedToArray = unwrapExports(slicedToArray);
 
@@ -8779,25 +8775,14 @@ var _typeof_1 = createCommonjsModule(function (module) {
   function _typeof(obj) {
     "@babel/helpers - typeof";
 
-    if (typeof symbol$1 === "function" && typeof iterator$1 === "symbol") {
-      module.exports = _typeof = function _typeof(obj) {
-        return typeof obj;
-      };
-
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
-    } else {
-      module.exports = _typeof = function _typeof(obj) {
-        return obj && typeof symbol$1 === "function" && obj.constructor === symbol$1 && obj !== symbol$1.prototype ? "symbol" : typeof obj;
-      };
-
-      module.exports["default"] = module.exports, module.exports.__esModule = true;
-    }
-
-    return _typeof(obj);
+    return (module.exports = _typeof = "function" == typeof symbol$1 && "symbol" == typeof iterator$1 ? function (obj) {
+      return typeof obj;
+    } : function (obj) {
+      return obj && "function" == typeof symbol$1 && obj.constructor === symbol$1 && obj !== symbol$1.prototype ? "symbol" : typeof obj;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports), _typeof(obj);
   }
 
-  module.exports = _typeof;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _typeof, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 
 var _typeof = unwrapExports(_typeof_1);
@@ -8807,8 +8792,7 @@ var arrayWithoutHoles = createCommonjsModule(function (module) {
     if (isArray$1(arr)) return arrayLikeToArray(arr);
   }
 
-  module.exports = _arrayWithoutHoles;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _arrayWithoutHoles, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(arrayWithoutHoles);
 
@@ -8817,8 +8801,7 @@ var iterableToArray = createCommonjsModule(function (module) {
     if (typeof symbol$1 !== "undefined" && getIteratorMethod(iter) != null || iter["@@iterator"] != null) return from_1(iter);
   }
 
-  module.exports = _iterableToArray;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _iterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(iterableToArray);
 
@@ -8827,8 +8810,7 @@ var nonIterableSpread = createCommonjsModule(function (module) {
     throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
   }
 
-  module.exports = _nonIterableSpread;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _nonIterableSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(nonIterableSpread);
 
@@ -8837,8 +8819,7 @@ var toConsumableArray = createCommonjsModule(function (module) {
     return arrayWithoutHoles(arr) || iterableToArray(arr) || unsupportedIterableToArray(arr) || nonIterableSpread();
   }
 
-  module.exports = _toConsumableArray;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _toConsumableArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _toConsumableArray = unwrapExports(toConsumableArray);
 
@@ -12855,9 +12836,9 @@ var Hammer$3 = /*#__PURE__*/function () {
 }(); //  style loader but by script tag, not by the loader.
 var Hammer$4 = Hammer$3;
 
-function ownKeys$2(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$2(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); enumerableOnly && (symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context22; forEach$2(_context22 = ownKeys$2(Object(source), true)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context23; forEach$2(_context23 = ownKeys$2(Object(source))).call(_context23, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$2(target) { for (var i = 1; i < arguments.length; i++) { var _context22, _context23; var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? forEach$2(_context22 = ownKeys$2(Object(source), !0)).call(_context22, function (key) { _defineProperty(target, key, source[key]); }) : getOwnPropertyDescriptors ? defineProperties(target, getOwnPropertyDescriptors(source)) : forEach$2(_context23 = ownKeys$2(Object(source))).call(_context23, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _createForOfIteratorHelper$7(o, allowArrayLike) { var it = typeof symbol !== "undefined" && getIteratorMethod(o) || o["@@iterator"]; if (!it) { if (isArray(o) || (it = _unsupportedIterableToArray$7(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e) { throw _e; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = it.call(o); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e2) { didErr = true; err = _e2; }, f: function f() { try { if (!normalCompletion && it.return != null) it.return(); } finally { if (didErr) throw err; } } }; }
 
@@ -17775,8 +17756,7 @@ var assertThisInitialized = createCommonjsModule(function (module) {
     return self;
   }
 
-  module.exports = _assertThisInitialized;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _assertThisInitialized, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _assertThisInitialized = unwrapExports(assertThisInitialized);
 
@@ -17810,14 +17790,11 @@ var setPrototypeOf = createCommonjsModule(function (module) {
     module.exports = _setPrototypeOf = setPrototypeOf$1 || function _setPrototypeOf(o, p) {
       o.__proto__ = p;
       return o;
-    };
-
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
     return _setPrototypeOf(o, p);
   }
 
-  module.exports = _setPrototypeOf;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _setPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 unwrapExports(setPrototypeOf);
 
@@ -17834,11 +17811,15 @@ var inherits = createCommonjsModule(function (module) {
         configurable: true
       }
     });
+
+    defineProperty$4(subClass, "prototype", {
+      writable: false
+    });
+
     if (superClass) setPrototypeOf(subClass, superClass);
   }
 
-  module.exports = _inherits;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _inherits = unwrapExports(inherits);
 
@@ -17855,8 +17836,7 @@ var possibleConstructorReturn = createCommonjsModule(function (module) {
     return assertThisInitialized(self);
   }
 
-  module.exports = _possibleConstructorReturn;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _possibleConstructorReturn, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _possibleConstructorReturn = unwrapExports(possibleConstructorReturn);
 
@@ -17870,13 +17850,11 @@ var getPrototypeOf = createCommonjsModule(function (module) {
   function _getPrototypeOf(o) {
     module.exports = _getPrototypeOf = setPrototypeOf$1 ? getPrototypeOf$1 : function _getPrototypeOf(o) {
       return o.__proto__ || getPrototypeOf$1(o);
-    };
-    module.exports["default"] = module.exports, module.exports.__esModule = true;
+    }, module.exports.__esModule = true, module.exports["default"] = module.exports;
     return _getPrototypeOf(o);
   }
 
-  module.exports = _getPrototypeOf;
-  module.exports["default"] = module.exports, module.exports.__esModule = true;
+  module.exports = _getPrototypeOf, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
 var _getPrototypeOf = unwrapExports(getPrototypeOf);
 
@@ -19591,9 +19569,9 @@ function v4(options, buf, offset) {
   return buf || bytesToUuid(rnds);
 }
 
-function ownKeys$1(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys$1(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); enumerableOnly && (symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context32; forEach$2(_context32 = ownKeys$1(Object(source), true)).call(_context32, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context33; forEach$2(_context33 = ownKeys$1(Object(source))).call(_context33, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var _context32, _context33; var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? forEach$2(_context32 = ownKeys$1(Object(source), !0)).call(_context32, function (key) { _defineProperty(target, key, source[key]); }) : getOwnPropertyDescriptors ? defineProperties(target, getOwnPropertyDescriptors(source)) : forEach$2(_context33 = ownKeys$1(Object(source))).call(_context33, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _createSuper$d(Derived) { var hasNativeReflectConstruct = _isNativeReflectConstruct$d(); return function _createSuperInternal() { var Super = _getPrototypeOf(Derived), result; if (hasNativeReflectConstruct) { var NewTarget = _getPrototypeOf(this).constructor; result = construct(Super, arguments, NewTarget); } else { result = Super.apply(this, arguments); } return _possibleConstructorReturn(this, result); }; }
 
@@ -24584,9 +24562,9 @@ var lib = createCommonjsModule(function (module, exports) {
 lib.filterXSS;
 lib.FilterXSS;
 
-function ownKeys(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); if (enumerableOnly) { symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+function ownKeys(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); enumerableOnly && (symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { var _context8; forEach$2(_context8 = ownKeys(Object(source), true)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }); } else if (getOwnPropertyDescriptors) { defineProperties(target, getOwnPropertyDescriptors(source)); } else { var _context9; forEach$2(_context9 = ownKeys(Object(source))).call(_context9, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } } return target; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var _context8, _context9; var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? forEach$2(_context8 = ownKeys(Object(source), !0)).call(_context8, function (key) { _defineProperty(target, key, source[key]); }) : getOwnPropertyDescriptors ? defineProperties(target, getOwnPropertyDescriptors(source)) : forEach$2(_context9 = ownKeys(Object(source))).call(_context9, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } return target; }
 /**
  * Test if an object implements the DataView interface from vis-data.
  * Uses the idProp property instead of expecting a hardcoded id field "id".
