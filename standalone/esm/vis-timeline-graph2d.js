@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-03-15T15:04:04.953Z
+ * @date    2022-03-15T19:33:46.408Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -20238,6 +20238,8 @@ function v4(options, buf, offset) {
   return buf || bytesToUuid(rnds);
 }
 
+var _Symbol$iterator;
+
 function ownKeys$1(object, enumerableOnly) { var keys = keys$4(object); if (getOwnPropertySymbols) { var symbols = getOwnPropertySymbols(object); enumerableOnly && (symbols = filter(symbols).call(symbols, function (sym) { return getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread$1(target) { for (var i = 1; i < arguments.length; i++) { var _context32, _context33; var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? forEach$2(_context32 = ownKeys$1(Object(source), !0)).call(_context32, function (key) { _defineProperty(target, key, source[key]); }) : getOwnPropertyDescriptors ? defineProperties(target, getOwnPropertyDescriptors(source)) : forEach$2(_context33 = ownKeys$1(Object(source))).call(_context33, function (key) { defineProperty$7(target, key, getOwnPropertyDescriptor(source, key)); }); } return target; }
@@ -20300,6 +20302,10 @@ function createNewDataPipeFrom(from) {
 
 var SimpleDataPipe = /*#__PURE__*/function () {
   /**
+   * Bound listeners for use with `DataInterface['on' | 'off']`.
+   */
+
+  /**
    * Create a new data pipe.
    *
    * @param _source - The data set or data view that will be observed.
@@ -20312,18 +20318,21 @@ var SimpleDataPipe = /*#__PURE__*/function () {
 
     _classCallCheck(this, SimpleDataPipe);
 
-    this._source = _source;
-    this._transformers = _transformers;
-    this._target = _target;
-    /**
-     * Bound listeners for use with `DataInterface['on' | 'off']`.
-     */
+    _defineProperty(this, "_source", void 0);
 
-    this._listeners = {
+    _defineProperty(this, "_transformers", void 0);
+
+    _defineProperty(this, "_target", void 0);
+
+    _defineProperty(this, "_listeners", {
       add: bind$4(_context = this._add).call(_context, this),
       remove: bind$4(_context2 = this._remove).call(_context2, this),
       update: bind$4(_context3 = this._update).call(_context3, this)
-    };
+    });
+
+    this._source = _source;
+    this._transformers = _transformers;
+    this._target = _target;
   }
   /** @inheritDoc */
 
@@ -20440,6 +20449,11 @@ var SimpleDataPipe = /*#__PURE__*/function () {
 
 var DataPipeUnderConstruction = /*#__PURE__*/function () {
   /**
+   * Array transformers used to transform items within the pipe. This is typed
+   * as any for the sake of simplicity.
+   */
+
+  /**
    * Create a new data pipe factory. This is an internal constructor that
    * should never be called from outside of this file.
    *
@@ -20448,13 +20462,11 @@ var DataPipeUnderConstruction = /*#__PURE__*/function () {
   function DataPipeUnderConstruction(_source) {
     _classCallCheck(this, DataPipeUnderConstruction);
 
-    this._source = _source;
-    /**
-     * Array transformers used to transform items within the pipe. This is typed
-     * as any for the sake of simplicity.
-     */
+    _defineProperty(this, "_source", void 0);
 
-    this._transformers = [];
+    _defineProperty(this, "_transformers", []);
+
+    this._source = _source;
   }
   /**
    * Filter the items.
@@ -20548,6 +20560,10 @@ function isId(value) {
 
 
 var Queue = /*#__PURE__*/function () {
+  /** Delay in milliseconds. If defined the queue will be periodically flushed. */
+
+  /** Maximum number of entries in the queue before it will be flushed. */
+
   /**
    * Construct a new Queue.
    *
@@ -20556,10 +20572,17 @@ var Queue = /*#__PURE__*/function () {
   function Queue(options) {
     _classCallCheck(this, Queue);
 
-    this._queue = [];
-    this._timeout = null;
-    this._extended = null; // options
+    _defineProperty(this, "delay", void 0);
 
+    _defineProperty(this, "max", void 0);
+
+    _defineProperty(this, "_queue", []);
+
+    _defineProperty(this, "_timeout", null);
+
+    _defineProperty(this, "_extended", null);
+
+    // options
     this.delay = null;
     this.max = Infinity;
     this.setOptions(options);
@@ -20763,35 +20786,29 @@ var DataSetPart = /*#__PURE__*/function () {
   function DataSetPart() {
     _classCallCheck(this, DataSetPart);
 
-    this._subscribers = {
+    _defineProperty(this, "_subscribers", {
       "*": [],
       add: [],
       remove: [],
       update: []
-    };
-    /**
-     * @deprecated Use on instead (PS: DataView.subscribe === DataView.on).
-     */
+    });
 
-    this.subscribe = DataSetPart.prototype.on;
-    /**
-     * @deprecated Use off instead (PS: DataView.unsubscribe === DataView.off).
-     */
+    _defineProperty(this, "subscribe", DataSetPart.prototype.on);
 
-    this.unsubscribe = DataSetPart.prototype.off;
+    _defineProperty(this, "unsubscribe", DataSetPart.prototype.off);
   }
-  /**
-   * Trigger an event
-   *
-   * @param event - Event name.
-   * @param payload - Event payload.
-   * @param senderId - Id of the sender.
-   */
-
 
   _createClass(DataSetPart, [{
     key: "_trigger",
-    value: function _trigger(event, payload, senderId) {
+    value:
+    /**
+     * Trigger an event
+     *
+     * @param event - Event name.
+     * @param payload - Event payload.
+     * @param senderId - Id of the sender.
+     */
+    function _trigger(event, payload, senderId) {
       var _context7, _context8;
 
       if (event === "*") {
@@ -20835,6 +20852,10 @@ var DataSetPart = /*#__PURE__*/function () {
         return subscriber !== callback;
       });
     }
+    /**
+     * @deprecated Use on instead (PS: DataView.subscribe === DataView.on).
+     */
+
   }]);
 
   return DataSetPart;
@@ -20850,7 +20871,9 @@ var DataSetPart = /*#__PURE__*/function () {
  */
 
 
-var DataStream = /*#__PURE__*/function (_Symbol$iterator) {
+_Symbol$iterator = iterator;
+
+var DataStream = /*#__PURE__*/function () {
   /**
    * Create a new data stream.
    *
@@ -20858,6 +20881,8 @@ var DataStream = /*#__PURE__*/function (_Symbol$iterator) {
    */
   function DataStream(pairs) {
     _classCallCheck(this, DataStream);
+
+    _defineProperty(this, "_pairs", void 0);
 
     this._pairs = pairs;
   }
@@ -21557,7 +21582,7 @@ var DataStream = /*#__PURE__*/function (_Symbol$iterator) {
   }]);
 
   return DataStream;
-}(iterator);
+}();
 /**
  * Add an id to given item if it doesn't have one already.
  *
@@ -21656,8 +21681,19 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
 
     _classCallCheck(this, DataSet);
 
-    _this3 = _super.call(this);
-    _this3._queue = null; // correctly read optional arguments
+    _this3 = _super.call(this); // correctly read optional arguments
+
+    _defineProperty(_assertThisInitialized(_this3), "flush", void 0);
+
+    _defineProperty(_assertThisInitialized(_this3), "length", void 0);
+
+    _defineProperty(_assertThisInitialized(_this3), "_options", void 0);
+
+    _defineProperty(_assertThisInitialized(_this3), "_data", void 0);
+
+    _defineProperty(_assertThisInitialized(_this3), "_idProp", void 0);
+
+    _defineProperty(_assertThisInitialized(_this3), "_queue", null);
 
     if (data && !isArray$2(data)) {
       options = data;
@@ -21680,20 +21716,24 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
 
     return _this3;
   }
-  /** @inheritDoc */
+  /**
+   * Set new options.
+   *
+   * @param options - The new options.
+   */
 
 
   _createClass(DataSet, [{
     key: "idProp",
-    get: function get() {
+    get:
+    /** Flush all queued calls. */
+
+    /** @inheritDoc */
+
+    /** @inheritDoc */
+    function get() {
       return this._idProp;
     }
-    /**
-     * Set new options.
-     *
-     * @param options - The new options.
-     */
-
   }, {
     key: "setOptions",
     value: function setOptions(options) {
@@ -22741,10 +22781,16 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
     _classCallCheck(this, DataView);
 
     _this7 = _super2.call(this);
-    /** @inheritDoc */
 
-    _this7.length = 0;
-    _this7._ids = new set(); // ids of the items currently in memory (just contains a boolean true)
+    _defineProperty(_assertThisInitialized(_this7), "length", 0);
+
+    _defineProperty(_assertThisInitialized(_this7), "_listener", void 0);
+
+    _defineProperty(_assertThisInitialized(_this7), "_data", void 0);
+
+    _defineProperty(_assertThisInitialized(_this7), "_ids", new set());
+
+    _defineProperty(_assertThisInitialized(_this7), "_options", void 0);
 
     _this7._options = options || {};
     _this7._listener = bind$4(_context27 = _this7._onEvent).call(_context27, _assertThisInitialized(_this7));
@@ -22752,28 +22798,30 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
     _this7.setData(data);
 
     return _this7;
-  }
-  /** @inheritDoc */
+  } // TODO: implement a function .config() to dynamically update things like configured filter
+  // and trigger changes accordingly
+
+  /**
+   * Set a data source for the view.
+   *
+   * @param data - The instance containing data (directly or indirectly).
+   * @remarks
+   * Note that when the data view is bound to a data set it won't be garbage
+   * collected unless the data set is too. Use `dataView.setData(null)` or
+   * `dataView.dispose()` to enable garbage collection before you lose the last
+   * reference.
+   */
 
 
   _createClass(DataView, [{
     key: "idProp",
-    get: function get() {
+    get:
+    /** @inheritDoc */
+
+    /** @inheritDoc */
+    function get() {
       return this.getDataSet().idProp;
-    } // TODO: implement a function .config() to dynamically update things like configured filter
-    // and trigger changes accordingly
-
-    /**
-     * Set a data source for the view.
-     *
-     * @param data - The instance containing data (directly or indirectly).
-     * @remarks
-     * Note that when the data view is bound to a data set it won't be garbage
-     * collected unless the data set is too. Use `dataView.setData(null)` or
-     * `dataView.dispose()` to enable garbage collection before you lose the last
-     * reference.
-     */
-
+    }
   }, {
     key: "setData",
     value: function setData(data) {
