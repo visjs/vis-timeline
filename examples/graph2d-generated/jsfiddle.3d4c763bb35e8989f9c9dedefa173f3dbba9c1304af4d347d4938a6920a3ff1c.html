@@ -97,8 +97,7 @@ function renderStep() {
       setTimeout(renderStep, DELAY);
       break;
 
-    default:
-      // &apos;static&apos;
+    default: // &apos;static&apos;
       // move the window 90% to the left when now is larger than the end of the window
       if (now > range.end) {
         graph2d.setWindow(now - 0.1 * interval, now + 0.9 * interval);
