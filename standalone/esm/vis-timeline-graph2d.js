@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-04-03T01:46:57.897Z
+ * @date    2022-04-03T17:45:37.224Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -94,9 +94,10 @@ var moment$4 = {exports: {}};
 
     function map(arr, fn) {
       var res = [],
-          i;
+          i,
+          arrLen = arr.length;
 
-      for (i = 0; i < arr.length; ++i) {
+      for (i = 0; i < arrLen; ++i) {
         res.push(fn(arr[i], i));
       }
 
@@ -215,7 +216,10 @@ var moment$4 = {exports: {}};
         updateInProgress = false;
 
     function copyConfig(to, from) {
-      var i, prop, val;
+      var i,
+          prop,
+          val,
+          momentPropertiesLen = momentProperties.length;
 
       if (!isUndefined(from._isAMomentObject)) {
         to._isAMomentObject = from._isAMomentObject;
@@ -257,8 +261,8 @@ var moment$4 = {exports: {}};
         to._locale = from._locale;
       }
 
-      if (momentProperties.length > 0) {
-        for (i = 0; i < momentProperties.length; i++) {
+      if (momentPropertiesLen > 0) {
+        for (i = 0; i < momentPropertiesLen; i++) {
           prop = momentProperties[i];
           val = from[prop];
 
@@ -310,9 +314,10 @@ var moment$4 = {exports: {}};
           var args = [],
               arg,
               i,
-              key;
+              key,
+              argLen = arguments.length;
 
-          for (i = 0; i < arguments.length; i++) {
+          for (i = 0; i < argLen; i++) {
             arg = '';
 
             if (typeof arguments[i] === 'object') {
@@ -742,9 +747,10 @@ var moment$4 = {exports: {}};
       if (typeof units === 'object') {
         units = normalizeObjectUnits(units);
         var prioritized = getPrioritizedUnits(units),
-            i;
+            i,
+            prioritizedLen = prioritized.length;
 
-        for (i = 0; i < prioritized.length; i++) {
+        for (i = 0; i < prioritizedLen; i++) {
           this[prioritized[i].unit](units[prioritized[i].unit]);
         }
       } else {
@@ -825,7 +831,8 @@ var moment$4 = {exports: {}};
 
     function addParseToken(token, callback) {
       var i,
-          func = callback;
+          func = callback,
+          tokenLen;
 
       if (typeof token === 'string') {
         token = [token];
@@ -837,7 +844,9 @@ var moment$4 = {exports: {}};
         };
       }
 
-      for (i = 0; i < token.length; i++) {
+      tokenLen = token.length;
+
+      for (i = 0; i < tokenLen; i++) {
         tokens[token[i]] = func;
       }
     }
@@ -1923,11 +1932,16 @@ var moment$4 = {exports: {}};
       return globalLocale;
     }
 
+    function isLocaleNameSane(name) {
+      // Prevent names that look like filesystem paths, i.e contain '/' or '\'
+      return name.match('^[^/\\\\]*$') != null;
+    }
+
     function loadLocale(name) {
       var oldLocale = null,
           aliasedRequire; // TODO: Find a better way to register and load all the locales in Node
 
-      if (locales[name] === undefined && 'object' !== 'undefined' && module && module.exports) {
+      if (locales[name] === undefined && 'object' !== 'undefined' && module && module.exports && isLocaleNameSane(name)) {
         try {
           oldLocale = globalLocale._abbr;
           aliasedRequire = commonjsRequire;
@@ -2159,12 +2173,14 @@ var moment$4 = {exports: {}};
           allowTime,
           dateFormat,
           timeFormat,
-          tzFormat;
+          tzFormat,
+          isoDatesLen = isoDates.length,
+          isoTimesLen = isoTimes.length;
 
       if (match) {
         getParsingFlags(config).iso = true;
 
-        for (i = 0, l = isoDates.length; i < l; i++) {
+        for (i = 0, l = isoDatesLen; i < l; i++) {
           if (isoDates[i][1].exec(match[1])) {
             dateFormat = isoDates[i][0];
             allowTime = isoDates[i][2] !== false;
@@ -2178,7 +2194,7 @@ var moment$4 = {exports: {}};
         }
 
         if (match[3]) {
-          for (i = 0, l = isoTimes.length; i < l; i++) {
+          for (i = 0, l = isoTimesLen; i < l; i++) {
             if (isoTimes[i][1].exec(match[3])) {
               // match[2] should be 'T' or space
               timeFormat = (match[2] || ' ') + isoTimes[i][0];
@@ -2514,10 +2530,12 @@ var moment$4 = {exports: {}};
           skipped,
           stringLength = string.length,
           totalParsedInputLength = 0,
-          era;
+          era,
+          tokenLen;
       tokens = expandFormat(config._f, config._locale).match(formattingTokens) || [];
+      tokenLen = tokens.length;
 
-      for (i = 0; i < tokens.length; i++) {
+      for (i = 0; i < tokenLen; i++) {
         token = tokens[i];
         parsedInput = (string.match(getParseRegexForToken(token, config)) || [])[0];
 
@@ -2610,15 +2628,16 @@ var moment$4 = {exports: {}};
           i,
           currentScore,
           validFormatFound,
-          bestFormatIsValid = false;
+          bestFormatIsValid = false,
+          configfLen = config._f.length;
 
-      if (config._f.length === 0) {
+      if (configfLen === 0) {
         getParsingFlags(config).invalidFormat = true;
         config._d = new Date(NaN);
         return;
       }
 
-      for (i = 0; i < config._f.length; i++) {
+      for (i = 0; i < configfLen; i++) {
         currentScore = 0;
         validFormatFound = false;
         tempConfig = copyConfig({}, config);
@@ -2840,7 +2859,8 @@ var moment$4 = {exports: {}};
     function isDurationValid(m) {
       var key,
           unitHasDecimal = false,
-          i;
+          i,
+          orderLen = ordering.length;
 
       for (key in m) {
         if (hasOwnProp(m, key) && !(indexOf.call(ordering, key) !== -1 && (m[key] == null || !isNaN(m[key])))) {
@@ -2848,7 +2868,7 @@ var moment$4 = {exports: {}};
         }
       }
 
-      for (i = 0; i < ordering.length; ++i) {
+      for (i = 0; i < orderLen; ++i) {
         if (m[ordering[i]]) {
           if (unitHasDecimal) {
             return false; // only allow non-integers for smallest unit
@@ -3336,9 +3356,10 @@ var moment$4 = {exports: {}};
           propertyTest = false,
           properties = ['years', 'year', 'y', 'months', 'month', 'M', 'days', 'day', 'd', 'dates', 'date', 'D', 'hours', 'hour', 'h', 'minutes', 'minute', 'm', 'seconds', 'second', 's', 'milliseconds', 'millisecond', 'ms'],
           i,
-          property;
+          property,
+          propertyLen = properties.length;
 
-      for (i = 0; i < properties.length; i += 1) {
+      for (i = 0; i < propertyLen; i += 1) {
         property = properties[i];
         propertyTest = propertyTest || hasOwnProp(input, property);
       }
@@ -5080,7 +5101,7 @@ var moment$4 = {exports: {}};
       config._d = new Date(toInt(input));
     }); //! moment.js
 
-    hooks.version = '2.29.1';
+    hooks.version = '2.29.2';
     setHookCallback(createLocal);
     hooks.fn = proto;
     hooks.min = min;
