@@ -69,7 +69,7 @@
     "xss": "^1.0.0"
   },
   "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "7.17.3",
+    "@babel/plugin-proposal-object-rest-spread": "7.17.12",
     "@babel/runtime": "7.17.9",
     "@egjs/hammerjs": "2.0.17",
     "@rollup/plugin-strip": "2.1.0",
