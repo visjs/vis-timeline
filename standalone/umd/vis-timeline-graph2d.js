@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-05-25T19:46:36.899Z
+ * @date    2022-05-28T10:38:56.060Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6232,9 +6232,9 @@
 
 	var NATIVE_BIND$4 = functionBindNative;
 	var FunctionPrototype$3 = Function.prototype;
-	var bind$g = FunctionPrototype$3.bind;
+	var bind$j = FunctionPrototype$3.bind;
 	var call$f = FunctionPrototype$3.call;
-	var uncurryThis$v = NATIVE_BIND$4 && bind$g.bind(call$f, call$f);
+	var uncurryThis$v = NATIVE_BIND$4 && bind$j.bind(call$f, call$f);
 	var functionUncurryThis = NATIVE_BIND$4 ? function (fn) {
 	  return fn && uncurryThis$v(fn);
 	} : function (fn) {
@@ -6951,11 +6951,11 @@
 	var uncurryThis$m = functionUncurryThis;
 	var aCallable$9 = aCallable$b;
 	var NATIVE_BIND$1 = functionBindNative;
-	var bind$f = uncurryThis$m(uncurryThis$m.bind); // optional / simple context binding
+	var bind$i = uncurryThis$m(uncurryThis$m.bind); // optional / simple context binding
 
 	var functionBindContext = function (fn, that) {
 	  aCallable$9(fn);
-	  return that === undefined ? fn : NATIVE_BIND$1 ? bind$f(fn, that) : function
+	  return that === undefined ? fn : NATIVE_BIND$1 ? bind$i(fn, that) : function
 	    /* ...args */
 	  () {
 	    return fn.apply(that, arguments);
@@ -6969,7 +6969,7 @@
 	var getOwnPropertyDescriptor$5 = objectGetOwnPropertyDescriptor.f;
 	var isForced$1 = isForced_1;
 	var path$r = path$t;
-	var bind$e = functionBindContext;
+	var bind$h = functionBindContext;
 	var createNonEnumerableProperty$6 = createNonEnumerableProperty$8;
 	var hasOwn$e = hasOwnProperty_1;
 
@@ -7037,7 +7037,7 @@
 	    sourceProperty = USE_NATIVE && nativeProperty ? nativeProperty : source[key];
 	    if (USE_NATIVE && typeof targetProperty == typeof sourceProperty) continue; // bind timers to global for call from export context
 
-	    if (options.bind && USE_NATIVE) resultProperty = bind$e(sourceProperty, global$A); // wrap global constructors for prevent changs in this version
+	    if (options.bind && USE_NATIVE) resultProperty = bind$h(sourceProperty, global$A); // wrap global constructors for prevent changs in this version
 	    else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor(sourceProperty); // make static versions for prototype methods
 	    else if (PROTO && isCallable$a(sourceProperty)) resultProperty = uncurryThis$l(sourceProperty); // default case
 	    else resultProperty = sourceProperty; // add a flag to not completely full polyfills
@@ -7750,7 +7750,7 @@
 	};
 
 	var global$w = global$V;
-	var bind$d = functionBindContext;
+	var bind$g = functionBindContext;
 	var call$6 = functionCall;
 	var toObject$b = toObject$e;
 	var callWithSafeIterationClosing = callWithSafeIterationClosing$1;
@@ -7771,7 +7771,7 @@
 	  var argumentsLength = arguments.length;
 	  var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
 	  var mapping = mapfn !== undefined;
-	  if (mapping) mapfn = bind$d(mapfn, argumentsLength > 2 ? arguments[2] : undefined);
+	  if (mapping) mapfn = bind$g(mapfn, argumentsLength > 2 ? arguments[2] : undefined);
 	  var iteratorMethod = getIteratorMethod$6(O);
 	  var index = 0;
 	  var length, result, step, iterator, next, value; // if the target is not iterable or it's an array with the default iterator - use a simple case
@@ -7873,8 +7873,8 @@
 	var path$q = path$t;
 	var from$4 = path$q.Array.from;
 
-	var parent$1c = from$4;
-	var from$3 = parent$1c;
+	var parent$1e = from$4;
+	var from$3 = parent$1e;
 
 	(function (module) {
 	  module.exports = from$3;
@@ -8003,14 +8003,14 @@
 	  Iterators[COLLECTION_NAME] = Iterators.Array;
 	}
 
-	var parent$1b = getIteratorMethod_1;
-	var getIteratorMethod$3 = parent$1b;
+	var parent$1d = getIteratorMethod_1;
+	var getIteratorMethod$3 = parent$1d;
 
-	var parent$1a = getIteratorMethod$3;
-	var getIteratorMethod$2 = parent$1a;
+	var parent$1c = getIteratorMethod$3;
+	var getIteratorMethod$2 = parent$1c;
 
-	var parent$19 = getIteratorMethod$2;
-	var getIteratorMethod$1 = parent$19;
+	var parent$1b = getIteratorMethod$2;
+	var getIteratorMethod$1 = parent$1b;
 
 	(function (module) {
 	  module.exports = getIteratorMethod$1;
@@ -8136,7 +8136,7 @@
 	  return new (arraySpeciesConstructor(originalArray))(length === 0 ? 0 : length);
 	};
 
-	var bind$c = functionBindContext;
+	var bind$f = functionBindContext;
 	var uncurryThis$g = functionUncurryThis;
 	var IndexedObject$2 = indexedObject;
 	var toObject$a = toObject$e;
@@ -8155,7 +8155,7 @@
 	  return function ($this, callbackfn, that, specificCreate) {
 	    var O = toObject$a($this);
 	    var self = IndexedObject$2(O);
-	    var boundFunction = bind$c(callbackfn, that);
+	    var boundFunction = bind$f(callbackfn, that);
 	    var length = lengthOfArrayLike$9(self);
 	    var index = 0;
 	    var create = specificCreate || arraySpeciesCreate$3;
@@ -8586,8 +8586,8 @@
 	var path$o = path$t;
 	var getOwnPropertySymbols$1 = path$o.Object.getOwnPropertySymbols;
 
-	var parent$18 = getOwnPropertySymbols$1;
-	var getOwnPropertySymbols = parent$18;
+	var parent$1a = getOwnPropertySymbols$1;
+	var getOwnPropertySymbols = parent$1a;
 
 	(function (module) {
 	  module.exports = getOwnPropertySymbols;
@@ -8630,8 +8630,8 @@
 
 	if (Object$4.getOwnPropertyDescriptor.sham) getOwnPropertyDescriptor$2.sham = true;
 
-	var parent$17 = getOwnPropertyDescriptor$3.exports;
-	var getOwnPropertyDescriptor$1 = parent$17;
+	var parent$19 = getOwnPropertyDescriptor$3.exports;
+	var getOwnPropertyDescriptor$1 = parent$19;
 
 	(function (module) {
 	  module.exports = getOwnPropertyDescriptor$1;
@@ -8687,8 +8687,8 @@
 	var path$m = path$t;
 	var getOwnPropertyDescriptors$1 = path$m.Object.getOwnPropertyDescriptors;
 
-	var parent$16 = getOwnPropertyDescriptors$1;
-	var getOwnPropertyDescriptors = parent$16;
+	var parent$18 = getOwnPropertyDescriptors$1;
+	var getOwnPropertyDescriptors = parent$18;
 
 	(function (module) {
 	  module.exports = getOwnPropertyDescriptors;
@@ -8724,8 +8724,8 @@
 
 	if (Object$3.defineProperties.sham) defineProperties$1.sham = true;
 
-	var parent$15 = defineProperties$3.exports;
-	var defineProperties = parent$15;
+	var parent$17 = defineProperties$3.exports;
+	var defineProperties = parent$17;
 
 	(function (module) {
 	  module.exports = defineProperties;
@@ -8761,8 +8761,8 @@
 
 	if (Object$2.defineProperty.sham) defineProperty$8.sham = true;
 
-	var parent$14 = defineProperty$a.exports;
-	var defineProperty$7 = parent$14;
+	var parent$16 = defineProperty$a.exports;
+	var defineProperty$7 = parent$16;
 
 	(function (module) {
 	  module.exports = defineProperty$7;
@@ -8778,11 +8778,11 @@
 
 	var defineProperty$6 = {exports: {}};
 
-	var parent$13 = defineProperty$7;
-	var defineProperty$5 = parent$13;
+	var parent$15 = defineProperty$7;
+	var defineProperty$5 = parent$15;
 
-	var parent$12 = defineProperty$5;
-	var defineProperty$4 = parent$12;
+	var parent$14 = defineProperty$5;
+	var defineProperty$4 = parent$14;
 
 	(function (module) {
 	  module.exports = defineProperty$4;
@@ -8843,14 +8843,14 @@
 	var path$j = path$t;
 	var isArray$8 = path$j.Array.isArray;
 
-	var parent$11 = isArray$8;
-	var isArray$7 = parent$11;
+	var parent$13 = isArray$8;
+	var isArray$7 = parent$13;
 
-	var parent$10 = isArray$7;
-	var isArray$6 = parent$10;
+	var parent$12 = isArray$7;
+	var isArray$6 = parent$12;
 
-	var parent$$ = isArray$6;
-	var isArray$5 = parent$$;
+	var parent$11 = isArray$6;
+	var isArray$5 = parent$11;
 
 	(function (module) {
 	  module.exports = isArray$5;
@@ -9028,11 +9028,11 @@
 	var path$i = path$t;
 	var symbol$4 = path$i.Symbol;
 
-	var parent$_ = symbol$4;
-	var symbol$3 = parent$_;
+	var parent$10 = symbol$4;
+	var symbol$3 = parent$10;
 
-	var parent$Z = symbol$3;
-	var symbol$2 = parent$Z;
+	var parent$$ = symbol$3;
+	var symbol$2 = parent$$;
 
 	var defineWellKnownSymbol$6 = defineWellKnownSymbol$l; // `Symbol.asyncDispose` well-known symbol
 	// https://github.com/tc39/proposal-using-statement
@@ -9067,10 +9067,10 @@
 	var defineWellKnownSymbol = defineWellKnownSymbol$l;
 	defineWellKnownSymbol('replaceAll');
 
-	var parent$Y = symbol$2; // TODO: Remove from `core-js@4`
+	var parent$_ = symbol$2; // TODO: Remove from `core-js@4`
 	// TODO: Remove from `core-js@4`
 
-	var symbol$1 = parent$Y;
+	var symbol$1 = parent$_;
 
 	(function (module) {
 	  module.exports = symbol$1;
@@ -9184,14 +9184,14 @@
 	  return it === ArrayPrototype$j || isPrototypeOf$p(ArrayPrototype$j, it) && own === ArrayPrototype$j.slice ? method$l : own;
 	};
 
-	var parent$X = slice$4;
-	var slice$3 = parent$X;
+	var parent$Z = slice$4;
+	var slice$3 = parent$Z;
 
-	var parent$W = slice$3;
-	var slice$2 = parent$W;
+	var parent$Y = slice$3;
+	var slice$2 = parent$Y;
 
-	var parent$V = slice$2;
-	var slice$1 = parent$V;
+	var parent$X = slice$2;
+	var slice$1 = parent$X;
 
 	(function (module) {
 	  module.exports = slice$1;
@@ -9201,11 +9201,11 @@
 
 	var from$2 = {exports: {}};
 
-	var parent$U = from$3;
-	var from$1 = parent$U;
+	var parent$W = from$3;
+	var from$1 = parent$W;
 
-	var parent$T = from$1;
-	var from = parent$T;
+	var parent$V = from$1;
+	var from = parent$V;
 
 	(function (module) {
 	  module.exports = from;
@@ -9249,14 +9249,14 @@
 	var WrappedWellKnownSymbolModule = wellKnownSymbolWrapped;
 	var iterator$4 = WrappedWellKnownSymbolModule.f('iterator');
 
-	var parent$S = iterator$4;
-	var iterator$3 = parent$S;
+	var parent$U = iterator$4;
+	var iterator$3 = parent$U;
 
-	var parent$R = iterator$3;
-	var iterator$2 = parent$R;
+	var parent$T = iterator$3;
+	var iterator$2 = parent$T;
 
-	var parent$Q = iterator$2;
-	var iterator$1 = parent$Q;
+	var parent$S = iterator$2;
+	var iterator$1 = parent$S;
 
 	(function (module) {
 	  module.exports = iterator$1;
@@ -9312,8 +9312,8 @@
 	  return it === ArrayPrototype$i || isPrototypeOf$o(ArrayPrototype$i, it) && own === ArrayPrototype$i.concat ? method$k : own;
 	};
 
-	var parent$P = concat$3;
-	var concat$2 = parent$P;
+	var parent$R = concat$3;
+	var concat$2 = parent$R;
 
 	(function (module) {
 	  module.exports = concat$2;
@@ -9345,8 +9345,8 @@
 	var path$g = path$t;
 	var ownKeys$5 = path$g.Reflect.ownKeys;
 
-	var parent$O = ownKeys$5;
-	var ownKeys$4 = parent$O;
+	var parent$Q = ownKeys$5;
+	var ownKeys$4 = parent$Q;
 
 	(function (module) {
 	  module.exports = ownKeys$4;
@@ -9395,8 +9395,8 @@
 	  return it === ArrayPrototype$h || isPrototypeOf$n(ArrayPrototype$h, it) && own === ArrayPrototype$h.map ? method$j : own;
 	};
 
-	var parent$N = map$4;
-	var map$3 = parent$N;
+	var parent$P = map$4;
+	var map$3 = parent$P;
 
 	(function (module) {
 	  module.exports = map$3;
@@ -9428,8 +9428,8 @@
 	var path$f = path$t;
 	var keys$5 = path$f.Object.keys;
 
-	var parent$M = keys$5;
-	var keys$4 = parent$M;
+	var parent$O = keys$5;
+	var keys$4 = parent$O;
 
 	(function (module) {
 	  module.exports = keys$4;
@@ -9458,8 +9458,8 @@
 	var path$e = path$t;
 	var now$2 = path$e.Date.now;
 
-	var parent$L = now$2;
-	var now$1 = parent$L;
+	var parent$N = now$2;
+	var now$1 = parent$N;
 
 	(function (module) {
 	  module.exports = now$1;
@@ -9467,7 +9467,7 @@
 
 	var _Date$now = /*@__PURE__*/getDefaultExportFromCjs(now$3.exports);
 
-	var bind$b = {exports: {}};
+	var bind$e = {exports: {}};
 
 	var global$n = global$V;
 	var uncurryThis$c = functionUncurryThis;
@@ -9512,37 +9512,37 @@
 	};
 
 	var $$z = _export;
-	var bind$a = functionBind; // `Function.prototype.bind` method
+	var bind$d = functionBind; // `Function.prototype.bind` method
 	// https://tc39.es/ecma262/#sec-function.prototype.bind
 
 	$$z({
 	  target: 'Function',
 	  proto: true,
-	  forced: Function.bind !== bind$a
+	  forced: Function.bind !== bind$d
 	}, {
-	  bind: bind$a
+	  bind: bind$d
 	});
 
 	var entryVirtual$k = entryVirtual$o;
-	var bind$9 = entryVirtual$k('Function').bind;
+	var bind$c = entryVirtual$k('Function').bind;
 
 	var isPrototypeOf$m = objectIsPrototypeOf;
-	var method$i = bind$9;
+	var method$i = bind$c;
 	var FunctionPrototype = Function.prototype;
 
-	var bind$8 = function (it) {
+	var bind$b = function (it) {
 	  var own = it.bind;
 	  return it === FunctionPrototype || isPrototypeOf$m(FunctionPrototype, it) && own === FunctionPrototype.bind ? method$i : own;
 	};
 
-	var parent$K = bind$8;
-	var bind$7 = parent$K;
+	var parent$M = bind$b;
+	var bind$a = parent$M;
 
 	(function (module) {
-	  module.exports = bind$7;
-	})(bind$b);
+	  module.exports = bind$a;
+	})(bind$e);
 
-	var _bindInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(bind$b.exports);
+	var _bindInstanceProperty$1 = /*@__PURE__*/getDefaultExportFromCjs(bind$e.exports);
 
 	var forEach$9 = {exports: {}};
 
@@ -9585,8 +9585,8 @@
 	var entryVirtual$j = entryVirtual$o;
 	var forEach$7 = entryVirtual$j('Array').forEach;
 
-	var parent$J = forEach$7;
-	var forEach$6 = parent$J;
+	var parent$L = forEach$7;
+	var forEach$6 = parent$L;
 
 	var classof$6 = classof$f;
 	var hasOwn$6 = hasOwnProperty_1;
@@ -9644,8 +9644,8 @@
 	  return it === ArrayPrototype$f || isPrototypeOf$k(ArrayPrototype$f, it) && own === ArrayPrototype$f.reverse ? method$g : own;
 	};
 
-	var parent$I = reverse$4;
-	var reverse$3 = parent$I;
+	var parent$K = reverse$4;
+	var reverse$3 = parent$K;
 
 	(function (module) {
 	  module.exports = reverse$3;
@@ -9747,8 +9747,8 @@
 	  return it === ArrayPrototype$e || isPrototypeOf$j(ArrayPrototype$e, it) && own === ArrayPrototype$e.splice ? method$f : own;
 	};
 
-	var parent$H = splice$1;
-	var splice = parent$H;
+	var parent$J = splice$1;
+	var splice = parent$J;
 
 	(function (module) {
 	  module.exports = splice;
@@ -9840,8 +9840,8 @@
 	var path$d = path$t;
 	var assign$3 = path$d.Object.assign;
 
-	var parent$G = assign$3;
-	var assign$2 = parent$G;
+	var parent$I = assign$3;
+	var assign$2 = parent$I;
 
 	(function (module) {
 	  module.exports = assign$2;
@@ -9953,8 +9953,8 @@
 	  return own;
 	};
 
-	var parent$F = includes$1;
-	var includes = parent$F;
+	var parent$H = includes$1;
+	var includes = parent$H;
 
 	(function (module) {
 	  module.exports = includes;
@@ -9988,8 +9988,8 @@
 	var path$c = path$t;
 	var getPrototypeOf$5 = path$c.Object.getPrototypeOf;
 
-	var parent$E = getPrototypeOf$5;
-	var getPrototypeOf$4 = parent$E;
+	var parent$G = getPrototypeOf$5;
+	var getPrototypeOf$4 = parent$G;
 
 	(function (module) {
 	  module.exports = getPrototypeOf$4;
@@ -10030,8 +10030,8 @@
 	  return it === ArrayPrototype$c || isPrototypeOf$h(ArrayPrototype$c, it) && own === ArrayPrototype$c.filter ? method$e : own;
 	};
 
-	var parent$D = filter$1;
-	var filter = parent$D;
+	var parent$F = filter$1;
+	var filter = parent$F;
 
 	(function (module) {
 	  module.exports = filter;
@@ -10095,8 +10095,8 @@
 	var path$b = path$t;
 	var values$5 = path$b.Object.values;
 
-	var parent$C = values$5;
-	var values$4 = parent$C;
+	var parent$E = values$5;
+	var values$4 = parent$E;
 
 	(function (module) {
 	  module.exports = values$4;
@@ -10174,8 +10174,8 @@
 	var path$a = path$t;
 	var _parseInt$2 = path$a.parseInt;
 
-	var parent$B = _parseInt$2;
-	var _parseInt$1 = parent$B;
+	var parent$D = _parseInt$2;
+	var _parseInt$1 = parent$D;
 
 	(function (module) {
 	  module.exports = _parseInt$1;
@@ -10223,8 +10223,8 @@
 	  return it === ArrayPrototype$b || isPrototypeOf$g(ArrayPrototype$b, it) && own === ArrayPrototype$b.indexOf ? method$d : own;
 	};
 
-	var parent$A = indexOf$1;
-	var indexOf = parent$A;
+	var parent$C = indexOf$1;
+	var indexOf = parent$C;
 
 	(function (module) {
 	  module.exports = indexOf;
@@ -10273,8 +10273,8 @@
 	  return typeof it == 'string' || it === StringPrototype$1 || isPrototypeOf$f(StringPrototype$1, it) && own === StringPrototype$1.trim ? method$c : own;
 	};
 
-	var parent$z = trim$2;
-	var trim$1 = parent$z;
+	var parent$B = trim$2;
+	var trim$1 = parent$B;
 
 	(function (module) {
 	  module.exports = trim$1;
@@ -10304,8 +10304,8 @@
 	  return Object$1.create(P, D);
 	};
 
-	var parent$y = create$7;
-	var create$6 = parent$y;
+	var parent$A = create$7;
+	var create$6 = parent$A;
 
 	(function (module) {
 	  module.exports = create$6;
@@ -10377,8 +10377,8 @@
 	  return apply$3(path$8.JSON.stringify, null, arguments);
 	};
 
-	var parent$x = stringify$1;
-	var stringify = parent$x;
+	var parent$z = stringify$1;
+	var stringify = parent$z;
 
 	(function (module) {
 	  module.exports = stringify;
@@ -10489,8 +10489,8 @@
 	  return it === ArrayPrototype$a || isPrototypeOf$e(ArrayPrototype$a, it) && own === ArrayPrototype$a.fill ? method$b : own;
 	};
 
-	var parent$w = fill$1;
-	var fill = parent$w;
+	var parent$y = fill$1;
+	var fill = parent$y;
 
 	(function (module) {
 	  module.exports = fill;
@@ -13953,7 +13953,7 @@
 	  });
 
 	  var hammer = Hammer$1(this._dom.overlay);
-	  hammer.on("tap", _bindInstanceProperty(_context3 = this._onTapOverlay).call(_context3, this));
+	  hammer.on("tap", _bindInstanceProperty$1(_context3 = this._onTapOverlay).call(_context3, this));
 
 	  this._cleanupQueue.push(function () {
 	    hammer.destroy(); // FIXME: cleaning up hammer instances doesn't work (Timeline not removed
@@ -16492,19 +16492,19 @@
 	      this.cancelButton = document.createElement("div");
 	      this.cancelButton.className = "vis-button vis-cancel";
 	      this.cancelButton.innerText = "cancel";
-	      this.cancelButton.onclick = _bindInstanceProperty(_context16 = this._hide).call(_context16, this, false);
+	      this.cancelButton.onclick = _bindInstanceProperty$1(_context16 = this._hide).call(_context16, this, false);
 	      this.applyButton = document.createElement("div");
 	      this.applyButton.className = "vis-button vis-apply";
 	      this.applyButton.innerText = "apply";
-	      this.applyButton.onclick = _bindInstanceProperty(_context17 = this._apply).call(_context17, this);
+	      this.applyButton.onclick = _bindInstanceProperty$1(_context17 = this._apply).call(_context17, this);
 	      this.saveButton = document.createElement("div");
 	      this.saveButton.className = "vis-button vis-save";
 	      this.saveButton.innerText = "save";
-	      this.saveButton.onclick = _bindInstanceProperty(_context18 = this._save).call(_context18, this);
+	      this.saveButton.onclick = _bindInstanceProperty$1(_context18 = this._save).call(_context18, this);
 	      this.loadButton = document.createElement("div");
 	      this.loadButton.className = "vis-button vis-load";
 	      this.loadButton.innerText = "load last";
-	      this.loadButton.onclick = _bindInstanceProperty(_context19 = this._loadLast).call(_context19, this);
+	      this.loadButton.onclick = _bindInstanceProperty$1(_context19 = this._loadLast).call(_context19, this);
 	      this.frame.appendChild(this.colorPickerDiv);
 	      this.frame.appendChild(this.arrowDiv);
 	      this.frame.appendChild(this.brightnessLabel);
@@ -18477,7 +18477,7 @@
 	var $$i = _export;
 	var getBuiltIn$4 = getBuiltIn$c;
 	var apply$1 = functionApply;
-	var bind$6 = functionBind;
+	var bind$9 = functionBind;
 	var aConstructor$1 = aConstructor$2;
 	var anObject$3 = anObject$d;
 	var isObject$6 = isObject$j;
@@ -18541,7 +18541,7 @@
 
 	      var $args = [null];
 	      apply$1(push$2, $args, args);
-	      return new (apply$1(bind$6, Target, $args))();
+	      return new (apply$1(bind$9, Target, $args))();
 	    } // with altered newTarget, not support built-in constructors
 
 
@@ -18555,8 +18555,8 @@
 	var path$6 = path$t;
 	var construct$1 = path$6.Reflect.construct;
 
-	var parent$v = construct$1;
-	var construct = parent$v;
+	var parent$x = construct$1;
+	var construct = parent$x;
 
 	(function (module) {
 	  module.exports = construct;
@@ -18574,11 +18574,11 @@
 
 	var create$4 = {exports: {}};
 
-	var parent$u = create$6;
-	var create$3 = parent$u;
+	var parent$w = create$6;
+	var create$3 = parent$w;
 
-	var parent$t = create$3;
-	var create$2 = parent$t;
+	var parent$v = create$3;
+	var create$2 = parent$v;
 
 	(function (module) {
 	  module.exports = create$2;
@@ -18602,14 +18602,14 @@
 	var path$5 = path$t;
 	var setPrototypeOf$4 = path$5.Object.setPrototypeOf;
 
-	var parent$s = setPrototypeOf$4;
-	var setPrototypeOf$3 = parent$s;
+	var parent$u = setPrototypeOf$4;
+	var setPrototypeOf$3 = parent$u;
 
-	var parent$r = setPrototypeOf$3;
-	var setPrototypeOf$2 = parent$r;
+	var parent$t = setPrototypeOf$3;
+	var setPrototypeOf$2 = parent$t;
 
-	var parent$q = setPrototypeOf$2;
-	var setPrototypeOf$1 = parent$q;
+	var parent$s = setPrototypeOf$2;
+	var setPrototypeOf$1 = parent$s;
 
 	(function (module) {
 	  module.exports = setPrototypeOf$1;
@@ -18617,12 +18617,27 @@
 
 	var _Object$setPrototypeOf = /*@__PURE__*/getDefaultExportFromCjs(setPrototypeOf$6.exports);
 
+	var bind$8 = {exports: {}};
+
+	var parent$r = bind$a;
+	var bind$7 = parent$r;
+
+	var parent$q = bind$7;
+	var bind$6 = parent$q;
+
+	(function (module) {
+	  module.exports = bind$6;
+	})(bind$8);
+
+	var _bindInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(bind$8.exports);
+
 	function _setPrototypeOf(o, p) {
-	  _setPrototypeOf = _Object$setPrototypeOf || function _setPrototypeOf(o, p) {
+	  var _context;
+
+	  _setPrototypeOf = _Object$setPrototypeOf ? _bindInstanceProperty(_context = _Object$setPrototypeOf).call(_context) : function _setPrototypeOf(o, p) {
 	    o.__proto__ = p;
 	    return o;
 	  };
-
 	  return _setPrototypeOf(o, p);
 	}
 
@@ -18671,13 +18686,15 @@
 	var _Object$getPrototypeOf = /*@__PURE__*/getDefaultExportFromCjs(getPrototypeOf$3.exports);
 
 	function _getPrototypeOf(o) {
-	  _getPrototypeOf = _Object$setPrototypeOf ? _Object$getPrototypeOf : function _getPrototypeOf(o) {
+	  var _context;
+
+	  _getPrototypeOf = _Object$setPrototypeOf ? _bindInstanceProperty(_context = _Object$getPrototypeOf).call(_context) : function _getPrototypeOf(o) {
 	    return o.__proto__ || _Object$getPrototypeOf(o);
 	  };
 	  return _getPrototypeOf(o);
 	}
 
-	var regeneratorRuntime = {exports: {}};
+	var regeneratorRuntime$1 = {exports: {}};
 
 	var _typeof = {exports: {}};
 
@@ -20236,9 +20253,20 @@
 	  }
 
 	  module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
-	})(regeneratorRuntime);
+	})(regeneratorRuntime$1);
 
-	var regenerator = regeneratorRuntime.exports();
+	var runtime = regeneratorRuntime$1.exports();
+	var regenerator = runtime; // Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
+
+	try {
+	  regeneratorRuntime = runtime;
+	} catch (accidentalStrictMode) {
+	  if (typeof globalThis === "object") {
+	    globalThis.regeneratorRuntime = runtime;
+	  } else {
+	    Function("r", "regeneratorRuntime = r")(runtime);
+	  }
+	}
 
 	var reduce$3 = {exports: {}};
 
@@ -21759,9 +21787,9 @@
 	    _defineProperty(this, "_target", void 0);
 
 	    _defineProperty(this, "_listeners", {
-	      add: _bindInstanceProperty(_context = this._add).call(_context, this),
-	      remove: _bindInstanceProperty(_context2 = this._remove).call(_context2, this),
-	      update: _bindInstanceProperty(_context3 = this._update).call(_context3, this)
+	      add: _bindInstanceProperty$1(_context = this._add).call(_context, this),
+	      remove: _bindInstanceProperty$1(_context2 = this._remove).call(_context2, this),
+	      update: _bindInstanceProperty$1(_context3 = this._update).call(_context3, this)
 	    });
 
 	    this._source = _source;
@@ -24142,7 +24170,7 @@
 	      } else {
 	        var _context26;
 
-	        return new DataStream(_defineProperty({}, _Symbol$iterator2, _bindInstanceProperty(_context26 = _entriesInstanceProperty(this._data)).call(_context26, this._data)));
+	        return new DataStream(_defineProperty({}, _Symbol$iterator2, _bindInstanceProperty$1(_context26 = _entriesInstanceProperty(this._data)).call(_context26, this._data)));
 	      }
 	    }
 	  }]);
@@ -24227,7 +24255,7 @@
 	    _defineProperty(_assertThisInitialized(_this7), "_options", void 0);
 
 	    _this7._options = options || {};
-	    _this7._listener = _bindInstanceProperty(_context27 = _this7._onEvent).call(_context27, _assertThisInitialized(_this7));
+	    _this7._listener = _bindInstanceProperty$1(_context27 = _this7._onEvent).call(_context27, _assertThisInitialized(_this7));
 
 	    _this7.setData(data);
 
@@ -24525,7 +24553,7 @@
 	    value: function stream(ids) {
 	      var _context30;
 
-	      return this._data.stream(ids || _defineProperty({}, _Symbol$iterator2, _bindInstanceProperty(_context30 = _keysInstanceProperty(this._ids)).call(_context30, this._ids)));
+	      return this._data.stream(ids || _defineProperty({}, _Symbol$iterator2, _bindInstanceProperty$1(_context30 = _keysInstanceProperty(this._ids)).call(_context30, this._ids)));
 	    }
 	    /**
 	     * Render the instance unusable prior to garbage collection.
@@ -26942,11 +26970,11 @@
 	      return (_rawDS$getDataSet5 = rawDS.getDataSet()).clear.apply(_rawDS$getDataSet5, arguments);
 	    },
 	    // Read only.
-	    forEach: _bindInstanceProperty(_context3 = _forEachInstanceProperty(coercedDS)).call(_context3, coercedDS),
-	    get: _bindInstanceProperty(_context4 = coercedDS.get).call(_context4, coercedDS),
-	    getIds: _bindInstanceProperty(_context5 = coercedDS.getIds).call(_context5, coercedDS),
-	    off: _bindInstanceProperty(_context6 = coercedDS.off).call(_context6, coercedDS),
-	    on: _bindInstanceProperty(_context7 = coercedDS.on).call(_context7, coercedDS),
+	    forEach: _bindInstanceProperty$1(_context3 = _forEachInstanceProperty(coercedDS)).call(_context3, coercedDS),
+	    get: _bindInstanceProperty$1(_context4 = coercedDS.get).call(_context4, coercedDS),
+	    getIds: _bindInstanceProperty$1(_context5 = coercedDS.getIds).call(_context5, coercedDS),
+	    off: _bindInstanceProperty$1(_context6 = coercedDS.off).call(_context6, coercedDS),
+	    on: _bindInstanceProperty$1(_context7 = coercedDS.on).call(_context7, coercedDS),
 
 	    get length() {
 	      return coercedDS.length;
@@ -27828,22 +27856,22 @@
 	    };
 	    _this.animationTimer = null; // drag listeners for dragging
 
-	    _this.body.emitter.on('panstart', _bindInstanceProperty(_context = _this._onDragStart).call(_context, _assertThisInitialized(_this)));
+	    _this.body.emitter.on('panstart', _bindInstanceProperty$1(_context = _this._onDragStart).call(_context, _assertThisInitialized(_this)));
 
-	    _this.body.emitter.on('panmove', _bindInstanceProperty(_context2 = _this._onDrag).call(_context2, _assertThisInitialized(_this)));
+	    _this.body.emitter.on('panmove', _bindInstanceProperty$1(_context2 = _this._onDrag).call(_context2, _assertThisInitialized(_this)));
 
-	    _this.body.emitter.on('panend', _bindInstanceProperty(_context3 = _this._onDragEnd).call(_context3, _assertThisInitialized(_this))); // mouse wheel for zooming
-
-
-	    _this.body.emitter.on('mousewheel', _bindInstanceProperty(_context4 = _this._onMouseWheel).call(_context4, _assertThisInitialized(_this))); // pinch to zoom
+	    _this.body.emitter.on('panend', _bindInstanceProperty$1(_context3 = _this._onDragEnd).call(_context3, _assertThisInitialized(_this))); // mouse wheel for zooming
 
 
-	    _this.body.emitter.on('touch', _bindInstanceProperty(_context5 = _this._onTouch).call(_context5, _assertThisInitialized(_this)));
-
-	    _this.body.emitter.on('pinch', _bindInstanceProperty(_context6 = _this._onPinch).call(_context6, _assertThisInitialized(_this))); // on click of rolling mode button
+	    _this.body.emitter.on('mousewheel', _bindInstanceProperty$1(_context4 = _this._onMouseWheel).call(_context4, _assertThisInitialized(_this))); // pinch to zoom
 
 
-	    _this.body.dom.rollingModeBtn.addEventListener('click', _bindInstanceProperty(_context7 = _this.startRolling).call(_context7, _assertThisInitialized(_this)));
+	    _this.body.emitter.on('touch', _bindInstanceProperty$1(_context5 = _this._onTouch).call(_context5, _assertThisInitialized(_this)));
+
+	    _this.body.emitter.on('pinch', _bindInstanceProperty$1(_context6 = _this._onPinch).call(_context6, _assertThisInitialized(_this))); // on click of rolling mode button
+
+
+	    _this.body.dom.rollingModeBtn.addEventListener('click', _bindInstanceProperty$1(_context7 = _this.startRolling).call(_context7, _assertThisInitialized(_this)));
 
 	    _this.setOptions(options);
 
@@ -30899,7 +30927,7 @@
 	  this.dom.overlay.className = 'vis-overlay';
 	  this.dom.container.appendChild(this.dom.overlay);
 	  this.hammer = Hammer(this.dom.overlay);
-	  this.hammer.on('tap', _bindInstanceProperty(_context = this._onTapOverlay).call(_context, this)); // block all touch events (except tap)
+	  this.hammer.on('tap', _bindInstanceProperty$1(_context = this._onTapOverlay).call(_context, this)); // block all touch events (except tap)
 
 	  var me = this;
 	  var events = ['tap', 'doubletap', 'press', 'pinch', 'pan', 'panstart', 'panmove', 'panend'];
@@ -30927,7 +30955,7 @@
 
 	  this.keycharm = keycharm(); // keycharm listener only bounded when active)
 
-	  this.escListener = _bindInstanceProperty(_context2 = this.deactivate).call(_context2, this);
+	  this.escListener = _bindInstanceProperty$1(_context2 = this.deactivate).call(_context2, this);
 	} // turn into an event emitter
 
 
@@ -30979,7 +31007,7 @@
 	  this.emit('activate'); // ugly hack: bind ESC after emitting the events, as the Network rebinds all
 	  // keyboard events on a 'change' event
 
-	  _bindInstanceProperty(_context3 = this.keycharm).call(_context3, 'esc', this.escListener);
+	  _bindInstanceProperty$1(_context3 = this.keycharm).call(_context3, 'esc', this.escListener);
 	};
 	/**
 	 * Deactivate the element
@@ -31303,20 +31331,20 @@
 
 	      if (drag.addEventListener) {
 	        // IE9, Chrome, Safari, Opera
-	        drag.addEventListener("mousewheel", _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this), false); // Firefox
+	        drag.addEventListener("mousewheel", _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this), false); // Firefox
 
-	        drag.addEventListener("DOMMouseScroll", _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this), false);
+	        drag.addEventListener("DOMMouseScroll", _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this), false);
 	      } else {
 	        // IE 6/7/8
-	        drag.attachEvent("onmousewheel", _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this));
+	        drag.attachEvent("onmousewheel", _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this));
 	      }
 
 	      bar.appendChild(drag); // attach event listeners
 
 	      this.hammer = new Hammer(drag);
-	      this.hammer.on('panstart', _bindInstanceProperty(_context2 = this._onDragStart).call(_context2, this));
-	      this.hammer.on('panmove', _bindInstanceProperty(_context3 = this._onDrag).call(_context3, this));
-	      this.hammer.on('panend', _bindInstanceProperty(_context4 = this._onDragEnd).call(_context4, this));
+	      this.hammer.on('panstart', _bindInstanceProperty$1(_context2 = this._onDragStart).call(_context2, this));
+	      this.hammer.on('panmove', _bindInstanceProperty$1(_context3 = this._onDrag).call(_context3, this));
+	      this.hammer.on('panend', _bindInstanceProperty$1(_context4 = this._onDragEnd).call(_context4, this));
 	      this.hammer.get('pan').set({
 	        threshold: 5,
 	        direction: Hammer.DIRECTION_ALL
@@ -31438,10 +31466,10 @@
 	        marker.addEventListener('pointerdown', function () {
 	          marker.focus();
 	        });
-	        marker.addEventListener('input', _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this)); // The editable div element has no change event, so here emulates the change event.
+	        marker.addEventListener('input', _bindInstanceProperty$1(_context6 = this._onMarkerChange).call(_context6, this)); // The editable div element has no change event, so here emulates the change event.
 
 	        marker.title = title;
-	        marker.addEventListener('blur', _bindInstanceProperty(_context7 = function _context7(event) {
+	        marker.addEventListener('blur', _bindInstanceProperty$1(_context7 = function _context7(event) {
 	          if (this.title != event.target.innerHTML) {
 	            this._onMarkerChanged(event);
 
@@ -31709,10 +31737,10 @@
 	          _this.initialRangeChangeDone = true;
 	        }
 	      });
-	      this.on('touch', _bindInstanceProperty(_context = this._onTouch).call(_context, this));
-	      this.on('panmove', _bindInstanceProperty(_context2 = this._onDrag).call(_context2, this));
+	      this.on('touch', _bindInstanceProperty$1(_context = this._onTouch).call(_context, this));
+	      this.on('panmove', _bindInstanceProperty$1(_context2 = this._onDrag).call(_context2, this));
 	      var me = this;
-	      this._origRedraw = _bindInstanceProperty(_context3 = this._redraw).call(_context3, this);
+	      this._origRedraw = _bindInstanceProperty$1(_context3 = this._redraw).call(_context3, this);
 	      this._redraw = availableUtils.throttle(this._origRedraw);
 	      this.on('_change', function (properties) {
 	        if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
@@ -31872,9 +31900,9 @@
 	      this.dom.centerContainer.addEventListener ? "DOMMouseScroll" : "onmousewheel";
 	      this.dom.top.addEventListener ? "DOMMouseScroll" : "onmousewheel";
 	      this.dom.bottom.addEventListener ? "DOMMouseScroll" : "onmousewheel";
-	      this.dom.centerContainer.addEventListener(wheelType, _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this), false);
-	      this.dom.top.addEventListener(wheelType, _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this), false);
-	      this.dom.bottom.addEventListener(wheelType, _bindInstanceProperty(onMouseWheel).call(onMouseWheel, this), false);
+	      this.dom.centerContainer.addEventListener(wheelType, _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this), false);
+	      this.dom.top.addEventListener(wheelType, _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this), false);
+	      this.dom.bottom.addEventListener(wheelType, _bindInstanceProperty$1(onMouseWheel).call(onMouseWheel, this), false);
 	      /**
 	       *
 	       * @param {scroll} event
@@ -31895,8 +31923,8 @@
 	        }
 	      }
 
-	      this.dom.left.parentNode.addEventListener('scroll', _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
-	      this.dom.right.parentNode.addEventListener('scroll', _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
+	      this.dom.left.parentNode.addEventListener('scroll', _bindInstanceProperty$1(onMouseScrollSide).call(onMouseScrollSide, this));
+	      this.dom.right.parentNode.addEventListener('scroll', _bindInstanceProperty$1(onMouseScrollSide).call(onMouseScrollSide, this));
 	      var itemAddedToTimeline = false;
 	      /**
 	       *
@@ -31961,8 +31989,8 @@
 	        return false;
 	      }
 
-	      this.dom.center.addEventListener('dragover', _bindInstanceProperty(handleDragOver).call(handleDragOver, this), false);
-	      this.dom.center.addEventListener('drop', _bindInstanceProperty(handleDrop).call(handleDrop, this), false);
+	      this.dom.center.addEventListener('dragover', _bindInstanceProperty$1(handleDragOver).call(handleDragOver, this), false);
+	      this.dom.center.addEventListener('drop', _bindInstanceProperty$1(handleDrop).call(handleDrop, this), false);
 	      this.customTimes = []; // store state information needed for touch events
 
 	      this.touch = {};
@@ -34102,7 +34130,7 @@
 	      if (this.itemSet.options && this.itemSet.options.groupTemplate) {
 	        var _context;
 
-	        templateFunction = _bindInstanceProperty(_context = this.itemSet.options.groupTemplate).call(_context, this);
+	        templateFunction = _bindInstanceProperty$1(_context = this.itemSet.options.groupTemplate).call(_context, this);
 	        content = templateFunction(data, this.dom.inner);
 	      } else {
 	        content = data && data.content;
@@ -34425,7 +34453,7 @@
 	              return me.itemSet.options.order(a.data, b.data);
 	            });
 
-	            this.shouldBailStackItems = stack(customOrderedItems, margin, true, _bindInstanceProperty(_context15 = this._shouldBailItemsRedraw).call(_context15, this));
+	            this.shouldBailStackItems = stack(customOrderedItems, margin, true, _bindInstanceProperty$1(_context15 = this._shouldBailItemsRedraw).call(_context15, this));
 	          }
 	        } else {
 	          // no custom order function, lazy stacking
@@ -34442,7 +34470,7 @@
 	              var _context16;
 
 	              // TODO: ugly way to access options...
-	              this.shouldBailStackItems = stack(this.visibleItems, margin, true, _bindInstanceProperty(_context16 = this._shouldBailItemsRedraw).call(_context16, this));
+	              this.shouldBailStackItems = stack(this.visibleItems, margin, true, _bindInstanceProperty$1(_context16 = this._shouldBailItemsRedraw).call(_context16, this));
 	            }
 	          } else {
 	            // no stacking
@@ -34547,34 +34575,34 @@
 	      var queue = [function () {
 	        forceRestack = _this3._didMarkerHeightChange.call(_this3) || forceRestack;
 	      }, // recalculate the height of the subgroups
-	      _bindInstanceProperty(_context17 = this._updateSubGroupHeights).call(_context17, this, margin), // calculate actual size and position
-	      _bindInstanceProperty(_context18 = this._calculateGroupSizeAndPosition).call(_context18, this), function () {
+	      _bindInstanceProperty$1(_context17 = this._updateSubGroupHeights).call(_context17, this, margin), // calculate actual size and position
+	      _bindInstanceProperty$1(_context18 = this._calculateGroupSizeAndPosition).call(_context18, this), function () {
 	        var _context19;
 
-	        _this3.isVisible = _bindInstanceProperty(_context19 = _this3._isGroupVisible).call(_context19, _this3)(range, margin);
+	        _this3.isVisible = _bindInstanceProperty$1(_context19 = _this3._isGroupVisible).call(_context19, _this3)(range, margin);
 	      }, function () {
 	        var _context20;
 
-	        _bindInstanceProperty(_context20 = _this3._redrawItems).call(_context20, _this3)(forceRestack, lastIsVisible, margin, range);
+	        _bindInstanceProperty$1(_context20 = _this3._redrawItems).call(_context20, _this3)(forceRestack, lastIsVisible, margin, range);
 	      }, // update subgroups
-	      _bindInstanceProperty(_context21 = this._updateSubgroupsSizes).call(_context21, this), function () {
+	      _bindInstanceProperty$1(_context21 = this._updateSubgroupsSizes).call(_context21, this), function () {
 	        var _context22;
 
-	        height = _bindInstanceProperty(_context22 = _this3._calculateHeight).call(_context22, _this3)(margin);
+	        height = _bindInstanceProperty$1(_context22 = _this3._calculateHeight).call(_context22, _this3)(margin);
 	      }, // calculate actual size and position again
-	      _bindInstanceProperty(_context23 = this._calculateGroupSizeAndPosition).call(_context23, this), function () {
+	      _bindInstanceProperty$1(_context23 = this._calculateGroupSizeAndPosition).call(_context23, this), function () {
 	        var _context24;
 
-	        resized = _bindInstanceProperty(_context24 = _this3._didResize).call(_context24, _this3)(resized, height);
+	        resized = _bindInstanceProperty$1(_context24 = _this3._didResize).call(_context24, _this3)(resized, height);
 	      }, function () {
 	        var _context25;
 
-	        _bindInstanceProperty(_context25 = _this3._applyGroupHeight).call(_context25, _this3)(height);
+	        _bindInstanceProperty$1(_context25 = _this3._applyGroupHeight).call(_context25, _this3)(height);
 	      }, function () {
 	        var _context26;
 
-	        _bindInstanceProperty(_context26 = _this3._updateItemsVerticalPosition).call(_context26, _this3)(margin);
-	      }, _bindInstanceProperty(_context27 = function _context27() {
+	        _bindInstanceProperty$1(_context26 = _this3._updateItemsVerticalPosition).call(_context26, _this3)(margin);
+	      }, _bindInstanceProperty$1(_context27 = function _context27() {
 	        if (!_this3.isVisible && _this3.height) {
 	          resized = false;
 	        }
@@ -35611,8 +35639,8 @@
 
 	          me.parent.itemSet._onDragStart(event);
 	        });
-	        this.hammerDragCenter.on('panmove', _bindInstanceProperty(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
-	        this.hammerDragCenter.on('panend', _bindInstanceProperty(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet)); // delay addition on item click for trackpads...
+	        this.hammerDragCenter.on('panmove', _bindInstanceProperty$1(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
+	        this.hammerDragCenter.on('panend', _bindInstanceProperty$1(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet)); // delay addition on item click for trackpads...
 
 	        this.hammerDragCenter.get('press').set({
 	          time: 10000
@@ -35762,7 +35790,7 @@
 	        if (this.options.tooltipOnItemUpdateTime && this.options.tooltipOnItemUpdateTime.template) {
 	          var _context4;
 
-	          templateFunction = _bindInstanceProperty(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
+	          templateFunction = _bindInstanceProperty$1(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
 	          content = templateFunction(this.data);
 	        } else {
 	          content = "start: ".concat(moment$2(this.data.start).format('MM/DD/YYYY hh:mm'));
@@ -35810,7 +35838,7 @@
 	      if (this.options.visibleFrameTemplate) {
 	        var _context5;
 
-	        visibleFrameTemplateFunction = _bindInstanceProperty(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
+	        visibleFrameTemplateFunction = _bindInstanceProperty$1(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
 	        itemVisibleFrameContent = availableUtils.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
 	      } else {
 	        itemVisibleFrameContent = '';
@@ -35843,7 +35871,7 @@
 	      if (this.options.template) {
 	        var _context6;
 
-	        templateFunction = _bindInstanceProperty(_context6 = this.options.template).call(_context6, this);
+	        templateFunction = _bindInstanceProperty$1(_context6 = this.options.template).call(_context6, this);
 	        content = templateFunction(itemData, element, this.data);
 	      } else {
 	        content = this.data.content;
@@ -36016,7 +36044,7 @@
 	      if (this.options.tooltip && this.options.tooltip.template) {
 	        var _context7;
 
-	        var templateFunction = _bindInstanceProperty(_context7 = this.options.tooltip.template).call(_context7, this);
+	        var templateFunction = _bindInstanceProperty$1(_context7 = this.options.tooltip.template).call(_context7, this);
 
 	        return templateFunction(this._getItemData(), this.data);
 	      }
@@ -36281,9 +36309,9 @@
 
 	      var sizes;
 	      var queue = [// create item DOM
-	      _bindInstanceProperty(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-	      _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-	      _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+	      _bindInstanceProperty$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+	      _bindInstanceProperty$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+	      _bindInstanceProperty$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
 	        if (_this2.dirty) {
 	          sizes = _this2._getDomComponentsSizes();
 	        }
@@ -36291,10 +36319,10 @@
 	        if (_this2.dirty) {
 	          var _context4;
 
-	          _bindInstanceProperty(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
+	          _bindInstanceProperty$1(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
 	        }
 	      }, // repaint DOM additionals
-	      _bindInstanceProperty(_context5 = this._repaintDomAdditionals).call(_context5, this)];
+	      _bindInstanceProperty$1(_context5 = this._repaintDomAdditionals).call(_context5, this)];
 
 	      if (returnQueue) {
 	        return queue;
@@ -36693,9 +36721,9 @@
 
 	      var sizes;
 	      var queue = [// create item DOM
-	      _bindInstanceProperty(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-	      _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-	      _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+	      _bindInstanceProperty$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+	      _bindInstanceProperty$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+	      _bindInstanceProperty$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
 	        if (_this2.dirty) {
 	          sizes = _this2._getDomComponentsSizes();
 	        }
@@ -36703,10 +36731,10 @@
 	        if (_this2.dirty) {
 	          var _context4;
 
-	          _bindInstanceProperty(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
+	          _bindInstanceProperty$1(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
 	        }
 	      }, // repaint DOM additionals
-	      _bindInstanceProperty(_context5 = this._repaintDomAdditionals).call(_context5, this)];
+	      _bindInstanceProperty$1(_context5 = this._repaintDomAdditionals).call(_context5, this)];
 
 	      if (returnQueue) {
 	        return queue;
@@ -37062,22 +37090,22 @@
 
 	      var sizes;
 	      var queue = [// create item DOM
-	      _bindInstanceProperty(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-	      _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM 
-	      _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+	      _bindInstanceProperty$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+	      _bindInstanceProperty$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM 
+	      _bindInstanceProperty$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
 	        if (_this2.dirty) {
 	          var _context4;
 
-	          sizes = _bindInstanceProperty(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
+	          sizes = _bindInstanceProperty$1(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
 	        }
 	      }, function () {
 	        if (_this2.dirty) {
 	          var _context5;
 
-	          _bindInstanceProperty(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
+	          _bindInstanceProperty$1(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
 	        }
 	      }, // repaint DOM additionals
-	      _bindInstanceProperty(_context6 = this._repaintDomAdditionals).call(_context6, this)];
+	      _bindInstanceProperty$1(_context6 = this._repaintDomAdditionals).call(_context6, this)];
 
 	      if (returnQueue) {
 	        return queue;
@@ -37510,21 +37538,21 @@
 
 	      var sizes;
 	      var queue = [// create item DOM
-	      _bindInstanceProperty(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-	      _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this), _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+	      _bindInstanceProperty$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+	      _bindInstanceProperty$1(_context2 = this._appendDomElement).call(_context2, this), _bindInstanceProperty$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
 	        if (_this2.dirty) {
 	          var _context4;
 
-	          sizes = _bindInstanceProperty(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
+	          sizes = _bindInstanceProperty$1(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
 	        }
 	      }, function () {
 	        if (_this2.dirty) {
 	          var _context5;
 
-	          _bindInstanceProperty(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
+	          _bindInstanceProperty$1(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
 	        }
 	      }, // repaint DOM additionals
-	      _bindInstanceProperty(_context6 = this._repaintDomAdditionals).call(_context6, this)];
+	      _bindInstanceProperty$1(_context6 = this._repaintDomAdditionals).call(_context6, this)];
 
 	      if (returnQueue) {
 	        return queue;
@@ -37932,20 +37960,20 @@
 
 	      var sizes;
 	      var queue = [// create item DOM
-	      _bindInstanceProperty(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-	      _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-	      _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), _bindInstanceProperty(_context4 = function _context4() {
+	      _bindInstanceProperty$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+	      _bindInstanceProperty$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+	      _bindInstanceProperty$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), _bindInstanceProperty$1(_context4 = function _context4() {
 	        if (this.dirty) {
 	          sizes = this._getDomComponentsSizes();
 	        }
-	      }).call(_context4, this), _bindInstanceProperty(_context5 = function _context5() {
+	      }).call(_context4, this), _bindInstanceProperty$1(_context5 = function _context5() {
 	        if (this.dirty) {
 	          var _context6;
 
-	          _bindInstanceProperty(_context6 = this._updateDomComponentsSizes).call(_context6, this)(sizes);
+	          _bindInstanceProperty$1(_context6 = this._updateDomComponentsSizes).call(_context6, this)(sizes);
 	        }
 	      }).call(_context5, this), // repaint DOM additionals
-	      _bindInstanceProperty(_context7 = this._repaintDomAdditionals).call(_context7, this)];
+	      _bindInstanceProperty$1(_context7 = this._repaintDomAdditionals).call(_context7, this)];
 
 	      if (returnQueue) {
 	        return queue;
@@ -38356,7 +38384,7 @@
 	        if (this.options.fitOnDoubleClick) {
 	          var _context13;
 
-	          this.dom.box.ondblclick = _bindInstanceProperty(_context13 = ClusterItem.prototype._onDoubleClick).call(_context13, this);
+	          this.dom.box.ondblclick = _bindInstanceProperty$1(_context13 = ClusterItem.prototype._onDoubleClick).call(_context13, this);
 	        } // attach this item as attribute
 
 
@@ -39274,9 +39302,9 @@
 	          _this2._onTouch(event);
 	        }
 	      });
-	      this.hammer.on('panstart', _bindInstanceProperty(_context3 = this._onDragStart).call(_context3, this));
-	      this.hammer.on('panmove', _bindInstanceProperty(_context4 = this._onDrag).call(_context4, this));
-	      this.hammer.on('panend', _bindInstanceProperty(_context5 = this._onDragEnd).call(_context5, this));
+	      this.hammer.on('panstart', _bindInstanceProperty$1(_context3 = this._onDragStart).call(_context3, this));
+	      this.hammer.on('panmove', _bindInstanceProperty$1(_context4 = this._onDrag).call(_context4, this));
+	      this.hammer.on('panend', _bindInstanceProperty$1(_context5 = this._onDragEnd).call(_context5, this));
 	      this.hammer.get('pan').set({
 	        threshold: 5,
 	        direction: Hammer.ALL
@@ -39286,15 +39314,15 @@
 	        time: 10000
 	      }); // single select (or unselect) when tapping an item
 
-	      this.hammer.on('tap', _bindInstanceProperty(_context6 = this._onSelectItem).call(_context6, this)); // multi select when holding mouse/touch, or on ctrl+click
+	      this.hammer.on('tap', _bindInstanceProperty$1(_context6 = this._onSelectItem).call(_context6, this)); // multi select when holding mouse/touch, or on ctrl+click
 
-	      this.hammer.on('press', _bindInstanceProperty(_context7 = this._onMultiSelectItem).call(_context7, this)); // delay addition on item click for trackpads...
+	      this.hammer.on('press', _bindInstanceProperty$1(_context7 = this._onMultiSelectItem).call(_context7, this)); // delay addition on item click for trackpads...
 
 	      this.hammer.get('press').set({
 	        time: 10000
 	      }); // add item on doubletap
 
-	      this.hammer.on('doubletap', _bindInstanceProperty(_context8 = this._onAddItem).call(_context8, this));
+	      this.hammer.on('doubletap', _bindInstanceProperty$1(_context8 = this._onAddItem).call(_context8, this));
 
 	      if (this.options.rtl) {
 	        this.groupHammer = new Hammer(this.body.dom.rightContainer);
@@ -39302,20 +39330,20 @@
 	        this.groupHammer = new Hammer(this.body.dom.leftContainer);
 	      }
 
-	      this.groupHammer.on('tap', _bindInstanceProperty(_context9 = this._onGroupClick).call(_context9, this));
-	      this.groupHammer.on('panstart', _bindInstanceProperty(_context10 = this._onGroupDragStart).call(_context10, this));
-	      this.groupHammer.on('panmove', _bindInstanceProperty(_context11 = this._onGroupDrag).call(_context11, this));
-	      this.groupHammer.on('panend', _bindInstanceProperty(_context12 = this._onGroupDragEnd).call(_context12, this));
+	      this.groupHammer.on('tap', _bindInstanceProperty$1(_context9 = this._onGroupClick).call(_context9, this));
+	      this.groupHammer.on('panstart', _bindInstanceProperty$1(_context10 = this._onGroupDragStart).call(_context10, this));
+	      this.groupHammer.on('panmove', _bindInstanceProperty$1(_context11 = this._onGroupDrag).call(_context11, this));
+	      this.groupHammer.on('panend', _bindInstanceProperty$1(_context12 = this._onGroupDragEnd).call(_context12, this));
 	      this.groupHammer.get('pan').set({
 	        threshold: 5,
 	        direction: Hammer.DIRECTION_VERTICAL
 	      });
-	      this.body.dom.centerContainer.addEventListener('mouseover', _bindInstanceProperty(_context13 = this._onMouseOver).call(_context13, this));
-	      this.body.dom.centerContainer.addEventListener('mouseout', _bindInstanceProperty(_context14 = this._onMouseOut).call(_context14, this));
-	      this.body.dom.centerContainer.addEventListener('mousemove', _bindInstanceProperty(_context15 = this._onMouseMove).call(_context15, this)); // right-click on timeline 
+	      this.body.dom.centerContainer.addEventListener('mouseover', _bindInstanceProperty$1(_context13 = this._onMouseOver).call(_context13, this));
+	      this.body.dom.centerContainer.addEventListener('mouseout', _bindInstanceProperty$1(_context14 = this._onMouseOut).call(_context14, this));
+	      this.body.dom.centerContainer.addEventListener('mousemove', _bindInstanceProperty$1(_context15 = this._onMouseMove).call(_context15, this)); // right-click on timeline 
 
-	      this.body.dom.centerContainer.addEventListener('contextmenu', _bindInstanceProperty(_context16 = this._onDragEnd).call(_context16, this));
-	      this.body.dom.centerContainer.addEventListener('mousewheel', _bindInstanceProperty(_context17 = this._onMouseWheel).call(_context17, this)); // attach to the DOM
+	      this.body.dom.centerContainer.addEventListener('contextmenu', _bindInstanceProperty$1(_context16 = this._onDragEnd).call(_context16, this));
+	      this.body.dom.centerContainer.addEventListener('mousewheel', _bindInstanceProperty$1(_context17 = this._onMouseWheel).call(_context17, this)); // attach to the DOM
 
 	      this.show();
 	    }
@@ -43704,19 +43732,19 @@
 	      this.cancelButton = document.createElement("div");
 	      this.cancelButton.className = "vis-button vis-cancel";
 	      this.cancelButton.innerHTML = 'cancel';
-	      this.cancelButton.onclick = _bindInstanceProperty(_context = this._hide).call(_context, this, false);
+	      this.cancelButton.onclick = _bindInstanceProperty$1(_context = this._hide).call(_context, this, false);
 	      this.applyButton = document.createElement("div");
 	      this.applyButton.className = "vis-button vis-apply";
 	      this.applyButton.innerHTML = 'apply';
-	      this.applyButton.onclick = _bindInstanceProperty(_context2 = this._apply).call(_context2, this);
+	      this.applyButton.onclick = _bindInstanceProperty$1(_context2 = this._apply).call(_context2, this);
 	      this.saveButton = document.createElement("div");
 	      this.saveButton.className = "vis-button vis-save";
 	      this.saveButton.innerHTML = 'save';
-	      this.saveButton.onclick = _bindInstanceProperty(_context3 = this._save).call(_context3, this);
+	      this.saveButton.onclick = _bindInstanceProperty$1(_context3 = this._save).call(_context3, this);
 	      this.loadButton = document.createElement("div");
 	      this.loadButton.className = "vis-button vis-load";
 	      this.loadButton.innerHTML = 'load last';
-	      this.loadButton.onclick = _bindInstanceProperty(_context4 = this._loadLast).call(_context4, this);
+	      this.loadButton.onclick = _bindInstanceProperty$1(_context4 = this._loadLast).call(_context4, this);
 	      this.frame.appendChild(this.colorPickerDiv);
 	      this.frame.appendChild(this.arrowDiv);
 	      this.frame.appendChild(this.brightnessLabel);
@@ -44857,7 +44885,7 @@
 	    if (_this.options.loadingScreenTemplate) {
 	      var _context;
 
-	      var templateFunction = _bindInstanceProperty(_context = _this.options.loadingScreenTemplate).call(_context, _assertThisInitialized(_this));
+	      var templateFunction = _bindInstanceProperty$1(_context = _this.options.loadingScreenTemplate).call(_context, _assertThisInitialized(_this));
 
 	      var loadingScreen = templateFunction(_this.dom.loadingScreen);
 
@@ -44881,9 +44909,9 @@
 	      dom: _this.dom,
 	      domProps: _this.props,
 	      emitter: {
-	        on: _bindInstanceProperty(_context2 = _this.on).call(_context2, _assertThisInitialized(_this)),
-	        off: _bindInstanceProperty(_context3 = _this.off).call(_context3, _assertThisInitialized(_this)),
-	        emit: _bindInstanceProperty(_context4 = _this.emit).call(_context4, _assertThisInitialized(_this))
+	        on: _bindInstanceProperty$1(_context2 = _this.on).call(_context2, _assertThisInitialized(_this)),
+	        off: _bindInstanceProperty$1(_context3 = _this.off).call(_context3, _assertThisInitialized(_this)),
+	        emit: _bindInstanceProperty$1(_context4 = _this.emit).call(_context4, _assertThisInitialized(_this))
 	      },
 	      hiddenDates: [],
 	      util: {
@@ -44893,11 +44921,11 @@
 	        getStep: function getStep() {
 	          return me.timeAxis.step.step;
 	        },
-	        toScreen: _bindInstanceProperty(_context5 = me._toScreen).call(_context5, me),
-	        toGlobalScreen: _bindInstanceProperty(_context6 = me._toGlobalScreen).call(_context6, me),
+	        toScreen: _bindInstanceProperty$1(_context5 = me._toScreen).call(_context5, me),
+	        toGlobalScreen: _bindInstanceProperty$1(_context6 = me._toGlobalScreen).call(_context6, me),
 	        // this refers to the root.width
-	        toTime: _bindInstanceProperty(_context7 = me._toTime).call(_context7, me),
-	        toGlobalTime: _bindInstanceProperty(_context8 = me._toGlobalTime).call(_context8, me)
+	        toTime: _bindInstanceProperty$1(_context7 = me._toTime).call(_context7, me),
+	        toGlobalTime: _bindInstanceProperty$1(_context8 = me._toGlobalTime).call(_context8, me)
 	      }
 	    }; // range
 
@@ -49662,9 +49690,9 @@
 	    dom: this.dom,
 	    domProps: this.props,
 	    emitter: {
-	      on: _bindInstanceProperty(_context = this.on).call(_context, this),
-	      off: _bindInstanceProperty(_context2 = this.off).call(_context2, this),
-	      emit: _bindInstanceProperty(_context3 = this.emit).call(_context3, this)
+	      on: _bindInstanceProperty$1(_context = this.on).call(_context, this),
+	      off: _bindInstanceProperty$1(_context2 = this.off).call(_context2, this),
+	      emit: _bindInstanceProperty$1(_context3 = this.emit).call(_context3, this)
 	    },
 	    hiddenDates: [],
 	    util: {
@@ -49674,11 +49702,11 @@
 	      getStep: function getStep() {
 	        return me.timeAxis.step.step;
 	      },
-	      toScreen: _bindInstanceProperty(_context4 = me._toScreen).call(_context4, me),
-	      toGlobalScreen: _bindInstanceProperty(_context5 = me._toGlobalScreen).call(_context5, me),
+	      toScreen: _bindInstanceProperty$1(_context4 = me._toScreen).call(_context4, me),
+	      toGlobalScreen: _bindInstanceProperty$1(_context5 = me._toGlobalScreen).call(_context5, me),
 	      // this refers to the root.width
-	      toTime: _bindInstanceProperty(_context6 = me._toTime).call(_context6, me),
-	      toGlobalTime: _bindInstanceProperty(_context7 = me._toGlobalTime).call(_context7, me)
+	      toTime: _bindInstanceProperty$1(_context6 = me._toTime).call(_context6, me),
+	      toGlobalTime: _bindInstanceProperty$1(_context7 = me._toGlobalTime).call(_context7, me)
 	    }
 	  }; // range
 

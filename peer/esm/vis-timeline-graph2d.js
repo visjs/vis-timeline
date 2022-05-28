@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-05-25T19:46:36.899Z
+ * @date    2022-05-28T10:38:56.060Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -76,9 +76,9 @@ var functionApply = typeof Reflect == 'object' && Reflect.apply || (NATIVE_BIND$
 
 var NATIVE_BIND$3 = functionBindNative;
 var FunctionPrototype$2 = Function.prototype;
-var bind$c = FunctionPrototype$2.bind;
+var bind$f = FunctionPrototype$2.bind;
 var call$b = FunctionPrototype$2.call;
-var uncurryThis$u = NATIVE_BIND$3 && bind$c.bind(call$b, call$b);
+var uncurryThis$u = NATIVE_BIND$3 && bind$f.bind(call$b, call$b);
 var functionUncurryThis = NATIVE_BIND$3 ? function (fn) {
   return fn && uncurryThis$u(fn);
 } : function (fn) {
@@ -497,11 +497,11 @@ var isForced_1 = isForced$1;
 var uncurryThis$o = functionUncurryThis;
 var aCallable$4 = aCallable$6;
 var NATIVE_BIND$1 = functionBindNative;
-var bind$b = uncurryThis$o(uncurryThis$o.bind); // optional / simple context binding
+var bind$e = uncurryThis$o(uncurryThis$o.bind); // optional / simple context binding
 
 var functionBindContext = function (fn, that) {
   aCallable$4(fn);
-  return that === undefined ? fn : NATIVE_BIND$1 ? bind$b(fn, that) : function
+  return that === undefined ? fn : NATIVE_BIND$1 ? bind$e(fn, that) : function
     /* ...args */
   () {
     return fn.apply(that, arguments);
@@ -600,7 +600,7 @@ var isCallable$a = isCallable$h;
 var getOwnPropertyDescriptor$4 = objectGetOwnPropertyDescriptor.f;
 var isForced = isForced_1;
 var path$p = path$r;
-var bind$a = functionBindContext;
+var bind$d = functionBindContext;
 var createNonEnumerableProperty$5 = createNonEnumerableProperty$6;
 var hasOwn$a = hasOwnProperty_1;
 
@@ -668,7 +668,7 @@ var _export = function (options, source) {
     sourceProperty = USE_NATIVE && nativeProperty ? nativeProperty : source[key];
     if (USE_NATIVE && typeof targetProperty == typeof sourceProperty) continue; // bind timers to global for call from export context
 
-    if (options.bind && USE_NATIVE) resultProperty = bind$a(sourceProperty, global$w); // wrap global constructors for prevent changs in this version
+    if (options.bind && USE_NATIVE) resultProperty = bind$d(sourceProperty, global$w); // wrap global constructors for prevent changs in this version
     else if (options.wrap && USE_NATIVE) resultProperty = wrapConstructor(sourceProperty); // make static versions for prototype methods
     else if (PROTO && isCallable$a(sourceProperty)) resultProperty = uncurryThis$n(sourceProperty); // default case
     else resultProperty = sourceProperty; // add a flag to not completely full polyfills
@@ -1089,7 +1089,7 @@ var objectCreate = Object.create || function create(O, Properties) {
 var $$G = _export;
 var getBuiltIn$4 = getBuiltIn$9;
 var apply$4 = functionApply;
-var bind$9 = functionBind;
+var bind$c = functionBind;
 var aConstructor = aConstructor$1;
 var anObject$7 = anObject$b;
 var isObject$a = isObject$g;
@@ -1153,7 +1153,7 @@ $$G({
 
       var $args = [null];
       apply$4(push$4, $args, args);
-      return new (apply$4(bind$9, Target, $args))();
+      return new (apply$4(bind$c, Target, $args))();
     } // with altered newTarget, not support built-in constructors
 
 
@@ -1167,8 +1167,8 @@ $$G({
 var path$o = path$r;
 var construct$1 = path$o.Reflect.construct;
 
-var parent$Z = construct$1;
-var construct = parent$Z;
+var parent$$ = construct$1;
+var construct = parent$$;
 
 (function (module) {
   module.exports = construct;
@@ -1210,14 +1210,14 @@ var defineProperty$a = defineProperty$c.exports = function defineProperty(it, ke
 
 if (Object$5.defineProperty.sham) defineProperty$a.sham = true;
 
-var parent$Y = defineProperty$c.exports;
-var defineProperty$9 = parent$Y;
+var parent$_ = defineProperty$c.exports;
+var defineProperty$9 = parent$_;
 
-var parent$X = defineProperty$9;
-var defineProperty$8 = parent$X;
+var parent$Z = defineProperty$9;
+var defineProperty$8 = parent$Z;
 
-var parent$W = defineProperty$8;
-var defineProperty$7 = parent$W;
+var parent$Y = defineProperty$8;
+var defineProperty$7 = parent$Y;
 
 (function (module) {
   module.exports = defineProperty$7;
@@ -1277,14 +1277,14 @@ var create$7 = function create(P, D) {
   return Object$4.create(P, D);
 };
 
-var parent$V = create$7;
-var create$6 = parent$V;
+var parent$X = create$7;
+var create$6 = parent$X;
 
-var parent$U = create$6;
-var create$5 = parent$U;
+var parent$W = create$6;
+var create$5 = parent$W;
 
-var parent$T = create$5;
-var create$4 = parent$T;
+var parent$V = create$5;
+var create$4 = parent$V;
 
 (function (module) {
   module.exports = create$4;
@@ -1348,14 +1348,14 @@ $$D({
 var path$l = path$r;
 var setPrototypeOf$3 = path$l.Object.setPrototypeOf;
 
-var parent$S = setPrototypeOf$3;
-var setPrototypeOf$2 = parent$S;
+var parent$U = setPrototypeOf$3;
+var setPrototypeOf$2 = parent$U;
 
-var parent$R = setPrototypeOf$2;
-var setPrototypeOf$1 = parent$R;
+var parent$T = setPrototypeOf$2;
+var setPrototypeOf$1 = parent$T;
 
-var parent$Q = setPrototypeOf$1;
-var setPrototypeOf = parent$Q;
+var parent$S = setPrototypeOf$1;
+var setPrototypeOf = parent$S;
 
 (function (module) {
   module.exports = setPrototypeOf;
@@ -1363,12 +1363,60 @@ var setPrototypeOf = parent$Q;
 
 var _Object$setPrototypeOf = /*@__PURE__*/getDefaultExportFromCjs(setPrototypeOf$5.exports);
 
+var bind$b = {exports: {}};
+
+var $$C = _export;
+var bind$a = functionBind; // `Function.prototype.bind` method
+// https://tc39.es/ecma262/#sec-function.prototype.bind
+
+$$C({
+  target: 'Function',
+  proto: true,
+  forced: Function.bind !== bind$a
+}, {
+  bind: bind$a
+});
+
+var path$k = path$r;
+
+var entryVirtual$k = function (CONSTRUCTOR) {
+  return path$k[CONSTRUCTOR + 'Prototype'];
+};
+
+var entryVirtual$j = entryVirtual$k;
+var bind$9 = entryVirtual$j('Function').bind;
+
+var isPrototypeOf$l = objectIsPrototypeOf;
+var method$h = bind$9;
+var FunctionPrototype$1 = Function.prototype;
+
+var bind$8 = function (it) {
+  var own = it.bind;
+  return it === FunctionPrototype$1 || isPrototypeOf$l(FunctionPrototype$1, it) && own === FunctionPrototype$1.bind ? method$h : own;
+};
+
+var parent$R = bind$8;
+var bind$7 = parent$R;
+
+var parent$Q = bind$7;
+var bind$6 = parent$Q;
+
+var parent$P = bind$6;
+var bind$5 = parent$P;
+
+(function (module) {
+  module.exports = bind$5;
+})(bind$b);
+
+var _bindInstanceProperty$1 = /*@__PURE__*/getDefaultExportFromCjs(bind$b.exports);
+
 function _setPrototypeOf(o, p) {
-  _setPrototypeOf = _Object$setPrototypeOf || function _setPrototypeOf(o, p) {
+  var _context;
+
+  _setPrototypeOf = _Object$setPrototypeOf ? _bindInstanceProperty$1(_context = _Object$setPrototypeOf).call(_context) : function _setPrototypeOf(o, p) {
     o.__proto__ = p;
     return o;
   };
-
   return _setPrototypeOf(o, p);
 }
 
@@ -1465,7 +1513,7 @@ var arrayMethodHasSpeciesSupport$5 = function (METHOD_NAME) {
   });
 };
 
-var $$C = _export;
+var $$B = _export;
 var global$q = global$N;
 var fails$h = fails$s;
 var isArray$a = isArray$c;
@@ -1501,7 +1549,7 @@ var FORCED$5 = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT; // `Array.prot
 // https://tc39.es/ecma262/#sec-array.prototype.concat
 // with adding support of @@isConcatSpreadable and @@species
 
-$$C({
+$$B({
   target: 'Array',
   proto: true,
   forced: FORCED$5
@@ -1609,13 +1657,13 @@ var wellKnownSymbolWrapped = {};
 var wellKnownSymbol$c = wellKnownSymbol$j;
 wellKnownSymbolWrapped.f = wellKnownSymbol$c;
 
-var path$k = path$r;
+var path$j = path$r;
 var hasOwn$7 = hasOwnProperty_1;
 var wrappedWellKnownSymbolModule$1 = wellKnownSymbolWrapped;
 var defineProperty$6 = objectDefineProperty.f;
 
 var defineWellKnownSymbol$l = function (NAME) {
-  var Symbol = path$k.Symbol || (path$k.Symbol = {});
+  var Symbol = path$j.Symbol || (path$j.Symbol = {});
   if (!hasOwn$7(Symbol, NAME)) defineProperty$6(Symbol, NAME, {
     value: wrappedWellKnownSymbolModule$1.f(NAME)
   });
@@ -1738,7 +1786,7 @@ var internalState = {
   getterFor: getterFor
 };
 
-var bind$8 = functionBindContext;
+var bind$4 = functionBindContext;
 var uncurryThis$f = functionUncurryThis;
 var IndexedObject$2 = indexedObject;
 var toObject$a = toObject$d;
@@ -1757,7 +1805,7 @@ var createMethod$4 = function (TYPE) {
   return function ($this, callbackfn, that, specificCreate) {
     var O = toObject$a($this);
     var self = IndexedObject$2(O);
-    var boundFunction = bind$8(callbackfn, that);
+    var boundFunction = bind$4(callbackfn, that);
     var length = lengthOfArrayLike$7(self);
     var index = 0;
     var create = specificCreate || arraySpeciesCreate$1;
@@ -1829,7 +1877,7 @@ var arrayIteration = {
   filterReject: createMethod$4(7)
 };
 
-var $$B = _export;
+var $$A = _export;
 var global$l = global$N;
 var getBuiltIn$3 = getBuiltIn$9;
 var apply$3 = functionApply;
@@ -1842,7 +1890,7 @@ var hasOwn$4 = hasOwnProperty_1;
 var isArray$9 = isArray$c;
 var isCallable$4 = isCallable$h;
 var isObject$6 = isObject$g;
-var isPrototypeOf$l = objectIsPrototypeOf;
+var isPrototypeOf$k = objectIsPrototypeOf;
 var isSymbol = isSymbol$3;
 var anObject$5 = anObject$b;
 var toObject$9 = toObject$d;
@@ -2007,7 +2055,7 @@ var $getOwnPropertySymbols = function getOwnPropertySymbols(O) {
 
 if (!NATIVE_SYMBOL) {
   $Symbol = function Symbol() {
-    if (isPrototypeOf$l(SymbolPrototype, this)) throw TypeError$8('Symbol is not a constructor');
+    if (isPrototypeOf$k(SymbolPrototype, this)) throw TypeError$8('Symbol is not a constructor');
     var description = !arguments.length || arguments[0] === undefined ? undefined : $toString(arguments[0]);
     var tag = uid$1(description);
 
@@ -2053,7 +2101,7 @@ if (!NATIVE_SYMBOL) {
   }
 }
 
-$$B({
+$$A({
   global: true,
   wrap: true,
   forced: !NATIVE_SYMBOL,
@@ -2064,7 +2112,7 @@ $$B({
 $forEach$1(objectKeys$2(WellKnownSymbolsStore), function (name) {
   defineWellKnownSymbol$k(name);
 });
-$$B({
+$$A({
   target: SYMBOL,
   stat: true,
   forced: !NATIVE_SYMBOL
@@ -2092,7 +2140,7 @@ $$B({
     USE_SETTER = false;
   }
 });
-$$B({
+$$A({
   target: 'Object',
   stat: true,
   forced: !NATIVE_SYMBOL,
@@ -2111,7 +2159,7 @@ $$B({
   // https://tc39.es/ecma262/#sec-object.getownpropertydescriptors
   getOwnPropertyDescriptor: $getOwnPropertyDescriptor
 });
-$$B({
+$$A({
   target: 'Object',
   stat: true,
   forced: !NATIVE_SYMBOL
@@ -2125,7 +2173,7 @@ $$B({
 }); // Chrome 38 and 39 `Object.getOwnPropertySymbols` fails on primitives
 // https://bugs.chromium.org/p/v8/issues/detail?id=3443
 
-$$B({
+$$A({
   target: 'Object',
   stat: true,
   forced: fails$g(function () {
@@ -2148,7 +2196,7 @@ if ($stringify$1) {
     }) != '{}' // V8 throws on boxed symbols
     || $stringify$1(Object(symbol)) != '{}';
   });
-  $$B({
+  $$A({
     target: 'JSON',
     stat: true,
     forced: FORCED_JSON_STRINGIFY
@@ -2256,23 +2304,23 @@ var setToStringTag$3 = setToStringTag$5; // JSON[@@toStringTag] property
 
 setToStringTag$3(global$k.JSON, 'JSON', true);
 
-var path$j = path$r;
-var symbol$4 = path$j.Symbol;
+var path$i = path$r;
+var symbol$4 = path$i.Symbol;
 
 var iterators = {};
 
 var DESCRIPTORS$8 = descriptors;
 var hasOwn$3 = hasOwnProperty_1;
-var FunctionPrototype$1 = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+var FunctionPrototype = Function.prototype; // eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
 
 var getDescriptor = DESCRIPTORS$8 && Object.getOwnPropertyDescriptor;
-var EXISTS = hasOwn$3(FunctionPrototype$1, 'name'); // additional protection from minified / mangled / dropped function names
+var EXISTS = hasOwn$3(FunctionPrototype, 'name'); // additional protection from minified / mangled / dropped function names
 
 var PROPER = EXISTS && function something() {
   /* empty */
 }.name === 'something';
 
-var CONFIGURABLE = EXISTS && (!DESCRIPTORS$8 || DESCRIPTORS$8 && getDescriptor(FunctionPrototype$1, 'name').configurable);
+var CONFIGURABLE = EXISTS && (!DESCRIPTORS$8 || DESCRIPTORS$8 && getDescriptor(FunctionPrototype, 'name').configurable);
 var functionName = {
   EXISTS: EXISTS,
   PROPER: PROPER,
@@ -2374,7 +2422,7 @@ var createIteratorConstructor$1 = function (IteratorConstructor, NAME, next, ENU
   return IteratorConstructor;
 };
 
-var $$A = _export;
+var $$z = _export;
 var call$5 = functionCall;
 var FunctionName = functionName;
 var createIteratorConstructor = createIteratorConstructor$1;
@@ -2465,7 +2513,7 @@ var defineIterator$3 = function (Iterable, NAME, IteratorConstructor, next, DEFA
       if (BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME || !(KEY in IterablePrototype)) {
         redefine$1(IterablePrototype, KEY, methods[KEY]);
       }
-    } else $$A({
+    } else $$z({
       target: NAME,
       proto: true,
       forced: BUGGY_SAFARI_ITERATORS || INCORRECT_VALUES_NAME
@@ -2599,11 +2647,11 @@ for (var COLLECTION_NAME in DOMIterables$1) {
   Iterators$2[COLLECTION_NAME] = Iterators$2.Array;
 }
 
-var parent$P = symbol$4;
-var symbol$3 = parent$P;
+var parent$O = symbol$4;
+var symbol$3 = parent$O;
 
-var parent$O = symbol$3;
-var symbol$2 = parent$O;
+var parent$N = symbol$3;
+var symbol$2 = parent$N;
 
 var defineWellKnownSymbol$6 = defineWellKnownSymbol$l; // `Symbol.asyncDispose` well-known symbol
 // https://github.com/tc39/proposal-using-statement
@@ -2638,10 +2686,10 @@ defineWellKnownSymbol$1('patternMatch');
 var defineWellKnownSymbol = defineWellKnownSymbol$l;
 defineWellKnownSymbol('replaceAll');
 
-var parent$N = symbol$2; // TODO: Remove from `core-js@4`
+var parent$M = symbol$2; // TODO: Remove from `core-js@4`
 // TODO: Remove from `core-js@4`
 
-var symbol$1 = parent$N;
+var symbol$1 = parent$M;
 
 (function (module) {
   module.exports = symbol$1;
@@ -2716,14 +2764,14 @@ defineIterator$1(String, 'String', function (iterated) {
 var WrappedWellKnownSymbolModule = wellKnownSymbolWrapped;
 var iterator$3 = WrappedWellKnownSymbolModule.f('iterator');
 
-var parent$M = iterator$3;
-var iterator$2 = parent$M;
+var parent$L = iterator$3;
+var iterator$2 = parent$L;
 
-var parent$L = iterator$2;
-var iterator$1 = parent$L;
+var parent$K = iterator$2;
+var iterator$1 = parent$K;
 
-var parent$K = iterator$1;
-var iterator = parent$K;
+var parent$J = iterator$1;
+var iterator = parent$J;
 
 (function (module) {
   module.exports = iterator;
@@ -2753,7 +2801,7 @@ function _possibleConstructorReturn(self, call) {
 
 var getPrototypeOf$5 = {exports: {}};
 
-var $$z = _export;
+var $$y = _export;
 var fails$d = fails$s;
 var toObject$7 = toObject$d;
 var nativeGetPrototypeOf = objectGetPrototypeOf;
@@ -2763,7 +2811,7 @@ var FAILS_ON_PRIMITIVES$3 = fails$d(function () {
 }); // `Object.getPrototypeOf` method
 // https://tc39.es/ecma262/#sec-object.getprototypeof
 
-$$z({
+$$y({
   target: 'Object',
   stat: true,
   forced: FAILS_ON_PRIMITIVES$3,
@@ -2774,17 +2822,17 @@ $$z({
   }
 });
 
-var path$i = path$r;
-var getPrototypeOf$4 = path$i.Object.getPrototypeOf;
+var path$h = path$r;
+var getPrototypeOf$4 = path$h.Object.getPrototypeOf;
 
-var parent$J = getPrototypeOf$4;
-var getPrototypeOf$3 = parent$J;
+var parent$I = getPrototypeOf$4;
+var getPrototypeOf$3 = parent$I;
 
-var parent$I = getPrototypeOf$3;
-var getPrototypeOf$2 = parent$I;
+var parent$H = getPrototypeOf$3;
+var getPrototypeOf$2 = parent$H;
 
-var parent$H = getPrototypeOf$2;
-var getPrototypeOf$1 = parent$H;
+var parent$G = getPrototypeOf$2;
+var getPrototypeOf$1 = parent$G;
 
 (function (module) {
   module.exports = getPrototypeOf$1;
@@ -2793,7 +2841,9 @@ var getPrototypeOf$1 = parent$H;
 var _Object$getPrototypeOf$1 = /*@__PURE__*/getDefaultExportFromCjs(getPrototypeOf$5.exports);
 
 function _getPrototypeOf(o) {
-  _getPrototypeOf = _Object$setPrototypeOf ? _Object$getPrototypeOf$1 : function _getPrototypeOf(o) {
+  var _context;
+
+  _getPrototypeOf = _Object$setPrototypeOf ? _bindInstanceProperty$1(_context = _Object$getPrototypeOf$1).call(_context) : function _getPrototypeOf(o) {
     return o.__proto__ || _Object$getPrototypeOf$1(o);
   };
   return _getPrototypeOf(o);
@@ -2801,22 +2851,22 @@ function _getPrototypeOf(o) {
 
 var isArray$8 = {exports: {}};
 
-var $$y = _export;
+var $$x = _export;
 var isArray$7 = isArray$c; // `Array.isArray` method
 // https://tc39.es/ecma262/#sec-array.isarray
 
-$$y({
+$$x({
   target: 'Array',
   stat: true
 }, {
   isArray: isArray$7
 });
 
-var path$h = path$r;
-var isArray$6 = path$h.Array.isArray;
+var path$g = path$r;
+var isArray$6 = path$g.Array.isArray;
 
-var parent$G = isArray$6;
-var isArray$5 = parent$G;
+var parent$F = isArray$6;
+var isArray$5 = parent$F;
 
 (function (module) {
   module.exports = isArray$5;
@@ -2824,46 +2874,13 @@ var isArray$5 = parent$G;
 
 var _Array$isArray$1 = /*@__PURE__*/getDefaultExportFromCjs(isArray$8.exports);
 
-var bind$7 = {exports: {}};
-
-var $$x = _export;
-var bind$6 = functionBind; // `Function.prototype.bind` method
-// https://tc39.es/ecma262/#sec-function.prototype.bind
-
-$$x({
-  target: 'Function',
-  proto: true,
-  forced: Function.bind !== bind$6
-}, {
-  bind: bind$6
-});
-
-var path$g = path$r;
-
-var entryVirtual$k = function (CONSTRUCTOR) {
-  return path$g[CONSTRUCTOR + 'Prototype'];
-};
-
-var entryVirtual$j = entryVirtual$k;
-var bind$5 = entryVirtual$j('Function').bind;
-
-var isPrototypeOf$k = objectIsPrototypeOf;
-var method$h = bind$5;
-var FunctionPrototype = Function.prototype;
-
-var bind$4 = function (it) {
-  var own = it.bind;
-  return it === FunctionPrototype || isPrototypeOf$k(FunctionPrototype, it) && own === FunctionPrototype.bind ? method$h : own;
-};
-
-var parent$F = bind$4;
-var bind$3 = parent$F;
+var bind$3 = {exports: {}};
 
 (function (module) {
-  module.exports = bind$3;
-})(bind$7);
+  module.exports = bind$7;
+})(bind$3);
 
-var _bindInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(bind$7.exports);
+var _bindInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(bind$3.exports);
 
 var setTimeout$2 = {exports: {}};
 

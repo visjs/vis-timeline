@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-05-25T19:47:57.541Z
+ * @date    2022-05-28T10:40:15.038Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6216,9 +6216,9 @@ var functionBindNative = !fails(function () {
 });
 
 var FunctionPrototype$3 = Function.prototype;
-var bind$6 = FunctionPrototype$3.bind;
+var bind$9 = FunctionPrototype$3.bind;
 var call$2 = FunctionPrototype$3.call;
-var uncurryThis = functionBindNative && bind$6.bind(call$2, call$2);
+var uncurryThis = functionBindNative && bind$9.bind(call$2, call$2);
 var functionUncurryThis = functionBindNative ? function (fn) {
   return fn && uncurryThis(fn);
 } : function (fn) {
@@ -6813,11 +6813,11 @@ var NATIVE = isForced.NATIVE = 'N';
 var POLYFILL = isForced.POLYFILL = 'P';
 var isForced_1 = isForced;
 
-var bind$5 = functionUncurryThis(functionUncurryThis.bind); // optional / simple context binding
+var bind$8 = functionUncurryThis(functionUncurryThis.bind); // optional / simple context binding
 
 var functionBindContext = function (fn, that) {
   aCallable(fn);
-  return that === undefined ? fn : functionBindNative ? bind$5(fn, that) : function
+  return that === undefined ? fn : functionBindNative ? bind$8(fn, that) : function
     /* ...args */
   () {
     return fn.apply(that, arguments);
@@ -8995,18 +8995,18 @@ _export({
   bind: functionBind
 });
 
-var bind$4 = entryVirtual('Function').bind;
+var bind$7 = entryVirtual('Function').bind;
 
 var FunctionPrototype = Function.prototype;
 
-var bind$3 = function (it) {
+var bind$6 = function (it) {
   var own = it.bind;
-  return it === FunctionPrototype || objectIsPrototypeOf(FunctionPrototype, it) && own === FunctionPrototype.bind ? bind$4 : own;
+  return it === FunctionPrototype || objectIsPrototypeOf(FunctionPrototype, it) && own === FunctionPrototype.bind ? bind$7 : own;
 };
 
-var bind$2 = bind$3;
+var bind$5 = bind$6;
 
-var bind$1 = bind$2;
+var bind$4 = bind$5;
 
 var arrayMethodIsStrict = function (METHOD_NAME, argument) {
   var method = [][METHOD_NAME];
@@ -13182,7 +13182,7 @@ function Activator$1(container) {
   });
 
   var hammer = Hammer$1(this._dom.overlay);
-  hammer.on("tap", bind$1(_context3 = this._onTapOverlay).call(_context3, this));
+  hammer.on("tap", bind$4(_context3 = this._onTapOverlay).call(_context3, this));
 
   this._cleanupQueue.push(function () {
     hammer.destroy(); // FIXME: cleaning up hammer instances doesn't work (Timeline not removed
@@ -15721,19 +15721,19 @@ var ColorPicker$1 = /*#__PURE__*/function () {
       this.cancelButton = document.createElement("div");
       this.cancelButton.className = "vis-button vis-cancel";
       this.cancelButton.innerText = "cancel";
-      this.cancelButton.onclick = bind$1(_context16 = this._hide).call(_context16, this, false);
+      this.cancelButton.onclick = bind$4(_context16 = this._hide).call(_context16, this, false);
       this.applyButton = document.createElement("div");
       this.applyButton.className = "vis-button vis-apply";
       this.applyButton.innerText = "apply";
-      this.applyButton.onclick = bind$1(_context17 = this._apply).call(_context17, this);
+      this.applyButton.onclick = bind$4(_context17 = this._apply).call(_context17, this);
       this.saveButton = document.createElement("div");
       this.saveButton.className = "vis-button vis-save";
       this.saveButton.innerText = "save";
-      this.saveButton.onclick = bind$1(_context18 = this._save).call(_context18, this);
+      this.saveButton.onclick = bind$4(_context18 = this._save).call(_context18, this);
       this.loadButton = document.createElement("div");
       this.loadButton.className = "vis-button vis-load";
       this.loadButton.innerText = "load last";
-      this.loadButton.onclick = bind$1(_context19 = this._loadLast).call(_context19, this);
+      this.loadButton.onclick = bind$4(_context19 = this._loadLast).call(_context19, this);
       this.frame.appendChild(this.colorPickerDiv);
       this.frame.appendChild(this.arrowDiv);
       this.frame.appendChild(this.brightnessLabel);
@@ -17811,9 +17811,17 @@ var setPrototypeOf$2 = setPrototypeOf$3;
 
 var setPrototypeOf$1 = setPrototypeOf$2;
 
+var bind$3 = bind$5;
+
+var bind$2 = bind$3;
+
+var bind$1 = bind$2;
+
 var setPrototypeOf = createCommonjsModule(function (module) {
   function _setPrototypeOf(o, p) {
-    module.exports = _setPrototypeOf = setPrototypeOf$1 || function _setPrototypeOf(o, p) {
+    var _context;
+
+    module.exports = _setPrototypeOf = setPrototypeOf$1 ? bind$1(_context = setPrototypeOf$1).call(_context) : function _setPrototypeOf(o, p) {
       o.__proto__ = p;
       return o;
     }, module.exports.__esModule = true, module.exports["default"] = module.exports;
@@ -17874,7 +17882,9 @@ var getPrototypeOf$1 = getPrototypeOf$2;
 
 var getPrototypeOf = createCommonjsModule(function (module) {
   function _getPrototypeOf(o) {
-    module.exports = _getPrototypeOf = setPrototypeOf$1 ? getPrototypeOf$1 : function _getPrototypeOf(o) {
+    var _context;
+
+    module.exports = _getPrototypeOf = setPrototypeOf$1 ? bind$1(_context = getPrototypeOf$1).call(_context) : function _getPrototypeOf(o) {
       return o.__proto__ || getPrototypeOf$1(o);
     }, module.exports.__esModule = true, module.exports["default"] = module.exports;
     return _getPrototypeOf(o);
@@ -18901,7 +18911,7 @@ var reverse$1 = reverse$2;
 
 var reverse = reverse$1;
 
-var regeneratorRuntime = createCommonjsModule(function (module) {
+var regeneratorRuntime$1 = createCommonjsModule(function (module) {
   var _typeof = _typeof_1["default"];
 
   function _regeneratorRuntime() {
@@ -19262,9 +19272,20 @@ var regeneratorRuntime = createCommonjsModule(function (module) {
 
   module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
 });
-unwrapExports(regeneratorRuntime);
+unwrapExports(regeneratorRuntime$1);
 
-var regenerator = regeneratorRuntime();
+var runtime = regeneratorRuntime$1();
+var regenerator = runtime; // Copied from https://github.com/facebook/regenerator/blob/main/packages/runtime/runtime.js#L736=
+
+try {
+  regeneratorRuntime = runtime;
+} catch (accidentalStrictMode) {
+  if (typeof globalThis === "object") {
+    globalThis.regeneratorRuntime = runtime;
+  } else {
+    Function("r", "regeneratorRuntime = r")(runtime);
+  }
+}
 
 var TypeError$2 = global_1.TypeError; // `Array.prototype.{ reduce, reduceRight }` methods implementation
 
@@ -20240,9 +20261,9 @@ var SimpleDataPipe = /*#__PURE__*/function () {
     _defineProperty(this, "_target", void 0);
 
     _defineProperty(this, "_listeners", {
-      add: bind$1(_context = this._add).call(_context, this),
-      remove: bind$1(_context2 = this._remove).call(_context2, this),
-      update: bind$1(_context3 = this._update).call(_context3, this)
+      add: bind$4(_context = this._add).call(_context, this),
+      remove: bind$4(_context2 = this._remove).call(_context2, this),
+      update: bind$4(_context3 = this._update).call(_context3, this)
     });
 
     this._source = _source;
@@ -22623,7 +22644,7 @@ var DataSet = /*#__PURE__*/function (_DataSetPart) {
       } else {
         var _context26;
 
-        return new DataStream(_defineProperty({}, iterator, bind$1(_context26 = entries(this._data)).call(_context26, this._data)));
+        return new DataStream(_defineProperty({}, iterator, bind$4(_context26 = entries(this._data)).call(_context26, this._data)));
       }
     }
   }]);
@@ -22708,7 +22729,7 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
     _defineProperty(_assertThisInitialized(_this7), "_options", void 0);
 
     _this7._options = options || {};
-    _this7._listener = bind$1(_context27 = _this7._onEvent).call(_context27, _assertThisInitialized(_this7));
+    _this7._listener = bind$4(_context27 = _this7._onEvent).call(_context27, _assertThisInitialized(_this7));
 
     _this7.setData(data);
 
@@ -23006,7 +23027,7 @@ var DataView = /*#__PURE__*/function (_DataSetPart2) {
     value: function stream(ids) {
       var _context30;
 
-      return this._data.stream(ids || _defineProperty({}, iterator, bind$1(_context30 = keys(this._ids)).call(_context30, this._ids)));
+      return this._data.stream(ids || _defineProperty({}, iterator, bind$4(_context30 = keys(this._ids)).call(_context30, this._ids)));
     }
     /**
      * Render the instance unusable prior to garbage collection.
@@ -25435,11 +25456,11 @@ function typeCoerceDataSet(rawDS) {
       return (_rawDS$getDataSet5 = rawDS.getDataSet()).clear.apply(_rawDS$getDataSet5, arguments);
     },
     // Read only.
-    forEach: bind$1(_context3 = forEach$5(coercedDS)).call(_context3, coercedDS),
-    get: bind$1(_context4 = coercedDS.get).call(_context4, coercedDS),
-    getIds: bind$1(_context5 = coercedDS.getIds).call(_context5, coercedDS),
-    off: bind$1(_context6 = coercedDS.off).call(_context6, coercedDS),
-    on: bind$1(_context7 = coercedDS.on).call(_context7, coercedDS),
+    forEach: bind$4(_context3 = forEach$5(coercedDS)).call(_context3, coercedDS),
+    get: bind$4(_context4 = coercedDS.get).call(_context4, coercedDS),
+    getIds: bind$4(_context5 = coercedDS.getIds).call(_context5, coercedDS),
+    off: bind$4(_context6 = coercedDS.off).call(_context6, coercedDS),
+    on: bind$4(_context7 = coercedDS.on).call(_context7, coercedDS),
 
     get length() {
       return coercedDS.length;
@@ -26290,22 +26311,22 @@ var Range = /*#__PURE__*/function (_Component) {
     };
     _this.animationTimer = null; // drag listeners for dragging
 
-    _this.body.emitter.on('panstart', bind$1(_context = _this._onDragStart).call(_context, _assertThisInitialized(_this)));
+    _this.body.emitter.on('panstart', bind$4(_context = _this._onDragStart).call(_context, _assertThisInitialized(_this)));
 
-    _this.body.emitter.on('panmove', bind$1(_context2 = _this._onDrag).call(_context2, _assertThisInitialized(_this)));
+    _this.body.emitter.on('panmove', bind$4(_context2 = _this._onDrag).call(_context2, _assertThisInitialized(_this)));
 
-    _this.body.emitter.on('panend', bind$1(_context3 = _this._onDragEnd).call(_context3, _assertThisInitialized(_this))); // mouse wheel for zooming
-
-
-    _this.body.emitter.on('mousewheel', bind$1(_context4 = _this._onMouseWheel).call(_context4, _assertThisInitialized(_this))); // pinch to zoom
+    _this.body.emitter.on('panend', bind$4(_context3 = _this._onDragEnd).call(_context3, _assertThisInitialized(_this))); // mouse wheel for zooming
 
 
-    _this.body.emitter.on('touch', bind$1(_context5 = _this._onTouch).call(_context5, _assertThisInitialized(_this)));
-
-    _this.body.emitter.on('pinch', bind$1(_context6 = _this._onPinch).call(_context6, _assertThisInitialized(_this))); // on click of rolling mode button
+    _this.body.emitter.on('mousewheel', bind$4(_context4 = _this._onMouseWheel).call(_context4, _assertThisInitialized(_this))); // pinch to zoom
 
 
-    _this.body.dom.rollingModeBtn.addEventListener('click', bind$1(_context7 = _this.startRolling).call(_context7, _assertThisInitialized(_this)));
+    _this.body.emitter.on('touch', bind$4(_context5 = _this._onTouch).call(_context5, _assertThisInitialized(_this)));
+
+    _this.body.emitter.on('pinch', bind$4(_context6 = _this._onPinch).call(_context6, _assertThisInitialized(_this))); // on click of rolling mode button
+
+
+    _this.body.dom.rollingModeBtn.addEventListener('click', bind$4(_context7 = _this.startRolling).call(_context7, _assertThisInitialized(_this)));
 
     _this.setOptions(options);
 
@@ -29319,7 +29340,7 @@ function Activator(container) {
   this.dom.overlay.className = 'vis-overlay';
   this.dom.container.appendChild(this.dom.overlay);
   this.hammer = Hammer(this.dom.overlay);
-  this.hammer.on('tap', bind$1(_context = this._onTapOverlay).call(_context, this)); // block all touch events (except tap)
+  this.hammer.on('tap', bind$4(_context = this._onTapOverlay).call(_context, this)); // block all touch events (except tap)
 
   var me = this;
   var events = ['tap', 'doubletap', 'press', 'pinch', 'pan', 'panstart', 'panmove', 'panend'];
@@ -29347,7 +29368,7 @@ function Activator(container) {
 
   this.keycharm = keycharm(); // keycharm listener only bounded when active)
 
-  this.escListener = bind$1(_context2 = this.deactivate).call(_context2, this);
+  this.escListener = bind$4(_context2 = this.deactivate).call(_context2, this);
 } // turn into an event emitter
 
 
@@ -29399,7 +29420,7 @@ Activator.prototype.activate = function () {
   this.emit('activate'); // ugly hack: bind ESC after emitting the events, as the Network rebinds all
   // keyboard events on a 'change' event
 
-  bind$1(_context3 = this.keycharm).call(_context3, 'esc', this.escListener);
+  bind$4(_context3 = this.keycharm).call(_context3, 'esc', this.escListener);
 };
 /**
  * Deactivate the element
@@ -29720,20 +29741,20 @@ var CustomTime = /*#__PURE__*/function (_Component) {
 
       if (drag.addEventListener) {
         // IE9, Chrome, Safari, Opera
-        drag.addEventListener("mousewheel", bind$1(onMouseWheel).call(onMouseWheel, this), false); // Firefox
+        drag.addEventListener("mousewheel", bind$4(onMouseWheel).call(onMouseWheel, this), false); // Firefox
 
-        drag.addEventListener("DOMMouseScroll", bind$1(onMouseWheel).call(onMouseWheel, this), false);
+        drag.addEventListener("DOMMouseScroll", bind$4(onMouseWheel).call(onMouseWheel, this), false);
       } else {
         // IE 6/7/8
-        drag.attachEvent("onmousewheel", bind$1(onMouseWheel).call(onMouseWheel, this));
+        drag.attachEvent("onmousewheel", bind$4(onMouseWheel).call(onMouseWheel, this));
       }
 
       bar.appendChild(drag); // attach event listeners
 
       this.hammer = new Hammer(drag);
-      this.hammer.on('panstart', bind$1(_context2 = this._onDragStart).call(_context2, this));
-      this.hammer.on('panmove', bind$1(_context3 = this._onDrag).call(_context3, this));
-      this.hammer.on('panend', bind$1(_context4 = this._onDragEnd).call(_context4, this));
+      this.hammer.on('panstart', bind$4(_context2 = this._onDragStart).call(_context2, this));
+      this.hammer.on('panmove', bind$4(_context3 = this._onDrag).call(_context3, this));
+      this.hammer.on('panend', bind$4(_context4 = this._onDragEnd).call(_context4, this));
       this.hammer.get('pan').set({
         threshold: 5,
         direction: Hammer.DIRECTION_ALL
@@ -29855,10 +29876,10 @@ var CustomTime = /*#__PURE__*/function (_Component) {
         marker.addEventListener('pointerdown', function () {
           marker.focus();
         });
-        marker.addEventListener('input', bind$1(_context6 = this._onMarkerChange).call(_context6, this)); // The editable div element has no change event, so here emulates the change event.
+        marker.addEventListener('input', bind$4(_context6 = this._onMarkerChange).call(_context6, this)); // The editable div element has no change event, so here emulates the change event.
 
         marker.title = title;
-        marker.addEventListener('blur', bind$1(_context7 = function _context7(event) {
+        marker.addEventListener('blur', bind$4(_context7 = function _context7(event) {
           if (this.title != event.target.innerHTML) {
             this._onMarkerChanged(event);
 
@@ -30108,10 +30129,10 @@ var Core = /*#__PURE__*/function () {
           _this.initialRangeChangeDone = true;
         }
       });
-      this.on('touch', bind$1(_context = this._onTouch).call(_context, this));
-      this.on('panmove', bind$1(_context2 = this._onDrag).call(_context2, this));
+      this.on('touch', bind$4(_context = this._onTouch).call(_context, this));
+      this.on('panmove', bind$4(_context2 = this._onDrag).call(_context2, this));
       var me = this;
-      this._origRedraw = bind$1(_context3 = this._redraw).call(_context3, this);
+      this._origRedraw = bind$4(_context3 = this._redraw).call(_context3, this);
       this._redraw = availableUtils.throttle(this._origRedraw);
       this.on('_change', function (properties) {
         if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
@@ -30271,9 +30292,9 @@ var Core = /*#__PURE__*/function () {
       this.dom.centerContainer.addEventListener ? "DOMMouseScroll" : "onmousewheel";
       this.dom.top.addEventListener ? "DOMMouseScroll" : "onmousewheel";
       this.dom.bottom.addEventListener ? "DOMMouseScroll" : "onmousewheel";
-      this.dom.centerContainer.addEventListener(wheelType, bind$1(onMouseWheel).call(onMouseWheel, this), false);
-      this.dom.top.addEventListener(wheelType, bind$1(onMouseWheel).call(onMouseWheel, this), false);
-      this.dom.bottom.addEventListener(wheelType, bind$1(onMouseWheel).call(onMouseWheel, this), false);
+      this.dom.centerContainer.addEventListener(wheelType, bind$4(onMouseWheel).call(onMouseWheel, this), false);
+      this.dom.top.addEventListener(wheelType, bind$4(onMouseWheel).call(onMouseWheel, this), false);
+      this.dom.bottom.addEventListener(wheelType, bind$4(onMouseWheel).call(onMouseWheel, this), false);
       /**
        *
        * @param {scroll} event
@@ -30294,8 +30315,8 @@ var Core = /*#__PURE__*/function () {
         }
       }
 
-      this.dom.left.parentNode.addEventListener('scroll', bind$1(onMouseScrollSide).call(onMouseScrollSide, this));
-      this.dom.right.parentNode.addEventListener('scroll', bind$1(onMouseScrollSide).call(onMouseScrollSide, this));
+      this.dom.left.parentNode.addEventListener('scroll', bind$4(onMouseScrollSide).call(onMouseScrollSide, this));
+      this.dom.right.parentNode.addEventListener('scroll', bind$4(onMouseScrollSide).call(onMouseScrollSide, this));
       var itemAddedToTimeline = false;
       /**
        *
@@ -30360,8 +30381,8 @@ var Core = /*#__PURE__*/function () {
         return false;
       }
 
-      this.dom.center.addEventListener('dragover', bind$1(handleDragOver).call(handleDragOver, this), false);
-      this.dom.center.addEventListener('drop', bind$1(handleDrop).call(handleDrop, this), false);
+      this.dom.center.addEventListener('dragover', bind$4(handleDragOver).call(handleDragOver, this), false);
+      this.dom.center.addEventListener('drop', bind$4(handleDrop).call(handleDrop, this), false);
       this.customTimes = []; // store state information needed for touch events
 
       this.touch = {};
@@ -32479,7 +32500,7 @@ var Group = /*#__PURE__*/function () {
       if (this.itemSet.options && this.itemSet.options.groupTemplate) {
         var _context;
 
-        templateFunction = bind$1(_context = this.itemSet.options.groupTemplate).call(_context, this);
+        templateFunction = bind$4(_context = this.itemSet.options.groupTemplate).call(_context, this);
         content = templateFunction(data, this.dom.inner);
       } else {
         content = data && data.content;
@@ -32802,7 +32823,7 @@ var Group = /*#__PURE__*/function () {
               return me.itemSet.options.order(a.data, b.data);
             });
 
-            this.shouldBailStackItems = stack(customOrderedItems, margin, true, bind$1(_context15 = this._shouldBailItemsRedraw).call(_context15, this));
+            this.shouldBailStackItems = stack(customOrderedItems, margin, true, bind$4(_context15 = this._shouldBailItemsRedraw).call(_context15, this));
           }
         } else {
           // no custom order function, lazy stacking
@@ -32819,7 +32840,7 @@ var Group = /*#__PURE__*/function () {
               var _context16;
 
               // TODO: ugly way to access options...
-              this.shouldBailStackItems = stack(this.visibleItems, margin, true, bind$1(_context16 = this._shouldBailItemsRedraw).call(_context16, this));
+              this.shouldBailStackItems = stack(this.visibleItems, margin, true, bind$4(_context16 = this._shouldBailItemsRedraw).call(_context16, this));
             }
           } else {
             // no stacking
@@ -32924,34 +32945,34 @@ var Group = /*#__PURE__*/function () {
       var queue = [function () {
         forceRestack = _this3._didMarkerHeightChange.call(_this3) || forceRestack;
       }, // recalculate the height of the subgroups
-      bind$1(_context17 = this._updateSubGroupHeights).call(_context17, this, margin), // calculate actual size and position
-      bind$1(_context18 = this._calculateGroupSizeAndPosition).call(_context18, this), function () {
+      bind$4(_context17 = this._updateSubGroupHeights).call(_context17, this, margin), // calculate actual size and position
+      bind$4(_context18 = this._calculateGroupSizeAndPosition).call(_context18, this), function () {
         var _context19;
 
-        _this3.isVisible = bind$1(_context19 = _this3._isGroupVisible).call(_context19, _this3)(range, margin);
+        _this3.isVisible = bind$4(_context19 = _this3._isGroupVisible).call(_context19, _this3)(range, margin);
       }, function () {
         var _context20;
 
-        bind$1(_context20 = _this3._redrawItems).call(_context20, _this3)(forceRestack, lastIsVisible, margin, range);
+        bind$4(_context20 = _this3._redrawItems).call(_context20, _this3)(forceRestack, lastIsVisible, margin, range);
       }, // update subgroups
-      bind$1(_context21 = this._updateSubgroupsSizes).call(_context21, this), function () {
+      bind$4(_context21 = this._updateSubgroupsSizes).call(_context21, this), function () {
         var _context22;
 
-        height = bind$1(_context22 = _this3._calculateHeight).call(_context22, _this3)(margin);
+        height = bind$4(_context22 = _this3._calculateHeight).call(_context22, _this3)(margin);
       }, // calculate actual size and position again
-      bind$1(_context23 = this._calculateGroupSizeAndPosition).call(_context23, this), function () {
+      bind$4(_context23 = this._calculateGroupSizeAndPosition).call(_context23, this), function () {
         var _context24;
 
-        resized = bind$1(_context24 = _this3._didResize).call(_context24, _this3)(resized, height);
+        resized = bind$4(_context24 = _this3._didResize).call(_context24, _this3)(resized, height);
       }, function () {
         var _context25;
 
-        bind$1(_context25 = _this3._applyGroupHeight).call(_context25, _this3)(height);
+        bind$4(_context25 = _this3._applyGroupHeight).call(_context25, _this3)(height);
       }, function () {
         var _context26;
 
-        bind$1(_context26 = _this3._updateItemsVerticalPosition).call(_context26, _this3)(margin);
-      }, bind$1(_context27 = function _context27() {
+        bind$4(_context26 = _this3._updateItemsVerticalPosition).call(_context26, _this3)(margin);
+      }, bind$4(_context27 = function _context27() {
         if (!_this3.isVisible && _this3.height) {
           resized = false;
         }
@@ -33985,8 +34006,8 @@ var Item = /*#__PURE__*/function () {
 
           me.parent.itemSet._onDragStart(event);
         });
-        this.hammerDragCenter.on('panmove', bind$1(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
-        this.hammerDragCenter.on('panend', bind$1(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet)); // delay addition on item click for trackpads...
+        this.hammerDragCenter.on('panmove', bind$4(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
+        this.hammerDragCenter.on('panend', bind$4(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet)); // delay addition on item click for trackpads...
 
         this.hammerDragCenter.get('press').set({
           time: 10000
@@ -34136,7 +34157,7 @@ var Item = /*#__PURE__*/function () {
         if (this.options.tooltipOnItemUpdateTime && this.options.tooltipOnItemUpdateTime.template) {
           var _context4;
 
-          templateFunction = bind$1(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
+          templateFunction = bind$4(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
           content = templateFunction(this.data);
         } else {
           content = "start: ".concat(moment$2(this.data.start).format('MM/DD/YYYY hh:mm'));
@@ -34184,7 +34205,7 @@ var Item = /*#__PURE__*/function () {
       if (this.options.visibleFrameTemplate) {
         var _context5;
 
-        visibleFrameTemplateFunction = bind$1(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
+        visibleFrameTemplateFunction = bind$4(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
         itemVisibleFrameContent = availableUtils.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
       } else {
         itemVisibleFrameContent = '';
@@ -34217,7 +34238,7 @@ var Item = /*#__PURE__*/function () {
       if (this.options.template) {
         var _context6;
 
-        templateFunction = bind$1(_context6 = this.options.template).call(_context6, this);
+        templateFunction = bind$4(_context6 = this.options.template).call(_context6, this);
         content = templateFunction(itemData, element, this.data);
       } else {
         content = this.data.content;
@@ -34390,7 +34411,7 @@ var Item = /*#__PURE__*/function () {
       if (this.options.tooltip && this.options.tooltip.template) {
         var _context7;
 
-        var templateFunction = bind$1(_context7 = this.options.tooltip.template).call(_context7, this);
+        var templateFunction = bind$4(_context7 = this.options.tooltip.template).call(_context7, this);
 
         return templateFunction(this._getItemData(), this.data);
       }
@@ -34655,9 +34676,9 @@ var BoxItem = /*#__PURE__*/function (_Item) {
 
       var sizes;
       var queue = [// create item DOM
-      bind$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-      bind$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-      bind$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+      bind$4(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+      bind$4(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+      bind$4(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
         if (_this2.dirty) {
           sizes = _this2._getDomComponentsSizes();
         }
@@ -34665,10 +34686,10 @@ var BoxItem = /*#__PURE__*/function (_Item) {
         if (_this2.dirty) {
           var _context4;
 
-          bind$1(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
+          bind$4(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
         }
       }, // repaint DOM additionals
-      bind$1(_context5 = this._repaintDomAdditionals).call(_context5, this)];
+      bind$4(_context5 = this._repaintDomAdditionals).call(_context5, this)];
 
       if (returnQueue) {
         return queue;
@@ -35067,9 +35088,9 @@ var PointItem = /*#__PURE__*/function (_Item) {
 
       var sizes;
       var queue = [// create item DOM
-      bind$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-      bind$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-      bind$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+      bind$4(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+      bind$4(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+      bind$4(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
         if (_this2.dirty) {
           sizes = _this2._getDomComponentsSizes();
         }
@@ -35077,10 +35098,10 @@ var PointItem = /*#__PURE__*/function (_Item) {
         if (_this2.dirty) {
           var _context4;
 
-          bind$1(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
+          bind$4(_context4 = _this2._updateDomComponentsSizes).call(_context4, _this2)(sizes);
         }
       }, // repaint DOM additionals
-      bind$1(_context5 = this._repaintDomAdditionals).call(_context5, this)];
+      bind$4(_context5 = this._repaintDomAdditionals).call(_context5, this)];
 
       if (returnQueue) {
         return queue;
@@ -35436,22 +35457,22 @@ var RangeItem = /*#__PURE__*/function (_Item) {
 
       var sizes;
       var queue = [// create item DOM
-      bind$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-      bind$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM 
-      bind$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+      bind$4(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+      bind$4(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM 
+      bind$4(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
         if (_this2.dirty) {
           var _context4;
 
-          sizes = bind$1(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
+          sizes = bind$4(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
         }
       }, function () {
         if (_this2.dirty) {
           var _context5;
 
-          bind$1(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
+          bind$4(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
         }
       }, // repaint DOM additionals
-      bind$1(_context6 = this._repaintDomAdditionals).call(_context6, this)];
+      bind$4(_context6 = this._repaintDomAdditionals).call(_context6, this)];
 
       if (returnQueue) {
         return queue;
@@ -35884,21 +35905,21 @@ var BackgroundItem = /*#__PURE__*/function (_Item) {
 
       var sizes;
       var queue = [// create item DOM
-      bind$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-      bind$1(_context2 = this._appendDomElement).call(_context2, this), bind$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
+      bind$4(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+      bind$4(_context2 = this._appendDomElement).call(_context2, this), bind$4(_context3 = this._updateDirtyDomComponents).call(_context3, this), function () {
         if (_this2.dirty) {
           var _context4;
 
-          sizes = bind$1(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
+          sizes = bind$4(_context4 = _this2._getDomComponentsSizes).call(_context4, _this2)();
         }
       }, function () {
         if (_this2.dirty) {
           var _context5;
 
-          bind$1(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
+          bind$4(_context5 = _this2._updateDomComponentsSizes).call(_context5, _this2)(sizes);
         }
       }, // repaint DOM additionals
-      bind$1(_context6 = this._repaintDomAdditionals).call(_context6, this)];
+      bind$4(_context6 = this._repaintDomAdditionals).call(_context6, this)];
 
       if (returnQueue) {
         return queue;
@@ -36291,20 +36312,20 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
 
       var sizes;
       var queue = [// create item DOM
-      bind$1(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
-      bind$1(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
-      bind$1(_context3 = this._updateDirtyDomComponents).call(_context3, this), bind$1(_context4 = function _context4() {
+      bind$4(_context = this._createDomElement).call(_context, this), // append DOM to parent DOM
+      bind$4(_context2 = this._appendDomElement).call(_context2, this), // update dirty DOM
+      bind$4(_context3 = this._updateDirtyDomComponents).call(_context3, this), bind$4(_context4 = function _context4() {
         if (this.dirty) {
           sizes = this._getDomComponentsSizes();
         }
-      }).call(_context4, this), bind$1(_context5 = function _context5() {
+      }).call(_context4, this), bind$4(_context5 = function _context5() {
         if (this.dirty) {
           var _context6;
 
-          bind$1(_context6 = this._updateDomComponentsSizes).call(_context6, this)(sizes);
+          bind$4(_context6 = this._updateDomComponentsSizes).call(_context6, this)(sizes);
         }
       }).call(_context5, this), // repaint DOM additionals
-      bind$1(_context7 = this._repaintDomAdditionals).call(_context7, this)];
+      bind$4(_context7 = this._repaintDomAdditionals).call(_context7, this)];
 
       if (returnQueue) {
         return queue;
@@ -36715,7 +36736,7 @@ var ClusterItem = /*#__PURE__*/function (_Item) {
         if (this.options.fitOnDoubleClick) {
           var _context13;
 
-          this.dom.box.ondblclick = bind$1(_context13 = ClusterItem.prototype._onDoubleClick).call(_context13, this);
+          this.dom.box.ondblclick = bind$4(_context13 = ClusterItem.prototype._onDoubleClick).call(_context13, this);
         } // attach this item as attribute
 
 
@@ -37627,9 +37648,9 @@ var ItemSet = /*#__PURE__*/function (_Component) {
           _this2._onTouch(event);
         }
       });
-      this.hammer.on('panstart', bind$1(_context3 = this._onDragStart).call(_context3, this));
-      this.hammer.on('panmove', bind$1(_context4 = this._onDrag).call(_context4, this));
-      this.hammer.on('panend', bind$1(_context5 = this._onDragEnd).call(_context5, this));
+      this.hammer.on('panstart', bind$4(_context3 = this._onDragStart).call(_context3, this));
+      this.hammer.on('panmove', bind$4(_context4 = this._onDrag).call(_context4, this));
+      this.hammer.on('panend', bind$4(_context5 = this._onDragEnd).call(_context5, this));
       this.hammer.get('pan').set({
         threshold: 5,
         direction: Hammer.ALL
@@ -37639,15 +37660,15 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         time: 10000
       }); // single select (or unselect) when tapping an item
 
-      this.hammer.on('tap', bind$1(_context6 = this._onSelectItem).call(_context6, this)); // multi select when holding mouse/touch, or on ctrl+click
+      this.hammer.on('tap', bind$4(_context6 = this._onSelectItem).call(_context6, this)); // multi select when holding mouse/touch, or on ctrl+click
 
-      this.hammer.on('press', bind$1(_context7 = this._onMultiSelectItem).call(_context7, this)); // delay addition on item click for trackpads...
+      this.hammer.on('press', bind$4(_context7 = this._onMultiSelectItem).call(_context7, this)); // delay addition on item click for trackpads...
 
       this.hammer.get('press').set({
         time: 10000
       }); // add item on doubletap
 
-      this.hammer.on('doubletap', bind$1(_context8 = this._onAddItem).call(_context8, this));
+      this.hammer.on('doubletap', bind$4(_context8 = this._onAddItem).call(_context8, this));
 
       if (this.options.rtl) {
         this.groupHammer = new Hammer(this.body.dom.rightContainer);
@@ -37655,20 +37676,20 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         this.groupHammer = new Hammer(this.body.dom.leftContainer);
       }
 
-      this.groupHammer.on('tap', bind$1(_context9 = this._onGroupClick).call(_context9, this));
-      this.groupHammer.on('panstart', bind$1(_context10 = this._onGroupDragStart).call(_context10, this));
-      this.groupHammer.on('panmove', bind$1(_context11 = this._onGroupDrag).call(_context11, this));
-      this.groupHammer.on('panend', bind$1(_context12 = this._onGroupDragEnd).call(_context12, this));
+      this.groupHammer.on('tap', bind$4(_context9 = this._onGroupClick).call(_context9, this));
+      this.groupHammer.on('panstart', bind$4(_context10 = this._onGroupDragStart).call(_context10, this));
+      this.groupHammer.on('panmove', bind$4(_context11 = this._onGroupDrag).call(_context11, this));
+      this.groupHammer.on('panend', bind$4(_context12 = this._onGroupDragEnd).call(_context12, this));
       this.groupHammer.get('pan').set({
         threshold: 5,
         direction: Hammer.DIRECTION_VERTICAL
       });
-      this.body.dom.centerContainer.addEventListener('mouseover', bind$1(_context13 = this._onMouseOver).call(_context13, this));
-      this.body.dom.centerContainer.addEventListener('mouseout', bind$1(_context14 = this._onMouseOut).call(_context14, this));
-      this.body.dom.centerContainer.addEventListener('mousemove', bind$1(_context15 = this._onMouseMove).call(_context15, this)); // right-click on timeline 
+      this.body.dom.centerContainer.addEventListener('mouseover', bind$4(_context13 = this._onMouseOver).call(_context13, this));
+      this.body.dom.centerContainer.addEventListener('mouseout', bind$4(_context14 = this._onMouseOut).call(_context14, this));
+      this.body.dom.centerContainer.addEventListener('mousemove', bind$4(_context15 = this._onMouseMove).call(_context15, this)); // right-click on timeline 
 
-      this.body.dom.centerContainer.addEventListener('contextmenu', bind$1(_context16 = this._onDragEnd).call(_context16, this));
-      this.body.dom.centerContainer.addEventListener('mousewheel', bind$1(_context17 = this._onMouseWheel).call(_context17, this)); // attach to the DOM
+      this.body.dom.centerContainer.addEventListener('contextmenu', bind$4(_context16 = this._onDragEnd).call(_context16, this));
+      this.body.dom.centerContainer.addEventListener('mousewheel', bind$4(_context17 = this._onMouseWheel).call(_context17, this)); // attach to the DOM
 
       this.show();
     }
@@ -42057,19 +42078,19 @@ var ColorPicker = /*#__PURE__*/function () {
       this.cancelButton = document.createElement("div");
       this.cancelButton.className = "vis-button vis-cancel";
       this.cancelButton.innerHTML = 'cancel';
-      this.cancelButton.onclick = bind$1(_context = this._hide).call(_context, this, false);
+      this.cancelButton.onclick = bind$4(_context = this._hide).call(_context, this, false);
       this.applyButton = document.createElement("div");
       this.applyButton.className = "vis-button vis-apply";
       this.applyButton.innerHTML = 'apply';
-      this.applyButton.onclick = bind$1(_context2 = this._apply).call(_context2, this);
+      this.applyButton.onclick = bind$4(_context2 = this._apply).call(_context2, this);
       this.saveButton = document.createElement("div");
       this.saveButton.className = "vis-button vis-save";
       this.saveButton.innerHTML = 'save';
-      this.saveButton.onclick = bind$1(_context3 = this._save).call(_context3, this);
+      this.saveButton.onclick = bind$4(_context3 = this._save).call(_context3, this);
       this.loadButton = document.createElement("div");
       this.loadButton.className = "vis-button vis-load";
       this.loadButton.innerHTML = 'load last';
-      this.loadButton.onclick = bind$1(_context4 = this._loadLast).call(_context4, this);
+      this.loadButton.onclick = bind$4(_context4 = this._loadLast).call(_context4, this);
       this.frame.appendChild(this.colorPickerDiv);
       this.frame.appendChild(this.arrowDiv);
       this.frame.appendChild(this.brightnessLabel);
@@ -43207,7 +43228,7 @@ var Timeline = /*#__PURE__*/function (_Core) {
     if (_this.options.loadingScreenTemplate) {
       var _context;
 
-      var templateFunction = bind$1(_context = _this.options.loadingScreenTemplate).call(_context, _assertThisInitialized(_this));
+      var templateFunction = bind$4(_context = _this.options.loadingScreenTemplate).call(_context, _assertThisInitialized(_this));
 
       var loadingScreen = templateFunction(_this.dom.loadingScreen);
 
@@ -43231,9 +43252,9 @@ var Timeline = /*#__PURE__*/function (_Core) {
       dom: _this.dom,
       domProps: _this.props,
       emitter: {
-        on: bind$1(_context2 = _this.on).call(_context2, _assertThisInitialized(_this)),
-        off: bind$1(_context3 = _this.off).call(_context3, _assertThisInitialized(_this)),
-        emit: bind$1(_context4 = _this.emit).call(_context4, _assertThisInitialized(_this))
+        on: bind$4(_context2 = _this.on).call(_context2, _assertThisInitialized(_this)),
+        off: bind$4(_context3 = _this.off).call(_context3, _assertThisInitialized(_this)),
+        emit: bind$4(_context4 = _this.emit).call(_context4, _assertThisInitialized(_this))
       },
       hiddenDates: [],
       util: {
@@ -43243,11 +43264,11 @@ var Timeline = /*#__PURE__*/function (_Core) {
         getStep: function getStep() {
           return me.timeAxis.step.step;
         },
-        toScreen: bind$1(_context5 = me._toScreen).call(_context5, me),
-        toGlobalScreen: bind$1(_context6 = me._toGlobalScreen).call(_context6, me),
+        toScreen: bind$4(_context5 = me._toScreen).call(_context5, me),
+        toGlobalScreen: bind$4(_context6 = me._toGlobalScreen).call(_context6, me),
         // this refers to the root.width
-        toTime: bind$1(_context7 = me._toTime).call(_context7, me),
-        toGlobalTime: bind$1(_context8 = me._toGlobalTime).call(_context8, me)
+        toTime: bind$4(_context7 = me._toTime).call(_context7, me),
+        toGlobalTime: bind$4(_context8 = me._toGlobalTime).call(_context8, me)
       }
     }; // range
 
@@ -48009,9 +48030,9 @@ function Graph2d(container, items, groups, options) {
     dom: this.dom,
     domProps: this.props,
     emitter: {
-      on: bind$1(_context = this.on).call(_context, this),
-      off: bind$1(_context2 = this.off).call(_context2, this),
-      emit: bind$1(_context3 = this.emit).call(_context3, this)
+      on: bind$4(_context = this.on).call(_context, this),
+      off: bind$4(_context2 = this.off).call(_context2, this),
+      emit: bind$4(_context3 = this.emit).call(_context3, this)
     },
     hiddenDates: [],
     util: {
@@ -48021,11 +48042,11 @@ function Graph2d(container, items, groups, options) {
       getStep: function getStep() {
         return me.timeAxis.step.step;
       },
-      toScreen: bind$1(_context4 = me._toScreen).call(_context4, me),
-      toGlobalScreen: bind$1(_context5 = me._toGlobalScreen).call(_context5, me),
+      toScreen: bind$4(_context4 = me._toScreen).call(_context4, me),
+      toGlobalScreen: bind$4(_context5 = me._toGlobalScreen).call(_context5, me),
       // this refers to the root.width
-      toTime: bind$1(_context6 = me._toTime).call(_context6, me),
-      toGlobalTime: bind$1(_context7 = me._toGlobalTime).call(_context7, me)
+      toTime: bind$4(_context6 = me._toTime).call(_context6, me),
+      toGlobalTime: bind$4(_context7 = me._toGlobalTime).call(_context7, me)
     }
   }; // range
 
