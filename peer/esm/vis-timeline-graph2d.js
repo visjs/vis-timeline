@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-06-03T00:46:09.445Z
+ * @date    2022-06-03T22:43:38.308Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -13534,6 +13534,16 @@ function escapeHtml(html) {
   return html.replace(REGEXP_LT, "&lt;").replace(REGEXP_GT, "&gt;");
 }
 /**
+ * default escapeHtml function but dont escape comment
+ *
+ * @param {String} html
+ */
+
+
+function escapeHtmlNotComment(html) {
+  return html.replace(REGEXP_LT_NOT_COMMENT, "&lt;").replace(REGEXP_RT_NOT_COMMENT, "&gt;");
+}
+/**
  * default safeAttrValue function
  *
  * @param {String} tag
@@ -13598,12 +13608,17 @@ function safeAttrValue(tag, name, value, cssFilter) {
 
 var REGEXP_LT = /</g;
 var REGEXP_GT = />/g;
+var REGEXP_LT_NOT_COMMENT = /<(?!!--)/g;
+var REGEXP_RT_NOT_COMMENT = /(?<!--)>/g;
 var REGEXP_QUOTE = /"/g;
 var REGEXP_QUOTE_2 = /&quot;/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
 var REGEXP_ATTR_VALUE_COLON = /&colon;?/gim;
-var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim;
-var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a)\:/gi;
+var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim; // var REGEXP_DEFAULT_ON_TAG_ATTR_3 = /\/\*|\*\//gm;
+
+var REGEXP_DEFAULT_ON_TAG_ATTR_4 = /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi; // var REGEXP_DEFAULT_ON_TAG_ATTR_5 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:/gi;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_6 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:\s*image\//gi;
+
 var REGEXP_DEFAULT_ON_TAG_ATTR_7 = /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
 var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
 /**
@@ -13825,6 +13840,7 @@ _default$1.onTagAttr = onTagAttr;
 _default$1.onIgnoreTagAttr = onIgnoreTagAttr;
 _default$1.safeAttrValue = safeAttrValue;
 _default$1.escapeHtml = escapeHtml;
+_default$1.escapeHtmlNotComment = escapeHtmlNotComment;
 _default$1.escapeQuote = escapeQuote;
 _default$1.unescapeQuote = unescapeQuote;
 _default$1.escapeHtmlEntities = escapeHtmlEntities;
@@ -13857,10 +13873,12 @@ var _$1 = util;
 function getTagName(html) {
   var i = _$1.spaceIndex(html);
 
+  var tagName;
+
   if (i === -1) {
-    var tagName = html.slice(1, -1);
+    tagName = html.slice(1, -1);
   } else {
-    var tagName = html.slice(1, i + 1);
+    tagName = html.slice(1, i + 1);
   }
 
   tagName = _$1.trim(tagName).toLowerCase();
@@ -13956,7 +13974,7 @@ function parseTag$1(html, onTag, escapeHtml) {
   return rethtml;
 }
 
-var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
+var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9\\_:.-]/gim;
 /**
  * parse input attributes and returns processed attributes
  *
@@ -13968,6 +13986,7 @@ var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9_:\.\-]/gim;
 function parseAttr$1(html, onAttr) {
 
   var lastPos = 0;
+  var lastMarkPos = 0;
   var retAttrs = [];
   var tmpName = false;
   var len = html.length;
@@ -13988,17 +14007,18 @@ function parseAttr$1(html, onAttr) {
     if (tmpName === false && c === "=") {
       tmpName = html.slice(lastPos, i);
       lastPos = i + 1;
+      lastMarkPos = html.charAt(lastPos) === '"' || html.charAt(lastPos) === "'" ? lastPos : findNextQuotationMark(html, i + 1);
       continue;
     }
 
     if (tmpName !== false) {
-      if (i === lastPos && (c === '"' || c === "'") && html.charAt(i - 1) === "=") {
+      if (i === lastMarkPos) {
         j = html.indexOf(c, i + 1);
 
         if (j === -1) {
           break;
         } else {
-          v = _$1.trim(html.slice(lastPos + 1, j));
+          v = _$1.trim(html.slice(lastMarkPos + 1, j));
           addAttr(tmpName, v);
           tmpName = false;
           i = j;
@@ -14057,6 +14077,15 @@ function findNextEqual(str, i) {
     var c = str[i];
     if (c === " ") continue;
     if (c === "=") return i;
+    return -1;
+  }
+}
+
+function findNextQuotationMark(str, i) {
+  for (; i < str.length; i++) {
+    var c = str[i];
+    if (c === " ") continue;
+    if (c === "'" || c === '"') return i;
     return -1;
   }
 }
@@ -14155,6 +14184,22 @@ function shallowCopyObject(obj) {
 
   return ret;
 }
+
+function keysToLowerCase(obj) {
+  var ret = {};
+
+  for (var i in obj) {
+    if (Array.isArray(obj[i])) {
+      ret[i.toLowerCase()] = obj[i].map(function (item) {
+        return item.toLowerCase();
+      });
+    } else {
+      ret[i.toLowerCase()] = obj[i];
+    }
+  }
+
+  return ret;
+}
 /**
  * FilterXSS class
  *
@@ -14177,13 +14222,18 @@ function FilterXSS(options) {
     options.onIgnoreTag = DEFAULT.onIgnoreTagStripAll;
   }
 
-  options.whiteList = options.whiteList || options.allowList || DEFAULT.whiteList;
+  if (options.whiteList || options.allowList) {
+    options.whiteList = keysToLowerCase(options.whiteList || options.allowList);
+  } else {
+    options.whiteList = DEFAULT.whiteList;
+  }
+
   options.onTag = options.onTag || DEFAULT.onTag;
   options.onTagAttr = options.onTagAttr || DEFAULT.onTagAttr;
   options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
   options.onIgnoreTagAttr = options.onIgnoreTagAttr || DEFAULT.onIgnoreTagAttr;
   options.safeAttrValue = options.safeAttrValue || DEFAULT.safeAttrValue;
-  options.escapeHtml = options.escapeHtml || DEFAULT.escapeHtml;
+  options.escapeHtml = options.escapeHtml || (options.allowCommentTag ? DEFAULT.escapeHtmlNotComment : DEFAULT.escapeHtml);
   this.options = options;
 
   if (options.css === false) {
@@ -14230,7 +14280,7 @@ FilterXSS.prototype.process = function (html) {
   var stripIgnoreTagBody = false;
 
   if (options.stripIgnoreTagBody) {
-    var stripIgnoreTagBody = DEFAULT.StripTagBody(options.stripIgnoreTagBody, onIgnoreTag);
+    stripIgnoreTagBody = DEFAULT.StripTagBody(options.stripIgnoreTagBody, onIgnoreTag);
     onIgnoreTag = stripIgnoreTagBody.onIgnoreTag;
   }
 
@@ -14239,7 +14289,7 @@ FilterXSS.prototype.process = function (html) {
       sourcePosition: sourcePosition,
       position: position,
       isClosing: isClosing,
-      isWhite: whiteList.hasOwnProperty(tag)
+      isWhite: Object.prototype.hasOwnProperty.call(whiteList, tag)
     }; // call `onTag()`
 
     var ret = onTag(tag, html, info);
@@ -14269,20 +14319,20 @@ FilterXSS.prototype.process = function (html) {
           }
         } else {
           // call `onIgnoreTagAttr()`
-          var ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
+          ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
           if (!isNull(ret)) return ret;
           return;
         }
       }); // build new tag html
 
-      var html = "<" + tag;
+      html = "<" + tag;
       if (attrsHtml) html += " " + attrsHtml;
       if (attrs.closing) html += " /";
       html += ">";
       return html;
     } else {
       // call `onIgnoreTag()`
-      var ret = onIgnoreTag(tag, html, info);
+      ret = onIgnoreTag(tag, html, info);
       if (!isNull(ret)) return ret;
       return escapeHtml(html);
     }
@@ -14324,9 +14374,15 @@ var xss = FilterXSS;
   exports.filterXSS = filterXSS;
   exports.FilterXSS = FilterXSS;
 
-  for (var i in DEFAULT) exports[i] = DEFAULT[i];
+  (function () {
+    for (var i in DEFAULT) {
+      exports[i] = DEFAULT[i];
+    }
 
-  for (var i in parser) exports[i] = parser[i]; // using `xss` on the browser, output `filterXSS` to the globals
+    for (var j in parser) {
+      exports[j] = parser[j];
+    }
+  })(); // using `xss` on the browser, output `filterXSS` to the globals
 
 
   if (typeof window !== "undefined") {
