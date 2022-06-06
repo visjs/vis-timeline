@@ -100,7 +100,7 @@
     "vis-data": "7.1.4",
     "vis-dev-utils": "3.0.89",
     "vis-util": "5.0.3",
-    "xss": "1.0.12"
+    "xss": "1.0.13"
   },
   "collective": {
     "type": "opencollective",
