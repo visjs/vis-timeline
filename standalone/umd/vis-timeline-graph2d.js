@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-06-04T04:16:10.155Z
+ * @date    2022-06-06T22:31:53.405Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -25918,16 +25918,6 @@
 	  return html.replace(REGEXP_LT, "&lt;").replace(REGEXP_GT, "&gt;");
 	}
 	/**
-	 * default escapeHtml function but dont escape comment
-	 *
-	 * @param {String} html
-	 */
-
-
-	function escapeHtmlNotComment(html) {
-	  return html.replace(REGEXP_LT_NOT_COMMENT, "&lt;").replace(REGEXP_RT_NOT_COMMENT, "&gt;");
-	}
-	/**
 	 * default safeAttrValue function
 	 *
 	 * @param {String} tag
@@ -25992,8 +25982,6 @@
 
 	var REGEXP_LT = /</g;
 	var REGEXP_GT = />/g;
-	var REGEXP_LT_NOT_COMMENT = /<(?!!--)/g;
-	var REGEXP_RT_NOT_COMMENT = /(?<!--)>/g;
 	var REGEXP_QUOTE = /"/g;
 	var REGEXP_QUOTE_2 = /&quot;/g;
 	var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
@@ -26224,7 +26212,6 @@
 	_default$1.onIgnoreTagAttr = onIgnoreTagAttr;
 	_default$1.safeAttrValue = safeAttrValue;
 	_default$1.escapeHtml = escapeHtml;
-	_default$1.escapeHtmlNotComment = escapeHtmlNotComment;
 	_default$1.escapeQuote = escapeQuote;
 	_default$1.unescapeQuote = unescapeQuote;
 	_default$1.escapeHtmlEntities = escapeHtmlEntities;
@@ -26617,7 +26604,7 @@
 	  options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
 	  options.onIgnoreTagAttr = options.onIgnoreTagAttr || DEFAULT.onIgnoreTagAttr;
 	  options.safeAttrValue = options.safeAttrValue || DEFAULT.safeAttrValue;
-	  options.escapeHtml = options.escapeHtml || (options.allowCommentTag ? DEFAULT.escapeHtmlNotComment : DEFAULT.escapeHtml);
+	  options.escapeHtml = options.escapeHtml || DEFAULT.escapeHtml;
 	  this.options = options;
 
 	  if (options.css === false) {

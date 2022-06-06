@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-06-04T04:17:21.243Z
+ * @date    2022-06-06T22:33:35.954Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24385,16 +24385,6 @@ function escapeHtml(html) {
   return html.replace(REGEXP_LT, "&lt;").replace(REGEXP_GT, "&gt;");
 }
 /**
- * default escapeHtml function but dont escape comment
- *
- * @param {String} html
- */
-
-
-function escapeHtmlNotComment(html) {
-  return html.replace(REGEXP_LT_NOT_COMMENT, "&lt;").replace(REGEXP_RT_NOT_COMMENT, "&gt;");
-}
-/**
  * default safeAttrValue function
  *
  * @param {String} tag
@@ -24459,8 +24449,6 @@ function safeAttrValue(tag, name, value, cssFilter) {
 
 var REGEXP_LT = /</g;
 var REGEXP_GT = />/g;
-var REGEXP_LT_NOT_COMMENT = /<(?!!--)/g;
-var REGEXP_RT_NOT_COMMENT = /(?<!--)>/g;
 var REGEXP_QUOTE = /"/g;
 var REGEXP_QUOTE_2 = /&quot;/g;
 var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
@@ -24691,7 +24679,6 @@ var onTagAttr_1 = onTagAttr;
 var onIgnoreTagAttr_1 = onIgnoreTagAttr;
 var safeAttrValue_1 = safeAttrValue;
 var escapeHtml_1 = escapeHtml;
-var escapeHtmlNotComment_1 = escapeHtmlNotComment;
 var escapeQuote_1 = escapeQuote;
 var unescapeQuote_1 = unescapeQuote;
 var escapeHtmlEntities_1 = escapeHtmlEntities;
@@ -24714,7 +24701,6 @@ var _default = {
   onIgnoreTagAttr: onIgnoreTagAttr_1,
   safeAttrValue: safeAttrValue_1,
   escapeHtml: escapeHtml_1,
-  escapeHtmlNotComment: escapeHtmlNotComment_1,
   escapeQuote: escapeQuote_1,
   unescapeQuote: unescapeQuote_1,
   escapeHtmlEntities: escapeHtmlEntities_1,
@@ -25108,7 +25094,7 @@ function FilterXSS(options) {
   options.onIgnoreTag = options.onIgnoreTag || _default.onIgnoreTag;
   options.onIgnoreTagAttr = options.onIgnoreTagAttr || _default.onIgnoreTagAttr;
   options.safeAttrValue = options.safeAttrValue || _default.safeAttrValue;
-  options.escapeHtml = options.escapeHtml || (options.allowCommentTag ? _default.escapeHtmlNotComment : _default.escapeHtml);
+  options.escapeHtml = options.escapeHtml || _default.escapeHtml;
   this.options = options;
 
   if (options.css === false) {
