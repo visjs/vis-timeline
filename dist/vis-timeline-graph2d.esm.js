@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-06-30T15:55:17.373Z
+ * @date    2022-07-06T18:46:10.523Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2259,7 +2259,7 @@ var moment$3 = createCommonjsModule(function (module, exports) {
 
     function preprocessRFC2822(s) {
       // Remove comments and folding whitespace and replace multiple-spaces with a single space
-      return s.replace(/\([^)]*\)|[\n\t]/g, ' ').replace(/(\s\s+)/g, ' ').replace(/^\s\s*/, '').replace(/\s\s*$/, '');
+      return s.replace(/\([^()]*\)|[\n\t]/g, ' ').replace(/(\s\s+)/g, ' ').replace(/^\s\s*/, '').replace(/\s\s*$/, '');
     }
 
     function checkWeekday(weekdayStr, parsedInput, config) {
@@ -5107,7 +5107,7 @@ var moment$3 = createCommonjsModule(function (module, exports) {
       config._d = new Date(toInt(input));
     }); //! moment.js
 
-    hooks.version = '2.29.3';
+    hooks.version = '2.29.4';
     setHookCallback(createLocal);
     hooks.fn = proto;
     hooks.min = min;
