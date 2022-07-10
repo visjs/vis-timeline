@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-07-06T18:44:56.429Z
+ * @date    2022-07-10T21:12:41.133Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2042,7 +2042,7 @@
       switch (this.scale) {
         case 'year':
           this.current.year(this.step * Math.floor(this.current.year() / this.step));
-          this.current.month(0);
+          this.current.month(0);                            // eslint-disable-line no-fallthrough
         case 'month':        this.current.date(1);          // eslint-disable-line no-fallthrough
         case 'week':                                        // eslint-disable-line no-fallthrough
         case 'day':                                         // eslint-disable-line no-fallthrough
@@ -2425,7 +2425,7 @@
           return (date.hours() == 0);
         case 'weekday': // intentional fall through
         case 'day':
-          return (date.date() == 1);
+          return this.options.showWeekScale ? (date.isoWeekday() == 1) : (date.date() == 1);
         case 'week':
           return (date.date() == 1);
         case 'month':

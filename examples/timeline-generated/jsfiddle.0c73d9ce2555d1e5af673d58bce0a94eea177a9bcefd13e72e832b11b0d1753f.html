@@ -1,0 +1,184 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | styling | Show day scale with calendar week</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="https://jsfiddle.net/api/post/library/pure/"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="css"
+        value="body,
+html {
+  font-family: sans-serif;
+}
+
+/* alternating column backgrounds */
+.vis-time-axis .vis-grid.vis-odd {
+  background: #f5f5f5;
+}
+"
+      />
+      <input
+        type="hidden"
+        name="html"
+        value='<p>
+  To set a locale for the timeline, specify the option
+  <code>{locale: STRING}</code>.
+</p>
+<p>
+  To set up a day scale and also shows the corresponding calendar weeks,
+  configure use a time axis with day scale and enable showWeekScale. Then
+  configure the format to output the date/day and the week info accordingly:
+</p>
+<pre><code>
+  {
+    timeAxis: {
+      scale: &apos;day&apos;,
+      step: 1
+    },
+    showWeekScale: true,
+    format: {
+      minorLabels: {day: &apos;DD.MM&apos;},
+      majorLabels: {day: &apos;w&apos;}
+    }
+  }
+</code>
+</pre>
+
+<p>
+  The following timeline is initialized with the &apos;de&apos; locale and items are added
+  with locally localized moment.js objects. The timeline locale can be switched
+  to another locale at runtime. If you choose the &apos;en&apos; locale, the week numbers
+  will be calculated according to the US week calendar numbering scheme.
+</p>
+
+<p>
+  <label for="locale">Select a locale:</label>
+  <select id="locale">
+    <option value="en">en</option>
+    <option value="fr">fr</option>
+    <option value="it">it</option>
+    <option value="nl">nl</option>
+    <option value="de" selected="">de</option>
+  </select>
+</p>
+
+<div id="visualization"></div>
+'
+      />
+      <input
+        type="hidden"
+        name="js"
+        value='var itemCount = 26;
+
+// DOM element where the Timeline will be attached
+var container = document.getElementById("visualization");
+
+// just a group for the effects
+var groups = new vis.DataSet();
+groups.add([
+  { id: 1, content: "ISO Weeks" },
+  { id: 2, content: "US Weeks" },
+]);
+
+// Create a DataSet (allows two way data-binding)
+var items = new vis.DataSet();
+
+// create a localized moment object based on the current date
+var USdate = moment()
+  .locale("en")
+  .hours(0)
+  .minutes(0)
+  .seconds(0)
+  .milliseconds(0);
+
+// use the locale-aware weekday function to move to the begin of the current week
+USdate.weekday(0);
+
+// Iterate and just add a week to use it again in the next iteration
+for (var i = 0; i < itemCount; i++) {
+  var USweekNumber = USdate.format("w");
+  var USweekStart = USdate.format();
+  var USweekEnd = USdate.add(1, "week").format();
+  items.add({
+    id: i,
+    group: 2,
+    content: "US week " + USweekNumber,
+    start: USweekStart,
+    end: USweekEnd,
+  });
+}
+
+// create another localized moment object - the &apos;de&apos; locale works according to the ISO8601 leap week calendar system
+var DEdate = moment()
+  .locale("de")
+  .hours(0)
+  .minutes(0)
+  .seconds(0)
+  .milliseconds(0);
+DEdate.weekday(0);
+for (var j = 0; j < itemCount; j++) {
+  var DEweekNumber = DEdate.format("w");
+  var DEweekStart = DEdate.format();
+  var DEweekEnd = DEdate.add(1, "week").format();
+  items.add({
+    id: itemCount + j,
+    group: 1,
+    content: "ISO week " + DEweekNumber,
+    start: DEweekStart,
+    end: DEweekEnd,
+  });
+}
+
+// Configuration for the Timeline
+var options = {
+  locale: "de",
+  timeAxis: {
+    scale: "day",
+    step: 1,
+  },
+  showWeekScale: true,
+  format: {
+    minorLabels: { day: "DD.MM" },
+    majorLabels: { day: "w" },
+  },
+};
+
+// Create a Timeline
+var timeline = new vis.Timeline(container, items, groups, options);
+
+// update the locale when changing the select box value
+var select = document.getElementById("locale");
+select.onchange = function () {
+  timeline.setOptions({
+    locale: this.value,
+  });
+};
+select.onchange();
+'
+      />
+      <input
+        type="hidden"
+        name="resources"
+        value="https://visjs.github.io/vis-timeline/styles/vis-timeline-graph2d.min.css,https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
+      />
+      <input
+        type="hidden"
+        name="title"
+        value="Timeline | styling | Show day scale with calendar week"
+      />
+      <input type="hidden" name="wrap" value="b" />
+      <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>
