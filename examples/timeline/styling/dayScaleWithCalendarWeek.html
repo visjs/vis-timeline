@@ -25,20 +25,22 @@
     <code>{locale: STRING}</code>.</p>
 <p>
   To set up a day scale and also shows the corresponding calendar weeks, configure use a time axis with day scale and enable showWeekScale. Then configure the format to output the date/day and the week info accordingly:
-  <code>
-    {
-      timeAxis: {
-        scale: 'day',
-        step: 1
-      },
-      showWeekScale: true,
-      format: {
-        minorLabels: {day: 'DD.MM'},
-        majorLabels: {day: 'w'}
-      }
-    }
-  </code>
 </p>
+<pre>
+<code>
+  {
+    timeAxis: {
+      scale: 'day',
+      step: 1
+    },
+    showWeekScale: true,
+    format: {
+      minorLabels: {day: 'DD.MM'},
+      majorLabels: {day: 'w'}
+    }
+  }
+</code>
+</pre>
 
 <p>The following timeline is initialized with the 'de' locale and items are added with locally localized moment.js
     objects. The timeline locale can be switched to another locale at runtime. If you choose the 'en' locale, the week
