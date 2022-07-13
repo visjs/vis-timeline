@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-07-10T21:28:33.814Z
+ * @date    2022-07-13T20:14:38.746Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -39536,8 +39536,6 @@ var ItemSet = /*#__PURE__*/function (_Component) {
   }, {
     key: "toggleGroupShowNested",
     value: function toggleGroupShowNested(group) {
-      var _context30;
-
       var force = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : undefined;
       if (!group || !group.nestedGroups) return;
       var groupsData = this.groupsData.getDataSet();
@@ -39570,14 +39568,39 @@ var ItemSet = /*#__PURE__*/function (_Component) {
         }
       }
 
-      var nestedGroups = map$3(_context30 = groupsData.get(fullNestedGroups)).call(_context30, function (nestedGroup) {
-        if (nestedGroup.visible == undefined) {
-          nestedGroup.visible = true;
+      var nestedGroups;
+
+      if (nestingGroup.showNested) {
+        var showNestedGroups = groupsData.get(nestingGroup.nestedGroups);
+
+        for (var _i = 0; _i < showNestedGroups.length; _i++) {
+          var _group = showNestedGroups[_i];
+
+          if (_group.nestedGroups && _group.nestedGroups.length > 0 && (_group.showNested == undefined || _group.showNested == true)) {
+            showNestedGroups.push.apply(showNestedGroups, _toConsumableArray(groupsData.get(_group.nestedGroups)));
+          }
         }
 
-        nestedGroup.visible = !!nestingGroup.showNested;
-        return nestedGroup;
-      });
+        nestedGroups = map$3(showNestedGroups).call(showNestedGroups, function (nestedGroup) {
+          if (nestedGroup.visible == undefined) {
+            nestedGroup.visible = true;
+          }
+
+          nestedGroup.visible = !!nestingGroup.showNested;
+          return nestedGroup;
+        });
+      } else {
+        var _context30;
+
+        nestedGroups = map$3(_context30 = groupsData.get(fullNestedGroups)).call(_context30, function (nestedGroup) {
+          if (nestedGroup.visible == undefined) {
+            nestedGroup.visible = true;
+          }
+
+          nestedGroup.visible = !!nestingGroup.showNested;
+          return nestedGroup;
+        });
+      }
 
       groupsData.update(concat$2(nestedGroups).call(nestedGroups, nestingGroup));
 

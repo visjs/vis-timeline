@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-07-10T21:27:09.092Z
+ * @date    2022-07-13T20:13:20.553Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -12016,13 +12016,38 @@
           fullNestedGroups = fullNestedGroups.concat(nextLevel);
         }
       }
-      let nestedGroups = groupsData.get(fullNestedGroups).map(function (nestedGroup) {
+      var nestedGroups;
+      if (nestingGroup.showNested) {
+        var showNestedGroups = groupsData.get(nestingGroup.nestedGroups);
+        for (let i = 0; i < showNestedGroups.length; i++) {
+          let group = showNestedGroups[i];
+          if (
+            group.nestedGroups &&
+            group.nestedGroups.length > 0 &&
+            (group.showNested == undefined || group.showNested == true)
+          ) {
+            showNestedGroups.push(...groupsData.get(group.nestedGroups));
+          }        
+        }
+        nestedGroups = showNestedGroups.map(function (nestedGroup) {
           if (nestedGroup.visible == undefined) {
             nestedGroup.visible = true;
           }
           nestedGroup.visible = !!nestingGroup.showNested;
+
           return nestedGroup;
         });
+      } else {
+        nestedGroups = groupsData
+          .get(fullNestedGroups)
+          .map(function (nestedGroup) {
+            if (nestedGroup.visible == undefined) {
+              nestedGroup.visible = true;
+            }
+            nestedGroup.visible = !!nestingGroup.showNested;
+            return nestedGroup;
+          });
+      }
 
       groupsData.update(nestedGroups.concat(nestingGroup));
 
