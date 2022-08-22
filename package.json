@@ -94,7 +94,7 @@
     "rollup-plugin-css-porter": "1.0.2",
     "rollup-plugin-node-builtins": "2.1.2",
     "rollup-plugin-node-resolve": "5.2.0",
-    "semantic-release": "19.0.3",
+    "semantic-release": "19.0.4",
     "snap-shot-it": "7.9.6",
     "uuid": "7.0.3",
     "vis-data": "7.1.4",
