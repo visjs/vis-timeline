@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-10-17T23:15:58.305Z
+ * @date    2023-03-04T22:16:02.393Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -29,10 +29,7 @@
   typeof define === 'function' && define.amd ? define(['exports', 'moment', 'vis-util/esnext/umd/vis-util.js', 'vis-data/esnext/umd/vis-data.js', 'xss', 'uuid', 'component-emitter', 'propagating-hammerjs', '@egjs/hammerjs', 'keycharm'], factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, factory(global.vis = global.vis || {}, global.moment, global.vis, global.vis, global.filterXSS, global.uuid, global.Emitter, global.propagating, global.Hammer, global.keycharm));
 })(this, (function (exports, moment$3, util, esnext, xssFilter, uuid, Emitter, PropagatingHammer, Hammer$1, keycharm) {
-  function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
-
-  function _interopNamespace(e) {
-    if (e && e.__esModule) return e;
+  function _interopNamespaceDefault(e) {
     var n = Object.create(null);
     if (e) {
       Object.keys(e).forEach(function (k) {
@@ -45,23 +42,17 @@
         }
       });
     }
-    n["default"] = e;
+    n.default = e;
     return Object.freeze(n);
   }
 
-  var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment$3);
-  var util__namespace = /*#__PURE__*/_interopNamespace(util);
-  var xssFilter__default = /*#__PURE__*/_interopDefaultLegacy(xssFilter);
-  var Emitter__default = /*#__PURE__*/_interopDefaultLegacy(Emitter);
-  var PropagatingHammer__default = /*#__PURE__*/_interopDefaultLegacy(PropagatingHammer);
-  var Hammer__default = /*#__PURE__*/_interopDefaultLegacy(Hammer$1);
-  var keycharm__default = /*#__PURE__*/_interopDefaultLegacy(keycharm);
+  var util__namespace = /*#__PURE__*/_interopNamespaceDefault(util);
 
   // first check if moment.js is already loaded in the browser window, if so,
   // use this instance. Else, load via commonjs.
   //
   // Note: This doesn't work in ESM.
-  var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment__default["default"];
+  var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$3;
 
   // utility functions
   /**
@@ -119,7 +110,7 @@
       case "number":
       case "Number":
         if (util.isString(object) && !isNaN(Date.parse(object))) {
-          return moment__default["default"](object).valueOf();
+          return moment$3(object).valueOf();
         } else {
           // @TODO: I don't think that Number and String constructors are a good idea.
           // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -146,26 +137,26 @@
 
       case "Moment":
         if (util.isNumber(object)) {
-          return moment__default["default"](object);
+          return moment$3(object);
         }
         if (object instanceof Date) {
-          return moment__default["default"](object.valueOf());
-        } else if (moment__default["default"].isMoment(object)) {
-          return moment__default["default"](object);
+          return moment$3(object.valueOf());
+        } else if (moment$3.isMoment(object)) {
+          return moment$3(object);
         }
         if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
           if (match) {
             // object is an ASP date
-            return moment__default["default"](Number(match[1])); // parse number
+            return moment$3(Number(match[1])); // parse number
           }
           match = NumericRegex.exec(object);
 
           if (match) {
-            return moment__default["default"](Number(object));
+            return moment$3(Number(object));
           }
 
-          return moment__default["default"](object); // parse string
+          return moment$3(object); // parse string
         } else {
           throw new TypeError(
             "Cannot convert object of type " + util.getType(object) + " to type " + type
@@ -177,7 +168,7 @@
           return new Date(object);
         } else if (object instanceof Date) {
           return object.toISOString();
-        } else if (moment__default["default"].isMoment(object)) {
+        } else if (moment$3.isMoment(object)) {
           return object.toDate().toISOString();
         } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -185,7 +176,7 @@
             // object is an ASP date
             return new Date(Number(match[1])).toISOString(); // parse number
           } else {
-            return moment__default["default"](object).format(); // ISO 8601
+            return moment$3(object).format(); // ISO 8601
           }
         } else {
           throw new Error(
@@ -198,7 +189,7 @@
       case "ASPDate":
         if (util.isNumber(object)) {
           return "/Date(" + object + ")/";
-        } else if (object instanceof Date || moment__default["default"].isMoment(object)) {
+        } else if (object instanceof Date || moment$3.isMoment(object)) {
           return "/Date(" + object.valueOf() + ")/";
         } else if (util.isString(object)) {
           match = ASPDateRegex.exec(object);
@@ -298,7 +289,7 @@
 
   // Configure XSS protection
   const setupXSSCleaner = (options) => {
-    const customXSS = new xssFilter__default["default"].FilterXSS(options);
+    const customXSS = new xssFilter.FilterXSS(options);
     return (string) => customXSS.process(string);
   };
   const setupNoOpCleaner = (string) => string;
@@ -910,19 +901,19 @@
   var DateUtil = /*#__PURE__*/Object.freeze({
     __proto__: null,
     convertHiddenOptions: convertHiddenOptions,
-    updateHiddenDates: updateHiddenDates,
-    removeDuplicates: removeDuplicates,
+    correctTimeForHidden: correctTimeForHidden,
+    getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
+    getHiddenDurationBefore: getHiddenDurationBefore,
+    getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
+    getHiddenDurationBetween: getHiddenDurationBetween,
+    getIsHidden: getIsHidden,
     printDates: printDates,
+    removeDuplicates: removeDuplicates,
+    snapAwayFromHidden: snapAwayFromHidden,
     stepOverHiddenDates: stepOverHiddenDates,
     toScreen: toScreen,
     toTime: toTime,
-    getHiddenDurationBetween: getHiddenDurationBetween,
-    getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
-    correctTimeForHidden: correctTimeForHidden,
-    getHiddenDurationBefore: getHiddenDurationBefore,
-    getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
-    snapAwayFromHidden: snapAwayFromHidden,
-    getIsHidden: getIsHidden
+    updateHiddenDates: updateHiddenDates
   });
 
   /**
@@ -1845,8 +1836,8 @@
   let modifiedHammer;
 
   if (typeof window !== 'undefined') {
-    const OurHammer = window['Hammer'] || Hammer__default["default"];
-    modifiedHammer = PropagatingHammer__default["default"](OurHammer, {
+    const OurHammer = window['Hammer'] || Hammer$1;
+    modifiedHammer = PropagatingHammer(OurHammer, {
       preventDefault: 'mouse'
     });
   } else {
@@ -3182,14 +3173,14 @@
     if (this.keycharm !== undefined) {
       this.keycharm.destroy();
     }
-    this.keycharm = keycharm__default["default"]();
+    this.keycharm = keycharm();
 
     // keycharm listener only bounded when active)
     this.escListener = this.deactivate.bind(this);
   }
 
   // turn into an event emitter
-  Emitter__default["default"](Activator.prototype);
+  Emitter(Activator.prototype);
 
   // The currently active activator
   Activator.current = null;
@@ -5179,7 +5170,7 @@
   }
 
   // turn Core into an event emitter
-  Emitter__default["default"](Core.prototype);
+  Emitter(Core.prototype);
 
   /**
    * A current time bar
@@ -5786,13 +5777,13 @@
 
   var stack$1 = /*#__PURE__*/Object.freeze({
     __proto__: null,
-    orderByStart: orderByStart,
-    orderByEnd: orderByEnd,
-    stack: stack,
-    substack: substack,
     nostack: nostack,
+    orderByEnd: orderByEnd,
+    orderByStart: orderByStart,
+    stack: stack,
     stackSubgroups: stackSubgroups,
-    stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack
+    stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
+    substack: substack
   });
 
   const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
@@ -19558,7 +19549,7 @@
 
   // Locales have to be supplied by the user.
   const defaultLanguage = getNavigatorLanguage();
-  moment__default["default"].locale(defaultLanguage);
+  moment$3.locale(defaultLanguage);
 
   const timeline = {
     Core,
@@ -19595,8 +19586,6 @@
   exports.Graph2d = Graph2d;
   exports.Timeline = Timeline;
   exports.timeline = timeline;
-
-  Object.defineProperty(exports, '__esModule', { value: true });
 
 }));
 //# sourceMappingURL=vis-timeline-graph2d.js.map

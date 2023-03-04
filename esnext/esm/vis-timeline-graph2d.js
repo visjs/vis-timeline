@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2022-10-17T23:15:58.305Z
+ * @date    2023-03-04T22:16:02.393Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -888,19 +888,19 @@ function getIsHidden(time, hiddenDates) {
 var DateUtil = /*#__PURE__*/Object.freeze({
   __proto__: null,
   convertHiddenOptions: convertHiddenOptions,
-  updateHiddenDates: updateHiddenDates,
-  removeDuplicates: removeDuplicates,
+  correctTimeForHidden: correctTimeForHidden,
+  getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
+  getHiddenDurationBefore: getHiddenDurationBefore,
+  getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
+  getHiddenDurationBetween: getHiddenDurationBetween,
+  getIsHidden: getIsHidden,
   printDates: printDates,
+  removeDuplicates: removeDuplicates,
+  snapAwayFromHidden: snapAwayFromHidden,
   stepOverHiddenDates: stepOverHiddenDates,
   toScreen: toScreen,
   toTime: toTime,
-  getHiddenDurationBetween: getHiddenDurationBetween,
-  getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
-  correctTimeForHidden: correctTimeForHidden,
-  getHiddenDurationBefore: getHiddenDurationBefore,
-  getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
-  snapAwayFromHidden: snapAwayFromHidden,
-  getIsHidden: getIsHidden
+  updateHiddenDates: updateHiddenDates
 });
 
 /**
@@ -5764,13 +5764,13 @@ function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
 
 var stack$1 = /*#__PURE__*/Object.freeze({
   __proto__: null,
-  orderByStart: orderByStart,
-  orderByEnd: orderByEnd,
-  stack: stack,
-  substack: substack,
   nostack: nostack,
+  orderByEnd: orderByEnd,
+  orderByStart: orderByStart,
+  stack: stack,
   stackSubgroups: stackSubgroups,
-  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack
+  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
+  substack: substack
 });
 
 const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
