@@ -1,11 +1,12 @@
-import commonjs from 'rollup-plugin-commonjs';
-import nodeResolve from 'rollup-plugin-node-resolve';
+import commonjs from '@rollup/plugin-commonjs';
+import nodeResolve from '@rollup/plugin-node-resolve';
 import nodeBuiltins from 'rollup-plugin-node-builtins';
-import babel from 'rollup-plugin-babel';
-import {terser} from 'rollup-plugin-terser';
-import {generateHeader} from 'vis-dev-utils';
+import babel from '@rollup/plugin-babel';
+import terser from '@rollup/plugin-terser';
+import { generateHeader } from 'vis-dev-utils';
 import css from 'rollup-plugin-css-porter';
 import copy from 'rollup-plugin-copy';
+import { BABEL_IGNORE_RE } from 'vis-dev-utils';
 
 const banner = generateHeader({ name: 'vis-timeline and vis-graph2d' });
 
@@ -21,7 +22,8 @@ const copyStatic = copy({
 });
 
 const babelConfig = {
-	runtimeHelpers: true
+	babelHelpers: 'runtime',
+	exclude: BABEL_IGNORE_RE,
 };
 
 export default [{
