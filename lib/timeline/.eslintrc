@@ -10,7 +10,10 @@
     "sourceType": "module",
   },
 
-  "extends": "eslint:recommended",
+  "extends": [
+    "eslint:recommended",
+    "plugin:you-dont-need-momentjs/recommended"
+  ],
 
   // For the full list of rules, see: http://eslint.org/docs/rules/
   "rules": {
