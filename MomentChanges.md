@@ -6,6 +6,7 @@ see https://github.com/visjs/vis-timeline/issues/672
 
 * refactor `DateUtil.toScreen` to not use `moment`.
 * use `date-utils.getDayOfYear()` instead of moment's `dayOfYear()` everywhere.
+* use `date-utils.setDayOfYear()` instead of moment's `dayOfYear()` everywhere.
 
 ## Internal Changes
 
