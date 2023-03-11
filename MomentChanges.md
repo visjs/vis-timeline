@@ -7,6 +7,7 @@ see https://github.com/visjs/vis-timeline/issues/672
 ### lib/timeline/DateUtil.js
 
 * remove `moment` from `convertHiddenOptions` function.
+* remove `moment` parameter from the `stepOverHiddenDates` function.
 
 ## Breaking Changes
 
