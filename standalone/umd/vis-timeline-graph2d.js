@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-03-21T17:14:30.515Z
+ * @date    2023-03-21T23:20:01.449Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -22604,7 +22604,7 @@
 	  return Queue;
 	}();
 	/**
-	 * [[DataSet]] code that can be reused in [[DataView]] or other similar implementations of [[DataInterface]].
+	 * {@link DataSet} code that can be reused in {@link DataView} or other similar implementations of {@link DataInterface}.
 	 *
 	 * @typeParam Item - Item type that may or may not have an id.
 	 * @typeParam IdProp - Name of the property that contains the id.
@@ -22683,9 +22683,9 @@
 	 * Data stream
 	 *
 	 * @remarks
-	 * [[DataStream]] offers an always up to date stream of items from a [[DataSet]] or [[DataView]].
-	 * That means that the stream is evaluated at the time of iteration, conversion to another data type or when [[cache]] is called, not when the [[DataStream]] was created.
-	 * Multiple invocations of for example [[toItemArray]] may yield different results (if the data source like for example [[DataSet]] gets modified).
+	 * {@link DataStream} offers an always up to date stream of items from a {@link DataSet} or {@link DataView}.
+	 * That means that the stream is evaluated at the time of iteration, conversion to another data type or when {@link cache} is called, not when the {@link DataStream} was created.
+	 * Multiple invocations of for example {@link toItemArray} may yield different results (if the data source like for example {@link DataSet} gets modified).
 	 * @typeParam Item - The item type this stream is going to work with.
 	 */
 	_Symbol$iterator = _Symbol$iterator2;
@@ -22976,7 +22976,7 @@
 	     *
 	     * @remarks
 	     * This method allows for items to be fetched immediatelly and used (possibly multiple times) later.
-	     * It can also be used to optimize performance as [[DataStream]] would otherwise reevaluate everything upon each iteration.
+	     * It can also be used to optimize performance as {@link DataStream} would otherwise reevaluate everything upon each iteration.
 	     *
 	     * ## Example
 	     * ```javascript
@@ -22991,7 +22991,7 @@
 	     * ds.clear()
 	     * chachedStream // Still has all the items.
 	     * ```
-	     * @returns A new [[DataStream]] with cached items (detached from the original [[DataSet]]).
+	     * @returns A new {@link DataStream} with cached items (detached from the original {@link DataSet}).
 	     */
 	  }, {
 	    key: "cache",
@@ -24002,7 +24002,7 @@
 	    /**
 	     * Clear the entire data set.
 	     *
-	     * After the items are removed, the [[DataSet]] will trigger an event `remove` for all removed items. When a `senderId` is provided, this id will be passed with the triggered event to all subscribers.
+	     * After the items are removed, the {@link DataSet} will trigger an event `remove` for all removed items. When a `senderId` is provided, this id will be passed with the triggered event to all subscribers.
 	     *
 	     * @param senderId - Sender id.
 	     * @returns removedIds - The ids of all removed items.
