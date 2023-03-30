@@ -1071,6 +1071,15 @@ function (option, path) {
       </td>
     </tr>
 
+    <tr parent="rollingMode" class="hidden">
+      <td class="indent">rollingMode.showButton</td>
+      <td>boolean</td>
+      <td><code>true</code></td>
+      <td>
+        Set whether to show the built-in button to resume rollingMode.  Set to false if you want to implement your own controls.
+      </td>
+    </tr>
+
     <tr>
       <td>rtl</td>
       <td>boolean</td>
@@ -1546,7 +1555,7 @@ document.getElementById('myTimeline').onclick = function (event) {
     <tr>
       <td>on(event, callback)</td>
       <td>none</td>
-      <td>Create an event listener. The callback function is invoked every time the event is triggered. Available events: <code>rangechange</code>, <code>rangechanged</code>, <code>select</code>, <code>itemover</code>, <code>itemout</code>. The callback function is invoked as <code>callback(properties)</code>, where <code>properties</code> is an object containing event specific properties. See section <a href="#Events">Events for more information</a>.</td>
+      <td>Create an event listener. The callback function is invoked every time the event is triggered. Available events: <code>rangechange</code>, <code>rangechanged</code>, <code>rollingModeChanged</code>, <code>select</code>, <code>itemover</code>, <code>itemout</code>. The callback function is invoked as <code>callback(properties)</code>, where <code>properties</code> is an object containing event specific properties. See section <a href="#Events">Events for more information</a>.</td>
     </tr>
 
     <tr>
@@ -1673,6 +1682,27 @@ document.getElementById('myTimeline').onclick = function (event) {
       <td>toggleRollingMode()</td>
       <td>none</td>
       <td>Toggle rollingMode.
+      </td>
+    </tr>
+
+    <tr>
+      <td>enableRollingMode()</td>
+      <td>none</td>
+      <td>Enable rollingMode.  If already rolling, does nothing.
+      </td>
+    </tr>
+
+    <tr>
+      <td>disableRollingMode()</td>
+      <td>none</td>
+      <td>Disable rollingMode.  If not rolling, does nothing.
+      </td>
+    </tr>
+
+    <tr>
+      <td>isRolling()</td>
+      <td>Boolean</td>
+      <td>Return whether rollingMode is enabled.
       </td>
     </tr>
 
@@ -1878,6 +1908,15 @@ timeline.off('select', onSelect);
         </ul>
       </td>
       <td>Fired once after the timeline window has been changed.
+      </td>
+    </tr>
+
+    <tr>
+      <td>rollingModeChanged</td>
+      <td>
+        <li><code>enabled</code> (Boolean): Whether rollingMode is enabled.</li>
+      </td>
+      <td>Fired once after rolling mode has been enabled or disabled
       </td>
     </tr>
 

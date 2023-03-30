@@ -64,4 +64,36 @@ describe('Timeline', () => {
 		assert( selectedIds.length === 1 )
 		assert( dataSet.get(selectedIds[0]).fooid === 2 )
 	});
+
+	it("enabling and disabling rollingMode should work as expected and fire applicable events", function () {
+		const timeline = new Timeline(document.createElement("div"), []);
+		assert(timeline.isRolling() === false);
+
+		let enabledEvents = 0;
+		let disabledEvents = 0;
+		timeline.on("rollingModeChanged", ({ enabled }) => {
+			if (enabled) {
+				enabledEvents += 1;
+			} else {
+				disabledEvents += 1;
+			}
+		});
+
+		// should be a no-op
+		timeline.disableRollingMode();
+		assert(timeline.isRolling() === false);
+
+		timeline.enableRollingMode();
+		assert(timeline.isRolling() === true);
+
+		// should be a no-op
+		timeline.enableRollingMode();
+		assert(timeline.isRolling() === true);
+
+		timeline.disableRollingMode();
+		assert(timeline.isRolling() === false);
+
+		assert(enabledEvents === 1);
+		assert(disabledEvents === 1);
+	});
 });
