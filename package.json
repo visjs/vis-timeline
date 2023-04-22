@@ -46,7 +46,6 @@
     "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
     "clean": "rimraf --glob \"{dist,esnext,peer,standalone,styles}/*\"",
     "contributors:update": "git-authors-cli",
-    "postinstall": "opencollective postinstall || exit 0",
     "preparepublish": "npm run contributors:update",
     "prepublishOnly": "npm run contributors:update && npm run build",
     "prepare": "husky install"
@@ -85,7 +84,6 @@
     "mocha": "10.2.0",
     "moment": "2.29.4",
     "nyc": "15.1.0",
-    "opencollective": "1.0.3",
     "propagating-hammerjs": "2.0.1",
     "rimraf": "5.0.0",
     "rollup-plugin-css-porter": "^1.0.2",
@@ -97,10 +95,6 @@
     "vis-dev-utils": "4.0.16",
     "vis-util": "5.0.3",
     "xss": "1.0.14"
-  },
-  "collective": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/visjs"
   },
   "funding": {
     "type": "opencollective",
