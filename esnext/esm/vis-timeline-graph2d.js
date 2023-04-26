@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-04-26T17:38:11.181Z
+ * @date    2023-04-26T21:14:51.682Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24,7 +24,7 @@
  * vis.js may be distributed under either license.
  */
 
-import moment$3 from 'moment';
+import moment$4 from 'moment';
 import * as util from 'vis-util/esnext/esm/vis-util.js';
 import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
 import { isDataViewLike as isDataViewLike$1, DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext/esm/vis-data.js';
@@ -35,11 +35,17 @@ import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
 import keycharm from 'keycharm';
 
+function getDefaultExportFromCjs (x) {
+	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
+}
+
 // first check if moment.js is already loaded in the browser window, if so,
 // use this instance. Else, load via commonjs.
 //
 // Note: This doesn't work in ESM.
-var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$3;
+var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$4;
+
+var moment$3 = /*@__PURE__*/getDefaultExportFromCjs(moment$2);
 
 // utility functions
 /**
@@ -97,7 +103,7 @@ function convert(object, type) {
     case "number":
     case "Number":
       if (isString(object) && !isNaN(Date.parse(object))) {
-        return moment$3(object).valueOf();
+        return moment$4(object).valueOf();
       } else {
         // @TODO: I don't think that Number and String constructors are a good idea.
         // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -124,26 +130,26 @@ function convert(object, type) {
 
     case "Moment":
       if (isNumber(object)) {
-        return moment$3(object);
+        return moment$4(object);
       }
       if (object instanceof Date) {
-        return moment$3(object.valueOf());
-      } else if (moment$3.isMoment(object)) {
-        return moment$3(object);
+        return moment$4(object.valueOf());
+      } else if (moment$4.isMoment(object)) {
+        return moment$4(object);
       }
       if (isString(object)) {
         match = ASPDateRegex.exec(object);
         if (match) {
           // object is an ASP date
-          return moment$3(Number(match[1])); // parse number
+          return moment$4(Number(match[1])); // parse number
         }
         match = NumericRegex.exec(object);
 
         if (match) {
-          return moment$3(Number(object));
+          return moment$4(Number(object));
         }
 
-        return moment$3(object); // parse string
+        return moment$4(object); // parse string
       } else {
         throw new TypeError(
           "Cannot convert object of type " + getType(object) + " to type " + type
@@ -155,7 +161,7 @@ function convert(object, type) {
         return new Date(object);
       } else if (object instanceof Date) {
         return object.toISOString();
-      } else if (moment$3.isMoment(object)) {
+      } else if (moment$4.isMoment(object)) {
         return object.toDate().toISOString();
       } else if (isString(object)) {
         match = ASPDateRegex.exec(object);
@@ -163,7 +169,7 @@ function convert(object, type) {
           // object is an ASP date
           return new Date(Number(match[1])).toISOString(); // parse number
         } else {
-          return moment$3(object).format(); // ISO 8601
+          return moment$4(object).format(); // ISO 8601
         }
       } else {
         throw new Error(
@@ -176,7 +182,7 @@ function convert(object, type) {
     case "ASPDate":
       if (isNumber(object)) {
         return "/Date(" + object + ")/";
-      } else if (object instanceof Date || moment$3.isMoment(object)) {
+      } else if (object instanceof Date || moment$4.isMoment(object)) {
         return "/Date(" + object.valueOf() + ")/";
       } else if (isString(object)) {
         match = ASPDateRegex.exec(object);
@@ -886,21 +892,21 @@ function getIsHidden(time, hiddenDates) {
 }
 
 var DateUtil = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  convertHiddenOptions: convertHiddenOptions,
-  correctTimeForHidden: correctTimeForHidden,
-  getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
-  getHiddenDurationBefore: getHiddenDurationBefore,
-  getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
-  getHiddenDurationBetween: getHiddenDurationBetween,
-  getIsHidden: getIsHidden,
-  printDates: printDates,
-  removeDuplicates: removeDuplicates,
-  snapAwayFromHidden: snapAwayFromHidden,
-  stepOverHiddenDates: stepOverHiddenDates,
-  toScreen: toScreen,
-  toTime: toTime,
-  updateHiddenDates: updateHiddenDates
+	__proto__: null,
+	convertHiddenOptions: convertHiddenOptions,
+	correctTimeForHidden: correctTimeForHidden,
+	getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
+	getHiddenDurationBefore: getHiddenDurationBefore,
+	getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
+	getHiddenDurationBetween: getHiddenDurationBetween,
+	getIsHidden: getIsHidden,
+	printDates: printDates,
+	removeDuplicates: removeDuplicates,
+	snapAwayFromHidden: snapAwayFromHidden,
+	stepOverHiddenDates: stepOverHiddenDates,
+	toScreen: toScreen,
+	toTime: toTime,
+	updateHiddenDates: updateHiddenDates
 });
 
 /**
@@ -917,7 +923,7 @@ class Range extends Component {
  */
   constructor(body, options) {
     super();
-    const now = moment$2().hours(0).minutes(0).seconds(0).milliseconds(0);
+    const now = moment$3().hours(0).minutes(0).seconds(0).milliseconds(0);
     const start = now.clone().add(-3, 'days').valueOf();
     const end = now.clone().add(3, 'days').valueOf(); 
     this.millisecondsPerPixelCache = undefined;
@@ -943,7 +949,7 @@ class Range extends Component {
       rtl: false,
       start: null,
       end: null,
-      moment: moment$2,
+      moment: moment$3,
       direction: 'horizontal', // 'horizontal' or 'vertical'
       moveable: true,
       zoomable: true,
@@ -1917,7 +1923,7 @@ class TimeStep {
     * @constructor  TimeStep
     */
   constructor(start, end, minimumStep, hiddenDates, options) {
-    this.moment = (options && options.moment) || moment$2;
+    this.moment = (options && options.moment) || moment$3;
     this.options = options ? options : {};
 
     // variables
@@ -2230,7 +2236,7 @@ class TimeStep {
    * @return {Date} snappedDate
    */
   static snap(date, scale, step) {
-    const clone = moment$2(date);
+    const clone = moment$3(date);
 
     if (scale == 'year') {
       const year = clone.year() + Math.round(clone.month() / 12);
@@ -2655,7 +2661,7 @@ class TimeAxis extends Component {
       showWeekScale: false,
       maxMinorChars: 7,
       format: availableUtils.extend({}, TimeStep.FORMAT),
-      moment: moment$2,
+      moment: moment$3,
       timeAxis: null
     };
     this.options = availableUtils.extend({}, this.defaultOptions);
@@ -2706,12 +2712,12 @@ class TimeAxis extends Component {
       // apply locale to moment.js
       // TODO: not so nice, this is applied globally to moment.js
       if ('locale' in options) {
-        if (typeof moment$2.locale === 'function') {
+        if (typeof moment$3.locale === 'function') {
           // moment.js 2.8.1+
-          moment$2.locale(options.locale);
+          moment$3.locale(options.locale);
         }
         else {
-          moment$2.lang(options.locale);
+          moment$3.lang(options.locale);
         }
       }
     }
@@ -3449,7 +3455,7 @@ class CustomTime extends Component {
 
     // default options
     this.defaultOptions = {
-      moment: moment$2,
+      moment: moment$3,
       locales,
       locale: 'en',
       id: undefined,
@@ -5181,7 +5187,7 @@ class CurrentTime extends Component {
       showCurrentTime: true,
       alignCurrentTime: undefined,
 
-      moment: moment$2,
+      moment: moment$3,
       locales,
       locale: 'en'
     };
@@ -5763,14 +5769,14 @@ function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
-  __proto__: null,
-  nostack: nostack,
-  orderByEnd: orderByEnd,
-  orderByStart: orderByStart,
-  stack: stack,
-  stackSubgroups: stackSubgroups,
-  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
-  substack: substack
+	__proto__: null,
+	nostack: nostack,
+	orderByEnd: orderByEnd,
+	orderByStart: orderByStart,
+	stack: stack,
+	stackSubgroups: stackSubgroups,
+	stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
+	substack: substack
 });
 
 const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
@@ -7346,9 +7352,9 @@ class Item {
         templateFunction = this.options.tooltipOnItemUpdateTime.template.bind(this);
         content = templateFunction(this.data);
       } else {
-        content = `start: ${moment$2(this.data.start).format('MM/DD/YYYY hh:mm')}`;
+        content = `start: ${moment$3(this.data.start).format('MM/DD/YYYY hh:mm')}`;
         if (this.data.end) { 
-          content += `<br> end: ${moment$2(this.data.end).format('MM/DD/YYYY hh:mm')}`;
+          content += `<br> end: ${moment$3(this.data.end).format('MM/DD/YYYY hh:mm')}`;
         }
       }
       this.dom.onItemUpdateTimeTooltip.innerHTML = availableUtils.xss(content);
@@ -14810,7 +14816,7 @@ class Timeline extends Core {
         axis: 'bottom',   // axis orientation: 'bottom', 'top', or 'both'
         item: 'bottom'    // not relevant
       },
-      moment: moment$2,
+      moment: moment$3,
     };
     this.options = availableUtils.deepExtend({}, this.defaultOptions);
     options && availableUtils.setupXSSProtection(options.xss);
@@ -19213,7 +19219,7 @@ function Graph2d (container, items, groups, options) {
       item: 'bottom'    // not relevant for Graph2d
     },
 
-    moment: moment$2,
+    moment: moment$3,
 
     width: null,
     height: null,
@@ -19536,7 +19542,7 @@ Graph2d.prototype._createConfigurator = function () {
 
 // Locales have to be supplied by the user.
 const defaultLanguage = getNavigatorLanguage();
-moment$3.locale(defaultLanguage);
+moment$4.locale(defaultLanguage);
 
 const timeline = {
   Core,
