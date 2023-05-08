@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-05-04T00:05:44.696Z
+ * @date    2023-05-08T14:34:31.699Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -35956,6 +35956,7 @@
 	};
 
 	// Locales have to be supplied by the user.
+
 	var defaultLanguage = getNavigatorLanguage();
 	moment$4.locale(defaultLanguage);
 	var timeline = {

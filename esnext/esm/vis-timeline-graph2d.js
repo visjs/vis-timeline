@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-05-04T00:05:44.696Z
+ * @date    2023-05-08T14:34:31.699Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -48,6 +48,7 @@ var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$4;
 var moment$3 = /*@__PURE__*/getDefaultExportFromCjs(moment$2);
 
 // utility functions
+
 /**
  * Test if an object implements the DataView interface from vis-data.
  * Uses the idProp property instead of expecting a hardcoded id field "id".
@@ -19541,6 +19542,7 @@ Graph2d.prototype._createConfigurator = function () {
 };
 
 // Locales have to be supplied by the user.
+
 const defaultLanguage = getNavigatorLanguage();
 moment$4.locale(defaultLanguage);
 
