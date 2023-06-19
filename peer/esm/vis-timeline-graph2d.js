@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-06-19T06:08:38.578Z
+ * @date    2023-06-19T06:09:34.116Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -18740,7 +18740,7 @@ var Core = /*#__PURE__*/function () {
         }
         if (this.options.orientation.axis === 'both') {
           if (!this.timeAxis2) {
-            var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body);
+            var timeAxis2 = this.timeAxis2 = new TimeAxis(this.body, this.options);
             timeAxis2.setOptions = function (options) {
               var _options = options ? availableUtils.extend({}, options) : {};
               _options.orientation = 'top'; // override the orientation option, always top
