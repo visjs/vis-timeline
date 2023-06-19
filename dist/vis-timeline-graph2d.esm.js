@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-06-19T06:10:32.412Z
+ * @date    2023-06-19T06:11:33.891Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -33280,7 +33280,7 @@ var Group = /*#__PURE__*/function () {
       var visibleItems = [];
       var visibleItemsLookup = {}; // we keep this to quickly look up if an item already exists in the list without using indexOf on visibleItems
 
-      if (!this.isVisible && this.groupId != ReservedGroupIds$1.BACKGROUND) {
+      if (!this.isVisible && this.height !== undefined && this.groupId != ReservedGroupIds$1.BACKGROUND) {
         for (var i = 0; i < oldVisibleItems.length; i++) {
           var item = oldVisibleItems[i];
           if (item.displayed) item.hide();
