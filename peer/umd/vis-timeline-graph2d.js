@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-06-19T06:07:30.531Z
+ * @date    2023-06-19T06:08:38.578Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -18161,27 +18161,30 @@
 	  }, {
 	    key: "setCustomMarker",
 	    value: function setCustomMarker(title, editable) {
-	      var marker = document.createElement('div');
-	      marker.className = "vis-custom-time-marker";
-	      marker.innerHTML = availableUtils.xss(title);
-	      marker.style.position = 'absolute';
+	      if (this.marker) {
+	        this.bar.removeChild(this.marker);
+	      }
+	      this.marker = document.createElement('div');
+	      this.marker.className = "vis-custom-time-marker";
+	      this.marker.innerHTML = availableUtils.xss(title);
+	      this.marker.style.position = 'absolute';
 	      if (editable) {
 	        var _context6, _context7;
-	        marker.setAttribute('contenteditable', 'true');
-	        marker.addEventListener('pointerdown', function () {
-	          marker.focus();
+	        this.marker.setAttribute('contenteditable', 'true');
+	        this.marker.addEventListener('pointerdown', function () {
+	          this.marker.focus();
 	        });
-	        marker.addEventListener('input', _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this));
+	        this.marker.addEventListener('input', _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this));
 	        // The editable div element has no change event, so here emulates the change event.
-	        marker.title = title;
-	        marker.addEventListener('blur', _bindInstanceProperty(_context7 = function _context7(event) {
+	        this.marker.title = title;
+	        this.marker.addEventListener('blur', _bindInstanceProperty(_context7 = function _context7(event) {
 	          if (this.title != event.target.innerHTML) {
 	            this._onMarkerChanged(event);
 	            this.title = event.target.innerHTML;
 	          }
 	        }).call(_context7, this));
 	      }
-	      this.bar.appendChild(marker);
+	      this.bar.appendChild(this.marker);
 	    }
 
 	    /**
