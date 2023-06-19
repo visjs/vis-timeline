@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-06-19T06:11:33.891Z
+ * @date    2023-06-19T06:12:22.603Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -32224,7 +32224,7 @@ function performStacking(items, margins, compareTimes, shouldStack, shouldOthers
     if (previousEnd !== null && previousEnd - EPSILON > itemEnd) {
       horizontalOverlapEndIndex = findLastIndexBetween(itemsAlreadyPositioned, function (i) {
         return itemEnd + EPSILON >= getItemStart(i);
-      }, horizontalOverlapStartIndex, horizontalOVerlapEndIndex) + 1;
+      }, horizontalOverlapStartIndex, horizontalOverlapEndIndex) + 1;
     }
 
     // Sort by vertical position so we don't have to reconsider past items if we move an item
