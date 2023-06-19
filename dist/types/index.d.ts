@@ -751,7 +751,7 @@ export type TimelineItemEditableType = boolean | TimelineItemEditableOption;
 export interface TimelineItem {
   className?: string;
   align?: TimelineAlignType;
-  content: string;
+  content: string | HTMLElement;
   end?: DateType;
   group?: IdType;
   id: IdType;
