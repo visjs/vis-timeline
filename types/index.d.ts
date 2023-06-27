@@ -246,7 +246,7 @@ export type TimelineOptionsCluster = {
   fitOnDoubleClick?: boolean;
 };
 export type TimelineOptionsEventType = 'box' | 'point' | 'range' | 'background';
-export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';TODO
+export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';
 
 export interface TimelineOptions {
   align?: TimelineAlignType;
