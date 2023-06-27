@@ -246,7 +246,7 @@ export type TimelineOptionsCluster = {
   fitOnDoubleClick?: boolean;
 };
 export type TimelineOptionsEventType = 'box' | 'point' | 'range' | 'background';
-export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';
+export type TimelineOptionsZoomKey = '' | 'altKey' | 'ctrlKey' | 'shiftKey' | 'metaKey';TODO
 
 export interface TimelineOptions {
   align?: TimelineAlignType;
@@ -529,6 +529,7 @@ export class Graph2d {
   setCurrentTime(time: DateType): void;
   setCustomTime(time: DateType, id?: IdType): void;
   setCustomTimeTitle(title: string, id?: IdType): void;
+  setCustomTimeMarker(title: string, id?: IdType, editable: boolean): void;
   setData(data: { groups?: DataGroupCollectionType; items?: DataItemCollectionType }): void;
   setGroups(groups?: DataGroupCollectionType): void;
   setItems(items: DataItemCollectionType): void;
