@@ -2,6 +2,8 @@
 
 ![example chart](docs/img/timeline.png)
 
+Genko fork of vis-timeline
+
 The Timeline/Graph2D is an interactive visualization chart to visualize data in time. The data items can take place on a single date, or have a start and end date (a range). You can freely move and zoom in the timeline by dragging and scrolling in the Timeline. Items can be created, edited, and deleted in the timeline. The time scale on the axis is adjusted automatically, and supports scales ranging from milliseconds to years.
 
 ## Badges
@@ -15,7 +17,7 @@ The Timeline/Graph2D is an interactive visualization chart to visualize data in 
 
 Install via npm:
 
-    $ npm install vis-timeline
+    $ npm install genko-vis-timeline
 
 ## Example
 
