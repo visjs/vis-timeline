@@ -1,6 +1,6 @@
 {
   "name": "genko-vis-timeline",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Create a fully customizable, interactive timeline with items and ranges.",
   "homepage": "https://visjs.github.io/vis-timeline/",
   "license": "(Apache-2.0 OR MIT)",
@@ -145,6 +145,7 @@
     "David Anderson <eymiha@gmail.com>",
     "fabriziofortino <fabrizio.fortino@gmail.com>",
     "Graham J <grahamj@users.noreply.github.com>",
+    "Jonas Gibaszek <jonas@genko.be>",
     "Mike Pilone <mpilone@npr.org>",
     "Oleg Yapparov <oleg.yapparov@gmail.com>",
     "Iskander508 <pavel.zarecky@seznam.cz>",
@@ -239,7 +240,6 @@
     "Jeroen Coumans <jeroencoumans@gmail.com>",
     "Josh Gruenberg <jgrue@bn.co>",
     "Balkoth <jmp@jm-it.fr>",
-    "Jonas Gibaszek <jonas@genko.be>",
     "Vx2gas <joshholdaway@outlook.com>",
     "Julian Kennedy <juliankenn@gmail.com>",
     "Victor Soto <jvictorsotom@gmail.com>",
