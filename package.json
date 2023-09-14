@@ -91,9 +91,9 @@
     "semantic-release": "^21.1.1",
     "snap-shot-it": "^7.9.10",
     "uuid": "^9.0.1",
-    "vis-data": "^7.1.6",
-    "vis-dev-utils": "^1.1.0",
-    "vis-util": "^5.0.3",
+    "vis-data": "^7.1.7",
+    "vis-dev-utils": "^4.0.33",
+    "vis-util": "^5.0.4",
     "xss": "^1.0.14"
   },
   "funding": {
