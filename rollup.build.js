@@ -17,5 +17,5 @@ export default generateRollupConfiguration({
   header: { name: "vis-timeline and vis-graph2d" },
   libraryFilename: "vis-timeline-graph2d",
   entryPoints: "./lib",
-  packageJSON
+  packageJSON,
 });

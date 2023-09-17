@@ -2,6 +2,8 @@
 
 ![example chart](docs/img/timeline.png)
 
+Genko fork of vis-timeline
+
 The Timeline/Graph2D is an interactive visualization chart to visualize data in time. The data items can take place on a single date, or have a start and end date (a range). You can freely move and zoom in the timeline by dragging and scrolling in the Timeline. Items can be created, edited, and deleted in the timeline. The time scale on the axis is adjusted automatically, and supports scales ranging from milliseconds to years.
 
 ## Badges
@@ -9,13 +11,13 @@ The Timeline/Graph2D is an interactive visualization chart to visualize data in 
 [![GitHub contributors](https://img.shields.io/github/contributors/visjs/vis-timeline.svg)](https://github.com/visjs/vis-timeline/graphs/contributors)
 [![GitHub stars](https://img.shields.io/github/stars/visjs/vis-timeline.svg)](https://github.com/almende/vis/stargazers)
 
-[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors) 
+[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors)
 
 ## Install
 
 Install via npm:
 
-    $ npm install vis-timeline
+    $ npm install genko-vis-timeline
 
 ## Example
 
@@ -24,43 +26,50 @@ found in the [examples directory](https://github.com/visjs/vis-timeline/tree/mas
 of the project.
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
-<head>
-  <title>Timeline</title>
-  <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  <style type="text/css">
-    #visualization {
-      width: 600px;
-      height: 400px;
-      border: 1px solid lightgray;
-    }
-  </style>
-</head>
-<body>
-<div id="visualization"></div>
-<script type="text/javascript">
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
+  <head>
+    <title>Timeline</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"
+    ></script>
+    <link
+      href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style type="text/css">
+      #visualization {
+        width: 600px;
+        height: 400px;
+        border: 1px solid lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="visualization"></div>
+    <script type="text/javascript">
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById("visualization");
 
-  // Create a DataSet (allows two way data-binding)
-  var items = new vis.DataSet([
-    {id: 1, content: 'item 1', start: '2014-04-20'},
-    {id: 2, content: 'item 2', start: '2014-04-14'},
-    {id: 3, content: 'item 3', start: '2014-04-18'},
-    {id: 4, content: 'item 4', start: '2014-04-16', end: '2014-04-19'},
-    {id: 5, content: 'item 5', start: '2014-04-25'},
-    {id: 6, content: 'item 6', start: '2014-04-27', type: 'point'}
-  ]);
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        { id: 1, content: "item 1", start: "2014-04-20" },
+        { id: 2, content: "item 2", start: "2014-04-14" },
+        { id: 3, content: "item 3", start: "2014-04-18" },
+        { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+        { id: 5, content: "item 5", start: "2014-04-25" },
+        { id: 6, content: "item 6", start: "2014-04-27", type: "point" },
+      ]);
 
-  // Configuration for the Timeline
-  var options = {};
+      // Configuration for the Timeline
+      var options = {};
 
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
-</script>
-</body>
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, options);
+    </script>
+  </body>
 </html>
 ```
 
