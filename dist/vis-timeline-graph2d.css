@@ -5,6 +5,68 @@
   width: auto;
 }
 
+.vis-current-time {
+  background-color: #FF7F6E;
+  width: 2px;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.vis-rolling-mode-btn {
+  height: 40px;
+  width: 40px;
+  position: absolute;
+  top: 7px;
+  right: 20px;
+  border-radius: 50%;
+  font-size: 28px;
+  cursor: pointer;
+  opacity: 0.8;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  background: #3876c2;
+}
+.vis-rolling-mode-btn:before {
+  content: "\26F6";
+}
+
+.vis-rolling-mode-btn:hover {
+  opacity: 1;
+}
+.vis-timeline {
+  /*
+  -webkit-transition: height .4s ease-in-out;
+  transition:         height .4s ease-in-out;
+  */
+}
+
+.vis-panel {
+  /*
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+  */
+}
+
+.vis-axis {
+  /*
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+  */
+}
+
+/* TODO: get animation working nicely
+
+.vis-item {
+  -webkit-transition: top .4s ease-in-out;
+  transition:         top .4s ease-in-out;
+}
+
+.vis-item.line {
+  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
+  transition:         height .4s ease-in-out, top .4s ease-in-out;
+}
+/**/
 .vis-panel {
   position: absolute;
 
@@ -86,67 +148,22 @@
   bottom: -1px;
   left: 0;
 }
+
 .vis-timeline {
-  /*
-  -webkit-transition: height .4s ease-in-out;
-  transition:         height .4s ease-in-out;
-  */
+  position: relative;
+  border: 1px solid #bfbfbf;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-.vis-panel {
-  /*
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-  */
-}
-
-.vis-axis {
-  /*
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-  */
-}
-
-/* TODO: get animation working nicely
-
-.vis-item {
-  -webkit-transition: top .4s ease-in-out;
-  transition:         top .4s ease-in-out;
-}
-
-.vis-item.line {
-  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;
-  transition:         height .4s ease-in-out, top .4s ease-in-out;
-}
-/**/
-.vis-current-time {
-  background-color: #FF7F6E;
-  width: 2px;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.vis-rolling-mode-btn {
-  height: 40px;
-  width: 40px;
+.vis-loading-screen {
+  width: 100%;
+  height: 100%;
   position: absolute;
-  top: 7px;
-  right: 20px;
-  border-radius: 50%;
-  font-size: 28px;
-  cursor: pointer;
-  opacity: 0.8;
-  color: white;
-  font-weight: bold;
-  text-align: center;
-  background: #3876c2;
-}
-.vis-rolling-mode-btn:before {
-  content: "\26F6";
-}
-
-.vis-rolling-mode-btn:hover {
-  opacity: 1;
+  top: 0;
+  left: 0;
 }
 .vis-graph-group0 {
     fill:#4f81bd;
@@ -255,23 +272,6 @@
     stroke: none;
 }
 
-
-.vis-timeline {
-  position: relative;
-  border: 1px solid #bfbfbf;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.vis-loading-screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .vis-custom-time {
   background-color: #6E94FF;
   width: 2px;
