@@ -11,6 +11,24 @@
         width: 50vw;
         margin: 0 auto;
       }
+
+      .added-section {
+        display: flex;
+        align-items: center;
+        height: 40px;
+      }
+
+      .added-section input {
+        width: 50px;
+        margin: 0 0.5rem;
+      }
+
+      .added-section button {
+        height : 20px;
+        margin-left: 1rem;
+
+      }
+
       .vis-item.vis-range {
         border: none !important;
         background: transparent !important;
@@ -125,9 +143,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
 
     <!-- for watch command -->
-    <script src="../../../dist/vis-timeline-graph2d.min.js"></script>
+    <!-- <script src="../../../dist/vis-timeline-graph2d.min.js"></script> -->
     <!-- for build command -->
-    <!-- <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script> -->
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
     <link
       href="../../../styles/vis-timeline-graph2d.css"
       rel="stylesheet"
@@ -135,6 +153,16 @@
     />
 
     <script type="text/babel">
+      window.groupDataSet = new vis.DataSet();
+      window.itemDataSet = new vis.DataSet();
+
+      const DISPLAY_STATUS_MAP = {
+        0: "not_check_in",
+        1: "check_in",
+        8: "confirmed",
+        9: "finished",
+      };
+
       function setTime(payload = { hour: 0, minute: 0 }) {
         return moment()
           .set({ ...payload, second: 0 })
@@ -184,38 +212,87 @@
        * 3. 同樣的時間長度、開始時間，如果是暫停時間 (occu_type === 0) 就排在前面
        * 4. 同樣的時間長度、開始時間、都是訂單(occu_type === 1)，則根據訂單建立時間 (order_created_at) 排序，越早建立的在越前面
        *  */
-      function sortSlots(slots) {
-        return slots.sort((a, b) => {
-          const aDuration =
-            new Date(a.end).getTime() - new Date(a.start).getTime();
-          const bDuration =
-            new Date(b.end).getTime() - new Date(b.start).getTime();
+      function sortSlots(a, b) {
+        const aDuration =
+          new Date(a.end).getTime() - new Date(a.start).getTime();
+        const bDuration =
+          new Date(b.end).getTime() - new Date(b.start).getTime();
 
-          return (
-            bDuration - aDuration ||
-            new Date(a.start).getTime() - new Date(b.start).getTime() ||
-            (isTimePauseSlot(b) ? 1 : 0) ||
-            new Date(a.order_created_at).getTime() -
-              new Date(b.order_created_at).getTime()
-          );
+        return (
+          bDuration - aDuration ||
+          new Date(a.start).getTime() - new Date(b.start).getTime() ||
+          // (isTimePauseSlot(b) ? 1 : 0) ||
+          new Date(a.order_created_at).getTime() -
+            new Date(b.order_created_at).getTime()
+        );
+      }
+
+      function generateOverlapItem(amount = 96, duration = 60) {
+        const offsetMinute = 15;
+        const groupAmount = duration / offsetMinute;
+        return Array.from({ length: amount }, (_, index) => {
+          const startHour = Math.floor(index / groupAmount);
+          const startMinutes = (index % groupAmount) * offsetMinute;
+          const start = setTime({ hour: startHour, minute: startMinutes });
+          const end = setTime({
+            hour: startHour,
+            minute: startMinutes + duration,
+          });
+          const status =
+            Object.keys(DISPLAY_STATUS_MAP)[
+              index % Object.keys(DISPLAY_STATUS_MAP).length
+            ];
+          return {
+            id: index,
+            order_created_at: "2023-10-04 09:44:07",
+            start,
+            end,
+            order_display_status: status,
+            cust_name: "Debby",
+            cust_title: "小姐",
+          };
         });
       }
 
-      const displayStatusMap = {
-        0: "not_check_in",
-        1: "check_in",
-        2: "cancel_refunded_all",
-        3: "cancel_refunded_seventy",
-        4: "cancel_refunded_partial",
-        5: "cancel_by_user",
-        6: "cancel_by_merchant",
-        7: "no_show",
-        8: "confirmed",
-        9: "finished",
-      };
+      function generateGroupWithOverlapItem(groupAmount = 1, itemAmount = 96) {
+        const groupDataSet = window.groupDataSet;
+        const itemDataSet = window.itemDataSet;
 
-      const mockItemList = [
+        const preGroupLength = groupDataSet.length || 0;
+
+        Array.from({ length: groupAmount }, (_, groupIndex) => {
+          const groupId = groupIndex + preGroupLength;
+
+          groupDataSet.add({
+            id: groupId,
+            content: `Room ${groupId}`,
+          });
+
+          generateOverlapItem(itemAmount)
+            .sort(sortSlots)
+            .forEach((item, index) => {
+              const newItemId = `${index}--${groupId}`;
+              const newItem = {
+                ...item,
+                id: newItemId,
+              };
+              itemDataSet.add({
+                group: groupId,
+                data: newItem,
+                ...newItem,
+              });
+            });
+        });
+
+        return {
+          groupDataSet,
+          itemDataSet,
+        };
+      }
+
+      const testData = [
         {
+          id: 0,
           order_id: 3191484087511,
           order_created_at: "2023-10-04 09:44:07",
           start: setTime({ hour: 10, minute: 0 }),
@@ -225,6 +302,7 @@
           cust_title: "小姐",
         },
         {
+          id: 1,
           order_id: 3191487353494,
           order_created_at: "2023-10-04 09:44:26",
           start: setTime({ hour: 10, minute: 15 }),
@@ -234,6 +312,7 @@
           cust_title: "小姐",
         },
         {
+          id: 2,
           order_id: 3191507404885,
           order_created_at: "2023-10-04 09:44:43",
           start: setTime({ hour: 10, minute: 45 }),
@@ -243,6 +322,7 @@
           cust_title: "小姐",
         },
         {
+          id: 3,
           order_id: 3191497164243,
           order_created_at: "2023-10-04 09:45:47",
           start: setTime({ hour: 11, minute: 15 }),
@@ -252,6 +332,7 @@
           cust_title: "小姐",
         },
         {
+          id: 4,
           order_id: 3191498472338,
           order_created_at: "2023-10-04 09:46:12",
           start: setTime({ hour: 11, minute: 0 }),
@@ -261,6 +342,7 @@
           cust_title: "小姐",
         },
         {
+          id: 5,
           order_id: 3191589533034,
           order_created_at: "2023-10-04 22:35:27",
           start: setTime({ hour: 11, minute: 0 }),
@@ -272,30 +354,7 @@
         },
       ];
 
-      // create groups
-      var numberOfGroups = 1;
-      var groups = new vis.DataSet();
-      for (var i = 0; i < numberOfGroups; i++) {
-        groups.add({
-          id: i,
-          content: "Unassigned",
-        });
-      }
-
-      // create items
-      const numberOfItems = 1000;
-      window.items = new vis.DataSet();
-
-      const sortedList = sortSlots([...mockItemList]);
-      sortedList.forEach((item, index) => {
-        items.add({
-          id: index,
-          group: 0,
-          content: `${index} ${item.cust_name} ${item.cust_title}`,
-          data: item,
-          ...item,
-        });
-      });
+      const { groupDataSet, itemDataSet } = generateGroupWithOverlapItem();
 
       var GroupTemplate = (group) => {
         const className = `group-container`;
@@ -313,7 +372,7 @@
         render() {
           const { content, start, end, data } = this.props.item;
           const className = `${
-            displayStatusMap[data.order_display_status]
+            DISPLAY_STATUS_MAP[data.order_display_status]
           } item-container`;
           return (
             <div className={className}>
@@ -379,7 +438,9 @@
           overrideItems: false, // allow these options to override item.editable
         },
         onInitialDrawComplete: () => {
-          window.timeline.setItems(window.items);
+          console.log("%conInitialDrawComplete", "color: #bada55");
+          window.timeline.setItems(itemDataSet);
+          console.timeEnd("timeline");
         },
         template: function (item, element) {
           if (!item) {
@@ -406,15 +467,71 @@
       };
 
       class Timeline extends React.Component {
+        constructor() {
+          super();
+          // 初始化狀態
+          this.state = {
+            groupAmount: 5,
+            itemAmount: 96,
+            isAddingGroup: false,
+          };
+        }
         componentDidMount() {
           return initTimeline();
         }
+
+        onGroupAmountChange(e) {
+          this.setState({
+            groupAmount: Number(e.target.value),
+          });
+        }
+
+        onItemAmountChange(e) {
+          this.setState({
+            itemAmount: Number(e.target.value),
+          });
+        }
+
+        onBtnClick() {
+          const { groupDataSet, itemDataSet } = generateGroupWithOverlapItem(
+            this.state.groupAmount,
+            this.state.itemAmount
+          );
+          this.setState({
+            isAddingGroup: true,
+          });
+          console.time("onBtnClick");
+          window.timeline.setGroups(groupDataSet);
+          window.timeline.setItems(itemDataSet);
+          this.setState({
+            isAddingGroup: false,
+          });
+          console.timeEnd("onBtnClick");
+        }
+
         render() {
           return (
             <div id="container">
-              <h1>timeline with React</h1>
-              <h2>Using react components for items and group templates</h2>
-
+              <h1>Timeline with React</h1>
+              {this.state.isAddingGroup && <h2> Adding group... </h2>}
+              <div className="added-section">
+                <h3>
+                  <span> Add </span>
+                  <input
+                    type="number"
+                    value={this.state.groupAmount}
+                    onChange={this.onGroupAmountChange.bind(this)}
+                  />
+                  <span>Group with </span>
+                  <input
+                    type="number"
+                    value={this.state.itemAmount}
+                    onChange={this.onItemAmountChange.bind(this)}
+                  />
+                  <span> Items </span>
+                </h3>
+                <button onClick={() => this.onBtnClick()}> Add group </button>
+              </div>
               <div id="visualization"></div>
             </div>
           );
@@ -423,7 +540,12 @@
 
       function initTimeline() {
         var container = document.getElementById("visualization");
-        window.timeline = new vis.Timeline(container, items, groups, options);
+        window.timeline = new vis.Timeline(
+          container,
+          [],
+          groupDataSet,
+          options
+        );
       }
 
       ReactDOM.render(<Timeline />, document.getElementById("root"));
