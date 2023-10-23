@@ -45,4 +45,53 @@ describe('Timeline Range', () => {
     range.setRange(new Date(2017, 0, 26, 13, 26, 3, 320), new Date(2017, 0, 26, 13, 26, 4, 320), false, false, null);
     assert.equal(range.getMillisecondsPerPixel(), 1, "one second over 1000 pixels");
   });
+
+  describe('tests for the callback parameter of setRange()', async () => {
+
+    [null, { animation: { duration: 1 } }].forEach((optionParam) => {
+
+      describe(`animation is ${!optionParam ? 'not ' : ''}passed`, () => {
+
+        it('should receive changed=true when the range does change', async function () {
+          const firstDate = new Date(2017, 0, 1, 0, 0);
+
+          const range = new Range(TestSupport.buildSimpleTimelineRangeBody());
+
+          range.setRange(firstDate,
+              new Date(2017, 0, 26, 13, 0),
+              null, null, null);
+
+          let cbParamReceived = undefined;
+
+          range.setRange(firstDate,
+              new Date(2018, 0, 26, 13, 0), optionParam,
+              (changed) => { cbParamReceived = changed; }, null);
+
+          if (optionParam) {
+            await new Promise(resolve => setTimeout(resolve, 30));
+          }
+
+          assert.equal(cbParamReceived, true);
+        });
+
+        it('should receive changed=false when the range does not change', async () => {
+          const dt = new Date(2017, 0, 1, 0, 0, 0, 0);
+
+          const range = new Range(TestSupport.buildSimpleTimelineRangeBody());
+
+          range.setRange(dt, dt, null, null, null);
+
+          let cbParamReceived = undefined;
+
+          range.setRange(dt, dt, optionParam, (changed) => { cbParamReceived = changed; }, null);
+
+          if (optionParam) {
+            await new Promise(resolve => setTimeout(resolve, Range.animationTimerTimeout + 10));
+          }
+
+          assert.equal(cbParamReceived, false);
+        });
+      });
+    });
+  });
 });

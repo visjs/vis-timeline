@@ -714,7 +714,7 @@ export class Timeline {
    * @param options Timeline animation options. See {@link TimelineAnimationOptions}
    * @param callback The callback function
    */
-  zoomIn(percentage: number, options?: TimelineAnimationOptions, callback?: () => void): void;
+  zoomIn(percentage: number, options?: TimelineAnimationOptions, callback?: (changed: boolean) => void): void;
 
   /**
    * Zoom out the current visible window.
@@ -722,7 +722,7 @@ export class Timeline {
    * @param options Timeline animation options. See {@link TimelineAnimationOptions}
    * @param callback The callback function
    */
-  zoomOut(percentage: number, options?: TimelineAnimationOptions, callback?: () => void): void;
+  zoomOut(percentage: number, options?: TimelineAnimationOptions, callback?: (changed: boolean) => void): void;
 }
 
 export interface Timeline {
