@@ -43,7 +43,7 @@
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
     "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
     "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
-    "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
+    "lint": "eslint \"{lib,test}/**/*.{m,}{j,t}s{x,}\"",
     "clean": "rimraf --glob \"{dist,esnext,peer,standalone,styles}/*\"",
     "contributors:update": "git-authors-cli",
     "preparepublish": "npm run contributors:update",
