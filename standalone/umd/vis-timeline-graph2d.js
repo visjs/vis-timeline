@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-12-06T10:21:11.506Z
+ * @date    2023-12-09T14:48:44.949Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -26351,12 +26351,8 @@
 	              if (startDate.day() != endDate.day()) {
 	                offset = 1;
 	              }
-	              startDate.dayOfYear(start.dayOfYear());
-	              startDate.year(start.year());
-	              startDate.subtract(7, 'days');
-	              endDate.dayOfYear(start.dayOfYear());
-	              endDate.year(start.year());
-	              endDate.subtract(7 - offset, 'days');
+	              startDate = startDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7, 'days');
+	              endDate = endDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7 - offset, 'days');
 	              runUntil.add(1, 'weeks');
 	              break;
 	            case "weekly":
@@ -26365,17 +26361,12 @@
 	                var day = startDate.day();
 
 	                // set the start date to the range.start
-	                startDate.date(start.date());
-	                startDate.month(start.month());
-	                startDate.year(start.year());
+	                startDate = startDate.date(start.date()).month(start.month()).year(start.year());
 	                endDate = startDate.clone();
 
 	                // force
-	                startDate.day(day);
-	                endDate.day(day);
-	                endDate.add(dayOffset, 'days');
-	                startDate.subtract(1, 'weeks');
-	                endDate.subtract(1, 'weeks');
+	                startDate = startDate.day(day).subtract(1, 'weeks');
+	                endDate = endDate.day(day).add(dayOffset, 'days').subtract(1, 'weeks');
 	                runUntil.add(1, 'weeks');
 	                break;
 	              }
@@ -26383,24 +26374,16 @@
 	              if (startDate.month() != endDate.month()) {
 	                offset = 1;
 	              }
-	              startDate.month(start.month());
-	              startDate.year(start.year());
-	              startDate.subtract(1, 'months');
-	              endDate.month(start.month());
-	              endDate.year(start.year());
-	              endDate.subtract(1, 'months');
-	              endDate.add(offset, 'months');
+	              startDate = startDate.month(start.month()).year(start.year()).subtract(1, 'months');
+	              endDate = endDate.month(start.month()).year(start.year()).subtract(1, 'months').add(offset, 'months');
 	              runUntil.add(1, 'months');
 	              break;
 	            case "yearly":
 	              if (startDate.year() != endDate.year()) {
 	                offset = 1;
 	              }
-	              startDate.year(start.year());
-	              startDate.subtract(1, 'years');
-	              endDate.year(start.year());
-	              endDate.subtract(1, 'years');
-	              endDate.add(offset, 'years');
+	              startDate = startDate.year(start.year()).subtract(1, 'years');
+	              endDate = endDate.year(start.year()).subtract(1, 'years').add(offset, 'years');
 	              runUntil.add(1, 'years');
 	              break;
 	            default:
@@ -26414,20 +26397,20 @@
 	            });
 	            switch (_repeatInstanceProperty(hiddenDates[i])) {
 	              case "daily":
-	                startDate.add(1, 'days');
-	                endDate.add(1, 'days');
+	                startDate = startDate.add(1, 'days');
+	                endDate = endDate.add(1, 'days');
 	                break;
 	              case "weekly":
-	                startDate.add(1, 'weeks');
-	                endDate.add(1, 'weeks');
+	                startDate = startDate.add(1, 'weeks');
+	                endDate = endDate.add(1, 'weeks');
 	                break;
 	              case "monthly":
-	                startDate.add(1, 'months');
-	                endDate.add(1, 'months');
+	                startDate = startDate.add(1, 'months');
+	                endDate = endDate.add(1, 'months');
 	                break;
 	              case "yearly":
-	                startDate.add(1, 'y');
-	                endDate.add(1, 'y');
+	                startDate = startDate.add(1, 'y');
+	                endDate = endDate.add(1, 'y');
 	                break;
 	              default:
 	                console.log("Wrong repeat format, allowed are: daily, weekly, monthly, yearly. Given:", _repeatInstanceProperty(hiddenDates[i]));
@@ -28166,25 +28149,24 @@
 	      // noinspection FallThroughInSwitchStatementJS
 	      switch (this.scale) {
 	        case 'year':
-	          this.current.year(this.step * Math.floor(this.current.year() / this.step));
-	          this.current.month(0);
+	          this.current = this.current.year(this.step * Math.floor(this.current.year() / this.step)).month(0);
 	        // eslint-disable-line no-fallthrough
 	        case 'month':
-	          this.current.date(1);
+	          this.current = this.current.date(1);
 	        // eslint-disable-line no-fallthrough
 	        case 'week': // eslint-disable-line no-fallthrough
 	        case 'day': // eslint-disable-line no-fallthrough
 	        case 'weekday':
-	          this.current.hours(0);
+	          this.current = this.current.hours(0);
 	        // eslint-disable-line no-fallthrough
 	        case 'hour':
-	          this.current.minutes(0);
+	          this.current = this.current.minutes(0);
 	        // eslint-disable-line no-fallthrough
 	        case 'minute':
-	          this.current.seconds(0);
+	          this.current = this.current.seconds(0);
 	        // eslint-disable-line no-fallthrough
 	        case 'second':
-	          this.current.milliseconds(0);
+	          this.current = this.current.milliseconds(0);
 	        // eslint-disable-line no-fallthrough
 	        //case 'millisecond': // nothing to do for milliseconds
 	      }
@@ -28194,29 +28176,29 @@
 	        var priorCurrent = this.current.clone();
 	        switch (this.scale) {
 	          case 'millisecond':
-	            this.current.subtract(this.current.milliseconds() % this.step, 'milliseconds');
+	            this.current = this.current.subtract(this.current.milliseconds() % this.step, 'milliseconds');
 	            break;
 	          case 'second':
-	            this.current.subtract(this.current.seconds() % this.step, 'seconds');
+	            this.current = this.current.subtract(this.current.seconds() % this.step, 'seconds');
 	            break;
 	          case 'minute':
-	            this.current.subtract(this.current.minutes() % this.step, 'minutes');
+	            this.current = this.current.subtract(this.current.minutes() % this.step, 'minutes');
 	            break;
 	          case 'hour':
-	            this.current.subtract(this.current.hours() % this.step, 'hours');
+	            this.current = this.current.subtract(this.current.hours() % this.step, 'hours');
 	            break;
 	          case 'weekday': // intentional fall through
 	          case 'day':
-	            this.current.subtract((this.current.date() - 1) % this.step, 'day');
+	            this.current = this.current.subtract((this.current.date() - 1) % this.step, 'day');
 	            break;
 	          case 'week':
-	            this.current.subtract(this.current.week() % this.step, 'week');
+	            this.current = this.current.subtract(this.current.week() % this.step, 'week');
 	            break;
 	          case 'month':
-	            this.current.subtract(this.current.month() % this.step, 'month');
+	            this.current = this.current.subtract(this.current.month() % this.step, 'month');
 	            break;
 	          case 'year':
-	            this.current.subtract(this.current.year() % this.step, 'year');
+	            this.current = this.current.subtract(this.current.year() % this.step, 'year');
 	            break;
 	        }
 	        if (!priorCurrent.isSame(this.current)) {
@@ -28247,81 +28229,78 @@
 	      // (end of March and end of October)
 	      switch (this.scale) {
 	        case 'millisecond':
-	          this.current.add(this.step, 'millisecond');
+	          this.current = this.current.add(this.step, 'millisecond');
 	          break;
 	        case 'second':
-	          this.current.add(this.step, 'second');
+	          this.current = this.current.add(this.step, 'second');
 	          break;
 	        case 'minute':
-	          this.current.add(this.step, 'minute');
+	          this.current = this.current.add(this.step, 'minute');
 	          break;
 	        case 'hour':
-	          this.current.add(this.step, 'hour');
+	          this.current = this.current.add(this.step, 'hour');
 	          if (this.current.month() < 6) {
-	            this.current.subtract(this.current.hours() % this.step, 'hour');
+	            this.current = this.current.subtract(this.current.hours() % this.step, 'hour');
 	          } else {
 	            if (this.current.hours() % this.step !== 0) {
-	              this.current.add(this.step - this.current.hours() % this.step, 'hour');
+	              this.current = this.current.add(this.step - this.current.hours() % this.step, 'hour');
 	            }
 	          }
 	          break;
 	        case 'weekday': // intentional fall through
 	        case 'day':
-	          this.current.add(this.step, 'day');
+	          this.current = this.current.add(this.step, 'day');
 	          break;
 	        case 'week':
 	          if (this.current.weekday() !== 0) {
 	            // we had a month break not correlating with a week's start before
-	            this.current.weekday(0); // switch back to week cycles
-	            this.current.add(this.step, 'week');
+	            this.current = this.current.weekday(0).add(this.step, 'week'); // switch back to week cycles
 	          } else if (this.options.showMajorLabels === false) {
-	            this.current.add(this.step, 'week'); // the default case
+	            this.current = this.current.add(this.step, 'week'); // the default case
 	          } else {
 	            // first day of the week
 	            var nextWeek = this.current.clone();
 	            nextWeek.add(1, 'week');
 	            if (nextWeek.isSame(this.current, 'month')) {
 	              // is the first day of the next week in the same month?
-	              this.current.add(this.step, 'week'); // the default case
+	              this.current = this.current.add(this.step, 'week'); // the default case
 	            } else {
 	              // inject a step at each first day of the month
-	              this.current.add(this.step, 'week');
-	              this.current.date(1);
+	              this.current = this.current.add(this.step, 'week').date(1);
 	            }
 	          }
 	          break;
 	        case 'month':
-	          this.current.add(this.step, 'month');
+	          this.current = this.current.add(this.step, 'month');
 	          break;
 	        case 'year':
-	          this.current.add(this.step, 'year');
+	          this.current = this.current.add(this.step, 'year');
 	          break;
 	      }
 	      if (this.step != 1) {
 	        // round down to the correct major value
 	        switch (this.scale) {
 	          case 'millisecond':
-	            if (this.current.milliseconds() > 0 && this.current.milliseconds() < this.step) this.current.milliseconds(0);
+	            if (this.current.milliseconds() > 0 && this.current.milliseconds() < this.step) this.current = this.current.milliseconds(0);
 	            break;
 	          case 'second':
-	            if (this.current.seconds() > 0 && this.current.seconds() < this.step) this.current.seconds(0);
+	            if (this.current.seconds() > 0 && this.current.seconds() < this.step) this.current = this.current.seconds(0);
 	            break;
 	          case 'minute':
-	            if (this.current.minutes() > 0 && this.current.minutes() < this.step) this.current.minutes(0);
+	            if (this.current.minutes() > 0 && this.current.minutes() < this.step) this.current = this.current.minutes(0);
 	            break;
 	          case 'hour':
-	            if (this.current.hours() > 0 && this.current.hours() < this.step) this.current.hours(0);
+	            if (this.current.hours() > 0 && this.current.hours() < this.step) this.current = this.current.hours(0);
 	            break;
 	          case 'weekday': // intentional fall through
 	          case 'day':
-	            if (this.current.date() < this.step + 1) this.current.date(1);
+	            if (this.current.date() < this.step + 1) this.current = this.current.date(1);
 	            break;
 	          case 'week':
-	            if (this.current.week() < this.step) this.current.week(1);
+	            if (this.current.week() < this.step) this.current = this.current.week(1); // week numbering starts at 1, not 0
 	            break;
-	          // week numbering starts at 1, not 0
 	          case 'month':
-	            if (this.current.month() < this.step) this.current.month(0);
+	            if (this.current.month() < this.step) this.current = this.current.month(0);
 	            break;
 	        }
 	      }
@@ -28783,110 +28762,88 @@
 	      var clone = moment$4(date);
 	      if (scale == 'year') {
 	        var year = clone.year() + Math.round(clone.month() / 12);
-	        clone.year(Math.round(year / step) * step);
-	        clone.month(0);
-	        clone.date(0);
-	        clone.hours(0);
-	        clone.minutes(0);
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.year(Math.round(year / step) * step).month(0).date(0).hours(0).minutes(0).seconds(0).milliseconds(0);
 	      } else if (scale == 'month') {
 	        if (clone.date() > 15) {
-	          clone.date(1);
-	          clone.add(1, 'month');
-	          // important: first set Date to 1, after that change the month.
+	          clone = clone.date(1).add(1, 'month'); // important: first set Date to 1, after that change the month.
 	        } else {
-	          clone.date(1);
+	          clone = clone.date(1);
 	        }
-	        clone.hours(0);
-	        clone.minutes(0);
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.hours(0).minutes(0).seconds(0).milliseconds(0);
 	      } else if (scale == 'week') {
 	        if (clone.weekday() > 2) {
 	          // doing it the momentjs locale aware way
-	          clone.weekday(0);
-	          clone.add(1, 'week');
+	          clone = clone.weekday(0).add(1, 'week');
 	        } else {
-	          clone.weekday(0);
+	          clone = clone.weekday(0);
 	        }
-	        clone.hours(0);
-	        clone.minutes(0);
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.hours(0).minutes(0).seconds(0).milliseconds(0);
 	      } else if (scale == 'day') {
 	        //noinspection FallthroughInSwitchStatementJS
 	        switch (step) {
 	          case 5:
 	          case 2:
-	            clone.hours(Math.round(clone.hours() / 24) * 24);
+	            clone = clone.hours(Math.round(clone.hours() / 24) * 24);
 	            break;
 	          default:
-	            clone.hours(Math.round(clone.hours() / 12) * 12);
+	            clone = clone.hours(Math.round(clone.hours() / 12) * 12);
 	            break;
 	        }
-	        clone.minutes(0);
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.minutes(0).seconds(0).milliseconds(0);
 	      } else if (scale == 'weekday') {
 	        //noinspection FallthroughInSwitchStatementJS
 	        switch (step) {
 	          case 5:
 	          case 2:
-	            clone.hours(Math.round(clone.hours() / 12) * 12);
+	            clone = clone.hours(Math.round(clone.hours() / 12) * 12);
 	            break;
 	          default:
-	            clone.hours(Math.round(clone.hours() / 6) * 6);
+	            clone = clone.hours(Math.round(clone.hours() / 6) * 6);
 	            break;
 	        }
-	        clone.minutes(0);
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.minutes(0).seconds(0).milliseconds(0);
 	      } else if (scale == 'hour') {
 	        switch (step) {
 	          case 4:
-	            clone.minutes(Math.round(clone.minutes() / 60) * 60);
+	            clone = clone.minutes(Math.round(clone.minutes() / 60) * 60);
 	            break;
 	          default:
-	            clone.minutes(Math.round(clone.minutes() / 30) * 30);
+	            clone = clone.minutes(Math.round(clone.minutes() / 30) * 30);
 	            break;
 	        }
-	        clone.seconds(0);
-	        clone.milliseconds(0);
+	        clone = clone.seconds(0).milliseconds(0);
 	      } else if (scale == 'minute') {
 	        //noinspection FallthroughInSwitchStatementJS
 	        switch (step) {
 	          case 15:
 	          case 10:
-	            clone.minutes(Math.round(clone.minutes() / 5) * 5);
-	            clone.seconds(0);
+	            clone = clone.minutes(Math.round(clone.minutes() / 5) * 5).seconds(0);
 	            break;
 	          case 5:
-	            clone.seconds(Math.round(clone.seconds() / 60) * 60);
+	            clone = clone.seconds(Math.round(clone.seconds() / 60) * 60);
 	            break;
 	          default:
-	            clone.seconds(Math.round(clone.seconds() / 30) * 30);
+	            clone = clone.seconds(Math.round(clone.seconds() / 30) * 30);
 	            break;
 	        }
-	        clone.milliseconds(0);
+	        clone = clone.milliseconds(0);
 	      } else if (scale == 'second') {
 	        //noinspection FallthroughInSwitchStatementJS
 	        switch (step) {
 	          case 15:
 	          case 10:
-	            clone.seconds(Math.round(clone.seconds() / 5) * 5);
-	            clone.milliseconds(0);
+	            clone = clone.seconds(Math.round(clone.seconds() / 5) * 5).milliseconds(0);
 	            break;
 	          case 5:
-	            clone.milliseconds(Math.round(clone.milliseconds() / 1000) * 1000);
+	            clone = clone.milliseconds(Math.round(clone.milliseconds() / 1000) * 1000);
 	            break;
 	          default:
-	            clone.milliseconds(Math.round(clone.milliseconds() / 500) * 500);
+	            clone = clone.milliseconds(Math.round(clone.milliseconds() / 500) * 500);
 	            break;
 	        }
 	      } else if (scale == 'millisecond') {
 	        var _step = step > 5 ? step / 2 : 1;
-	        clone.milliseconds(Math.round(clone.milliseconds() / _step) * _step);
+	        clone = clone.milliseconds(Math.round(clone.milliseconds() / _step) * _step);
 	      }
 	      return clone;
 	    }
