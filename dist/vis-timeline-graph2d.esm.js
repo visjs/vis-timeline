@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2023-12-27T04:33:19.457Z
+ * @date    2023-12-27T16:36:04.336Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5673,7 +5673,7 @@ function requireMoment () {
 
 		    //! moment.js
 
-		    hooks.version = '2.30.0';
+		    hooks.version = '2.30.1';
 
 		    setHookCallback(createLocal);
 
