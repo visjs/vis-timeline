@@ -270,6 +270,7 @@ export interface TimelineOptions {
   locale?: string;
   locales?: any; // TODO
   longSelectPressTime?: number,
+  loadingScreenTemplate?: () => string,
   moment?: MomentConstructor;
   margin?: TimelineOptionsMarginType;
   max?: DateType;
