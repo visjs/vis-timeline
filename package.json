@@ -94,7 +94,7 @@
     "vis-data": "7.1.9",
     "vis-dev-utils": "4.0.45",
     "vis-util": "5.0.7",
-    "xss": "1.0.14"
+    "xss": "1.0.15"
   },
   "funding": {
     "type": "opencollective",
