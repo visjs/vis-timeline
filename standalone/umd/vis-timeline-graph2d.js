@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2024-03-02T22:25:54.408Z
+ * @date    2024-03-03T07:13:05.328Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24913,8 +24913,9 @@
 	    header: [],
 	    hr: [],
 	    i: [],
-	    img: ["src", "alt", "title", "width", "height"],
+	    img: ["src", "alt", "title", "width", "height", "loading"],
 	    ins: ["datetime"],
+	    kbd: [],
 	    li: [],
 	    mark: [],
 	    nav: [],
@@ -25311,6 +25312,7 @@
 	_default$1.StripTagBody = StripTagBody;
 	_default$1.stripCommentTag = stripCommentTag;
 	_default$1.stripBlankChar = stripBlankChar;
+	_default$1.attributeWrapSign = '"';
 	_default$1.cssFilter = defaultCSSFilter;
 	_default$1.getDefaultCSSWhiteList = getDefaultCSSWhiteList;
 
@@ -25674,6 +25676,8 @@
 	    options.whiteList = DEFAULT.whiteList;
 	  }
 
+	  this.attributeWrapSign = options.singleQuotedAttributeValue === true ? "'" : DEFAULT.attributeWrapSign;
+
 	  options.onTag = options.onTag || DEFAULT.onTag;
 	  options.onTagAttr = options.onTagAttr || DEFAULT.onTagAttr;
 	  options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
@@ -25711,6 +25715,7 @@
 	  var onIgnoreTagAttr = options.onIgnoreTagAttr;
 	  var safeAttrValue = options.safeAttrValue;
 	  var escapeHtml = options.escapeHtml;
+	  var attributeWrapSign = me.attributeWrapSign;
 	  var cssFilter = me.cssFilter;
 
 	  // remove invisible characters
@@ -25764,7 +25769,7 @@
 	            // call `safeAttrValue()`
 	            value = safeAttrValue(tag, name, value, cssFilter);
 	            if (value) {
-	              return name + '="' + value + '"';
+	              return name + '=' + attributeWrapSign + value + attributeWrapSign;
 	            } else {
 	              return name;
 	            }
