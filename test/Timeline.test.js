@@ -64,4 +64,105 @@ describe('Timeline', () => {
 		assert( selectedIds.length === 1 )
 		assert( dataSet.get(selectedIds[0]).fooid === 2 )
 	});
+
+	it("enabling and disabling rollingMode should work as expected and fire applicable events", function () {
+		const timeline = new Timeline(document.createElement("div"), []);
+		assert(timeline.isRolling() === false);
+
+		let enabledEvents = 0;
+		let disabledEvents = 0;
+		timeline.on("rollingModeChanged", ({ enabled }) => {
+			if (enabled) {
+				enabledEvents += 1;
+			} else {
+				disabledEvents += 1;
+			}
+		});
+
+		// should be a no-op
+		timeline.disableRollingMode();
+		assert(timeline.isRolling() === false);
+
+		timeline.enableRollingMode();
+		assert(timeline.isRolling() === true);
+
+		// should be a no-op
+		timeline.enableRollingMode();
+		assert(timeline.isRolling() === true);
+
+		timeline.disableRollingMode();
+		assert(timeline.isRolling() === false);
+
+		assert(enabledEvents === 1);
+		assert(disabledEvents === 1);
+	});
+	it("enabling and disabling rollingMode via options should work as expected and fire applicable events", function () {
+		const timeline = new Timeline(document.createElement("div"), []);
+		assert(timeline.isRolling() === false);
+
+		let enabledEvents = 0;
+		let disabledEvents = 0;
+		timeline.on("rollingModeChanged", ({ enabled }) => {
+			if (enabled) {
+				enabledEvents += 1;
+			} else {
+				disabledEvents += 1;
+			}
+		});
+
+		// No-op
+		timeline.setOptions({rollingMode:{}});
+		assert(timeline.isRolling() === false);
+
+		// No-op
+		timeline.setOptions({rollingMode:{follow: false}});
+		assert(timeline.isRolling() === false);
+
+		// Now enable it
+		timeline.setOptions({rollingMode:{follow: true}});
+		assert(timeline.isRolling() === true);
+
+		// Setting some other option, without follow, should not disable it
+		timeline.setOptions({rollingMode:{offset: 0.5}});
+		assert(timeline.isRolling() === true);
+
+		timeline.setOptions({rollingMode:{follow: false}});
+		assert(timeline.isRolling() === false);
+
+
+		assert(enabledEvents === 1);
+		assert(disabledEvents === 1);
+	});
+	it("mixing enabling and disabling rollingMode via options and methods should work as expected and fire applicable events", function () {
+		const timeline = new Timeline(document.createElement("div"), []);
+		assert(timeline.isRolling() === false);
+
+		let enabledEvents = 0;
+		let disabledEvents = 0;
+		timeline.on("rollingModeChanged", ({ enabled }) => {
+			if (enabled) {
+				enabledEvents += 1;
+			} else {
+				disabledEvents += 1;
+			}
+		});
+
+		timeline.enableRollingMode();
+		assert(timeline.isRolling() === true);
+
+		// No-op
+		timeline.setOptions({rollingMode:{}});
+		assert(timeline.isRolling() === true);
+
+		// Setting some other option, without follow, should not disable it
+		timeline.setOptions({rollingMode:{offset: 0.5}});
+		assert(timeline.isRolling() === true);
+
+		// No-op
+		timeline.setOptions({rollingMode:{follow: false}});
+		assert(timeline.isRolling() === false);
+
+		assert(enabledEvents === 1);
+		assert(disabledEvents === 1);
+	});
 });
