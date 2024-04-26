@@ -6,10 +6,7 @@
   "license": "(Apache-2.0 OR MIT)",
   "repository": {
     "type": "git",
-    "url": "https://github.com/visjs/vis-timeline.git"
-  },
-  "bugs": {
-    "url": "https://github.com/visjs/vis-timeline/issues"
+    "url": "https://github.com/andreicorpo/vis-timeline.git"
   },
   "keywords": [
     "vis",
