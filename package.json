@@ -1,5 +1,5 @@
 {
-  "name": "vis-timeline",
+  "name": "@airportlabs/timeline",
   "version": "0.0.0-no-version",
   "description": "Create a fully customizable, interactive timeline with items and ranges.",
   "homepage": "https://visjs.github.io/vis-timeline/",
@@ -39,7 +39,7 @@
     "test": "mocha --exit --require vis-dev-utils/babel-register",
     "test-cov": "nyc --reporter=lcov mocha --exit --require vis-dev-utils/babel-register",
     "build": "cpy \"types/**/*\" \"declarations\" && rollup --bundleConfigAsCjs --config rollup.build.js && rollup --bundleConfigAsCjs --config rollup.config.js",
-    "watch": "rollup --bundleConfigAsCjs --watch --config rollup.config.js",
+    "watch": "rollup --bundleConfigAsCjs --watch --config rollup.build.js",
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
     "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
     "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
