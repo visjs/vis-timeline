@@ -236,7 +236,7 @@ export type TimelineOptionsSnapFunction = (date: Date, scale: string, step: numb
 export type TimelineOptionsSnapType = null | TimelineOptionsSnapFunction;
 export type TimelineOptionsTemplateFunction = (item?: any, element?: any, data?: any) => string | HTMLElement;
 export type TimelineOptionsComparisonFunction = (a: any, b: any) => number;
-export type TimelineOptionsGroupHeightModeType = 'auto' | 'fixed' | 'fitItems';
+export type TimelineOptionsGroupHeightModeType = 'auto' | 'fixed' | 'fitItems' | number;
 export type TimelineOptionsClusterCriteriaFunction = (firstItem: TimelineItem, secondItem: TimelineItem) => boolean;
 export type TimelineOptionsCluster = {
   titleTemplate?: string;
