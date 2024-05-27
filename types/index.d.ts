@@ -529,6 +529,7 @@ export class Graph2d {
   setCurrentTime(time: DateType): void;
   setCustomTime(time: DateType, id?: IdType): void;
   setCustomTimeTitle(title: string, id?: IdType): void;
+  setCustomTimeMarker(title: string, id?: IdType, editable?: boolean): void;
   setData(data: { groups?: DataGroupCollectionType; items?: DataItemCollectionType }): void;
   setGroups(groups?: DataGroupCollectionType): void;
   setItems(items: DataItemCollectionType): void;
