@@ -88,7 +88,7 @@
     "rimraf": "5.0.10",
     "rollup-plugin-css-porter": "^1.0.2",
     "rollup-plugin-node-builtins": "^2.1.2",
-    "semantic-release": "22.0.12",
+    "semantic-release": "24.1.2",
     "snap-shot-it": "7.9.10",
     "uuid": "9.0.1",
     "vis-data": "7.1.9",
