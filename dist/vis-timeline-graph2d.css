@@ -67,23 +67,6 @@
 .vis-rolling-mode-btn:hover {
   opacity: 1;
 }
-
-.vis-timeline {
-  position: relative;
-  border: 1px solid #bfbfbf;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-
-.vis-loading-screen {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-}
 .vis-graph-group0 {
     fill:#4f81bd;
     fill-opacity:0;
@@ -270,6 +253,23 @@
 
 .vis-panel .vis-shadow.vis-bottom {
   bottom: -1px;
+  left: 0;
+}
+
+.vis-timeline {
+  position: relative;
+  border: 1px solid #bfbfbf;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.vis-loading-screen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
   left: 0;
 }
 .vis-custom-time {
