@@ -12,6 +12,31 @@
 
 <h1>Timeline horizontal scroll option</h1>
 
+<div style="border: 1px solid #999; border-radius: 0.25rem; padding: .5rem 3rem .5rem 1rem; width: fit-content;">
+  <code style="white-space: pre-wrap;">// specified options
+var options = {
+  stack: true,
+  horizontalScroll: true,
+  // horizontalScrollKey: 'shiftKey', /* If you want to enable both vertical and horizontal scrolling, uncomment this and the line below. */
+  // verticalScroll: true, /* Uncomment this line with the line above to allow for both scroll-axis. */
+  // horizontalScrollInvert: true, /* Invert the horizontal scroll direction by uncommenting this line. */
+  zoomKey: 'ctrlKey',
+  maxHeight: 400,
+  start: new Date(),
+  end: new Date(1000*60*60*24 + (new Date()).valueOf()),
+  editable: true,
+  margin: {
+    item: 10, // minimal margin between items
+    axis: 5 // minimal margin between items and the axis
+  },
+  orientation: 'top'
+};
+
+// create a Timeline
+var container = document.getElementById('visualization');
+timeline = new vis.Timeline(container, items, groups, options);</code>
+</div>
+
 <div id="visualization"></div>
  
 <script>
@@ -55,6 +80,9 @@
   var options = {
     stack: true,
     horizontalScroll: true,
+    // horizontalScrollKey: 'shiftKey', // If you want to enable both vertical and horizontal scrolling, uncomment this and the line below.
+    // verticalScroll: true             // Uncomment this line with the line above to allow for both scroll-axis.
+    // horizontalScrollInvert: true,    // Invert the horizontal scroll direction by uncommenting this line.
     zoomKey: 'ctrlKey',
     maxHeight: 400,
     start: new Date(),
