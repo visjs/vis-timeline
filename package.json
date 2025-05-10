@@ -90,7 +90,7 @@
     "rollup-plugin-node-builtins": "^2.1.2",
     "semantic-release": "22.0.12",
     "snap-shot-it": "7.9.10",
-    "uuid": "9.0.1",
+    "uuid": "11.1.0",
     "vis-data": "7.1.9",
     "vis-dev-utils": "4.0.45",
     "vis-util": "5.0.7",
