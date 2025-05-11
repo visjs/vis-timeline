@@ -144,7 +144,7 @@ export interface TimelineEditableOption {
   overrideItems?: boolean;
 }
 
-export type TimelineFormatLabelsFunction = (date: Date, scale: string, step: number) => string;
+export type TimelineFormatLabelsFunction = (date: Moment, scale: string, step: number) => string;
 
 export interface TimelineFormatLabelsOption {
   millisecond?: string;
