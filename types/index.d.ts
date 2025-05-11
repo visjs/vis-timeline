@@ -141,6 +141,7 @@ export interface TimelineEditableOption {
   remove?: boolean;
   updateGroup?: boolean;
   updateTime?: boolean;
+  updateRangeDuration?: boolean;
   overrideItems?: boolean;
 }
 
@@ -744,6 +745,7 @@ export interface TimelineItemEditableOption {
   remove?: boolean;
   updateGroup?: boolean;
   updateTime?: boolean;
+  updateRangeDuration?: boolean;
 }
 
 export type TimelineItemEditableType = boolean | TimelineItemEditableOption;
