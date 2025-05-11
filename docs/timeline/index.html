@@ -1683,7 +1683,7 @@ document.getElementById('myTimeline').onclick = function (event) {
         <ul>
           <li><code>animation: boolean or {duration: number, easingFunction: string}</code><br>If true (default) or an Object, the range is animated smoothly to the new window. An object can be provided to specify duration and easing function. Default duration is 500 ms, and default easing function is <code>'easeInOutQuad'</code>. Available easing functions: <code>"linear"</code>, <code>"easeInQuad"</code>, <code>"easeOutQuad"</code>, <code>"easeInOutQuad"</code>, <code>"easeInCubic"</code>, <code>"easeOutCubic"</code>, <code>"easeInOutCubic"</code>, <code>"easeInQuart"</code>, <code>"easeOutQuart"</code>, <code>"easeInOutQuart"</code>, <code>"easeInQuint"</code>, <code>"easeOutQuint"</code>, <code>"easeInOutQuint"</code>.</li>
         </ul>
-        A callback <code>function</code> can be passed as an optional parameter. This function will be called at the end of zoomIn function.
+        A callback <code>function</code> can be passed as an optional parameter. This function will be called at the end of zoomIn function and will receive a parameter telling if the visible range has been changed.
       </td>
     </tr>
     <tr>
@@ -1693,7 +1693,7 @@ document.getElementById('myTimeline').onclick = function (event) {
         <ul>
           <li><code>animation: boolean or {duration: number, easingFunction: string}</code><br>If true (default) or an Object, the range is animated smoothly to the new window. An object can be provided to specify duration and easing function. Default duration is 500 ms, and default easing function is <code>'easeInOutQuad'</code>. Available easing functions: <code>"linear"</code>, <code>"easeInQuad"</code>, <code>"easeOutQuad"</code>, <code>"easeInOutQuad"</code>, <code>"easeInCubic"</code>, <code>"easeOutCubic"</code>, <code>"easeInOutCubic"</code>, <code>"easeInQuart"</code>, <code>"easeOutQuart"</code>, <code>"easeInOutQuart"</code>, <code>"easeInQuint"</code>, <code>"easeOutQuint"</code>, <code>"easeInOutQuint"</code>.</li>
         </ul>
-        A callback <code>function</code> can be passed as an optional parameter. This function will be called at the end of zoomOut function.
+        A callback <code>function</code> can be passed as an optional parameter. This function will be called at the end of zoomOut function and will receive a parameter telling if the visible range has been changed.
       </td>
     </tr>
 
