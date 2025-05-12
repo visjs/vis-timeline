@@ -766,11 +766,34 @@ function (option, path) {
     </tr>
 
     <tr>
-      <td>horizontalScroll</td>
+      <td><code>horizontalScroll</code></td>
       <td>Boolean</td>
-      <td>false</td>
-      <td>This option allows you to scroll horizontally to move backwards and forwards in the time range.
-       Only applicable when option <code>zoomKey</code> is defined or <code>zoomable</code> is <code>false</code>.
+      <td><code>false</code></td>
+      <td>
+        This option allows you to scroll horizontally to move backwards and forwards in the time range.<br />
+        Only applicable when option <code>zoomKey</code> is defined or <code>zoomable</code> is <code>false</code>.
+      </td>
+    </tr>
+
+    <tr>
+      <td><code>horizontalScrollKey</code></td>
+      <td>String</td>
+      <td><code>''</code></td>
+      <td>
+        This option allows you to scroll horizontally while holding down a specific key.<br/>
+        Available values are <code>''</code> (does not apply), <code>'altKey'</code>, <code>'ctrlKey'</code>, <code>'shiftKey'</code> or <code>'metaKey'</code>.<br />
+        Only applicable when option <code>horizontalScroll</code> is defined.
+      </td>
+    </tr>
+
+    <tr>
+      <td><code>horizontalScrollInvert</code></td>
+      <td>Boolean</td>
+      <td><code>false</code></td>
+      <td>
+        This option allows you to invert the horizontal scroll direction.<br />
+        By default scroll-up will move the view to the right and scroll-down to the left.<br />
+        Only applicable when option <code>horizontalScroll</code> is defined.
       </td>
     </tr>
 
