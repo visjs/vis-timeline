@@ -1,9 +1,9 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
-import moment from '../lib/module/moment'
-import PointItem from "../lib/timeline/component/item/PointItem"
-import Range from '../lib/timeline/Range'
-import TestSupport from './TestSupport'
+import moment from '../lib/module/moment.js'
+import PointItem from "../lib/timeline/component/item/PointItem.js"
+import Range from '../lib/timeline/Range.js'
+import TestSupport from './TestSupport.js'
 
 const internals = {}
 

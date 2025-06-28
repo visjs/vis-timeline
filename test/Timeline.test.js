@@ -1,7 +1,7 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
 import { DataSet } from'vis-data/esnext'
-import Timeline from'../lib/timeline/Timeline'
+import Timeline from'../lib/timeline/Timeline.js'
 
 const internals = {}
 

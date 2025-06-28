@@ -1,6 +1,6 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
-import Activator from '../lib/shared/Activator';
+import Activator from '../lib/shared/Activator.js';
 
 const internals = {}
 

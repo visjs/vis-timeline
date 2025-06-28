@@ -27,13 +27,19 @@ const babelConfig = {
 
 export default [{
 	input: 'lib/bundle-legacy.js',
-	output: {
+	output: [{
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
 		banner,
 		sourcemap: true,
 		globals: GLOBALS
-	},
+	}, {
+		file: 'dist/vis-timeline-graph2d.mjs',
+		format: 'esm',
+		banner,
+		sourcemap: true,
+		globals: GLOBALS
+	}],
 	plugins: [
 		commonjs(),
 		nodeResolve({ browser: true }),
@@ -46,7 +52,7 @@ export default [{
 	]
 }, {
 	input: 'lib/bundle-legacy.js',
-	output: {
+	output: [{
 		file: 'dist/vis-timeline-graph2d.min.js',
 		name: 'vis',
 		extend: true,
@@ -55,7 +61,16 @@ export default [{
 		banner,
 		sourcemap: true,
 		globals: GLOBALS
-	},
+	}, {
+		file: 'dist/vis-timeline-graph2d.min.cjs',
+		name: 'vis',
+		extend: true,
+		exports: 'named',
+		format: 'umd',
+		banner,
+		sourcemap: true,
+		globals: GLOBALS
+	}],
 	plugins: [
 		commonjs(),
 		nodeResolve({ browser: true }),

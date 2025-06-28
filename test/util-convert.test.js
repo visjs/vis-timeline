@@ -1,6 +1,6 @@
 import assert from "assert";
 
-import util from "../lib/util";
+import util from "../lib/util.js";
 import moment from "moment";
 
 var ASPDateRegex = /^\/?Date\((\-?\d+)/i;
