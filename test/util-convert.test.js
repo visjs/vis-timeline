@@ -1,7 +1,7 @@
-var assert = require("assert");
+import assert from "assert";
 
-var util = require("../lib/util");
-var moment = require("moment");
+import util from "../lib/util";
+import moment from "moment";
 
 var ASPDateRegex = /^\/?Date\((\-?\d+)/i;
 
