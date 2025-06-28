@@ -90,7 +90,6 @@
     "nyc": "17.1.0",
     "propagating-hammerjs": "2.0.1",
     "rollup-plugin-css-porter": "^1.0.2",
-    "rollup-plugin-node-builtins": "^2.1.2",
     "semantic-release": "22.0.12",
     "shx": "0.4.0",
     "snap-shot-it": "7.9.10",

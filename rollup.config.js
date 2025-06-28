@@ -1,6 +1,5 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import nodeBuiltins from 'rollup-plugin-node-builtins';
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import { generateHeader } from 'vis-dev-utils';
@@ -37,7 +36,6 @@ export default [{
 	},
 	plugins: [
 		commonjs(),
-		nodeBuiltins(),
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		css({
@@ -59,7 +57,6 @@ export default [{
 	},
 	plugins: [
 		commonjs(),
-		nodeBuiltins(),
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		terser({
