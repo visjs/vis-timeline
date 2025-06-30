@@ -36,8 +36,8 @@
     "types"
   ],
   "scripts": {
-    "test": "mocha --exit --require vis-dev-utils/babel-register",
-    "test-cov": "nyc --reporter=lcov mocha --exit --require vis-dev-utils/babel-register",
+    "test": "mocha --exit",
+    "test-cov": "nyc --reporter=lcov mocha --exit",
     "build": "cpy \"types/**/*\" \"declarations\" && rollup --bundleConfigAsCjs --config rollup.build.js && rollup --bundleConfigAsCjs --config rollup.config.js",
     "watch": "rollup --bundleConfigAsCjs --watch --config rollup.config.js",
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
