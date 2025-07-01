@@ -3,7 +3,7 @@ import nodeResolve from '@rollup/plugin-node-resolve';
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import { generateHeader } from 'vis-dev-utils';
-import css from 'rollup-plugin-css-porter';
+import css from "rollup-plugin-postcss";
 import copy from 'rollup-plugin-copy';
 import { BABEL_IGNORE_RE } from 'vis-dev-utils';
 
@@ -39,7 +39,8 @@ export default [{
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		css({
-			dest: 'dist/vis-timeline-graph2d.css'
+			extract: 'vis-timeline-graph2d.css',
+			minimize: false,
 		}),
 		copyStatic
 	]
@@ -65,7 +66,8 @@ export default [{
 			}
 		}),
 		css({
-			dest: 'dist/vis-timeline-graph2d.css'
+			extract: 'vis-timeline-graph2d.min.css',
+			minimize: true,
 		}),
 		copyStatic
 	]
