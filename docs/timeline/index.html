@@ -487,7 +487,7 @@ var groups = [
       <td>visible</td>
       <td>Boolean</td>
       <td>no</td>
-      <td>Provides a means to toggle the whether a group is displayed or not. Defaults to <code>true</code>.</td>
+      <td>Provides a means to toggle whether a group is displayed or not. Defaults to <code>true</code>.</td>
     </tr>
     <tr>
       <td>nestedGroups</td>
@@ -500,6 +500,12 @@ var groups = [
       <td>Boolean</td>
       <td>no</td>
       <td>Assuming the group has nested groups, this will set the initial state of the group - shown or collapsed. The <code>showNested</code> is defaulted to <code>true</code>.</td>
+    </tr>
+    <tr>
+      <td>treeLevel</td>
+      <td>Number</td>
+      <td>no</td>
+      <td>If there are nested groups, this tells which level this group should be put at.</td>
     </tr>
   </table>
 
