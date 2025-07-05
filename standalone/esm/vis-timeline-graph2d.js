@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-01T18:20:40.952Z
+ * @date    2025-07-05T06:39:54.938Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23,6 +23,78 @@
  *
  * vis.js may be distributed under either license.
  */
+
+function styleInject(css, ref) {
+  if ( ref === void 0 ) ref = {};
+  var insertAt = ref.insertAt;
+
+  if (!css || typeof document === 'undefined') { return; }
+
+  var head = document.head || document.getElementsByTagName('head')[0];
+  var style = document.createElement('style');
+  style.type = 'text/css';
+
+  if (insertAt === 'top') {
+    if (head.firstChild) {
+      head.insertBefore(style, head.firstChild);
+    } else {
+      head.appendChild(style);
+    }
+  } else {
+    head.appendChild(style);
+  }
+
+  if (style.styleSheet) {
+    style.styleSheet.cssText = css;
+  } else {
+    style.appendChild(document.createTextNode(css));
+  }
+}
+
+var css_248z$e = ".vis .overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n\n  /* Must be displayed above for example selected Timeline items */\n  z-index: 10;\n}\n\n.vis-active {\n  box-shadow: 0 0 10px #86d5f8;\n}\n";
+styleInject(css_248z$e);
+
+var css_248z$d = "/* override some bootstrap styles screwing up the timelines css */\n\n.vis [class*=\"span\"] {\n  min-height: 0;\n  width: auto;\n}\n";
+styleInject(css_248z$d);
+
+var css_248z$c = "div.vis-configuration {\n    position:relative;\n    display:block;\n    float:left;\n    font-size:12px;\n}\n\ndiv.vis-configuration-wrapper {\n    display:block;\n    width:700px;\n}\n\ndiv.vis-configuration-wrapper::after {\n  clear: both;\n  content: \"\";\n  display: block;\n}\n\ndiv.vis-configuration.vis-config-option-container{\n    display:block;\n    width:495px;\n    background-color: #ffffff;\n    border:2px solid #f7f8fa;\n    border-radius:4px;\n    margin-top:20px;\n    left:10px;\n    padding-left:5px;\n}\n\ndiv.vis-configuration.vis-config-button{\n    display:block;\n    width:495px;\n    height:25px;\n    vertical-align: middle;\n    line-height:25px;\n    background-color: #f7f8fa;\n    border:2px solid #ceced0;\n    border-radius:4px;\n    margin-top:20px;\n    left:10px;\n    padding-left:5px;\n    cursor: pointer;\n    margin-bottom:30px;\n}\n\ndiv.vis-configuration.vis-config-button.hover{\n    background-color: #4588e6;\n    border:2px solid #214373;\n    color:#ffffff;\n}\n\ndiv.vis-configuration.vis-config-item{\n    display:block;\n    float:left;\n    width:495px;\n    height:25px;\n    vertical-align: middle;\n    line-height:25px;\n}\n\n\ndiv.vis-configuration.vis-config-item.vis-config-s2{\n    left:10px;\n    background-color: #f7f8fa;\n    padding-left:5px;\n    border-radius:3px;\n}\ndiv.vis-configuration.vis-config-item.vis-config-s3{\n    left:20px;\n    background-color: #e4e9f0;\n    padding-left:5px;\n    border-radius:3px;\n}\ndiv.vis-configuration.vis-config-item.vis-config-s4{\n    left:30px;\n    background-color: #cfd8e6;\n    padding-left:5px;\n    border-radius:3px;\n}\n\ndiv.vis-configuration.vis-config-header{\n    font-size:18px;\n    font-weight: bold;\n}\n\ndiv.vis-configuration.vis-config-label{\n    width:120px;\n    height:25px;\n    line-height: 25px;\n}\n\ndiv.vis-configuration.vis-config-label.vis-config-s3{\n    width:110px;\n}\ndiv.vis-configuration.vis-config-label.vis-config-s4{\n    width:100px;\n}\n\ndiv.vis-configuration.vis-config-colorBlock{\n    top:1px;\n    width:30px;\n    height:19px;\n    border:1px solid #444444;\n    border-radius:2px;\n    padding:0px;\n    margin:0px;\n    cursor:pointer;\n}\n\ninput.vis-configuration.vis-config-checkbox {\n    left:-5px;\n}\n\n\ninput.vis-configuration.vis-config-rangeinput{\n    position:relative;\n    top:-5px;\n    width:60px;\n    /*height:13px;*/\n    padding:1px;\n    margin:0;\n    pointer-events:none;\n}\n\ninput.vis-configuration.vis-config-range{\n    /*removes default webkit styles*/\n    -webkit-appearance: none;\n\n    /*fix for FF unable to apply focus style bug */\n    border: 0px solid white;\n    background-color:rgba(0,0,0,0);\n\n    /*required for proper track sizing in FF*/\n    width: 300px;\n    height:20px;\n}\ninput.vis-configuration.vis-config-range::-webkit-slider-runnable-track {\n    width: 300px;\n    height: 5px;\n    background: #dedede; /* Old browsers */\n    background: -moz-linear-gradient(top,  #dedede 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dedede), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top, #dedede 0%, #c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #dedede 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dedede', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n\n    border: 1px solid #999999;\n    box-shadow: #aaaaaa 0px 0px 3px 0px;\n    border-radius: 3px;\n}\ninput.vis-configuration.vis-config-range::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: 1px solid #14334b;\n    height: 17px;\n    width: 17px;\n    border-radius: 50%;\n    background: #3876c2; /* Old browsers */\n    background: -moz-linear-gradient(top,  #3876c2 0%, #385380 100%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3876c2), color-stop(100%,#385380)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #3876c2 0%,#385380 100%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top,  #3876c2 0%,#385380 100%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #3876c2 0%,#385380 100%); /* IE10+ */\n    background: linear-gradient(to bottom,  #3876c2 0%,#385380 100%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3876c2', endColorstr='#385380',GradientType=0 ); /* IE6-9 */\n    box-shadow: #111927 0px 0px 1px 0px;\n    margin-top: -7px;\n}\ninput.vis-configuration.vis-config-range:focus {\n    outline: none;\n}\ninput.vis-configuration.vis-config-range:focus::-webkit-slider-runnable-track {\n    background: #9d9d9d; /* Old browsers */\n    background: -moz-linear-gradient(top, #9d9d9d 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9d9d9d), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #9d9d9d 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9d9d9d', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n}\n\ninput.vis-configuration.vis-config-range::-moz-range-track {\n    width: 300px;\n    height: 10px;\n    background: #dedede; /* Old browsers */\n    background: -moz-linear-gradient(top,  #dedede 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dedede), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top, #dedede 0%, #c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #dedede 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dedede', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n\n    border: 1px solid #999999;\n    box-shadow: #aaaaaa 0px 0px 3px 0px;\n    border-radius: 3px;\n}\ninput.vis-configuration.vis-config-range::-moz-range-thumb {\n    border: none;\n    height: 16px;\n    width: 16px;\n\n    border-radius: 50%;\n    background:  #385380;\n}\n\n/*hide the outline behind the border*/\ninput.vis-configuration.vis-config-range:-moz-focusring{\n    outline: 1px solid white;\n    outline-offset: -1px;\n}\n\ninput.vis-configuration.vis-config-range::-ms-track {\n    width: 300px;\n    height: 5px;\n\n    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */\n    background: transparent;\n\n    /*leave room for the larger thumb to overflow with a transparent border */\n    border-color: transparent;\n    border-width: 6px 0;\n\n    /*remove default tick marks*/\n    color: transparent;\n}\ninput.vis-configuration.vis-config-range::-ms-fill-lower {\n    background: #777;\n    border-radius: 10px;\n}\ninput.vis-configuration.vis-config-range::-ms-fill-upper {\n    background: #ddd;\n    border-radius: 10px;\n}\ninput.vis-configuration.vis-config-range::-ms-thumb {\n    border: none;\n    height: 16px;\n    width: 16px;\n    border-radius: 50%;\n    background:  #385380;\n}\ninput.vis-configuration.vis-config-range:focus::-ms-fill-lower {\n    background: #888;\n}\ninput.vis-configuration.vis-config-range:focus::-ms-fill-upper {\n    background: #ccc;\n}\n\n.vis-configuration-popup {\n    position: absolute;\n    background: rgba(57, 76, 89, 0.85);\n    border: 2px solid #f2faff;\n    line-height:30px;\n    height:30px;\n    width:150px;\n    text-align:center;\n    color: #ffffff;\n    font-size:14px;\n    border-radius:4px;\n    -webkit-transition: opacity 0.3s ease-in-out;\n    -moz-transition: opacity 0.3s ease-in-out;\n    transition: opacity 0.3s ease-in-out;\n}\n.vis-configuration-popup:after, .vis-configuration-popup:before {\n    left: 100%;\n    top: 50%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n}\n\n.vis-configuration-popup:after {\n    border-color: rgba(136, 183, 213, 0);\n    border-left-color: rgba(57, 76, 89, 0.85);\n    border-width: 8px;\n    margin-top: -8px;\n}\n.vis-configuration-popup:before {\n    border-color: rgba(194, 225, 245, 0);\n    border-left-color: #f2faff;\n    border-width: 12px;\n    margin-top: -12px;\n}";
+styleInject(css_248z$c);
+
+var css_248z$b = "div.vis-tooltip {\n  position: absolute;\n  visibility: hidden;\n  padding: 5px;\n  white-space: nowrap;\n\n  font-family: verdana;\n  font-size:14px;\n  color:#000000;\n  background-color: #f5f4ed;\n\n  -moz-border-radius: 3px;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  border: 1px solid #808074;\n\n  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);\n  pointer-events: none;\n\n  z-index: 5;\n}\n";
+styleInject(css_248z$b);
+
+var css_248z$a = ".vis-timeline {\n  /*\n  -webkit-transition: height .4s ease-in-out;\n  transition:         height .4s ease-in-out;\n  */\n}\n\n.vis-panel {\n  /*\n  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;\n  transition:         height .4s ease-in-out, top .4s ease-in-out;\n  */\n}\n\n.vis-axis {\n  /*\n  -webkit-transition: top .4s ease-in-out;\n  transition:         top .4s ease-in-out;\n  */\n}\n\n/* TODO: get animation working nicely\n\n.vis-item {\n  -webkit-transition: top .4s ease-in-out;\n  transition:         top .4s ease-in-out;\n}\n\n.vis-item.line {\n  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;\n  transition:         height .4s ease-in-out, top .4s ease-in-out;\n}\n/**/";
+styleInject(css_248z$a);
+
+var css_248z$9 = ".vis-current-time {\n  background-color: #FF7F6E;\n  width: 2px;\n  z-index: 1;\n  pointer-events: none;\n}\n\n.vis-rolling-mode-btn {\n  height: 40px;\n  width: 40px;\n  position: absolute;\n  top: 7px;\n  right: 20px;\n  border-radius: 50%;\n  font-size: 28px;\n  cursor: pointer;\n  opacity: 0.8;\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  background: #3876c2;\n}\n.vis-rolling-mode-btn:before {\n  content: \"\\26F6\";\n}\n\n.vis-rolling-mode-btn:hover {\n  opacity: 1;\n}";
+styleInject(css_248z$9);
+
+var css_248z$8 = ".vis-custom-time {\n  background-color: #6E94FF;\n  width: 2px;\n  cursor: move;\n  z-index: 1;\n}\n\n.vis-custom-time > .vis-custom-time-marker {\n  background-color: inherit;\n  color: white;\n  font-size: 12px;\n  white-space: nowrap;\n  padding: 3px 5px;\n  top: 0px;\n  cursor: initial;\n  z-index: inherit;\n}";
+styleInject(css_248z$8);
+
+var css_248z$7 = "\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  border-bottom: 1px solid;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-minor {\n  border-color: #e5e5e5;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-major {\n  border-color: #bfbfbf;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-major {\n  width: 100%;\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-major.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-minor {\n  position: absolute;\n  width: 100%;\n  color: #bebebe;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-minor.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title {\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n  bottom: 20px;\n  text-align: center;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-measure {\n  padding: 0;\n  margin: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-left {\n  bottom: 0;\n  -webkit-transform-origin: left top;\n  -moz-transform-origin: left top;\n  -ms-transform-origin: left top;\n  -o-transform-origin: left top;\n  transform-origin: left bottom;\n  -webkit-transform: rotate(-90deg);\n  -moz-transform: rotate(-90deg);\n  -ms-transform: rotate(-90deg);\n  -o-transform: rotate(-90deg);\n  transform: rotate(-90deg);\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-right {\n  bottom: 0;\n  -webkit-transform-origin: right bottom;\n  -moz-transform-origin: right bottom;\n  -ms-transform-origin: right bottom;\n  -o-transform-origin: right bottom;\n  transform-origin: right bottom;\n  -webkit-transform: rotate(90deg);\n  -moz-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  -o-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.vis-legend {\n  background-color: rgba(247, 252, 255, 0.65);\n  padding: 5px;\n  border: 1px solid #b3b3b3;\n  box-shadow: 2px 2px 10px rgba(154, 154, 154, 0.55);\n}\n\n.vis-legend-text {\n  /*font-size: 10px;*/\n  white-space: nowrap;\n  display: inline-block\n}";
+styleInject(css_248z$7);
+
+var css_248z$6 = "\n.vis-item {\n  position: absolute;\n  color: #1A1A1A;\n  border-color: #97B0F8;\n  border-width: 1px;\n  background-color: #D5DDF6;\n  display: inline-block;\n  z-index: 1;\n  /*overflow: hidden;*/\n}\n\n.vis-item.vis-selected {\n  border-color: #FFC200;\n  background-color: #FFF785;\n\n  /* z-index must be higher than the z-index of custom time bar and current time bar */\n  z-index: 2;\n}\n\n.vis-editable.vis-selected {\n  cursor: move;\n}\n\n.vis-item.vis-point.vis-selected {\n  background-color: #FFF785;\n}\n\n.vis-item.vis-box {\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-point {\n  background: none;\n}\n\n.vis-item.vis-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}\n\n.vis-item.vis-range {\n  border-style: solid;\n  border-radius: 2px;\n  box-sizing: border-box;\n}\n\n.vis-item.vis-background {\n  border: none;\n  background-color: rgba(213, 221, 246, 0.4);\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n}\n\n.vis-item .vis-item-overflow {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n}\n\n.vis-item-visible-frame {\n  white-space: nowrap;\n}\n\n.vis-item.vis-range .vis-item-content {\n  position: relative;\n  display: inline-block;\n}\n\n.vis-item.vis-background .vis-item-content {\n  position: absolute;\n  display: inline-block;\n}\n\n.vis-item.vis-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item .vis-item-content {\n  white-space: nowrap;\n  box-sizing: border-box;\n  padding: 5px;\n}\n\n.vis-item .vis-onUpdateTime-tooltip {\n  position: absolute;\n  background: #4f81bd;\n  color: white;\n  width: 200px;\n  text-align: center;\n  white-space: nowrap;\n  padding: 5px;\n  border-radius: 1px;\n  transition: 0.4s;\n  -o-transition: 0.4s;\n  -moz-transition: 0.4s;\n  -webkit-transition: 0.4s;\n}\n\n.vis-item .vis-delete, .vis-item .vis-delete-rtl {\n  position: absolute;\n  top: 0px;\n  width: 24px;\n  height: 24px;\n  box-sizing: border-box;\n  padding: 0px 5px;\n  cursor: pointer;\n\n  -webkit-transition: background 0.2s linear;\n  -moz-transition: background 0.2s linear;\n  -ms-transition: background 0.2s linear;\n  -o-transition: background 0.2s linear;\n  transition: background 0.2s linear;\n}\n\n.vis-item .vis-delete {\n  right: -24px;\n}\n\n.vis-item .vis-delete-rtl {\n  left: -24px;\n}\n\n.vis-item .vis-delete:after, .vis-item .vis-delete-rtl:after {\n  content: \"\\00D7\"; /* MULTIPLICATION SIGN */\n  color: red;\n  font-family: arial, sans-serif;\n  font-size: 22px;\n  font-weight: bold;\n\n  -webkit-transition: color 0.2s linear;\n  -moz-transition: color 0.2s linear;\n  -ms-transition: color 0.2s linear;\n  -o-transition: color 0.2s linear;\n  transition: color 0.2s linear;\n}\n\n.vis-item .vis-delete:hover, .vis-item .vis-delete-rtl:hover {\n  background: red;\n}\n\n.vis-item .vis-delete:hover:after, .vis-item .vis-delete-rtl:hover:after {\n  color: white;\n}\n\n.vis-item .vis-drag-center {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0px;\n  cursor: move;\n}\n\n.vis-item.vis-range .vis-drag-left {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  left: -4px;\n\n  cursor: w-resize;\n}\n\n.vis-item.vis-range .vis-drag-right {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  right: -4px;\n\n  cursor: e-resize;\n}\n\n.vis-range.vis-item.vis-readonly .vis-drag-left,\n.vis-range.vis-item.vis-readonly .vis-drag-right {\n  cursor: auto;\n}\n\n.vis-item.vis-cluster {\n  vertical-align: center;\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-cluster-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item.vis-cluster-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}";
+styleInject(css_248z$6);
+
+var css_248z$5 = "\n.vis-itemset {\n  position: relative;\n  padding: 0;\n  margin: 0;\n\n  box-sizing: border-box;\n}\n\n.vis-itemset .vis-background,\n.vis-itemset .vis-foreground {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: visible;\n}\n\n.vis-axis {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  left: 0;\n  z-index: 1;\n}\n\n.vis-foreground .vis-group {\n  position: relative;\n  box-sizing: border-box;\n  border-bottom: 1px solid #bfbfbf;\n}\n\n.vis-foreground .vis-group:last-child {\n  border-bottom: none;\n}\n\n.vis-nesting-group {\n  cursor: pointer;\n}\n\n.vis-label.vis-nested-group.vis-group-level-unknown-but-gte1 {\n  background: #f5f5f5;\n}\n.vis-label.vis-nested-group.vis-group-level-0 {\n  background-color: #ffffff;\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {\n  padding-left: 0;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {\n  padding-right: 0;\n}\n.vis-label.vis-nested-group.vis-group-level-1 {\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {\n  padding-left: 15px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {\n  padding-right: 15px;\n}\n.vis-label.vis-nested-group.vis-group-level-2 {\n  background-color: rgba(0, 0, 0, 0.1);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {\n  padding-left: 30px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {\n  padding-right: 30px;\n}\n.vis-label.vis-nested-group.vis-group-level-3 {\n  background-color: rgba(0, 0, 0, 0.15);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {\n  padding-left: 45px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {\n  padding-right: 45px;\n}\n.vis-label.vis-nested-group.vis-group-level-4 {\n  background-color: rgba(0, 0, 0, 0.2);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {\n  padding-left: 60px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {\n  padding-right: 60px;\n}\n.vis-label.vis-nested-group.vis-group-level-5 {\n  background-color: rgba(0, 0, 0, 0.25);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {\n  padding-left: 75px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {\n  padding-right: 75px;\n}\n.vis-label.vis-nested-group.vis-group-level-6 {\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {\n  padding-left: 90px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {\n  padding-right: 90px;\n}\n.vis-label.vis-nested-group.vis-group-level-7 {\n  background-color: rgba(0, 0, 0, 0.35);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {\n  padding-left: 105px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {\n  padding-right: 105px;\n}\n.vis-label.vis-nested-group.vis-group-level-8 {\n  background-color: rgba(0, 0, 0, 0.4);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {\n  padding-left: 120px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {\n  padding-right: 120px;\n}\n.vis-label.vis-nested-group.vis-group-level-9 {\n  background-color: rgba(0, 0, 0, 0.45);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {\n  padding-left: 135px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {\n  padding-right: 135px;\n}\n/* default takes over beginning with level-10 (thats why we add .vis-nested-group\n  to the selectors above, to have higher specifity than these rules for the defaults) */\n.vis-label.vis-nested-group {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.vis-ltr .vis-label.vis-nested-group .vis-inner {\n  padding-left: 150px;\n}\n.vis-rtl .vis-label.vis-nested-group .vis-inner {\n  padding-right: 150px;\n}\n\n.vis-group-level-unknown-but-gte1 {\n  border: 1px solid red;\n}\n\n/* expanded/collapsed indicators */\n.vis-label.vis-nesting-group:before,\n.vis-label.vis-nesting-group:before {\n  display: inline-block;\n  width: 15px;\n}\n.vis-label.vis-nesting-group.expanded:before {\n  content: \"\\25BC\";\n}\n.vis-label.vis-nesting-group.collapsed:before {\n  content: \"\\25B6\";\n}\n.vis-rtl .vis-label.vis-nesting-group.collapsed:before {\n  content: \"\\25C0\";\n}\n/* compensate missing expanded/collapsed indicator, but only at levels > 0 */\n.vis-ltr .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {\n  padding-left: 15px;\n}\n.vis-rtl .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {\n  padding-right: 15px;\n}\n\n.vis-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 10;\n}";
+styleInject(css_248z$5);
+
+var css_248z$4 = "\n.vis-labelset {\n  position: relative;\n\n  overflow: hidden;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  position: relative;\n  left: 0;\n  top: 0;\n  width: 100%;\n  color: #4d4d4d;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  border-bottom: 1px solid #bfbfbf;\n}\n\n.vis-labelset .vis-label.draggable {\n  cursor: pointer;\n}\n\n.vis-group-is-dragging {\n  background: rgba(0, 0, 0, .1);\n}\n\n.vis-labelset .vis-label:last-child {\n  border-bottom: none;\n}\n\n.vis-labelset .vis-label .vis-inner {\n  display: inline-block;\n  padding: 5px;\n}\n\n.vis-labelset .vis-label .vis-inner.vis-hidden {\n  padding: 0;\n}\n";
+styleInject(css_248z$4);
+
+var css_248z$3 = ".vis-panel {\n  position: absolute;\n\n  padding: 0;\n  margin: 0;\n\n  box-sizing: border-box;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-left,\n.vis-panel.vis-right,\n.vis-panel.vis-top,\n.vis-panel.vis-bottom {\n  border: 1px #bfbfbf;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-left,\n.vis-panel.vis-right {\n  border-top-style: solid;\n  border-bottom-style: solid;\n  overflow: hidden;\n}\n\n.vis-left.vis-panel.vis-vertical-scroll, .vis-right.vis-panel.vis-vertical-scroll {\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: scroll;\n} \n\n.vis-left.vis-panel.vis-vertical-scroll {\n  direction: rtl;\n}\n\n.vis-left.vis-panel.vis-vertical-scroll .vis-content {\n  direction: ltr;\n}\n\n.vis-right.vis-panel.vis-vertical-scroll {\n  direction: ltr;\n}\n\n.vis-right.vis-panel.vis-vertical-scroll .vis-content {\n  direction: rtl;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-top,\n.vis-panel.vis-bottom {\n  border-left-style: solid;\n  border-right-style: solid;\n}\n\n.vis-background {\n  overflow: hidden;\n}\n\n.vis-panel > .vis-content {\n  position: relative;\n}\n\n.vis-panel .vis-shadow {\n  position: absolute;\n  width: 100%;\n  height: 1px;\n  box-shadow: 0 0 10px rgba(0,0,0,0.8);\n  /* TODO: find a nice way to ensure vis-shadows are drawn on top of items\n  z-index: 1;\n  */\n}\n\n.vis-panel .vis-shadow.vis-top {\n  top: -1px;\n  left: 0;\n}\n\n.vis-panel .vis-shadow.vis-bottom {\n  bottom: -1px;\n  left: 0;\n}";
+styleInject(css_248z$3);
+
+var css_248z$2 = ".vis-graph-group0 {\n    fill:#4f81bd;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #4f81bd;\n}\n\n.vis-graph-group1 {\n    fill:#f79646;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #f79646;\n}\n\n.vis-graph-group2 {\n    fill: #8c51cf;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #8c51cf;\n}\n\n.vis-graph-group3 {\n    fill: #75c841;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #75c841;\n}\n\n.vis-graph-group4 {\n    fill: #ff0100;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #ff0100;\n}\n\n.vis-graph-group5 {\n    fill: #37d8e6;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #37d8e6;\n}\n\n.vis-graph-group6 {\n    fill: #042662;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #042662;\n}\n\n.vis-graph-group7 {\n    fill:#00ff26;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #00ff26;\n}\n\n.vis-graph-group8 {\n    fill:#ff00ff;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #ff00ff;\n}\n\n.vis-graph-group9 {\n    fill: #8f3938;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #8f3938;\n}\n\n.vis-timeline .vis-fill {\n    fill-opacity:0.1;\n    stroke: none;\n}\n\n\n.vis-timeline .vis-bar {\n    fill-opacity:0.5;\n    stroke-width:1px;\n}\n\n.vis-timeline .vis-point {\n    stroke-width:2px;\n    fill-opacity:1.0;\n}\n\n\n.vis-timeline .vis-legend-background {\n    stroke-width:1px;\n    fill-opacity:0.9;\n    fill: #ffffff;\n    stroke: #c2c2c2;\n}\n\n\n.vis-timeline .vis-outline {\n    stroke-width:1px;\n    fill-opacity:1;\n    fill: #ffffff;\n    stroke: #e5e5e5;\n}\n\n.vis-timeline .vis-icon-fill {\n    fill-opacity:0.3;\n    stroke: none;\n}\n";
+styleInject(css_248z$2);
+
+var css_248z$1 = ".vis-time-axis {\n  position: relative;\n  overflow: hidden;\n}\n\n.vis-time-axis.vis-foreground {\n  top: 0;\n  left: 0;\n  width: 100%;\n}\n\n.vis-time-axis.vis-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.vis-time-axis .vis-text {\n  position: absolute;\n  color: #4d4d4d;\n  padding: 3px;\n  overflow: hidden;\n  box-sizing: border-box;\n\n  white-space: nowrap;\n}\n\n.vis-time-axis .vis-text.vis-measure {\n  position: absolute;\n  padding-left: 0;\n  padding-right: 0;\n  margin-left: 0;\n  margin-right: 0;\n  visibility: hidden;\n}\n\n.vis-time-axis .vis-grid.vis-vertical {\n  position: absolute;\n  border-left: 1px solid;\n}\n\n.vis-time-axis .vis-grid.vis-vertical-rtl {\n  position: absolute;\n  border-right: 1px solid;\n}\n\n.vis-time-axis .vis-grid.vis-minor {\n  border-color: #e5e5e5;\n}\n\n.vis-time-axis .vis-grid.vis-major {\n  border-color: #bfbfbf;\n}\n";
+styleInject(css_248z$1);
+
+var css_248z = "\n.vis-timeline {\n  position: relative;\n  border: 1px solid #bfbfbf;\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n}\n\n.vis-loading-screen {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n}";
+styleInject(css_248z);
 
 var commonjsGlobal = typeof globalThis !== 'undefined' ? globalThis : typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};
 
@@ -17395,68 +17467,68 @@ const VALIDATOR_PRINT_STYLE = VALIDATOR_PRINT_STYLE$1;
 const Validator$2 = Validator$1;
 
 var util$2 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	Activator: Activator$2,
-	Alea: Alea,
-	ColorPicker: ColorPicker$2,
-	Configurator: Configurator$2,
-	DELETE: DELETE,
-	HSVToHex: HSVToHex,
-	HSVToRGB: HSVToRGB,
-	Hammer: Hammer$2,
-	Popup: Popup$2,
-	RGBToHSV: RGBToHSV,
-	RGBToHex: RGBToHex,
-	VALIDATOR_PRINT_STYLE: VALIDATOR_PRINT_STYLE,
-	Validator: Validator$2,
-	addClassName: addClassName,
-	addCssText: addCssText,
-	binarySearchCustom: binarySearchCustom,
-	binarySearchValue: binarySearchValue,
-	bridgeObject: bridgeObject,
-	copyAndExtendArray: copyAndExtendArray,
-	copyArray: copyArray,
-	deepExtend: deepExtend,
-	deepObjectAssign: deepObjectAssign,
-	easingFunctions: easingFunctions,
-	equalArray: equalArray,
-	extend: extend,
-	fillIfDefined: fillIfDefined,
-	forEach: forEach$1,
-	getAbsoluteLeft: getAbsoluteLeft,
-	getAbsoluteRight: getAbsoluteRight,
-	getAbsoluteTop: getAbsoluteTop,
-	getScrollBarWidth: getScrollBarWidth,
-	getTarget: getTarget,
-	getType: getType,
-	hasParent: hasParent,
-	hexToHSV: hexToHSV,
-	hexToRGB: hexToRGB,
-	insertSort: insertSort,
-	isDate: isDate,
-	isNumber: isNumber,
-	isObject: isObject$3,
-	isString: isString,
-	isValidHex: isValidHex,
-	isValidRGB: isValidRGB,
-	isValidRGBA: isValidRGBA,
-	mergeOptions: mergeOptions,
-	option: option,
-	overrideOpacity: overrideOpacity,
-	parseColor: parseColor,
-	preventDefault: preventDefault,
-	pureDeepObjectAssign: pureDeepObjectAssign,
-	recursiveDOMDelete: recursiveDOMDelete,
-	removeClassName: removeClassName,
-	removeCssText: removeCssText,
-	selectiveBridgeObject: selectiveBridgeObject,
-	selectiveDeepExtend: selectiveDeepExtend,
-	selectiveExtend: selectiveExtend,
-	selectiveNotDeepExtend: selectiveNotDeepExtend,
-	throttle: throttle,
-	toArray: toArray,
-	topMost: topMost,
-	updateProperty: updateProperty
+  __proto__: null,
+  Activator: Activator$2,
+  Alea: Alea,
+  ColorPicker: ColorPicker$2,
+  Configurator: Configurator$2,
+  DELETE: DELETE,
+  HSVToHex: HSVToHex,
+  HSVToRGB: HSVToRGB,
+  Hammer: Hammer$2,
+  Popup: Popup$2,
+  RGBToHSV: RGBToHSV,
+  RGBToHex: RGBToHex,
+  VALIDATOR_PRINT_STYLE: VALIDATOR_PRINT_STYLE,
+  Validator: Validator$2,
+  addClassName: addClassName,
+  addCssText: addCssText,
+  binarySearchCustom: binarySearchCustom,
+  binarySearchValue: binarySearchValue,
+  bridgeObject: bridgeObject,
+  copyAndExtendArray: copyAndExtendArray,
+  copyArray: copyArray,
+  deepExtend: deepExtend,
+  deepObjectAssign: deepObjectAssign,
+  easingFunctions: easingFunctions,
+  equalArray: equalArray,
+  extend: extend,
+  fillIfDefined: fillIfDefined,
+  forEach: forEach$1,
+  getAbsoluteLeft: getAbsoluteLeft,
+  getAbsoluteRight: getAbsoluteRight,
+  getAbsoluteTop: getAbsoluteTop,
+  getScrollBarWidth: getScrollBarWidth,
+  getTarget: getTarget,
+  getType: getType,
+  hasParent: hasParent,
+  hexToHSV: hexToHSV,
+  hexToRGB: hexToRGB,
+  insertSort: insertSort,
+  isDate: isDate,
+  isNumber: isNumber,
+  isObject: isObject$3,
+  isString: isString,
+  isValidHex: isValidHex,
+  isValidRGB: isValidRGB,
+  isValidRGBA: isValidRGBA,
+  mergeOptions: mergeOptions,
+  option: option,
+  overrideOpacity: overrideOpacity,
+  parseColor: parseColor,
+  preventDefault: preventDefault,
+  pureDeepObjectAssign: pureDeepObjectAssign,
+  recursiveDOMDelete: recursiveDOMDelete,
+  removeClassName: removeClassName,
+  removeCssText: removeCssText,
+  selectiveBridgeObject: selectiveBridgeObject,
+  selectiveDeepExtend: selectiveDeepExtend,
+  selectiveExtend: selectiveExtend,
+  selectiveNotDeepExtend: selectiveNotDeepExtend,
+  throttle: throttle,
+  toArray: toArray,
+  topMost: topMost,
+  updateProperty: updateProperty
 });
 
 // DOM utility methods
@@ -17690,15 +17762,15 @@ function getNavigatorLanguage() {
 }
 
 var DOMutil = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	cleanupElements: cleanupElements,
-	drawBar: drawBar,
-	drawPoint: drawPoint,
-	getDOMElement: getDOMElement,
-	getNavigatorLanguage: getNavigatorLanguage,
-	getSVGElement: getSVGElement,
-	prepareElements: prepareElements,
-	resetElements: resetElements
+  __proto__: null,
+  cleanupElements: cleanupElements,
+  drawBar: drawBar,
+  drawPoint: drawPoint,
+  getDOMElement: getDOMElement,
+  getNavigatorLanguage: getNavigatorLanguage,
+  getSVGElement: getSVGElement,
+  prepareElements: prepareElements,
+  resetElements: resetElements
 });
 
 var path$8 = path$q;
@@ -24030,21 +24102,21 @@ function getIsHidden(time, hiddenDates) {
 }
 
 var DateUtil = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	convertHiddenOptions: convertHiddenOptions,
-	correctTimeForHidden: correctTimeForHidden,
-	getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
-	getHiddenDurationBefore: getHiddenDurationBefore,
-	getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
-	getHiddenDurationBetween: getHiddenDurationBetween,
-	getIsHidden: getIsHidden,
-	printDates: printDates,
-	removeDuplicates: removeDuplicates,
-	snapAwayFromHidden: snapAwayFromHidden,
-	stepOverHiddenDates: stepOverHiddenDates,
-	toScreen: toScreen,
-	toTime: toTime,
-	updateHiddenDates: updateHiddenDates
+  __proto__: null,
+  convertHiddenOptions: convertHiddenOptions,
+  correctTimeForHidden: correctTimeForHidden,
+  getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
+  getHiddenDurationBefore: getHiddenDurationBefore,
+  getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
+  getHiddenDurationBetween: getHiddenDurationBetween,
+  getIsHidden: getIsHidden,
+  printDates: printDates,
+  removeDuplicates: removeDuplicates,
+  snapAwayFromHidden: snapAwayFromHidden,
+  stepOverHiddenDates: stepOverHiddenDates,
+  toScreen: toScreen,
+  toTime: toTime,
+  updateHiddenDates: updateHiddenDates
 });
 
 /**
@@ -26041,36 +26113,6 @@ TimeStep.FORMAT = {
   }
 };
 
-function styleInject(css, ref) {
-  if ( ref === void 0 ) ref = {};
-  var insertAt = ref.insertAt;
-
-  if (!css || typeof document === 'undefined') { return; }
-
-  var head = document.head || document.getElementsByTagName('head')[0];
-  var style = document.createElement('style');
-  style.type = 'text/css';
-
-  if (insertAt === 'top') {
-    if (head.firstChild) {
-      head.insertBefore(style, head.firstChild);
-    } else {
-      head.appendChild(style);
-    }
-  } else {
-    head.appendChild(style);
-  }
-
-  if (style.styleSheet) {
-    style.styleSheet.cssText = css;
-  } else {
-    style.appendChild(document.createTextNode(css));
-  }
-}
-
-var css_248z$e = ".vis-time-axis {\n  position: relative;\n  overflow: hidden;\n}\n\n.vis-time-axis.vis-foreground {\n  top: 0;\n  left: 0;\n  width: 100%;\n}\n\n.vis-time-axis.vis-background {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n.vis-time-axis .vis-text {\n  position: absolute;\n  color: #4d4d4d;\n  padding: 3px;\n  overflow: hidden;\n  box-sizing: border-box;\n\n  white-space: nowrap;\n}\n\n.vis-time-axis .vis-text.vis-measure {\n  position: absolute;\n  padding-left: 0;\n  padding-right: 0;\n  margin-left: 0;\n  margin-right: 0;\n  visibility: hidden;\n}\n\n.vis-time-axis .vis-grid.vis-vertical {\n  position: absolute;\n  border-left: 1px solid;\n}\n\n.vis-time-axis .vis-grid.vis-vertical-rtl {\n  position: absolute;\n  border-right: 1px solid;\n}\n\n.vis-time-axis .vis-grid.vis-minor {\n  border-color: #e5e5e5;\n}\n\n.vis-time-axis .vis-grid.vis-major {\n  border-color: #bfbfbf;\n}\n";
-styleInject(css_248z$e);
-
 /** A horizontal time axis */
 class TimeAxis extends Component {
   /**
@@ -26688,9 +26730,6 @@ function keycharm(options) {
   return _exportFunctions;
 }
 
-var css_248z$d = ".vis .overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n\n  /* Must be displayed above for example selected Timeline items */\n  z-index: 10;\n}\n\n.vis-active {\n  box-shadow: 0 0 10px #86d5f8;\n}\n";
-styleInject(css_248z$d);
-
 /**
  * Turn an element into an clickToUse element.
  * When not active, the element has a transparent overlay. When the overlay is
@@ -27000,9 +27039,6 @@ const locales = {
   nb_NO,
   nn_NO
 };
-
-var css_248z$c = ".vis-custom-time {\n  background-color: #6E94FF;\n  width: 2px;\n  cursor: move;\n  z-index: 1;\n}\n\n.vis-custom-time > .vis-custom-time-marker {\n  background-color: inherit;\n  color: white;\n  font-size: 12px;\n  white-space: nowrap;\n  padding: 3px 5px;\n  top: 0px;\n  cursor: initial;\n  z-index: inherit;\n}";
-styleInject(css_248z$c);
 
 /** A custom time bar */
 class CustomTime extends Component {
@@ -27327,24 +27363,6 @@ class CustomTime extends Component {
     return null;
   }
 }
-
-var css_248z$b = ".vis-timeline {\n  /*\n  -webkit-transition: height .4s ease-in-out;\n  transition:         height .4s ease-in-out;\n  */\n}\n\n.vis-panel {\n  /*\n  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;\n  transition:         height .4s ease-in-out, top .4s ease-in-out;\n  */\n}\n\n.vis-axis {\n  /*\n  -webkit-transition: top .4s ease-in-out;\n  transition:         top .4s ease-in-out;\n  */\n}\n\n/* TODO: get animation working nicely\n\n.vis-item {\n  -webkit-transition: top .4s ease-in-out;\n  transition:         top .4s ease-in-out;\n}\n\n.vis-item.line {\n  -webkit-transition: height .4s ease-in-out, top .4s ease-in-out;\n  transition:         height .4s ease-in-out, top .4s ease-in-out;\n}\n/**/";
-styleInject(css_248z$b);
-
-var css_248z$a = ".vis-current-time {\n  background-color: #FF7F6E;\n  width: 2px;\n  z-index: 1;\n  pointer-events: none;\n}\n\n.vis-rolling-mode-btn {\n  height: 40px;\n  width: 40px;\n  position: absolute;\n  top: 7px;\n  right: 20px;\n  border-radius: 50%;\n  font-size: 28px;\n  cursor: pointer;\n  opacity: 0.8;\n  color: white;\n  font-weight: bold;\n  text-align: center;\n  background: #3876c2;\n}\n.vis-rolling-mode-btn:before {\n  content: \"\\26F6\";\n}\n\n.vis-rolling-mode-btn:hover {\n  opacity: 1;\n}";
-styleInject(css_248z$a);
-
-var css_248z$9 = ".vis-panel {\n  position: absolute;\n\n  padding: 0;\n  margin: 0;\n\n  box-sizing: border-box;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-left,\n.vis-panel.vis-right,\n.vis-panel.vis-top,\n.vis-panel.vis-bottom {\n  border: 1px #bfbfbf;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-left,\n.vis-panel.vis-right {\n  border-top-style: solid;\n  border-bottom-style: solid;\n  overflow: hidden;\n}\n\n.vis-left.vis-panel.vis-vertical-scroll, .vis-right.vis-panel.vis-vertical-scroll {\n  height: 100%;\n  overflow-x: hidden;\n  overflow-y: scroll;\n} \n\n.vis-left.vis-panel.vis-vertical-scroll {\n  direction: rtl;\n}\n\n.vis-left.vis-panel.vis-vertical-scroll .vis-content {\n  direction: ltr;\n}\n\n.vis-right.vis-panel.vis-vertical-scroll {\n  direction: ltr;\n}\n\n.vis-right.vis-panel.vis-vertical-scroll .vis-content {\n  direction: rtl;\n}\n\n.vis-panel.vis-center,\n.vis-panel.vis-top,\n.vis-panel.vis-bottom {\n  border-left-style: solid;\n  border-right-style: solid;\n}\n\n.vis-background {\n  overflow: hidden;\n}\n\n.vis-panel > .vis-content {\n  position: relative;\n}\n\n.vis-panel .vis-shadow {\n  position: absolute;\n  width: 100%;\n  height: 1px;\n  box-shadow: 0 0 10px rgba(0,0,0,0.8);\n  /* TODO: find a nice way to ensure vis-shadows are drawn on top of items\n  z-index: 1;\n  */\n}\n\n.vis-panel .vis-shadow.vis-top {\n  top: -1px;\n  left: 0;\n}\n\n.vis-panel .vis-shadow.vis-bottom {\n  bottom: -1px;\n  left: 0;\n}";
-styleInject(css_248z$9);
-
-var css_248z$8 = ".vis-graph-group0 {\n    fill:#4f81bd;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #4f81bd;\n}\n\n.vis-graph-group1 {\n    fill:#f79646;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #f79646;\n}\n\n.vis-graph-group2 {\n    fill: #8c51cf;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #8c51cf;\n}\n\n.vis-graph-group3 {\n    fill: #75c841;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #75c841;\n}\n\n.vis-graph-group4 {\n    fill: #ff0100;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #ff0100;\n}\n\n.vis-graph-group5 {\n    fill: #37d8e6;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #37d8e6;\n}\n\n.vis-graph-group6 {\n    fill: #042662;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #042662;\n}\n\n.vis-graph-group7 {\n    fill:#00ff26;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #00ff26;\n}\n\n.vis-graph-group8 {\n    fill:#ff00ff;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #ff00ff;\n}\n\n.vis-graph-group9 {\n    fill: #8f3938;\n    fill-opacity:0;\n    stroke-width:2px;\n    stroke: #8f3938;\n}\n\n.vis-timeline .vis-fill {\n    fill-opacity:0.1;\n    stroke: none;\n}\n\n\n.vis-timeline .vis-bar {\n    fill-opacity:0.5;\n    stroke-width:1px;\n}\n\n.vis-timeline .vis-point {\n    stroke-width:2px;\n    fill-opacity:1.0;\n}\n\n\n.vis-timeline .vis-legend-background {\n    stroke-width:1px;\n    fill-opacity:0.9;\n    fill: #ffffff;\n    stroke: #c2c2c2;\n}\n\n\n.vis-timeline .vis-outline {\n    stroke-width:1px;\n    fill-opacity:1;\n    fill: #ffffff;\n    stroke: #e5e5e5;\n}\n\n.vis-timeline .vis-icon-fill {\n    fill-opacity:0.3;\n    stroke: none;\n}\n";
-styleInject(css_248z$8);
-
-var css_248z$7 = "\n.vis-timeline {\n  position: relative;\n  border: 1px solid #bfbfbf;\n  overflow: hidden;\n  padding: 0;\n  margin: 0;\n  box-sizing: border-box;\n}\n\n.vis-loading-screen {\n  width: 100%;\n  height: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n}";
-styleInject(css_248z$7);
-
-var css_248z$6 = "/* override some bootstrap styles screwing up the timelines css */\n\n.vis [class*=\"span\"] {\n  min-height: 0;\n  width: auto;\n}\n";
-styleInject(css_248z$6);
 
 /**
  * Create a timeline visualization
@@ -29312,14 +29330,14 @@ function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	nostack: nostack,
-	orderByEnd: orderByEnd,
-	orderByStart: orderByStart,
-	stack: stack,
-	stackSubgroups: stackSubgroups,
-	stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
-	substack: substack
+  __proto__: null,
+  nostack: nostack,
+  orderByEnd: orderByEnd,
+  orderByStart: orderByStart,
+  stack: stack,
+  stackSubgroups: stackSubgroups,
+  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
+  substack: substack
 });
 
 const UNGROUPED$3 = '__ungrouped__'; // reserved group id for ungrouped items
@@ -30470,9 +30488,6 @@ class BackgroundGroup extends Group {
     }
   }
 }
-
-var css_248z$5 = "\n.vis-item {\n  position: absolute;\n  color: #1A1A1A;\n  border-color: #97B0F8;\n  border-width: 1px;\n  background-color: #D5DDF6;\n  display: inline-block;\n  z-index: 1;\n  /*overflow: hidden;*/\n}\n\n.vis-item.vis-selected {\n  border-color: #FFC200;\n  background-color: #FFF785;\n\n  /* z-index must be higher than the z-index of custom time bar and current time bar */\n  z-index: 2;\n}\n\n.vis-editable.vis-selected {\n  cursor: move;\n}\n\n.vis-item.vis-point.vis-selected {\n  background-color: #FFF785;\n}\n\n.vis-item.vis-box {\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-point {\n  background: none;\n}\n\n.vis-item.vis-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}\n\n.vis-item.vis-range {\n  border-style: solid;\n  border-radius: 2px;\n  box-sizing: border-box;\n}\n\n.vis-item.vis-background {\n  border: none;\n  background-color: rgba(213, 221, 246, 0.4);\n  box-sizing: border-box;\n  padding: 0;\n  margin: 0;\n}\n\n.vis-item .vis-item-overflow {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  padding: 0;\n  margin: 0;\n  overflow: hidden;\n}\n\n.vis-item-visible-frame {\n  white-space: nowrap;\n}\n\n.vis-item.vis-range .vis-item-content {\n  position: relative;\n  display: inline-block;\n}\n\n.vis-item.vis-background .vis-item-content {\n  position: absolute;\n  display: inline-block;\n}\n\n.vis-item.vis-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item .vis-item-content {\n  white-space: nowrap;\n  box-sizing: border-box;\n  padding: 5px;\n}\n\n.vis-item .vis-onUpdateTime-tooltip {\n  position: absolute;\n  background: #4f81bd;\n  color: white;\n  width: 200px;\n  text-align: center;\n  white-space: nowrap;\n  padding: 5px;\n  border-radius: 1px;\n  transition: 0.4s;\n  -o-transition: 0.4s;\n  -moz-transition: 0.4s;\n  -webkit-transition: 0.4s;\n}\n\n.vis-item .vis-delete, .vis-item .vis-delete-rtl {\n  position: absolute;\n  top: 0px;\n  width: 24px;\n  height: 24px;\n  box-sizing: border-box;\n  padding: 0px 5px;\n  cursor: pointer;\n\n  -webkit-transition: background 0.2s linear;\n  -moz-transition: background 0.2s linear;\n  -ms-transition: background 0.2s linear;\n  -o-transition: background 0.2s linear;\n  transition: background 0.2s linear;\n}\n\n.vis-item .vis-delete {\n  right: -24px;\n}\n\n.vis-item .vis-delete-rtl {\n  left: -24px;\n}\n\n.vis-item .vis-delete:after, .vis-item .vis-delete-rtl:after {\n  content: \"\\00D7\"; /* MULTIPLICATION SIGN */\n  color: red;\n  font-family: arial, sans-serif;\n  font-size: 22px;\n  font-weight: bold;\n\n  -webkit-transition: color 0.2s linear;\n  -moz-transition: color 0.2s linear;\n  -ms-transition: color 0.2s linear;\n  -o-transition: color 0.2s linear;\n  transition: color 0.2s linear;\n}\n\n.vis-item .vis-delete:hover, .vis-item .vis-delete-rtl:hover {\n  background: red;\n}\n\n.vis-item .vis-delete:hover:after, .vis-item .vis-delete-rtl:hover:after {\n  color: white;\n}\n\n.vis-item .vis-drag-center {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  top: 0;\n  left: 0px;\n  cursor: move;\n}\n\n.vis-item.vis-range .vis-drag-left {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  left: -4px;\n\n  cursor: w-resize;\n}\n\n.vis-item.vis-range .vis-drag-right {\n  position: absolute;\n  width: 24px;\n  max-width: 20%;\n  min-width: 2px;\n  height: 100%;\n  top: 0;\n  right: -4px;\n\n  cursor: e-resize;\n}\n\n.vis-range.vis-item.vis-readonly .vis-drag-left,\n.vis-range.vis-item.vis-readonly .vis-drag-right {\n  cursor: auto;\n}\n\n.vis-item.vis-cluster {\n  vertical-align: center;\n  text-align: center;\n  border-style: solid;\n  border-radius: 2px;\n}\n\n.vis-item.vis-cluster-line {\n  padding: 0;\n  position: absolute;\n  width: 0;\n  border-left-width: 1px;\n  border-left-style: solid;\n}\n\n.vis-item.vis-cluster-dot {\n  position: absolute;\n  padding: 0;\n  border-width: 4px;\n  border-style: solid;\n  border-radius: 4px;\n}";
-styleInject(css_248z$5);
 
 /**
  * Item
@@ -32333,9 +32348,6 @@ BackgroundItem.prototype.hide = RangeItem.prototype.hide;
  */
 BackgroundItem.prototype.repositionX = RangeItem.prototype.repositionX;
 
-var css_248z$4 = "div.vis-tooltip {\n  position: absolute;\n  visibility: hidden;\n  padding: 5px;\n  white-space: nowrap;\n\n  font-family: verdana;\n  font-size:14px;\n  color:#000000;\n  background-color: #f5f4ed;\n\n  -moz-border-radius: 3px;\n  -webkit-border-radius: 3px;\n  border-radius: 3px;\n  border: 1px solid #808074;\n\n  box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);\n  pointer-events: none;\n\n  z-index: 5;\n}\n";
-styleInject(css_248z$4);
-
 /**
  * Popup is a class to create a popup window with some text
  */
@@ -33387,12 +33399,6 @@ class ClusterGenerator {
     this.cache[this.cacheLevel] = [];
   }
 }
-
-var css_248z$3 = "\n.vis-itemset {\n  position: relative;\n  padding: 0;\n  margin: 0;\n\n  box-sizing: border-box;\n}\n\n.vis-itemset .vis-background,\n.vis-itemset .vis-foreground {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  overflow: visible;\n}\n\n.vis-axis {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  left: 0;\n  z-index: 1;\n}\n\n.vis-foreground .vis-group {\n  position: relative;\n  box-sizing: border-box;\n  border-bottom: 1px solid #bfbfbf;\n}\n\n.vis-foreground .vis-group:last-child {\n  border-bottom: none;\n}\n\n.vis-nesting-group {\n  cursor: pointer;\n}\n\n.vis-label.vis-nested-group.vis-group-level-unknown-but-gte1 {\n  background: #f5f5f5;\n}\n.vis-label.vis-nested-group.vis-group-level-0 {\n  background-color: #ffffff;\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {\n  padding-left: 0;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-0 .vis-inner {\n  padding-right: 0;\n}\n.vis-label.vis-nested-group.vis-group-level-1 {\n  background-color: rgba(0, 0, 0, 0.05);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {\n  padding-left: 15px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-1 .vis-inner {\n  padding-right: 15px;\n}\n.vis-label.vis-nested-group.vis-group-level-2 {\n  background-color: rgba(0, 0, 0, 0.1);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {\n  padding-left: 30px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-2 .vis-inner {\n  padding-right: 30px;\n}\n.vis-label.vis-nested-group.vis-group-level-3 {\n  background-color: rgba(0, 0, 0, 0.15);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {\n  padding-left: 45px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-3 .vis-inner {\n  padding-right: 45px;\n}\n.vis-label.vis-nested-group.vis-group-level-4 {\n  background-color: rgba(0, 0, 0, 0.2);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {\n  padding-left: 60px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-4 .vis-inner {\n  padding-right: 60px;\n}\n.vis-label.vis-nested-group.vis-group-level-5 {\n  background-color: rgba(0, 0, 0, 0.25);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {\n  padding-left: 75px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-5 .vis-inner {\n  padding-right: 75px;\n}\n.vis-label.vis-nested-group.vis-group-level-6 {\n  background-color: rgba(0, 0, 0, 0.3);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {\n  padding-left: 90px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-6 .vis-inner {\n  padding-right: 90px;\n}\n.vis-label.vis-nested-group.vis-group-level-7 {\n  background-color: rgba(0, 0, 0, 0.35);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {\n  padding-left: 105px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-7 .vis-inner {\n  padding-right: 105px;\n}\n.vis-label.vis-nested-group.vis-group-level-8 {\n  background-color: rgba(0, 0, 0, 0.4);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {\n  padding-left: 120px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-8 .vis-inner {\n  padding-right: 120px;\n}\n.vis-label.vis-nested-group.vis-group-level-9 {\n  background-color: rgba(0, 0, 0, 0.45);\n}\n.vis-ltr .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {\n  padding-left: 135px;\n}\n.vis-rtl .vis-label.vis-nested-group.vis-group-level-9 .vis-inner {\n  padding-right: 135px;\n}\n/* default takes over beginning with level-10 (thats why we add .vis-nested-group\n  to the selectors above, to have higher specifity than these rules for the defaults) */\n.vis-label.vis-nested-group {\n  background-color: rgba(0, 0, 0, 0.5);\n}\n.vis-ltr .vis-label.vis-nested-group .vis-inner {\n  padding-left: 150px;\n}\n.vis-rtl .vis-label.vis-nested-group .vis-inner {\n  padding-right: 150px;\n}\n\n.vis-group-level-unknown-but-gte1 {\n  border: 1px solid red;\n}\n\n/* expanded/collapsed indicators */\n.vis-label.vis-nesting-group:before,\n.vis-label.vis-nesting-group:before {\n  display: inline-block;\n  width: 15px;\n}\n.vis-label.vis-nesting-group.expanded:before {\n  content: \"\\25BC\";\n}\n.vis-label.vis-nesting-group.collapsed:before {\n  content: \"\\25B6\";\n}\n.vis-rtl .vis-label.vis-nesting-group.collapsed:before {\n  content: \"\\25C0\";\n}\n/* compensate missing expanded/collapsed indicator, but only at levels > 0 */\n.vis-ltr .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {\n  padding-left: 15px;\n}\n.vis-rtl .vis-label:not(.vis-nesting-group):not(.vis-group-level-0) {\n  padding-right: 15px;\n}\n\n.vis-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 10;\n}";
-styleInject(css_248z$3);
-
-var css_248z$2 = "\n.vis-labelset {\n  position: relative;\n\n  overflow: hidden;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  position: relative;\n  left: 0;\n  top: 0;\n  width: 100%;\n  color: #4d4d4d;\n\n  box-sizing: border-box;\n}\n\n.vis-labelset .vis-label {\n  border-bottom: 1px solid #bfbfbf;\n}\n\n.vis-labelset .vis-label.draggable {\n  cursor: pointer;\n}\n\n.vis-group-is-dragging {\n  background: rgba(0, 0, 0, .1);\n}\n\n.vis-labelset .vis-label:last-child {\n  border-bottom: none;\n}\n\n.vis-labelset .vis-label .vis-inner {\n  display: inline-block;\n  padding: 5px;\n}\n\n.vis-labelset .vis-label .vis-inner.vis-hidden {\n  padding: 0;\n}\n";
-styleInject(css_248z$2);
 
 const UNGROUPED$1 = '__ungrouped__'; // reserved group id for ungrouped items
 const BACKGROUND = '__background__'; // reserved group id for background items without group
@@ -37638,9 +37644,6 @@ class ColorPicker {
   }
 }
 
-var css_248z$1 = "div.vis-configuration {\n    position:relative;\n    display:block;\n    float:left;\n    font-size:12px;\n}\n\ndiv.vis-configuration-wrapper {\n    display:block;\n    width:700px;\n}\n\ndiv.vis-configuration-wrapper::after {\n  clear: both;\n  content: \"\";\n  display: block;\n}\n\ndiv.vis-configuration.vis-config-option-container{\n    display:block;\n    width:495px;\n    background-color: #ffffff;\n    border:2px solid #f7f8fa;\n    border-radius:4px;\n    margin-top:20px;\n    left:10px;\n    padding-left:5px;\n}\n\ndiv.vis-configuration.vis-config-button{\n    display:block;\n    width:495px;\n    height:25px;\n    vertical-align: middle;\n    line-height:25px;\n    background-color: #f7f8fa;\n    border:2px solid #ceced0;\n    border-radius:4px;\n    margin-top:20px;\n    left:10px;\n    padding-left:5px;\n    cursor: pointer;\n    margin-bottom:30px;\n}\n\ndiv.vis-configuration.vis-config-button.hover{\n    background-color: #4588e6;\n    border:2px solid #214373;\n    color:#ffffff;\n}\n\ndiv.vis-configuration.vis-config-item{\n    display:block;\n    float:left;\n    width:495px;\n    height:25px;\n    vertical-align: middle;\n    line-height:25px;\n}\n\n\ndiv.vis-configuration.vis-config-item.vis-config-s2{\n    left:10px;\n    background-color: #f7f8fa;\n    padding-left:5px;\n    border-radius:3px;\n}\ndiv.vis-configuration.vis-config-item.vis-config-s3{\n    left:20px;\n    background-color: #e4e9f0;\n    padding-left:5px;\n    border-radius:3px;\n}\ndiv.vis-configuration.vis-config-item.vis-config-s4{\n    left:30px;\n    background-color: #cfd8e6;\n    padding-left:5px;\n    border-radius:3px;\n}\n\ndiv.vis-configuration.vis-config-header{\n    font-size:18px;\n    font-weight: bold;\n}\n\ndiv.vis-configuration.vis-config-label{\n    width:120px;\n    height:25px;\n    line-height: 25px;\n}\n\ndiv.vis-configuration.vis-config-label.vis-config-s3{\n    width:110px;\n}\ndiv.vis-configuration.vis-config-label.vis-config-s4{\n    width:100px;\n}\n\ndiv.vis-configuration.vis-config-colorBlock{\n    top:1px;\n    width:30px;\n    height:19px;\n    border:1px solid #444444;\n    border-radius:2px;\n    padding:0px;\n    margin:0px;\n    cursor:pointer;\n}\n\ninput.vis-configuration.vis-config-checkbox {\n    left:-5px;\n}\n\n\ninput.vis-configuration.vis-config-rangeinput{\n    position:relative;\n    top:-5px;\n    width:60px;\n    /*height:13px;*/\n    padding:1px;\n    margin:0;\n    pointer-events:none;\n}\n\ninput.vis-configuration.vis-config-range{\n    /*removes default webkit styles*/\n    -webkit-appearance: none;\n\n    /*fix for FF unable to apply focus style bug */\n    border: 0px solid white;\n    background-color:rgba(0,0,0,0);\n\n    /*required for proper track sizing in FF*/\n    width: 300px;\n    height:20px;\n}\ninput.vis-configuration.vis-config-range::-webkit-slider-runnable-track {\n    width: 300px;\n    height: 5px;\n    background: #dedede; /* Old browsers */\n    background: -moz-linear-gradient(top,  #dedede 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dedede), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top, #dedede 0%, #c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #dedede 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dedede', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n\n    border: 1px solid #999999;\n    box-shadow: #aaaaaa 0px 0px 3px 0px;\n    border-radius: 3px;\n}\ninput.vis-configuration.vis-config-range::-webkit-slider-thumb {\n    -webkit-appearance: none;\n    border: 1px solid #14334b;\n    height: 17px;\n    width: 17px;\n    border-radius: 50%;\n    background: #3876c2; /* Old browsers */\n    background: -moz-linear-gradient(top,  #3876c2 0%, #385380 100%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#3876c2), color-stop(100%,#385380)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #3876c2 0%,#385380 100%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top,  #3876c2 0%,#385380 100%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #3876c2 0%,#385380 100%); /* IE10+ */\n    background: linear-gradient(to bottom,  #3876c2 0%,#385380 100%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#3876c2', endColorstr='#385380',GradientType=0 ); /* IE6-9 */\n    box-shadow: #111927 0px 0px 1px 0px;\n    margin-top: -7px;\n}\ninput.vis-configuration.vis-config-range:focus {\n    outline: none;\n}\ninput.vis-configuration.vis-config-range:focus::-webkit-slider-runnable-track {\n    background: #9d9d9d; /* Old browsers */\n    background: -moz-linear-gradient(top, #9d9d9d 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#9d9d9d), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #9d9d9d 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #9d9d9d 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9d9d9d', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n}\n\ninput.vis-configuration.vis-config-range::-moz-range-track {\n    width: 300px;\n    height: 10px;\n    background: #dedede; /* Old browsers */\n    background: -moz-linear-gradient(top,  #dedede 0%, #c8c8c8 99%); /* FF3.6+ */\n    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#dedede), color-stop(99%,#c8c8c8)); /* Chrome,Safari4+ */\n    background: -webkit-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* Chrome10+,Safari5.1+ */\n    background: -o-linear-gradient(top, #dedede 0%, #c8c8c8 99%); /* Opera 11.10+ */\n    background: -ms-linear-gradient(top,  #dedede 0%,#c8c8c8 99%); /* IE10+ */\n    background: linear-gradient(to bottom,  #dedede 0%,#c8c8c8 99%); /* W3C */\n    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#dedede', endColorstr='#c8c8c8',GradientType=0 ); /* IE6-9 */\n\n    border: 1px solid #999999;\n    box-shadow: #aaaaaa 0px 0px 3px 0px;\n    border-radius: 3px;\n}\ninput.vis-configuration.vis-config-range::-moz-range-thumb {\n    border: none;\n    height: 16px;\n    width: 16px;\n\n    border-radius: 50%;\n    background:  #385380;\n}\n\n/*hide the outline behind the border*/\ninput.vis-configuration.vis-config-range:-moz-focusring{\n    outline: 1px solid white;\n    outline-offset: -1px;\n}\n\ninput.vis-configuration.vis-config-range::-ms-track {\n    width: 300px;\n    height: 5px;\n\n    /*remove bg colour from the track, we'll use ms-fill-lower and ms-fill-upper instead */\n    background: transparent;\n\n    /*leave room for the larger thumb to overflow with a transparent border */\n    border-color: transparent;\n    border-width: 6px 0;\n\n    /*remove default tick marks*/\n    color: transparent;\n}\ninput.vis-configuration.vis-config-range::-ms-fill-lower {\n    background: #777;\n    border-radius: 10px;\n}\ninput.vis-configuration.vis-config-range::-ms-fill-upper {\n    background: #ddd;\n    border-radius: 10px;\n}\ninput.vis-configuration.vis-config-range::-ms-thumb {\n    border: none;\n    height: 16px;\n    width: 16px;\n    border-radius: 50%;\n    background:  #385380;\n}\ninput.vis-configuration.vis-config-range:focus::-ms-fill-lower {\n    background: #888;\n}\ninput.vis-configuration.vis-config-range:focus::-ms-fill-upper {\n    background: #ccc;\n}\n\n.vis-configuration-popup {\n    position: absolute;\n    background: rgba(57, 76, 89, 0.85);\n    border: 2px solid #f2faff;\n    line-height:30px;\n    height:30px;\n    width:150px;\n    text-align:center;\n    color: #ffffff;\n    font-size:14px;\n    border-radius:4px;\n    -webkit-transition: opacity 0.3s ease-in-out;\n    -moz-transition: opacity 0.3s ease-in-out;\n    transition: opacity 0.3s ease-in-out;\n}\n.vis-configuration-popup:after, .vis-configuration-popup:before {\n    left: 100%;\n    top: 50%;\n    border: solid transparent;\n    content: \" \";\n    height: 0;\n    width: 0;\n    position: absolute;\n    pointer-events: none;\n}\n\n.vis-configuration-popup:after {\n    border-color: rgba(136, 183, 213, 0);\n    border-left-color: rgba(57, 76, 89, 0.85);\n    border-width: 8px;\n    margin-top: -8px;\n}\n.vis-configuration-popup:before {\n    border-color: rgba(194, 225, 245, 0);\n    border-left-color: #f2faff;\n    border-width: 12px;\n    margin-top: -12px;\n}";
-styleInject(css_248z$1);
-
 /**
  * The way this works is for all properties of this.possible options, you can supply the property name in any form to list the options.
  * Boolean options are recognised as Boolean
@@ -39442,9 +39445,6 @@ class DataScale {
     return (this.containerHeight - pixels) / this.scale + this._start;
   }
 }
-
-var css_248z = "\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {\n  position: absolute;\n  width: 100%;\n  height: 0;\n  border-bottom: 1px solid;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-minor {\n  border-color: #e5e5e5;\n}\n\n.vis-panel.vis-background.vis-horizontal .vis-grid.vis-major {\n  border-color: #bfbfbf;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-major {\n  width: 100%;\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-major.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n\n.vis-data-axis .vis-y-axis.vis-minor {\n  position: absolute;\n  width: 100%;\n  color: #bebebe;\n  white-space: nowrap;\n}\n\n.vis-data-axis .vis-y-axis.vis-minor.vis-measure {\n  padding: 0;\n  margin: 0;\n  border: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title {\n  position: absolute;\n  color: #4d4d4d;\n  white-space: nowrap;\n  bottom: 20px;\n  text-align: center;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-measure {\n  padding: 0;\n  margin: 0;\n  visibility: hidden;\n  width: auto;\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-left {\n  bottom: 0;\n  -webkit-transform-origin: left top;\n  -moz-transform-origin: left top;\n  -ms-transform-origin: left top;\n  -o-transform-origin: left top;\n  transform-origin: left bottom;\n  -webkit-transform: rotate(-90deg);\n  -moz-transform: rotate(-90deg);\n  -ms-transform: rotate(-90deg);\n  -o-transform: rotate(-90deg);\n  transform: rotate(-90deg);\n}\n\n.vis-data-axis .vis-y-axis.vis-title.vis-right {\n  bottom: 0;\n  -webkit-transform-origin: right bottom;\n  -moz-transform-origin: right bottom;\n  -ms-transform-origin: right bottom;\n  -o-transform-origin: right bottom;\n  transform-origin: right bottom;\n  -webkit-transform: rotate(90deg);\n  -moz-transform: rotate(90deg);\n  -ms-transform: rotate(90deg);\n  -o-transform: rotate(90deg);\n  transform: rotate(90deg);\n}\n\n.vis-legend {\n  background-color: rgba(247, 252, 255, 0.65);\n  padding: 5px;\n  border: 1px solid #b3b3b3;\n  box-shadow: 2px 2px 10px rgba(154, 154, 154, 0.55);\n}\n\n.vis-legend-text {\n  /*font-size: 10px;*/\n  white-space: nowrap;\n  display: inline-block\n}";
-styleInject(css_248z);
 
 /** A horizontal time axis */
 class DataAxis extends Component {
@@ -43011,7 +43011,7 @@ Graph2d.prototype._createConfigurator = function () {
   return new Configurator(this, this.dom.container, configureOptions);
 };
 
-// locales
+// styles
 
 // TODO: This should probably be moved somewhere else to ensure that both builds
 // behave the same way.
