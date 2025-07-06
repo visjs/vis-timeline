@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-05T06:40:37.122Z
+ * @date    2025-07-06T18:31:34.265Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -19400,7 +19400,6 @@ function _objectSpread$1(e) { for (var r = 1; r < arguments.length; r++) { var _
 
 /**
  * Create new data pipe.
- *
  * @param from - The source data set or data view.
  * @remarks
  * Example usage:
@@ -19436,7 +19435,6 @@ function createNewDataPipeFrom(from) {
 /**
  * Internal implementation of the pipe. This should be accessible only through
  * `createNewDataPipeFrom` from the outside.
- *
  * @typeParam SI - Source item type.
  * @typeParam SP - Source item type's id property name.
  * @typeParam TI - Target item type.
@@ -19445,7 +19443,6 @@ function createNewDataPipeFrom(from) {
 class SimpleDataPipe {
   /**
    * Create a new data pipe.
-   *
    * @param _source - The data set or data view that will be observed.
    * @param _transformers - An array of transforming functions to be used to
    * filter or transform the items in the pipe.
@@ -19489,7 +19486,6 @@ class SimpleDataPipe {
   }
   /**
    * Apply the transformers to the items.
-   *
    * @param items - The items to be transformed.
    * @returns The transformed items.
    */
@@ -19501,7 +19497,6 @@ class SimpleDataPipe {
   }
   /**
    * Handle an add event.
-   *
    * @param _name - Ignored.
    * @param payload - The payload containing the ids of the added items.
    */
@@ -19513,7 +19508,6 @@ class SimpleDataPipe {
   }
   /**
    * Handle an update event.
-   *
    * @param _name - Ignored.
    * @param payload - The payload containing the ids of the updated items.
    */
@@ -19525,7 +19519,6 @@ class SimpleDataPipe {
   }
   /**
    * Handle a remove event.
-   *
    * @param _name - Ignored.
    * @param payload - The payload containing the data of the removed items.
    */
@@ -19539,7 +19532,6 @@ class SimpleDataPipe {
 /**
  * Internal implementation of the pipe factory. This should be accessible
  * only through `createNewDataPipeFrom` from the outside.
- *
  * @typeParam TI - Target item type.
  * @typeParam TP - Target item type's id property name.
  */
@@ -19547,7 +19539,6 @@ class DataPipeUnderConstruction {
   /**
    * Create a new data pipe factory. This is an internal constructor that
    * should never be called from outside of this file.
-   *
    * @param _source - The source data set or data view for this pipe.
    */
   constructor(_source) {
@@ -19561,7 +19552,6 @@ class DataPipeUnderConstruction {
   }
   /**
    * Filter the items.
-   *
    * @param callback - A filtering function that returns true if given item
    * should be piped and false if not.
    * @returns This factory for further configuration.
@@ -19572,7 +19562,6 @@ class DataPipeUnderConstruction {
   }
   /**
    * Map each source item to a new type.
-   *
    * @param callback - A mapping function that takes a source item and returns
    * corresponding mapped item.
    * @typeParam TI - Target item type.
@@ -19585,7 +19574,6 @@ class DataPipeUnderConstruction {
   }
   /**
    * Map each source item to zero or more items of a new type.
-   *
    * @param callback - A mapping function that takes a source item and returns
    * an array of corresponding mapped items.
    * @typeParam TI - Target item type.
@@ -19598,7 +19586,6 @@ class DataPipeUnderConstruction {
   }
   /**
    * Connect this pipe to given data set.
-   *
    * @param target - The data set that will receive the items from this pipe.
    * @returns The pipe connected between given data sets and performing
    * configured transformation on the processed items.
@@ -19610,7 +19597,6 @@ class DataPipeUnderConstruction {
 
 /**
  * Determine whether a value can be used as an id.
- *
  * @param value - Input value of unknown type.
  * @returns True if the value is valid id, false otherwise.
  */
@@ -19620,13 +19606,11 @@ function isId(value) {
 
 /**
  * A queue.
- *
  * @typeParam T - The type of method names to be replaced by queued versions.
  */
 class Queue {
   /**
    * Construct a new Queue.
-   *
    * @param options - Queue configuration.
    */
   constructor(options) {
@@ -19644,7 +19628,6 @@ class Queue {
   }
   /**
    * Update the configuration of the queue.
-   *
    * @param options - Queue configuration.
    */
   setOptions(options) {
@@ -19659,7 +19642,6 @@ class Queue {
   /**
    * Extend an object with queuing functionality.
    * The object will be extended with a function flush, and the methods provided in options.replace will be replaced with queued ones.
-   *
    * @param object - The object to be extended.
    * @param options - Additional options.
    * @returns The created queue.
@@ -19717,7 +19699,6 @@ class Queue {
   }
   /**
    * Replace a method on an object with a queued version.
-   *
    * @param object - Object having the method.
    * @param method - The method name.
    */
@@ -19742,7 +19723,6 @@ class Queue {
   }
   /**
    * Queue a call.
-   *
    * @param entry - The function or entry to be queued.
    */
   queue(entry) {
@@ -19787,7 +19767,6 @@ class Queue {
 
 /**
  * {@link DataSet} code that can be reused in {@link DataView} or other similar implementations of {@link DataInterface}.
- *
  * @typeParam Item - Item type that may or may not have an id.
  * @typeParam IdProp - Name of the property that contains the id.
  */
@@ -19810,7 +19789,6 @@ class DataSetPart {
   }
   /**
    * Trigger an event
-   *
    * @param event - Event name.
    * @param payload - Event payload.
    * @param senderId - Id of the sender.
@@ -19826,7 +19804,6 @@ class DataSetPart {
   }
   /**
    * Subscribe to an event, add an event listener.
-   *
    * @remarks Non-function callbacks are ignored.
    * @param event - Event name.
    * @param callback - Callback method.
@@ -19839,7 +19816,6 @@ class DataSetPart {
   }
   /**
    * Unsubscribe from an event, remove an event listener.
-   *
    * @remarks If the same callback was subscribed more than once **all** occurences will be removed.
    * @param event - Event name.
    * @param callback - Callback method.
@@ -19852,7 +19828,6 @@ class DataSetPart {
 
 /**
  * Data stream
- *
  * @remarks
  * {@link DataStream} offers an always up to date stream of items from a {@link DataSet} or {@link DataView}.
  * That means that the stream is evaluated at the time of iteration, conversion to another data type or when {@link cache} is called, not when the {@link DataStream} was created.
@@ -19862,7 +19837,6 @@ class DataSetPart {
 class DataStream {
   /**
    * Create a new data stream.
-   *
    * @param pairs - The id, item pairs.
    */
   constructor(pairs) {
@@ -19903,7 +19877,6 @@ class DataStream {
   }
   /**
    * Return an array containing all the ids in this stream.
-   *
    * @remarks
    * The array may contain duplicities.
    * @returns The array with all ids from this stream.
@@ -19914,7 +19887,6 @@ class DataStream {
   }
   /**
    * Return an array containing all the items in this stream.
-   *
    * @remarks
    * The array may contain duplicities.
    * @returns The array with all items from this stream.
@@ -19925,7 +19897,6 @@ class DataStream {
   }
   /**
    * Return an array containing all the entries in this stream.
-   *
    * @remarks
    * The array may contain duplicities.
    * @returns The array with all entries from this stream.
@@ -19935,7 +19906,6 @@ class DataStream {
   }
   /**
    * Return an object map containing all the items in this stream accessible by ids.
-   *
    * @remarks
    * In case of duplicate ids (coerced to string so `7 == '7'`) the last encoutered appears in the returned object.
    * @returns The object map of all id → item pairs from this stream.
@@ -19949,7 +19919,6 @@ class DataStream {
   }
   /**
    * Return a map containing all the items in this stream accessible by ids.
-   *
    * @returns The map of all id → item pairs from this stream.
    */
   toMap() {
@@ -19957,7 +19926,6 @@ class DataStream {
   }
   /**
    * Return a set containing all the (unique) ids in this stream.
-   *
    * @returns The set of all ids from this stream.
    */
   toIdSet() {
@@ -19965,7 +19933,6 @@ class DataStream {
   }
   /**
    * Return a set containing all the (unique) items in this stream.
-   *
    * @returns The set of all items from this stream.
    */
   toItemSet() {
@@ -19973,7 +19940,6 @@ class DataStream {
   }
   /**
    * Cache the items from this stream.
-   *
    * @remarks
    * This method allows for items to be fetched immediatelly and used (possibly multiple times) later.
    * It can also be used to optimize performance as {@link DataStream} would otherwise reevaluate everything upon each iteration.
@@ -19998,7 +19964,6 @@ class DataStream {
   }
   /**
    * Get the distinct values of given property.
-   *
    * @param callback - The function that picks and possibly converts the property.
    * @typeParam T - The type of the distinct value.
    * @returns A set of all distinct properties.
@@ -20012,7 +19977,6 @@ class DataStream {
   }
   /**
    * Filter the items of the stream.
-   *
    * @param callback - The function that decides whether an item will be included.
    * @returns A new data stream with the filtered items.
    */
@@ -20030,7 +19994,6 @@ class DataStream {
   }
   /**
    * Execute a callback for each item of the stream.
-   *
    * @param callback - The function that will be invoked for each item.
    */
   forEach(callback) {
@@ -20040,7 +20003,6 @@ class DataStream {
   }
   /**
    * Map the items into a different type.
-   *
    * @param callback - The function that does the conversion.
    * @typeParam Mapped - The type of the item after mapping.
    * @returns A new data stream with the mapped items.
@@ -20057,7 +20019,6 @@ class DataStream {
   }
   /**
    * Get the item with the maximum value of given property.
-   *
    * @param callback - The function that picks and possibly converts the property.
    * @returns The item with the maximum if found otherwise null.
    */
@@ -20081,7 +20042,6 @@ class DataStream {
   }
   /**
    * Get the item with the minimum value of given property.
-   *
    * @param callback - The function that picks and possibly converts the property.
    * @returns The item with the minimum if found otherwise null.
    */
@@ -20105,7 +20065,6 @@ class DataStream {
   }
   /**
    * Reduce the items into a single value.
-   *
    * @param callback - The function that does the reduction.
    * @param accumulator - The initial value of the accumulator.
    * @typeParam T - The type of the accumulated value.
@@ -20119,7 +20078,6 @@ class DataStream {
   }
   /**
    * Sort the items.
-   *
    * @param callback - Item comparator.
    * @returns A new stream with sorted items.
    */
@@ -20139,7 +20097,6 @@ class DataStream {
 
 /**
  * Add an id to given item if it doesn't have one already.
- *
  * @remarks
  * The item will be modified.
  * @param item - The item that will have an id after a call to this function.
@@ -20177,15 +20134,15 @@ function ensureFullItem(item, idProp) {
  * // add items
  * // note that the data items can contain different properties and data formats
  * data.add([
- *   {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
- *   {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
- *   {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
- *   {id: 4, text: 'item 4'}
+ * {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
+ * {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
+ * {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
+ * {id: 4, text: 'item 4'}
  * ]);
  *
  * // subscribe to any change in the DataSet
  * data.on('*', function (event, properties, senderId) {
- *   console.log('event', event, properties);
+ * console.log('event', event, properties);
  * });
  *
  * // update an existing item
@@ -20204,13 +20161,12 @@ function ensureFullItem(item, idProp) {
  *
  * // retrieve a filtered subset of the data
  * var items = data.get({
- *   filter: function (item) {
- *     return item.group == 1;
- *   }
+ * filter: function (item) {
+ * return item.group == 1;
+ * }
  * });
  * console.log('filtered items', items);
  * ```
- *
  * @typeParam Item - Item type that may or may not have an id.
  * @typeParam IdProp - Name of the property that contains the id.
  */
@@ -20221,7 +20177,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Construct a new DataSet.
-   *
    * @param data - Initial data or options.
    * @param options - Options (type error if data is also options).
    */
@@ -20252,7 +20207,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Set new options.
-   *
    * @param options - The new options.
    */
   setOptions(options) {
@@ -20289,14 +20243,13 @@ class DataSet extends DataSetPart {
    *
    * // add items
    * const ids = data.add([
-   *   { id: 1, text: 'item 1' },
-   *   { id: 2, text: 'item 2' },
-   *   { text: 'item without an id' }
+   * { id: 1, text: 'item 1' },
+   * { id: 2, text: 'item 2' },
+   * { text: 'item without an id' }
    * ])
    *
    * console.log(ids) // [1, 2, '<UUIDv4>']
    * ```
-   *
    * @param data - Items to be added (ids will be generated if missing).
    * @param senderId - Sender id.
    * @returns addedIds - Array with the ids (generated if not present) of the added items.
@@ -20331,7 +20284,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Update existing items. When an item does not exist, it will be created.
-   *
    * @remarks
    * The provided properties will be merged in the existing item. When an item does not exist, it will be created.
    *
@@ -20424,7 +20376,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Update existing items. When an item does not exist, an error will be thrown.
-   *
    * @remarks
    * The provided properties will be deeply merged into the existing item.
    * When an item does not exist (id not present in the data set or absent), an error will be thrown and nothing will be changed.
@@ -20714,7 +20665,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Filter the fields of an item.
-   *
    * @param item - The item whose fields should be filtered.
    * @param fields - The names of the fields that will be kept.
    * @typeParam K - Field name type.
@@ -20737,7 +20687,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Sort the provided array with items.
-   *
    * @param items - Items to be sorted in place.
    * @param order - A field name or custom sort function.
    * @typeParam T - The type of the items in the items array.
@@ -20772,9 +20721,9 @@ class DataSet extends DataSetPart {
    * ```javascript
    * // create a DataSet
    * const data = new vis.DataSet([
-   *   { id: 1, text: 'item 1' },
-   *   { id: 2, text: 'item 2' },
-   *   { id: 3, text: 'item 3' }
+   * { id: 1, text: 'item 1' },
+   * { id: 2, text: 'item 2' },
+   * { id: 3, text: 'item 3' }
    * ])
    *
    * // remove items
@@ -20782,7 +20731,6 @@ class DataSet extends DataSetPart {
    *
    * console.log(ids) // [2, 3]
    * ```
-   *
    * @param id - One or more items or ids of items to be removed.
    * @param senderId - Sender id.
    * @returns The ids of the removed items.
@@ -20812,7 +20760,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Remove an item by its id or reference.
-   *
    * @param id - Id of an item or the item itself.
    * @returns The removed item if removed, null otherwise.
    */
@@ -20839,7 +20786,6 @@ class DataSet extends DataSetPart {
    * Clear the entire data set.
    *
    * After the items are removed, the {@link DataSet} will trigger an event `remove` for all removed items. When a `senderId` is provided, this id will be passed with the triggered event to all subscribers.
-   *
    * @param senderId - Sender id.
    * @returns removedIds - The ids of all removed items.
    */
@@ -20860,7 +20806,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Find the item with maximum value of a specified field.
-   *
    * @param field - Name of the property that should be searched for max value.
    * @returns Item containing max value, or null if no items.
    */
@@ -20879,7 +20824,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Find the item with minimum value of a specified field.
-   *
    * @param field - Name of the property that should be searched for min value.
    * @returns Item containing min value, or null if no items.
    */
@@ -20898,7 +20842,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Find all distinct values of a specified field
-   *
    * @param prop - The property name whose distinct values should be returned.
    * @returns Unordered array containing all distinct values. Items without specified property are ignored.
    */
@@ -20927,7 +20870,6 @@ class DataSet extends DataSetPart {
   }
   /**
    * Add a single item. Will fail when an item with the same id already exists.
-   *
    * @param item - A new item to be added.
    * @returns Added item's id. An id is generated when it is not present in the item.
    */
@@ -20946,7 +20888,6 @@ class DataSet extends DataSetPart {
   /**
    * Update a single item: merge with existing item.
    * Will fail when the item has no id, or when there does not exist an item with the same id.
-   *
    * @param update - The new item
    * @returns The id of the updated item.
    */
@@ -20996,25 +20937,25 @@ class DataSet extends DataSetPart {
  * // create a DataSet
  * var data = new vis.DataSet();
  * data.add([
- *   {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
- *   {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
- *   {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
- *   {id: 4, text: 'item 4'}
+ * {id: 1, text: 'item 1', date: new Date(2013, 6, 20), group: 1, first: true},
+ * {id: 2, text: 'item 2', date: '2013-06-23', group: 2},
+ * {id: 3, text: 'item 3', date: '2013-06-25', group: 2},
+ * {id: 4, text: 'item 4'}
  * ]);
  *
  * // create a DataView
  * // the view will only contain items having a property group with value 1,
  * // and will only output fields id, text, and date.
  * var view = new vis.DataView(data, {
- *   filter: function (item) {
- *     return (item.group == 1);
- *   },
- *   fields: ['id', 'text', 'date']
+ * filter: function (item) {
+ * return (item.group == 1);
+ * },
+ * fields: ['id', 'text', 'date']
  * });
  *
  * // subscribe to any change in the DataView
  * view.on('*', function (event, properties, senderId) {
- *   console.log('event', event, properties);
+ * console.log('event', event, properties);
  * });
  *
  * // update an item in the data set
@@ -21027,7 +20968,6 @@ class DataSet extends DataSetPart {
  * // get all items in the view
  * var items = view.get();
  * ```
- *
  * @typeParam Item - Item type that may or may not have an id.
  * @typeParam IdProp - Name of the property that contains the id.
  */
@@ -21038,7 +20978,6 @@ class DataView extends DataSetPart {
   }
   /**
    * Create a DataView.
-   *
    * @param data - The instance containing data (directly or indirectly).
    * @param options - Options to configure this data view.
    */
@@ -21061,7 +21000,6 @@ class DataView extends DataSetPart {
   // and trigger changes accordingly
   /**
    * Set a data source for the view.
-   *
    * @param data - The instance containing data (directly or indirectly).
    * @remarks
    * Note that when the data view is bound to a data set it won't be garbage
@@ -21279,7 +21217,6 @@ class DataView extends DataSetPart {
   }
   /**
    * Render the instance unusable prior to garbage collection.
-   *
    * @remarks
    * The intention of this method is to help discover scenarios where the data
    * view is being used when the programmer thinks it has been garbage collected
@@ -21306,7 +21243,6 @@ class DataView extends DataSetPart {
   }
   /**
    * Event listener. Will propagate all events from the connected data set to the subscribers of the DataView, but will filter the items and only trigger when there are changes in the filtered data set.
-   *
    * @param event - The name of the event.
    * @param params - Parameters of the event.
    * @param senderId - Id supplied by the sender.
@@ -21394,7 +21330,6 @@ class DataView extends DataSetPart {
 
 /**
  * Check that given value is compatible with Vis Data Set interface.
- *
  * @param idProp - The expected property to contain item id.
  * @param v - The value to be tested.
  * @returns True if all expected values and methods match, false otherwise.
@@ -21405,7 +21340,6 @@ function isDataSetLike(idProp, v) {
 
 /**
  * Check that given value is compatible with Vis Data View interface.
- *
  * @param idProp - The expected property to contain item id.
  * @param v - The value to be tested.
  * @returns True if all expected values and methods match, false otherwise.
