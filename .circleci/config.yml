@@ -21,16 +21,17 @@ jobs:
       - run: npm ci
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "*"
+            - ".cache"
+            - "repo"
 
   build:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run build
 
@@ -50,21 +51,21 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run generate-examples-index
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "examples"
+            - "repo/examples"
 
   lint:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run lint
 
@@ -73,7 +74,7 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run test
 
@@ -82,7 +83,7 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run:
           name: Set Git credentials
@@ -101,7 +102,7 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run:
           name: Prepare NPM
