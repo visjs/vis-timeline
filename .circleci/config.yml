@@ -36,15 +36,15 @@ jobs:
       - run: npm run build
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "declarations"
-            - "dist"
-            - "esnext"
-            - "peer"
-            - "standalone"
-            - "styles"
-            - "types"
+            - "repo/declarations"
+            - "repo/dist"
+            - "repo/esnext"
+            - "repo/peer"
+            - "repo/standalone"
+            - "repo/styles"
+            - "repo/types"
 
   examples:
     executor: node
