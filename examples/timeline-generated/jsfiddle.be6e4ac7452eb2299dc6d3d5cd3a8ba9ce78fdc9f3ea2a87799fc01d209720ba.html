@@ -60,9 +60,9 @@ timeline.addCustomTime(
   new Date(
     customDate.getFullYear(),
     customDate.getMonth(),
-    customDate.getDate() + 3
+    customDate.getDate() + 3,
   ),
-  id
+  id,
 );
 timeline.setCustomTimeMarker("Enter some text", id, true);
 timeline.on("markerchange", function (properties) {

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-06T18:30:52.454Z
+ * @date    2025-07-12T19:24:12.638Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -24,7 +24,7 @@
  * vis.js may be distributed under either license.
  */
 
-import moment$4 from 'moment';
+import moment$3 from 'moment';
 import * as util from 'vis-util/esnext/esm/vis-util.js';
 import { isNumber, isString, getType } from 'vis-util/esnext/esm/vis-util.js';
 import { isDataViewLike as isDataViewLike$1, DataSet, createNewDataPipeFrom, DataView } from 'vis-data/esnext/esm/vis-data.js';
@@ -35,17 +35,9 @@ import PropagatingHammer from 'propagating-hammerjs';
 import Hammer$1 from '@egjs/hammerjs';
 import keycharm from 'keycharm';
 
-function getDefaultExportFromCjs (x) {
-	return x && x.__esModule && Object.prototype.hasOwnProperty.call(x, 'default') ? x['default'] : x;
-}
-
-// first check if moment.js is already loaded in the browser window, if so,
-// use this instance. Else, load via commonjs.
-//
-// Note: This doesn't work in ESM.
-var moment$2 = (typeof window !== 'undefined') && window['moment'] || moment$4;
-
-var moment$3 = /*@__PURE__*/getDefaultExportFromCjs(moment$2);
+// Check if Moment.js is already loaded in the browser window, if so, use this
+// instance, else use bundled Moment.js.
+const moment$2 = ((typeof window !== 'undefined') && window['moment']) || moment$3;
 
 // utility functions
 
@@ -104,7 +96,7 @@ function convert(object, type) {
     case "number":
     case "Number":
       if (isString(object) && !isNaN(Date.parse(object))) {
-        return moment$4(object).valueOf();
+        return moment$3(object).valueOf();
       } else {
         // @TODO: I don't think that Number and String constructors are a good idea.
         // This could also fail if the object doesn't have valueOf method or if it's redefined.
@@ -131,26 +123,26 @@ function convert(object, type) {
 
     case "Moment":
       if (isNumber(object)) {
-        return moment$4(object);
+        return moment$3(object);
       }
       if (object instanceof Date) {
-        return moment$4(object.valueOf());
-      } else if (moment$4.isMoment(object)) {
-        return moment$4(object);
+        return moment$3(object.valueOf());
+      } else if (moment$3.isMoment(object)) {
+        return moment$3(object);
       }
       if (isString(object)) {
         match = ASPDateRegex.exec(object);
         if (match) {
           // object is an ASP date
-          return moment$4(Number(match[1])); // parse number
+          return moment$3(Number(match[1])); // parse number
         }
         match = NumericRegex.exec(object);
 
         if (match) {
-          return moment$4(Number(object));
+          return moment$3(Number(object));
         }
 
-        return moment$4(object); // parse string
+        return moment$3(object); // parse string
       } else {
         throw new TypeError(
           "Cannot convert object of type " + getType(object) + " to type " + type
@@ -162,7 +154,7 @@ function convert(object, type) {
         return new Date(object);
       } else if (object instanceof Date) {
         return object.toISOString();
-      } else if (moment$4.isMoment(object)) {
+      } else if (moment$3.isMoment(object)) {
         return object.toDate().toISOString();
       } else if (isString(object)) {
         match = ASPDateRegex.exec(object);
@@ -170,7 +162,7 @@ function convert(object, type) {
           // object is an ASP date
           return new Date(Number(match[1])).toISOString(); // parse number
         } else {
-          return moment$4(object).format(); // ISO 8601
+          return moment$3(object).format(); // ISO 8601
         }
       } else {
         throw new Error(
@@ -183,7 +175,7 @@ function convert(object, type) {
     case "ASPDate":
       if (isNumber(object)) {
         return "/Date(" + object + ")/";
-      } else if (object instanceof Date || moment$4.isMoment(object)) {
+      } else if (object instanceof Date || moment$3.isMoment(object)) {
         return "/Date(" + object.valueOf() + ")/";
       } else if (isString(object)) {
         match = ASPDateRegex.exec(object);
@@ -897,21 +889,21 @@ function getIsHidden(time, hiddenDates) {
 }
 
 var DateUtil = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	convertHiddenOptions: convertHiddenOptions,
-	correctTimeForHidden: correctTimeForHidden,
-	getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
-	getHiddenDurationBefore: getHiddenDurationBefore,
-	getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
-	getHiddenDurationBetween: getHiddenDurationBetween,
-	getIsHidden: getIsHidden,
-	printDates: printDates,
-	removeDuplicates: removeDuplicates,
-	snapAwayFromHidden: snapAwayFromHidden,
-	stepOverHiddenDates: stepOverHiddenDates,
-	toScreen: toScreen,
-	toTime: toTime,
-	updateHiddenDates: updateHiddenDates
+  __proto__: null,
+  convertHiddenOptions: convertHiddenOptions,
+  correctTimeForHidden: correctTimeForHidden,
+  getAccumulatedHiddenDuration: getAccumulatedHiddenDuration,
+  getHiddenDurationBefore: getHiddenDurationBefore,
+  getHiddenDurationBeforeStart: getHiddenDurationBeforeStart,
+  getHiddenDurationBetween: getHiddenDurationBetween,
+  getIsHidden: getIsHidden,
+  printDates: printDates,
+  removeDuplicates: removeDuplicates,
+  snapAwayFromHidden: snapAwayFromHidden,
+  stepOverHiddenDates: stepOverHiddenDates,
+  toScreen: toScreen,
+  toTime: toTime,
+  updateHiddenDates: updateHiddenDates
 });
 
 /**
@@ -928,7 +920,7 @@ class Range extends Component {
  */
   constructor(body, options) {
     super();
-    const now = moment$3().hours(0).minutes(0).seconds(0).milliseconds(0);
+    const now = moment$2().hours(0).minutes(0).seconds(0).milliseconds(0);
     const start = now.clone().add(-3, 'days').valueOf();
     const end = now.clone().add(3, 'days').valueOf(); 
     this.millisecondsPerPixelCache = undefined;
@@ -954,7 +946,7 @@ class Range extends Component {
       rtl: false,
       start: null,
       end: null,
-      moment: moment$3,
+      moment: moment$2,
       direction: 'horizontal', // 'horizontal' or 'vertical'
       moveable: true,
       zoomable: true,
@@ -1937,7 +1929,7 @@ class TimeStep {
     * @constructor  TimeStep
     */
   constructor(start, end, minimumStep, hiddenDates, options) {
-    this.moment = (options && options.moment) || moment$3;
+    this.moment = (options && options.moment) || moment$2;
     this.options = options ? options : {};
 
     // variables
@@ -2268,7 +2260,7 @@ class TimeStep {
    * @return {Date} snappedDate
    */
   static snap(date, scale, step) {
-    let clone = moment$3(date);
+    let clone = moment$2(date);
 
     if (scale == 'year') {
       const year = clone.year() + Math.round(clone.month() / 12);
@@ -2677,7 +2669,7 @@ class TimeAxis extends Component {
       showWeekScale: false,
       maxMinorChars: 7,
       format: availableUtils.extend({}, TimeStep.FORMAT),
-      moment: moment$3,
+      moment: moment$2,
       timeAxis: null
     };
     this.options = availableUtils.extend({}, this.defaultOptions);
@@ -2728,12 +2720,12 @@ class TimeAxis extends Component {
       // apply locale to moment.js
       // TODO: not so nice, this is applied globally to moment.js
       if ('locale' in options) {
-        if (typeof moment$3.locale === 'function') {
+        if (typeof moment$2.locale === 'function') {
           // moment.js 2.8.1+
-          moment$3.locale(options.locale);
+          moment$2.locale(options.locale);
         }
         else {
-          moment$3.lang(options.locale);
+          moment$2.lang(options.locale);
         }
       }
     }
@@ -3145,23 +3137,28 @@ function Activator(container) {
   this.active = false;
 
   this.dom = {
-    container: container
+    container: container,
   };
 
-  this.dom.overlay = document.createElement('div');
-  this.dom.overlay.className = 'vis-overlay';
+  this.dom.overlay = document.createElement("div");
+  this.dom.overlay.className = "vis-overlay";
 
   this.dom.container.appendChild(this.dom.overlay);
 
   this.hammer = Hammer(this.dom.overlay);
-  this.hammer.on('tap', this._onTapOverlay.bind(this));
+  this.hammer.on("tap", this._onTapOverlay.bind(this));
 
   // block all touch events (except tap)
   var me = this;
   var events = [
-    'tap', 'doubletap', 'press',
-    'pinch',
-    'pan', 'panstart', 'panmove', 'panend'
+    "tap",
+    "doubletap",
+    "press",
+    "pinch",
+    "pan",
+    "panstart",
+    "panmove",
+    "panend",
   ];
   events.forEach(function (event) {
     me.hammer.on(event, function (event) {
@@ -3176,7 +3173,7 @@ function Activator(container) {
         me.deactivate();
       }
     };
-    document.body.addEventListener('click', this.onClick);
+    document.body.addEventListener("click", this.onClick);
   }
 
   if (this.keycharm !== undefined) {
@@ -3205,7 +3202,7 @@ Activator.prototype.destroy = function () {
 
   // remove global event listener
   if (this.onClick) {
-    document.body.removeEventListener('click', this.onClick);
+    document.body.removeEventListener("click", this.onClick);
   }
   // remove keycharm
   if (this.keycharm !== undefined) {
@@ -3230,15 +3227,15 @@ Activator.prototype.activate = function () {
   Activator.current = this;
 
   this.active = true;
-  this.dom.overlay.style.display = 'none';
-  availableUtils.addClassName(this.dom.container, 'vis-active');
+  this.dom.overlay.style.display = "none";
+  availableUtils.addClassName(this.dom.container, "vis-active");
 
-  this.emit('change');
-  this.emit('activate');
+  this.emit("change");
+  this.emit("activate");
 
   // ugly hack: bind ESC after emitting the events, as the Network rebinds all
   // keyboard events on a 'change' event
-  this.keycharm.bind('esc', this.escListener);
+  this.keycharm.bind("esc", this.escListener);
 };
 
 /**
@@ -3251,12 +3248,12 @@ Activator.prototype.deactivate = function () {
   }
 
   this.active = false;
-  this.dom.overlay.style.display = '';
-  availableUtils.removeClassName(this.dom.container, 'vis-active');
-  this.keycharm.unbind('esc', this.escListener);
+  this.dom.overlay.style.display = "";
+  availableUtils.removeClassName(this.dom.container, "vis-active");
+  this.keycharm.unbind("esc", this.escListener);
 
-  this.emit('change');
-  this.emit('deactivate');
+  this.emit("change");
+  this.emit("deactivate");
 };
 
 /**
@@ -3282,7 +3279,7 @@ Activator.prototype._onTapOverlay = function (event) {
 function _hasParent(element, parent) {
   while (element) {
     if (element === parent) {
-      return true
+      return true;
     }
     element = element.parentNode;
   }
@@ -3471,7 +3468,7 @@ class CustomTime extends Component {
 
     // default options
     this.defaultOptions = {
-      moment: moment$3,
+      moment: moment$2,
       locales,
       locale: 'en',
       id: undefined,
@@ -5206,7 +5203,7 @@ class CurrentTime extends Component {
       showCurrentTime: true,
       alignCurrentTime: undefined,
 
-      moment: moment$3,
+      moment: moment$2,
       locales,
       locale: 'en'
     };
@@ -5788,22 +5785,20 @@ function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
-	__proto__: null,
-	nostack: nostack,
-	orderByEnd: orderByEnd,
-	orderByStart: orderByStart,
-	stack: stack,
-	stackSubgroups: stackSubgroups,
-	stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
-	substack: substack
+  __proto__: null,
+  nostack: nostack,
+  orderByEnd: orderByEnd,
+  orderByStart: orderByStart,
+  stack: stack,
+  stackSubgroups: stackSubgroups,
+  stackSubgroupsWithInnerStack: stackSubgroupsWithInnerStack,
+  substack: substack
 });
 
-const UNGROUPED$3 = '__ungrouped__';   // reserved group id for ungrouped items
-const BACKGROUND$2 = '__background__'; // reserved group id for background items without group
+const BACKGROUND$1 = '__background__'; // reserved group id for background items without group
 
 const ReservedGroupIds$1 = {
-  UNGROUPED: UNGROUPED$3,
-  BACKGROUND: BACKGROUND$2
+  BACKGROUND: BACKGROUND$1
 };
 
 
@@ -7371,9 +7366,9 @@ class Item {
         templateFunction = this.options.tooltipOnItemUpdateTime.template.bind(this);
         content = templateFunction(this.data);
       } else {
-        content = `start: ${moment$3(this.data.start).format('MM/DD/YYYY hh:mm')}`;
+        content = `start: ${moment$2(this.data.start).format('MM/DD/YYYY hh:mm')}`;
         if (this.data.end) { 
-          content += `<br> end: ${moment$3(this.data.end).format('MM/DD/YYYY hh:mm')}`;
+          content += `<br> end: ${moment$2(this.data.end).format('MM/DD/YYYY hh:mm')}`;
         }
       }
       this.dom.onItemUpdateTimeTooltip.innerHTML = availableUtils.xss(content);
@@ -9790,12 +9785,9 @@ class ClusterItem extends Item {
 ClusterItem.prototype.baseClassName = 'vis-item vis-range vis-cluster';
 
 const UNGROUPED$2 = '__ungrouped__';   // reserved group id for ungrouped items
-const BACKGROUND$1 = '__background__'; // reserved group id for background items without group
 
 const ReservedGroupIds = {
-  UNGROUPED: UNGROUPED$2,
-  BACKGROUND: BACKGROUND$1
-};
+  UNGROUPED: UNGROUPED$2};
 
 /**
  * An Cluster generator generates cluster items
@@ -14835,7 +14827,7 @@ class Timeline extends Core {
         axis: 'bottom',   // axis orientation: 'bottom', 'top', or 'both'
         item: 'bottom'    // not relevant
       },
-      moment: moment$3,
+      moment: moment$2,
     };
     this.options = availableUtils.deepExtend({}, this.defaultOptions);
     options && availableUtils.setupXSSProtection(options.xss);
@@ -15721,10 +15713,7 @@ function getDOMElement(elementType, JSONcontainer, DOMContainer, insertBefore) {
     else {
       // create a new element and add it to the SVG
       element = document.createElement(elementType);
-      if (insertBefore !== undefined) {
-        DOMContainer.insertBefore(element, insertBefore);
-      }
-      else {
+      {
         DOMContainer.appendChild(element);
       }
     }
@@ -15733,10 +15722,7 @@ function getDOMElement(elementType, JSONcontainer, DOMContainer, insertBefore) {
     // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
     element = document.createElement(elementType);
     JSONcontainer[elementType] = {used: [], redundant: []};
-    if (insertBefore !== undefined) {
-      DOMContainer.insertBefore(element, insertBefore);
-    }
-    else {
+    {
       DOMContainer.appendChild(element);
     }
   }
@@ -19238,7 +19224,7 @@ function Graph2d (container, items, groups, options) {
       item: 'bottom'    // not relevant for Graph2d
     },
 
-    moment: moment$3,
+    moment: moment$2,
 
     width: null,
     height: null,
@@ -19562,7 +19548,7 @@ Graph2d.prototype._createConfigurator = function () {
 // Locales have to be supplied by the user.
 
 const defaultLanguage = getNavigatorLanguage();
-moment$4.locale(defaultLanguage);
+moment$3.locale(defaultLanguage);
 
 const timeline = {
   Core,
@@ -19578,7 +19564,7 @@ const timeline = {
       BoxItem,
       ClusterItem,
       PointItem,
-      RangeItem
+      RangeItem,
     },
 
     BackgroundGroup,
@@ -19592,8 +19578,8 @@ const timeline = {
     ItemSet,
     Legend,
     LineGraph,
-    TimeAxis
-  }
+    TimeAxis,
+  },
 };
 
 export { Graph2d, Timeline, timeline };

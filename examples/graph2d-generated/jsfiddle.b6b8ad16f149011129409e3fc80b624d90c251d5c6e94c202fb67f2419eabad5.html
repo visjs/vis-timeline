@@ -258,7 +258,7 @@ function updateStyle() {
   groupData.options.drawPoints.styles +=
     document.getElementById("pointfill").value;
   groupData.options.drawPoints.size = Number(
-    document.getElementById("pointsize").value
+    document.getElementById("pointsize").value,
   );
   if (groupData.options.drawPoints.style == "") {
     groupData.options.drawPoints = false;

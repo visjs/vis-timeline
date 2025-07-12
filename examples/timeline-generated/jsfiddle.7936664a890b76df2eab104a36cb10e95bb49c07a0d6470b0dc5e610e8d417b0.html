@@ -134,7 +134,7 @@ var options = {
       element,
       () => {
         window.timeline.redraw();
-      }
+      },
     );
 
     // Works too
@@ -151,7 +151,7 @@ var options = {
     }
     return ReactDOM.createPortal(
       ReactDOM.render(<GroupTemplate group={group} />, element),
-      element
+      element,
     );
   },
 
@@ -164,7 +164,7 @@ var options = {
     }
     return ReactDOM.createPortal(
       ReactDOM.render(<VisibleFramTemplate item={item} />, element),
-      element
+      element,
     );
   },
 };

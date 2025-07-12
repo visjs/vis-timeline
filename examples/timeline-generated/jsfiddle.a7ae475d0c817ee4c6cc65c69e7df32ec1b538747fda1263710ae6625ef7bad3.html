@@ -47,7 +47,7 @@ var options = {
     callback: function (callback) {
       var didUserCancel;
       var didUserCancel = confirm(
-        "Too many items loaded! Would you like to continue rendering (this might take a while)?"
+        "Too many items loaded! Would you like to continue rendering (this might take a while)?",
       );
       callback(didUserCancel);
     },

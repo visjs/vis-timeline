@@ -71,7 +71,7 @@ var timeline = new vis.Timeline(container, items, options);
 customDate = new Date(
   customDate.getFullYear(),
   customDate.getMonth(),
-  customDate.getDate() + 1
+  customDate.getDate() + 1,
 );
 timeline.addCustomTime(customDate, "t1");
 
@@ -80,7 +80,7 @@ document.getElementById("add").onclick = function () {
     customDate = new Date(
       customDate.getFullYear(),
       customDate.getMonth(),
-      customDate.getDate() + 1
+      customDate.getDate() + 1,
     );
     var barId = document.getElementById("barId").value || undefined;
     timeline.addCustomTime(customDate, barId);

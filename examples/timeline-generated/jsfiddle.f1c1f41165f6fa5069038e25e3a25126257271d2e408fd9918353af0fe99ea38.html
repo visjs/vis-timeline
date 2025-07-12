@@ -144,7 +144,7 @@ var options = {
         objectData.content +
         &apos;" to item: "&apos; +
         item.content +
-        &apos;"&apos;
+        &apos;"&apos;,
     );
   },
 };
@@ -199,7 +199,7 @@ for (var i = objectItems.length - 1; i >= 0; i--) {
   objectItem.addEventListener(
     "dragstart",
     handleObjectItemDragStart.bind(this),
-    false
+    false,
   );
 }
 '
