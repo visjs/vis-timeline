@@ -358,6 +358,12 @@ var items = new vis.DataSet([
       <td>If true, item can be deleted by first selecting it, and then clicking the delete button on the top right of the item. See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
     </tr>
     <tr parent="itemEditable" class="hidden">
+      <td class="indent">editable.control</td>
+      <td>boolean</td>
+      <td>no</td>
+      <td>If true, item can be controled by first selecting it, and then clicking the control button on the top right of the item. See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
+    </tr>
+    <tr parent="itemEditable" class="hidden">
       <td class="indent">editable.updateGroup</td>
       <td>boolean</td>
       <td>no</td>
@@ -582,7 +588,7 @@ function (option, path) {
       <td><span parent="editable" class="right-caret"></span> editable</td>
       <td>boolean or Object</td>
       <td><code>false</code></td>
-      <td>If true, the items in the timeline can be manipulated. Only applicable when option <code>selectable</code> is <code>true</code>. See also the callbacks <code>onAdd</code>, <code>onUpdate</code>, <code>onMove</code>, and <code>onRemove</code>. When <code>editable</code> is an object, one can enable or disable individual manipulation actions.
+      <td>If true, the items in the timeline can be manipulated. Only applicable when option <code>selectable</code> is <code>true</code>. See also the callbacks <code>onAdd</code>, <code>onUpdate</code>, <code>onMove</code>, and <code>onRemove</code>, and <code>onControl</code>. When <code>editable</code> is an object, one can enable or disable individual manipulation actions.
         See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.
       </td>
     </tr>
@@ -982,6 +988,14 @@ function (option, path) {
       <td>function</td>
       <td>none</td>
       <td>Callback function triggered when an item is about to be removed: when the user tapped the delete button on the top right of a selected item. See section <a href="#Editing_Items">Editing Items</a> for more information. Only applicable when both options <code>selectable</code> and <code>editable.remove</code> are set <code>true</code>.
+      </td>
+    </tr>
+
+    <tr>
+      <td>onControl</td>
+      <td>function</td>
+      <td>none</td>
+      <td>Callback function triggered when an item is about to be controlled: when the user tapped the control button on the top right of a selected item. See section <a href="#Editing_Items">Editing Items</a> for more information. Only applicable when both options <code>selectable</code> and <code>editable.control</code> are set <code>true</code>.
       </td>
     </tr>
 
@@ -1981,6 +1995,7 @@ timeline.off('select', onSelect);
     <li>Create a new range item by dragging on an empty space with the ctrl key down.</li>
     <li>Update an item by double tapping it.</li>
     <li>Delete a selected item by clicking the delete button on the top right.</li>
+    <li>Control a selected item by clicking the control button on the top right.</li>
   </ul>
 
   <p>Option <code>editable</code> accepts a boolean or an object. When <code>editable</code> is a boolean, all manipulation actions will be either enabled or disabled. When <code>editable</code> is an object, one can enable individual manipulation actions:</p>
@@ -1997,6 +2012,7 @@ var options = {
     updateTime: true,  // drag items horizontally
     updateGroup: true, // drag items from one group to another
     remove: true,       // delete an item by tapping the delete button top right
+    control: true,       // control an item by tapping the control button top right
     overrideItems: false  // allow these options to override item.editable
   }
 };</pre>
@@ -2031,6 +2047,7 @@ var items = new vis.DataSet([
     <li><code>onMove(item, callback)</code> Fired when an item has been moved. If not implemented, the move action will be accepted.</li>
     <li><code>onMoving(item, callback)</code> Fired repeatedly while an item is being moved (dragged). Can be used to adjust the items start, end, and/or group to allowed regions.</li>
     <li><code>onRemove(item, callback)</code> Fired when an item is about to be deleted. If not implemented, the item will be always removed.</li>
+    <li><code>onControl(item, callback)</code> Fired when an item is about to be controlled. If not implemented, nothing changes. you just don´t get the item callback</li>
   </ul>
 
   <p>
