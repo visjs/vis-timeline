@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-16T04:07:42.310Z
+ * @date    2025-07-19T11:39:25.847Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -43210,6 +43210,7 @@ class Timeline extends Core {
           itemTop: -1
         };
       }
+      this.range.stopRolling();
       this.range.setRange(middle - interval / 2, middle + interval / 2, {
         animation
       }, finalVerticalCallback, verticalAnimationFrame);
