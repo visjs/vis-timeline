@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-19T20:50:14.412Z
+ * @date    2025-07-23T16:50:05.943Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -33676,6 +33676,7 @@ class Group {
     this.subgroupOrderer = data && data.subgroupOrder;
     this.itemSet = itemSet;
     this.isVisible = null;
+    this.height = 0;
     this.stackDirty = true; // if true, items will be restacked on next redraw
 
     // This is a stack of functions (`() => void`) that will be executed before
@@ -34147,7 +34148,7 @@ class Group {
     // update subgroups
     _bindInstanceProperty(_context18 = this._updateSubgroupsSizes).call(_context18, this), () => {
       var _context19;
-      height = _bindInstanceProperty(_context19 = this._calculateHeight).call(_context19, this)(margin);
+      height = this.height = _bindInstanceProperty(_context19 = this._calculateHeight).call(_context19, this)(margin);
     },
     // calculate actual size and position again
     _bindInstanceProperty(_context20 = this._calculateGroupSizeAndPosition).call(_context20, this), () => {
@@ -34223,7 +34224,9 @@ class Group {
       // default or 'auto'
       items = this.visibleItems;
     }
-    if (items.length > 0) {
+    if (!this.isVisible && this.height) {
+      height = Math.max(this.height, this.props.label.height);
+    } else if (items.length > 0) {
       let min = items[0].top;
       let max = items[0].top + items[0].height;
       _forEachInstanceProperty(availableUtils).call(availableUtils, items, item => {

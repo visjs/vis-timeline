@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-19T20:49:05.071Z
+ * @date    2025-07-23T16:49:01.626Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5824,6 +5824,7 @@ class Group {
     this.subgroupOrderer = data && data.subgroupOrder;
     this.itemSet = itemSet;
     this.isVisible = null;
+    this.height = 0;
     this.stackDirty = true; // if true, items will be restacked on next redraw
 
     // This is a stack of functions (`() => void`) that will be executed before
@@ -6325,7 +6326,7 @@ class Group {
       this._updateSubgroupsSizes.bind(this),
 
       () => {
-        height = this._calculateHeight.bind(this)(margin);
+        height = this.height = this._calculateHeight.bind(this)(margin);
       },
 
       // calculate actual size and position again
@@ -6415,7 +6416,9 @@ class Group {
       items = this.visibleItems;
     }
 
-    if (items.length > 0) {
+    if(!this.isVisible && this.height) {
+      height = Math.max(this.height, this.props.label.height);
+    } else if (items.length > 0) {
       let min = items[0].top;
       let max = items[0].top + items[0].height;
       availableUtils.forEach(items, item => {
