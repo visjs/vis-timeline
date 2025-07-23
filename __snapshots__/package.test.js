@@ -1,87 +1,335 @@
 exports['Package Exported files 1'] = {
-  "name": "vis-timeline                            ",
-  "files": [
-    "        HISTORY.md",
-    "        LICENSE.Apache-2.0.txt",
-    "        LICENSE.MIT.txt",
-    "        LICENSE.md",
-    "        README.md",
-    "        declarations/entry-esnext.d.ts",
-    "        declarations/entry-peer.d.ts",
-    "        declarations/entry-standalone.d.ts",
-    "        declarations/index.d.ts",
-    "        dist/types/entry-esnext.d.ts",
-    "        dist/types/entry-peer.d.ts",
-    "        dist/types/entry-standalone.d.ts",
-    "        dist/types/index.d.ts",
-    "        dist/vis-timeline-graph2d.css",
-    "        dist/vis-timeline-graph2d.esm.js",
-    "        dist/vis-timeline-graph2d.esm.js.map",
-    "        dist/vis-timeline-graph2d.min.css",
-    "        dist/vis-timeline-graph2d.min.js",
-    "        dist/vis-timeline-graph2d.min.js.map",
-    "        esnext/esm/index.d.ts",
-    "        esnext/esm/index.js",
-    "        esnext/esm/vis-timeline-graph2d.d.ts",
-    "        esnext/esm/vis-timeline-graph2d.js",
-    "        esnext/esm/vis-timeline-graph2d.js.map",
-    "        esnext/esm/vis-timeline-graph2d.min.d.ts",
-    "        esnext/esm/vis-timeline-graph2d.min.js",
-    "        esnext/esm/vis-timeline-graph2d.min.js.map",
-    "        esnext/index.d.ts",
-    "        esnext/index.js",
-    "        esnext/umd/index.d.ts",
-    "        esnext/umd/index.js",
-    "        esnext/umd/vis-timeline-graph2d.d.ts",
-    "        esnext/umd/vis-timeline-graph2d.js",
-    "        esnext/umd/vis-timeline-graph2d.js.map",
-    "        esnext/umd/vis-timeline-graph2d.min.d.ts",
-    "        esnext/umd/vis-timeline-graph2d.min.js",
-    "        esnext/umd/vis-timeline-graph2d.min.js.map",
-    "        package.json",
-    "        peer/esm/index.d.ts",
-    "        peer/esm/index.js",
-    "        peer/esm/vis-timeline-graph2d.d.ts",
-    "        peer/esm/vis-timeline-graph2d.js",
-    "        peer/esm/vis-timeline-graph2d.js.map",
-    "        peer/esm/vis-timeline-graph2d.min.d.ts",
-    "        peer/esm/vis-timeline-graph2d.min.js",
-    "        peer/esm/vis-timeline-graph2d.min.js.map",
-    "        peer/index.d.ts",
-    "        peer/index.js",
-    "        peer/umd/index.d.ts",
-    "        peer/umd/index.js",
-    "        peer/umd/vis-timeline-graph2d.d.ts",
-    "        peer/umd/vis-timeline-graph2d.js",
-    "        peer/umd/vis-timeline-graph2d.js.map",
-    "        peer/umd/vis-timeline-graph2d.min.d.ts",
-    "        peer/umd/vis-timeline-graph2d.min.js",
-    "        peer/umd/vis-timeline-graph2d.min.js.map",
-    "        standalone/esm/index.d.ts",
-    "        standalone/esm/index.js",
-    "        standalone/esm/vis-timeline-graph2d.d.ts",
-    "        standalone/esm/vis-timeline-graph2d.js",
-    "        standalone/esm/vis-timeline-graph2d.js.map",
-    "        standalone/esm/vis-timeline-graph2d.min.d.ts",
-    "        standalone/esm/vis-timeline-graph2d.min.js",
-    "        standalone/esm/vis-timeline-graph2d.min.js.map",
-    "        standalone/index.d.ts",
-    "        standalone/index.js",
-    "        standalone/umd/index.d.ts",
-    "        standalone/umd/index.js",
-    "        standalone/umd/vis-timeline-graph2d.d.ts",
-    "        standalone/umd/vis-timeline-graph2d.js",
-    "        standalone/umd/vis-timeline-graph2d.js.map",
-    "        standalone/umd/vis-timeline-graph2d.min.d.ts",
-    "        standalone/umd/vis-timeline-graph2d.min.js",
-    "        standalone/umd/vis-timeline-graph2d.min.js.map",
-    "        styles/vis-timeline-graph2d.css",
-    "        styles/vis-timeline-graph2d.css.map",
-    "        styles/vis-timeline-graph2d.min.css",
-    "        styles/vis-timeline-graph2d.min.css.map",
-    "        types/entry-esnext.d.ts",
-    "        types/entry-peer.d.ts",
-    "        types/entry-standalone.d.ts",
-    "        types/index.d.ts"
-  ]
+  "name": "vis-timeline",
+  "files": {
+    "HISTORY.md": {
+      "empty": false
+    },
+    "LICENSE.Apache-2.0.txt": {
+      "empty": false
+    },
+    "LICENSE.md": {
+      "empty": false
+    },
+    "LICENSE.MIT.txt": {
+      "empty": false
+    },
+    "README.md": {
+      "empty": false
+    },
+    "declarations/entry-esnext.d.ts": {
+      "empty": false
+    },
+    "declarations/entry-peer.d.ts": {
+      "empty": false
+    },
+    "declarations/entry-standalone.d.ts": {
+      "empty": false
+    },
+    "declarations/index.d.ts": {
+      "empty": false
+    },
+    "dist/types/entry-esnext.d.ts": {
+      "empty": false
+    },
+    "dist/types/entry-peer.d.ts": {
+      "empty": false
+    },
+    "dist/types/entry-standalone.d.ts": {
+      "empty": false
+    },
+    "dist/types/index.d.ts": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.css": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.esm.js": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.esm.js.map": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.min.cjs": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.min.cjs.map": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.min.css": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.mjs": {
+      "empty": false
+    },
+    "dist/vis-timeline-graph2d.mjs.map": {
+      "empty": false
+    },
+    "esnext/esm/index.d.ts": {
+      "empty": false
+    },
+    "esnext/esm/index.js": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.min.mjs": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.min.mjs.map": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.mjs": {
+      "empty": false
+    },
+    "esnext/esm/vis-timeline-graph2d.mjs.map": {
+      "empty": false
+    },
+    "esnext/index.d.ts": {
+      "empty": false
+    },
+    "esnext/index.js": {
+      "empty": false
+    },
+    "esnext/umd/index.d.ts": {
+      "empty": false
+    },
+    "esnext/umd/index.js": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.cjs": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.cjs.map": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.min.cjs": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.min.cjs.map": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "esnext/umd/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "package.json": {
+      "empty": false
+    },
+    "peer/esm/index.d.ts": {
+      "empty": false
+    },
+    "peer/esm/index.js": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.min.mjs": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.min.mjs.map": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.mjs": {
+      "empty": false
+    },
+    "peer/esm/vis-timeline-graph2d.mjs.map": {
+      "empty": false
+    },
+    "peer/index.d.ts": {
+      "empty": false
+    },
+    "peer/index.js": {
+      "empty": false
+    },
+    "peer/umd/index.d.ts": {
+      "empty": false
+    },
+    "peer/umd/index.js": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.cjs": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.cjs.map": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.min.cjs": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.min.cjs.map": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "peer/umd/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "standalone/esm/index.d.ts": {
+      "empty": false
+    },
+    "standalone/esm/index.js": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.min.mjs": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.min.mjs.map": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.mjs": {
+      "empty": false
+    },
+    "standalone/esm/vis-timeline-graph2d.mjs.map": {
+      "empty": false
+    },
+    "standalone/index.d.ts": {
+      "empty": false
+    },
+    "standalone/index.js": {
+      "empty": false
+    },
+    "standalone/umd/index.d.ts": {
+      "empty": false
+    },
+    "standalone/umd/index.js": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.cjs": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.cjs.map": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.d.ts": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.js": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.js.map": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.min.cjs": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.min.cjs.map": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.min.d.ts": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.min.js": {
+      "empty": false
+    },
+    "standalone/umd/vis-timeline-graph2d.min.js.map": {
+      "empty": false
+    },
+    "styles/vis-timeline-graph2d.css": {
+      "empty": false
+    },
+    "styles/vis-timeline-graph2d.css.map": {
+      "empty": false
+    },
+    "styles/vis-timeline-graph2d.min.css": {
+      "empty": false
+    },
+    "styles/vis-timeline-graph2d.min.css.map": {
+      "empty": false
+    },
+    "types/entry-esnext.d.ts": {
+      "empty": false
+    },
+    "types/entry-peer.d.ts": {
+      "empty": false
+    },
+    "types/entry-standalone.d.ts": {
+      "empty": false
+    },
+    "types/index.d.ts": {
+      "empty": false
+    }
+  }
 }

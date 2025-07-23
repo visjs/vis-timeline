@@ -1,7 +1,7 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
-import moment from '../lib/module/moment'
-import TimeStep from '../lib/timeline/TimeStep'
+import moment from '../lib/module/moment.js'
+import TimeStep from '../lib/timeline/TimeStep.js'
 
 const internals = {}
 
