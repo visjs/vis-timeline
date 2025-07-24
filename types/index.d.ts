@@ -205,6 +205,7 @@ export interface TimelineTimeAxisOption {
 export interface TimelineRollingModeOption {
   follow?: boolean;
   offset?: number;
+  showButton?: boolean;
 }
 
 export interface TimelineTooltipOption {
