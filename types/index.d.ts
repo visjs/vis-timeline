@@ -86,7 +86,7 @@ export interface LegendOptions {
 
 export interface DataItem {
   className?: string;
-  content: string;
+  content: string | HTMLElement;
   end?: DateType;
   group?: any;
   id?: IdType;
