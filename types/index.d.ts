@@ -270,6 +270,7 @@ export interface TimelineOptions {
   locale?: string;
   locales?: any; // TODO
   longSelectPressTime?: number,
+  loadingScreenTemplate?: () => string,
   moment?: MomentConstructor;
   margin?: TimelineOptionsMarginType;
   max?: DateType;
@@ -463,8 +464,11 @@ export interface Graph2dOptions {
   end?: DateType;
   format?: any; // TODO
   graphHeight?: HeightWidthType;
+  /** Show/hide groups. To show/hide the ungrouped (default group) data, use the special `"__ungrouped__"` as `groupId`. */
+  groups?: { visibility: { [groupId: IdType]: boolean; } };
   height?: HeightWidthType;
   hiddenDates?: any; // TODO
+  interpolation?: boolean | ParametrizationInterpolationType;
   legend?: Graph2dLegendOption;
   locale?: string;
   locales?: any; // TODO
@@ -541,7 +545,13 @@ export class Graph2d {
 export interface Graph2d {
   setGroups(groups?: TimelineGroup[]): void;
   setItems(items?: TimelineItem[]): void;
-  getLegend(): TimelineWindow;
+  /**
+   * Retrieve legend icon (SVG, name and y-axis affiliation)
+   * @param groupId group id for which the legend icon and name should be returned
+   * @param iconWidth icon width
+   * @param iconHeight icon height
+   */
+  getLegend(groupId: IdType, iconWidth: number, iconHeight: number): { icon: SVGElement, label: string, orientation: 'left' | 'right' };
   getWindow(): TimelineWindow;
   setWindow(start: any, date: any): void;
   focus(selection: any): void;
