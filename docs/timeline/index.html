@@ -369,6 +369,12 @@ var items = new vis.DataSet([
       <td>no</td>
       <td>If true, items can be dragged to another moment in time. See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
     </tr>
+    <tr parent="itemEditable" class="hidden">
+      <td class="indent">editable.updateRangeDuration</td>
+      <td>boolean</td>
+      <td>no</td>
+      <td>If true, range items can be changed their duration by dragging the sides of the item. Only applicable in range items and when <code>editable.updateTime</code> is true . See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
+    </tr>
   </table>
 
   <h3 id="groups">Groups</h3>
@@ -609,6 +615,12 @@ function (option, path) {
       <td>boolean</td>
       <td><code>false</code></td>
       <td>If true, items can be dragged to another moment in time. See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
+    </tr>
+    <tr parent="editable" class="hidden">
+      <td class="indent">editable.updateRangeDuration</td>
+      <td>boolean</td>
+      <td><code>false</code></td>
+      <td>If true, range items can be changed their duration by dragging the sides of the item. Only applicable in range items and when <code>editable.updateTime</code> is true . See section <a href="#Editing_Items">Editing Items</a> for a detailed explanation.</td>
     </tr>
     <tr parent="editable" class="hidden">
       <td class="indent">editable.overrideItems</td>
@@ -1995,6 +2007,7 @@ var options = {
   editable: {
     add: true,         // add new items by double tapping
     updateTime: true,  // drag items horizontally
+    updateRangeDuration: true, // change duration in range items
     updateGroup: true, // drag items from one group to another
     remove: true,       // delete an item by tapping the delete button top right
     overrideItems: false  // allow these options to override item.editable
