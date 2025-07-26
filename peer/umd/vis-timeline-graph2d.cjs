@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-24T20:33:01.889Z
+ * @date    2025-07-26T14:23:57.695Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -14385,6 +14385,8 @@
 	/**
 	 * Test if an object implements the DataView interface from vis-data.
 	 * Uses the idProp property instead of expecting a hardcoded id field "id".
+	 * @param {Object} obj The object to test.
+	 * @returns {boolean} True if the object implements vis-data DataView interface otherwise false.
 	 */
 	function isDataViewLike(obj) {
 	  var _obj$idProp;
@@ -14406,10 +14408,10 @@
 	/**
 	 * Convert an object into another type
 	 *
-	 * @param object - Value of unknown type.
-	 * @param type - Name of the desired type.
+	 * @param {Object} object - Value of unknown type.
+	 * @param {string} type - Name of the desired type.
 	 *
-	 * @returns Object in the desired type.
+	 * @returns {Object} Object in the desired type.
 	 * @throws Error
 	 */
 	function convert(object, type) {
@@ -14522,8 +14524,10 @@
 	/**
 	 * Create a Data Set like wrapper to seamlessly coerce data types.
 	 *
-	 * @param rawDS - The Data Set with raw uncoerced data.
-	 * @param type - A record assigning a data type to property name.
+	 * @param {Object} rawDS - The Data Set with raw uncoerced data.
+	 * @param {Object} type - A record assigning a data type to property name.
+	 * @param {string} type.start - Data type name of property 'start'. Default: Date.
+	 * @param {string} type.end - Data type name of property 'end'. Default: Date.
 	 *
 	 * @remarks
 	 * The write operations (`add`, `remove`, `update` and `updateOnly`) write into
@@ -14542,7 +14546,7 @@
 	 * the pipe connecting the two Data Sets will keep the unaccessible coerced
 	 * Data Set alive and updated as long as the raw Data Set exists.
 	 *
-	 * @returns A Data Set like object that saves data into the raw Data Set and
+	 * @returns {Object} A Data Set like object that saves data into the raw Data Set and
 	 * retrieves them from the coerced Data Set.
 	 */
 	function typeCoerceDataSet(rawDS) {
@@ -17738,24 +17742,23 @@
 	    switch (this.scale) {
 	      case 'year':
 	        this.current = this.current.year(this.step * Math.floor(this.current.year() / this.step)).month(0);
-	      // eslint-disable-line no-fallthrough
+	      // eslint-disable-next-line no-fallthrough
 	      case 'month':
 	        this.current = this.current.date(1);
-	      // eslint-disable-line no-fallthrough
-	      case 'week': // eslint-disable-line no-fallthrough
-	      case 'day': // eslint-disable-line no-fallthrough
+	      // eslint-disable-next-line no-fallthrough
+	      case 'week':
+	      case 'day':
 	      case 'weekday':
 	        this.current = this.current.hours(0);
-	      // eslint-disable-line no-fallthrough
+	      // eslint-disable-next-line no-fallthrough
 	      case 'hour':
 	        this.current = this.current.minutes(0);
-	      // eslint-disable-line no-fallthrough
+	      // eslint-disable-next-line no-fallthrough
 	      case 'minute':
 	        this.current = this.current.seconds(0);
-	      // eslint-disable-line no-fallthrough
+	      // eslint-disable-next-line no-fallthrough
 	      case 'second':
 	        this.current = this.current.milliseconds(0);
-	      // eslint-disable-line no-fallthrough
 	      //case 'millisecond': // nothing to do for milliseconds
 	    }
 	    if (this.step != 1) {
@@ -18269,8 +18272,8 @@
 	        if (date.date() === 1 && date.weekday() !== 0) {
 	          return "";
 	        }
+	      // eslint-disable-next-line no-fallthrough
 	      default:
-	        // eslint-disable-line no-fallthrough
 	        return format && format.length > 0 ? this.moment(date).format(format) : '';
 	    }
 	  }
@@ -19677,7 +19680,7 @@
 	  static customTimeFromTarget(event) {
 	    let target = event.target;
 	    while (target) {
-	      if (target.hasOwnProperty('custom-time')) {
+	      if (Object.prototype.hasOwnProperty.call(target, 'custom-time')) {
 	        return target['custom-time'];
 	      }
 	      target = target.parentNode;
@@ -20213,7 +20216,7 @@
 
 	    // cleanup hammer touch events
 	    for (const event in this.timelineListeners) {
-	      if (this.timelineListeners.hasOwnProperty(event)) {
+	      if (Object.prototype.hasOwnProperty.call(this.timelineListeners, event)) {
 	        delete this.timelineListeners[event];
 	      }
 	    }
@@ -20359,6 +20362,7 @@
 
 	  /**
 	   * Get the id's of the items at specific time, where a click takes place on the timeline.
+	   * @param {Date} timeOfEvent The point in time to query items.
 	   * @returns {Array} The ids of all items in existence at the time of event.
 	   */
 	  getItemsAtCurrentTime(timeOfEvent) {
@@ -23435,7 +23439,7 @@
 	 * @return {boolean} shouldBail
 	 */
 	function stack(items, margin, force, shouldBailItemsRedrawFunction) {
-	  const stackingResult = performStacking(items, margin.item, false, item => item.stack && (force || item.top === null), item => item.stack, item => margin.axis, shouldBailItemsRedrawFunction);
+	  const stackingResult = performStacking(items, margin.item, false, item => item.stack && (force || item.top === null), item => item.stack, () => margin.axis, shouldBailItemsRedrawFunction);
 
 	  // If shouldBail function returned true during stacking calculation
 	  return stackingResult === null;
@@ -23452,7 +23456,7 @@
 	 *            The subgroup that is being stacked
 	 */
 	function substack(items, margin, subgroup) {
-	  const subgroupHeight = performStacking(items, margin.item, false, item => item.stack, item => true, item => item.baseTop);
+	  const subgroupHeight = performStacking(items, margin.item, false, item => item.stack, () => true, item => item.baseTop);
 	  subgroup.height = subgroupHeight - subgroup.top + 0.5 * margin.item.vertical;
 	}
 
@@ -23470,22 +23474,18 @@
 	  for (let i = 0; i < items.length; i++) {
 	    if (items[i].data.subgroup == undefined) {
 	      items[i].top = margin.item.vertical;
-	    } else if (items[i].data.subgroup !== undefined && isStackSubgroups) {
-	      let newTop = 0;
-	      for (const subgroup in subgroups) {
-	        if (subgroups.hasOwnProperty(subgroup)) {
-	          if (subgroups[subgroup].visible == true && subgroups[subgroup].index < subgroups[items[i].data.subgroup].index) {
-	            newTop += subgroups[subgroup].height;
-	            subgroups[items[i].data.subgroup].top = newTop;
-	          }
-	        }
-	      }
-	      items[i].top = newTop + 0.5 * margin.item.vertical;
+	      continue;
 	    }
+	    if (items[i].data.subgroup === undefined || !isStackSubgroups) continue;
+	    let newTop = 0;
+	    for (const subgroup in subgroups) {
+	      if (!Object.prototype.hasOwnProperty.call(subgroups, subgroup) || subgroups[subgroup].visible !== true || subgroups[subgroup].index >= subgroups[items[i].data.subgroup].index) continue;
+	      newTop += subgroups[subgroup].height;
+	      subgroups[items[i].data.subgroup].top = newTop;
+	    }
+	    items[i].top = newTop + 0.5 * margin.item.vertical;
 	  }
-	  if (!isStackSubgroups) {
-	    stackSubgroups(items, margin, subgroups);
-	  }
+	  if (!isStackSubgroups) stackSubgroups(items, margin, subgroups);
 	}
 
 	/**
@@ -23504,7 +23504,7 @@
 	    return 0;
 	  }), {
 	    vertical: 0
-	  }, true, item => true, item => true, item => 0);
+	  }, true, () => true, () => true, () => 0);
 	  for (let i = 0; i < items.length; i++) {
 	    if (items[i].data.subgroup !== undefined) {
 	      items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
@@ -23528,7 +23528,7 @@
 	  // Run subgroups in their order (if any)
 	  const subgroupOrder = [];
 	  for (var subgroup in subgroups) {
-	    if (subgroups[subgroup].hasOwnProperty("index")) {
+	    if (Object.prototype.hasOwnProperty.call(subgroups[subgroup], "index")) {
 	      subgroupOrder[subgroups[subgroup].index] = subgroup;
 	    } else {
 	      subgroupOrder.push(subgroup);
@@ -23536,27 +23536,21 @@
 	  }
 	  for (let j = 0; j < subgroupOrder.length; j++) {
 	    subgroup = subgroupOrder[j];
-	    if (subgroups.hasOwnProperty(subgroup)) {
-	      doSubStack = doSubStack || subgroups[subgroup].stack;
-	      subgroups[subgroup].top = 0;
-	      for (const otherSubgroup in subgroups) {
-	        if (subgroups[otherSubgroup].visible && subgroups[subgroup].index > subgroups[otherSubgroup].index) {
-	          subgroups[subgroup].top += subgroups[otherSubgroup].height;
-	        }
-	      }
-	      const items = subgroupItems[subgroup];
-	      for (let i = 0; i < items.length; i++) {
-	        if (items[i].data.subgroup !== undefined) {
-	          items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
-	          if (subgroups[subgroup].stack) {
-	            items[i].baseTop = items[i].top;
-	          }
-	        }
-	      }
-	      if (doSubStack && subgroups[subgroup].stack) {
-	        substack(subgroupItems[subgroup], margin, subgroups[subgroup]);
+	    if (!Object.prototype.hasOwnProperty.call(subgroups, subgroup)) continue;
+	    doSubStack = doSubStack || subgroups[subgroup].stack;
+	    subgroups[subgroup].top = 0;
+	    for (const otherSubgroup in subgroups) {
+	      if (subgroups[otherSubgroup].visible && subgroups[subgroup].index > subgroups[otherSubgroup].index) {
+	        subgroups[subgroup].top += subgroups[otherSubgroup].height;
 	      }
 	    }
+	    const items = subgroupItems[subgroup];
+	    for (let i = 0; i < items.length; i++) {
+	      if (items[i].data.subgroup === undefined) continue;
+	      items[i].top = subgroups[items[i].data.subgroup].top + 0.5 * margin.item.vertical;
+	      if (subgroups[subgroup].stack) items[i].baseTop = items[i].top;
+	    }
+	    if (doSubStack && subgroups[subgroup].stack) substack(subgroupItems[subgroup], margin, subgroups[subgroup]);
 	  }
 	}
 
@@ -23571,13 +23565,13 @@
 	 * By default, horizontal collision is checked based on the spatial position of the items (left/right and width).
 	 * If this argument is true, horizontal collision will instead be checked based on the start/end times of each item.
 	 * Vertical collision is always checked spatially.
-	 * @param {(Item) => number | null} shouldStack
+	 * @param {function(Item): number | null} shouldStack
 	 * A callback function which is called before we start to process an item. The return value indicates whether the item will be processed.
-	 * @param {(Item) => boolean} shouldOthersStack
+	 * @param {function(Item): boolean} shouldOthersStack
 	 * A callback function which indicates whether other items should consider this item when being stacked.
-	 * @param {(Item) => number} getInitialHeight
+	 * @param {function(Item): number} getInitialHeight
 	 * A callback function which determines the height items are initially placed at
-	 * @param {() => boolean} shouldBail 
+	 * @param {function(): boolean} shouldBail 
 	 * A callback function which should indicate if the stacking process should be aborted.
 	 * 
 	 * @returns {null|number}
@@ -23713,12 +23707,13 @@
 	  return a.top - margin.vertical + EPSILON < b.top + b.height && a.top + a.height + margin.vertical - EPSILON > b.top;
 	}
 
+	// eslint-disable-next-line valid-jsdoc
 	/**
 	 * Find index of first item to meet predicate after a certain index.
 	 * If no such item is found, returns the length of the array.
 	 * 
 	 * @param {any[]} arr The array
-	 * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+	 * @param {function(item): boolean} predicate A function that should return true when a suitable item is found
 	 * @param {number|undefined} startIndex The index to start search from (inclusive). Optional, if not provided will search from the beginning of the array.
 	 * 
 	 * @return {number}
@@ -23740,23 +23735,17 @@
 	 * If no such item is found, returns the index prior to the start of the range.
 	 * 
 	 * @param {any[]} arr The array
-	 * @param {(item) => boolean} predicate A function that should return true when a suitable item is found
+	 * @param {function(item): boolean} predicate A function that should return true when a suitable item is found
 	 * @param {number|undefined} startIndex The earliest index to search to (inclusive). Optional, if not provided will continue until the start of the array.
 	 * @param {number|undefined} endIndex The end of the search range (exclusive). The search will begin on the index prior to this value. Optional, defaults to the end of array.
 	 * 
 	 * @return {number}
 	 */
 	function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
-	  if (!startIndex) {
-	    startIndex = 0;
-	  }
-	  if (!endIndex) {
-	    endIndex = arr.length;
-	  }
-	  for (i = endIndex - 1; i >= startIndex; i--) {
-	    if (predicate(arr[i])) {
-	      return i;
-	    }
+	  if (!startIndex) startIndex = 0;
+	  if (!endIndex) endIndex = arr.length;
+	  for (let i = endIndex - 1; i >= startIndex; i--) {
+	    if (predicate(arr[i])) return i;
 	  }
 	  return startIndex - 1;
 	}
@@ -23824,6 +23813,7 @@
 	        // We might be doing stacking on specific sub groups, but only
 	        // if at least one is set to do stacking
 	        for (const key in data.subgroupStack) {
+	          if (!Object.prototype.hasOwnProperty.call(data.subgroupStack, key)) continue;
 	          this.subgroupStack[key] = data.subgroupStack[key];
 	          this.doInnerStack = this.doInnerStack || data.subgroupStack[key];
 	        }
@@ -23910,6 +23900,7 @@
 	    let templateFunction;
 	    if (data && data.subgroupVisibility) {
 	      for (const key in data.subgroupVisibility) {
+	        if (!Object.prototype.hasOwnProperty.call(data.subgroupVisibility, key)) continue;
 	        this.subgroupVisibility[key] = data.subgroupVisibility[key];
 	      }
 	    }
@@ -24137,6 +24128,7 @@
 	        let visibleSubgroupsItems = {};
 	        for (const subgroup in this.subgroups) {
 	          var _context0;
+	          if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
 	          const items = _filterInstanceProperty(_context0 = this.visibleItems).call(_context0, item => item.data.subgroup === subgroup);
 	          visibleSubgroupsItems[subgroup] = orderFn ? _sortInstanceProperty(items).call(items, (a, b) => orderFn(a.data, b.data)) : items;
 	        }
@@ -24473,6 +24465,7 @@
 	    if (me.subgroups) {
 	      for (const subgroup in me.subgroups) {
 	        var _context26;
+	        if (!Object.prototype.hasOwnProperty.call(me.subgroups, subgroup)) continue;
 	        const initialEnd = me.subgroups[subgroup].items[0].data.end || me.subgroups[subgroup].items[0].data.start;
 	        let newStart = me.subgroups[subgroup].items[0].data.start;
 	        let newEnd = initialEnd - 1;
@@ -24499,6 +24492,7 @@
 	      const sortArray = [];
 	      if (typeof this.subgroupOrderer == 'string') {
 	        for (const subgroup in this.subgroups) {
+	          if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
 	          sortArray.push({
 	            subgroup,
 	            sortField: this.subgroups[subgroup].items[0].data[this.subgroupOrderer]
@@ -24507,6 +24501,7 @@
 	        _sortInstanceProperty(sortArray).call(sortArray, (a, b) => a.sortField - b.sortField);
 	      } else if (typeof this.subgroupOrderer == 'function') {
 	        for (const subgroup in this.subgroups) {
+	          if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
 	          sortArray.push(this.subgroups[subgroup].items[0].data);
 	        }
 	        _sortInstanceProperty(sortArray).call(sortArray, this.subgroupOrderer);
@@ -24524,10 +24519,9 @@
 	   */
 	  _resetSubgroups() {
 	    for (const subgroup in this.subgroups) {
-	      if (this.subgroups.hasOwnProperty(subgroup)) {
-	        this.subgroups[subgroup].visible = false;
-	        this.subgroups[subgroup].height = 0;
-	      }
+	      if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
+	      this.subgroups[subgroup].visible = false;
+	      this.subgroups[subgroup].height = 0;
 	    }
 	  }
 
@@ -27687,66 +27681,65 @@
 	    if (!clusters) {
 	      clusters = [];
 	      for (let groupName in this.groups) {
-	        if (this.groups.hasOwnProperty(groupName)) {
-	          const items = this.groups[groupName];
-	          const iMax = items.length;
-	          let i = 0;
-	          while (i < iMax) {
-	            // find all items around current item, within the timeWindow
-	            let item = items[i];
-	            let neighbors = 1; // start at 1, to include itself)
+	        if (!Object.prototype.hasOwnProperty.call(this.groups, groupName)) continue;
+	        const items = this.groups[groupName];
+	        const iMax = items.length;
+	        let i = 0;
+	        while (i < iMax) {
+	          // find all items around current item, within the timeWindow
+	          let item = items[i];
+	          let neighbors = 1; // start at 1, to include itself)
 
-	            // loop through items left from the current item
-	            let j = i - 1;
-	            while (j >= 0 && item.center - items[j].center < timeWindow / 2) {
-	              if (!items[j].cluster && clusterCriteria(item.data, items[j].data)) {
-	                neighbors++;
-	              }
-	              j--;
+	          // loop through items left from the current item
+	          let j = i - 1;
+	          while (j >= 0 && item.center - items[j].center < timeWindow / 2) {
+	            if (!items[j].cluster && clusterCriteria(item.data, items[j].data)) {
+	              neighbors++;
 	            }
+	            j--;
+	          }
 
-	            // loop through items right from the current item
-	            let k = i + 1;
-	            while (k < items.length && items[k].center - item.center < timeWindow / 2) {
-	              if (clusterCriteria(item.data, items[k].data)) {
-	                neighbors++;
-	              }
-	              k++;
+	          // loop through items right from the current item
+	          let k = i + 1;
+	          while (k < items.length && items[k].center - item.center < timeWindow / 2) {
+	            if (clusterCriteria(item.data, items[k].data)) {
+	              neighbors++;
 	            }
+	            k++;
+	          }
 
-	            // loop through the created clusters
-	            let l = clusters.length - 1;
-	            while (l >= 0 && item.center - clusters[l].center < timeWindow) {
-	              if (item.group == clusters[l].group && clusterCriteria(item.data, clusters[l].data)) {
-	                neighbors++;
-	              }
-	              l--;
+	          // loop through the created clusters
+	          let l = clusters.length - 1;
+	          while (l >= 0 && item.center - clusters[l].center < timeWindow) {
+	            if (item.group == clusters[l].group && clusterCriteria(item.data, clusters[l].data)) {
+	              neighbors++;
 	            }
+	            l--;
+	          }
 
-	            // aggregate until the number of items is within maxItems
-	            if (neighbors > maxItems) {
-	              // too busy in this window.
-	              const num = neighbors - maxItems + 1;
-	              const clusterItems = [];
+	          // aggregate until the number of items is within maxItems
+	          if (neighbors > maxItems) {
+	            // too busy in this window.
+	            const num = neighbors - maxItems + 1;
+	            const clusterItems = [];
 
-	              // append the items to the cluster,
-	              // and calculate the average start for the cluster
-	              let m = i;
-	              while (clusterItems.length < num && m < items.length) {
-	                if (clusterCriteria(items[i].data, items[m].data)) {
-	                  clusterItems.push(items[m]);
-	                }
-	                m++;
+	            // append the items to the cluster,
+	            // and calculate the average start for the cluster
+	            let m = i;
+	            while (clusterItems.length < num && m < items.length) {
+	              if (clusterCriteria(items[i].data, items[m].data)) {
+	                clusterItems.push(items[m]);
 	              }
-	              const groupId = this.itemSet.getGroupId(item.data);
-	              const group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds.UNGROUPED];
-	              let cluster = this._getClusterForItems(clusterItems, group, oldClusters, options);
-	              clusters.push(cluster);
-	              i += num;
-	            } else {
-	              delete item.cluster;
-	              i += 1;
+	              m++;
 	            }
+	            const groupId = this.itemSet.getGroupId(item.data);
+	            const group = this.itemSet.groups[groupId] || this.itemSet.groups[ReservedGroupIds.UNGROUPED];
+	            let cluster = this._getClusterForItems(clusterItems, group, oldClusters, options);
+	            clusters.push(cluster);
+	            i += num;
+	          } else {
+	            delete item.cluster;
+	            i += 1;
 	          }
 	        }
 	      }
@@ -27789,10 +27782,9 @@
 
 	    // sort the items per group
 	    for (let currentGroupName in groups) {
-	      if (groups.hasOwnProperty(currentGroupName)) {
-	        var _context;
-	        _sortInstanceProperty(_context = groups[currentGroupName]).call(_context, (a, b) => a.center - b.center);
-	      }
+	      var _context;
+	      if (!Object.prototype.hasOwnProperty.call(groups, currentGroupName)) continue;
+	      _sortInstanceProperty(_context = groups[currentGroupName]).call(_context, (a, b) => a.center - b.center);
 	    }
 	    this.dataChanged = false;
 	  }
@@ -28532,22 +28524,21 @@
 	    }
 	    const ids = [];
 	    for (const groupId in this.groups) {
-	      if (this.groups.hasOwnProperty(groupId)) {
-	        const group = this.groups[groupId];
-	        const rawVisibleItems = group.isVisible ? group.visibleItems : [];
+	      if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) continue;
+	      const group = this.groups[groupId];
+	      const rawVisibleItems = group.isVisible ? group.visibleItems : [];
 
-	        // filter the "raw" set with visibleItems into a set which is really
-	        // visible by pixels
-	        for (const item of rawVisibleItems) {
-	          // TODO: also check whether visible vertically
-	          if (this.options.rtl) {
-	            if (item.right < left && item.right + item.width > right) {
-	              ids.push(item.id);
-	            }
-	          } else {
-	            if (item.left < right && item.left + item.width > left) {
-	              ids.push(item.id);
-	            }
+	      // filter the "raw" set with visibleItems into a set which is really
+	      // visible by pixels
+	      for (const item of rawVisibleItems) {
+	        // TODO: also check whether visible vertically
+	        if (this.options.rtl) {
+	          if (item.right < left && item.right + item.width > right) {
+	            ids.push(item.id);
+	          }
+	        } else {
+	          if (item.left < right && item.left + item.width > left) {
+	            ids.push(item.id);
 	          }
 	        }
 	      }
@@ -28556,9 +28547,10 @@
 	  }
 
 	  /**
-	  * Get the id's of the items at specific time, where a click takes place on the timeline.
-	  * @returns {Array} The ids of all items in existence at the time of click event on the timeline.
-	  */
+	   * Get the id's of the items at specific time, where a click takes place on the timeline.
+	   * @param {Date} timeOfEvent The point in time to query items.
+	   * @returns {Array} The ids of all items in existence at the time of click event on the timeline.
+	   */
 	  getItemsAtCurrentTime(timeOfEvent) {
 	    let right;
 	    let left;
@@ -28571,21 +28563,20 @@
 	    }
 	    const ids = [];
 	    for (const groupId in this.groups) {
-	      if (this.groups.hasOwnProperty(groupId)) {
-	        const group = this.groups[groupId];
-	        const rawVisibleItems = group.isVisible ? group.visibleItems : [];
+	      if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) continue;
+	      const group = this.groups[groupId];
+	      const rawVisibleItems = group.isVisible ? group.visibleItems : [];
 
-	        // filter the "raw" set with visibleItems into a set which is really
-	        // visible by pixels
-	        for (const item of rawVisibleItems) {
-	          if (this.options.rtl) {
-	            if (item.right < left && item.right + item.width > right) {
-	              ids.push(item.id);
-	            }
-	          } else {
-	            if (item.left < right && item.left + item.width > left) {
-	              ids.push(item.id);
-	            }
+	      // filter the "raw" set with visibleItems into a set which is really
+	      // visible by pixels
+	      for (const item of rawVisibleItems) {
+	        if (this.options.rtl) {
+	          if (item.right < left && item.right + item.width > right) {
+	            ids.push(item.id);
+	          }
+	        } else {
+	          if (item.left < right && item.left + item.width > left) {
+	            ids.push(item.id);
 	          }
 	        }
 	      }
@@ -28600,12 +28591,9 @@
 	  getVisibleGroups() {
 	    const ids = [];
 	    for (const groupId in this.groups) {
-	      if (this.groups.hasOwnProperty(groupId)) {
-	        const group = this.groups[groupId];
-	        if (group.isVisible) {
-	          ids.push(groupId);
-	        }
-	      }
+	      if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) continue;
+	      const group = this.groups[groupId];
+	      if (group.isVisible) ids.push(groupId);
 	    }
 	    return ids;
 	  }
@@ -28774,13 +28762,12 @@
 	        ungrouped.dispose();
 	        delete this.groups[UNGROUPED$1];
 	        for (itemId in this.items) {
-	          if (this.items.hasOwnProperty(itemId)) {
-	            item = this.items[itemId];
-	            item.parent && item.parent.remove(item);
-	            const groupId = this.getGroupId(item.data);
-	            const group = this.groups[groupId];
-	            group && group.add(item) || item.hide();
-	          }
+	          if (!Object.prototype.hasOwnProperty.call(this.items, itemId)) continue;
+	          item = this.items[itemId];
+	          item.parent && item.parent.remove(item);
+	          const groupId = this.getGroupId(item.data);
+	          const group = this.groups[groupId];
+	          group && group.add(item) || item.hide();
 	        }
 	      }
 	    } else {
@@ -28791,10 +28778,9 @@
 	        ungrouped = new Group(id, data, this);
 	        this.groups[UNGROUPED$1] = ungrouped;
 	        for (itemId in this.items) {
-	          if (this.items.hasOwnProperty(itemId)) {
-	            item = this.items[itemId];
-	            ungrouped.add(item);
-	          }
+	          if (!Object.prototype.hasOwnProperty.call(this.items, itemId)) continue;
+	          item = this.items[itemId];
+	          ungrouped.add(item);
 	        }
 	        ungrouped.show();
 	      }
@@ -29114,12 +29100,9 @@
 
 	        // add items with this groupId to the new group
 	        for (const itemId in me.items) {
-	          if (me.items.hasOwnProperty(itemId)) {
-	            const item = me.items[itemId];
-	            if (item.data.group == id) {
-	              group.add(item);
-	            }
-	          }
+	          if (!Object.prototype.hasOwnProperty.call(me.items, itemId)) continue;
+	          const item = me.items[itemId];
+	          if (item.data.group == id) group.add(item);
 	        }
 	        group.order();
 	        group.show();
@@ -30180,13 +30163,12 @@
 	          // select all items within the selection range
 	          selection = [];
 	          for (const id in this.items) {
-	            if (this.items.hasOwnProperty(id)) {
-	              const _item = this.items[id];
-	              const start = _item.data.start;
-	              const end = _item.data.end !== undefined ? _item.data.end : start;
-	              if (start >= range.min && end <= range.max && (!this.options.multiselectPerGroup || lastSelectedGroup == this.itemsData.get(_item.id).group) && !(_item instanceof BackgroundItem)) {
-	                selection.push(_item.id); // do not use id but item.id, id itself is stringified
-	              }
+	            if (!Object.prototype.hasOwnProperty.call(this.items, id)) continue;
+	            const _item = this.items[id];
+	            const start = _item.data.start;
+	            const end = _item.data.end !== undefined ? _item.data.end : start;
+	            if (start >= range.min && end <= range.max && (!this.options.multiselectPerGroup || lastSelectedGroup == this.itemsData.get(_item.id).group) && !(_item instanceof BackgroundItem)) {
+	              selection.push(_item.id); // do not use id but item.id, id itself is stringified
 	            }
 	          }
 	        }
@@ -30248,7 +30230,7 @@
 	  itemFromElement(element) {
 	    let cur = element;
 	    while (cur) {
-	      if (cur.hasOwnProperty('vis-item')) {
+	      if (Object.prototype.hasOwnProperty.call(cur, 'vis-item')) {
 	        return cur['vis-item'];
 	      }
 	      cur = cur.parentNode;
@@ -30320,7 +30302,7 @@
 	  static itemSetFromTarget(event) {
 	    let target = event.target;
 	    while (target) {
-	      if (target.hasOwnProperty('vis-itemset')) {
+	      if (Object.prototype.hasOwnProperty.call(target, 'vis-itemset')) {
 	        return target['vis-itemset'];
 	      }
 	      target = target.parentNode;
@@ -30479,9 +30461,8 @@
 	   */
 	  static parse(options, referenceOptions, path) {
 	    for (let option in options) {
-	      if (options.hasOwnProperty(option)) {
-	        Validator.check(option, options, referenceOptions, path);
-	      }
+	      if (!Object.prototype.hasOwnProperty.call(options, option)) continue;
+	      Validator.check(option, options, referenceOptions, path);
 	    }
 	  }
 
@@ -30639,7 +30620,7 @@
 	    let lowerCaseOption = option.toLowerCase();
 	    let indexMatch = undefined;
 	    for (let op in options) {
-	      // eslint-disable-line guard-for-in
+	      if (!Object.prototype.hasOwnProperty.call(options, op)) continue;
 	      let distance;
 	      if (options[op].__type__ !== undefined && recursive === true) {
 	        let result = Validator.findInOptions(option, options[op], availableUtils.copyAndExtendArray(path, op));
@@ -32335,30 +32316,29 @@
 	    let counter = 0;
 	    let show = false;
 	    for (let option in this.configureOptions) {
-	      if (this.configureOptions.hasOwnProperty(option)) {
-	        this.allowCreation = false;
-	        show = false;
-	        if (typeof filter === 'function') {
-	          show = filter(option, []);
-	          show = show || this._handleObject(this.configureOptions[option], [option], true);
-	        } else if (filter === true || _indexOfInstanceProperty(filter).call(filter, option) !== -1) {
-	          show = true;
-	        }
-	        if (show !== false) {
-	          this.allowCreation = true;
-
-	          // linebreak between categories
-	          if (counter > 0) {
-	            this._makeItem([]);
-	          }
-	          // a header for the category
-	          this._makeHeader(option);
-
-	          // get the sub options
-	          this._handleObject(this.configureOptions[option], [option]);
-	        }
-	        counter++;
+	      if (!Object.prototype.hasOwnProperty.call(this.configureOptions, option)) continue;
+	      this.allowCreation = false;
+	      show = false;
+	      if (typeof filter === 'function') {
+	        show = filter(option, []);
+	        show = show || this._handleObject(this.configureOptions[option], [option], true);
+	      } else if (filter === true || _indexOfInstanceProperty(filter).call(filter, option) !== -1) {
+	        show = true;
 	      }
+	      if (show !== false) {
+	        this.allowCreation = true;
+
+	        // linebreak between categories
+	        if (counter > 0) {
+	          this._makeItem([]);
+	        }
+	        // a header for the category
+	        this._makeHeader(option);
+
+	        // get the sub options
+	        this._handleObject(this.configureOptions[option], [option]);
+	      }
+	      counter++;
 	    }
 	    this._makeButton();
 	    this._push();
@@ -32781,60 +32761,59 @@
 	    let filter = _filterInstanceProperty(this.options);
 	    let visibleInSet = false;
 	    for (let subObj in obj) {
-	      if (obj.hasOwnProperty(subObj)) {
-	        show = true;
-	        let item = obj[subObj];
-	        let newPath = availableUtils.copyAndExtendArray(path, subObj);
-	        if (typeof filter === 'function') {
-	          show = filter(subObj, path);
+	      if (!Object.prototype.hasOwnProperty.call(obj, subObj)) continue;
+	      show = true;
+	      let item = obj[subObj];
+	      let newPath = availableUtils.copyAndExtendArray(path, subObj);
+	      if (typeof filter === 'function') {
+	        show = filter(subObj, path);
 
-	          // if needed we must go deeper into the object.
-	          if (show === false) {
-	            if (!_Array$isArray(item) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
-	              this.allowCreation = false;
-	              show = this._handleObject(item, newPath, true);
-	              this.allowCreation = checkOnly === false;
-	            }
+	        // if needed we must go deeper into the object.
+	        if (show === false) {
+	          if (!_Array$isArray(item) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
+	            this.allowCreation = false;
+	            show = this._handleObject(item, newPath, true);
+	            this.allowCreation = checkOnly === false;
 	          }
 	        }
-	        if (show !== false) {
-	          visibleInSet = true;
-	          let value = this._getValue(newPath);
-	          if (_Array$isArray(item)) {
-	            this._handleArray(item, value, newPath);
-	          } else if (typeof item === 'string') {
-	            this._makeTextInput(item, value, newPath);
-	          } else if (typeof item === 'boolean') {
-	            this._makeCheckbox(item, value, newPath);
-	          } else if (item instanceof Object) {
-	            // collapse the physics options that are not enabled
-	            let draw = true;
-	            if (_indexOfInstanceProperty(path).call(path, 'physics') !== -1) {
-	              if (this.moduleOptions.physics.solver !== subObj) {
-	                draw = false;
-	              }
+	      }
+	      if (show !== false) {
+	        visibleInSet = true;
+	        let value = this._getValue(newPath);
+	        if (_Array$isArray(item)) {
+	          this._handleArray(item, value, newPath);
+	        } else if (typeof item === 'string') {
+	          this._makeTextInput(item, value, newPath);
+	        } else if (typeof item === 'boolean') {
+	          this._makeCheckbox(item, value, newPath);
+	        } else if (item instanceof Object) {
+	          // collapse the physics options that are not enabled
+	          let draw = true;
+	          if (_indexOfInstanceProperty(path).call(path, 'physics') !== -1) {
+	            if (this.moduleOptions.physics.solver !== subObj) {
+	              draw = false;
 	            }
-	            if (draw === true) {
-	              // initially collapse options with an disabled enabled option.
-	              if (item.enabled !== undefined) {
-	                let enabledPath = availableUtils.copyAndExtendArray(newPath, 'enabled');
-	                let enabledValue = this._getValue(enabledPath);
-	                if (enabledValue === true) {
-	                  let label = this._makeLabel(subObj, newPath, true);
-	                  this._makeItem(newPath, label);
-	                  visibleInSet = this._handleObject(item, newPath) || visibleInSet;
-	                } else {
-	                  this._makeCheckbox(item, enabledValue, newPath);
-	                }
-	              } else {
+	          }
+	          if (draw === true) {
+	            // initially collapse options with an disabled enabled option.
+	            if (item.enabled !== undefined) {
+	              let enabledPath = availableUtils.copyAndExtendArray(newPath, 'enabled');
+	              let enabledValue = this._getValue(enabledPath);
+	              if (enabledValue === true) {
 	                let label = this._makeLabel(subObj, newPath, true);
 	                this._makeItem(newPath, label);
 	                visibleInSet = this._handleObject(item, newPath) || visibleInSet;
+	              } else {
+	                this._makeCheckbox(item, enabledValue, newPath);
 	              }
+	            } else {
+	              let label = this._makeLabel(subObj, newPath, true);
+	              this._makeItem(newPath, label);
+	              visibleInSet = this._handleObject(item, newPath) || visibleInSet;
 	            }
-	          } else {
-	            console.error('dont know how to handle', item, subObj, newPath);
 	          }
+	        } else {
+	          console.error('dont know how to handle', item, subObj, newPath);
 	        }
 	      }
 	    }
@@ -33083,44 +33062,27 @@
 	    this.itemsData = null; // DataSet
 	    this.groupsData = null; // DataSet
 
+	    /**
+	     * Emit an event.
+	     * @param {string} eventName Name of event. 
+	     * @param {Event} event The event object.
+	     */
 	    function emit(eventName, event) {
-	      if (!me.hasListeners(eventName)) {
-	        return;
-	      }
+	      if (!me.hasListeners(eventName)) return;
 	      me.emit(eventName, me.getEventProperties(event));
 	    }
-	    this.dom.root.onclick = event => {
-	      emit('click', event);
-	    };
-	    this.dom.root.ondblclick = event => {
-	      emit('doubleClick', event);
-	    };
-	    this.dom.root.oncontextmenu = event => {
-	      emit('contextmenu', event);
-	    };
-	    this.dom.root.onmouseover = event => {
-	      emit('mouseOver', event);
-	    };
+	    this.dom.root.onclick = event => emit('click', event);
+	    this.dom.root.ondblclick = event => emit('doubleClick', event);
+	    this.dom.root.oncontextmenu = event => emit('contextmenu', event);
+	    this.dom.root.onmouseover = event => emit('mouseOver', event);
 	    if (window.PointerEvent) {
-	      this.dom.root.onpointerdown = event => {
-	        emit('mouseDown', event);
-	      };
-	      this.dom.root.onpointermove = event => {
-	        emit('mouseMove', event);
-	      };
-	      this.dom.root.onpointerup = event => {
-	        emit('mouseUp', event);
-	      };
+	      this.dom.root.onpointerdown = event => emit('mouseDown', event);
+	      this.dom.root.onpointermove = event => emit('mouseMove', event);
+	      this.dom.root.onpointerup = event => emit('mouseUp', event);
 	    } else {
-	      this.dom.root.onmousemove = event => {
-	        emit('mouseMove', event);
-	      };
-	      this.dom.root.onmousedown = event => {
-	        emit('mouseDown', event);
-	      };
-	      this.dom.root.onmouseup = event => {
-	        emit('mouseUp', event);
-	      };
+	      this.dom.root.onmousemove = event => emit('mouseMove', event);
+	      this.dom.root.onmousedown = event => emit('mouseDown', event);
+	      this.dom.root.onmouseup = event => emit('mouseUp', event);
 	    }
 
 	    //Single time autoscale/fit
@@ -33757,10 +33719,9 @@
 	function prepareElements(JSONcontainer) {
 	  // cleanup the redundant svgElements;
 	  for (var elementType in JSONcontainer) {
-	    if (JSONcontainer.hasOwnProperty(elementType)) {
-	      JSONcontainer[elementType].redundant = JSONcontainer[elementType].used;
-	      JSONcontainer[elementType].used = [];
-	    }
+	    if (!Object.prototype.hasOwnProperty.call(JSONcontainer, elementType)) continue;
+	    JSONcontainer[elementType].redundant = JSONcontainer[elementType].used;
+	    JSONcontainer[elementType].used = [];
 	  }
 	}
 
@@ -33774,14 +33735,12 @@
 	function cleanupElements(JSONcontainer) {
 	  // cleanup the redundant svgElements;
 	  for (var elementType in JSONcontainer) {
-	    if (JSONcontainer.hasOwnProperty(elementType)) {
-	      if (JSONcontainer[elementType].redundant) {
-	        for (var i = 0; i < JSONcontainer[elementType].redundant.length; i++) {
-	          JSONcontainer[elementType].redundant[i].parentNode.removeChild(JSONcontainer[elementType].redundant[i]);
-	        }
-	        JSONcontainer[elementType].redundant = [];
-	      }
+	    if (!Object.prototype.hasOwnProperty.call(JSONcontainer, elementType)) continue;
+	    const elementTypeJsonContainer = JSONcontainer[elementType];
+	    for (var i = 0; i < elementTypeJsonContainer.redundant.length; i++) {
+	      elementTypeJsonContainer.redundant[i].parentNode.removeChild(elementTypeJsonContainer.redundant[i]);
 	    }
+	    elementTypeJsonContainer.redundant = [];
 	  }
 	}
 
@@ -33808,7 +33767,7 @@
 	function getSVGElement(elementType, JSONcontainer, svgContainer) {
 	  var element;
 	  // allocate SVG element, if it doesnt yet exist, create one.
-	  if (JSONcontainer.hasOwnProperty(elementType)) {
+	  if (Object.prototype.hasOwnProperty.call(JSONcontainer, elementType)) {
 	    // this element has been created before
 	    // check if there is an redundant element
 	    if (JSONcontainer[elementType].redundant.length > 0) {
@@ -33845,7 +33804,7 @@
 	function getDOMElement(elementType, JSONcontainer, DOMContainer, insertBefore) {
 	  var element;
 	  // allocate DOM element, if it doesnt yet exist, create one.
-	  if (JSONcontainer.hasOwnProperty(elementType)) {
+	  if (Object.prototype.hasOwnProperty.call(JSONcontainer, elementType)) {
 	    // this element has been created before
 	    // check if there is an redundant element
 	    if (JSONcontainer[elementType].redundant.length > 0) {
@@ -34362,7 +34321,7 @@
 	   * @param {object} graphOptions
 	   */
 	  addGroup(label, graphOptions) {
-	    if (!this.groups.hasOwnProperty(label)) {
+	    if (!Object.prototype.hasOwnProperty.call(this.groups, label)) {
 	      this.groups[label] = graphOptions;
 	    }
 	    this.amountOfGroups += 1;
@@ -34374,7 +34333,7 @@
 	   * @param {object} graphOptions
 	   */
 	  updateGroup(label, graphOptions) {
-	    if (!this.groups.hasOwnProperty(label)) {
+	    if (!Object.prototype.hasOwnProperty.call(this.groups, label)) {
 	      this.amountOfGroups += 1;
 	    }
 	    this.groups[label] = graphOptions;
@@ -34385,7 +34344,7 @@
 	   * @param {string} label 
 	   */
 	  removeGroup(label) {
-	    if (this.groups.hasOwnProperty(label)) {
+	    if (Object.prototype.hasOwnProperty.call(this.groups, label)) {
 	      delete this.groups[label];
 	      this.amountOfGroups -= 1;
 	    }
@@ -34523,11 +34482,8 @@
 	    // Make sure the line container adheres to the vertical scrolling.
 	    this.dom.lineContainer.style.top = "".concat(this.body.domProps.scrollTop, "px");
 	    for (const groupId in this.groups) {
-	      if (this.groups.hasOwnProperty(groupId)) {
-	        if (this.groups[groupId].visible === true && (this.linegraphOptions.visibility[groupId] === undefined || this.linegraphOptions.visibility[groupId] === true)) {
-	          activeGroups++;
-	        }
-	      }
+	      if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) continue;
+	      if (this.groups[groupId].visible === true && (this.linegraphOptions.visibility[groupId] === undefined || this.linegraphOptions.visibility[groupId] === true)) activeGroups++;
 	    }
 	    if (this.amountOfGroups === 0 || activeGroups === 0) {
 	      this.hide();
@@ -35147,12 +35103,11 @@
 	    }
 	  }
 	  for (var xpos in intersections) {
-	    if (intersections.hasOwnProperty(xpos)) {
-	      yMin = yMin > intersections[xpos].accumulatedNegative ? intersections[xpos].accumulatedNegative : yMin;
-	      yMin = yMin > intersections[xpos].accumulatedPositive ? intersections[xpos].accumulatedPositive : yMin;
-	      yMax = yMax < intersections[xpos].accumulatedNegative ? intersections[xpos].accumulatedNegative : yMax;
-	      yMax = yMax < intersections[xpos].accumulatedPositive ? intersections[xpos].accumulatedPositive : yMax;
-	    }
+	    if (!Object.prototype.hasOwnProperty.call(intersections, xpos)) continue;
+	    yMin = yMin > intersections[xpos].accumulatedNegative ? intersections[xpos].accumulatedNegative : yMin;
+	    yMin = yMin > intersections[xpos].accumulatedPositive ? intersections[xpos].accumulatedPositive : yMin;
+	    yMax = yMax < intersections[xpos].accumulatedNegative ? intersections[xpos].accumulatedNegative : yMax;
+	    yMax = yMax < intersections[xpos].accumulatedPositive ? intersections[xpos].accumulatedPositive : yMax;
 	  }
 	  return {
 	    min: yMin,
@@ -35638,7 +35593,7 @@
 	Legend.prototype.addGroup = function (label, graphOptions) {
 	  // Include a group only if the group option 'excludeFromLegend: false' is not set.
 	  if (graphOptions.options.excludeFromLegend != true) {
-	    if (!this.groups.hasOwnProperty(label)) {
+	    if (!Object.prototype.hasOwnProperty.call(this.groups, label)) {
 	      this.groups[label] = graphOptions;
 	    }
 	    this.amountOfGroups += 1;
@@ -35648,7 +35603,7 @@
 	  this.groups[label] = graphOptions;
 	};
 	Legend.prototype.removeGroup = function (label) {
-	  if (this.groups.hasOwnProperty(label)) {
+	  if (Object.prototype.hasOwnProperty.call(this.groups, label)) {
 	    delete this.groups[label];
 	    this.amountOfGroups -= 1;
 	  }
@@ -35978,7 +35933,7 @@
 	        this.legendRight.setOptions(this.options.legend);
 	      }
 	    }
-	    if (this.groups.hasOwnProperty(UNGROUPED)) {
+	    if (Object.prototype.hasOwnProperty.call(this.groups, UNGROUPED)) {
 	      this.groups[UNGROUPED].setOptions(options);
 	    }
 	  }
@@ -36135,18 +36090,17 @@
 	 * @private
 	 */
 	LineGraph.prototype._removeGroup = function (groupId) {
-	  if (this.groups.hasOwnProperty(groupId)) {
-	    if (this.groups[groupId].options.yAxisOrientation == 'right') {
-	      this.yAxisRight.removeGroup(groupId);
-	      this.legendRight.removeGroup(groupId);
-	      this.legendRight.redraw();
-	    } else {
-	      this.yAxisLeft.removeGroup(groupId);
-	      this.legendLeft.removeGroup(groupId);
-	      this.legendLeft.redraw();
-	    }
-	    delete this.groups[groupId];
+	  if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) return;
+	  if (this.groups[groupId].options.yAxisOrientation == 'right') {
+	    this.yAxisRight.removeGroup(groupId);
+	    this.legendRight.removeGroup(groupId);
+	    this.legendRight.redraw();
+	  } else {
+	    this.yAxisLeft.removeGroup(groupId);
+	    this.legendLeft.removeGroup(groupId);
+	    this.legendLeft.redraw();
 	  }
+	  delete this.groups[groupId];
 	};
 
 	/**
@@ -36157,7 +36111,7 @@
 	 * @private
 	 */
 	LineGraph.prototype._updateGroup = function (group, groupId) {
-	  if (!this.groups.hasOwnProperty(groupId)) {
+	  if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) {
 	    this.groups[groupId] = new GraphGroup(group, groupId, this.options, this.groupsUsingDefaultStyles);
 	    if (this.groups[groupId].options.yAxisOrientation == 'right') {
 	      this.yAxisRight.addGroup(groupId, this.groups[groupId]);
@@ -36213,26 +36167,23 @@
 	      if (groupId === null || groupId === undefined) {
 	        groupId = UNGROUPED;
 	      }
-	      groupCounts.hasOwnProperty(groupId) ? groupCounts[groupId]++ : groupCounts[groupId] = 1;
+	      Object.prototype.hasOwnProperty.call(groupCounts, groupId) ? groupCounts[groupId]++ : groupCounts[groupId] = 1;
 	    }
 
 	    //Pre-load arrays from existing groups if items are not changed (not in ids)
 	    var existingItemsMap = {};
 	    if (!groupIds && ids) {
 	      for (groupId in this.groups) {
-	        if (this.groups.hasOwnProperty(groupId)) {
-	          group = this.groups[groupId];
-	          var existing_items = group.getItems();
-	          groupsContent[groupId] = _filterInstanceProperty(existing_items).call(existing_items, function (item) {
-	            existingItemsMap[item[fieldId]] = item[fieldId];
-	            return item[fieldId] !== idMap[item[fieldId]];
-	          });
-	          var newLength = groupCounts[groupId];
-	          groupCounts[groupId] -= groupsContent[groupId].length;
-	          if (groupsContent[groupId].length < newLength) {
-	            groupsContent[groupId][newLength - 1] = {};
-	          }
-	        }
+	        if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) continue;
+	        group = this.groups[groupId];
+	        var existing_items = group.getItems();
+	        groupsContent[groupId] = _filterInstanceProperty(existing_items).call(existing_items, function (item) {
+	          existingItemsMap[item[fieldId]] = item[fieldId];
+	          return item[fieldId] !== idMap[item[fieldId]];
+	        });
+	        var newLength = groupCounts[groupId];
+	        groupCounts[groupId] -= groupsContent[groupId].length;
+	        if (groupsContent[groupId].length < newLength) groupsContent[groupId][newLength - 1] = {};
 	      }
 	    }
 
@@ -36243,10 +36194,10 @@
 	      if (groupId === null || groupId === undefined) {
 	        groupId = UNGROUPED;
 	      }
-	      if (!groupIds && ids && item[fieldId] !== idMap[item[fieldId]] && existingItemsMap.hasOwnProperty(item[fieldId])) {
+	      if (!groupIds && ids && item[fieldId] !== idMap[item[fieldId]] && Object.prototype.hasOwnProperty.call(existingItemsMap, item[fieldId])) {
 	        continue;
 	      }
-	      if (!groupsContent.hasOwnProperty(groupId)) {
+	      if (!Object.prototype.hasOwnProperty.call(groupsContent, groupId)) {
 	        groupsContent[groupId] = new Array(groupCounts[groupId]);
 	      }
 	      //Copy data (because of unmodifiable DataView input.
@@ -36262,34 +36213,30 @@
 
 	    //Make sure all groups are present, to allow removal of old groups
 	    for (groupId in this.groups) {
-	      if (this.groups.hasOwnProperty(groupId)) {
-	        if (!groupsContent.hasOwnProperty(groupId)) {
-	          groupsContent[groupId] = new Array(0);
-	        }
-	      }
+	      if (!Object.prototype.hasOwnProperty.call(this.groups, groupId) || Object.prototype.hasOwnProperty.call(groupsContent, groupId)) continue;
+	      groupsContent[groupId] = new Array(0);
 	    }
 
 	    //Update legendas, style and axis
 	    for (groupId in groupsContent) {
-	      if (groupsContent.hasOwnProperty(groupId)) {
-	        if (groupsContent[groupId].length == 0) {
-	          if (this.groups.hasOwnProperty(groupId)) {
-	            this._removeGroup(groupId);
-	          }
-	        } else {
-	          var group = undefined;
-	          if (this.groupsData != undefined) {
-	            group = this.groupsData.get(groupId);
-	          }
-	          if (group == undefined) {
-	            group = {
-	              id: groupId,
-	              content: this.options.defaultGroup + groupId
-	            };
-	          }
-	          this._updateGroup(group, groupId);
-	          this.groups[groupId].setItems(groupsContent[groupId]);
+	      if (!Object.prototype.hasOwnProperty.call(groupsContent, groupId)) continue;
+	      if (groupsContent[groupId].length == 0) {
+	        if (Object.prototype.hasOwnProperty.call(this.groups, groupId)) {
+	          this._removeGroup(groupId);
 	        }
+	      } else {
+	        var group = undefined;
+	        if (this.groupsData != undefined) {
+	          group = this.groupsData.get(groupId);
+	        }
+	        if (group == undefined) {
+	          group = {
+	            id: groupId,
+	            content: this.options.defaultGroup + groupId
+	          };
+	        }
+	        this._updateGroup(group, groupId);
+	        this.groups[groupId].setItems(groupsContent[groupId]);
 	      }
 	    }
 	    this.forceGraphUpdate = true;
@@ -36368,7 +36315,7 @@
 	  // getting group Ids
 	  var grouplist = [];
 	  for (var groupId in this.groups) {
-	    if (this.groups.hasOwnProperty(groupId)) {
+	    if (Object.prototype.hasOwnProperty.call(this.groups, groupId)) {
 	      var group = this.groups[groupId];
 	      if (group.visible == true && (this.options.groups.visibility[groupId] === undefined || this.options.groups.visibility[groupId] == true)) {
 	        grouplist.push({
@@ -36473,7 +36420,7 @@
 	          if (dataset == null || dataset.length == 0) {
 	            continue;
 	          }
-	          if (!paths.hasOwnProperty(groupIds[i])) {
+	          if (!Object.prototype.hasOwnProperty.call(paths, groupIds[i])) {
 	            paths[groupIds[i]] = Line.calcPath(dataset, group);
 	          }
 	          if (group.options.shaded.orientation === "group") {
@@ -36482,7 +36429,7 @@
 	              console.log(group.id + ": Unknown shading group target given:" + subGroupId);
 	              continue;
 	            }
-	            if (!paths.hasOwnProperty(subGroupId)) {
+	            if (!Object.prototype.hasOwnProperty.call(paths, subGroupId)) {
 	              paths[subGroupId] = Line.calcPath(groupsData[subGroupId], this.groups[subGroupId]);
 	            }
 	            Line.drawShading(paths[groupIds[i]], group, paths[subGroupId], this.framework);
@@ -36499,13 +36446,14 @@
 	        if (groupsData[groupIds[i]].length > 0) {
 	          switch (group.options.style) {
 	            case "line":
-	              if (!paths.hasOwnProperty(groupIds[i])) {
+	              if (!Object.prototype.hasOwnProperty.call(paths, groupIds[i])) {
 	                paths[groupIds[i]] = Line.calcPath(groupsData[groupIds[i]], group);
 	              }
 	              Line.draw(paths[groupIds[i]], group, this.framework);
-	            // eslint-disable-line no-fallthrough
+
+	            // eslint-disable-next-line no-fallthrough
 	            case "point":
-	            // eslint-disable-line no-fallthrough
+	            // eslint-disable-next-line no-fallthrough
 	            case "points":
 	              if (group.options.style == "point" || group.options.style == "points" || group.options.drawPoints.enabled == true) {
 	                Points.draw(groupsData[groupIds[i]], group, this.framework);
@@ -36715,20 +36663,17 @@
 
 	    // if there are items:
 	    for (i = 0; i < groupIds.length; i++) {
-	      if (groupRanges.hasOwnProperty(groupIds[i])) {
-	        if (groupRanges[groupIds[i]].ignore !== true) {
-	          minVal = groupRanges[groupIds[i]].min;
-	          maxVal = groupRanges[groupIds[i]].max;
-	          if (groupRanges[groupIds[i]].yAxisOrientation != 'right') {
-	            yAxisLeftUsed = true;
-	            minLeft = minLeft > minVal ? minVal : minLeft;
-	            maxLeft = maxLeft < maxVal ? maxVal : maxLeft;
-	          } else {
-	            yAxisRightUsed = true;
-	            minRight = minRight > minVal ? minVal : minRight;
-	            maxRight = maxRight < maxVal ? maxVal : maxRight;
-	          }
-	        }
+	      if (!Object.prototype.hasOwnProperty.call(groupRanges, groupIds[i]) || groupRanges[groupIds[i]].ignore === true) continue;
+	      minVal = groupRanges[groupIds[i]].min;
+	      maxVal = groupRanges[groupIds[i]].max;
+	      if (groupRanges[groupIds[i]].yAxisOrientation != 'right') {
+	        yAxisLeftUsed = true;
+	        minLeft = minLeft > minVal ? minVal : minLeft;
+	        maxLeft = maxLeft < maxVal ? maxVal : maxLeft;
+	      } else {
+	        yAxisRightUsed = true;
+	        minRight = minRight > minVal ? minVal : minRight;
+	        maxRight = maxRight < maxVal ? maxVal : maxRight;
 	      }
 	    }
 	    if (yAxisLeftUsed == true) {
@@ -37732,15 +37677,12 @@
 
 	  // calculate min from start filed
 	  for (var groupId in this.linegraph.groups) {
-	    if (this.linegraph.groups.hasOwnProperty(groupId)) {
-	      if (this.linegraph.groups[groupId].visible == true) {
-	        for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
-	          var item = this.linegraph.groups[groupId].itemsData[i];
-	          var value = availableUtils.convert(item.x, 'Date').valueOf();
-	          min = min == null ? value : min > value ? value : min;
-	          max = max == null ? value : max < value ? value : max;
-	        }
-	      }
+	    if (!Object.prototype.hasOwnProperty.call(this.linegraph.groups, groupId) || this.linegraph.groups[groupId].visible !== true) continue;
+	    for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
+	      var item = this.linegraph.groups[groupId].itemsData[i];
+	      var value = availableUtils.convert(item.x, 'Date').valueOf();
+	      min = min == null ? value : min > value ? value : min;
+	      max = max == null ? value : max < value ? value : max;
 	    }
 	  }
 	  return {

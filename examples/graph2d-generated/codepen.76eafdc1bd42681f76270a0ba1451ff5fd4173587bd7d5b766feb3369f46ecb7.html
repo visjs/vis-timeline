@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Graph2d | Bar Graph Example</title>
+    <title>Graph2d | Bar Graph With End Example</title>
   </head>
   <body>
     <form
@@ -13,7 +13,7 @@
       <input
         type="hidden"
         name="data"
-        value='{"css":"body,\nhtml {\n  font-family: sans-serif;\n}\n","css_external":"","html":"<h2>Graph2d | Bar Graph With End Example</h2>\n<div style=\"width: 700px; font-size: 14px; text-align: justify\">\n  This example shows how you can plot a bar chart and supply an end value to\n  have it fill.\n</div>\n<br />\n\n<div id=\"visualization\"></div>\n","js":"var container = document.getElementById(\"visualization\");\nvar items = [\n  { x: \"2014-06-11 00:00:00\", end: \"2014-06-13 00:00:00\", y: 10 },\n  { x: \"2014-06-13 00:00:00\", end: \"2014-06-14 00:00:00\", y: 15 },\n  { x: \"2014-06-15 00:00:00\", end: \"2014-06-16 00:00:00\", y: 14 },\n  { x: \"2014-06-16 00:00:00\", end: \"2014-06-17 00:00:00\", y: 17 },\n  { x: \"2014-06-17 00:00:00\", end: \"2014-06-18 00:00:00\", y: 20 },\n  { x: \"2014-06-18 00:00:00\", end: \"2014-06-25 00:00:00\", y: 25 },\n];\n\nvar dataset = new vis.DataSet(items);\nvar options = {\n  style: \"bar\",\n  drawPoints: false,\n  dataAxis: {\n    icons: true,\n  },\n  orientation: \"top\",\n  start: \"2014-06-10\",\n  end: \"2014-06-18\",\n};\nvar graph2d = new vis.Graph2d(container, items, options);\n","js_external":"https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js","title":"Graph2d | Bar Graph Example"}'
+        value='{"css":"body,\nhtml {\n  font-family: sans-serif;\n}\n","css_external":"","html":"<h2>Graph2d | Bar Graph With End Example</h2>\n<div style=\"width: 700px; font-size: 14px; text-align: justify\">\n  This example shows how you can plot a bar chart and supply an end value to\n  have it fill.\n</div>\n<br />\n\n<div id=\"visualization\"></div>\n","js":"var container = document.getElementById(\"visualization\");\nvar items = [\n  { x: \"2014-06-11 00:00:00\", end: \"2014-06-13 00:00:00\", y: 10 },\n  { x: \"2014-06-13 00:00:00\", end: \"2014-06-14 00:00:00\", y: 15 },\n  { x: \"2014-06-15 00:00:00\", end: \"2014-06-16 00:00:00\", y: 14 },\n  { x: \"2014-06-16 00:00:00\", end: \"2014-06-17 00:00:00\", y: 17 },\n  { x: \"2014-06-17 00:00:00\", end: \"2014-06-18 00:00:00\", y: 20 },\n  { x: \"2014-06-18 00:00:00\", end: \"2014-06-25 00:00:00\", y: 25 },\n];\n\nvar dataset = new vis.DataSet(items);\nvar options = {\n  style: \"bar\",\n  drawPoints: false,\n  dataAxis: {\n    icons: true,\n  },\n  orientation: \"top\",\n  start: \"2014-06-10\",\n  end: \"2014-06-18\",\n};\nvar graph2d = new vis.Graph2d(container, items, options);\n","js_external":"https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js","title":"Graph2d | Bar Graph With End Example"}'
       />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open CodePen</button>
     </form>
