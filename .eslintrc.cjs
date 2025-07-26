@@ -8,9 +8,14 @@ module.exports = {
 
   parserOptions: {
     sourceType: "module",
+    "ecmaVersion": 2020
   },
 
   extends: "eslint:recommended",
+
+  ignorePatterns: [
+    "types/*.*"
+  ],
 
   // For the full list of rules, see: http://eslint.org/docs/rules/
   rules: {
