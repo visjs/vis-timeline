@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-28T18:18:13.045Z
+ * @date    2025-07-28T18:30:53.803Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -19562,20 +19562,20 @@ class CustomTime extends Component {
     this.marker.innerHTML = availableUtils.xss(title);
     this.marker.style.position = 'absolute';
     if (editable) {
-      var _context6, _context7;
+      var _context6;
       this.marker.setAttribute('contenteditable', 'true');
-      this.marker.addEventListener('pointerdown', function () {
+      this.marker.addEventListener('pointerdown', () => {
         this.marker.focus();
       });
       this.marker.addEventListener('input', _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this));
       // The editable div element has no change event, so here emulates the change event.
       this.marker.title = title;
-      this.marker.addEventListener('blur', _bindInstanceProperty(_context7 = function (event) {
+      this.marker.addEventListener('blur', event => {
         if (this.title != event.target.innerHTML) {
           this._onMarkerChanged(event);
           this.title = event.target.innerHTML;
         }
-      }).call(_context7, this));
+      });
     }
     this.bar.appendChild(this.marker);
   }
