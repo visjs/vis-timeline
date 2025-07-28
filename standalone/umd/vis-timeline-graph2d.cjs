@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-26T15:45:24.095Z
+ * @date    2025-07-28T18:18:13.045Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -32674,93 +32674,6 @@
   var valuesExports = requireValues();
   var _Object$values = /*@__PURE__*/getDefaultExportFromCjs(valuesExports);
 
-  var es_array_findIndex = {};
-
-  var hasRequiredEs_array_findIndex;
-
-  function requireEs_array_findIndex () {
-  	if (hasRequiredEs_array_findIndex) return es_array_findIndex;
-  	hasRequiredEs_array_findIndex = 1;
-  	var $ = /*@__PURE__*/ require_export();
-  	var $findIndex = /*@__PURE__*/ requireArrayIteration().findIndex;
-  	var addToUnscopables = /*@__PURE__*/ requireAddToUnscopables();
-
-  	var FIND_INDEX = 'findIndex';
-  	var SKIPS_HOLES = true;
-
-  	// Shouldn't skip holes
-  	// eslint-disable-next-line es/no-array-prototype-findindex -- testing
-  	if (FIND_INDEX in []) Array(1)[FIND_INDEX](function () { SKIPS_HOLES = false; });
-
-  	// `Array.prototype.findIndex` method
-  	// https://tc39.es/ecma262/#sec-array.prototype.findindex
-  	$({ target: 'Array', proto: true, forced: SKIPS_HOLES }, {
-  	  findIndex: function findIndex(callbackfn /* , that = undefined */) {
-  	    return $findIndex(this, callbackfn, arguments.length > 1 ? arguments[1] : undefined);
-  	  }
-  	});
-
-  	// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-  	addToUnscopables(FIND_INDEX);
-  	return es_array_findIndex;
-  }
-
-  var findIndex$3;
-  var hasRequiredFindIndex$3;
-
-  function requireFindIndex$3 () {
-  	if (hasRequiredFindIndex$3) return findIndex$3;
-  	hasRequiredFindIndex$3 = 1;
-  	requireEs_array_findIndex();
-  	var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-  	findIndex$3 = getBuiltInPrototypeMethod('Array', 'findIndex');
-  	return findIndex$3;
-  }
-
-  var findIndex$2;
-  var hasRequiredFindIndex$2;
-
-  function requireFindIndex$2 () {
-  	if (hasRequiredFindIndex$2) return findIndex$2;
-  	hasRequiredFindIndex$2 = 1;
-  	var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-  	var method = /*@__PURE__*/ requireFindIndex$3();
-
-  	var ArrayPrototype = Array.prototype;
-
-  	findIndex$2 = function (it) {
-  	  var own = it.findIndex;
-  	  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.findIndex) ? method : own;
-  	};
-  	return findIndex$2;
-  }
-
-  var findIndex$1;
-  var hasRequiredFindIndex$1;
-
-  function requireFindIndex$1 () {
-  	if (hasRequiredFindIndex$1) return findIndex$1;
-  	hasRequiredFindIndex$1 = 1;
-  	var parent = /*@__PURE__*/ requireFindIndex$2();
-
-  	findIndex$1 = parent;
-  	return findIndex$1;
-  }
-
-  var findIndex;
-  var hasRequiredFindIndex;
-
-  function requireFindIndex () {
-  	if (hasRequiredFindIndex) return findIndex;
-  	hasRequiredFindIndex = 1;
-  	findIndex = /*@__PURE__*/ requireFindIndex$1();
-  	return findIndex;
-  }
-
-  var findIndexExports = requireFindIndex();
-  var _findIndexInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(findIndexExports);
-
   // Utility functions for ordering and stacking of items
   const EPSILON = 0.001; // used when checking collisions, to prevent round-off errors
 
@@ -32888,7 +32801,7 @@
 
     // Run subgroups in their order (if any)
     const subgroupOrder = [];
-    for (var subgroup in subgroups) {
+    for (let subgroup in subgroups) {
       if (Object.prototype.hasOwnProperty.call(subgroups[subgroup], "index")) {
         subgroupOrder[subgroups[subgroup].index] = subgroup;
       } else {
@@ -33000,7 +32913,7 @@
     let horizontalOverlapEndIndex = 0;
     let maxHeight = 0;
     while (itemsToPosition.length > 0) {
-      var _context2, _context3;
+      var _context2;
       const item = itemsToPosition.shift();
       item.top = getInitialHeight(item);
       const itemStart = getItemStart(item);
@@ -33011,10 +32924,12 @@
         insertionIndex = 0;
         previousEnd = null;
       }
+      if (previousStart === null || itemStart > previousStart + EPSILON) {
+        // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
+        horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex);
+      }
       previousStart = itemStart;
 
-      // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
-      horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex);
       // Since items aren't sorted by end time, it might increase or decrease from one item to the next. In order to keep an efficient search area, we will seek forwards/backwards accordingly.
       if (previousEnd === null || previousEnd < itemEnd - EPSILON) {
         horizontalOverlapEndIndex = findIndexFrom(itemsAlreadyPositioned, i => itemEnd < getItemStart(i) - EPSILON, Math.max(horizontalOverlapStartIndex, horizontalOverlapEndIndex));
@@ -33022,9 +32937,10 @@
       if (previousEnd !== null && previousEnd - EPSILON > itemEnd) {
         horizontalOverlapEndIndex = findLastIndexBetween(itemsAlreadyPositioned, i => itemEnd + EPSILON >= getItemStart(i), horizontalOverlapStartIndex, horizontalOverlapEndIndex) + 1;
       }
+      previousEnd = itemEnd;
 
       // Sort by vertical position so we don't have to reconsider past items if we move an item
-      const horizontallyCollidingItems = _sortInstanceProperty(_context2 = _filterInstanceProperty(_context3 = _sliceInstanceProperty(itemsAlreadyPositioned).call(itemsAlreadyPositioned, horizontalOverlapStartIndex, horizontalOverlapEndIndex)).call(_context3, i => itemStart < getItemEnd(i) - EPSILON && itemEnd - EPSILON > getItemStart(i))).call(_context2, (a, b) => a.top - b.top);
+      const horizontallyCollidingItems = _sortInstanceProperty(_context2 = filterBetween(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex, horizontalOverlapEndIndex)).call(_context2, (a, b) => a.top - b.top);
 
       // Keep moving the item down until it stops colliding with any other items
       for (let i2 = 0; i2 < horizontallyCollidingItems.length; i2++) {
@@ -33039,6 +32955,12 @@
         // In both cases, this is better than doing a naive insert and then sort, which would cost on average O(n log n).
         insertionIndex = findIndexFrom(itemsAlreadyPositioned, i => getItemStart(i) - EPSILON > itemStart, insertionIndex);
         _spliceInstanceProperty(itemsAlreadyPositioned).call(itemsAlreadyPositioned, insertionIndex, 0, item);
+        if (insertionIndex < horizontalOverlapStartIndex) {
+          horizontalOverlapStartIndex++;
+        }
+        if (insertionIndex <= horizontalOverlapEndIndex) {
+          horizontalOverlapEndIndex++;
+        }
         insertionIndex++;
       }
 
@@ -33080,15 +33002,15 @@
    * @return {number}
    */
   function findIndexFrom(arr, predicate, startIndex) {
-    var _context4;
     if (!startIndex) {
       startIndex = 0;
     }
-    const matchIndex = _findIndexInstanceProperty(_context4 = _sliceInstanceProperty(arr).call(arr, startIndex)).call(_context4, predicate);
-    if (matchIndex === -1) {
-      return arr.length;
+    for (let i = startIndex; i < arr.length; i++) {
+      if (predicate(arr[i])) {
+        return i;
+      }
     }
-    return matchIndex + startIndex;
+    return arr.length;
   }
 
   /**
@@ -33103,12 +33025,46 @@
    * @return {number}
    */
   function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
-    if (!startIndex) startIndex = 0;
-    if (!endIndex) endIndex = arr.length;
+    if (!startIndex) {
+      startIndex = 0;
+    }
+    if (!endIndex) {
+      endIndex = arr.length;
+    }
     for (let i = endIndex - 1; i >= startIndex; i--) {
-      if (predicate(arr[i])) return i;
+      if (predicate(arr[i])) {
+        return i;
+      }
     }
     return startIndex - 1;
+  }
+
+  /**
+   * Takes an array and returns an array containing only items which meet a predicate within a given range.
+   * 
+   * @param {any[]} arr The array
+   * @param {(item) => boolean} predicate A function that should return true for items which should be included within the result
+   * @param {number|undefined} startIndex The earliest index to include (inclusive). Optional, if not provided will continue until the start of the array.
+   * @param {number|undefined} endIndex The end of the range to filter (exclusive). Optional, defaults to the end of array.
+   * 
+   * @return {number}
+   */
+  function filterBetween(arr, predicate, startIndex, endIndex) {
+    if (!startIndex) {
+      startIndex = 0;
+    }
+    if (endIndex) {
+      endIndex = Math.min(endIndex, arr.length);
+    } else {
+      endIndex = arr.length;
+    }
+    const result = [];
+    for (let i = startIndex; i < endIndex; i++) {
+      if (predicate(arr[i])) {
+        result.push(arr[i]);
+      }
+    }
+    return result;
   }
 
   var stack$1 = /*#__PURE__*/Object.freeze({
@@ -34038,6 +33994,7 @@
         // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
         this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, item => item.data.end < lowerBound || item.data.start > upperBound);
       }
+      this._sortVisibleItems(orderedItems.byStart, visibleItems, visibleItemsLookup);
       const redrawQueue = {};
       let redrawQueueLength = 0;
       for (let i = 0; i < visibleItems.length; i++) {
@@ -34081,7 +34038,7 @@
             if (!(item.isCluster && !item.hasItems()) && !item.cluster) {
               if (visibleItemsLookup[item.id] === undefined) {
                 visibleItemsLookup[item.id] = true;
-                visibleItems.push(item);
+                visibleItems.unshift(item);
               }
             }
           }
@@ -34098,6 +34055,23 @@
               }
             }
           }
+        }
+      }
+    }
+
+    /**
+     * by-ref reordering of visibleItems array to match
+     * the specified item superset order
+     * @param {array} orderedItems
+     * @param {aray} visibleItems
+     * @param {object} visibleItemsLookup
+     */
+    _sortVisibleItems(orderedItems, visibleItems, visibleItemsLookup) {
+      visibleItems.length = 0; // Clear visibleItems array in-place
+      for (let i = 0; i < orderedItems.length; i++) {
+        let item = orderedItems[i];
+        if (visibleItemsLookup[item.id]) {
+          visibleItems.push(item);
         }
       }
     }

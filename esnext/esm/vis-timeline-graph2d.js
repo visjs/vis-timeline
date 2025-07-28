@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-26T15:45:24.095Z
+ * @date    2025-07-28T18:18:13.045Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -5545,7 +5545,7 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
   // Run subgroups in their order (if any)
   const subgroupOrder = [];
 
-  for(var subgroup in subgroups) {
+  for(let subgroup in subgroups) {
     if (Object.prototype.hasOwnProperty.call(subgroups[subgroup], "index")) {
       subgroupOrder[subgroups[subgroup].index] = subgroup;
     }
@@ -5684,10 +5684,12 @@ function performStacking(items, margins, compareTimes, shouldStack, shouldOthers
       insertionIndex = 0;
       previousEnd = null;
     }
+    if(previousStart === null || itemStart > previousStart + EPSILON) {
+      // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
+      horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex);
+    }
     previousStart = itemStart;
 
-    // Take advantage of the sorted itemsAlreadyPositioned array to narrow down the search
-    horizontalOverlapStartIndex = findIndexFrom(itemsAlreadyPositioned, i => itemStart < getItemEnd(i) - EPSILON, horizontalOverlapStartIndex);
     // Since items aren't sorted by end time, it might increase or decrease from one item to the next. In order to keep an efficient search area, we will seek forwards/backwards accordingly.
     if(previousEnd === null || previousEnd < itemEnd - EPSILON) {
       horizontalOverlapEndIndex = findIndexFrom(itemsAlreadyPositioned, i => itemEnd < getItemStart(i) - EPSILON, Math.max(horizontalOverlapStartIndex, horizontalOverlapEndIndex));
@@ -5695,11 +5697,15 @@ function performStacking(items, margins, compareTimes, shouldStack, shouldOthers
     if(previousEnd !== null && previousEnd - EPSILON > itemEnd) {
       horizontalOverlapEndIndex = findLastIndexBetween(itemsAlreadyPositioned, i => itemEnd + EPSILON >= getItemStart(i), horizontalOverlapStartIndex, horizontalOverlapEndIndex) + 1;
     }
+    previousEnd = itemEnd;
 
     // Sort by vertical position so we don't have to reconsider past items if we move an item
-    const horizontallyCollidingItems = itemsAlreadyPositioned
-      .slice(horizontalOverlapStartIndex, horizontalOverlapEndIndex)
-      .filter(i => itemStart < getItemEnd(i) - EPSILON && itemEnd - EPSILON > getItemStart(i))
+    const horizontallyCollidingItems = filterBetween(
+      itemsAlreadyPositioned,
+      i => itemStart < getItemEnd(i) - EPSILON,
+      horizontalOverlapStartIndex,
+      horizontalOverlapEndIndex
+    )
       .sort((a, b) => a.top - b.top);
 
     // Keep moving the item down until it stops colliding with any other items
@@ -5718,6 +5724,15 @@ function performStacking(items, margins, compareTimes, shouldStack, shouldOthers
       insertionIndex = findIndexFrom(itemsAlreadyPositioned, i => getItemStart(i) - EPSILON > itemStart, insertionIndex);
 
       itemsAlreadyPositioned.splice(insertionIndex, 0, item);
+
+      if(insertionIndex < horizontalOverlapStartIndex) {
+        horizontalOverlapStartIndex++;
+      }
+
+      if(insertionIndex <= horizontalOverlapEndIndex) {
+        horizontalOverlapEndIndex++;
+      }
+
       insertionIndex++;
     }
 
@@ -5764,11 +5779,12 @@ function findIndexFrom(arr, predicate, startIndex) {
   if(!startIndex) {
     startIndex = 0;
   }
-  const matchIndex = arr.slice(startIndex).findIndex(predicate);
-  if(matchIndex === -1) {
-    return arr.length;
+  for(let i = startIndex; i < arr.length; i++) {
+    if(predicate(arr[i])) {
+      return i;
+    }
   }
-  return matchIndex + startIndex;
+  return arr.length;
 }
 
 /**
@@ -5783,18 +5799,50 @@ function findIndexFrom(arr, predicate, startIndex) {
  * @return {number}
  */
 function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
-  if(!startIndex)
+  if(!startIndex) {
     startIndex = 0;
+  }
   
-  if(!endIndex)
+  if(!endIndex) {
     endIndex = arr.length;
+  }
 
   for(let i = endIndex - 1; i >= startIndex; i--) {
-    if(predicate(arr[i]))
+    if(predicate(arr[i])) {
       return i;
+    }
   }
   
   return startIndex - 1;
+}
+
+/**
+ * Takes an array and returns an array containing only items which meet a predicate within a given range.
+ * 
+ * @param {any[]} arr The array
+ * @param {(item) => boolean} predicate A function that should return true for items which should be included within the result
+ * @param {number|undefined} startIndex The earliest index to include (inclusive). Optional, if not provided will continue until the start of the array.
+ * @param {number|undefined} endIndex The end of the range to filter (exclusive). Optional, defaults to the end of array.
+ * 
+ * @return {number}
+ */
+function filterBetween(arr, predicate, startIndex, endIndex) {
+  if(!startIndex) {
+    startIndex = 0;
+  }
+  if(endIndex) {
+    endIndex = Math.min(endIndex, arr.length);
+  } else {
+    endIndex = arr.length;
+  }
+
+  const result = [];
+  for(let i = startIndex; i < endIndex; i++) {
+    if(predicate(arr[i])) {
+      result.push(arr[i]);
+    }
+  }
+  return result;
 }
 
 var stack$1 = /*#__PURE__*/Object.freeze({
@@ -6780,6 +6828,8 @@ class Group {
       this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, item => item.data.end < lowerBound || item.data.start > upperBound);
     }
 
+    this._sortVisibleItems(orderedItems.byStart, visibleItems, visibleItemsLookup);
+
     const redrawQueue = {};
     let redrawQueueLength = 0;
 
@@ -6828,7 +6878,7 @@ class Group {
           if (!(item.isCluster  && !item.hasItems()) && !item.cluster) {
             if (visibleItemsLookup[item.id] === undefined) {
               visibleItemsLookup[item.id] = true;
-              visibleItems.push(item);
+              visibleItems.unshift(item);
             }
           }
         }
@@ -6847,6 +6897,23 @@ class Group {
             }
           }
         }
+      }
+    }
+  }
+
+  /**
+   * by-ref reordering of visibleItems array to match
+   * the specified item superset order
+   * @param {array} orderedItems
+   * @param {aray} visibleItems
+   * @param {object} visibleItemsLookup
+   */
+  _sortVisibleItems(orderedItems, visibleItems, visibleItemsLookup) {
+    visibleItems.length = 0; // Clear visibleItems array in-place
+    for(let i = 0; i < orderedItems.length; i++) {
+      let item = orderedItems[i];
+      if(visibleItemsLookup[item.id]) {
+        visibleItems.push(item);
       }
     }
   }
