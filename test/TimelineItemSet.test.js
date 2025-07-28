@@ -1,10 +1,10 @@
 import assert from 'assert'
 import jsdom_global from 'jsdom-global'
 import { DataSet } from 'vis-data/esnext'
-import * as DateUtil from '../lib/timeline/DateUtil'
-import Range from '../lib/timeline/Range'
-import ItemSet from '../lib/timeline/component/ItemSet'
-import TestSupport from './TestSupport'
+import * as DateUtil from '../lib/timeline/DateUtil.js'
+import Range from '../lib/timeline/Range.js'
+import ItemSet from '../lib/timeline/component/ItemSet.js'
+import TestSupport from './TestSupport.js'
 
 const internals = {}
 

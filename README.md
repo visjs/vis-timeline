@@ -202,7 +202,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 ## License
 
 Copyright (c) 2014-2017 Almende B.V. and contributors
-Copyright (c) 2017-2019 vis.js contributors
+Copyright (c) 2017-2025 vis.js contributors
 
 This work is dual-licensed under [Apache-2.0](./LICENSE.Apache-2.0.txt) and [MIT](./LICENSE.MIT.txt).
 You can choose between one of them if you use this work.

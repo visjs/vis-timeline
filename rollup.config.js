@@ -1,10 +1,9 @@
 import commonjs from '@rollup/plugin-commonjs';
 import nodeResolve from '@rollup/plugin-node-resolve';
-import nodeBuiltins from 'rollup-plugin-node-builtins';
 import babel from '@rollup/plugin-babel';
 import terser from '@rollup/plugin-terser';
 import { generateHeader } from 'vis-dev-utils';
-import css from 'rollup-plugin-css-porter';
+import css from "rollup-plugin-postcss";
 import copy from 'rollup-plugin-copy';
 import { BABEL_IGNORE_RE } from 'vis-dev-utils';
 
@@ -28,26 +27,32 @@ const babelConfig = {
 
 export default [{
 	input: 'lib/bundle-legacy.js',
-	output: {
+	output: [{
 		file: 'dist/vis-timeline-graph2d.esm.js',
 		format: 'esm',
 		banner,
 		sourcemap: true,
 		globals: GLOBALS
-	},
+	}, {
+		file: 'dist/vis-timeline-graph2d.mjs',
+		format: 'esm',
+		banner,
+		sourcemap: true,
+		globals: GLOBALS
+	}],
 	plugins: [
 		commonjs(),
-		nodeBuiltins(),
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		css({
-			dest: 'dist/vis-timeline-graph2d.css'
+			extract: 'vis-timeline-graph2d.css',
+			minimize: false,
 		}),
 		copyStatic
 	]
 }, {
 	input: 'lib/bundle-legacy.js',
-	output: {
+	output: [{
 		file: 'dist/vis-timeline-graph2d.min.js',
 		name: 'vis',
 		extend: true,
@@ -56,10 +61,18 @@ export default [{
 		banner,
 		sourcemap: true,
 		globals: GLOBALS
-	},
+	}, {
+		file: 'dist/vis-timeline-graph2d.min.cjs',
+		name: 'vis',
+		extend: true,
+		exports: 'named',
+		format: 'umd',
+		banner,
+		sourcemap: true,
+		globals: GLOBALS
+	}],
 	plugins: [
 		commonjs(),
-		nodeBuiltins(),
 		nodeResolve({ browser: true }),
 		babel(babelConfig),
 		terser({
@@ -68,7 +81,8 @@ export default [{
 			}
 		}),
 		css({
-			dest: 'dist/vis-timeline-graph2d.css'
+			extract: 'vis-timeline-graph2d.min.css',
+			minimize: true,
 		}),
 		copyStatic
 	]
