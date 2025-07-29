@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-07-28T18:30:53.803Z
+ * @date    2025-07-29T12:39:18.967Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -3318,12 +3318,12 @@
 
 	var es_object_getOwnPropertyDescriptors = {};
 
-	var ownKeys$1;
-	var hasRequiredOwnKeys;
+	var ownKeys$4;
+	var hasRequiredOwnKeys$3;
 
-	function requireOwnKeys () {
-		if (hasRequiredOwnKeys) return ownKeys$1;
-		hasRequiredOwnKeys = 1;
+	function requireOwnKeys$3 () {
+		if (hasRequiredOwnKeys$3) return ownKeys$4;
+		hasRequiredOwnKeys$3 = 1;
 		var getBuiltIn = /*@__PURE__*/ requireGetBuiltIn();
 		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
 		var getOwnPropertyNamesModule = /*@__PURE__*/ requireObjectGetOwnPropertyNames();
@@ -3333,12 +3333,12 @@
 		var concat = uncurryThis([].concat);
 
 		// all object keys, includes non-enumerable and symbols
-		ownKeys$1 = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
+		ownKeys$4 = getBuiltIn('Reflect', 'ownKeys') || function ownKeys(it) {
 		  var keys = getOwnPropertyNamesModule.f(anObject(it));
 		  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
 		  return getOwnPropertySymbols ? concat(keys, getOwnPropertySymbols(it)) : keys;
 		};
-		return ownKeys$1;
+		return ownKeys$4;
 	}
 
 	var createProperty;
@@ -3365,7 +3365,7 @@
 		hasRequiredEs_object_getOwnPropertyDescriptors = 1;
 		var $ = /*@__PURE__*/ require_export();
 		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-		var ownKeys = /*@__PURE__*/ requireOwnKeys();
+		var ownKeys = /*@__PURE__*/ requireOwnKeys$3();
 		var toIndexedObject = /*@__PURE__*/ requireToIndexedObject();
 		var getOwnPropertyDescriptorModule = /*@__PURE__*/ requireObjectGetOwnPropertyDescriptor();
 		var createProperty = /*@__PURE__*/ requireCreateProperty();
@@ -3917,12 +3917,12 @@
 		return es_json_toStringTag;
 	}
 
-	var symbol$4;
-	var hasRequiredSymbol$4;
+	var symbol$5;
+	var hasRequiredSymbol$5;
 
-	function requireSymbol$4 () {
-		if (hasRequiredSymbol$4) return symbol$4;
-		hasRequiredSymbol$4 = 1;
+	function requireSymbol$5 () {
+		if (hasRequiredSymbol$5) return symbol$5;
+		hasRequiredSymbol$5 = 1;
 		requireEs_array_concat();
 		requireEs_symbol();
 		requireEs_symbol_asyncDispose();
@@ -3943,8 +3943,8 @@
 		requireEs_json_toStringTag();
 		var path = /*@__PURE__*/ requirePath();
 
-		symbol$4 = path.Symbol;
-		return symbol$4;
+		symbol$5 = path.Symbol;
+		return symbol$5;
 	}
 
 	var web_domCollections_iterator = {};
@@ -4466,17 +4466,17 @@
 		return web_domCollections_iterator;
 	}
 
-	var symbol$3;
-	var hasRequiredSymbol$3;
+	var symbol$4;
+	var hasRequiredSymbol$4;
 
-	function requireSymbol$3 () {
-		if (hasRequiredSymbol$3) return symbol$3;
-		hasRequiredSymbol$3 = 1;
-		var parent = /*@__PURE__*/ requireSymbol$4();
+	function requireSymbol$4 () {
+		if (hasRequiredSymbol$4) return symbol$4;
+		hasRequiredSymbol$4 = 1;
+		var parent = /*@__PURE__*/ requireSymbol$5();
 		requireWeb_domCollections_iterator();
 
-		symbol$3 = parent;
-		return symbol$3;
+		symbol$4 = parent;
+		return symbol$4;
 	}
 
 	var esnext_function_metadata = {};
@@ -4541,21 +4541,21 @@
 		return esnext_symbol_metadata;
 	}
 
-	var symbol$2;
-	var hasRequiredSymbol$2;
+	var symbol$3;
+	var hasRequiredSymbol$3;
 
-	function requireSymbol$2 () {
-		if (hasRequiredSymbol$2) return symbol$2;
-		hasRequiredSymbol$2 = 1;
-		var parent = /*@__PURE__*/ requireSymbol$3();
+	function requireSymbol$3 () {
+		if (hasRequiredSymbol$3) return symbol$3;
+		hasRequiredSymbol$3 = 1;
+		var parent = /*@__PURE__*/ requireSymbol$4();
 
 		requireEsnext_function_metadata();
 		requireEsnext_symbol_asyncDispose();
 		requireEsnext_symbol_dispose();
 		requireEsnext_symbol_metadata();
 
-		symbol$2 = parent;
-		return symbol$2;
+		symbol$3 = parent;
+		return symbol$3;
 	}
 
 	var esnext_symbol_isRegisteredSymbol = {};
@@ -4791,13 +4791,13 @@
 		return esnext_symbol_replaceAll;
 	}
 
-	var symbol$1;
-	var hasRequiredSymbol$1;
+	var symbol$2;
+	var hasRequiredSymbol$2;
 
-	function requireSymbol$1 () {
-		if (hasRequiredSymbol$1) return symbol$1;
-		hasRequiredSymbol$1 = 1;
-		var parent = /*@__PURE__*/ requireSymbol$2();
+	function requireSymbol$2 () {
+		if (hasRequiredSymbol$2) return symbol$2;
+		hasRequiredSymbol$2 = 1;
+		var parent = /*@__PURE__*/ requireSymbol$3();
 		requireEsnext_symbol_isRegisteredSymbol();
 		requireEsnext_symbol_isWellKnownSymbol();
 		requireEsnext_symbol_customMatcher();
@@ -4810,22 +4810,22 @@
 		requireEsnext_symbol_patternMatch();
 		requireEsnext_symbol_replaceAll();
 
-		symbol$1 = parent;
+		symbol$2 = parent;
+		return symbol$2;
+	}
+
+	var symbol$1;
+	var hasRequiredSymbol$1;
+
+	function requireSymbol$1 () {
+		if (hasRequiredSymbol$1) return symbol$1;
+		hasRequiredSymbol$1 = 1;
+		symbol$1 = /*@__PURE__*/ requireSymbol$2();
 		return symbol$1;
 	}
 
-	var symbol;
-	var hasRequiredSymbol;
-
-	function requireSymbol () {
-		if (hasRequiredSymbol) return symbol;
-		hasRequiredSymbol = 1;
-		symbol = /*@__PURE__*/ requireSymbol$1();
-		return symbol;
-	}
-
-	var symbolExports = /*@__PURE__*/ requireSymbol();
-	var _Symbol = /*@__PURE__*/getDefaultExportFromCjs(symbolExports);
+	var symbolExports$1 = /*@__PURE__*/ requireSymbol$1();
+	var _Symbol$1 = /*@__PURE__*/getDefaultExportFromCjs(symbolExports$1);
 
 	var es_string_iterator = {};
 
@@ -4980,10 +4980,10 @@
 	function _typeof(o) {
 	  "@babel/helpers - typeof";
 
-	  return _typeof = "function" == typeof _Symbol && "symbol" == typeof _Symbol$iterator ? function (o) {
+	  return _typeof = "function" == typeof _Symbol$1 && "symbol" == typeof _Symbol$iterator ? function (o) {
 	    return typeof o;
 	  } : function (o) {
-	    return o && "function" == typeof _Symbol && o.constructor === _Symbol && o !== _Symbol.prototype ? "symbol" : typeof o;
+	    return o && "function" == typeof _Symbol$1 && o.constructor === _Symbol$1 && o !== _Symbol$1.prototype ? "symbol" : typeof o;
 	  }, _typeof(o);
 	}
 
@@ -5380,6 +5380,1719 @@
 	var definePropertyExports = requireDefineProperty();
 	var _Object$defineProperty = /*@__PURE__*/getDefaultExportFromCjs(definePropertyExports);
 
+	var symbol;
+	var hasRequiredSymbol;
+
+	function requireSymbol () {
+		if (hasRequiredSymbol) return symbol;
+		hasRequiredSymbol = 1;
+		symbol = /*@__PURE__*/ requireSymbol$4();
+		return symbol;
+	}
+
+	var symbolExports = requireSymbol();
+	var _Symbol = /*@__PURE__*/getDefaultExportFromCjs(symbolExports);
+
+	var es_array_slice = {};
+
+	var hasRequiredEs_array_slice;
+
+	function requireEs_array_slice () {
+		if (hasRequiredEs_array_slice) return es_array_slice;
+		hasRequiredEs_array_slice = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var isArray = /*@__PURE__*/ requireIsArray$3();
+		var isConstructor = /*@__PURE__*/ requireIsConstructor();
+		var isObject = /*@__PURE__*/ requireIsObject();
+		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
+		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
+		var toIndexedObject = /*@__PURE__*/ requireToIndexedObject();
+		var createProperty = /*@__PURE__*/ requireCreateProperty();
+		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+		var arrayMethodHasSpeciesSupport = /*@__PURE__*/ requireArrayMethodHasSpeciesSupport();
+		var nativeSlice = /*@__PURE__*/ requireArraySlice();
+
+		var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
+
+		var SPECIES = wellKnownSymbol('species');
+		var $Array = Array;
+		var max = Math.max;
+
+		// `Array.prototype.slice` method
+		// https://tc39.es/ecma262/#sec-array.prototype.slice
+		// fallback for not array-like ES3 strings and DOM objects
+		$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+		  slice: function slice(start, end) {
+		    var O = toIndexedObject(this);
+		    var length = lengthOfArrayLike(O);
+		    var k = toAbsoluteIndex(start, length);
+		    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
+		    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
+		    var Constructor, result, n;
+		    if (isArray(O)) {
+		      Constructor = O.constructor;
+		      // cross-realm fallback
+		      if (isConstructor(Constructor) && (Constructor === $Array || isArray(Constructor.prototype))) {
+		        Constructor = undefined;
+		      } else if (isObject(Constructor)) {
+		        Constructor = Constructor[SPECIES];
+		        if (Constructor === null) Constructor = undefined;
+		      }
+		      if (Constructor === $Array || Constructor === undefined) {
+		        return nativeSlice(O, k, fin);
+		      }
+		    }
+		    result = new (Constructor === undefined ? $Array : Constructor)(max(fin - k, 0));
+		    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
+		    result.length = n;
+		    return result;
+		  }
+		});
+		return es_array_slice;
+	}
+
+	var slice$3;
+	var hasRequiredSlice$3;
+
+	function requireSlice$3 () {
+		if (hasRequiredSlice$3) return slice$3;
+		hasRequiredSlice$3 = 1;
+		requireEs_array_slice();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		slice$3 = getBuiltInPrototypeMethod('Array', 'slice');
+		return slice$3;
+	}
+
+	var slice$2;
+	var hasRequiredSlice$2;
+
+	function requireSlice$2 () {
+		if (hasRequiredSlice$2) return slice$2;
+		hasRequiredSlice$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireSlice$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		slice$2 = function (it) {
+		  var own = it.slice;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.slice) ? method : own;
+		};
+		return slice$2;
+	}
+
+	var slice$1;
+	var hasRequiredSlice$1;
+
+	function requireSlice$1 () {
+		if (hasRequiredSlice$1) return slice$1;
+		hasRequiredSlice$1 = 1;
+		var parent = /*@__PURE__*/ requireSlice$2();
+
+		slice$1 = parent;
+		return slice$1;
+	}
+
+	var slice;
+	var hasRequiredSlice;
+
+	function requireSlice () {
+		if (hasRequiredSlice) return slice;
+		hasRequiredSlice = 1;
+		slice = /*@__PURE__*/ requireSlice$1();
+		return slice;
+	}
+
+	var sliceExports = requireSlice();
+	var _sliceInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(sliceExports);
+
+	var es_reflect_ownKeys = {};
+
+	var hasRequiredEs_reflect_ownKeys;
+
+	function requireEs_reflect_ownKeys () {
+		if (hasRequiredEs_reflect_ownKeys) return es_reflect_ownKeys;
+		hasRequiredEs_reflect_ownKeys = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var ownKeys = /*@__PURE__*/ requireOwnKeys$3();
+
+		// `Reflect.ownKeys` method
+		// https://tc39.es/ecma262/#sec-reflect.ownkeys
+		$({ target: 'Reflect', stat: true }, {
+		  ownKeys: ownKeys
+		});
+		return es_reflect_ownKeys;
+	}
+
+	var ownKeys$3;
+	var hasRequiredOwnKeys$2;
+
+	function requireOwnKeys$2 () {
+		if (hasRequiredOwnKeys$2) return ownKeys$3;
+		hasRequiredOwnKeys$2 = 1;
+		requireEs_reflect_ownKeys();
+		var path = /*@__PURE__*/ requirePath();
+
+		ownKeys$3 = path.Reflect.ownKeys;
+		return ownKeys$3;
+	}
+
+	var ownKeys$2;
+	var hasRequiredOwnKeys$1;
+
+	function requireOwnKeys$1 () {
+		if (hasRequiredOwnKeys$1) return ownKeys$2;
+		hasRequiredOwnKeys$1 = 1;
+		var parent = /*@__PURE__*/ requireOwnKeys$2();
+
+		ownKeys$2 = parent;
+		return ownKeys$2;
+	}
+
+	var ownKeys$1;
+	var hasRequiredOwnKeys;
+
+	function requireOwnKeys () {
+		if (hasRequiredOwnKeys) return ownKeys$1;
+		hasRequiredOwnKeys = 1;
+		ownKeys$1 = /*@__PURE__*/ requireOwnKeys$1();
+		return ownKeys$1;
+	}
+
+	var ownKeysExports = requireOwnKeys();
+	var _Reflect$ownKeys = /*@__PURE__*/getDefaultExportFromCjs(ownKeysExports);
+
+	var es_date_now = {};
+
+	var hasRequiredEs_date_now;
+
+	function requireEs_date_now () {
+		if (hasRequiredEs_date_now) return es_date_now;
+		hasRequiredEs_date_now = 1;
+		// TODO: Remove from `core-js@4`
+		var $ = /*@__PURE__*/ require_export();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+
+		var $Date = Date;
+		var thisTimeValue = uncurryThis($Date.prototype.getTime);
+
+		// `Date.now` method
+		// https://tc39.es/ecma262/#sec-date.now
+		$({ target: 'Date', stat: true }, {
+		  now: function now() {
+		    return thisTimeValue(new $Date());
+		  }
+		});
+		return es_date_now;
+	}
+
+	var now$3;
+	var hasRequiredNow$2;
+
+	function requireNow$2 () {
+		if (hasRequiredNow$2) return now$3;
+		hasRequiredNow$2 = 1;
+		requireEs_date_now();
+		var path = /*@__PURE__*/ requirePath();
+
+		now$3 = path.Date.now;
+		return now$3;
+	}
+
+	var now$2;
+	var hasRequiredNow$1;
+
+	function requireNow$1 () {
+		if (hasRequiredNow$1) return now$2;
+		hasRequiredNow$1 = 1;
+		var parent = /*@__PURE__*/ requireNow$2();
+
+		now$2 = parent;
+		return now$2;
+	}
+
+	var now$1;
+	var hasRequiredNow;
+
+	function requireNow () {
+		if (hasRequiredNow) return now$1;
+		hasRequiredNow = 1;
+		now$1 = /*@__PURE__*/ requireNow$1();
+		return now$1;
+	}
+
+	var nowExports = requireNow();
+	var _Date$now = /*@__PURE__*/getDefaultExportFromCjs(nowExports);
+
+	var es_array_reverse = {};
+
+	var hasRequiredEs_array_reverse;
+
+	function requireEs_array_reverse () {
+		if (hasRequiredEs_array_reverse) return es_array_reverse;
+		hasRequiredEs_array_reverse = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var isArray = /*@__PURE__*/ requireIsArray$3();
+
+		var nativeReverse = uncurryThis([].reverse);
+		var test = [1, 2];
+
+		// `Array.prototype.reverse` method
+		// https://tc39.es/ecma262/#sec-array.prototype.reverse
+		// fix for Safari 12.0 bug
+		// https://bugs.webkit.org/show_bug.cgi?id=188794
+		$({ target: 'Array', proto: true, forced: String(test) === String(test.reverse()) }, {
+		  reverse: function reverse() {
+		    // eslint-disable-next-line no-self-assign -- dirty hack
+		    if (isArray(this)) this.length = this.length;
+		    return nativeReverse(this);
+		  }
+		});
+		return es_array_reverse;
+	}
+
+	var reverse$3;
+	var hasRequiredReverse$3;
+
+	function requireReverse$3 () {
+		if (hasRequiredReverse$3) return reverse$3;
+		hasRequiredReverse$3 = 1;
+		requireEs_array_reverse();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		reverse$3 = getBuiltInPrototypeMethod('Array', 'reverse');
+		return reverse$3;
+	}
+
+	var reverse$2;
+	var hasRequiredReverse$2;
+
+	function requireReverse$2 () {
+		if (hasRequiredReverse$2) return reverse$2;
+		hasRequiredReverse$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireReverse$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		reverse$2 = function (it) {
+		  var own = it.reverse;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.reverse) ? method : own;
+		};
+		return reverse$2;
+	}
+
+	var reverse$1;
+	var hasRequiredReverse$1;
+
+	function requireReverse$1 () {
+		if (hasRequiredReverse$1) return reverse$1;
+		hasRequiredReverse$1 = 1;
+		var parent = /*@__PURE__*/ requireReverse$2();
+
+		reverse$1 = parent;
+		return reverse$1;
+	}
+
+	var reverse;
+	var hasRequiredReverse;
+
+	function requireReverse () {
+		if (hasRequiredReverse) return reverse;
+		hasRequiredReverse = 1;
+		reverse = /*@__PURE__*/ requireReverse$1();
+		return reverse;
+	}
+
+	var reverseExports = requireReverse();
+	var _reverseInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(reverseExports);
+
+	var es_array_splice = {};
+
+	var arraySetLength;
+	var hasRequiredArraySetLength;
+
+	function requireArraySetLength () {
+		if (hasRequiredArraySetLength) return arraySetLength;
+		hasRequiredArraySetLength = 1;
+		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
+		var isArray = /*@__PURE__*/ requireIsArray$3();
+
+		var $TypeError = TypeError;
+		// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+		var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+
+		// Safari < 13 does not throw an error in this case
+		var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
+		  // makes no sense without proper strict mode support
+		  if (this !== undefined) return true;
+		  try {
+		    // eslint-disable-next-line es/no-object-defineproperty -- safe
+		    Object.defineProperty([], 'length', { writable: false }).length = 1;
+		  } catch (error) {
+		    return error instanceof TypeError;
+		  }
+		}();
+
+		arraySetLength = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
+		  if (isArray(O) && !getOwnPropertyDescriptor(O, 'length').writable) {
+		    throw new $TypeError('Cannot set read only .length');
+		  } return O.length = length;
+		} : function (O, length) {
+		  return O.length = length;
+		};
+		return arraySetLength;
+	}
+
+	var deletePropertyOrThrow;
+	var hasRequiredDeletePropertyOrThrow;
+
+	function requireDeletePropertyOrThrow () {
+		if (hasRequiredDeletePropertyOrThrow) return deletePropertyOrThrow;
+		hasRequiredDeletePropertyOrThrow = 1;
+		var tryToString = /*@__PURE__*/ requireTryToString();
+
+		var $TypeError = TypeError;
+
+		deletePropertyOrThrow = function (O, P) {
+		  if (!delete O[P]) throw new $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
+		};
+		return deletePropertyOrThrow;
+	}
+
+	var hasRequiredEs_array_splice;
+
+	function requireEs_array_splice () {
+		if (hasRequiredEs_array_splice) return es_array_splice;
+		hasRequiredEs_array_splice = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var toObject = /*@__PURE__*/ requireToObject();
+		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
+		var toIntegerOrInfinity = /*@__PURE__*/ requireToIntegerOrInfinity();
+		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
+		var setArrayLength = /*@__PURE__*/ requireArraySetLength();
+		var doesNotExceedSafeInteger = /*@__PURE__*/ requireDoesNotExceedSafeInteger();
+		var arraySpeciesCreate = /*@__PURE__*/ requireArraySpeciesCreate();
+		var createProperty = /*@__PURE__*/ requireCreateProperty();
+		var deletePropertyOrThrow = /*@__PURE__*/ requireDeletePropertyOrThrow();
+		var arrayMethodHasSpeciesSupport = /*@__PURE__*/ requireArrayMethodHasSpeciesSupport();
+
+		var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
+
+		var max = Math.max;
+		var min = Math.min;
+
+		// `Array.prototype.splice` method
+		// https://tc39.es/ecma262/#sec-array.prototype.splice
+		// with adding support of @@species
+		$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
+		  splice: function splice(start, deleteCount /* , ...items */) {
+		    var O = toObject(this);
+		    var len = lengthOfArrayLike(O);
+		    var actualStart = toAbsoluteIndex(start, len);
+		    var argumentsLength = arguments.length;
+		    var insertCount, actualDeleteCount, A, k, from, to;
+		    if (argumentsLength === 0) {
+		      insertCount = actualDeleteCount = 0;
+		    } else if (argumentsLength === 1) {
+		      insertCount = 0;
+		      actualDeleteCount = len - actualStart;
+		    } else {
+		      insertCount = argumentsLength - 2;
+		      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
+		    }
+		    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
+		    A = arraySpeciesCreate(O, actualDeleteCount);
+		    for (k = 0; k < actualDeleteCount; k++) {
+		      from = actualStart + k;
+		      if (from in O) createProperty(A, k, O[from]);
+		    }
+		    A.length = actualDeleteCount;
+		    if (insertCount < actualDeleteCount) {
+		      for (k = actualStart; k < len - actualDeleteCount; k++) {
+		        from = k + actualDeleteCount;
+		        to = k + insertCount;
+		        if (from in O) O[to] = O[from];
+		        else deletePropertyOrThrow(O, to);
+		      }
+		      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
+		    } else if (insertCount > actualDeleteCount) {
+		      for (k = len - actualDeleteCount; k > actualStart; k--) {
+		        from = k + actualDeleteCount - 1;
+		        to = k + insertCount - 1;
+		        if (from in O) O[to] = O[from];
+		        else deletePropertyOrThrow(O, to);
+		      }
+		    }
+		    for (k = 0; k < insertCount; k++) {
+		      O[k + actualStart] = arguments[k + 2];
+		    }
+		    setArrayLength(O, len - actualDeleteCount + insertCount);
+		    return A;
+		  }
+		});
+		return es_array_splice;
+	}
+
+	var splice$3;
+	var hasRequiredSplice$3;
+
+	function requireSplice$3 () {
+		if (hasRequiredSplice$3) return splice$3;
+		hasRequiredSplice$3 = 1;
+		requireEs_array_splice();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		splice$3 = getBuiltInPrototypeMethod('Array', 'splice');
+		return splice$3;
+	}
+
+	var splice$2;
+	var hasRequiredSplice$2;
+
+	function requireSplice$2 () {
+		if (hasRequiredSplice$2) return splice$2;
+		hasRequiredSplice$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireSplice$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		splice$2 = function (it) {
+		  var own = it.splice;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.splice) ? method : own;
+		};
+		return splice$2;
+	}
+
+	var splice$1;
+	var hasRequiredSplice$1;
+
+	function requireSplice$1 () {
+		if (hasRequiredSplice$1) return splice$1;
+		hasRequiredSplice$1 = 1;
+		var parent = /*@__PURE__*/ requireSplice$2();
+
+		splice$1 = parent;
+		return splice$1;
+	}
+
+	var splice;
+	var hasRequiredSplice;
+
+	function requireSplice () {
+		if (hasRequiredSplice) return splice;
+		hasRequiredSplice = 1;
+		splice = /*@__PURE__*/ requireSplice$1();
+		return splice;
+	}
+
+	var spliceExports = requireSplice();
+	var _spliceInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(spliceExports);
+
+	var es_object_assign = {};
+
+	var objectAssign;
+	var hasRequiredObjectAssign;
+
+	function requireObjectAssign () {
+		if (hasRequiredObjectAssign) return objectAssign;
+		hasRequiredObjectAssign = 1;
+		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var call = /*@__PURE__*/ requireFunctionCall();
+		var fails = /*@__PURE__*/ requireFails();
+		var objectKeys = /*@__PURE__*/ requireObjectKeys();
+		var getOwnPropertySymbolsModule = /*@__PURE__*/ requireObjectGetOwnPropertySymbols();
+		var propertyIsEnumerableModule = /*@__PURE__*/ requireObjectPropertyIsEnumerable();
+		var toObject = /*@__PURE__*/ requireToObject();
+		var IndexedObject = /*@__PURE__*/ requireIndexedObject();
+
+		// eslint-disable-next-line es/no-object-assign -- safe
+		var $assign = Object.assign;
+		// eslint-disable-next-line es/no-object-defineproperty -- required for testing
+		var defineProperty = Object.defineProperty;
+		var concat = uncurryThis([].concat);
+
+		// `Object.assign` method
+		// https://tc39.es/ecma262/#sec-object.assign
+		objectAssign = !$assign || fails(function () {
+		  // should have correct order of operations (Edge bug)
+		  if (DESCRIPTORS && $assign({ b: 1 }, $assign(defineProperty({}, 'a', {
+		    enumerable: true,
+		    get: function () {
+		      defineProperty(this, 'b', {
+		        value: 3,
+		        enumerable: false
+		      });
+		    }
+		  }), { b: 2 })).b !== 1) return true;
+		  // should work with symbols and should have deterministic property order (V8 bug)
+		  var A = {};
+		  var B = {};
+		  // eslint-disable-next-line es/no-symbol -- safe
+		  var symbol = Symbol('assign detection');
+		  var alphabet = 'abcdefghijklmnopqrst';
+		  A[symbol] = 7;
+		  // eslint-disable-next-line es/no-array-prototype-foreach -- safe
+		  alphabet.split('').forEach(function (chr) { B[chr] = chr; });
+		  return $assign({}, A)[symbol] !== 7 || objectKeys($assign({}, B)).join('') !== alphabet;
+		}) ? function assign(target, source) { // eslint-disable-line no-unused-vars -- required for `.length`
+		  var T = toObject(target);
+		  var argumentsLength = arguments.length;
+		  var index = 1;
+		  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
+		  var propertyIsEnumerable = propertyIsEnumerableModule.f;
+		  while (argumentsLength > index) {
+		    var S = IndexedObject(arguments[index++]);
+		    var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
+		    var length = keys.length;
+		    var j = 0;
+		    var key;
+		    while (length > j) {
+		      key = keys[j++];
+		      if (!DESCRIPTORS || call(propertyIsEnumerable, S, key)) T[key] = S[key];
+		    }
+		  } return T;
+		} : $assign;
+		return objectAssign;
+	}
+
+	var hasRequiredEs_object_assign;
+
+	function requireEs_object_assign () {
+		if (hasRequiredEs_object_assign) return es_object_assign;
+		hasRequiredEs_object_assign = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var assign = /*@__PURE__*/ requireObjectAssign();
+
+		// `Object.assign` method
+		// https://tc39.es/ecma262/#sec-object.assign
+		// eslint-disable-next-line es/no-object-assign -- required for testing
+		$({ target: 'Object', stat: true, arity: 2, forced: Object.assign !== assign }, {
+		  assign: assign
+		});
+		return es_object_assign;
+	}
+
+	var assign$4;
+	var hasRequiredAssign$2;
+
+	function requireAssign$2 () {
+		if (hasRequiredAssign$2) return assign$4;
+		hasRequiredAssign$2 = 1;
+		requireEs_object_assign();
+		var path = /*@__PURE__*/ requirePath();
+
+		assign$4 = path.Object.assign;
+		return assign$4;
+	}
+
+	var assign$3;
+	var hasRequiredAssign$1;
+
+	function requireAssign$1 () {
+		if (hasRequiredAssign$1) return assign$3;
+		hasRequiredAssign$1 = 1;
+		var parent = /*@__PURE__*/ requireAssign$2();
+
+		assign$3 = parent;
+		return assign$3;
+	}
+
+	var assign$2;
+	var hasRequiredAssign;
+
+	function requireAssign () {
+		if (hasRequiredAssign) return assign$2;
+		hasRequiredAssign = 1;
+		assign$2 = /*@__PURE__*/ requireAssign$1();
+		return assign$2;
+	}
+
+	var assignExports = requireAssign();
+	var _Object$assign = /*@__PURE__*/getDefaultExportFromCjs(assignExports);
+
+	var es_array_includes = {};
+
+	var hasRequiredEs_array_includes;
+
+	function requireEs_array_includes () {
+		if (hasRequiredEs_array_includes) return es_array_includes;
+		hasRequiredEs_array_includes = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var $includes = /*@__PURE__*/ requireArrayIncludes().includes;
+		var fails = /*@__PURE__*/ requireFails();
+		var addToUnscopables = /*@__PURE__*/ requireAddToUnscopables();
+
+		// FF99+ bug
+		var BROKEN_ON_SPARSE = fails(function () {
+		  // eslint-disable-next-line es/no-array-prototype-includes -- detection
+		  return !Array(1).includes();
+		});
+
+		// `Array.prototype.includes` method
+		// https://tc39.es/ecma262/#sec-array.prototype.includes
+		$({ target: 'Array', proto: true, forced: BROKEN_ON_SPARSE }, {
+		  includes: function includes(el /* , fromIndex = 0 */) {
+		    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
+		  }
+		});
+
+		// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+		addToUnscopables('includes');
+		return es_array_includes;
+	}
+
+	var includes$4;
+	var hasRequiredIncludes$4;
+
+	function requireIncludes$4 () {
+		if (hasRequiredIncludes$4) return includes$4;
+		hasRequiredIncludes$4 = 1;
+		requireEs_array_includes();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		includes$4 = getBuiltInPrototypeMethod('Array', 'includes');
+		return includes$4;
+	}
+
+	var es_string_includes = {};
+
+	var isRegexp;
+	var hasRequiredIsRegexp;
+
+	function requireIsRegexp () {
+		if (hasRequiredIsRegexp) return isRegexp;
+		hasRequiredIsRegexp = 1;
+		var isObject = /*@__PURE__*/ requireIsObject();
+		var classof = /*@__PURE__*/ requireClassofRaw();
+		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+
+		var MATCH = wellKnownSymbol('match');
+
+		// `IsRegExp` abstract operation
+		// https://tc39.es/ecma262/#sec-isregexp
+		isRegexp = function (it) {
+		  var isRegExp;
+		  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) === 'RegExp');
+		};
+		return isRegexp;
+	}
+
+	var notARegexp;
+	var hasRequiredNotARegexp;
+
+	function requireNotARegexp () {
+		if (hasRequiredNotARegexp) return notARegexp;
+		hasRequiredNotARegexp = 1;
+		var isRegExp = /*@__PURE__*/ requireIsRegexp();
+
+		var $TypeError = TypeError;
+
+		notARegexp = function (it) {
+		  if (isRegExp(it)) {
+		    throw new $TypeError("The method doesn't accept regular expressions");
+		  } return it;
+		};
+		return notARegexp;
+	}
+
+	var correctIsRegexpLogic;
+	var hasRequiredCorrectIsRegexpLogic;
+
+	function requireCorrectIsRegexpLogic () {
+		if (hasRequiredCorrectIsRegexpLogic) return correctIsRegexpLogic;
+		hasRequiredCorrectIsRegexpLogic = 1;
+		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+
+		var MATCH = wellKnownSymbol('match');
+
+		correctIsRegexpLogic = function (METHOD_NAME) {
+		  var regexp = /./;
+		  try {
+		    '/./'[METHOD_NAME](regexp);
+		  } catch (error1) {
+		    try {
+		      regexp[MATCH] = false;
+		      return '/./'[METHOD_NAME](regexp);
+		    } catch (error2) { /* empty */ }
+		  } return false;
+		};
+		return correctIsRegexpLogic;
+	}
+
+	var hasRequiredEs_string_includes;
+
+	function requireEs_string_includes () {
+		if (hasRequiredEs_string_includes) return es_string_includes;
+		hasRequiredEs_string_includes = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var notARegExp = /*@__PURE__*/ requireNotARegexp();
+		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
+		var toString = /*@__PURE__*/ requireToString();
+		var correctIsRegExpLogic = /*@__PURE__*/ requireCorrectIsRegexpLogic();
+
+		var stringIndexOf = uncurryThis(''.indexOf);
+
+		// `String.prototype.includes` method
+		// https://tc39.es/ecma262/#sec-string.prototype.includes
+		$({ target: 'String', proto: true, forced: !correctIsRegExpLogic('includes') }, {
+		  includes: function includes(searchString /* , position = 0 */) {
+		    return !!~stringIndexOf(
+		      toString(requireObjectCoercible(this)),
+		      toString(notARegExp(searchString)),
+		      arguments.length > 1 ? arguments[1] : undefined
+		    );
+		  }
+		});
+		return es_string_includes;
+	}
+
+	var includes$3;
+	var hasRequiredIncludes$3;
+
+	function requireIncludes$3 () {
+		if (hasRequiredIncludes$3) return includes$3;
+		hasRequiredIncludes$3 = 1;
+		requireEs_string_includes();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		includes$3 = getBuiltInPrototypeMethod('String', 'includes');
+		return includes$3;
+	}
+
+	var includes$2;
+	var hasRequiredIncludes$2;
+
+	function requireIncludes$2 () {
+		if (hasRequiredIncludes$2) return includes$2;
+		hasRequiredIncludes$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var arrayMethod = /*@__PURE__*/ requireIncludes$4();
+		var stringMethod = /*@__PURE__*/ requireIncludes$3();
+
+		var ArrayPrototype = Array.prototype;
+		var StringPrototype = String.prototype;
+
+		includes$2 = function (it) {
+		  var own = it.includes;
+		  if (it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.includes)) return arrayMethod;
+		  if (typeof it == 'string' || it === StringPrototype || (isPrototypeOf(StringPrototype, it) && own === StringPrototype.includes)) {
+		    return stringMethod;
+		  } return own;
+		};
+		return includes$2;
+	}
+
+	var includes$1;
+	var hasRequiredIncludes$1;
+
+	function requireIncludes$1 () {
+		if (hasRequiredIncludes$1) return includes$1;
+		hasRequiredIncludes$1 = 1;
+		var parent = /*@__PURE__*/ requireIncludes$2();
+
+		includes$1 = parent;
+		return includes$1;
+	}
+
+	var includes;
+	var hasRequiredIncludes;
+
+	function requireIncludes () {
+		if (hasRequiredIncludes) return includes;
+		hasRequiredIncludes = 1;
+		includes = /*@__PURE__*/ requireIncludes$1();
+		return includes;
+	}
+
+	var includesExports = requireIncludes();
+	var _includesInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(includesExports);
+
+	var es_object_getPrototypeOf = {};
+
+	var hasRequiredEs_object_getPrototypeOf;
+
+	function requireEs_object_getPrototypeOf () {
+		if (hasRequiredEs_object_getPrototypeOf) return es_object_getPrototypeOf;
+		hasRequiredEs_object_getPrototypeOf = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var fails = /*@__PURE__*/ requireFails();
+		var toObject = /*@__PURE__*/ requireToObject();
+		var nativeGetPrototypeOf = /*@__PURE__*/ requireObjectGetPrototypeOf();
+		var CORRECT_PROTOTYPE_GETTER = /*@__PURE__*/ requireCorrectPrototypeGetter();
+
+		var FAILS_ON_PRIMITIVES = fails(function () { nativeGetPrototypeOf(1); });
+
+		// `Object.getPrototypeOf` method
+		// https://tc39.es/ecma262/#sec-object.getprototypeof
+		$({ target: 'Object', stat: true, forced: FAILS_ON_PRIMITIVES, sham: !CORRECT_PROTOTYPE_GETTER }, {
+		  getPrototypeOf: function getPrototypeOf(it) {
+		    return nativeGetPrototypeOf(toObject(it));
+		  }
+		});
+		return es_object_getPrototypeOf;
+	}
+
+	var getPrototypeOf$2;
+	var hasRequiredGetPrototypeOf$2;
+
+	function requireGetPrototypeOf$2 () {
+		if (hasRequiredGetPrototypeOf$2) return getPrototypeOf$2;
+		hasRequiredGetPrototypeOf$2 = 1;
+		requireEs_object_getPrototypeOf();
+		var path = /*@__PURE__*/ requirePath();
+
+		getPrototypeOf$2 = path.Object.getPrototypeOf;
+		return getPrototypeOf$2;
+	}
+
+	var getPrototypeOf$1;
+	var hasRequiredGetPrototypeOf$1;
+
+	function requireGetPrototypeOf$1 () {
+		if (hasRequiredGetPrototypeOf$1) return getPrototypeOf$1;
+		hasRequiredGetPrototypeOf$1 = 1;
+		var parent = /*@__PURE__*/ requireGetPrototypeOf$2();
+
+		getPrototypeOf$1 = parent;
+		return getPrototypeOf$1;
+	}
+
+	var getPrototypeOf;
+	var hasRequiredGetPrototypeOf;
+
+	function requireGetPrototypeOf () {
+		if (hasRequiredGetPrototypeOf) return getPrototypeOf;
+		hasRequiredGetPrototypeOf = 1;
+		getPrototypeOf = /*@__PURE__*/ requireGetPrototypeOf$1();
+		return getPrototypeOf;
+	}
+
+	var getPrototypeOfExports = requireGetPrototypeOf();
+	var _Object$getPrototypeOf = /*@__PURE__*/getDefaultExportFromCjs(getPrototypeOfExports);
+
+	var concat$3;
+	var hasRequiredConcat$3;
+
+	function requireConcat$3 () {
+		if (hasRequiredConcat$3) return concat$3;
+		hasRequiredConcat$3 = 1;
+		requireEs_array_concat();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		concat$3 = getBuiltInPrototypeMethod('Array', 'concat');
+		return concat$3;
+	}
+
+	var concat$2;
+	var hasRequiredConcat$2;
+
+	function requireConcat$2 () {
+		if (hasRequiredConcat$2) return concat$2;
+		hasRequiredConcat$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireConcat$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		concat$2 = function (it) {
+		  var own = it.concat;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.concat) ? method : own;
+		};
+		return concat$2;
+	}
+
+	var concat$1;
+	var hasRequiredConcat$1;
+
+	function requireConcat$1 () {
+		if (hasRequiredConcat$1) return concat$1;
+		hasRequiredConcat$1 = 1;
+		var parent = /*@__PURE__*/ requireConcat$2();
+
+		concat$1 = parent;
+		return concat$1;
+	}
+
+	var concat;
+	var hasRequiredConcat;
+
+	function requireConcat () {
+		if (hasRequiredConcat) return concat;
+		hasRequiredConcat = 1;
+		concat = /*@__PURE__*/ requireConcat$1();
+		return concat;
+	}
+
+	var concatExports = requireConcat();
+	var _concatInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(concatExports);
+
+	var es_object_values = {};
+
+	var objectToArray;
+	var hasRequiredObjectToArray;
+
+	function requireObjectToArray () {
+		if (hasRequiredObjectToArray) return objectToArray;
+		hasRequiredObjectToArray = 1;
+		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
+		var fails = /*@__PURE__*/ requireFails();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var objectGetPrototypeOf = /*@__PURE__*/ requireObjectGetPrototypeOf();
+		var objectKeys = /*@__PURE__*/ requireObjectKeys();
+		var toIndexedObject = /*@__PURE__*/ requireToIndexedObject();
+		var $propertyIsEnumerable = /*@__PURE__*/ requireObjectPropertyIsEnumerable().f;
+
+		var propertyIsEnumerable = uncurryThis($propertyIsEnumerable);
+		var push = uncurryThis([].push);
+
+		// in some IE versions, `propertyIsEnumerable` returns incorrect result on integer keys
+		// of `null` prototype objects
+		var IE_BUG = DESCRIPTORS && fails(function () {
+		  // eslint-disable-next-line es/no-object-create -- safe
+		  var O = Object.create(null);
+		  O[2] = 2;
+		  return !propertyIsEnumerable(O, 2);
+		});
+
+		// `Object.{ entries, values }` methods implementation
+		var createMethod = function (TO_ENTRIES) {
+		  return function (it) {
+		    var O = toIndexedObject(it);
+		    var keys = objectKeys(O);
+		    var IE_WORKAROUND = IE_BUG && objectGetPrototypeOf(O) === null;
+		    var length = keys.length;
+		    var i = 0;
+		    var result = [];
+		    var key;
+		    while (length > i) {
+		      key = keys[i++];
+		      if (!DESCRIPTORS || (IE_WORKAROUND ? key in O : propertyIsEnumerable(O, key))) {
+		        push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
+		      }
+		    }
+		    return result;
+		  };
+		};
+
+		objectToArray = {
+		  // `Object.entries` method
+		  // https://tc39.es/ecma262/#sec-object.entries
+		  entries: createMethod(true),
+		  // `Object.values` method
+		  // https://tc39.es/ecma262/#sec-object.values
+		  values: createMethod(false)
+		};
+		return objectToArray;
+	}
+
+	var hasRequiredEs_object_values;
+
+	function requireEs_object_values () {
+		if (hasRequiredEs_object_values) return es_object_values;
+		hasRequiredEs_object_values = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var $values = /*@__PURE__*/ requireObjectToArray().values;
+
+		// `Object.values` method
+		// https://tc39.es/ecma262/#sec-object.values
+		$({ target: 'Object', stat: true }, {
+		  values: function values(O) {
+		    return $values(O);
+		  }
+		});
+		return es_object_values;
+	}
+
+	var values$2;
+	var hasRequiredValues$2;
+
+	function requireValues$2 () {
+		if (hasRequiredValues$2) return values$2;
+		hasRequiredValues$2 = 1;
+		requireEs_object_values();
+		var path = /*@__PURE__*/ requirePath();
+
+		values$2 = path.Object.values;
+		return values$2;
+	}
+
+	var values$1;
+	var hasRequiredValues$1;
+
+	function requireValues$1 () {
+		if (hasRequiredValues$1) return values$1;
+		hasRequiredValues$1 = 1;
+		var parent = /*@__PURE__*/ requireValues$2();
+
+		values$1 = parent;
+		return values$1;
+	}
+
+	var values;
+	var hasRequiredValues;
+
+	function requireValues () {
+		if (hasRequiredValues) return values;
+		hasRequiredValues = 1;
+		values = /*@__PURE__*/ requireValues$1();
+		return values;
+	}
+
+	var valuesExports = requireValues();
+	var _Object$values = /*@__PURE__*/getDefaultExportFromCjs(valuesExports);
+
+	var es_parseInt = {};
+
+	var whitespaces;
+	var hasRequiredWhitespaces;
+
+	function requireWhitespaces () {
+		if (hasRequiredWhitespaces) return whitespaces;
+		hasRequiredWhitespaces = 1;
+		// a string of all valid unicode whitespaces
+		whitespaces = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
+		  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
+		return whitespaces;
+	}
+
+	var stringTrim;
+	var hasRequiredStringTrim;
+
+	function requireStringTrim () {
+		if (hasRequiredStringTrim) return stringTrim;
+		hasRequiredStringTrim = 1;
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
+		var toString = /*@__PURE__*/ requireToString();
+		var whitespaces = /*@__PURE__*/ requireWhitespaces();
+
+		var replace = uncurryThis(''.replace);
+		var ltrim = RegExp('^[' + whitespaces + ']+');
+		var rtrim = RegExp('(^|[^' + whitespaces + '])[' + whitespaces + ']+$');
+
+		// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
+		var createMethod = function (TYPE) {
+		  return function ($this) {
+		    var string = toString(requireObjectCoercible($this));
+		    if (TYPE & 1) string = replace(string, ltrim, '');
+		    if (TYPE & 2) string = replace(string, rtrim, '$1');
+		    return string;
+		  };
+		};
+
+		stringTrim = {
+		  // `String.prototype.{ trimLeft, trimStart }` methods
+		  // https://tc39.es/ecma262/#sec-string.prototype.trimstart
+		  start: createMethod(1),
+		  // `String.prototype.{ trimRight, trimEnd }` methods
+		  // https://tc39.es/ecma262/#sec-string.prototype.trimend
+		  end: createMethod(2),
+		  // `String.prototype.trim` method
+		  // https://tc39.es/ecma262/#sec-string.prototype.trim
+		  trim: createMethod(3)
+		};
+		return stringTrim;
+	}
+
+	var numberParseInt;
+	var hasRequiredNumberParseInt;
+
+	function requireNumberParseInt () {
+		if (hasRequiredNumberParseInt) return numberParseInt;
+		hasRequiredNumberParseInt = 1;
+		var globalThis = /*@__PURE__*/ requireGlobalThis();
+		var fails = /*@__PURE__*/ requireFails();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var toString = /*@__PURE__*/ requireToString();
+		var trim = /*@__PURE__*/ requireStringTrim().trim;
+		var whitespaces = /*@__PURE__*/ requireWhitespaces();
+
+		var $parseInt = globalThis.parseInt;
+		var Symbol = globalThis.Symbol;
+		var ITERATOR = Symbol && Symbol.iterator;
+		var hex = /^[+-]?0x/i;
+		var exec = uncurryThis(hex.exec);
+		var FORCED = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22
+		  // MS Edge 18- broken with boxed symbols
+		  || (ITERATOR && !fails(function () { $parseInt(Object(ITERATOR)); }));
+
+		// `parseInt` method
+		// https://tc39.es/ecma262/#sec-parseint-string-radix
+		numberParseInt = FORCED ? function parseInt(string, radix) {
+		  var S = trim(toString(string));
+		  return $parseInt(S, (radix >>> 0) || (exec(hex, S) ? 16 : 10));
+		} : $parseInt;
+		return numberParseInt;
+	}
+
+	var hasRequiredEs_parseInt;
+
+	function requireEs_parseInt () {
+		if (hasRequiredEs_parseInt) return es_parseInt;
+		hasRequiredEs_parseInt = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var $parseInt = /*@__PURE__*/ requireNumberParseInt();
+
+		// `parseInt` method
+		// https://tc39.es/ecma262/#sec-parseint-string-radix
+		$({ global: true, forced: parseInt !== $parseInt }, {
+		  parseInt: $parseInt
+		});
+		return es_parseInt;
+	}
+
+	var _parseInt$3;
+	var hasRequired_parseInt$2;
+
+	function require_parseInt$2 () {
+		if (hasRequired_parseInt$2) return _parseInt$3;
+		hasRequired_parseInt$2 = 1;
+		requireEs_parseInt();
+		var path = /*@__PURE__*/ requirePath();
+
+		_parseInt$3 = path.parseInt;
+		return _parseInt$3;
+	}
+
+	var _parseInt$2;
+	var hasRequired_parseInt$1;
+
+	function require_parseInt$1 () {
+		if (hasRequired_parseInt$1) return _parseInt$2;
+		hasRequired_parseInt$1 = 1;
+		var parent = /*@__PURE__*/ require_parseInt$2();
+
+		_parseInt$2 = parent;
+		return _parseInt$2;
+	}
+
+	var _parseInt$1;
+	var hasRequired_parseInt;
+
+	function require_parseInt () {
+		if (hasRequired_parseInt) return _parseInt$1;
+		hasRequired_parseInt = 1;
+		_parseInt$1 = /*@__PURE__*/ require_parseInt$1();
+		return _parseInt$1;
+	}
+
+	var _parseIntExports = require_parseInt();
+	var _parseInt = /*@__PURE__*/getDefaultExportFromCjs(_parseIntExports);
+
+	var es_array_indexOf = {};
+
+	var hasRequiredEs_array_indexOf;
+
+	function requireEs_array_indexOf () {
+		if (hasRequiredEs_array_indexOf) return es_array_indexOf;
+		hasRequiredEs_array_indexOf = 1;
+		/* eslint-disable es/no-array-prototype-indexof -- required for testing */
+		var $ = /*@__PURE__*/ require_export();
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThisClause();
+		var $indexOf = /*@__PURE__*/ requireArrayIncludes().indexOf;
+		var arrayMethodIsStrict = /*@__PURE__*/ requireArrayMethodIsStrict();
+
+		var nativeIndexOf = uncurryThis([].indexOf);
+
+		var NEGATIVE_ZERO = !!nativeIndexOf && 1 / nativeIndexOf([1], 1, -0) < 0;
+		var FORCED = NEGATIVE_ZERO || !arrayMethodIsStrict('indexOf');
+
+		// `Array.prototype.indexOf` method
+		// https://tc39.es/ecma262/#sec-array.prototype.indexof
+		$({ target: 'Array', proto: true, forced: FORCED }, {
+		  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
+		    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
+		    return NEGATIVE_ZERO
+		      // convert -0 to +0
+		      ? nativeIndexOf(this, searchElement, fromIndex) || 0
+		      : $indexOf(this, searchElement, fromIndex);
+		  }
+		});
+		return es_array_indexOf;
+	}
+
+	var indexOf$3;
+	var hasRequiredIndexOf$3;
+
+	function requireIndexOf$3 () {
+		if (hasRequiredIndexOf$3) return indexOf$3;
+		hasRequiredIndexOf$3 = 1;
+		requireEs_array_indexOf();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		indexOf$3 = getBuiltInPrototypeMethod('Array', 'indexOf');
+		return indexOf$3;
+	}
+
+	var indexOf$2;
+	var hasRequiredIndexOf$2;
+
+	function requireIndexOf$2 () {
+		if (hasRequiredIndexOf$2) return indexOf$2;
+		hasRequiredIndexOf$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireIndexOf$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		indexOf$2 = function (it) {
+		  var own = it.indexOf;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.indexOf) ? method : own;
+		};
+		return indexOf$2;
+	}
+
+	var indexOf$1;
+	var hasRequiredIndexOf$1;
+
+	function requireIndexOf$1 () {
+		if (hasRequiredIndexOf$1) return indexOf$1;
+		hasRequiredIndexOf$1 = 1;
+		var parent = /*@__PURE__*/ requireIndexOf$2();
+
+		indexOf$1 = parent;
+		return indexOf$1;
+	}
+
+	var indexOf;
+	var hasRequiredIndexOf;
+
+	function requireIndexOf () {
+		if (hasRequiredIndexOf) return indexOf;
+		hasRequiredIndexOf = 1;
+		indexOf = /*@__PURE__*/ requireIndexOf$1();
+		return indexOf;
+	}
+
+	var indexOfExports = requireIndexOf();
+	var _indexOfInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(indexOfExports);
+
+	var es_object_entries = {};
+
+	var hasRequiredEs_object_entries;
+
+	function requireEs_object_entries () {
+		if (hasRequiredEs_object_entries) return es_object_entries;
+		hasRequiredEs_object_entries = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var $entries = /*@__PURE__*/ requireObjectToArray().entries;
+
+		// `Object.entries` method
+		// https://tc39.es/ecma262/#sec-object.entries
+		$({ target: 'Object', stat: true }, {
+		  entries: function entries(O) {
+		    return $entries(O);
+		  }
+		});
+		return es_object_entries;
+	}
+
+	var entries$2;
+	var hasRequiredEntries$2;
+
+	function requireEntries$2 () {
+		if (hasRequiredEntries$2) return entries$2;
+		hasRequiredEntries$2 = 1;
+		requireEs_object_entries();
+		var path = /*@__PURE__*/ requirePath();
+
+		entries$2 = path.Object.entries;
+		return entries$2;
+	}
+
+	var entries$1;
+	var hasRequiredEntries$1;
+
+	function requireEntries$1 () {
+		if (hasRequiredEntries$1) return entries$1;
+		hasRequiredEntries$1 = 1;
+		var parent = /*@__PURE__*/ requireEntries$2();
+
+		entries$1 = parent;
+		return entries$1;
+	}
+
+	var entries;
+	var hasRequiredEntries;
+
+	function requireEntries () {
+		if (hasRequiredEntries) return entries;
+		hasRequiredEntries = 1;
+		entries = /*@__PURE__*/ requireEntries$1();
+		return entries;
+	}
+
+	var entriesExports = requireEntries();
+	var _Object$entries = /*@__PURE__*/getDefaultExportFromCjs(entriesExports);
+
+	var es_object_create = {};
+
+	var hasRequiredEs_object_create;
+
+	function requireEs_object_create () {
+		if (hasRequiredEs_object_create) return es_object_create;
+		hasRequiredEs_object_create = 1;
+		// TODO: Remove from `core-js@4`
+		var $ = /*@__PURE__*/ require_export();
+		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
+		var create = /*@__PURE__*/ requireObjectCreate();
+
+		// `Object.create` method
+		// https://tc39.es/ecma262/#sec-object.create
+		$({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
+		  create: create
+		});
+		return es_object_create;
+	}
+
+	var create$2;
+	var hasRequiredCreate$2;
+
+	function requireCreate$2 () {
+		if (hasRequiredCreate$2) return create$2;
+		hasRequiredCreate$2 = 1;
+		requireEs_object_create();
+		var path = /*@__PURE__*/ requirePath();
+
+		var Object = path.Object;
+
+		create$2 = function create(P, D) {
+		  return Object.create(P, D);
+		};
+		return create$2;
+	}
+
+	var create$1;
+	var hasRequiredCreate$1;
+
+	function requireCreate$1 () {
+		if (hasRequiredCreate$1) return create$1;
+		hasRequiredCreate$1 = 1;
+		var parent = /*@__PURE__*/ requireCreate$2();
+
+		create$1 = parent;
+		return create$1;
+	}
+
+	var create;
+	var hasRequiredCreate;
+
+	function requireCreate () {
+		if (hasRequiredCreate) return create;
+		hasRequiredCreate = 1;
+		create = /*@__PURE__*/ requireCreate$1();
+		return create;
+	}
+
+	var createExports = requireCreate();
+	var _Object$create = /*@__PURE__*/getDefaultExportFromCjs(createExports);
+
+	var es_date_toJson = {};
+
+	var stringRepeat;
+	var hasRequiredStringRepeat;
+
+	function requireStringRepeat () {
+		if (hasRequiredStringRepeat) return stringRepeat;
+		hasRequiredStringRepeat = 1;
+		var toIntegerOrInfinity = /*@__PURE__*/ requireToIntegerOrInfinity();
+		var toString = /*@__PURE__*/ requireToString();
+		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
+
+		var $RangeError = RangeError;
+
+		// `String.prototype.repeat` method implementation
+		// https://tc39.es/ecma262/#sec-string.prototype.repeat
+		stringRepeat = function repeat(count) {
+		  var str = toString(requireObjectCoercible(this));
+		  var result = '';
+		  var n = toIntegerOrInfinity(count);
+		  if (n < 0 || n === Infinity) throw new $RangeError('Wrong number of repetitions');
+		  for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
+		  return result;
+		};
+		return stringRepeat;
+	}
+
+	var stringPad;
+	var hasRequiredStringPad;
+
+	function requireStringPad () {
+		if (hasRequiredStringPad) return stringPad;
+		hasRequiredStringPad = 1;
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var toLength = /*@__PURE__*/ requireToLength();
+		var toString = /*@__PURE__*/ requireToString();
+		var $repeat = /*@__PURE__*/ requireStringRepeat();
+		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
+
+		var repeat = uncurryThis($repeat);
+		var stringSlice = uncurryThis(''.slice);
+		var ceil = Math.ceil;
+
+		// `String.prototype.{ padStart, padEnd }` methods implementation
+		var createMethod = function (IS_END) {
+		  return function ($this, maxLength, fillString) {
+		    var S = toString(requireObjectCoercible($this));
+		    var intMaxLength = toLength(maxLength);
+		    var stringLength = S.length;
+		    var fillStr = fillString === undefined ? ' ' : toString(fillString);
+		    var fillLen, stringFiller;
+		    if (intMaxLength <= stringLength || fillStr === '') return S;
+		    fillLen = intMaxLength - stringLength;
+		    stringFiller = repeat(fillStr, ceil(fillLen / fillStr.length));
+		    if (stringFiller.length > fillLen) stringFiller = stringSlice(stringFiller, 0, fillLen);
+		    return IS_END ? S + stringFiller : stringFiller + S;
+		  };
+		};
+
+		stringPad = {
+		  // `String.prototype.padStart` method
+		  // https://tc39.es/ecma262/#sec-string.prototype.padstart
+		  start: createMethod(false),
+		  // `String.prototype.padEnd` method
+		  // https://tc39.es/ecma262/#sec-string.prototype.padend
+		  end: createMethod(true)
+		};
+		return stringPad;
+	}
+
+	var dateToIsoString;
+	var hasRequiredDateToIsoString;
+
+	function requireDateToIsoString () {
+		if (hasRequiredDateToIsoString) return dateToIsoString;
+		hasRequiredDateToIsoString = 1;
+		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
+		var fails = /*@__PURE__*/ requireFails();
+		var padStart = /*@__PURE__*/ requireStringPad().start;
+
+		var $RangeError = RangeError;
+		var $isFinite = isFinite;
+		var abs = Math.abs;
+		var DatePrototype = Date.prototype;
+		var nativeDateToISOString = DatePrototype.toISOString;
+		var thisTimeValue = uncurryThis(DatePrototype.getTime);
+		var getUTCDate = uncurryThis(DatePrototype.getUTCDate);
+		var getUTCFullYear = uncurryThis(DatePrototype.getUTCFullYear);
+		var getUTCHours = uncurryThis(DatePrototype.getUTCHours);
+		var getUTCMilliseconds = uncurryThis(DatePrototype.getUTCMilliseconds);
+		var getUTCMinutes = uncurryThis(DatePrototype.getUTCMinutes);
+		var getUTCMonth = uncurryThis(DatePrototype.getUTCMonth);
+		var getUTCSeconds = uncurryThis(DatePrototype.getUTCSeconds);
+
+		// `Date.prototype.toISOString` method implementation
+		// https://tc39.es/ecma262/#sec-date.prototype.toisostring
+		// PhantomJS / old WebKit fails here:
+		dateToIsoString = (fails(function () {
+		  return nativeDateToISOString.call(new Date(-5e13 - 1)) !== '0385-07-25T07:06:39.999Z';
+		}) || !fails(function () {
+		  nativeDateToISOString.call(new Date(NaN));
+		})) ? function toISOString() {
+		  if (!$isFinite(thisTimeValue(this))) throw new $RangeError('Invalid time value');
+		  var date = this;
+		  var year = getUTCFullYear(date);
+		  var milliseconds = getUTCMilliseconds(date);
+		  var sign = year < 0 ? '-' : year > 9999 ? '+' : '';
+		  return sign + padStart(abs(year), sign ? 6 : 4, 0) +
+		    '-' + padStart(getUTCMonth(date) + 1, 2, 0) +
+		    '-' + padStart(getUTCDate(date), 2, 0) +
+		    'T' + padStart(getUTCHours(date), 2, 0) +
+		    ':' + padStart(getUTCMinutes(date), 2, 0) +
+		    ':' + padStart(getUTCSeconds(date), 2, 0) +
+		    '.' + padStart(milliseconds, 3, 0) +
+		    'Z';
+		} : nativeDateToISOString;
+		return dateToIsoString;
+	}
+
+	var hasRequiredEs_date_toJson;
+
+	function requireEs_date_toJson () {
+		if (hasRequiredEs_date_toJson) return es_date_toJson;
+		hasRequiredEs_date_toJson = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var call = /*@__PURE__*/ requireFunctionCall();
+		var toObject = /*@__PURE__*/ requireToObject();
+		var toPrimitive = /*@__PURE__*/ requireToPrimitive$5();
+		var toISOString = /*@__PURE__*/ requireDateToIsoString();
+		var classof = /*@__PURE__*/ requireClassofRaw();
+		var fails = /*@__PURE__*/ requireFails();
+
+		var FORCED = fails(function () {
+		  return new Date(NaN).toJSON() !== null
+		    || call(Date.prototype.toJSON, { toISOString: function () { return 1; } }) !== 1;
+		});
+
+		// `Date.prototype.toJSON` method
+		// https://tc39.es/ecma262/#sec-date.prototype.tojson
+		$({ target: 'Date', proto: true, forced: FORCED }, {
+		  // eslint-disable-next-line no-unused-vars -- required for `.length`
+		  toJSON: function toJSON(key) {
+		    var O = toObject(this);
+		    var pv = toPrimitive(O, 'number');
+		    return typeof pv == 'number' && !isFinite(pv) ? null :
+		      (!('toISOString' in O) && classof(O) === 'Date') ? call(toISOString, O) : O.toISOString();
+		  }
+		});
+		return es_date_toJson;
+	}
+
+	var stringify$2;
+	var hasRequiredStringify$2;
+
+	function requireStringify$2 () {
+		if (hasRequiredStringify$2) return stringify$2;
+		hasRequiredStringify$2 = 1;
+		requireEs_date_toJson();
+		requireEs_json_stringify();
+		var path = /*@__PURE__*/ requirePath();
+		var apply = /*@__PURE__*/ requireFunctionApply();
+
+		// eslint-disable-next-line es/no-json -- safe
+		if (!path.JSON) path.JSON = { stringify: JSON.stringify };
+
+		// eslint-disable-next-line no-unused-vars -- required for `.length`
+		stringify$2 = function stringify(it, replacer, space) {
+		  return apply(path.JSON.stringify, null, arguments);
+		};
+		return stringify$2;
+	}
+
+	var stringify$1;
+	var hasRequiredStringify$1;
+
+	function requireStringify$1 () {
+		if (hasRequiredStringify$1) return stringify$1;
+		hasRequiredStringify$1 = 1;
+		var parent = /*@__PURE__*/ requireStringify$2();
+
+		stringify$1 = parent;
+		return stringify$1;
+	}
+
+	var stringify;
+	var hasRequiredStringify;
+
+	function requireStringify () {
+		if (hasRequiredStringify) return stringify;
+		hasRequiredStringify = 1;
+		stringify = /*@__PURE__*/ requireStringify$1();
+		return stringify;
+	}
+
+	var stringifyExports = requireStringify();
+	var _JSON$stringify = /*@__PURE__*/getDefaultExportFromCjs(stringifyExports);
+
+	var es_array_fill = {};
+
+	var arrayFill;
+	var hasRequiredArrayFill;
+
+	function requireArrayFill () {
+		if (hasRequiredArrayFill) return arrayFill;
+		hasRequiredArrayFill = 1;
+		var toObject = /*@__PURE__*/ requireToObject();
+		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
+		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
+
+		// `Array.prototype.fill` method implementation
+		// https://tc39.es/ecma262/#sec-array.prototype.fill
+		arrayFill = function fill(value /* , start = 0, end = @length */) {
+		  var O = toObject(this);
+		  var length = lengthOfArrayLike(O);
+		  var argumentsLength = arguments.length;
+		  var index = toAbsoluteIndex(argumentsLength > 1 ? arguments[1] : undefined, length);
+		  var end = argumentsLength > 2 ? arguments[2] : undefined;
+		  var endPos = end === undefined ? length : toAbsoluteIndex(end, length);
+		  while (endPos > index) O[index++] = value;
+		  return O;
+		};
+		return arrayFill;
+	}
+
+	var hasRequiredEs_array_fill;
+
+	function requireEs_array_fill () {
+		if (hasRequiredEs_array_fill) return es_array_fill;
+		hasRequiredEs_array_fill = 1;
+		var $ = /*@__PURE__*/ require_export();
+		var fill = /*@__PURE__*/ requireArrayFill();
+		var addToUnscopables = /*@__PURE__*/ requireAddToUnscopables();
+
+		// `Array.prototype.fill` method
+		// https://tc39.es/ecma262/#sec-array.prototype.fill
+		$({ target: 'Array', proto: true }, {
+		  fill: fill
+		});
+
+		// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
+		addToUnscopables('fill');
+		return es_array_fill;
+	}
+
+	var fill$3;
+	var hasRequiredFill$3;
+
+	function requireFill$3 () {
+		if (hasRequiredFill$3) return fill$3;
+		hasRequiredFill$3 = 1;
+		requireEs_array_fill();
+		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+		fill$3 = getBuiltInPrototypeMethod('Array', 'fill');
+		return fill$3;
+	}
+
+	var fill$2;
+	var hasRequiredFill$2;
+
+	function requireFill$2 () {
+		if (hasRequiredFill$2) return fill$2;
+		hasRequiredFill$2 = 1;
+		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+		var method = /*@__PURE__*/ requireFill$3();
+
+		var ArrayPrototype = Array.prototype;
+
+		fill$2 = function (it) {
+		  var own = it.fill;
+		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.fill) ? method : own;
+		};
+		return fill$2;
+	}
+
+	var fill$1;
+	var hasRequiredFill$1;
+
+	function requireFill$1 () {
+		if (hasRequiredFill$1) return fill$1;
+		hasRequiredFill$1 = 1;
+		var parent = /*@__PURE__*/ requireFill$2();
+
+		fill$1 = parent;
+		return fill$1;
+	}
+
+	var fill;
+	var hasRequiredFill;
+
+	function requireFill () {
+		if (hasRequiredFill) return fill;
+		hasRequiredFill = 1;
+		fill = /*@__PURE__*/ requireFill$1();
+		return fill;
+	}
+
+	var fillExports = requireFill();
+	var _fillInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(fillExports);
+
 	var componentEmitter = {exports: {}};
 
 	var hasRequiredComponentEmitter;
@@ -5614,10 +7327,10 @@
 	 * @param {...Object} objects_to_assign
 	 * @returns {Object} target
 	 */
-	var assign$3;
+	var assign;
 
 	if (typeof Object.assign !== 'function') {
-	  assign$3 = function assign(target) {
+	  assign = function assign(target) {
 	    if (target === undefined || target === null) {
 	      throw new TypeError('Cannot convert undefined or null to object');
 	    }
@@ -5639,10 +7352,10 @@
 	    return output;
 	  };
 	} else {
-	  assign$3 = Object.assign;
+	  assign = Object.assign;
 	}
 
-	var assign$1$1 = assign$3;
+	var assign$1 = assign;
 
 	var VENDOR_PREFIXES = ['', 'webkit', 'Moz', 'MS', 'ms', 'o'];
 	var TEST_ELEMENT = typeof document === "undefined" ? {
@@ -5651,7 +7364,7 @@
 	var TYPE_FUNCTION = 'function';
 	var round = Math.round,
 	    abs = Math.abs;
-	var now$3 = Date.now;
+	var now = Date.now;
 
 	/**
 	 * @private
@@ -6028,7 +7741,7 @@
 	  }
 
 	  return {
-	    timeStamp: now$3(),
+	    timeStamp: now(),
 	    pointers: pointers,
 	    center: getCenter(pointers),
 	    deltaX: input.deltaX,
@@ -6222,7 +7935,7 @@
 	      firstMultiple = session.firstMultiple;
 	  var offsetCenter = firstMultiple ? firstMultiple.center : firstInput.center;
 	  var center = input.center = getCenter(pointers);
-	  input.timeStamp = now$3();
+	  input.timeStamp = now();
 	  input.deltaTime = input.timeStamp - firstInput.timeStamp;
 	  input.angle = getAngle(offsetCenter, center);
 	  input.distance = getDistance(offsetCenter, center);
@@ -7040,7 +8753,7 @@
 	  var _proto = Recognizer.prototype;
 
 	  _proto.set = function set(options) {
-	    assign$1$1(this.options, options); // also update the touchAction, in case something changed about the directions/enabled state
+	    assign$1(this.options, options); // also update the touchAction, in case something changed about the directions/enabled state
 
 	    this.manager && this.manager.touchAction.update();
 	    return this;
@@ -7231,7 +8944,7 @@
 	  _proto.recognize = function recognize(inputData) {
 	    // make a new copy of the inputData
 	    // so we can change the inputData without messing up the other recognizers
-	    var inputDataClone = assign$1$1({}, inputData); // is is enabled and allow recognizing?
+	    var inputDataClone = assign$1({}, inputData); // is is enabled and allow recognizing?
 
 	    if (!boolOrFn(this.options.enable, [this, inputDataClone])) {
 	      this.reset();
@@ -7822,7 +9535,7 @@
 	    if (input && input.eventType & INPUT_END) {
 	      this.manager.emit(this.options.event + "up", input);
 	    } else {
-	      this._input.timeStamp = now$3();
+	      this._input.timeStamp = now();
 	      this.manager.emit(this.options.event, this._input);
 	    }
 	  };
@@ -8015,7 +9728,7 @@
 	  function Manager(element, options) {
 	    var _this = this;
 
-	    this.options = assign$1$1({}, defaults, options || {});
+	    this.options = assign$1({}, defaults, options || {});
 	    this.options.inputTarget = this.options.inputTarget || element;
 	    this.handlers = {};
 	    this.session = {};
@@ -8043,7 +9756,7 @@
 	  var _proto = Manager.prototype;
 
 	  _proto.set = function set(options) {
-	    assign$1$1(this.options, options); // Options that need a little more setup
+	    assign$1(this.options, options); // Options that need a little more setup
 
 	    if (options.touchAction) {
 	      this.touchAction.update();
@@ -8449,7 +10162,7 @@
 	  childP._super = baseP;
 
 	  if (properties) {
-	    assign$1$1(childP, properties);
+	    assign$1(childP, properties);
 	  }
 	}
 
@@ -8535,7 +10248,7 @@
 	  Hammer.merge = merge;
 	  Hammer.extend = extend$1;
 	  Hammer.bindFn = bindFn;
-	  Hammer.assign = assign$1$1;
+	  Hammer.assign = assign$1;
 	  Hammer.inherit = inherit;
 	  Hammer.bindFn = bindFn;
 	  Hammer.prefixed = prefixed;
@@ -8547,7 +10260,7 @@
 	  Hammer.hasParent = hasParent$1;
 	  Hammer.addEventListeners = addEventListeners;
 	  Hammer.removeEventListeners = removeEventListeners;
-	  Hammer.defaults = assign$1$1({}, defaults, {
+	  Hammer.defaults = assign$1({}, defaults, {
 	    preset: preset
 	  });
 	  return Hammer;
@@ -8558,54 +10271,30 @@
 	Hammer$3.defaults;
 
 	/**
-	 * vis-util
-	 * https://github.com/visjs/vis-util
-	 *
-	 * utilitie collection for visjs
-	 *
-	 * @version 6.0.0
-	 * @date    2025-07-12T18:02:43.836Z
-	 *
-	 * @copyright (c) 2011-2017 Almende B.V, http://almende.com
-	 * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
-	 *
-	 * @license
-	 * vis.js is dual licensed under both
-	 *
-	 *   1. The Apache 2.0 License
-	 *      http://www.apache.org/licenses/LICENSE-2.0
-	 *
-	 *   and
-	 *
-	 *   2. The MIT License
-	 *      http://opensource.org/licenses/MIT
-	 *
-	 * vis.js may be distributed under either license.
-	 */
-
-
-	/**
 	 * Use this symbol to delete properies in deepObjectAssign.
 	 */
-	const DELETE = Symbol("DELETE");
+	const DELETE = _Symbol("DELETE");
 	/**
 	 * Pure version of deepObjectAssign, it doesn't modify any of it's arguments.
 	 * @param base - The base object that fullfils the whole interface T.
 	 * @param updates - Updates that may change or delete props.
 	 * @returns A brand new instance with all the supplied objects deeply merged.
 	 */
-	function pureDeepObjectAssign(base, ...updates) {
-	    return deepObjectAssign({}, base, ...updates);
+	function pureDeepObjectAssign(base) {
+	  for (var _len = arguments.length, updates = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+	    updates[_key - 1] = arguments[_key];
+	  }
+	  return deepObjectAssign({}, base, ...updates);
 	}
 	/**
 	 * Deep version of object assign with additional deleting by the DELETE symbol.
 	 * @param values - Objects to be deeply merged.
 	 * @returns The first object from values.
 	 */
-	function deepObjectAssign(...values) {
-	    const merged = deepObjectAssignNonentry(...values);
-	    stripDelete(merged);
-	    return merged;
+	function deepObjectAssign() {
+	  const merged = deepObjectAssignNonentry(...arguments);
+	  stripDelete(merged);
+	  return merged;
 	}
 	/**
 	 * Deep version of object assign with additional deleting by the DELETE symbol.
@@ -8614,37 +10303,31 @@
 	 * @param values - Objects to be deeply merged.
 	 * @returns The first object from values.
 	 */
-	function deepObjectAssignNonentry(...values) {
-	    if (values.length < 2) {
-	        return values[0];
-	    }
-	    else if (values.length > 2) {
-	        return deepObjectAssignNonentry(deepObjectAssign(values[0], values[1]), ...values.slice(2));
-	    }
-	    const a = values[0];
-	    const b = values[1];
-	    if (a instanceof Date && b instanceof Date) {
-	        a.setTime(b.getTime());
-	        return a;
-	    }
-	    for (const prop of Reflect.ownKeys(b)) {
-	        if (!Object.prototype.propertyIsEnumerable.call(b, prop)) ;
-	        else if (b[prop] === DELETE) {
-	            delete a[prop];
-	        }
-	        else if (a[prop] !== null &&
-	            b[prop] !== null &&
-	            typeof a[prop] === "object" &&
-	            typeof b[prop] === "object" &&
-	            !Array.isArray(a[prop]) &&
-	            !Array.isArray(b[prop])) {
-	            a[prop] = deepObjectAssignNonentry(a[prop], b[prop]);
-	        }
-	        else {
-	            a[prop] = clone(b[prop]);
-	        }
-	    }
+	function deepObjectAssignNonentry() {
+	  for (var _len2 = arguments.length, values = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+	    values[_key2] = arguments[_key2];
+	  }
+	  if (values.length < 2) {
+	    return values[0];
+	  } else if (values.length > 2) {
+	    return deepObjectAssignNonentry(deepObjectAssign(values[0], values[1]), ..._sliceInstanceProperty(values).call(values, 2));
+	  }
+	  const a = values[0];
+	  const b = values[1];
+	  if (a instanceof Date && b instanceof Date) {
+	    a.setTime(b.getTime());
 	    return a;
+	  }
+	  for (const prop of _Reflect$ownKeys(b)) {
+	    if (!Object.prototype.propertyIsEnumerable.call(b, prop)) ;else if (b[prop] === DELETE) {
+	      delete a[prop];
+	    } else if (a[prop] !== null && b[prop] !== null && typeof a[prop] === "object" && typeof b[prop] === "object" && !_Array$isArray(a[prop]) && !_Array$isArray(b[prop])) {
+	      a[prop] = deepObjectAssignNonentry(a[prop], b[prop]);
+	    } else {
+	      a[prop] = clone(b[prop]);
+	    }
+	  }
+	  return a;
 	}
 	/**
 	 * Deep clone given object or array. In case of primitive simply return.
@@ -8652,32 +10335,29 @@
 	 * @returns Deep cloned object/array or unchanged a.
 	 */
 	function clone(a) {
-	    if (Array.isArray(a)) {
-	        return a.map((value) => clone(value));
+	  if (_Array$isArray(a)) {
+	    return _mapInstanceProperty(a).call(a, value => clone(value));
+	  } else if (typeof a === "object" && a !== null) {
+	    if (a instanceof Date) {
+	      return new Date(a.getTime());
 	    }
-	    else if (typeof a === "object" && a !== null) {
-	        if (a instanceof Date) {
-	            return new Date(a.getTime());
-	        }
-	        return deepObjectAssignNonentry({}, a);
-	    }
-	    else {
-	        return a;
-	    }
+	    return deepObjectAssignNonentry({}, a);
+	  } else {
+	    return a;
+	  }
 	}
 	/**
 	 * Strip DELETE from given object.
 	 * @param a - Object which may contain DELETE but won't after this is executed.
 	 */
 	function stripDelete(a) {
-	    for (const prop of Object.keys(a)) {
-	        if (a[prop] === DELETE) {
-	            delete a[prop];
-	        }
-	        else if (typeof a[prop] === "object" && a[prop] !== null) {
-	            stripDelete(a[prop]);
-	        }
+	  for (const prop of _Object$keys(a)) {
+	    if (a[prop] === DELETE) {
+	      delete a[prop];
+	    } else if (typeof a[prop] === "object" && a[prop] !== null) {
+	      stripDelete(a[prop]);
 	    }
+	  }
 	}
 
 	/**
@@ -8693,8 +10373,11 @@
 	 * is supplied the current time will be used to seed the generator.
 	 * @returns A ready to use seeded generator.
 	 */
-	function Alea(...seed) {
-	    return AleaImplementation(seed.length ? seed : [Date.now()]);
+	function Alea() {
+	  for (var _len3 = arguments.length, seed = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+	    seed[_key3] = arguments[_key3];
+	  }
+	  return AleaImplementation(seed.length ? seed : [_Date$now()]);
 	}
 	/**
 	 * An implementation of [[Alea]] without user input validation.
@@ -8702,20 +10385,20 @@
 	 * @returns A ready to use seeded generator.
 	 */
 	function AleaImplementation(seed) {
-	    let [s0, s1, s2] = mashSeed(seed);
-	    let c = 1;
-	    const random = () => {
-	        const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
-	        s0 = s1;
-	        s1 = s2;
-	        return (s2 = t - (c = t | 0));
-	    };
-	    random.uint32 = () => random() * 0x100000000; // 2^32
-	    random.fract53 = () => random() + ((random() * 0x200000) | 0) * 1.1102230246251565e-16; // 2^-53
-	    random.algorithm = "Alea";
-	    random.seed = seed;
-	    random.version = "0.9";
-	    return random;
+	  let [s0, s1, s2] = mashSeed(seed);
+	  let c = 1;
+	  const random = () => {
+	    const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
+	    s0 = s1;
+	    s1 = s2;
+	    return s2 = t - (c = t | 0);
+	  };
+	  random.uint32 = () => random() * 0x100000000; // 2^32
+	  random.fract53 = () => random() + (random() * 0x200000 | 0) * 1.1102230246251565e-16; // 2^-53
+	  random.algorithm = "Alea";
+	  random.seed = seed;
+	  random.version = "0.9";
+	  return random;
 	}
 	/**
 	 * Turn arbitrary data into values [[AleaImplementation]] can use to generate
@@ -8723,26 +10406,26 @@
 	 * @param seed - Arbitrary data that will be used as the seed.
 	 * @returns Three numbers to use as initial values for [[AleaImplementation]].
 	 */
-	function mashSeed(...seed) {
-	    const mash = Mash();
-	    let s0 = mash(" ");
-	    let s1 = mash(" ");
-	    let s2 = mash(" ");
-	    for (let i = 0; i < seed.length; i++) {
-	        s0 -= mash(seed[i]);
-	        if (s0 < 0) {
-	            s0 += 1;
-	        }
-	        s1 -= mash(seed[i]);
-	        if (s1 < 0) {
-	            s1 += 1;
-	        }
-	        s2 -= mash(seed[i]);
-	        if (s2 < 0) {
-	            s2 += 1;
-	        }
+	function mashSeed() {
+	  const mash = Mash();
+	  let s0 = mash(" ");
+	  let s1 = mash(" ");
+	  let s2 = mash(" ");
+	  for (let i = 0; i < arguments.length; i++) {
+	    s0 -= mash(i < 0 || arguments.length <= i ? undefined : arguments[i]);
+	    if (s0 < 0) {
+	      s0 += 1;
 	    }
-	    return [s0, s1, s2];
+	    s1 -= mash(i < 0 || arguments.length <= i ? undefined : arguments[i]);
+	    if (s1 < 0) {
+	      s1 += 1;
+	    }
+	    s2 -= mash(i < 0 || arguments.length <= i ? undefined : arguments[i]);
+	    if (s2 < 0) {
+	      s2 += 1;
+	    }
+	  }
+	  return [s0, s1, s2];
 	}
 	/**
 	 * Create a new mash function.
@@ -8750,21 +10433,21 @@
 	 * them into numbers.
 	 */
 	function Mash() {
-	    let n = 0xefc8249d;
-	    return function (data) {
-	        const string = data.toString();
-	        for (let i = 0; i < string.length; i++) {
-	            n += string.charCodeAt(i);
-	            let h = 0.02519603282416938 * n;
-	            n = h >>> 0;
-	            h -= n;
-	            h *= n;
-	            n = h >>> 0;
-	            h -= n;
-	            n += h * 0x100000000; // 2^32
-	        }
-	        return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
-	    };
+	  let n = 0xefc8249d;
+	  return function (data) {
+	    const string = data.toString();
+	    for (let i = 0; i < string.length; i++) {
+	      n += string.charCodeAt(i);
+	      let h = 0.02519603282416938 * n;
+	      n = h >>> 0;
+	      h -= n;
+	      h *= n;
+	      n = h >>> 0;
+	      h -= n;
+	      n += h * 0x100000000; // 2^32
+	    }
+	    return (n >>> 0) * 2.3283064365386963e-10; // 2^-32
+	  };
 	}
 
 	/**
@@ -8775,28 +10458,22 @@
 	 */
 	function hammerMock$1() {
 	  const noop = () => {};
-
 	  return {
 	    on: noop,
 	    off: noop,
 	    destroy: noop,
 	    emit: noop,
-
 	    get() {
 	      return {
-	        set: noop,
+	        set: noop
 	      };
-	    },
+	    }
 	  };
 	}
-
-	const Hammer$1 =
-	  typeof window !== "undefined"
-	    ? window.Hammer || Hammer$3
-	    : function () {
-	        // hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
-	        return hammerMock$1();
-	      };
+	const Hammer$1 = typeof window !== "undefined" ? window.Hammer || Hammer$3 : function () {
+	  // hammer.js is only available in a browser, not in node.js. Replacing it with a mock object.
+	  return hammerMock$1();
+	};
 
 	/**
 	 * Turn an element into an clickToUse element.
@@ -8809,24 +10486,20 @@
 	 * @class Activator
 	 */
 	function Activator$1(container) {
+	  var _context;
 	  this._cleanupQueue = [];
-
 	  this.active = false;
-
 	  this._dom = {
 	    container,
-	    overlay: document.createElement("div"),
+	    overlay: document.createElement("div")
 	  };
-
 	  this._dom.overlay.classList.add("vis-overlay");
-
 	  this._dom.container.appendChild(this._dom.overlay);
 	  this._cleanupQueue.push(() => {
 	    this._dom.overlay.parentNode.removeChild(this._dom.overlay);
 	  });
-
 	  const hammer = Hammer$1(this._dom.overlay);
-	  hammer.on("tap", this._onTapOverlay.bind(this));
+	  hammer.on("tap", _bindInstanceProperty(_context = this._onTapOverlay).call(_context, this));
 	  this._cleanupQueue.push(() => {
 	    hammer.destroy();
 	    // FIXME: cleaning up hammer instances doesn't work (Timeline not removed
@@ -8834,25 +10507,16 @@
 	  });
 
 	  // block all touch events (except tap)
-	  const events = [
-	    "tap",
-	    "doubletap",
-	    "press",
-	    "pinch",
-	    "pan",
-	    "panstart",
-	    "panmove",
-	    "panend",
-	  ];
-	  events.forEach((event) => {
-	    hammer.on(event, (event) => {
+	  const events = ["tap", "doubletap", "press", "pinch", "pan", "panstart", "panmove", "panend"];
+	  _forEachInstanceProperty(events).call(events, event => {
+	    hammer.on(event, event => {
 	      event.srcEvent.stopPropagation();
 	    });
 	  });
 
 	  // attach a click event to the window, in order to deactivate when clicking outside the timeline
 	  if (document && document.body) {
-	    this._onClick = (event) => {
+	    this._onClick = event => {
 	      if (!_hasParent$1(event.target, container)) {
 	        this.deactivate();
 	      }
@@ -8864,12 +10528,8 @@
 	  }
 
 	  // prepare escape key listener for deactivating when active
-	  this._escListener = (event) => {
-	    if (
-	      "key" in event
-	        ? event.key === "Escape"
-	        : event.keyCode === 27 /* the keyCode is for IE11 */
-	    ) {
+	  this._escListener = event => {
+	    if ("key" in event ? event.key === "Escape" : event.keyCode === 27 /* the keyCode is for IE11 */) {
 	      this.deactivate();
 	    }
 	  };
@@ -8886,8 +10546,8 @@
 	 */
 	Activator$1.prototype.destroy = function () {
 	  this.deactivate();
-
-	  for (const callback of this._cleanupQueue.splice(0).reverse()) {
+	  for (const callback of _reverseInstanceProperty(_context2 = _spliceInstanceProperty(_context3 = this._cleanupQueue).call(_context3, 0)).call(_context2)) {
+	    var _context2, _context3;
 	    callback();
 	  }
 	};
@@ -8902,11 +10562,9 @@
 	    Activator$1.current.deactivate();
 	  }
 	  Activator$1.current = this;
-
 	  this.active = true;
 	  this._dom.overlay.style.display = "none";
 	  this._dom.container.classList.add("vis-active");
-
 	  this.emit("change");
 	  this.emit("activate");
 
@@ -8924,7 +10582,6 @@
 	  this._dom.overlay.style.display = "block";
 	  this._dom.container.classList.remove("vis-active");
 	  document.body.removeEventListener("keydown", this._escListener);
-
 	  this.emit("change");
 	  this.emit("deactivate");
 	};
@@ -8975,22 +10632,22 @@
 	 * @returns True if number, false otherwise.
 	 */
 	function isNumber(value) {
-	    return value instanceof Number || typeof value === "number";
+	  return value instanceof Number || typeof value === "number";
 	}
 	/**
 	 * Remove everything in the DOM object.
 	 * @param DOMobject - Node whose child nodes will be recursively deleted.
 	 */
 	function recursiveDOMDelete(DOMobject) {
-	    if (DOMobject) {
-	        while (DOMobject.hasChildNodes() === true) {
-	            const child = DOMobject.firstChild;
-	            if (child) {
-	                recursiveDOMDelete(child);
-	                DOMobject.removeChild(child);
-	            }
-	        }
+	  if (DOMobject) {
+	    while (DOMobject.hasChildNodes() === true) {
+	      const child = DOMobject.firstChild;
+	      if (child) {
+	        recursiveDOMDelete(child);
+	        DOMobject.removeChild(child);
+	      }
 	    }
+	  }
 	}
 	/**
 	 * Test whether given object is a string.
@@ -8998,7 +10655,7 @@
 	 * @returns True if string, false otherwise.
 	 */
 	function isString(value) {
-	    return value instanceof String || typeof value === "string";
+	  return value instanceof String || typeof value === "string";
 	}
 	/**
 	 * Test whether given object is a object (not primitive or null).
@@ -9006,7 +10663,7 @@
 	 * @returns True if not null object, false otherwise.
 	 */
 	function isObject(value) {
-	    return typeof value === "object" && value !== null;
+	  return typeof value === "object" && value !== null;
 	}
 	/**
 	 * Test whether given object is a Date, or a String containing a Date.
@@ -9014,20 +10671,18 @@
 	 * @returns True if Date instance or string date representation, false otherwise.
 	 */
 	function isDate(value) {
-	    if (value instanceof Date) {
-	        return true;
+	  if (value instanceof Date) {
+	    return true;
+	  } else if (isString(value)) {
+	    // test whether this string contains a date
+	    const match = ASPDateRegex$1.exec(value);
+	    if (match) {
+	      return true;
+	    } else if (!isNaN(Date.parse(value))) {
+	      return true;
 	    }
-	    else if (isString(value)) {
-	        // test whether this string contains a date
-	        const match = ASPDateRegex$1.exec(value);
-	        if (match) {
-	            return true;
-	        }
-	        else if (!isNaN(Date.parse(value))) {
-	            return true;
-	        }
-	    }
-	    return false;
+	  }
+	  return false;
 	}
 	/**
 	 * Copy property from b to a if property present in a.
@@ -9040,16 +10695,15 @@
 	 * @param allowDeletion - If true, delete property in a if explicitly set to null in b.
 	 */
 	function copyOrDelete(a, b, prop, allowDeletion) {
-	    let doDeletion = false;
-	    if (allowDeletion === true) {
-	        doDeletion = b[prop] === null && a[prop] !== undefined;
-	    }
-	    if (doDeletion) {
-	        delete a[prop];
-	    }
-	    else {
-	        a[prop] = b[prop]; // Remember, this is a reference copy!
-	    }
+	  let doDeletion = false;
+	  if (allowDeletion === true) {
+	    doDeletion = b[prop] === null && a[prop] !== undefined;
+	  }
+	  if (doDeletion) {
+	    delete a[prop];
+	  } else {
+	    a[prop] = b[prop]; // Remember, this is a reference copy!
+	  }
 	}
 	/**
 	 * Fill an object with a possibly partially defined other object.
@@ -9060,24 +10714,24 @@
 	 * @param b - The object with property updates.
 	 * @param allowDeletion - If true, delete properties in a that are explicitly set to null in b.
 	 */
-	function fillIfDefined(a, b, allowDeletion = false) {
-	    // NOTE: iteration of properties of a
-	    // NOTE: prototype properties iterated over as well
-	    for (const prop in a) {
-	        if (b[prop] !== undefined) {
-	            if (b[prop] === null || typeof b[prop] !== "object") {
-	                // Note: typeof null === 'object'
-	                copyOrDelete(a, b, prop, allowDeletion);
-	            }
-	            else {
-	                const aProp = a[prop];
-	                const bProp = b[prop];
-	                if (isObject(aProp) && isObject(bProp)) {
-	                    fillIfDefined(aProp, bProp, allowDeletion);
-	                }
-	            }
+	function fillIfDefined(a, b) {
+	  let allowDeletion = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	  // NOTE: iteration of properties of a
+	  // NOTE: prototype properties iterated over as well
+	  for (const prop in a) {
+	    if (b[prop] !== undefined) {
+	      if (b[prop] === null || typeof b[prop] !== "object") {
+	        // Note: typeof null === 'object'
+	        copyOrDelete(a, b, prop, allowDeletion);
+	      } else {
+	        const aProp = a[prop];
+	        const bProp = b[prop];
+	        if (isObject(aProp) && isObject(bProp)) {
+	          fillIfDefined(aProp, bProp, allowDeletion);
 	        }
+	      }
 	    }
+	  }
 	}
 	/**
 	 * Copy the values of all of the enumerable own properties from one or more source objects to a
@@ -9086,7 +10740,7 @@
 	 * @param source - The source object from which to copy properties.
 	 * @returns The target object.
 	 */
-	const extend = Object.assign;
+	const extend = _Object$assign;
 	/**
 	 * Extend object a with selected properties of object b or a series of objects.
 	 * @remarks
@@ -9096,19 +10750,22 @@
 	 * @param others - The sources.
 	 * @returns Argument a.
 	 */
-	function selectiveExtend(props, a, ...others) {
-	    if (!Array.isArray(props)) {
-	        throw new Error("Array with property names expected as first argument");
+	function selectiveExtend(props, a) {
+	  if (!_Array$isArray(props)) {
+	    throw new Error("Array with property names expected as first argument");
+	  }
+	  for (var _len4 = arguments.length, others = new Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
+	    others[_key4 - 2] = arguments[_key4];
+	  }
+	  for (const other of others) {
+	    for (let p = 0; p < props.length; p++) {
+	      const prop = props[p];
+	      if (other && Object.prototype.hasOwnProperty.call(other, prop)) {
+	        a[prop] = other[prop];
+	      }
 	    }
-	    for (const other of others) {
-	        for (let p = 0; p < props.length; p++) {
-	            const prop = props[p];
-	            if (other && Object.prototype.hasOwnProperty.call(other, prop)) {
-	                a[prop] = other[prop];
-	            }
-	        }
-	    }
-	    return a;
+	  }
+	  return a;
 	}
 	/**
 	 * Extend object a with selected properties of object b.
@@ -9123,34 +10780,32 @@
 	 * @param allowDeletion - If true, delete property in a if explicitly set to null in b.
 	 * @returns Argument a.
 	 */
-	function selectiveDeepExtend(props, a, b, allowDeletion = false) {
-	    // TODO: add support for Arrays to deepExtend
-	    if (Array.isArray(b)) {
-	        throw new TypeError("Arrays are not supported by deepExtend");
-	    }
-	    for (let p = 0; p < props.length; p++) {
-	        const prop = props[p];
-	        if (Object.prototype.hasOwnProperty.call(b, prop)) {
-	            if (b[prop] && b[prop].constructor === Object) {
-	                if (a[prop] === undefined) {
-	                    a[prop] = {};
-	                }
-	                if (a[prop].constructor === Object) {
-	                    deepExtend(a[prop], b[prop], false, allowDeletion);
-	                }
-	                else {
-	                    copyOrDelete(a, b, prop, allowDeletion);
-	                }
-	            }
-	            else if (Array.isArray(b[prop])) {
-	                throw new TypeError("Arrays are not supported by deepExtend");
-	            }
-	            else {
-	                copyOrDelete(a, b, prop, allowDeletion);
-	            }
+	function selectiveDeepExtend(props, a, b) {
+	  let allowDeletion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+	  // TODO: add support for Arrays to deepExtend
+	  if (_Array$isArray(b)) {
+	    throw new TypeError("Arrays are not supported by deepExtend");
+	  }
+	  for (let p = 0; p < props.length; p++) {
+	    const prop = props[p];
+	    if (Object.prototype.hasOwnProperty.call(b, prop)) {
+	      if (b[prop] && b[prop].constructor === Object) {
+	        if (a[prop] === undefined) {
+	          a[prop] = {};
 	        }
+	        if (a[prop].constructor === Object) {
+	          deepExtend(a[prop], b[prop], false, allowDeletion);
+	        } else {
+	          copyOrDelete(a, b, prop, allowDeletion);
+	        }
+	      } else if (_Array$isArray(b[prop])) {
+	        throw new TypeError("Arrays are not supported by deepExtend");
+	      } else {
+	        copyOrDelete(a, b, prop, allowDeletion);
+	      }
 	    }
-	    return a;
+	  }
+	  return a;
 	}
 	/**
 	 * Extend object `a` with properties of object `b`, ignoring properties which
@@ -9166,41 +10821,39 @@
 	 * set to null in b.
 	 * @returns Argument a.
 	 */
-	function selectiveNotDeepExtend(propsToExclude, a, b, allowDeletion = false) {
-	    // TODO: add support for Arrays to deepExtend
-	    // NOTE: array properties have an else-below; apparently, there is a problem here.
-	    if (Array.isArray(b)) {
-	        throw new TypeError("Arrays are not supported by deepExtend");
+	function selectiveNotDeepExtend(propsToExclude, a, b) {
+	  let allowDeletion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+	  // TODO: add support for Arrays to deepExtend
+	  // NOTE: array properties have an else-below; apparently, there is a problem here.
+	  if (_Array$isArray(b)) {
+	    throw new TypeError("Arrays are not supported by deepExtend");
+	  }
+	  for (const prop in b) {
+	    if (!Object.prototype.hasOwnProperty.call(b, prop)) {
+	      continue;
+	    } // Handle local properties only
+	    if (_includesInstanceProperty(propsToExclude).call(propsToExclude, prop)) {
+	      continue;
+	    } // In exclusion list, skip
+	    if (b[prop] && b[prop].constructor === Object) {
+	      if (a[prop] === undefined) {
+	        a[prop] = {};
+	      }
+	      if (a[prop].constructor === Object) {
+	        deepExtend(a[prop], b[prop]); // NOTE: allowDeletion not propagated!
+	      } else {
+	        copyOrDelete(a, b, prop, allowDeletion);
+	      }
+	    } else if (_Array$isArray(b[prop])) {
+	      a[prop] = [];
+	      for (let i = 0; i < b[prop].length; i++) {
+	        a[prop].push(b[prop][i]);
+	      }
+	    } else {
+	      copyOrDelete(a, b, prop, allowDeletion);
 	    }
-	    for (const prop in b) {
-	        if (!Object.prototype.hasOwnProperty.call(b, prop)) {
-	            continue;
-	        } // Handle local properties only
-	        if (propsToExclude.includes(prop)) {
-	            continue;
-	        } // In exclusion list, skip
-	        if (b[prop] && b[prop].constructor === Object) {
-	            if (a[prop] === undefined) {
-	                a[prop] = {};
-	            }
-	            if (a[prop].constructor === Object) {
-	                deepExtend(a[prop], b[prop]); // NOTE: allowDeletion not propagated!
-	            }
-	            else {
-	                copyOrDelete(a, b, prop, allowDeletion);
-	            }
-	        }
-	        else if (Array.isArray(b[prop])) {
-	            a[prop] = [];
-	            for (let i = 0; i < b[prop].length; i++) {
-	                a[prop].push(b[prop][i]);
-	            }
-	        }
-	        else {
-	            copyOrDelete(a, b, prop, allowDeletion);
-	        }
-	    }
-	    return a;
+	  }
+	  return a;
 	}
 	/**
 	 * Deep extend an object a with the properties of object b.
@@ -9212,33 +10865,28 @@
 	 * @param allowDeletion - If true, the values of fields that are null will be deleted.
 	 * @returns Argument a.
 	 */
-	function deepExtend(a, b, protoExtend = false, allowDeletion = false) {
-	    for (const prop in b) {
-	        if (Object.prototype.hasOwnProperty.call(b, prop) || protoExtend === true) {
-	            if (typeof b[prop] === "object" &&
-	                b[prop] !== null &&
-	                Object.getPrototypeOf(b[prop]) === Object.prototype) {
-	                if (a[prop] === undefined) {
-	                    a[prop] = deepExtend({}, b[prop], protoExtend); // NOTE: allowDeletion not propagated!
-	                }
-	                else if (typeof a[prop] === "object" &&
-	                    a[prop] !== null &&
-	                    Object.getPrototypeOf(a[prop]) === Object.prototype) {
-	                    deepExtend(a[prop], b[prop], protoExtend); // NOTE: allowDeletion not propagated!
-	                }
-	                else {
-	                    copyOrDelete(a, b, prop, allowDeletion);
-	                }
-	            }
-	            else if (Array.isArray(b[prop])) {
-	                a[prop] = b[prop].slice();
-	            }
-	            else {
-	                copyOrDelete(a, b, prop, allowDeletion);
-	            }
+	function deepExtend(a, b) {
+	  let protoExtend = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+	  let allowDeletion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+	  for (const prop in b) {
+	    if (Object.prototype.hasOwnProperty.call(b, prop) || protoExtend === true) {
+	      if (typeof b[prop] === "object" && b[prop] !== null && _Object$getPrototypeOf(b[prop]) === Object.prototype) {
+	        if (a[prop] === undefined) {
+	          a[prop] = deepExtend({}, b[prop], protoExtend); // NOTE: allowDeletion not propagated!
+	        } else if (typeof a[prop] === "object" && a[prop] !== null && _Object$getPrototypeOf(a[prop]) === Object.prototype) {
+	          deepExtend(a[prop], b[prop], protoExtend); // NOTE: allowDeletion not propagated!
+	        } else {
+	          copyOrDelete(a, b, prop, allowDeletion);
 	        }
+	      } else if (_Array$isArray(b[prop])) {
+	        var _context4;
+	        a[prop] = _sliceInstanceProperty(_context4 = b[prop]).call(_context4);
+	      } else {
+	        copyOrDelete(a, b, prop, allowDeletion);
+	      }
 	    }
-	    return a;
+	  }
+	  return a;
 	}
 	/**
 	 * Test whether all elements in two arrays are equal.
@@ -9247,15 +10895,15 @@
 	 * @returns True if both arrays have the same length and same elements (1 = '1').
 	 */
 	function equalArray(a, b) {
-	    if (a.length !== b.length) {
-	        return false;
+	  if (a.length !== b.length) {
+	    return false;
+	  }
+	  for (let i = 0, len = a.length; i < len; i++) {
+	    if (a[i] != b[i]) {
+	      return false;
 	    }
-	    for (let i = 0, len = a.length; i < len; i++) {
-	        if (a[i] != b[i]) {
-	            return false;
-	        }
-	    }
-	    return true;
+	  }
+	  return true;
 	}
 	/**
 	 * Get the type of an object, for example exports.getType([]) returns 'Array'.
@@ -9263,41 +10911,41 @@
 	 * @returns Detected type.
 	 */
 	function getType(object) {
-	    const type = typeof object;
-	    if (type === "object") {
-	        if (object === null) {
-	            return "null";
-	        }
-	        if (object instanceof Boolean) {
-	            return "Boolean";
-	        }
-	        if (object instanceof Number) {
-	            return "Number";
-	        }
-	        if (object instanceof String) {
-	            return "String";
-	        }
-	        if (Array.isArray(object)) {
-	            return "Array";
-	        }
-	        if (object instanceof Date) {
-	            return "Date";
-	        }
-	        return "Object";
+	  const type = typeof object;
+	  if (type === "object") {
+	    if (object === null) {
+	      return "null";
 	    }
-	    if (type === "number") {
-	        return "Number";
+	    if (object instanceof Boolean) {
+	      return "Boolean";
 	    }
-	    if (type === "boolean") {
-	        return "Boolean";
+	    if (object instanceof Number) {
+	      return "Number";
 	    }
-	    if (type === "string") {
-	        return "String";
+	    if (object instanceof String) {
+	      return "String";
 	    }
-	    if (type === undefined) {
-	        return "undefined";
+	    if (_Array$isArray(object)) {
+	      return "Array";
 	    }
-	    return type;
+	    if (object instanceof Date) {
+	      return "Date";
+	    }
+	    return "Object";
+	  }
+	  if (type === "number") {
+	    return "Number";
+	  }
+	  if (type === "boolean") {
+	    return "Boolean";
+	  }
+	  if (type === "string") {
+	    return "String";
+	  }
+	  if (type === undefined) {
+	    return "undefined";
+	  }
+	  return type;
 	}
 	/**
 	 * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -9306,7 +10954,7 @@
 	 * @returns A new array with all items from arr and newValue (which is last).
 	 */
 	function copyAndExtendArray(arr, newValue) {
-	    return [...arr, newValue];
+	  return [...arr, newValue];
 	}
 	/**
 	 * Used to extend an array and copy it. This is used to propagate paths recursively.
@@ -9314,7 +10962,7 @@
 	 * @returns Shallow copy of arr.
 	 */
 	function copyArray(arr) {
-	    return arr.slice();
+	  return _sliceInstanceProperty(arr).call(arr);
 	}
 	/**
 	 * Retrieve the absolute left value of a DOM element.
@@ -9322,7 +10970,7 @@
 	 * @returns The absolute left position of this element in the browser page.
 	 */
 	function getAbsoluteLeft(elem) {
-	    return elem.getBoundingClientRect().left;
+	  return elem.getBoundingClientRect().left;
 	}
 	/**
 	 * Retrieve the absolute right value of a DOM element.
@@ -9330,7 +10978,7 @@
 	 * @returns The absolute right position of this element in the browser page.
 	 */
 	function getAbsoluteRight(elem) {
-	    return elem.getBoundingClientRect().right;
+	  return elem.getBoundingClientRect().right;
 	}
 	/**
 	 * Retrieve the absolute top value of a DOM element.
@@ -9338,7 +10986,7 @@
 	 * @returns The absolute top position of this element in the browser page.
 	 */
 	function getAbsoluteTop(elem) {
-	    return elem.getBoundingClientRect().top;
+	  return elem.getBoundingClientRect().top;
 	}
 	/**
 	 * Add a className to the given elements style.
@@ -9346,12 +10994,12 @@
 	 * @param classNames - Space separated list of classes.
 	 */
 	function addClassName(elem, classNames) {
-	    let classes = elem.className.split(" ");
-	    const newClasses = classNames.split(" ");
-	    classes = classes.concat(newClasses.filter(function (className) {
-	        return !classes.includes(className);
-	    }));
-	    elem.className = classes.join(" ");
+	  let classes = elem.className.split(" ");
+	  const newClasses = classNames.split(" ");
+	  classes = _concatInstanceProperty(classes).call(classes, _filterInstanceProperty(newClasses).call(newClasses, function (className) {
+	    return !_includesInstanceProperty(classes).call(classes, className);
+	  }));
+	  elem.className = classes.join(" ");
 	}
 	/**
 	 * Remove a className from the given elements style.
@@ -9359,12 +11007,12 @@
 	 * @param classNames - Space separated list of classes.
 	 */
 	function removeClassName(elem, classNames) {
-	    let classes = elem.className.split(" ");
-	    const oldClasses = classNames.split(" ");
-	    classes = classes.filter(function (className) {
-	        return !oldClasses.includes(className);
-	    });
-	    elem.className = classes.join(" ");
+	  let classes = elem.className.split(" ");
+	  const oldClasses = classNames.split(" ");
+	  classes = _filterInstanceProperty(classes).call(classes, function (className) {
+	    return !_includesInstanceProperty(oldClasses).call(oldClasses, className);
+	  });
+	  elem.className = classes.join(" ");
 	}
 	/**
 	 * For each method for both arrays and objects.
@@ -9374,28 +11022,27 @@
 	 * @param callback - Array.forEach-like callback.
 	 */
 	function forEach(object, callback) {
-	    if (Array.isArray(object)) {
-	        // array
-	        const len = object.length;
-	        for (let i = 0; i < len; i++) {
-	            callback(object[i], i, object);
-	        }
+	  if (_Array$isArray(object)) {
+	    // array
+	    const len = object.length;
+	    for (let i = 0; i < len; i++) {
+	      callback(object[i], i, object);
 	    }
-	    else {
-	        // object
-	        for (const key in object) {
-	            if (Object.prototype.hasOwnProperty.call(object, key)) {
-	                callback(object[key], key, object);
-	            }
-	        }
+	  } else {
+	    // object
+	    for (const key in object) {
+	      if (Object.prototype.hasOwnProperty.call(object, key)) {
+	        callback(object[key], key, object);
+	      }
 	    }
+	  }
 	}
 	/**
 	 * Convert an object into an array: all objects properties are put into the array. The resulting array is unordered.
 	 * @param o - Object that contains the properties and methods.
 	 * @returns An array of unordered values.
 	 */
-	const toArray = Object.values;
+	const toArray = _Object$values;
 	/**
 	 * Update a property in an object.
 	 * @param object - The object whose property will be updated.
@@ -9404,13 +11051,12 @@
 	 * @returns Whether the value was updated (true) or already strictly the same in the original object (false).
 	 */
 	function updateProperty(object, key, value) {
-	    if (object[key] !== value) {
-	        object[key] = value;
-	        return true;
-	    }
-	    else {
-	        return false;
-	    }
+	  if (object[key] !== value) {
+	    object[key] = value;
+	    return true;
+	  } else {
+	    return false;
+	  }
 	}
 	/**
 	 * Throttle the given function to be only executed once per animation frame.
@@ -9418,61 +11064,58 @@
 	 * @returns The throttled function.
 	 */
 	function throttle(fn) {
-	    let scheduled = false;
-	    return () => {
-	        if (!scheduled) {
-	            scheduled = true;
-	            requestAnimationFrame(() => {
-	                scheduled = false;
-	                fn();
-	            });
-	        }
-	    };
+	  let scheduled = false;
+	  return () => {
+	    if (!scheduled) {
+	      scheduled = true;
+	      requestAnimationFrame(() => {
+	        scheduled = false;
+	        fn();
+	      });
+	    }
+	  };
 	}
 	/**
 	 * Cancels the event's default action if it is cancelable, without stopping further propagation of the event.
 	 * @param event - The event whose default action should be prevented.
 	 */
 	function preventDefault(event) {
-	    if (!event) {
-	        event = window.event;
-	    }
-	    if (!event) ;
-	    else if (event.preventDefault) {
-	        event.preventDefault(); // non-IE browsers
-	    }
-	    else {
-	        // @TODO: IE types? Does anyone care?
-	        event.returnValue = false; // IE browsers
-	    }
+	  if (!event) {
+	    event = window.event;
+	  }
+	  if (!event) ;else if (event.preventDefault) {
+	    event.preventDefault(); // non-IE browsers
+	  } else {
+	    // @TODO: IE types? Does anyone care?
+	    event.returnValue = false; // IE browsers
+	  }
 	}
 	/**
 	 * Get HTML element which is the target of the event.
 	 * @param event - The event.
 	 * @returns The element or null if not obtainable.
 	 */
-	function getTarget(event = window.event) {
-	    // code from http://www.quirksmode.org/js/events_properties.html
-	    // @TODO: EventTarget can be almost anything, is it okay to return only Elements?
-	    let target = null;
-	    if (!event) ;
-	    else if (event.target) {
-	        target = event.target;
-	    }
-	    else if (event.srcElement) {
-	        target = event.srcElement;
-	    }
+	function getTarget() {
+	  let event = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : window.event;
+	  // code from http://www.quirksmode.org/js/events_properties.html
+	  // @TODO: EventTarget can be almost anything, is it okay to return only Elements?
+	  let target = null;
+	  if (!event) ;else if (event.target) {
+	    target = event.target;
+	  } else if (event.srcElement) {
+	    target = event.srcElement;
+	  }
+	  if (!(target instanceof Element)) {
+	    return null;
+	  }
+	  if (target.nodeType != null && target.nodeType == 3) {
+	    // defeat Safari bug
+	    target = target.parentNode;
 	    if (!(target instanceof Element)) {
-	        return null;
+	      return null;
 	    }
-	    if (target.nodeType != null && target.nodeType == 3) {
-	        // defeat Safari bug
-	        target = target.parentNode;
-	        if (!(target instanceof Element)) {
-	            return null;
-	        }
-	    }
-	    return target;
+	  }
+	  return target;
 	}
 	/**
 	 * Check if given element contains given parent somewhere in the DOM tree.
@@ -9481,98 +11124,94 @@
 	 * @returns True if parent is an ancestor of the element, false otherwise.
 	 */
 	function hasParent(element, parent) {
-	    let elem = element;
-	    while (elem) {
-	        if (elem === parent) {
-	            return true;
-	        }
-	        else if (elem.parentNode) {
-	            elem = elem.parentNode;
-	        }
-	        else {
-	            return false;
-	        }
+	  let elem = element;
+	  while (elem) {
+	    if (elem === parent) {
+	      return true;
+	    } else if (elem.parentNode) {
+	      elem = elem.parentNode;
+	    } else {
+	      return false;
 	    }
-	    return false;
+	  }
+	  return false;
 	}
 	const option = {
-	    /**
-	     * Convert a value into a boolean.
-	     * @param value - Value to be converted intoboolean, a function will be executed as `(() => unknown)`.
-	     * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-	     * @returns Corresponding boolean value, if none then the default value, if none then null.
-	     */
-	    asBoolean(value, defaultValue) {
-	        if (typeof value == "function") {
-	            value = value();
-	        }
-	        if (value != null) {
-	            return value != false;
-	        }
-	        return defaultValue || null;
-	    },
-	    /**
-	     * Convert a value into a number.
-	     * @param value - Value to be converted intonumber, a function will be executed as `(() => unknown)`.
-	     * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-	     * @returns Corresponding **boxed** number value, if none then the default value, if none then null.
-	     */
-	    asNumber(value, defaultValue) {
-	        if (typeof value == "function") {
-	            value = value();
-	        }
-	        if (value != null) {
-	            return Number(value) || defaultValue || null;
-	        }
-	        return defaultValue || null;
-	    },
-	    /**
-	     * Convert a value into a string.
-	     * @param value - Value to be converted intostring, a function will be executed as `(() => unknown)`.
-	     * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-	     * @returns Corresponding **boxed** string value, if none then the default value, if none then null.
-	     */
-	    asString(value, defaultValue) {
-	        if (typeof value == "function") {
-	            value = value();
-	        }
-	        if (value != null) {
-	            return String(value);
-	        }
-	        return defaultValue || null;
-	    },
-	    /**
-	     * Convert a value into a size.
-	     * @param value - Value to be converted intosize, a function will be executed as `(() => unknown)`.
-	     * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-	     * @returns Corresponding string value (number + 'px'), if none then the default value, if none then null.
-	     */
-	    asSize(value, defaultValue) {
-	        if (typeof value == "function") {
-	            value = value();
-	        }
-	        if (isString(value)) {
-	            return value;
-	        }
-	        else if (isNumber(value)) {
-	            return value + "px";
-	        }
-	        else {
-	            return defaultValue || null;
-	        }
-	    },
-	    /**
-	     * Convert a value into a DOM Element.
-	     * @param value - Value to be converted into DOM Element, a function will be executed as `(() => unknown)`.
-	     * @param defaultValue - If the value or the return value of the function == null then this will be returned.
-	     * @returns The DOM Element, if none then the default value, if none then null.
-	     */
-	    asElement(value, defaultValue) {
-	        if (typeof value == "function") {
-	            value = value();
-	        }
-	        return value || defaultValue || null;
-	    },
+	  /**
+	   * Convert a value into a boolean.
+	   * @param value - Value to be converted intoboolean, a function will be executed as `(() => unknown)`.
+	   * @param defaultValue - If the value or the return value of the function == null then this will be returned.
+	   * @returns Corresponding boolean value, if none then the default value, if none then null.
+	   */
+	  asBoolean(value, defaultValue) {
+	    if (typeof value == "function") {
+	      value = value();
+	    }
+	    if (value != null) {
+	      return value != false;
+	    }
+	    return defaultValue || null;
+	  },
+	  /**
+	   * Convert a value into a number.
+	   * @param value - Value to be converted intonumber, a function will be executed as `(() => unknown)`.
+	   * @param defaultValue - If the value or the return value of the function == null then this will be returned.
+	   * @returns Corresponding **boxed** number value, if none then the default value, if none then null.
+	   */
+	  asNumber(value, defaultValue) {
+	    if (typeof value == "function") {
+	      value = value();
+	    }
+	    if (value != null) {
+	      return Number(value) || defaultValue || null;
+	    }
+	    return defaultValue || null;
+	  },
+	  /**
+	   * Convert a value into a string.
+	   * @param value - Value to be converted intostring, a function will be executed as `(() => unknown)`.
+	   * @param defaultValue - If the value or the return value of the function == null then this will be returned.
+	   * @returns Corresponding **boxed** string value, if none then the default value, if none then null.
+	   */
+	  asString(value, defaultValue) {
+	    if (typeof value == "function") {
+	      value = value();
+	    }
+	    if (value != null) {
+	      return String(value);
+	    }
+	    return defaultValue || null;
+	  },
+	  /**
+	   * Convert a value into a size.
+	   * @param value - Value to be converted intosize, a function will be executed as `(() => unknown)`.
+	   * @param defaultValue - If the value or the return value of the function == null then this will be returned.
+	   * @returns Corresponding string value (number + 'px'), if none then the default value, if none then null.
+	   */
+	  asSize(value, defaultValue) {
+	    if (typeof value == "function") {
+	      value = value();
+	    }
+	    if (isString(value)) {
+	      return value;
+	    } else if (isNumber(value)) {
+	      return value + "px";
+	    } else {
+	      return defaultValue || null;
+	    }
+	  },
+	  /**
+	   * Convert a value into a DOM Element.
+	   * @param value - Value to be converted into DOM Element, a function will be executed as `(() => unknown)`.
+	   * @param defaultValue - If the value or the return value of the function == null then this will be returned.
+	   * @returns The DOM Element, if none then the default value, if none then null.
+	   */
+	  asElement(value, defaultValue) {
+	    if (typeof value == "function") {
+	      value = value();
+	    }
+	    return value || defaultValue || null;
+	  }
 	};
 	/**
 	 * Convert hex color string into RGB color object.
@@ -9582,31 +11221,27 @@
 	 * @returns RGB color object.
 	 */
 	function hexToRGB(hex) {
-	    let result;
-	    switch (hex.length) {
-	        case 3:
-	        case 4:
-	            result = shortHexRE.exec(hex);
-	            return result
-	                ? {
-	                    r: parseInt(result[1] + result[1], 16),
-	                    g: parseInt(result[2] + result[2], 16),
-	                    b: parseInt(result[3] + result[3], 16),
-	                }
-	                : null;
-	        case 6:
-	        case 7:
-	            result = fullHexRE.exec(hex);
-	            return result
-	                ? {
-	                    r: parseInt(result[1], 16),
-	                    g: parseInt(result[2], 16),
-	                    b: parseInt(result[3], 16),
-	                }
-	                : null;
-	        default:
-	            return null;
-	    }
+	  let result;
+	  switch (hex.length) {
+	    case 3:
+	    case 4:
+	      result = shortHexRE.exec(hex);
+	      return result ? {
+	        r: _parseInt(result[1] + result[1], 16),
+	        g: _parseInt(result[2] + result[2], 16),
+	        b: _parseInt(result[3] + result[3], 16)
+	      } : null;
+	    case 6:
+	    case 7:
+	      result = fullHexRE.exec(hex);
+	      return result ? {
+	        r: _parseInt(result[1], 16),
+	        g: _parseInt(result[2], 16),
+	        b: _parseInt(result[3], 16)
+	      } : null;
+	    default:
+	      return null;
+	  }
 	}
 	/**
 	 * This function takes string color in hex or RGB format and adds the opacity, RGBA is passed through unchanged.
@@ -9615,25 +11250,19 @@
 	 * @returns RGBA string, for example 'rgba(255, 0, 127, 0.3)'.
 	 */
 	function overrideOpacity(color, opacity) {
-	    if (color.includes("rgba")) {
-	        return color;
+	  if (_includesInstanceProperty(color).call(color, "rgba")) {
+	    return color;
+	  } else if (_includesInstanceProperty(color).call(color, "rgb")) {
+	    const rgb = color.substr(_indexOfInstanceProperty(color).call(color, "(") + 1).replace(")", "").split(",");
+	    return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + opacity + ")";
+	  } else {
+	    const rgb = hexToRGB(color);
+	    if (rgb == null) {
+	      return color;
+	    } else {
+	      return "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + opacity + ")";
 	    }
-	    else if (color.includes("rgb")) {
-	        const rgb = color
-	            .substr(color.indexOf("(") + 1)
-	            .replace(")", "")
-	            .split(",");
-	        return "rgba(" + rgb[0] + "," + rgb[1] + "," + rgb[2] + "," + opacity + ")";
-	    }
-	    else {
-	        const rgb = hexToRGB(color);
-	        if (rgb == null) {
-	            return color;
-	        }
-	        else {
-	            return "rgba(" + rgb.r + "," + rgb.g + "," + rgb.b + "," + opacity + ")";
-	        }
-	    }
+	  }
 	}
 	/**
 	 * Convert RGB \<0, 255\> into hex color string.
@@ -9643,7 +11272,8 @@
 	 * @returns Hex color string (for example: '#0acdc0').
 	 */
 	function RGBToHex(red, green, blue) {
-	    return ("#" + ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16).slice(1));
+	  var _context5;
+	  return "#" + _sliceInstanceProperty(_context5 = ((1 << 24) + (red << 16) + (green << 8) + blue).toString(16)).call(_context5, 1);
 	}
 	/**
 	 * Parse a color property into an object with border, background, and highlight colors.
@@ -9652,118 +11282,98 @@
 	 * @returns Color object.
 	 */
 	function parseColor(inputColor, defaultColor) {
-	    if (isString(inputColor)) {
-	        let colorStr = inputColor;
-	        if (isValidRGB(colorStr)) {
-	            const rgb = colorStr
-	                .substr(4)
-	                .substr(0, colorStr.length - 5)
-	                .split(",")
-	                .map(function (value) {
-	                return parseInt(value);
-	            });
-	            colorStr = RGBToHex(rgb[0], rgb[1], rgb[2]);
-	        }
-	        if (isValidHex(colorStr) === true) {
-	            const hsv = hexToHSV(colorStr);
-	            const lighterColorHSV = {
-	                h: hsv.h,
-	                s: hsv.s * 0.8,
-	                v: Math.min(1, hsv.v * 1.02),
-	            };
-	            const darkerColorHSV = {
-	                h: hsv.h,
-	                s: Math.min(1, hsv.s * 1.25),
-	                v: hsv.v * 0.8,
-	            };
-	            const darkerColorHex = HSVToHex(darkerColorHSV.h, darkerColorHSV.s, darkerColorHSV.v);
-	            const lighterColorHex = HSVToHex(lighterColorHSV.h, lighterColorHSV.s, lighterColorHSV.v);
-	            return {
-	                background: colorStr,
-	                border: darkerColorHex,
-	                highlight: {
-	                    background: lighterColorHex,
-	                    border: darkerColorHex,
-	                },
-	                hover: {
-	                    background: lighterColorHex,
-	                    border: darkerColorHex,
-	                },
-	            };
-	        }
-	        else {
-	            return {
-	                background: colorStr,
-	                border: colorStr,
-	                highlight: {
-	                    background: colorStr,
-	                    border: colorStr,
-	                },
-	                hover: {
-	                    background: colorStr,
-	                    border: colorStr,
-	                },
-	            };
-	        }
+	  if (isString(inputColor)) {
+	    let colorStr = inputColor;
+	    if (isValidRGB(colorStr)) {
+	      var _context6;
+	      const rgb = _mapInstanceProperty(_context6 = colorStr.substr(4).substr(0, colorStr.length - 5).split(",")).call(_context6, function (value) {
+	        return _parseInt(value);
+	      });
+	      colorStr = RGBToHex(rgb[0], rgb[1], rgb[2]);
 	    }
-	    else {
-	        if (defaultColor) {
-	            const color = {
-	                background: inputColor.background || defaultColor.background,
-	                border: inputColor.border || defaultColor.border,
-	                highlight: isString(inputColor.highlight)
-	                    ? {
-	                        border: inputColor.highlight,
-	                        background: inputColor.highlight,
-	                    }
-	                    : {
-	                        background: (inputColor.highlight && inputColor.highlight.background) ||
-	                            defaultColor.highlight.background,
-	                        border: (inputColor.highlight && inputColor.highlight.border) ||
-	                            defaultColor.highlight.border,
-	                    },
-	                hover: isString(inputColor.hover)
-	                    ? {
-	                        border: inputColor.hover,
-	                        background: inputColor.hover,
-	                    }
-	                    : {
-	                        border: (inputColor.hover && inputColor.hover.border) ||
-	                            defaultColor.hover.border,
-	                        background: (inputColor.hover && inputColor.hover.background) ||
-	                            defaultColor.hover.background,
-	                    },
-	            };
-	            return color;
+	    if (isValidHex(colorStr) === true) {
+	      const hsv = hexToHSV(colorStr);
+	      const lighterColorHSV = {
+	        h: hsv.h,
+	        s: hsv.s * 0.8,
+	        v: Math.min(1, hsv.v * 1.02)
+	      };
+	      const darkerColorHSV = {
+	        h: hsv.h,
+	        s: Math.min(1, hsv.s * 1.25),
+	        v: hsv.v * 0.8
+	      };
+	      const darkerColorHex = HSVToHex(darkerColorHSV.h, darkerColorHSV.s, darkerColorHSV.v);
+	      const lighterColorHex = HSVToHex(lighterColorHSV.h, lighterColorHSV.s, lighterColorHSV.v);
+	      return {
+	        background: colorStr,
+	        border: darkerColorHex,
+	        highlight: {
+	          background: lighterColorHex,
+	          border: darkerColorHex
+	        },
+	        hover: {
+	          background: lighterColorHex,
+	          border: darkerColorHex
 	        }
-	        else {
-	            const color = {
-	                background: inputColor.background || undefined,
-	                border: inputColor.border || undefined,
-	                highlight: isString(inputColor.highlight)
-	                    ? {
-	                        border: inputColor.highlight,
-	                        background: inputColor.highlight,
-	                    }
-	                    : {
-	                        background: (inputColor.highlight && inputColor.highlight.background) ||
-	                            undefined,
-	                        border: (inputColor.highlight && inputColor.highlight.border) ||
-	                            undefined,
-	                    },
-	                hover: isString(inputColor.hover)
-	                    ? {
-	                        border: inputColor.hover,
-	                        background: inputColor.hover,
-	                    }
-	                    : {
-	                        border: (inputColor.hover && inputColor.hover.border) || undefined,
-	                        background: (inputColor.hover && inputColor.hover.background) || undefined,
-	                    },
-	            };
-	            return color;
+	      };
+	    } else {
+	      return {
+	        background: colorStr,
+	        border: colorStr,
+	        highlight: {
+	          background: colorStr,
+	          border: colorStr
+	        },
+	        hover: {
+	          background: colorStr,
+	          border: colorStr
 	        }
+	      };
 	    }
+	  } else {
+	    if (defaultColor) {
+	      const color = {
+	        background: inputColor.background || defaultColor.background,
+	        border: inputColor.border || defaultColor.border,
+	        highlight: isString(inputColor.highlight) ? {
+	          border: inputColor.highlight,
+	          background: inputColor.highlight
+	        } : {
+	          background: inputColor.highlight && inputColor.highlight.background || defaultColor.highlight.background,
+	          border: inputColor.highlight && inputColor.highlight.border || defaultColor.highlight.border
+	        },
+	        hover: isString(inputColor.hover) ? {
+	          border: inputColor.hover,
+	          background: inputColor.hover
+	        } : {
+	          border: inputColor.hover && inputColor.hover.border || defaultColor.hover.border,
+	          background: inputColor.hover && inputColor.hover.background || defaultColor.hover.background
+	        }
+	      };
+	      return color;
+	    } else {
+	      const color = {
+	        background: inputColor.background || undefined,
+	        border: inputColor.border || undefined,
+	        highlight: isString(inputColor.highlight) ? {
+	          border: inputColor.highlight,
+	          background: inputColor.highlight
+	        } : {
+	          background: inputColor.highlight && inputColor.highlight.background || undefined,
+	          border: inputColor.highlight && inputColor.highlight.border || undefined
+	        },
+	        hover: isString(inputColor.hover) ? {
+	          border: inputColor.hover,
+	          background: inputColor.hover
+	        } : {
+	          border: inputColor.hover && inputColor.hover.border || undefined,
+	          background: inputColor.hover && inputColor.hover.background || undefined
+	        }
+	      };
+	      return color;
+	    }
+	  }
 	}
 	/**
 	 * Convert RGB \<0, 255\> into HSV object.
@@ -9775,22 +11385,30 @@
 	 * @returns HSV color object.
 	 */
 	function RGBToHSV(red, green, blue) {
-	    red = red / 255;
-	    green = green / 255;
-	    blue = blue / 255;
-	    const minRGB = Math.min(red, Math.min(green, blue));
-	    const maxRGB = Math.max(red, Math.max(green, blue));
-	    // Black-gray-white
-	    if (minRGB === maxRGB) {
-	        return { h: 0, s: 0, v: minRGB };
-	    }
-	    // Colors other than black-gray-white:
-	    const d = red === minRGB ? green - blue : blue === minRGB ? red - green : blue - red;
-	    const h = red === minRGB ? 3 : blue === minRGB ? 1 : 5;
-	    const hue = (60 * (h - d / (maxRGB - minRGB))) / 360;
-	    const saturation = (maxRGB - minRGB) / maxRGB;
-	    const value = maxRGB;
-	    return { h: hue, s: saturation, v: value };
+	  red = red / 255;
+	  green = green / 255;
+	  blue = blue / 255;
+	  const minRGB = Math.min(red, Math.min(green, blue));
+	  const maxRGB = Math.max(red, Math.max(green, blue));
+	  // Black-gray-white
+	  if (minRGB === maxRGB) {
+	    return {
+	      h: 0,
+	      s: 0,
+	      v: minRGB
+	    };
+	  }
+	  // Colors other than black-gray-white:
+	  const d = red === minRGB ? green - blue : blue === minRGB ? red - green : blue - red;
+	  const h = red === minRGB ? 3 : blue === minRGB ? 1 : 5;
+	  const hue = 60 * (h - d / (maxRGB - minRGB)) / 360;
+	  const saturation = (maxRGB - minRGB) / maxRGB;
+	  const value = maxRGB;
+	  return {
+	    h: hue,
+	    s: saturation,
+	    v: value
+	  };
 	}
 	/**
 	 * Split a string with css styles into an object with key/values.
@@ -9798,13 +11416,13 @@
 	 * @returns Key/value object corresponding to {@link cssText}.
 	 */
 	function splitCSSText(cssText) {
-	    const tmpEllement = document.createElement("div");
-	    const styles = {};
-	    tmpEllement.style.cssText = cssText;
-	    for (let i = 0; i < tmpEllement.style.length; ++i) {
-	        styles[tmpEllement.style[i]] = tmpEllement.style.getPropertyValue(tmpEllement.style[i]);
-	    }
-	    return styles;
+	  const tmpEllement = document.createElement("div");
+	  const styles = {};
+	  tmpEllement.style.cssText = cssText;
+	  for (let i = 0; i < tmpEllement.style.length; ++i) {
+	    styles[tmpEllement.style[i]] = tmpEllement.style.getPropertyValue(tmpEllement.style[i]);
+	  }
+	  return styles;
 	}
 	/**
 	 * Append a string with css styles to an element.
@@ -9812,10 +11430,10 @@
 	 * @param cssText - The styles to be appended.
 	 */
 	function addCssText(element, cssText) {
-	    const cssStyle = splitCSSText(cssText);
-	    for (const [key, value] of Object.entries(cssStyle)) {
-	        element.style.setProperty(key, value);
-	    }
+	  const cssStyle = splitCSSText(cssText);
+	  for (const [key, value] of _Object$entries(cssStyle)) {
+	    element.style.setProperty(key, value);
+	  }
 	}
 	/**
 	 * Remove a string with css styles from an element.
@@ -9823,10 +11441,10 @@
 	 * @param cssText - The styles to be removed.
 	 */
 	function removeCssText(element, cssText) {
-	    const cssStyle = splitCSSText(cssText);
-	    for (const key of Object.keys(cssStyle)) {
-	        element.style.removeProperty(key);
-	    }
+	  const cssStyle = splitCSSText(cssText);
+	  for (const key of _Object$keys(cssStyle)) {
+	    element.style.removeProperty(key);
+	  }
 	}
 	/**
 	 * Convert HSV \<0, 1\> into RGB color object.
@@ -9838,39 +11456,39 @@
 	 * @returns RGB color object.
 	 */
 	function HSVToRGB(h, s, v) {
-	    let r;
-	    let g;
-	    let b;
-	    const i = Math.floor(h * 6);
-	    const f = h * 6 - i;
-	    const p = v * (1 - s);
-	    const q = v * (1 - f * s);
-	    const t = v * (1 - (1 - f) * s);
-	    switch (i % 6) {
-	        case 0:
-	            ((r = v), (g = t), (b = p));
-	            break;
-	        case 1:
-	            ((r = q), (g = v), (b = p));
-	            break;
-	        case 2:
-	            ((r = p), (g = v), (b = t));
-	            break;
-	        case 3:
-	            ((r = p), (g = q), (b = v));
-	            break;
-	        case 4:
-	            ((r = t), (g = p), (b = v));
-	            break;
-	        case 5:
-	            ((r = v), (g = p), (b = q));
-	            break;
-	    }
-	    return {
-	        r: Math.floor(r * 255),
-	        g: Math.floor(g * 255),
-	        b: Math.floor(b * 255),
-	    };
+	  let r;
+	  let g;
+	  let b;
+	  const i = Math.floor(h * 6);
+	  const f = h * 6 - i;
+	  const p = v * (1 - s);
+	  const q = v * (1 - f * s);
+	  const t = v * (1 - (1 - f) * s);
+	  switch (i % 6) {
+	    case 0:
+	      r = v, g = t, b = p;
+	      break;
+	    case 1:
+	      r = q, g = v, b = p;
+	      break;
+	    case 2:
+	      r = p, g = v, b = t;
+	      break;
+	    case 3:
+	      r = p, g = q, b = v;
+	      break;
+	    case 4:
+	      r = t, g = p, b = v;
+	      break;
+	    case 5:
+	      r = v, g = p, b = q;
+	      break;
+	  }
+	  return {
+	    r: Math.floor(r * 255),
+	    g: Math.floor(g * 255),
+	    b: Math.floor(b * 255)
+	  };
 	}
 	/**
 	 * Convert HSV \<0, 1\> into hex color string.
@@ -9880,8 +11498,8 @@
 	 * @returns Hex color string.
 	 */
 	function HSVToHex(h, s, v) {
-	    const rgb = HSVToRGB(h, s, v);
-	    return RGBToHex(rgb.r, rgb.g, rgb.b);
+	  const rgb = HSVToRGB(h, s, v);
+	  return RGBToHex(rgb.r, rgb.g, rgb.b);
 	}
 	/**
 	 * Convert hex color string into HSV \<0, 1\>.
@@ -9889,11 +11507,11 @@
 	 * @returns HSV color object.
 	 */
 	function hexToHSV(hex) {
-	    const rgb = hexToRGB(hex);
-	    if (!rgb) {
-	        throw new TypeError(`'${hex}' is not a valid color.`);
-	    }
-	    return RGBToHSV(rgb.r, rgb.g, rgb.b);
+	  const rgb = hexToRGB(hex);
+	  if (!rgb) {
+	    throw new TypeError("'".concat(hex, "' is not a valid color."));
+	  }
+	  return RGBToHSV(rgb.r, rgb.g, rgb.b);
 	}
 	/**
 	 * Validate hex color string.
@@ -9901,8 +11519,8 @@
 	 * @returns True if the string is valid, false otherwise.
 	 */
 	function isValidHex(hex) {
-	    const isOk = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
-	    return isOk;
+	  const isOk = /(^#[0-9A-F]{6}$)|(^#[0-9A-F]{3}$)/i.test(hex);
+	  return isOk;
 	}
 	/**
 	 * Validate RGB color string.
@@ -9910,7 +11528,7 @@
 	 * @returns True if the string is valid, false otherwise.
 	 */
 	function isValidRGB(rgb) {
-	    return rgbRE.test(rgb);
+	  return rgbRE.test(rgb);
 	}
 	/**
 	 * Validate RGBA color string.
@@ -9918,7 +11536,7 @@
 	 * @returns True if the string is valid, false otherwise.
 	 */
 	function isValidRGBA(rgba) {
-	    return rgbaRE.test(rgba);
+	  return rgbaRE.test(rgba);
 	}
 	/**
 	 * This recursively redirects the prototype of JSON objects to the referenceObject.
@@ -9928,21 +11546,20 @@
 	 * @returns A new object inheriting from the referenceObject.
 	 */
 	function selectiveBridgeObject(fields, referenceObject) {
-	    if (referenceObject !== null && typeof referenceObject === "object") {
-	        // !!! typeof null === 'object'
-	        const objectTo = Object.create(referenceObject);
-	        for (let i = 0; i < fields.length; i++) {
-	            if (Object.prototype.hasOwnProperty.call(referenceObject, fields[i])) {
-	                if (typeof referenceObject[fields[i]] == "object") {
-	                    objectTo[fields[i]] = bridgeObject(referenceObject[fields[i]]);
-	                }
-	            }
+	  if (referenceObject !== null && typeof referenceObject === "object") {
+	    // !!! typeof null === 'object'
+	    const objectTo = _Object$create(referenceObject);
+	    for (let i = 0; i < fields.length; i++) {
+	      if (Object.prototype.hasOwnProperty.call(referenceObject, fields[i])) {
+	        if (typeof referenceObject[fields[i]] == "object") {
+	          objectTo[fields[i]] = bridgeObject(referenceObject[fields[i]]);
 	        }
-	        return objectTo;
+	      }
 	    }
-	    else {
-	        return null;
-	    }
+	    return objectTo;
+	  } else {
+	    return null;
+	  }
 	}
 	/**
 	 * This recursively redirects the prototype of JSON objects to the referenceObject.
@@ -9951,22 +11568,22 @@
 	 * @returns The Element if the referenceObject is an Element, or a new object inheriting from the referenceObject.
 	 */
 	function bridgeObject(referenceObject) {
-	    if (referenceObject === null || typeof referenceObject !== "object") {
-	        return null;
+	  if (referenceObject === null || typeof referenceObject !== "object") {
+	    return null;
+	  }
+	  if (referenceObject instanceof Element) {
+	    // Avoid bridging DOM objects
+	    return referenceObject;
+	  }
+	  const objectTo = _Object$create(referenceObject);
+	  for (const i in referenceObject) {
+	    if (Object.prototype.hasOwnProperty.call(referenceObject, i)) {
+	      if (typeof referenceObject[i] == "object") {
+	        objectTo[i] = bridgeObject(referenceObject[i]);
+	      }
 	    }
-	    if (referenceObject instanceof Element) {
-	        // Avoid bridging DOM objects
-	        return referenceObject;
-	    }
-	    const objectTo = Object.create(referenceObject);
-	    for (const i in referenceObject) {
-	        if (Object.prototype.hasOwnProperty.call(referenceObject, i)) {
-	            if (typeof referenceObject[i] == "object") {
-	                objectTo[i] = bridgeObject(referenceObject[i]);
-	            }
-	        }
-	    }
-	    return objectTo;
+	  }
+	  return objectTo;
 	}
 	/**
 	 * This method provides a stable sort implementation, very fast for presorted data.
@@ -9975,15 +11592,15 @@
 	 * @returns The argument a.
 	 */
 	function insertSort(a, compare) {
-	    for (let i = 0; i < a.length; i++) {
-	        const k = a[i];
-	        let j;
-	        for (j = i; j > 0 && compare(k, a[j - 1]) < 0; j--) {
-	            a[j] = a[j - 1];
-	        }
-	        a[j] = k;
+	  for (let i = 0; i < a.length; i++) {
+	    const k = a[i];
+	    let j;
+	    for (j = i; j > 0 && compare(k, a[j - 1]) < 0; j--) {
+	      a[j] = a[j - 1];
 	    }
-	    return a;
+	    a[j] = k;
+	  }
+	  return a;
 	}
 	/**
 	 * This is used to set the options of subobjects in the options object.
@@ -9997,98 +11614,97 @@
 	 * @param option - Option key in the options argument.
 	 * @param globalOptions - Global options, passed in to determine value of option 'enabled'.
 	 */
-	function mergeOptions(mergeTarget, options, option, globalOptions = {}) {
-	    // Local helpers
-	    const isPresent = function (obj) {
-	        return obj !== null && obj !== undefined;
-	    };
-	    const isObject = function (obj) {
-	        return obj !== null && typeof obj === "object";
-	    };
-	    // https://stackoverflow.com/a/34491287/1223531
-	    const isEmpty = function (obj) {
-	        for (const x in obj) {
-	            if (Object.prototype.hasOwnProperty.call(obj, x)) {
-	                return false;
-	            }
-	        }
-	        return true;
-	    };
-	    // Guards
-	    if (!isObject(mergeTarget)) {
-	        throw new Error("Parameter mergeTarget must be an object");
+	function mergeOptions(mergeTarget, options, option) {
+	  let globalOptions = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : {};
+	  // Local helpers
+	  const isPresent = function (obj) {
+	    return obj !== null && obj !== undefined;
+	  };
+	  const isObject = function (obj) {
+	    return obj !== null && typeof obj === "object";
+	  };
+	  // https://stackoverflow.com/a/34491287/1223531
+	  const isEmpty = function (obj) {
+	    for (const x in obj) {
+	      if (Object.prototype.hasOwnProperty.call(obj, x)) {
+	        return false;
+	      }
 	    }
-	    if (!isObject(options)) {
-	        throw new Error("Parameter options must be an object");
+	    return true;
+	  };
+	  // Guards
+	  if (!isObject(mergeTarget)) {
+	    throw new Error("Parameter mergeTarget must be an object");
+	  }
+	  if (!isObject(options)) {
+	    throw new Error("Parameter options must be an object");
+	  }
+	  if (!isPresent(option)) {
+	    throw new Error("Parameter option must have a value");
+	  }
+	  if (!isObject(globalOptions)) {
+	    throw new Error("Parameter globalOptions must be an object");
+	  }
+	  //
+	  // Actual merge routine, separated from main logic
+	  // Only a single level of options is merged. Deeper levels are ref'd. This may actually be an issue.
+	  //
+	  const doMerge = function (target, options, option) {
+	    if (!isObject(target[option])) {
+	      target[option] = {};
 	    }
-	    if (!isPresent(option)) {
-	        throw new Error("Parameter option must have a value");
+	    const src = options[option];
+	    const dst = target[option];
+	    for (const prop in src) {
+	      if (Object.prototype.hasOwnProperty.call(src, prop)) {
+	        dst[prop] = src[prop];
+	      }
 	    }
-	    if (!isObject(globalOptions)) {
-	        throw new Error("Parameter globalOptions must be an object");
+	  };
+	  // Local initialization
+	  const srcOption = options[option];
+	  const globalPassed = isObject(globalOptions) && !isEmpty(globalOptions);
+	  const globalOption = globalPassed ? globalOptions[option] : undefined;
+	  const globalEnabled = globalOption ? globalOption.enabled : undefined;
+	  /////////////////////////////////////////
+	  // Main routine
+	  /////////////////////////////////////////
+	  if (srcOption === undefined) {
+	    return; // Nothing to do
+	  }
+	  if (typeof srcOption === "boolean") {
+	    if (!isObject(mergeTarget[option])) {
+	      mergeTarget[option] = {};
 	    }
-	    //
-	    // Actual merge routine, separated from main logic
-	    // Only a single level of options is merged. Deeper levels are ref'd. This may actually be an issue.
-	    //
-	    const doMerge = function (target, options, option) {
-	        if (!isObject(target[option])) {
-	            target[option] = {};
-	        }
-	        const src = options[option];
-	        const dst = target[option];
-	        for (const prop in src) {
-	            if (Object.prototype.hasOwnProperty.call(src, prop)) {
-	                dst[prop] = src[prop];
-	            }
-	        }
-	    };
-	    // Local initialization
-	    const srcOption = options[option];
-	    const globalPassed = isObject(globalOptions) && !isEmpty(globalOptions);
-	    const globalOption = globalPassed ? globalOptions[option] : undefined;
-	    const globalEnabled = globalOption ? globalOption.enabled : undefined;
-	    /////////////////////////////////////////
-	    // Main routine
-	    /////////////////////////////////////////
-	    if (srcOption === undefined) {
-	        return; // Nothing to do
+	    mergeTarget[option].enabled = srcOption;
+	    return;
+	  }
+	  if (srcOption === null && !isObject(mergeTarget[option])) {
+	    // If possible, explicit copy from globals
+	    if (isPresent(globalOption)) {
+	      mergeTarget[option] = _Object$create(globalOption);
+	    } else {
+	      return; // Nothing to do
 	    }
-	    if (typeof srcOption === "boolean") {
-	        if (!isObject(mergeTarget[option])) {
-	            mergeTarget[option] = {};
-	        }
-	        mergeTarget[option].enabled = srcOption;
-	        return;
+	  }
+	  if (!isObject(srcOption)) {
+	    return;
+	  }
+	  //
+	  // Ensure that 'enabled' is properly set. It is required internally
+	  // Note that the value from options will always overwrite the existing value
+	  //
+	  let enabled = true; // default value
+	  if (srcOption.enabled !== undefined) {
+	    enabled = srcOption.enabled;
+	  } else {
+	    // Take from globals, if present
+	    if (globalEnabled !== undefined) {
+	      enabled = globalOption.enabled;
 	    }
-	    if (srcOption === null && !isObject(mergeTarget[option])) {
-	        // If possible, explicit copy from globals
-	        if (isPresent(globalOption)) {
-	            mergeTarget[option] = Object.create(globalOption);
-	        }
-	        else {
-	            return; // Nothing to do
-	        }
-	    }
-	    if (!isObject(srcOption)) {
-	        return;
-	    }
-	    //
-	    // Ensure that 'enabled' is properly set. It is required internally
-	    // Note that the value from options will always overwrite the existing value
-	    //
-	    let enabled = true; // default value
-	    if (srcOption.enabled !== undefined) {
-	        enabled = srcOption.enabled;
-	    }
-	    else {
-	        // Take from globals, if present
-	        if (globalEnabled !== undefined) {
-	            enabled = globalOption.enabled;
-	        }
-	    }
-	    doMerge(mergeTarget, options, option);
-	    mergeTarget[option].enabled = enabled;
+	  }
+	  doMerge(mergeTarget, options, option);
+	  mergeTarget[option].enabled = enabled;
 	}
 	/**
 	 * This function does a binary search for a visible item in a sorted list. If we find a visible item, the code that uses
@@ -10100,30 +11716,28 @@
 	 * @returns Index of the found item or -1 if nothing was found.
 	 */
 	function binarySearchCustom(orderedItems, comparator, field, field2) {
-	    const maxIterations = 10000;
-	    let iteration = 0;
-	    let low = 0;
-	    let high = orderedItems.length - 1;
-	    while (low <= high && iteration < maxIterations) {
-	        const middle = Math.floor((low + high) / 2);
-	        const item = orderedItems[middle];
-	        const value = field2 === undefined ? item[field] : item[field][field2];
-	        const searchResult = comparator(value);
-	        if (searchResult == 0) {
-	            // jihaa, found a visible item!
-	            return middle;
-	        }
-	        else if (searchResult == -1) {
-	            // it is too small --> increase low
-	            low = middle + 1;
-	        }
-	        else {
-	            // it is too big --> decrease high
-	            high = middle - 1;
-	        }
-	        iteration++;
+	  const maxIterations = 10000;
+	  let iteration = 0;
+	  let low = 0;
+	  let high = orderedItems.length - 1;
+	  while (low <= high && iteration < maxIterations) {
+	    const middle = Math.floor((low + high) / 2);
+	    const item = orderedItems[middle];
+	    const value = field2 === undefined ? item[field] : item[field][field2];
+	    const searchResult = comparator(value);
+	    if (searchResult == 0) {
+	      // jihaa, found a visible item!
+	      return middle;
+	    } else if (searchResult == -1) {
+	      // it is too small --> increase low
+	      low = middle + 1;
+	    } else {
+	      // it is too big --> decrease high
+	      high = middle - 1;
 	    }
-	    return -1;
+	    iteration++;
+	  }
+	  return -1;
 	}
 	/**
 	 * This function does a binary search for a specific value in a sorted array.
@@ -10138,58 +11752,46 @@
 	 * @returns The index of found value or -1 if nothing was found.
 	 */
 	function binarySearchValue(orderedItems, target, field, sidePreference, comparator) {
-	    const maxIterations = 10000;
-	    let iteration = 0;
-	    let low = 0;
-	    let high = orderedItems.length - 1;
-	    let prevValue;
-	    let value;
-	    let nextValue;
-	    let middle;
-	    comparator =
-	        comparator != undefined
-	            ? comparator
-	            : function (a, b) {
-	                return a == b ? 0 : a < b ? -1 : 1;
-	            };
-	    while (low <= high && iteration < maxIterations) {
-	        // get a new guess
-	        middle = Math.floor(0.5 * (high + low));
-	        prevValue = orderedItems[Math.max(0, middle - 1)][field];
-	        value = orderedItems[middle][field];
-	        nextValue =
-	            orderedItems[Math.min(orderedItems.length - 1, middle + 1)][field];
-	        if (comparator(value, target) == 0) {
-	            // we found the target
-	            return middle;
-	        }
-	        else if (comparator(prevValue, target) < 0 &&
-	            comparator(value, target) > 0) {
-	            // target is in between of the previous and the current
-	            return sidePreference == "before" ? Math.max(0, middle - 1) : middle;
-	        }
-	        else if (comparator(value, target) < 0 &&
-	            comparator(nextValue, target) > 0) {
-	            // target is in between of the current and the next
-	            return sidePreference == "before"
-	                ? middle
-	                : Math.min(orderedItems.length - 1, middle + 1);
-	        }
-	        else {
-	            // didnt find the target, we need to change our boundaries.
-	            if (comparator(value, target) < 0) {
-	                // it is too small --> increase low
-	                low = middle + 1;
-	            }
-	            else {
-	                // it is too big --> decrease high
-	                high = middle - 1;
-	            }
-	        }
-	        iteration++;
+	  const maxIterations = 10000;
+	  let iteration = 0;
+	  let low = 0;
+	  let high = orderedItems.length - 1;
+	  let prevValue;
+	  let value;
+	  let nextValue;
+	  let middle;
+	  comparator = comparator != undefined ? comparator : function (a, b) {
+	    return a == b ? 0 : a < b ? -1 : 1;
+	  };
+	  while (low <= high && iteration < maxIterations) {
+	    // get a new guess
+	    middle = Math.floor(0.5 * (high + low));
+	    prevValue = orderedItems[Math.max(0, middle - 1)][field];
+	    value = orderedItems[middle][field];
+	    nextValue = orderedItems[Math.min(orderedItems.length - 1, middle + 1)][field];
+	    if (comparator(value, target) == 0) {
+	      // we found the target
+	      return middle;
+	    } else if (comparator(prevValue, target) < 0 && comparator(value, target) > 0) {
+	      // target is in between of the previous and the current
+	      return sidePreference == "before" ? Math.max(0, middle - 1) : middle;
+	    } else if (comparator(value, target) < 0 && comparator(nextValue, target) > 0) {
+	      // target is in between of the current and the next
+	      return sidePreference == "before" ? middle : Math.min(orderedItems.length - 1, middle + 1);
+	    } else {
+	      // didnt find the target, we need to change our boundaries.
+	      if (comparator(value, target) < 0) {
+	        // it is too small --> increase low
+	        low = middle + 1;
+	      } else {
+	        // it is too big --> decrease high
+	        high = middle - 1;
+	      }
 	    }
-	    // didnt find anything. Return -1.
-	    return -1;
+	    iteration++;
+	  }
+	  // didnt find anything. Return -1.
+	  return -1;
 	}
 	/*
 	 * Easing Functions.
@@ -10199,137 +11801,137 @@
 	 * https://gist.github.com/gre/1650294
 	 */
 	const easingFunctions = {
-	    /**
-	     * Provides no easing and no acceleration.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    linear(t) {
-	        return t;
-	    },
-	    /**
-	     * Accelerate from zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInQuad(t) {
-	        return t * t;
-	    },
-	    /**
-	     * Decelerate to zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeOutQuad(t) {
-	        return t * (2 - t);
-	    },
-	    /**
-	     * Accelerate until halfway, then decelerate.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInOutQuad(t) {
-	        return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-	    },
-	    /**
-	     * Accelerate from zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInCubic(t) {
-	        return t * t * t;
-	    },
-	    /**
-	     * Decelerate to zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeOutCubic(t) {
-	        return --t * t * t + 1;
-	    },
-	    /**
-	     * Accelerate until halfway, then decelerate.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInOutCubic(t) {
-	        return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
-	    },
-	    /**
-	     * Accelerate from zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInQuart(t) {
-	        return t * t * t * t;
-	    },
-	    /**
-	     * Decelerate to zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeOutQuart(t) {
-	        return 1 - --t * t * t * t;
-	    },
-	    /**
-	     * Accelerate until halfway, then decelerate.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInOutQuart(t) {
-	        return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
-	    },
-	    /**
-	     * Accelerate from zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInQuint(t) {
-	        return t * t * t * t * t;
-	    },
-	    /**
-	     * Decelerate to zero velocity.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeOutQuint(t) {
-	        return 1 + --t * t * t * t * t;
-	    },
-	    /**
-	     * Accelerate until halfway, then decelerate.
-	     * @param t - Time.
-	     * @returns Value at time t.
-	     */
-	    easeInOutQuint(t) {
-	        return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
-	    },
+	  /**
+	   * Provides no easing and no acceleration.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  linear(t) {
+	    return t;
+	  },
+	  /**
+	   * Accelerate from zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInQuad(t) {
+	    return t * t;
+	  },
+	  /**
+	   * Decelerate to zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeOutQuad(t) {
+	    return t * (2 - t);
+	  },
+	  /**
+	   * Accelerate until halfway, then decelerate.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInOutQuad(t) {
+	    return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+	  },
+	  /**
+	   * Accelerate from zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInCubic(t) {
+	    return t * t * t;
+	  },
+	  /**
+	   * Decelerate to zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeOutCubic(t) {
+	    return --t * t * t + 1;
+	  },
+	  /**
+	   * Accelerate until halfway, then decelerate.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInOutCubic(t) {
+	    return t < 0.5 ? 4 * t * t * t : (t - 1) * (2 * t - 2) * (2 * t - 2) + 1;
+	  },
+	  /**
+	   * Accelerate from zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInQuart(t) {
+	    return t * t * t * t;
+	  },
+	  /**
+	   * Decelerate to zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeOutQuart(t) {
+	    return 1 - --t * t * t * t;
+	  },
+	  /**
+	   * Accelerate until halfway, then decelerate.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInOutQuart(t) {
+	    return t < 0.5 ? 8 * t * t * t * t : 1 - 8 * --t * t * t * t;
+	  },
+	  /**
+	   * Accelerate from zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInQuint(t) {
+	    return t * t * t * t * t;
+	  },
+	  /**
+	   * Decelerate to zero velocity.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeOutQuint(t) {
+	    return 1 + --t * t * t * t * t;
+	  },
+	  /**
+	   * Accelerate until halfway, then decelerate.
+	   * @param t - Time.
+	   * @returns Value at time t.
+	   */
+	  easeInOutQuint(t) {
+	    return t < 0.5 ? 16 * t * t * t * t * t : 1 + 16 * --t * t * t * t * t;
+	  }
 	};
 	/**
 	 * Experimentaly compute the width of the scrollbar for this browser.
 	 * @returns The width in pixels.
 	 */
 	function getScrollBarWidth() {
-	    const inner = document.createElement("p");
-	    inner.style.width = "100%";
-	    inner.style.height = "200px";
-	    const outer = document.createElement("div");
-	    outer.style.position = "absolute";
-	    outer.style.top = "0px";
-	    outer.style.left = "0px";
-	    outer.style.visibility = "hidden";
-	    outer.style.width = "200px";
-	    outer.style.height = "150px";
-	    outer.style.overflow = "hidden";
-	    outer.appendChild(inner);
-	    document.body.appendChild(outer);
-	    const w1 = inner.offsetWidth;
-	    outer.style.overflow = "scroll";
-	    let w2 = inner.offsetWidth;
-	    if (w1 == w2) {
-	        w2 = outer.clientWidth;
-	    }
-	    document.body.removeChild(outer);
-	    return w1 - w2;
+	  const inner = document.createElement("p");
+	  inner.style.width = "100%";
+	  inner.style.height = "200px";
+	  const outer = document.createElement("div");
+	  outer.style.position = "absolute";
+	  outer.style.top = "0px";
+	  outer.style.left = "0px";
+	  outer.style.visibility = "hidden";
+	  outer.style.width = "200px";
+	  outer.style.height = "150px";
+	  outer.style.overflow = "hidden";
+	  outer.appendChild(inner);
+	  document.body.appendChild(outer);
+	  const w1 = inner.offsetWidth;
+	  outer.style.overflow = "scroll";
+	  let w2 = inner.offsetWidth;
+	  if (w1 == w2) {
+	    w2 = outer.clientWidth;
+	  }
+	  document.body.removeChild(outer);
+	  return w1 - w2;
 	}
 	// @TODO: This doesn't work properly.
 	// It works only for single property objects,
@@ -10354,26 +11956,25 @@
 	 * @returns Value of the property with given accessors path from the first pile item where it's not undefined.
 	 */
 	function topMost(pile, accessors) {
-	    let candidate;
-	    if (!Array.isArray(accessors)) {
-	        accessors = [accessors];
-	    }
-	    for (const member of pile) {
-	        if (member) {
-	            candidate = member[accessors[0]];
-	            for (let i = 1; i < accessors.length; i++) {
-	                if (candidate) {
-	                    candidate = candidate[accessors[i]];
-	                }
-	            }
-	            if (typeof candidate !== "undefined") {
-	                break;
-	            }
+	  let candidate;
+	  if (!_Array$isArray(accessors)) {
+	    accessors = [accessors];
+	  }
+	  for (const member of pile) {
+	    if (member) {
+	      candidate = member[accessors[0]];
+	      for (let i = 1; i < accessors.length; i++) {
+	        if (candidate) {
+	          candidate = candidate[accessors[i]];
 	        }
+	      }
+	      if (typeof candidate !== "undefined") {
+	        break;
+	      }
 	    }
-	    return candidate;
+	  }
+	  return candidate;
 	}
-
 	const htmlColors$1 = {
 	  black: "#000000",
 	  navy: "#000080",
@@ -10514,7 +12115,7 @@
 	  yellow: "#FFFF00",
 	  lightyellow: "#FFFFE0",
 	  ivory: "#FFFFF0",
-	  white: "#FFFFFF",
+	  white: "#FFFFFF"
 	};
 
 	/**
@@ -10524,14 +12125,28 @@
 	  /**
 	   * @param {number} [pixelRatio]
 	   */
-	  constructor(pixelRatio = 1) {
+	  constructor() {
+	    let pixelRatio = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 	    this.pixelRatio = pixelRatio;
 	    this.generated = false;
-	    this.centerCoordinates = { x: 289 / 2, y: 289 / 2 };
+	    this.centerCoordinates = {
+	      x: 289 / 2,
+	      y: 289 / 2
+	    };
 	    this.r = 289 * 0.49;
-	    this.color = { r: 255, g: 255, b: 255, a: 1.0 };
+	    this.color = {
+	      r: 255,
+	      g: 255,
+	      b: 255,
+	      a: 1.0
+	    };
 	    this.hueCircle = undefined;
-	    this.initialColor = { r: 255, g: 255, b: 255, a: 1.0 };
+	    this.initialColor = {
+	      r: 255,
+	      g: 255,
+	      b: 255,
+	      a: 1.0
+	    };
 	    this.previousColor = undefined;
 	    this.applied = false;
 
@@ -10555,7 +12170,6 @@
 	    this.container = container;
 	    this.container.appendChild(this.frame);
 	    this._bindHammer();
-
 	    this._setSize();
 	  }
 
@@ -10567,9 +12181,7 @@
 	    if (typeof callback === "function") {
 	      this.updateCallback = callback;
 	    } else {
-	      throw new Error(
-	        "Function attempted to set as colorPicker update callback is not a function.",
-	      );
+	      throw new Error("Function attempted to set as colorPicker update callback is not a function.");
 	    }
 	  }
 
@@ -10581,9 +12193,7 @@
 	    if (typeof callback === "function") {
 	      this.closeCallback = callback;
 	    } else {
-	      throw new Error(
-	        "Function attempted to set as colorPicker closing callback is not a function.",
-	      );
+	      throw new Error("Function attempted to set as colorPicker closing callback is not a function.");
 	    }
 	  }
 
@@ -10611,11 +12221,11 @@
 	   * @param {string | object} color
 	   * @param {boolean} [setInitial]
 	   */
-	  setColor(color, setInitial = true) {
+	  setColor(color) {
+	    let setInitial = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 	    if (color === "none") {
 	      return;
 	    }
-
 	    let rgba;
 
 	    // if a html color shorthand is used, convert to hex
@@ -10627,45 +12237,47 @@
 	    // check format
 	    if (isString(color) === true) {
 	      if (isValidRGB(color) === true) {
-	        const rgbaArray = color
-	          .substr(4)
-	          .substr(0, color.length - 5)
-	          .split(",");
-	        rgba = { r: rgbaArray[0], g: rgbaArray[1], b: rgbaArray[2], a: 1.0 };
-	      } else if (isValidRGBA(color) === true) {
-	        const rgbaArray = color
-	          .substr(5)
-	          .substr(0, color.length - 6)
-	          .split(",");
+	        const rgbaArray = color.substr(4).substr(0, color.length - 5).split(",");
 	        rgba = {
 	          r: rgbaArray[0],
 	          g: rgbaArray[1],
 	          b: rgbaArray[2],
-	          a: rgbaArray[3],
+	          a: 1.0
+	        };
+	      } else if (isValidRGBA(color) === true) {
+	        const rgbaArray = color.substr(5).substr(0, color.length - 6).split(",");
+	        rgba = {
+	          r: rgbaArray[0],
+	          g: rgbaArray[1],
+	          b: rgbaArray[2],
+	          a: rgbaArray[3]
 	        };
 	      } else if (isValidHex(color) === true) {
 	        const rgbObj = hexToRGB(color);
-	        rgba = { r: rgbObj.r, g: rgbObj.g, b: rgbObj.b, a: 1.0 };
+	        rgba = {
+	          r: rgbObj.r,
+	          g: rgbObj.g,
+	          b: rgbObj.b,
+	          a: 1.0
+	        };
 	      }
 	    } else {
 	      if (color instanceof Object) {
-	        if (
-	          color.r !== undefined &&
-	          color.g !== undefined &&
-	          color.b !== undefined
-	        ) {
+	        if (color.r !== undefined && color.g !== undefined && color.b !== undefined) {
 	          const alpha = color.a !== undefined ? color.a : "1.0";
-	          rgba = { r: color.r, g: color.g, b: color.b, a: alpha };
+	          rgba = {
+	            r: color.r,
+	            g: color.g,
+	            b: color.b,
+	            a: alpha
+	          };
 	        }
 	      }
 	    }
 
 	    // set color
 	    if (rgba === undefined) {
-	      throw new Error(
-	        "Unknown color passed to the colorPicker. Supported are strings: rgb, hex, rgba. Object: rgb ({r:r,g:g,b:b,[a:a]}). Supplied: " +
-	          JSON.stringify(color),
-	      );
+	      throw new Error("Unknown color passed to the colorPicker. Supported are strings: rgb, hex, rgba. Object: rgb ({r:r,g:g,b:b,[a:a]}). Supplied: " + _JSON$stringify(color));
 	    } else {
 	      this._setColor(rgba, setInitial);
 	    }
@@ -10680,7 +12292,6 @@
 	      this.closeCallback();
 	      this.closeCallback = undefined;
 	    }
-
 	    this.applied = false;
 	    this.frame.style.display = "block";
 	    this._generateHueCircle();
@@ -10694,21 +12305,20 @@
 	   * @param {boolean} [storePrevious]
 	   * @private
 	   */
-	  _hide(storePrevious = true) {
+	  _hide() {
+	    let storePrevious = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : true;
 	    // store the previous color for next time;
 	    if (storePrevious === true) {
-	      this.previousColor = Object.assign({}, this.color);
+	      this.previousColor = _Object$assign({}, this.color);
 	    }
-
 	    if (this.applied === true) {
 	      this.updateCallback(this.initialColor);
 	    }
-
 	    this.frame.style.display = "none";
 
 	    // call the closing callback, restoring the onclick method.
 	    // this is in a setTimeout because it will trigger the show again before the click is done.
-	    setTimeout(() => {
+	    _setTimeout(() => {
 	      if (this.closeCallback !== undefined) {
 	        this.closeCallback();
 	        this.closeCallback = undefined;
@@ -10754,27 +12364,20 @@
 	   * @param {boolean} [setInitial]
 	   * @private
 	   */
-	  _setColor(rgba, setInitial = true) {
+	  _setColor(rgba) {
+	    let setInitial = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
 	    // store the initial color
 	    if (setInitial === true) {
-	      this.initialColor = Object.assign({}, rgba);
+	      this.initialColor = _Object$assign({}, rgba);
 	    }
-
 	    this.color = rgba;
 	    const hsv = RGBToHSV(rgba.r, rgba.g, rgba.b);
-
 	    const angleConvert = 2 * Math.PI;
 	    const radius = this.r * hsv.s;
-	    const x =
-	      this.centerCoordinates.x + radius * Math.sin(angleConvert * hsv.h);
-	    const y =
-	      this.centerCoordinates.y + radius * Math.cos(angleConvert * hsv.h);
-
-	    this.colorPickerSelector.style.left =
-	      x - 0.5 * this.colorPickerSelector.clientWidth + "px";
-	    this.colorPickerSelector.style.top =
-	      y - 0.5 * this.colorPickerSelector.clientHeight + "px";
-
+	    const x = this.centerCoordinates.x + radius * Math.sin(angleConvert * hsv.h);
+	    const y = this.centerCoordinates.y + radius * Math.cos(angleConvert * hsv.h);
+	    this.colorPickerSelector.style.left = x - 0.5 * this.colorPickerSelector.clientWidth + "px";
+	    this.colorPickerSelector.style.top = y - 0.5 * this.colorPickerSelector.clientHeight + "px";
 	    this._updatePicker(rgba);
 	  }
 
@@ -10807,18 +12410,12 @@
 	   * @param {object} rgba
 	   * @private
 	   */
-	  _updatePicker(rgba = this.color) {
+	  _updatePicker() {
+	    let rgba = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.color;
 	    const hsv = RGBToHSV(rgba.r, rgba.g, rgba.b);
 	    const ctx = this.colorPickerCanvas.getContext("2d");
 	    if (this.pixelRation === undefined) {
-	      this.pixelRatio =
-	        (window.devicePixelRatio || 1) /
-	        (ctx.webkitBackingStorePixelRatio ||
-	          ctx.mozBackingStorePixelRatio ||
-	          ctx.msBackingStorePixelRatio ||
-	          ctx.oBackingStorePixelRatio ||
-	          ctx.backingStorePixelRatio ||
-	          1);
+	      this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
 	    }
 	    ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
 
@@ -10826,35 +12423,14 @@
 	    const w = this.colorPickerCanvas.clientWidth;
 	    const h = this.colorPickerCanvas.clientHeight;
 	    ctx.clearRect(0, 0, w, h);
-
 	    ctx.putImageData(this.hueCircle, 0, 0);
 	    ctx.fillStyle = "rgba(0,0,0," + (1 - hsv.v) + ")";
 	    ctx.circle(this.centerCoordinates.x, this.centerCoordinates.y, this.r);
-	    ctx.fill();
-
+	    _fillInstanceProperty(ctx).call(ctx);
 	    this.brightnessRange.value = 100 * hsv.v;
 	    this.opacityRange.value = 100 * rgba.a;
-
-	    this.initialColorDiv.style.backgroundColor =
-	      "rgba(" +
-	      this.initialColor.r +
-	      "," +
-	      this.initialColor.g +
-	      "," +
-	      this.initialColor.b +
-	      "," +
-	      this.initialColor.a +
-	      ")";
-	    this.newColorDiv.style.backgroundColor =
-	      "rgba(" +
-	      this.color.r +
-	      "," +
-	      this.color.g +
-	      "," +
-	      this.color.b +
-	      "," +
-	      this.color.a +
-	      ")";
+	    this.initialColorDiv.style.backgroundColor = "rgba(" + this.initialColor.r + "," + this.initialColor.g + "," + this.initialColor.b + "," + this.initialColor.a + ")";
+	    this.newColorDiv.style.backgroundColor = "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
 	  }
 
 	  /**
@@ -10864,7 +12440,6 @@
 	  _setSize() {
 	    this.colorPickerCanvas.style.width = "100%";
 	    this.colorPickerCanvas.style.height = "100%";
-
 	    this.colorPickerCanvas.width = 289 * this.pixelRatio;
 	    this.colorPickerCanvas.height = 289 * this.pixelRatio;
 	  }
@@ -10875,17 +12450,15 @@
 	   * @private
 	   */
 	  _create() {
+	    var _context7, _context8, _context9, _context0;
 	    this.frame = document.createElement("div");
 	    this.frame.className = "vis-color-picker";
-
 	    this.colorPickerDiv = document.createElement("div");
 	    this.colorPickerSelector = document.createElement("div");
 	    this.colorPickerSelector.className = "vis-selector";
 	    this.colorPickerDiv.appendChild(this.colorPickerSelector);
-
 	    this.colorPickerCanvas = document.createElement("canvas");
 	    this.colorPickerDiv.appendChild(this.colorPickerCanvas);
-
 	    if (!this.colorPickerCanvas.getContext) {
 	      const noCanvas = document.createElement("DIV");
 	      noCanvas.style.color = "red";
@@ -10895,30 +12468,16 @@
 	      this.colorPickerCanvas.appendChild(noCanvas);
 	    } else {
 	      const ctx = this.colorPickerCanvas.getContext("2d");
-	      this.pixelRatio =
-	        (window.devicePixelRatio || 1) /
-	        (ctx.webkitBackingStorePixelRatio ||
-	          ctx.mozBackingStorePixelRatio ||
-	          ctx.msBackingStorePixelRatio ||
-	          ctx.oBackingStorePixelRatio ||
-	          ctx.backingStorePixelRatio ||
-	          1);
-	      this.colorPickerCanvas
-	        .getContext("2d")
-	        .setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
+	      this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
+	      this.colorPickerCanvas.getContext("2d").setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
 	    }
-
 	    this.colorPickerDiv.className = "vis-color";
-
 	    this.opacityDiv = document.createElement("div");
 	    this.opacityDiv.className = "vis-opacity";
-
 	    this.brightnessDiv = document.createElement("div");
 	    this.brightnessDiv.className = "vis-brightness";
-
 	    this.arrowDiv = document.createElement("div");
 	    this.arrowDiv.className = "vis-arrow";
-
 	    this.opacityRange = document.createElement("input");
 	    try {
 	      this.opacityRange.type = "range"; // Not supported on IE9
@@ -10929,7 +12488,6 @@
 	    }
 	    this.opacityRange.value = "100";
 	    this.opacityRange.className = "vis-range";
-
 	    this.brightnessRange = document.createElement("input");
 	    try {
 	      this.brightnessRange.type = "range"; // Not supported on IE9
@@ -10940,10 +12498,8 @@
 	    }
 	    this.brightnessRange.value = "100";
 	    this.brightnessRange.className = "vis-range";
-
 	    this.opacityDiv.appendChild(this.opacityRange);
 	    this.brightnessDiv.appendChild(this.brightnessRange);
-
 	    const me = this;
 	    this.opacityRange.onchange = function () {
 	      me._setOpacity(this.value);
@@ -10957,43 +12513,34 @@
 	    this.brightnessRange.oninput = function () {
 	      me._setBrightness(this.value);
 	    };
-
 	    this.brightnessLabel = document.createElement("div");
 	    this.brightnessLabel.className = "vis-label vis-brightness";
 	    this.brightnessLabel.innerText = "brightness:";
-
 	    this.opacityLabel = document.createElement("div");
 	    this.opacityLabel.className = "vis-label vis-opacity";
 	    this.opacityLabel.innerText = "opacity:";
-
 	    this.newColorDiv = document.createElement("div");
 	    this.newColorDiv.className = "vis-new-color";
 	    this.newColorDiv.innerText = "new";
-
 	    this.initialColorDiv = document.createElement("div");
 	    this.initialColorDiv.className = "vis-initial-color";
 	    this.initialColorDiv.innerText = "initial";
-
 	    this.cancelButton = document.createElement("div");
 	    this.cancelButton.className = "vis-button vis-cancel";
 	    this.cancelButton.innerText = "cancel";
-	    this.cancelButton.onclick = this._hide.bind(this, false);
-
+	    this.cancelButton.onclick = _bindInstanceProperty(_context7 = this._hide).call(_context7, this, false);
 	    this.applyButton = document.createElement("div");
 	    this.applyButton.className = "vis-button vis-apply";
 	    this.applyButton.innerText = "apply";
-	    this.applyButton.onclick = this._apply.bind(this);
-
+	    this.applyButton.onclick = _bindInstanceProperty(_context8 = this._apply).call(_context8, this);
 	    this.saveButton = document.createElement("div");
 	    this.saveButton.className = "vis-button vis-save";
 	    this.saveButton.innerText = "save";
-	    this.saveButton.onclick = this._save.bind(this);
-
+	    this.saveButton.onclick = _bindInstanceProperty(_context9 = this._save).call(_context9, this);
 	    this.loadButton = document.createElement("div");
 	    this.loadButton.className = "vis-button vis-load";
 	    this.loadButton.innerText = "load last";
-	    this.loadButton.onclick = this._loadLast.bind(this);
-
+	    this.loadButton.onclick = _bindInstanceProperty(_context0 = this._loadLast).call(_context0, this);
 	    this.frame.appendChild(this.colorPickerDiv);
 	    this.frame.appendChild(this.arrowDiv);
 	    this.frame.appendChild(this.brightnessLabel);
@@ -11002,7 +12549,6 @@
 	    this.frame.appendChild(this.opacityDiv);
 	    this.frame.appendChild(this.newColorDiv);
 	    this.frame.appendChild(this.initialColorDiv);
-
 	    this.frame.appendChild(this.cancelButton);
 	    this.frame.appendChild(this.applyButton);
 	    this.frame.appendChild(this.saveButton);
@@ -11017,23 +12563,24 @@
 	    this.drag = {};
 	    this.pinch = {};
 	    this.hammer = new Hammer$1(this.colorPickerCanvas);
-	    this.hammer.get("pinch").set({ enable: true });
-
-	    this.hammer.on("hammer.input", (event) => {
+	    this.hammer.get("pinch").set({
+	      enable: true
+	    });
+	    this.hammer.on("hammer.input", event => {
 	      if (event.isFirst) {
 	        this._moveSelector(event);
 	      }
 	    });
-	    this.hammer.on("tap", (event) => {
+	    this.hammer.on("tap", event => {
 	      this._moveSelector(event);
 	    });
-	    this.hammer.on("panstart", (event) => {
+	    this.hammer.on("panstart", event => {
 	      this._moveSelector(event);
 	    });
-	    this.hammer.on("panmove", (event) => {
+	    this.hammer.on("panmove", event => {
 	      this._moveSelector(event);
 	    });
-	    this.hammer.on("panend", (event) => {
+	    this.hammer.on("panend", event => {
 	      this._moveSelector(event);
 	    });
 	  }
@@ -11046,14 +12593,7 @@
 	    if (this.generated === false) {
 	      const ctx = this.colorPickerCanvas.getContext("2d");
 	      if (this.pixelRation === undefined) {
-	        this.pixelRatio =
-	          (window.devicePixelRatio || 1) /
-	          (ctx.webkitBackingStorePixelRatio ||
-	            ctx.mozBackingStorePixelRatio ||
-	            ctx.msBackingStorePixelRatio ||
-	            ctx.oBackingStorePixelRatio ||
-	            ctx.backingStorePixelRatio ||
-	            1);
+	        this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
 	      }
 	      ctx.setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
 
@@ -11064,9 +12604,12 @@
 
 	      // draw hue circle
 	      let x, y, hue, sat;
-	      this.centerCoordinates = { x: w * 0.5, y: h * 0.5 };
+	      this.centerCoordinates = {
+	        x: w * 0.5,
+	        y: h * 0.5
+	      };
 	      this.r = 0.49 * w;
-	      const angleConvert = (2 * Math.PI) / 360;
+	      const angleConvert = 2 * Math.PI / 360;
 	      const hfac = 1 / 360;
 	      const sfac = 1 / this.r;
 	      let rgb;
@@ -11082,7 +12625,6 @@
 	      ctx.strokeStyle = "rgba(0,0,0,1)";
 	      ctx.circle(this.centerCoordinates.x, this.centerCoordinates.y, this.r);
 	      ctx.stroke();
-
 	      this.hueCircle = ctx.getImageData(0, 0, w, h);
 	    }
 	    this.generated = true;
@@ -11097,23 +12639,16 @@
 	    const rect = this.colorPickerDiv.getBoundingClientRect();
 	    const left = event.center.x - rect.left;
 	    const top = event.center.y - rect.top;
-
 	    const centerY = 0.5 * this.colorPickerDiv.clientHeight;
 	    const centerX = 0.5 * this.colorPickerDiv.clientWidth;
-
 	    const x = left - centerX;
 	    const y = top - centerY;
-
 	    const angle = Math.atan2(x, y);
 	    const radius = 0.98 * Math.min(Math.sqrt(x * x + y * y), centerX);
-
 	    const newTop = Math.cos(angle) * radius + centerY;
 	    const newLeft = Math.sin(angle) * radius + centerX;
-
-	    this.colorPickerSelector.style.top =
-	      newTop - 0.5 * this.colorPickerSelector.clientHeight + "px";
-	    this.colorPickerSelector.style.left =
-	      newLeft - 0.5 * this.colorPickerSelector.clientWidth + "px";
+	    this.colorPickerSelector.style.top = newTop - 0.5 * this.colorPickerSelector.clientHeight + "px";
+	    this.colorPickerSelector.style.left = newLeft - 0.5 * this.colorPickerSelector.clientWidth + "px";
 
 	    // set color
 	    let h = angle / (2 * Math.PI);
@@ -11127,26 +12662,8 @@
 	    this.color = rgba;
 
 	    // update previews
-	    this.initialColorDiv.style.backgroundColor =
-	      "rgba(" +
-	      this.initialColor.r +
-	      "," +
-	      this.initialColor.g +
-	      "," +
-	      this.initialColor.b +
-	      "," +
-	      this.initialColor.a +
-	      ")";
-	    this.newColorDiv.style.backgroundColor =
-	      "rgba(" +
-	      this.color.r +
-	      "," +
-	      this.color.g +
-	      "," +
-	      this.color.b +
-	      "," +
-	      this.color.a +
-	      ")";
+	    this.initialColorDiv.style.backgroundColor = "rgba(" + this.initialColor.r + "," + this.initialColor.g + "," + this.initialColor.b + "," + this.initialColor.a + ")";
+	    this.newColorDiv.style.backgroundColor = "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
 	  }
 	};
 
@@ -11155,14 +12672,17 @@
 	 * @param {...any} rest - List of tag names followed by inner text.
 	 * @returns An element or a text node.
 	 */
-	function wrapInTag(...rest) {
+	function wrapInTag() {
+	  for (var _len5 = arguments.length, rest = new Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+	    rest[_key5] = arguments[_key5];
+	  }
 	  if (rest.length < 1) {
 	    throw new TypeError("Invalid arguments.");
 	  } else if (rest.length === 1) {
 	    return document.createTextNode(rest[0]);
 	  } else {
 	    const element = document.createElement(rest[0]);
-	    element.appendChild(wrapInTag(...rest.slice(1)));
+	    element.appendChild(wrapInTag(..._sliceInstanceProperty(rest).call(rest, 1)));
 	    return element;
 	  }
 	}
@@ -11184,19 +12704,14 @@
 	   * @param {number} pixelRatio          | canvas pixel ratio
 	   * @param {Function} hideOption        | custom logic to dynamically hide options
 	   */
-	  constructor(
-	    parentModule,
-	    defaultContainer,
-	    configureOptions,
-	    pixelRatio = 1,
-	    hideOption = () => false,
-	  ) {
+	  constructor(parentModule, defaultContainer, configureOptions) {
+	    let pixelRatio = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 1;
+	    let hideOption = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : () => false;
 	    this.parent = parentModule;
 	    this.changedOptions = [];
 	    this.container = defaultContainer;
 	    this.allowCreation = false;
 	    this.hideOption = hideOption;
-
 	    this.options = {};
 	    this.initialized = false;
 	    this.popupCounter = 0;
@@ -11204,10 +12719,9 @@
 	      enabled: false,
 	      filter: true,
 	      container: undefined,
-	      showButton: true,
+	      showButton: true
 	    };
-	    Object.assign(this.options, this.defaultOptions);
-
+	    _Object$assign(this.options, this.defaultOptions);
 	    this.configureOptions = configureOptions;
 	    this.moduleOptions = {};
 	    this.domElements = [];
@@ -11228,11 +12742,10 @@
 	      // reset the popup history because the indices may have been changed.
 	      this.popupHistory = {};
 	      this._removePopup();
-
 	      let enabled = true;
 	      if (typeof options === "string") {
 	        this.options.filter = options;
-	      } else if (Array.isArray(options)) {
+	      } else if (_Array$isArray(options)) {
 	        this.options.filter = options.join();
 	      } else if (typeof options === "object") {
 	        if (options == null) {
@@ -11241,8 +12754,8 @@
 	        if (options.container !== undefined) {
 	          this.options.container = options.container;
 	        }
-	        if (options.filter !== undefined) {
-	          this.options.filter = options.filter;
+	        if (_filterInstanceProperty(options) !== undefined) {
+	          this.options.filter = _filterInstanceProperty(options);
 	        }
 	        if (options.showButton !== undefined) {
 	          this.options.showButton = options.showButton;
@@ -11257,10 +12770,9 @@
 	        this.options.filter = options;
 	        enabled = true;
 	      }
-	      if (this.options.filter === false) {
+	      if (_filterInstanceProperty(this.options) === false) {
 	        enabled = false;
 	      }
-
 	      this.options.enabled = enabled;
 	    }
 	    this._clean();
@@ -11288,8 +12800,7 @@
 	  _create() {
 	    this._clean();
 	    this.changedOptions = [];
-
-	    const filter = this.options.filter;
+	    const filter = _filterInstanceProperty(this.options);
 	    let counter = 0;
 	    let show = false;
 	    for (const option in this.configureOptions) {
@@ -11298,13 +12809,10 @@
 	        show = false;
 	        if (typeof filter === "function") {
 	          show = filter(option, []);
-	          show =
-	            show ||
-	            this._handleObject(this.configureOptions[option], [option], true);
-	        } else if (filter === true || filter.indexOf(option) !== -1) {
+	          show = show || this._handleObject(this.configureOptions[option], [option], true);
+	        } else if (filter === true || _indexOfInstanceProperty(filter).call(filter, option) !== -1) {
 	          show = true;
 	        }
-
 	        if (show !== false) {
 	          this.allowCreation = true;
 
@@ -11337,7 +12845,6 @@
 	    for (let i = 0; i < this.domElements.length; i++) {
 	      this.wrapper.appendChild(this.domElements[i]);
 	    }
-
 	    this._showPopupIfNeeded();
 	  }
 
@@ -11349,13 +12856,11 @@
 	    for (let i = 0; i < this.domElements.length; i++) {
 	      this.wrapper.removeChild(this.domElements[i]);
 	    }
-
 	    if (this.wrapper !== undefined) {
 	      this.container.removeChild(this.wrapper);
 	      this.wrapper = undefined;
 	    }
 	    this.domElements = [];
-
 	    this._removePopup();
 	  }
 
@@ -11385,12 +12890,14 @@
 	   * @returns {number}
 	   * @private
 	   */
-	  _makeItem(path, ...domElements) {
+	  _makeItem(path) {
 	    if (this.allowCreation === true) {
 	      const item = document.createElement("div");
-	      item.className =
-	        "vis-configuration vis-config-item vis-config-s" + path.length;
-	      domElements.forEach((element) => {
+	      item.className = "vis-configuration vis-config-item vis-config-s" + path.length;
+	      for (var _len6 = arguments.length, domElements = new Array(_len6 > 1 ? _len6 - 1 : 0), _key6 = 1; _key6 < _len6; _key6++) {
+	        domElements[_key6 - 1] = arguments[_key6];
+	      }
+	      _forEachInstanceProperty(domElements).call(domElements, element => {
 	        item.appendChild(element);
 	      });
 	      this.domElements.push(item);
@@ -11419,10 +12926,10 @@
 	   * @returns {HTMLElement}
 	   * @private
 	   */
-	  _makeLabel(name, path, objectLabel = false) {
+	  _makeLabel(name, path) {
+	    let objectLabel = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 	    const div = document.createElement("div");
-	    div.className =
-	      "vis-configuration vis-config-label vis-config-s" + path.length;
+	    div.className = "vis-configuration vis-config-label vis-config-s" + path.length;
 	    if (objectLabel === true) {
 	      while (div.firstChild) {
 	        div.removeChild(div.firstChild);
@@ -11446,11 +12953,10 @@
 	    select.className = "vis-configuration vis-config-select";
 	    let selectedValue = 0;
 	    if (value !== undefined) {
-	      if (arr.indexOf(value) !== -1) {
-	        selectedValue = arr.indexOf(value);
+	      if (_indexOfInstanceProperty(arr).call(arr, value) !== -1) {
+	        selectedValue = _indexOfInstanceProperty(arr).call(arr, value);
 	      }
 	    }
-
 	    for (let i = 0; i < arr.length; i++) {
 	      const option = document.createElement("option");
 	      option.value = arr[i];
@@ -11460,12 +12966,10 @@
 	      option.innerText = arr[i];
 	      select.appendChild(option);
 	    }
-
 	    const me = this;
 	    select.onchange = function () {
 	      me._update(this.value, path);
 	    };
-
 	    const label = this._makeLabel(path[path.length - 1], path);
 	    this._makeItem(path, label, select);
 	  }
@@ -11496,7 +13000,6 @@
 	    // set up the popup settings in case they are needed.
 	    let popupString = "";
 	    let popupValue = 0;
-
 	    if (value !== undefined) {
 	      const factor = 1.2;
 	      if (value < 0 && value * factor < min) {
@@ -11517,11 +13020,9 @@
 	    } else {
 	      range.value = defaultValue;
 	    }
-
 	    const input = document.createElement("input");
 	    input.className = "vis-configuration vis-config-rangeinput";
 	    input.value = range.value;
-
 	    const me = this;
 	    range.onchange = function () {
 	      input.value = this.value;
@@ -11530,7 +13031,6 @@
 	    range.oninput = function () {
 	      input.value = this.value;
 	    };
-
 	    const label = this._makeLabel(path[path.length - 1], path);
 	    const itemIndex = this._makeItem(path, label, range, input);
 
@@ -11559,11 +13059,8 @@
 	      generateButton.onmouseout = () => {
 	        generateButton.className = "vis-configuration vis-config-button";
 	      };
-
 	      this.optionsContainer = document.createElement("div");
-	      this.optionsContainer.className =
-	        "vis-configuration vis-config-option-container";
-
+	      this.optionsContainer.className = "vis-configuration vis-config-option-container";
 	      this.domElements.push(this.optionsContainer);
 	      this.domElements.push(generateButton);
 	    }
@@ -11576,11 +13073,7 @@
 	   * @private
 	   */
 	  _setupPopup(string, index) {
-	    if (
-	      this.initialized === true &&
-	      this.allowCreation === true &&
-	      this.popupCounter < this.popupLimit
-	    ) {
+	    if (this.initialized === true && this.allowCreation === true && this.popupCounter < this.popupLimit) {
 	      const div = document.createElement("div");
 	      div.id = "vis-configuration-popup";
 	      div.className = "vis-configuration-popup";
@@ -11589,7 +13082,10 @@
 	        this._removePopup();
 	      };
 	      this.popupCounter += 1;
-	      this.popupDiv = { html: div, index: index };
+	      this.popupDiv = {
+	        html: div,
+	        index: index
+	      };
 	    }
 	  }
 
@@ -11617,10 +13113,10 @@
 	      this.popupDiv.html.style.left = rect.left + "px";
 	      this.popupDiv.html.style.top = rect.top - 30 + "px"; // 30 is the height;
 	      document.body.appendChild(this.popupDiv.html);
-	      this.popupDiv.hideTimeout = setTimeout(() => {
+	      this.popupDiv.hideTimeout = _setTimeout(() => {
 	        this.popupDiv.html.style.opacity = 0;
 	      }, 1500);
-	      this.popupDiv.deleteTimeout = setTimeout(() => {
+	      this.popupDiv.deleteTimeout = _setTimeout(() => {
 	        this._removePopup();
 	      }, 1800);
 	    }
@@ -11643,19 +13139,23 @@
 	      if (value !== defaultValue) {
 	        if (typeof defaultValue === "object") {
 	          if (value !== defaultValue.enabled) {
-	            this.changedOptions.push({ path: path, value: value });
+	            this.changedOptions.push({
+	              path: path,
+	              value: value
+	            });
 	          }
 	        } else {
-	          this.changedOptions.push({ path: path, value: value });
+	          this.changedOptions.push({
+	            path: path,
+	            value: value
+	          });
 	        }
 	      }
 	    }
-
 	    const me = this;
 	    checkbox.onchange = function () {
 	      me._update(this.checked, path);
 	    };
-
 	    const label = this._makeLabel(path[path.length - 1], path);
 	    this._makeItem(path, label, checkbox);
 	  }
@@ -11673,14 +13173,15 @@
 	    checkbox.className = "vis-configuration vis-config-text";
 	    checkbox.value = value;
 	    if (value !== defaultValue) {
-	      this.changedOptions.push({ path: path, value: value });
+	      this.changedOptions.push({
+	        path: path,
+	        value: value
+	      });
 	    }
-
 	    const me = this;
 	    checkbox.onchange = function () {
 	      me._update(this.value, path);
 	    };
-
 	    const label = this._makeLabel(path[path.length - 1], path);
 	    this._makeItem(path, label, checkbox);
 	  }
@@ -11696,19 +13197,16 @@
 	    const defaultColor = arr[1];
 	    const div = document.createElement("div");
 	    value = value === undefined ? defaultColor : value;
-
 	    if (value !== "none") {
 	      div.className = "vis-configuration vis-config-colorBlock";
 	      div.style.backgroundColor = value;
 	    } else {
 	      div.className = "vis-configuration vis-config-colorBlock none";
 	    }
-
 	    value = value === undefined ? defaultColor : value;
 	    div.onclick = () => {
 	      this._showColorPicker(value, div, path);
 	    };
-
 	    const label = this._makeLabel(path[path.length - 1], path);
 	    this._makeItem(path, label, div);
 	  }
@@ -11723,14 +13221,11 @@
 	  _showColorPicker(value, div, path) {
 	    // clear the callback from this div
 	    div.onclick = function () {};
-
 	    this.colorPicker.insertTo(div);
 	    this.colorPicker.show();
-
 	    this.colorPicker.setColor(value);
-	    this.colorPicker.setUpdateCallback((color) => {
-	      const colorString =
-	        "rgba(" + color.r + "," + color.g + "," + color.b + "," + color.a + ")";
+	    this.colorPicker.setUpdateCallback(color => {
+	      const colorString = "rgba(" + color.r + "," + color.g + "," + color.b + "," + color.a + ")";
 	      div.style.backgroundColor = colorString;
 	      this._update(colorString, path);
 	    });
@@ -11751,9 +13246,11 @@
 	   * @returns {boolean}
 	   * @private
 	   */
-	  _handleObject(obj, path = [], checkOnly = false) {
+	  _handleObject(obj) {
+	    let path = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : [];
+	    let checkOnly = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
 	    let show = false;
-	    const filter = this.options.filter;
+	    const filter = _filterInstanceProperty(this.options);
 	    let visibleInSet = false;
 	    for (const subObj in obj) {
 	      if (Object.prototype.hasOwnProperty.call(obj, subObj)) {
@@ -11765,24 +13262,17 @@
 
 	          // if needed we must go deeper into the object.
 	          if (show === false) {
-	            if (
-	              !Array.isArray(item) &&
-	              typeof item !== "string" &&
-	              typeof item !== "boolean" &&
-	              item instanceof Object
-	            ) {
+	            if (!_Array$isArray(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
 	              this.allowCreation = false;
 	              show = this._handleObject(item, newPath, true);
 	              this.allowCreation = checkOnly === false;
 	            }
 	          }
 	        }
-
 	        if (show !== false) {
 	          visibleInSet = true;
 	          const value = this._getValue(newPath);
-
-	          if (Array.isArray(item)) {
+	          if (_Array$isArray(item)) {
 	            this._handleArray(item, value, newPath);
 	          } else if (typeof item === "string") {
 	            this._makeTextInput(item, value, newPath);
@@ -11798,16 +13288,14 @@
 	                if (enabledValue === true) {
 	                  const label = this._makeLabel(subObj, newPath, true);
 	                  this._makeItem(newPath, label);
-	                  visibleInSet =
-	                    this._handleObject(item, newPath) || visibleInSet;
+	                  visibleInSet = this._handleObject(item, newPath) || visibleInSet;
 	                } else {
 	                  this._makeCheckbox(item, enabledValue, newPath);
 	                }
 	              } else {
 	                const label = this._makeLabel(subObj, newPath, true);
 	                this._makeItem(newPath, label);
-	                visibleInSet =
-	                  this._handleObject(item, newPath) || visibleInSet;
+	                visibleInSet = this._handleObject(item, newPath) || visibleInSet;
 	              }
 	            }
 	          } else {
@@ -11830,17 +13318,26 @@
 	    if (typeof arr[0] === "string" && arr[0] === "color") {
 	      this._makeColorField(arr, value, path);
 	      if (arr[1] !== value) {
-	        this.changedOptions.push({ path: path, value: value });
+	        this.changedOptions.push({
+	          path: path,
+	          value: value
+	        });
 	      }
 	    } else if (typeof arr[0] === "string") {
 	      this._makeDropdown(arr, value, path);
 	      if (arr[0] !== value) {
-	        this.changedOptions.push({ path: path, value: value });
+	        this.changedOptions.push({
+	          path: path,
+	          value: value
+	        });
 	      }
 	    } else if (typeof arr[0] === "number") {
 	      this._makeRange(arr, value, path);
 	      if (arr[0] !== value) {
-	        this.changedOptions.push({ path: path, value: Number(value) });
+	        this.changedOptions.push({
+	          path: path,
+	          value: Number(value)
+	        });
 	      }
 	    }
 	  }
@@ -11853,12 +13350,7 @@
 	   */
 	  _update(value, path) {
 	    const options = this._constructOptions(value, path);
-
-	    if (
-	      this.parent.body &&
-	      this.parent.body.emitter &&
-	      this.parent.body.emitter.emit
-	    ) {
+	    if (this.parent.body && this.parent.body.emitter && this.parent.body.emitter.emit) {
 	      this.parent.body.emitter.emit("configChange", options);
 	    }
 	    this.initialized = true;
@@ -11873,13 +13365,13 @@
 	   * @returns {{}}
 	   * @private
 	   */
-	  _constructOptions(value, path, optionsObj = {}) {
+	  _constructOptions(value, path) {
+	    let optionsObj = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
 	    let pointer = optionsObj;
 
 	    // when dropdown boxes can be string or boolean, we typecast it into correct types
 	    value = value === "true" ? true : value;
 	    value = value === "false" ? false : value;
-
 	    for (let i = 0; i < path.length; i++) {
 	      if (path[i] !== "global") {
 	        if (pointer[path[i]] === undefined) {
@@ -11900,13 +13392,10 @@
 	   */
 	  _printOptions() {
 	    const options = this.getOptions();
-
 	    while (this.optionsContainer.firstChild) {
 	      this.optionsContainer.removeChild(this.optionsContainer.firstChild);
 	    }
-	    this.optionsContainer.appendChild(
-	      wrapInTag("pre", "const options = " + JSON.stringify(options, null, 2)),
-	    );
+	    this.optionsContainer.appendChild(wrapInTag("pre", "const options = " + _JSON$stringify(options, null, 2)));
 	  }
 
 	  /**
@@ -11916,11 +13405,7 @@
 	  getOptions() {
 	    const options = {};
 	    for (let i = 0; i < this.changedOptions.length; i++) {
-	      this._constructOptions(
-	        this.changedOptions[i].value,
-	        this.changedOptions[i].path,
-	        options,
-	      );
+	      this._constructOptions(this.changedOptions[i].value, this.changedOptions[i].path, options);
 	    }
 	    return options;
 	  }
@@ -11937,7 +13422,6 @@
 	  constructor(container, overflowMethod) {
 	    this.container = container;
 	    this.overflowMethod = overflowMethod || "cap";
-
 	    this.x = 0;
 	    this.y = 0;
 	    this.padding = 5;
@@ -11954,8 +13438,8 @@
 	   * @param {number} y   Vertical position of the popup window
 	   */
 	  setPosition(x, y) {
-	    this.x = parseInt(x);
-	    this.y = parseInt(y);
+	    this.x = _parseInt(x);
+	    this.y = _parseInt(y);
 	  }
 
 	  /**
@@ -11983,16 +13467,13 @@
 	    if (doShow === undefined) {
 	      doShow = true;
 	    }
-
 	    if (doShow === true) {
 	      const height = this.frame.clientHeight;
 	      const width = this.frame.clientWidth;
 	      const maxHeight = this.frame.parentNode.clientHeight;
 	      const maxWidth = this.frame.parentNode.clientWidth;
-
 	      let left = 0,
 	        top = 0;
-
 	      if (this.overflowMethod == "flip") {
 	        let isLeft = false,
 	          isTop = true; // Where around the position it's located
@@ -12000,17 +13481,14 @@
 	        if (this.y - height < this.padding) {
 	          isTop = false;
 	        }
-
 	        if (this.x + width > maxWidth - this.padding) {
 	          isLeft = true;
 	        }
-
 	        if (isLeft) {
 	          left = this.x - width;
 	        } else {
 	          left = this.x;
 	        }
-
 	        if (isTop) {
 	          top = this.y - height;
 	        } else {
@@ -12024,7 +13502,6 @@
 	        if (top < this.padding) {
 	          top = this.padding;
 	        }
-
 	        left = this.x;
 	        if (left + width + this.padding > maxWidth) {
 	          left = maxWidth - width - this.padding;
@@ -12033,7 +13510,6 @@
 	          left = this.padding;
 	        }
 	      }
-
 	      this.frame.style.left = left + "px";
 	      this.frame.style.top = top + "px";
 	      this.frame.style.visibility = "visible";
@@ -12060,10 +13536,8 @@
 	    this.frame.parentNode.removeChild(this.frame); // Remove element from DOM
 	  }
 	};
-
 	let errorFound$1 = false;
 	let allOptions$3;
-
 	const VALIDATOR_PRINT_STYLE$1 = "background: #FFeeee; color: #dd0000";
 
 	/**
@@ -12113,21 +13587,13 @@
 	   * @static
 	   */
 	  static check(option, options, referenceOptions, path) {
-	    if (
-	      referenceOptions[option] === undefined &&
-	      referenceOptions.__any__ === undefined
-	    ) {
+	    if (referenceOptions[option] === undefined && referenceOptions.__any__ === undefined) {
 	      Validator.getSuggestion(option, referenceOptions, path);
 	      return;
 	    }
-
 	    let referenceOption = option;
 	    let is_object = true;
-
-	    if (
-	      referenceOptions[option] === undefined &&
-	      referenceOptions.__any__ !== undefined
-	    ) {
+	    if (referenceOptions[option] === undefined && referenceOptions.__any__ !== undefined) {
 	      // NOTE: This only triggers if the __any__ is in the top level of the options object.
 	      //       THAT'S A REALLY BAD PLACE TO ALLOW IT!!!!
 	      // TODO: Examine if needed, remove if possible
@@ -12139,20 +13605,11 @@
 	      // we do not look deeper into the object.
 	      is_object = Validator.getType(options[option]) === "object";
 	    }
-
 	    let refOptionObj = referenceOptions[referenceOption];
 	    if (is_object && refOptionObj.__type__ !== undefined) {
 	      refOptionObj = refOptionObj.__type__;
 	    }
-
-	    Validator.checkFields(
-	      option,
-	      options,
-	      referenceOptions,
-	      referenceOption,
-	      refOptionObj,
-	      path,
-	    );
+	    Validator.checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path);
 	  }
 
 	  /**
@@ -12165,62 +13622,24 @@
 	   * @param {Array}   path             | where in the object is the option
 	   * @static
 	   */
-	  static checkFields(
-	    option,
-	    options,
-	    referenceOptions,
-	    referenceOption,
-	    refOptionObj,
-	    path,
-	  ) {
+	  static checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path) {
 	    const log = function (message) {
-	      console.error(
-	        "%c" + message + Validator.printLocation(path, option),
-	        VALIDATOR_PRINT_STYLE$1,
-	      );
+	      console.error("%c" + message + Validator.printLocation(path, option), VALIDATOR_PRINT_STYLE$1);
 	    };
-
 	    const optionType = Validator.getType(options[option]);
 	    const refOptionType = refOptionObj[optionType];
-
 	    if (refOptionType !== undefined) {
 	      // if the type is correct, we check if it is supposed to be one of a few select values
-	      if (
-	        Validator.getType(refOptionType) === "array" &&
-	        refOptionType.indexOf(options[option]) === -1
-	      ) {
-	        log(
-	          'Invalid option detected in "' +
-	            option +
-	            '".' +
-	            " Allowed values are:" +
-	            Validator.print(refOptionType) +
-	            ' not "' +
-	            options[option] +
-	            '". ',
-	        );
+	      if (Validator.getType(refOptionType) === "array" && _indexOfInstanceProperty(refOptionType).call(refOptionType, options[option]) === -1) {
+	        log('Invalid option detected in "' + option + '".' + " Allowed values are:" + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
 	        errorFound$1 = true;
 	      } else if (optionType === "object" && referenceOption !== "__any__") {
 	        path = copyAndExtendArray(path, option);
-	        Validator.parse(
-	          options[option],
-	          referenceOptions[referenceOption],
-	          path,
-	        );
+	        Validator.parse(options[option], referenceOptions[referenceOption], path);
 	      }
 	    } else if (refOptionObj["any"] === undefined) {
 	      // type of the field is incorrect and the field cannot be any
-	      log(
-	        'Invalid type received for "' +
-	          option +
-	          '". Expected: ' +
-	          Validator.print(Object.keys(refOptionObj)) +
-	          ". Received [" +
-	          optionType +
-	          '] "' +
-	          options[option] +
-	          '"',
-	      );
+	      log('Invalid type received for "' + option + '". Expected: ' + Validator.print(_Object$keys(refOptionObj)) + ". Received [" + optionType + '] "' + options[option] + '"');
 	      errorFound$1 = true;
 	    }
 	  }
@@ -12233,7 +13652,6 @@
 	   */
 	  static getType(object) {
 	    const type = typeof object;
-
 	    if (type === "object") {
 	      if (object === null) {
 	        return "null";
@@ -12247,7 +13665,7 @@
 	      if (object instanceof String) {
 	        return "string";
 	      }
-	      if (Array.isArray(object)) {
+	      if (_Array$isArray(object)) {
 	        return "array";
 	      }
 	      if (object instanceof Date) {
@@ -12281,48 +13699,19 @@
 	  static getSuggestion(option, options, path) {
 	    const localSearch = Validator.findInOptions(option, options, path, false);
 	    const globalSearch = Validator.findInOptions(option, allOptions$3, [], true);
-
 	    const localSearchThreshold = 8;
 	    const globalSearchThreshold = 4;
-
 	    let msg;
 	    if (localSearch.indexMatch !== undefined) {
-	      msg =
-	        " in " +
-	        Validator.printLocation(localSearch.path, option, "") +
-	        'Perhaps it was incomplete? Did you mean: "' +
-	        localSearch.indexMatch +
-	        '"?\n\n';
-	    } else if (
-	      globalSearch.distance <= globalSearchThreshold &&
-	      localSearch.distance > globalSearch.distance
-	    ) {
-	      msg =
-	        " in " +
-	        Validator.printLocation(localSearch.path, option, "") +
-	        "Perhaps it was misplaced? Matching option found at: " +
-	        Validator.printLocation(
-	          globalSearch.path,
-	          globalSearch.closestMatch,
-	          "",
-	        );
+	      msg = " in " + Validator.printLocation(localSearch.path, option, "") + 'Perhaps it was incomplete? Did you mean: "' + localSearch.indexMatch + '"?\n\n';
+	    } else if (globalSearch.distance <= globalSearchThreshold && localSearch.distance > globalSearch.distance) {
+	      msg = " in " + Validator.printLocation(localSearch.path, option, "") + "Perhaps it was misplaced? Matching option found at: " + Validator.printLocation(globalSearch.path, globalSearch.closestMatch, "");
 	    } else if (localSearch.distance <= localSearchThreshold) {
-	      msg =
-	        '. Did you mean "' +
-	        localSearch.closestMatch +
-	        '"?' +
-	        Validator.printLocation(localSearch.path, option);
+	      msg = '. Did you mean "' + localSearch.closestMatch + '"?' + Validator.printLocation(localSearch.path, option);
 	    } else {
-	      msg =
-	        ". Did you mean one of these: " +
-	        Validator.print(Object.keys(options)) +
-	        Validator.printLocation(path, option);
+	      msg = ". Did you mean one of these: " + Validator.print(_Object$keys(options)) + Validator.printLocation(path, option);
 	    }
-
-	    console.error(
-	      '%cUnknown option detected: "' + option + '"' + msg,
-	      VALIDATOR_PRINT_STYLE$1,
-	    );
+	    console.error('%cUnknown option detected: "' + option + '"' + msg, VALIDATOR_PRINT_STYLE$1);
 	    errorFound$1 = true;
 	  }
 
@@ -12335,7 +13724,8 @@
 	   * @returns {{closestMatch: string, path: Array, distance: number}}
 	   * @static
 	   */
-	  static findInOptions(option, options, path, recursive = false) {
+	  static findInOptions(option, options, path) {
+	    let recursive = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
 	    let min = 1e9;
 	    let closestMatch = "";
 	    let closestMatchPath = [];
@@ -12344,11 +13734,7 @@
 	    for (const op in options) {
 	      let distance;
 	      if (options[op].__type__ !== undefined && recursive === true) {
-	        const result = Validator.findInOptions(
-	          option,
-	          options[op],
-	          copyAndExtendArray(path, op),
-	        );
+	        const result = Validator.findInOptions(option, options[op], copyAndExtendArray(path, op));
 	        if (min > result.distance) {
 	          closestMatch = result.closestMatch;
 	          closestMatchPath = result.path;
@@ -12356,7 +13742,8 @@
 	          indexMatch = result.indexMatch;
 	        }
 	      } else {
-	        if (op.toLowerCase().indexOf(lowerCaseOption) !== -1) {
+	        var _context1;
+	        if (_indexOfInstanceProperty(_context1 = op.toLowerCase()).call(_context1, lowerCaseOption) !== -1) {
 	          indexMatch = op;
 	        }
 	        distance = Validator.levenshteinDistance(option, op);
@@ -12371,7 +13758,7 @@
 	      closestMatch: closestMatch,
 	      path: closestMatchPath,
 	      distance: min,
-	      indexMatch: indexMatch,
+	      indexMatch: indexMatch
 	    };
 	  }
 
@@ -12382,7 +13769,8 @@
 	   * @returns {string}
 	   * @static
 	   */
-	  static printLocation(path, option, prefix = "Problem value found at: \n") {
+	  static printLocation(path, option) {
+	    let prefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "Problem value found at: \n";
 	    let str = "\n\n" + prefix + "options = {\n";
 	    for (let i = 0; i < path.length; i++) {
 	      for (let j = 0; j < i + 1; j++) {
@@ -12409,9 +13797,7 @@
 	   * @static
 	   */
 	  static print(options) {
-	    return JSON.stringify(options)
-	      .replace(/(")|(\[)|(\])|(,"__type__")/g, "")
-	      .replace(/(,)/g, ", ");
+	    return _JSON$stringify(options).replace(/(")|(\[)|(\])|(,"__type__")/g, "").replace(/(,)/g, ", ");
 	  }
 
 	  /**
@@ -12433,7 +13819,6 @@
 	  static levenshteinDistance(a, b) {
 	    if (a.length === 0) return b.length;
 	    if (b.length === 0) return a.length;
-
 	    const matrix = [];
 
 	    // increment along the first column of each row
@@ -12454,21 +13839,17 @@
 	        if (b.charAt(i - 1) == a.charAt(j - 1)) {
 	          matrix[i][j] = matrix[i - 1][j - 1];
 	        } else {
-	          matrix[i][j] = Math.min(
-	            matrix[i - 1][j - 1] + 1, // substitution
-	            Math.min(
-	              matrix[i][j - 1] + 1, // insertion
-	              matrix[i - 1][j] + 1,
-	            ),
-	          ); // deletion
+	          matrix[i][j] = Math.min(matrix[i - 1][j - 1] + 1,
+	          // substitution
+	          Math.min(matrix[i][j - 1] + 1,
+	          // insertion
+	          matrix[i - 1][j] + 1)); // deletion
 	        }
 	      }
 	    }
-
 	    return matrix[b.length][a.length];
 	  }
 	};
-
 	const Activator$2 = Activator$1;
 	const ColorPicker$2 = ColorPicker$1;
 	const Configurator$2 = Configurator$1;
@@ -14645,373 +16026,7 @@
 	  }
 	});
 
-	var concat$3;
-	var hasRequiredConcat$3;
-
-	function requireConcat$3 () {
-		if (hasRequiredConcat$3) return concat$3;
-		hasRequiredConcat$3 = 1;
-		requireEs_array_concat();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		concat$3 = getBuiltInPrototypeMethod('Array', 'concat');
-		return concat$3;
-	}
-
-	var concat$2;
-	var hasRequiredConcat$2;
-
-	function requireConcat$2 () {
-		if (hasRequiredConcat$2) return concat$2;
-		hasRequiredConcat$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var method = /*@__PURE__*/ requireConcat$3();
-
-		var ArrayPrototype = Array.prototype;
-
-		concat$2 = function (it) {
-		  var own = it.concat;
-		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.concat) ? method : own;
-		};
-		return concat$2;
-	}
-
-	var concat$1;
-	var hasRequiredConcat$1;
-
-	function requireConcat$1 () {
-		if (hasRequiredConcat$1) return concat$1;
-		hasRequiredConcat$1 = 1;
-		var parent = /*@__PURE__*/ requireConcat$2();
-
-		concat$1 = parent;
-		return concat$1;
-	}
-
-	var concat;
-	var hasRequiredConcat;
-
-	function requireConcat () {
-		if (hasRequiredConcat) return concat;
-		hasRequiredConcat = 1;
-		concat = /*@__PURE__*/ requireConcat$1();
-		return concat;
-	}
-
-	var concatExports = requireConcat();
-	var _concatInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(concatExports);
-
-	var es_date_toJson = {};
-
-	var stringRepeat;
-	var hasRequiredStringRepeat;
-
-	function requireStringRepeat () {
-		if (hasRequiredStringRepeat) return stringRepeat;
-		hasRequiredStringRepeat = 1;
-		var toIntegerOrInfinity = /*@__PURE__*/ requireToIntegerOrInfinity();
-		var toString = /*@__PURE__*/ requireToString();
-		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
-
-		var $RangeError = RangeError;
-
-		// `String.prototype.repeat` method implementation
-		// https://tc39.es/ecma262/#sec-string.prototype.repeat
-		stringRepeat = function repeat(count) {
-		  var str = toString(requireObjectCoercible(this));
-		  var result = '';
-		  var n = toIntegerOrInfinity(count);
-		  if (n < 0 || n === Infinity) throw new $RangeError('Wrong number of repetitions');
-		  for (;n > 0; (n >>>= 1) && (str += str)) if (n & 1) result += str;
-		  return result;
-		};
-		return stringRepeat;
-	}
-
-	var stringPad;
-	var hasRequiredStringPad;
-
-	function requireStringPad () {
-		if (hasRequiredStringPad) return stringPad;
-		hasRequiredStringPad = 1;
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var toLength = /*@__PURE__*/ requireToLength();
-		var toString = /*@__PURE__*/ requireToString();
-		var $repeat = /*@__PURE__*/ requireStringRepeat();
-		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
-
-		var repeat = uncurryThis($repeat);
-		var stringSlice = uncurryThis(''.slice);
-		var ceil = Math.ceil;
-
-		// `String.prototype.{ padStart, padEnd }` methods implementation
-		var createMethod = function (IS_END) {
-		  return function ($this, maxLength, fillString) {
-		    var S = toString(requireObjectCoercible($this));
-		    var intMaxLength = toLength(maxLength);
-		    var stringLength = S.length;
-		    var fillStr = fillString === undefined ? ' ' : toString(fillString);
-		    var fillLen, stringFiller;
-		    if (intMaxLength <= stringLength || fillStr === '') return S;
-		    fillLen = intMaxLength - stringLength;
-		    stringFiller = repeat(fillStr, ceil(fillLen / fillStr.length));
-		    if (stringFiller.length > fillLen) stringFiller = stringSlice(stringFiller, 0, fillLen);
-		    return IS_END ? S + stringFiller : stringFiller + S;
-		  };
-		};
-
-		stringPad = {
-		  // `String.prototype.padStart` method
-		  // https://tc39.es/ecma262/#sec-string.prototype.padstart
-		  start: createMethod(false),
-		  // `String.prototype.padEnd` method
-		  // https://tc39.es/ecma262/#sec-string.prototype.padend
-		  end: createMethod(true)
-		};
-		return stringPad;
-	}
-
-	var dateToIsoString;
-	var hasRequiredDateToIsoString;
-
-	function requireDateToIsoString () {
-		if (hasRequiredDateToIsoString) return dateToIsoString;
-		hasRequiredDateToIsoString = 1;
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var fails = /*@__PURE__*/ requireFails();
-		var padStart = /*@__PURE__*/ requireStringPad().start;
-
-		var $RangeError = RangeError;
-		var $isFinite = isFinite;
-		var abs = Math.abs;
-		var DatePrototype = Date.prototype;
-		var nativeDateToISOString = DatePrototype.toISOString;
-		var thisTimeValue = uncurryThis(DatePrototype.getTime);
-		var getUTCDate = uncurryThis(DatePrototype.getUTCDate);
-		var getUTCFullYear = uncurryThis(DatePrototype.getUTCFullYear);
-		var getUTCHours = uncurryThis(DatePrototype.getUTCHours);
-		var getUTCMilliseconds = uncurryThis(DatePrototype.getUTCMilliseconds);
-		var getUTCMinutes = uncurryThis(DatePrototype.getUTCMinutes);
-		var getUTCMonth = uncurryThis(DatePrototype.getUTCMonth);
-		var getUTCSeconds = uncurryThis(DatePrototype.getUTCSeconds);
-
-		// `Date.prototype.toISOString` method implementation
-		// https://tc39.es/ecma262/#sec-date.prototype.toisostring
-		// PhantomJS / old WebKit fails here:
-		dateToIsoString = (fails(function () {
-		  return nativeDateToISOString.call(new Date(-5e13 - 1)) !== '0385-07-25T07:06:39.999Z';
-		}) || !fails(function () {
-		  nativeDateToISOString.call(new Date(NaN));
-		})) ? function toISOString() {
-		  if (!$isFinite(thisTimeValue(this))) throw new $RangeError('Invalid time value');
-		  var date = this;
-		  var year = getUTCFullYear(date);
-		  var milliseconds = getUTCMilliseconds(date);
-		  var sign = year < 0 ? '-' : year > 9999 ? '+' : '';
-		  return sign + padStart(abs(year), sign ? 6 : 4, 0) +
-		    '-' + padStart(getUTCMonth(date) + 1, 2, 0) +
-		    '-' + padStart(getUTCDate(date), 2, 0) +
-		    'T' + padStart(getUTCHours(date), 2, 0) +
-		    ':' + padStart(getUTCMinutes(date), 2, 0) +
-		    ':' + padStart(getUTCSeconds(date), 2, 0) +
-		    '.' + padStart(milliseconds, 3, 0) +
-		    'Z';
-		} : nativeDateToISOString;
-		return dateToIsoString;
-	}
-
-	var hasRequiredEs_date_toJson;
-
-	function requireEs_date_toJson () {
-		if (hasRequiredEs_date_toJson) return es_date_toJson;
-		hasRequiredEs_date_toJson = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var call = /*@__PURE__*/ requireFunctionCall();
-		var toObject = /*@__PURE__*/ requireToObject();
-		var toPrimitive = /*@__PURE__*/ requireToPrimitive$5();
-		var toISOString = /*@__PURE__*/ requireDateToIsoString();
-		var classof = /*@__PURE__*/ requireClassofRaw();
-		var fails = /*@__PURE__*/ requireFails();
-
-		var FORCED = fails(function () {
-		  return new Date(NaN).toJSON() !== null
-		    || call(Date.prototype.toJSON, { toISOString: function () { return 1; } }) !== 1;
-		});
-
-		// `Date.prototype.toJSON` method
-		// https://tc39.es/ecma262/#sec-date.prototype.tojson
-		$({ target: 'Date', proto: true, forced: FORCED }, {
-		  // eslint-disable-next-line no-unused-vars -- required for `.length`
-		  toJSON: function toJSON(key) {
-		    var O = toObject(this);
-		    var pv = toPrimitive(O, 'number');
-		    return typeof pv == 'number' && !isFinite(pv) ? null :
-		      (!('toISOString' in O) && classof(O) === 'Date') ? call(toISOString, O) : O.toISOString();
-		  }
-		});
-		return es_date_toJson;
-	}
-
-	var stringify$2;
-	var hasRequiredStringify$2;
-
-	function requireStringify$2 () {
-		if (hasRequiredStringify$2) return stringify$2;
-		hasRequiredStringify$2 = 1;
-		requireEs_date_toJson();
-		requireEs_json_stringify();
-		var path = /*@__PURE__*/ requirePath();
-		var apply = /*@__PURE__*/ requireFunctionApply();
-
-		// eslint-disable-next-line es/no-json -- safe
-		if (!path.JSON) path.JSON = { stringify: JSON.stringify };
-
-		// eslint-disable-next-line no-unused-vars -- required for `.length`
-		stringify$2 = function stringify(it, replacer, space) {
-		  return apply(path.JSON.stringify, null, arguments);
-		};
-		return stringify$2;
-	}
-
-	var stringify$1;
-	var hasRequiredStringify$1;
-
-	function requireStringify$1 () {
-		if (hasRequiredStringify$1) return stringify$1;
-		hasRequiredStringify$1 = 1;
-		var parent = /*@__PURE__*/ requireStringify$2();
-
-		stringify$1 = parent;
-		return stringify$1;
-	}
-
-	var stringify;
-	var hasRequiredStringify;
-
-	function requireStringify () {
-		if (hasRequiredStringify) return stringify;
-		hasRequiredStringify = 1;
-		stringify = /*@__PURE__*/ requireStringify$1();
-		return stringify;
-	}
-
-	var stringifyExports = requireStringify();
-	var _JSON$stringify = /*@__PURE__*/getDefaultExportFromCjs(stringifyExports);
-
-	var es_date_now = {};
-
-	var hasRequiredEs_date_now;
-
-	function requireEs_date_now () {
-		if (hasRequiredEs_date_now) return es_date_now;
-		hasRequiredEs_date_now = 1;
-		// TODO: Remove from `core-js@4`
-		var $ = /*@__PURE__*/ require_export();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-
-		var $Date = Date;
-		var thisTimeValue = uncurryThis($Date.prototype.getTime);
-
-		// `Date.now` method
-		// https://tc39.es/ecma262/#sec-date.now
-		$({ target: 'Date', stat: true }, {
-		  now: function now() {
-		    return thisTimeValue(new $Date());
-		  }
-		});
-		return es_date_now;
-	}
-
-	var now$2;
-	var hasRequiredNow$2;
-
-	function requireNow$2 () {
-		if (hasRequiredNow$2) return now$2;
-		hasRequiredNow$2 = 1;
-		requireEs_date_now();
-		var path = /*@__PURE__*/ requirePath();
-
-		now$2 = path.Date.now;
-		return now$2;
-	}
-
-	var now$1;
-	var hasRequiredNow$1;
-
-	function requireNow$1 () {
-		if (hasRequiredNow$1) return now$1;
-		hasRequiredNow$1 = 1;
-		var parent = /*@__PURE__*/ requireNow$2();
-
-		now$1 = parent;
-		return now$1;
-	}
-
-	var now;
-	var hasRequiredNow;
-
-	function requireNow () {
-		if (hasRequiredNow) return now;
-		hasRequiredNow = 1;
-		now = /*@__PURE__*/ requireNow$1();
-		return now;
-	}
-
-	var nowExports = requireNow();
-	var _Date$now = /*@__PURE__*/getDefaultExportFromCjs(nowExports);
-
 	var es_parseFloat = {};
-
-	var whitespaces;
-	var hasRequiredWhitespaces;
-
-	function requireWhitespaces () {
-		if (hasRequiredWhitespaces) return whitespaces;
-		hasRequiredWhitespaces = 1;
-		// a string of all valid unicode whitespaces
-		whitespaces = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u2002' +
-		  '\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u3000\u2028\u2029\uFEFF';
-		return whitespaces;
-	}
-
-	var stringTrim;
-	var hasRequiredStringTrim;
-
-	function requireStringTrim () {
-		if (hasRequiredStringTrim) return stringTrim;
-		hasRequiredStringTrim = 1;
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
-		var toString = /*@__PURE__*/ requireToString();
-		var whitespaces = /*@__PURE__*/ requireWhitespaces();
-
-		var replace = uncurryThis(''.replace);
-		var ltrim = RegExp('^[' + whitespaces + ']+');
-		var rtrim = RegExp('(^|[^' + whitespaces + '])[' + whitespaces + ']+$');
-
-		// `String.prototype.{ trim, trimStart, trimEnd, trimLeft, trimRight }` methods implementation
-		var createMethod = function (TYPE) {
-		  return function ($this) {
-		    var string = toString(requireObjectCoercible($this));
-		    if (TYPE & 1) string = replace(string, ltrim, '');
-		    if (TYPE & 2) string = replace(string, rtrim, '$1');
-		    return string;
-		  };
-		};
-
-		stringTrim = {
-		  // `String.prototype.{ trimLeft, trimStart }` methods
-		  // https://tc39.es/ecma262/#sec-string.prototype.trimstart
-		  start: createMethod(1),
-		  // `String.prototype.{ trimRight, trimEnd }` methods
-		  // https://tc39.es/ecma262/#sec-string.prototype.trimend
-		  end: createMethod(2),
-		  // `String.prototype.trim` method
-		  // https://tc39.es/ecma262/#sec-string.prototype.trim
-		  trim: createMethod(3)
-		};
-		return stringTrim;
-	}
 
 	var numberParseFloat;
 	var hasRequiredNumberParseFloat;
@@ -15227,22 +16242,6 @@
 	var _repeatInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(repeatExports);
 
 	var es_array_sort = {};
-
-	var deletePropertyOrThrow;
-	var hasRequiredDeletePropertyOrThrow;
-
-	function requireDeletePropertyOrThrow () {
-		if (hasRequiredDeletePropertyOrThrow) return deletePropertyOrThrow;
-		hasRequiredDeletePropertyOrThrow = 1;
-		var tryToString = /*@__PURE__*/ requireTryToString();
-
-		var $TypeError = TypeError;
-
-		deletePropertyOrThrow = function (O, P) {
-		  if (!delete O[P]) throw new $TypeError('Cannot delete property ' + tryToString(P) + ' of ' + tryToString(O));
-		};
-		return deletePropertyOrThrow;
-	}
 
 	var arraySort;
 	var hasRequiredArraySort;
@@ -16868,261 +17867,6 @@
 	  }
 	}
 
-	var es_array_indexOf = {};
-
-	var hasRequiredEs_array_indexOf;
-
-	function requireEs_array_indexOf () {
-		if (hasRequiredEs_array_indexOf) return es_array_indexOf;
-		hasRequiredEs_array_indexOf = 1;
-		/* eslint-disable es/no-array-prototype-indexof -- required for testing */
-		var $ = /*@__PURE__*/ require_export();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThisClause();
-		var $indexOf = /*@__PURE__*/ requireArrayIncludes().indexOf;
-		var arrayMethodIsStrict = /*@__PURE__*/ requireArrayMethodIsStrict();
-
-		var nativeIndexOf = uncurryThis([].indexOf);
-
-		var NEGATIVE_ZERO = !!nativeIndexOf && 1 / nativeIndexOf([1], 1, -0) < 0;
-		var FORCED = NEGATIVE_ZERO || !arrayMethodIsStrict('indexOf');
-
-		// `Array.prototype.indexOf` method
-		// https://tc39.es/ecma262/#sec-array.prototype.indexof
-		$({ target: 'Array', proto: true, forced: FORCED }, {
-		  indexOf: function indexOf(searchElement /* , fromIndex = 0 */) {
-		    var fromIndex = arguments.length > 1 ? arguments[1] : undefined;
-		    return NEGATIVE_ZERO
-		      // convert -0 to +0
-		      ? nativeIndexOf(this, searchElement, fromIndex) || 0
-		      : $indexOf(this, searchElement, fromIndex);
-		  }
-		});
-		return es_array_indexOf;
-	}
-
-	var indexOf$3;
-	var hasRequiredIndexOf$3;
-
-	function requireIndexOf$3 () {
-		if (hasRequiredIndexOf$3) return indexOf$3;
-		hasRequiredIndexOf$3 = 1;
-		requireEs_array_indexOf();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		indexOf$3 = getBuiltInPrototypeMethod('Array', 'indexOf');
-		return indexOf$3;
-	}
-
-	var indexOf$2;
-	var hasRequiredIndexOf$2;
-
-	function requireIndexOf$2 () {
-		if (hasRequiredIndexOf$2) return indexOf$2;
-		hasRequiredIndexOf$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var method = /*@__PURE__*/ requireIndexOf$3();
-
-		var ArrayPrototype = Array.prototype;
-
-		indexOf$2 = function (it) {
-		  var own = it.indexOf;
-		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.indexOf) ? method : own;
-		};
-		return indexOf$2;
-	}
-
-	var indexOf$1;
-	var hasRequiredIndexOf$1;
-
-	function requireIndexOf$1 () {
-		if (hasRequiredIndexOf$1) return indexOf$1;
-		hasRequiredIndexOf$1 = 1;
-		var parent = /*@__PURE__*/ requireIndexOf$2();
-
-		indexOf$1 = parent;
-		return indexOf$1;
-	}
-
-	var indexOf;
-	var hasRequiredIndexOf;
-
-	function requireIndexOf () {
-		if (hasRequiredIndexOf) return indexOf;
-		hasRequiredIndexOf = 1;
-		indexOf = /*@__PURE__*/ requireIndexOf$1();
-		return indexOf;
-	}
-
-	var indexOfExports = requireIndexOf();
-	var _indexOfInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(indexOfExports);
-
-	var es_array_splice = {};
-
-	var arraySetLength;
-	var hasRequiredArraySetLength;
-
-	function requireArraySetLength () {
-		if (hasRequiredArraySetLength) return arraySetLength;
-		hasRequiredArraySetLength = 1;
-		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-		var isArray = /*@__PURE__*/ requireIsArray$3();
-
-		var $TypeError = TypeError;
-		// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-		var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-		// Safari < 13 does not throw an error in this case
-		var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
-		  // makes no sense without proper strict mode support
-		  if (this !== undefined) return true;
-		  try {
-		    // eslint-disable-next-line es/no-object-defineproperty -- safe
-		    Object.defineProperty([], 'length', { writable: false }).length = 1;
-		  } catch (error) {
-		    return error instanceof TypeError;
-		  }
-		}();
-
-		arraySetLength = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
-		  if (isArray(O) && !getOwnPropertyDescriptor(O, 'length').writable) {
-		    throw new $TypeError('Cannot set read only .length');
-		  } return O.length = length;
-		} : function (O, length) {
-		  return O.length = length;
-		};
-		return arraySetLength;
-	}
-
-	var hasRequiredEs_array_splice;
-
-	function requireEs_array_splice () {
-		if (hasRequiredEs_array_splice) return es_array_splice;
-		hasRequiredEs_array_splice = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var toObject = /*@__PURE__*/ requireToObject();
-		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
-		var toIntegerOrInfinity = /*@__PURE__*/ requireToIntegerOrInfinity();
-		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
-		var setArrayLength = /*@__PURE__*/ requireArraySetLength();
-		var doesNotExceedSafeInteger = /*@__PURE__*/ requireDoesNotExceedSafeInteger();
-		var arraySpeciesCreate = /*@__PURE__*/ requireArraySpeciesCreate();
-		var createProperty = /*@__PURE__*/ requireCreateProperty();
-		var deletePropertyOrThrow = /*@__PURE__*/ requireDeletePropertyOrThrow();
-		var arrayMethodHasSpeciesSupport = /*@__PURE__*/ requireArrayMethodHasSpeciesSupport();
-
-		var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('splice');
-
-		var max = Math.max;
-		var min = Math.min;
-
-		// `Array.prototype.splice` method
-		// https://tc39.es/ecma262/#sec-array.prototype.splice
-		// with adding support of @@species
-		$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-		  splice: function splice(start, deleteCount /* , ...items */) {
-		    var O = toObject(this);
-		    var len = lengthOfArrayLike(O);
-		    var actualStart = toAbsoluteIndex(start, len);
-		    var argumentsLength = arguments.length;
-		    var insertCount, actualDeleteCount, A, k, from, to;
-		    if (argumentsLength === 0) {
-		      insertCount = actualDeleteCount = 0;
-		    } else if (argumentsLength === 1) {
-		      insertCount = 0;
-		      actualDeleteCount = len - actualStart;
-		    } else {
-		      insertCount = argumentsLength - 2;
-		      actualDeleteCount = min(max(toIntegerOrInfinity(deleteCount), 0), len - actualStart);
-		    }
-		    doesNotExceedSafeInteger(len + insertCount - actualDeleteCount);
-		    A = arraySpeciesCreate(O, actualDeleteCount);
-		    for (k = 0; k < actualDeleteCount; k++) {
-		      from = actualStart + k;
-		      if (from in O) createProperty(A, k, O[from]);
-		    }
-		    A.length = actualDeleteCount;
-		    if (insertCount < actualDeleteCount) {
-		      for (k = actualStart; k < len - actualDeleteCount; k++) {
-		        from = k + actualDeleteCount;
-		        to = k + insertCount;
-		        if (from in O) O[to] = O[from];
-		        else deletePropertyOrThrow(O, to);
-		      }
-		      for (k = len; k > len - actualDeleteCount + insertCount; k--) deletePropertyOrThrow(O, k - 1);
-		    } else if (insertCount > actualDeleteCount) {
-		      for (k = len - actualDeleteCount; k > actualStart; k--) {
-		        from = k + actualDeleteCount - 1;
-		        to = k + insertCount - 1;
-		        if (from in O) O[to] = O[from];
-		        else deletePropertyOrThrow(O, to);
-		      }
-		    }
-		    for (k = 0; k < insertCount; k++) {
-		      O[k + actualStart] = arguments[k + 2];
-		    }
-		    setArrayLength(O, len - actualDeleteCount + insertCount);
-		    return A;
-		  }
-		});
-		return es_array_splice;
-	}
-
-	var splice$3;
-	var hasRequiredSplice$3;
-
-	function requireSplice$3 () {
-		if (hasRequiredSplice$3) return splice$3;
-		hasRequiredSplice$3 = 1;
-		requireEs_array_splice();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		splice$3 = getBuiltInPrototypeMethod('Array', 'splice');
-		return splice$3;
-	}
-
-	var splice$2;
-	var hasRequiredSplice$2;
-
-	function requireSplice$2 () {
-		if (hasRequiredSplice$2) return splice$2;
-		hasRequiredSplice$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var method = /*@__PURE__*/ requireSplice$3();
-
-		var ArrayPrototype = Array.prototype;
-
-		splice$2 = function (it) {
-		  var own = it.splice;
-		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.splice) ? method : own;
-		};
-		return splice$2;
-	}
-
-	var splice$1;
-	var hasRequiredSplice$1;
-
-	function requireSplice$1 () {
-		if (hasRequiredSplice$1) return splice$1;
-		hasRequiredSplice$1 = 1;
-		var parent = /*@__PURE__*/ requireSplice$2();
-
-		splice$1 = parent;
-		return splice$1;
-	}
-
-	var splice;
-	var hasRequiredSplice;
-
-	function requireSplice () {
-		if (hasRequiredSplice) return splice;
-		hasRequiredSplice = 1;
-		splice = /*@__PURE__*/ requireSplice$1();
-		return splice;
-	}
-
-	var spliceExports = requireSplice();
-	var _spliceInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(spliceExports);
-
 	var es_array_some = {};
 
 	var hasRequiredEs_array_some;
@@ -17525,93 +18269,6 @@
 	  };
 	  return pinchRecognizer;
 	}
-
-	var es_parseInt = {};
-
-	var numberParseInt;
-	var hasRequiredNumberParseInt;
-
-	function requireNumberParseInt () {
-		if (hasRequiredNumberParseInt) return numberParseInt;
-		hasRequiredNumberParseInt = 1;
-		var globalThis = /*@__PURE__*/ requireGlobalThis();
-		var fails = /*@__PURE__*/ requireFails();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var toString = /*@__PURE__*/ requireToString();
-		var trim = /*@__PURE__*/ requireStringTrim().trim;
-		var whitespaces = /*@__PURE__*/ requireWhitespaces();
-
-		var $parseInt = globalThis.parseInt;
-		var Symbol = globalThis.Symbol;
-		var ITERATOR = Symbol && Symbol.iterator;
-		var hex = /^[+-]?0x/i;
-		var exec = uncurryThis(hex.exec);
-		var FORCED = $parseInt(whitespaces + '08') !== 8 || $parseInt(whitespaces + '0x16') !== 22
-		  // MS Edge 18- broken with boxed symbols
-		  || (ITERATOR && !fails(function () { $parseInt(Object(ITERATOR)); }));
-
-		// `parseInt` method
-		// https://tc39.es/ecma262/#sec-parseint-string-radix
-		numberParseInt = FORCED ? function parseInt(string, radix) {
-		  var S = trim(toString(string));
-		  return $parseInt(S, (radix >>> 0) || (exec(hex, S) ? 16 : 10));
-		} : $parseInt;
-		return numberParseInt;
-	}
-
-	var hasRequiredEs_parseInt;
-
-	function requireEs_parseInt () {
-		if (hasRequiredEs_parseInt) return es_parseInt;
-		hasRequiredEs_parseInt = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var $parseInt = /*@__PURE__*/ requireNumberParseInt();
-
-		// `parseInt` method
-		// https://tc39.es/ecma262/#sec-parseint-string-radix
-		$({ global: true, forced: parseInt !== $parseInt }, {
-		  parseInt: $parseInt
-		});
-		return es_parseInt;
-	}
-
-	var _parseInt$3;
-	var hasRequired_parseInt$2;
-
-	function require_parseInt$2 () {
-		if (hasRequired_parseInt$2) return _parseInt$3;
-		hasRequired_parseInt$2 = 1;
-		requireEs_parseInt();
-		var path = /*@__PURE__*/ requirePath();
-
-		_parseInt$3 = path.parseInt;
-		return _parseInt$3;
-	}
-
-	var _parseInt$2;
-	var hasRequired_parseInt$1;
-
-	function require_parseInt$1 () {
-		if (hasRequired_parseInt$1) return _parseInt$2;
-		hasRequired_parseInt$1 = 1;
-		var parent = /*@__PURE__*/ require_parseInt$2();
-
-		_parseInt$2 = parent;
-		return _parseInt$2;
-	}
-
-	var _parseInt$1;
-	var hasRequired_parseInt;
-
-	function require_parseInt () {
-		if (hasRequired_parseInt) return _parseInt$1;
-		hasRequired_parseInt = 1;
-		_parseInt$1 = /*@__PURE__*/ require_parseInt$1();
-		return _parseInt$1;
-	}
-
-	var _parseIntExports = require_parseInt();
-	var _parseInt = /*@__PURE__*/getDefaultExportFromCjs(_parseIntExports);
 
 	/**
 	 * The class TimeStep is an iterator for dates. You provide a start date and an
@@ -21210,129 +21867,6 @@
 	  }
 	}
 
-	var es_object_assign = {};
-
-	var objectAssign;
-	var hasRequiredObjectAssign;
-
-	function requireObjectAssign () {
-		if (hasRequiredObjectAssign) return objectAssign;
-		hasRequiredObjectAssign = 1;
-		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var call = /*@__PURE__*/ requireFunctionCall();
-		var fails = /*@__PURE__*/ requireFails();
-		var objectKeys = /*@__PURE__*/ requireObjectKeys();
-		var getOwnPropertySymbolsModule = /*@__PURE__*/ requireObjectGetOwnPropertySymbols();
-		var propertyIsEnumerableModule = /*@__PURE__*/ requireObjectPropertyIsEnumerable();
-		var toObject = /*@__PURE__*/ requireToObject();
-		var IndexedObject = /*@__PURE__*/ requireIndexedObject();
-
-		// eslint-disable-next-line es/no-object-assign -- safe
-		var $assign = Object.assign;
-		// eslint-disable-next-line es/no-object-defineproperty -- required for testing
-		var defineProperty = Object.defineProperty;
-		var concat = uncurryThis([].concat);
-
-		// `Object.assign` method
-		// https://tc39.es/ecma262/#sec-object.assign
-		objectAssign = !$assign || fails(function () {
-		  // should have correct order of operations (Edge bug)
-		  if (DESCRIPTORS && $assign({ b: 1 }, $assign(defineProperty({}, 'a', {
-		    enumerable: true,
-		    get: function () {
-		      defineProperty(this, 'b', {
-		        value: 3,
-		        enumerable: false
-		      });
-		    }
-		  }), { b: 2 })).b !== 1) return true;
-		  // should work with symbols and should have deterministic property order (V8 bug)
-		  var A = {};
-		  var B = {};
-		  // eslint-disable-next-line es/no-symbol -- safe
-		  var symbol = Symbol('assign detection');
-		  var alphabet = 'abcdefghijklmnopqrst';
-		  A[symbol] = 7;
-		  // eslint-disable-next-line es/no-array-prototype-foreach -- safe
-		  alphabet.split('').forEach(function (chr) { B[chr] = chr; });
-		  return $assign({}, A)[symbol] !== 7 || objectKeys($assign({}, B)).join('') !== alphabet;
-		}) ? function assign(target, source) { // eslint-disable-line no-unused-vars -- required for `.length`
-		  var T = toObject(target);
-		  var argumentsLength = arguments.length;
-		  var index = 1;
-		  var getOwnPropertySymbols = getOwnPropertySymbolsModule.f;
-		  var propertyIsEnumerable = propertyIsEnumerableModule.f;
-		  while (argumentsLength > index) {
-		    var S = IndexedObject(arguments[index++]);
-		    var keys = getOwnPropertySymbols ? concat(objectKeys(S), getOwnPropertySymbols(S)) : objectKeys(S);
-		    var length = keys.length;
-		    var j = 0;
-		    var key;
-		    while (length > j) {
-		      key = keys[j++];
-		      if (!DESCRIPTORS || call(propertyIsEnumerable, S, key)) T[key] = S[key];
-		    }
-		  } return T;
-		} : $assign;
-		return objectAssign;
-	}
-
-	var hasRequiredEs_object_assign;
-
-	function requireEs_object_assign () {
-		if (hasRequiredEs_object_assign) return es_object_assign;
-		hasRequiredEs_object_assign = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var assign = /*@__PURE__*/ requireObjectAssign();
-
-		// `Object.assign` method
-		// https://tc39.es/ecma262/#sec-object.assign
-		// eslint-disable-next-line es/no-object-assign -- required for testing
-		$({ target: 'Object', stat: true, arity: 2, forced: Object.assign !== assign }, {
-		  assign: assign
-		});
-		return es_object_assign;
-	}
-
-	var assign$2;
-	var hasRequiredAssign$2;
-
-	function requireAssign$2 () {
-		if (hasRequiredAssign$2) return assign$2;
-		hasRequiredAssign$2 = 1;
-		requireEs_object_assign();
-		var path = /*@__PURE__*/ requirePath();
-
-		assign$2 = path.Object.assign;
-		return assign$2;
-	}
-
-	var assign$1;
-	var hasRequiredAssign$1;
-
-	function requireAssign$1 () {
-		if (hasRequiredAssign$1) return assign$1;
-		hasRequiredAssign$1 = 1;
-		var parent = /*@__PURE__*/ requireAssign$2();
-
-		assign$1 = parent;
-		return assign$1;
-	}
-
-	var assign;
-	var hasRequiredAssign;
-
-	function requireAssign () {
-		if (hasRequiredAssign) return assign;
-		hasRequiredAssign = 1;
-		assign = /*@__PURE__*/ requireAssign$1();
-		return assign;
-	}
-
-	var assignExports = requireAssign();
-	var _Object$assign = /*@__PURE__*/getDefaultExportFromCjs(assignExports);
-
 	var es_array_find = {};
 
 	var hasRequiredEs_array_find;
@@ -21419,68 +21953,6 @@
 
 	var findExports = requireFind();
 	var _findInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(findExports);
-
-	var es_object_create = {};
-
-	var hasRequiredEs_object_create;
-
-	function requireEs_object_create () {
-		if (hasRequiredEs_object_create) return es_object_create;
-		hasRequiredEs_object_create = 1;
-		// TODO: Remove from `core-js@4`
-		var $ = /*@__PURE__*/ require_export();
-		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-		var create = /*@__PURE__*/ requireObjectCreate();
-
-		// `Object.create` method
-		// https://tc39.es/ecma262/#sec-object.create
-		$({ target: 'Object', stat: true, sham: !DESCRIPTORS }, {
-		  create: create
-		});
-		return es_object_create;
-	}
-
-	var create$2;
-	var hasRequiredCreate$2;
-
-	function requireCreate$2 () {
-		if (hasRequiredCreate$2) return create$2;
-		hasRequiredCreate$2 = 1;
-		requireEs_object_create();
-		var path = /*@__PURE__*/ requirePath();
-
-		var Object = path.Object;
-
-		create$2 = function create(P, D) {
-		  return Object.create(P, D);
-		};
-		return create$2;
-	}
-
-	var create$1;
-	var hasRequiredCreate$1;
-
-	function requireCreate$1 () {
-		if (hasRequiredCreate$1) return create$1;
-		hasRequiredCreate$1 = 1;
-		var parent = /*@__PURE__*/ requireCreate$2();
-
-		create$1 = parent;
-		return create$1;
-	}
-
-	var create;
-	var hasRequiredCreate;
-
-	function requireCreate () {
-		if (hasRequiredCreate) return create;
-		hasRequiredCreate = 1;
-		create = /*@__PURE__*/ requireCreate$1();
-		return create;
-	}
-
-	var createExports = requireCreate();
-	var _Object$create = /*@__PURE__*/getDefaultExportFromCjs(createExports);
 
 	var es_set = {};
 
@@ -22885,433 +23357,6 @@
 
 	var setExports = requireSet();
 	var _Set = /*@__PURE__*/getDefaultExportFromCjs(setExports);
-
-	var es_array_slice = {};
-
-	var hasRequiredEs_array_slice;
-
-	function requireEs_array_slice () {
-		if (hasRequiredEs_array_slice) return es_array_slice;
-		hasRequiredEs_array_slice = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var isArray = /*@__PURE__*/ requireIsArray$3();
-		var isConstructor = /*@__PURE__*/ requireIsConstructor();
-		var isObject = /*@__PURE__*/ requireIsObject();
-		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
-		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
-		var toIndexedObject = /*@__PURE__*/ requireToIndexedObject();
-		var createProperty = /*@__PURE__*/ requireCreateProperty();
-		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
-		var arrayMethodHasSpeciesSupport = /*@__PURE__*/ requireArrayMethodHasSpeciesSupport();
-		var nativeSlice = /*@__PURE__*/ requireArraySlice();
-
-		var HAS_SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('slice');
-
-		var SPECIES = wellKnownSymbol('species');
-		var $Array = Array;
-		var max = Math.max;
-
-		// `Array.prototype.slice` method
-		// https://tc39.es/ecma262/#sec-array.prototype.slice
-		// fallback for not array-like ES3 strings and DOM objects
-		$({ target: 'Array', proto: true, forced: !HAS_SPECIES_SUPPORT }, {
-		  slice: function slice(start, end) {
-		    var O = toIndexedObject(this);
-		    var length = lengthOfArrayLike(O);
-		    var k = toAbsoluteIndex(start, length);
-		    var fin = toAbsoluteIndex(end === undefined ? length : end, length);
-		    // inline `ArraySpeciesCreate` for usage native `Array#slice` where it's possible
-		    var Constructor, result, n;
-		    if (isArray(O)) {
-		      Constructor = O.constructor;
-		      // cross-realm fallback
-		      if (isConstructor(Constructor) && (Constructor === $Array || isArray(Constructor.prototype))) {
-		        Constructor = undefined;
-		      } else if (isObject(Constructor)) {
-		        Constructor = Constructor[SPECIES];
-		        if (Constructor === null) Constructor = undefined;
-		      }
-		      if (Constructor === $Array || Constructor === undefined) {
-		        return nativeSlice(O, k, fin);
-		      }
-		    }
-		    result = new (Constructor === undefined ? $Array : Constructor)(max(fin - k, 0));
-		    for (n = 0; k < fin; k++, n++) if (k in O) createProperty(result, n, O[k]);
-		    result.length = n;
-		    return result;
-		  }
-		});
-		return es_array_slice;
-	}
-
-	var slice$3;
-	var hasRequiredSlice$3;
-
-	function requireSlice$3 () {
-		if (hasRequiredSlice$3) return slice$3;
-		hasRequiredSlice$3 = 1;
-		requireEs_array_slice();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		slice$3 = getBuiltInPrototypeMethod('Array', 'slice');
-		return slice$3;
-	}
-
-	var slice$2;
-	var hasRequiredSlice$2;
-
-	function requireSlice$2 () {
-		if (hasRequiredSlice$2) return slice$2;
-		hasRequiredSlice$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var method = /*@__PURE__*/ requireSlice$3();
-
-		var ArrayPrototype = Array.prototype;
-
-		slice$2 = function (it) {
-		  var own = it.slice;
-		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.slice) ? method : own;
-		};
-		return slice$2;
-	}
-
-	var slice$1;
-	var hasRequiredSlice$1;
-
-	function requireSlice$1 () {
-		if (hasRequiredSlice$1) return slice$1;
-		hasRequiredSlice$1 = 1;
-		var parent = /*@__PURE__*/ requireSlice$2();
-
-		slice$1 = parent;
-		return slice$1;
-	}
-
-	var slice;
-	var hasRequiredSlice;
-
-	function requireSlice () {
-		if (hasRequiredSlice) return slice;
-		hasRequiredSlice = 1;
-		slice = /*@__PURE__*/ requireSlice$1();
-		return slice;
-	}
-
-	var sliceExports = requireSlice();
-	var _sliceInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(sliceExports);
-
-	var es_array_includes = {};
-
-	var hasRequiredEs_array_includes;
-
-	function requireEs_array_includes () {
-		if (hasRequiredEs_array_includes) return es_array_includes;
-		hasRequiredEs_array_includes = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var $includes = /*@__PURE__*/ requireArrayIncludes().includes;
-		var fails = /*@__PURE__*/ requireFails();
-		var addToUnscopables = /*@__PURE__*/ requireAddToUnscopables();
-
-		// FF99+ bug
-		var BROKEN_ON_SPARSE = fails(function () {
-		  // eslint-disable-next-line es/no-array-prototype-includes -- detection
-		  return !Array(1).includes();
-		});
-
-		// `Array.prototype.includes` method
-		// https://tc39.es/ecma262/#sec-array.prototype.includes
-		$({ target: 'Array', proto: true, forced: BROKEN_ON_SPARSE }, {
-		  includes: function includes(el /* , fromIndex = 0 */) {
-		    return $includes(this, el, arguments.length > 1 ? arguments[1] : undefined);
-		  }
-		});
-
-		// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-		addToUnscopables('includes');
-		return es_array_includes;
-	}
-
-	var includes$4;
-	var hasRequiredIncludes$4;
-
-	function requireIncludes$4 () {
-		if (hasRequiredIncludes$4) return includes$4;
-		hasRequiredIncludes$4 = 1;
-		requireEs_array_includes();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		includes$4 = getBuiltInPrototypeMethod('Array', 'includes');
-		return includes$4;
-	}
-
-	var es_string_includes = {};
-
-	var isRegexp;
-	var hasRequiredIsRegexp;
-
-	function requireIsRegexp () {
-		if (hasRequiredIsRegexp) return isRegexp;
-		hasRequiredIsRegexp = 1;
-		var isObject = /*@__PURE__*/ requireIsObject();
-		var classof = /*@__PURE__*/ requireClassofRaw();
-		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
-
-		var MATCH = wellKnownSymbol('match');
-
-		// `IsRegExp` abstract operation
-		// https://tc39.es/ecma262/#sec-isregexp
-		isRegexp = function (it) {
-		  var isRegExp;
-		  return isObject(it) && ((isRegExp = it[MATCH]) !== undefined ? !!isRegExp : classof(it) === 'RegExp');
-		};
-		return isRegexp;
-	}
-
-	var notARegexp;
-	var hasRequiredNotARegexp;
-
-	function requireNotARegexp () {
-		if (hasRequiredNotARegexp) return notARegexp;
-		hasRequiredNotARegexp = 1;
-		var isRegExp = /*@__PURE__*/ requireIsRegexp();
-
-		var $TypeError = TypeError;
-
-		notARegexp = function (it) {
-		  if (isRegExp(it)) {
-		    throw new $TypeError("The method doesn't accept regular expressions");
-		  } return it;
-		};
-		return notARegexp;
-	}
-
-	var correctIsRegexpLogic;
-	var hasRequiredCorrectIsRegexpLogic;
-
-	function requireCorrectIsRegexpLogic () {
-		if (hasRequiredCorrectIsRegexpLogic) return correctIsRegexpLogic;
-		hasRequiredCorrectIsRegexpLogic = 1;
-		var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
-
-		var MATCH = wellKnownSymbol('match');
-
-		correctIsRegexpLogic = function (METHOD_NAME) {
-		  var regexp = /./;
-		  try {
-		    '/./'[METHOD_NAME](regexp);
-		  } catch (error1) {
-		    try {
-		      regexp[MATCH] = false;
-		      return '/./'[METHOD_NAME](regexp);
-		    } catch (error2) { /* empty */ }
-		  } return false;
-		};
-		return correctIsRegexpLogic;
-	}
-
-	var hasRequiredEs_string_includes;
-
-	function requireEs_string_includes () {
-		if (hasRequiredEs_string_includes) return es_string_includes;
-		hasRequiredEs_string_includes = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var notARegExp = /*@__PURE__*/ requireNotARegexp();
-		var requireObjectCoercible = /*@__PURE__*/ requireRequireObjectCoercible();
-		var toString = /*@__PURE__*/ requireToString();
-		var correctIsRegExpLogic = /*@__PURE__*/ requireCorrectIsRegexpLogic();
-
-		var stringIndexOf = uncurryThis(''.indexOf);
-
-		// `String.prototype.includes` method
-		// https://tc39.es/ecma262/#sec-string.prototype.includes
-		$({ target: 'String', proto: true, forced: !correctIsRegExpLogic('includes') }, {
-		  includes: function includes(searchString /* , position = 0 */) {
-		    return !!~stringIndexOf(
-		      toString(requireObjectCoercible(this)),
-		      toString(notARegExp(searchString)),
-		      arguments.length > 1 ? arguments[1] : undefined
-		    );
-		  }
-		});
-		return es_string_includes;
-	}
-
-	var includes$3;
-	var hasRequiredIncludes$3;
-
-	function requireIncludes$3 () {
-		if (hasRequiredIncludes$3) return includes$3;
-		hasRequiredIncludes$3 = 1;
-		requireEs_string_includes();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		includes$3 = getBuiltInPrototypeMethod('String', 'includes');
-		return includes$3;
-	}
-
-	var includes$2;
-	var hasRequiredIncludes$2;
-
-	function requireIncludes$2 () {
-		if (hasRequiredIncludes$2) return includes$2;
-		hasRequiredIncludes$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var arrayMethod = /*@__PURE__*/ requireIncludes$4();
-		var stringMethod = /*@__PURE__*/ requireIncludes$3();
-
-		var ArrayPrototype = Array.prototype;
-		var StringPrototype = String.prototype;
-
-		includes$2 = function (it) {
-		  var own = it.includes;
-		  if (it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.includes)) return arrayMethod;
-		  if (typeof it == 'string' || it === StringPrototype || (isPrototypeOf(StringPrototype, it) && own === StringPrototype.includes)) {
-		    return stringMethod;
-		  } return own;
-		};
-		return includes$2;
-	}
-
-	var includes$1;
-	var hasRequiredIncludes$1;
-
-	function requireIncludes$1 () {
-		if (hasRequiredIncludes$1) return includes$1;
-		hasRequiredIncludes$1 = 1;
-		var parent = /*@__PURE__*/ requireIncludes$2();
-
-		includes$1 = parent;
-		return includes$1;
-	}
-
-	var includes;
-	var hasRequiredIncludes;
-
-	function requireIncludes () {
-		if (hasRequiredIncludes) return includes;
-		hasRequiredIncludes = 1;
-		includes = /*@__PURE__*/ requireIncludes$1();
-		return includes;
-	}
-
-	var includesExports = requireIncludes();
-	var _includesInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(includesExports);
-
-	var es_object_values = {};
-
-	var objectToArray;
-	var hasRequiredObjectToArray;
-
-	function requireObjectToArray () {
-		if (hasRequiredObjectToArray) return objectToArray;
-		hasRequiredObjectToArray = 1;
-		var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-		var fails = /*@__PURE__*/ requireFails();
-		var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-		var objectGetPrototypeOf = /*@__PURE__*/ requireObjectGetPrototypeOf();
-		var objectKeys = /*@__PURE__*/ requireObjectKeys();
-		var toIndexedObject = /*@__PURE__*/ requireToIndexedObject();
-		var $propertyIsEnumerable = /*@__PURE__*/ requireObjectPropertyIsEnumerable().f;
-
-		var propertyIsEnumerable = uncurryThis($propertyIsEnumerable);
-		var push = uncurryThis([].push);
-
-		// in some IE versions, `propertyIsEnumerable` returns incorrect result on integer keys
-		// of `null` prototype objects
-		var IE_BUG = DESCRIPTORS && fails(function () {
-		  // eslint-disable-next-line es/no-object-create -- safe
-		  var O = Object.create(null);
-		  O[2] = 2;
-		  return !propertyIsEnumerable(O, 2);
-		});
-
-		// `Object.{ entries, values }` methods implementation
-		var createMethod = function (TO_ENTRIES) {
-		  return function (it) {
-		    var O = toIndexedObject(it);
-		    var keys = objectKeys(O);
-		    var IE_WORKAROUND = IE_BUG && objectGetPrototypeOf(O) === null;
-		    var length = keys.length;
-		    var i = 0;
-		    var result = [];
-		    var key;
-		    while (length > i) {
-		      key = keys[i++];
-		      if (!DESCRIPTORS || (IE_WORKAROUND ? key in O : propertyIsEnumerable(O, key))) {
-		        push(result, TO_ENTRIES ? [key, O[key]] : O[key]);
-		      }
-		    }
-		    return result;
-		  };
-		};
-
-		objectToArray = {
-		  // `Object.entries` method
-		  // https://tc39.es/ecma262/#sec-object.entries
-		  entries: createMethod(true),
-		  // `Object.values` method
-		  // https://tc39.es/ecma262/#sec-object.values
-		  values: createMethod(false)
-		};
-		return objectToArray;
-	}
-
-	var hasRequiredEs_object_values;
-
-	function requireEs_object_values () {
-		if (hasRequiredEs_object_values) return es_object_values;
-		hasRequiredEs_object_values = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var $values = /*@__PURE__*/ requireObjectToArray().values;
-
-		// `Object.values` method
-		// https://tc39.es/ecma262/#sec-object.values
-		$({ target: 'Object', stat: true }, {
-		  values: function values(O) {
-		    return $values(O);
-		  }
-		});
-		return es_object_values;
-	}
-
-	var values$2;
-	var hasRequiredValues$2;
-
-	function requireValues$2 () {
-		if (hasRequiredValues$2) return values$2;
-		hasRequiredValues$2 = 1;
-		requireEs_object_values();
-		var path = /*@__PURE__*/ requirePath();
-
-		values$2 = path.Object.values;
-		return values$2;
-	}
-
-	var values$1;
-	var hasRequiredValues$1;
-
-	function requireValues$1 () {
-		if (hasRequiredValues$1) return values$1;
-		hasRequiredValues$1 = 1;
-		var parent = /*@__PURE__*/ requireValues$2();
-
-		values$1 = parent;
-		return values$1;
-	}
-
-	var values;
-	var hasRequiredValues;
-
-	function requireValues () {
-		if (hasRequiredValues) return values;
-		hasRequiredValues = 1;
-		values = /*@__PURE__*/ requireValues$1();
-		return values;
-	}
-
-	var valuesExports = requireValues();
-	var _Object$values = /*@__PURE__*/getDefaultExportFromCjs(valuesExports);
 
 	// Utility functions for ordering and stacking of items
 	const EPSILON = 0.001; // used when checking collisions, to prevent round-off errors
@@ -31380,109 +31425,6 @@
 	    }
 	  }
 	};
-
-	var es_array_fill = {};
-
-	var arrayFill;
-	var hasRequiredArrayFill;
-
-	function requireArrayFill () {
-		if (hasRequiredArrayFill) return arrayFill;
-		hasRequiredArrayFill = 1;
-		var toObject = /*@__PURE__*/ requireToObject();
-		var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
-		var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
-
-		// `Array.prototype.fill` method implementation
-		// https://tc39.es/ecma262/#sec-array.prototype.fill
-		arrayFill = function fill(value /* , start = 0, end = @length */) {
-		  var O = toObject(this);
-		  var length = lengthOfArrayLike(O);
-		  var argumentsLength = arguments.length;
-		  var index = toAbsoluteIndex(argumentsLength > 1 ? arguments[1] : undefined, length);
-		  var end = argumentsLength > 2 ? arguments[2] : undefined;
-		  var endPos = end === undefined ? length : toAbsoluteIndex(end, length);
-		  while (endPos > index) O[index++] = value;
-		  return O;
-		};
-		return arrayFill;
-	}
-
-	var hasRequiredEs_array_fill;
-
-	function requireEs_array_fill () {
-		if (hasRequiredEs_array_fill) return es_array_fill;
-		hasRequiredEs_array_fill = 1;
-		var $ = /*@__PURE__*/ require_export();
-		var fill = /*@__PURE__*/ requireArrayFill();
-		var addToUnscopables = /*@__PURE__*/ requireAddToUnscopables();
-
-		// `Array.prototype.fill` method
-		// https://tc39.es/ecma262/#sec-array.prototype.fill
-		$({ target: 'Array', proto: true }, {
-		  fill: fill
-		});
-
-		// https://tc39.es/ecma262/#sec-array.prototype-@@unscopables
-		addToUnscopables('fill');
-		return es_array_fill;
-	}
-
-	var fill$3;
-	var hasRequiredFill$3;
-
-	function requireFill$3 () {
-		if (hasRequiredFill$3) return fill$3;
-		hasRequiredFill$3 = 1;
-		requireEs_array_fill();
-		var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
-
-		fill$3 = getBuiltInPrototypeMethod('Array', 'fill');
-		return fill$3;
-	}
-
-	var fill$2;
-	var hasRequiredFill$2;
-
-	function requireFill$2 () {
-		if (hasRequiredFill$2) return fill$2;
-		hasRequiredFill$2 = 1;
-		var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-		var method = /*@__PURE__*/ requireFill$3();
-
-		var ArrayPrototype = Array.prototype;
-
-		fill$2 = function (it) {
-		  var own = it.fill;
-		  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.fill) ? method : own;
-		};
-		return fill$2;
-	}
-
-	var fill$1;
-	var hasRequiredFill$1;
-
-	function requireFill$1 () {
-		if (hasRequiredFill$1) return fill$1;
-		hasRequiredFill$1 = 1;
-		var parent = /*@__PURE__*/ requireFill$2();
-
-		fill$1 = parent;
-		return fill$1;
-	}
-
-	var fill;
-	var hasRequiredFill;
-
-	function requireFill () {
-		if (hasRequiredFill) return fill;
-		hasRequiredFill = 1;
-		fill = /*@__PURE__*/ requireFill$1();
-		return fill;
-	}
-
-	var fillExports = requireFill();
-	var _fillInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(fillExports);
 
 	var htmlColors = {
 	  black: '#000000',
