@@ -1,16 +1,14 @@
 <html>
 <head>
-  <title>Timeline | other | Horizontal Scroll Option</title>
+  <title>Timeline | other | Horizontal Scroll Invert Option</title>
 
   <script src="../../../standalone/umd/vis-timeline-graph2d.js"></script>
   <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-
-  
 </head>
 
 <body>
 
-<h1>Timeline horizontal scroll option</h1>
+<h1>Timeline horizontal scroll invert direction option</h1>
 
 <div id="visualization"></div>
  
@@ -56,6 +54,8 @@
     stack: true,
     horizontalScroll: true,
     // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with 'horizontalScrollKey'
+    // Note: This only inverts the direction when using the vertical scroll-wheel.
+    // Horizontal scroll-wheels as found on the "Logi MX Master" series are unaffected.
     horizontalScrollInvert: true,
     zoomKey: 'ctrlKey',
     maxHeight: 400,
