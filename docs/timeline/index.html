@@ -663,8 +663,8 @@ function (option, path) {
         You can also use a function format for each label. The function accepts as arguments the date, scale and step in that order, and expects to return a string for the label.
 
         <pre class="prettyprint lang-js">function format({
-  minorLabels: Function(date: Date, scale: Number, step: Number),
-  majorLabels: Function(date: Date, scale: Number, step: Number)
+  minorLabels: Function(date: Moment, scale: Number, step: Number),
+  majorLabels: Function(date: Moment, scale: Number, step: Number)
 }</pre>
       </td>
     </tr>
