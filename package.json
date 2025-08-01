@@ -213,7 +213,7 @@
     ".*.{js,ts}": ["eslint --fix", "prettier --write"]
   },
   "volta": {
-    "node": "24.4.1",
+    "node": "24.5.0",
     "npm": "11.4.2",
     "pnpm": "10.14.0"
   },
