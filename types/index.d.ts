@@ -337,6 +337,8 @@ export interface TimelineOptions {
   height?: HeightWidthType;
   hiddenDates?: TimelineOptionsHiddenDatesType;
   horizontalScroll?: boolean;
+  horizontalScrollKey?: string;
+  horizontalScrollInvert?: boolean;
   itemsAlwaysDraggable?: TimelineOptionsItemsAlwaysDraggableType;
   locale?: string;
   locales?: any; // TODO
