@@ -1,8 +1,8 @@
 <html>
   <head>
-    <title>Timeline | other | Horizontal Scroll Option</title>
+    <title>Timeline | other | Bi-Directional Scroll Option</title>
 
-    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.js"></script>
     <link
       href="../../../styles/vis-timeline-graph2d.min.css"
       rel="stylesheet"
@@ -11,7 +11,7 @@
   </head>
 
   <body>
-    <h1>Timeline horizontal scroll option</h1>
+    <h1>Timeline bi-directional scroll option</h1>
 
     <div id="visualization"></div>
 
@@ -54,8 +54,13 @@
       // specify options
       var options = {
         stack: true,
+        // Enable both vertical and horizontal scrolling
+        verticalScroll: true,
         horizontalScroll: true,
-        horizontalScrollInvert: false,
+        // Set a key that switches between vertical and horizontal scrolling.
+        horizontalScrollKey: "shiftKey",
+        // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with 'horizontalScrollKey'
+        horizontalScrollInvert: true,
         zoomKey: "ctrlKey",
         maxHeight: 400,
         start: new Date(),

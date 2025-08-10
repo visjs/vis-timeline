@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Timeline | other | Horizontal Scroll Invert Option</title>
+  </head>
+  <body>
+    <form
+      id="form"
+      action="https://codepen.io/pen/define"
+      method="post"
+      target="_self"
+    >
+      <input
+        type="hidden"
+        name="data"
+        value='{"css":"","css_external":"","html":"<h1>Timeline horizontal scroll invert direction option</h1>\n\n<div id=\"visualization\"></div>\n","js":"// create groups\nvar numberOfGroups = 25;\nvar groups = new vis.DataSet();\nfor (var i = 0; i < numberOfGroups; i++) {\n  groups.add({\n    id: i,\n    content: \"Truck&amp;nbsp;\" + i,\n  });\n}\n\n// create items\nvar numberOfItems = 1000;\nvar items = new vis.DataSet();\n\nvar itemsPerGroup = Math.round(numberOfItems / numberOfGroups);\n\nfor (var truck = 0; truck < numberOfGroups; truck++) {\n  var date = new Date();\n  for (var order = 0; order < itemsPerGroup; order++) {\n    date.setHours(date.getHours() + 4 * (Math.random() < 0.2));\n    var start = new Date(date);\n\n    date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));\n    var end = new Date(date);\n\n    items.add({\n      id: order + itemsPerGroup * truck,\n      group: truck,\n      start: start,\n      end: end,\n      content: \"Order \" + order,\n    });\n  }\n}\n\n// specify options\nvar options = {\n  stack: true,\n  horizontalScroll: true,\n  // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with &apos;horizontalScrollKey&apos;\n  // Note: This only inverts the direction when using the vertical scroll-wheel.\n  // Horizontal scroll-wheels as found on the \"Logi MX Master\" series are unaffected.\n  horizontalScrollInvert: true,\n  zoomKey: \"ctrlKey\",\n  maxHeight: 400,\n  start: new Date(),\n  end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),\n  editable: true,\n  margin: {\n    item: 10, // minimal margin between items\n    axis: 5, // minimal margin between items and the axis\n  },\n  orientation: \"top\",\n};\n\n// create a Timeline\nvar container = document.getElementById(\"visualization\");\ntimeline = new vis.Timeline(container, items, groups, options);\n","js_external":"https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js","title":"Timeline | other | Horizontal Scroll Invert Option"}'
+      />
+      <button id="open" alt="JSFiddle" title="JSFiddle">Open CodePen</button>
+    </form>
+
+    <script type="text/javascript">
+      document.getElementById("open").click();
+    </script>
+  </body>
+</html>

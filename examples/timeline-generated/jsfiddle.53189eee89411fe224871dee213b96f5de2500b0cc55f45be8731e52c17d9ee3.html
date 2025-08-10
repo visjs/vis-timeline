@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Timeline | other | Horizontal Scroll Option</title>
+    <title>Timeline | other | Horizontal Scroll Invert Option</title>
   </head>
   <body>
     <form
@@ -14,7 +14,7 @@
       <input
         type="hidden"
         name="html"
-        value='<h1>Timeline horizontal scroll option</h1>
+        value='<h1>Timeline horizontal scroll invert direction option</h1>
 
 <div id="visualization"></div>
 '
@@ -61,7 +61,10 @@ for (var truck = 0; truck < numberOfGroups; truck++) {
 var options = {
   stack: true,
   horizontalScroll: true,
-  horizontalScrollInvert: false,
+  // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with &apos;horizontalScrollKey&apos;
+  // Note: This only inverts the direction when using the vertical scroll-wheel.
+  // Horizontal scroll-wheels as found on the "Logi MX Master" series are unaffected.
+  horizontalScrollInvert: true,
   zoomKey: "ctrlKey",
   maxHeight: 400,
   start: new Date(),
@@ -87,7 +90,7 @@ timeline = new vis.Timeline(container, items, groups, options);
       <input
         type="hidden"
         name="title"
-        value="Timeline | other | Horizontal Scroll Option"
+        value="Timeline | other | Horizontal Scroll Invert Option"
       />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>

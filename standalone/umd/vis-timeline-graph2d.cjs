@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-08-10T09:31:11.273Z
+ * @date    2025-08-10T11:28:54.985Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28486,7 +28486,7 @@
     setOptions(options) {
       if (options) {
         // copy the options that we know
-        const fields = ["animation", "direction", "min", "max", "zoomMin", "zoomMax", "moveable", "zoomable", "moment", "activate", "hiddenDates", "zoomKey", "zoomFriction", "rtl", "showCurrentTime", "rollingMode", "horizontalScroll"];
+        const fields = ["animation", "direction", "min", "max", "zoomMin", "zoomMax", "moveable", "zoomable", "moment", "activate", "hiddenDates", "zoomKey", "zoomFriction", "rtl", "showCurrentTime", "rollingMode", "horizontalScroll", "horizontalScrollKey", "horizontalScrollInvert", "verticalScroll"];
         availableUtils.selectiveExtend(fields, this.options, options);
         if (options.rollingMode && options.rollingMode.follow) {
           this.startRolling();
@@ -29026,6 +29026,7 @@
      * @private
      */
     _onTouch(event) {
+      // eslint-disable-line no-unused-vars
       this.props.touch.start = this.start;
       this.props.touch.end = this.end;
       this.props.touch.allowDragging = true;
@@ -31809,30 +31810,32 @@
        * @param {WheelEvent} event
        */
       function onMouseWheel(event) {
-        // Reasonable default wheel deltas
-        const LINE_HEIGHT = 40;
-        const PAGE_HEIGHT = 800;
-        if (this.isActive()) {
-          this.emit("mousewheel", event);
+        // Only allow scroll-wheel interaction if timeline is active and clickToUse is set to true.
+        if (!this.isActive()) return;
+        this.emit("mousewheel", event);
+
+        // Prevent scrolling when zooming (no zoom key, or pressing zoom key)
+        if (this.options.preferZoom) {
+          // Return if key not configured OR is currently pressed (zoom only).
+          // TODO: Possible Bug: Should it not be the inverse behaviour? Aka. if pressed should allow user to scroll?
+          if (!this.options.zoomKey || event[this.options.zoomKey]) return;
+        } else {
+          // Return if key configured AND currently pressed
+          if (this.options.zoomKey && event[this.options.zoomKey]) return;
         }
+
+        // Don't preventDefault if you can't scroll
+        if (!this.options.verticalScroll && !this.options.horizontalScroll) return;
 
         // deltaX and deltaY normalization from jquery.mousewheel.js
         let deltaX = 0;
         let deltaY = 0;
 
         // Old school scrollwheel delta
-        if ("detail" in event) {
-          deltaY = event.detail * -1;
-        }
-        if ("wheelDelta" in event) {
-          deltaY = event.wheelDelta;
-        }
-        if ("wheelDeltaY" in event) {
-          deltaY = event.wheelDeltaY;
-        }
-        if ("wheelDeltaX" in event) {
-          deltaX = event.wheelDeltaX * -1;
-        }
+        if ("detail" in event) deltaY = event.detail * -1;
+        if ("wheelDelta" in event) deltaY = event.wheelDelta;
+        if ("wheelDeltaY" in event) deltaY = event.wheelDeltaY;
+        if ("wheelDeltaX" in event) deltaX = event.wheelDeltaX * -1;
 
         // Firefox < 17 horizontal scrolling related to DOMMouseScroll event
         if ("axis" in event && event.axis === event.HORIZONTAL_AXIS) {
@@ -31848,6 +31851,10 @@
           deltaX = event.deltaX;
         }
 
+        // Reasonable default wheel deltas
+        var LINE_HEIGHT = 40;
+        var PAGE_HEIGHT = 800;
+
         // Normalize deltas
         if (event.deltaMode) {
           if (event.deltaMode === 1) {
@@ -31860,43 +31867,55 @@
             deltaY *= PAGE_HEIGHT;
           }
         }
-        // Prevent scrolling when zooming (no zoom key, or pressing zoom key)
-        if (this.options.preferZoom) {
-          if (!this.options.zoomKey || event[this.options.zoomKey]) return;
-        } else {
-          if (this.options.zoomKey && event[this.options.zoomKey]) return;
-        }
-        // Don't preventDefault if you can't scroll
-        if (!this.options.verticalScroll && !this.options.horizontalScroll) return;
-        if (this.options.verticalScroll && Math.abs(deltaY) >= Math.abs(deltaX)) {
+
+        // Vertical scroll preferred unless 'horizontalScrollKey' is configured and currently pressed.
+        const isVerticalScrollingPreferred = this.options.verticalScroll;
+        const isCurrentlyScrollingWithVerticalScrollWheel = Math.abs(deltaY) >= Math.abs(deltaX);
+        const isHorizontalScrollKeyConfiguredAndPressed = this.options.horizontalScroll && this.options.horizontalScrollKey && event[this.options.horizontalScrollKey];
+        if (isVerticalScrollingPreferred && isCurrentlyScrollingWithVerticalScrollWheel && !isHorizontalScrollKeyConfiguredAndPressed) {
           const current = this.props.scrollTop;
           const adjusted = current + deltaY;
-          if (this.isActive()) {
-            const newScrollTop = this._setScrollTop(adjusted);
-            if (newScrollTop !== current) {
-              this._redraw();
-              this.emit("scroll", event);
+          const newScrollTop = this._setScrollTop(adjusted);
+          if (newScrollTop !== current) {
+            this._redraw();
+            this.emit("scroll", event);
 
-              // Prevent default actions caused by mouse wheel
-              // (else the page and timeline both scroll)
-              event.preventDefault();
-            }
+            // Prevent default actions caused by mouse wheel
+            // (else the page and timeline both scroll)
+            event.preventDefault();
           }
-        } else if (this.options.horizontalScroll) {
-          const delta = Math.abs(deltaX) >= Math.abs(deltaY) ? deltaX : deltaY;
+          return;
+        }
 
-          // calculate a single scroll jump relative to the range scale
-          const diff = delta / 120 * (this.range.end - this.range.start) / 20;
+        // If option 'verticalScroll' disabled or 'horizontalScroll' is configured
+        if (this.options.horizontalScroll) {
+          this.range.stopRolling();
+
+          // Depending on the mouse wheel used chose the delta (some mice have the hardware for both)
+          const delta = isCurrentlyScrollingWithVerticalScrollWheel ? deltaY : deltaX;
+
+          // Calculate a single scroll jump relative to the range scale
+          let diff = delta / 120 * (this.range.end - this.range.start) / 20;
+
+          // Invert scroll direction
+          //  ...unless the user uses a horizontal mouse-wheel as found on the "Logi Master" series.
+          // In other words only invert the direction when a vertical scroll-wheel is used.
+          // Reason: Usually the user controls this behaviour via the driver software and it isn't linked to the vertical-scroll behaviour.
+          if (this.options.horizontalScrollInvert && isCurrentlyScrollingWithVerticalScrollWheel) diff = -diff;
+
           // calculate new start and end
           const newStart = this.range.start + diff;
           const newEnd = this.range.end + diff;
           const options = {
             animation: false,
             byUser: true,
-            event
+            event: event
           };
           this.range.setRange(newStart, newEnd, options);
           event.preventDefault();
+
+          // Here in case of any future behaviour following after
+          return;
         }
       }
 
@@ -32031,7 +32050,7 @@
       var _context7;
       if (options) {
         // copy the known options
-        const fields = ["width", "height", "minHeight", "maxHeight", "autoResize", "start", "end", "clickToUse", "dataAttributes", "hiddenDates", "locale", "locales", "moment", "preferZoom", "rtl", "zoomKey", "horizontalScroll", "verticalScroll", "longSelectPressTime", "snap"];
+        const fields = ["width", "height", "minHeight", "maxHeight", "autoResize", "start", "end", "clickToUse", "dataAttributes", "hiddenDates", "locale", "locales", "moment", "preferZoom", "rtl", "zoomKey", "horizontalScroll", "horizontalScrollKey", "horizontalScrollInvert", "verticalScroll", "longSelectPressTime", "snap"];
         availableUtils.selectiveExtend(fields, this.options, options);
         this.dom.rollingModeBtn.style.visibility = "hidden";
         if (this.options.rtl) {
@@ -33387,7 +33406,7 @@
       }
     }
     for (let j = 0; j < subgroupOrder.length; j++) {
-      const subgroup = subgroupOrder[j];
+      let subgroup = subgroupOrder[j];
       if (!Object.prototype.hasOwnProperty.call(subgroups, subgroup)) continue;
       doSubStack = doSubStack || subgroups[subgroup].stack;
       subgroups[subgroup].top = 0;
@@ -40715,6 +40734,14 @@
       undefined: "undefined"
     },
     horizontalScroll: {
+      boolean: bool$1,
+      undefined: "undefined"
+    },
+    horizontalScrollKey: {
+      string: string$1,
+      undefined: "undefined"
+    },
+    horizontalScrollInvert: {
       boolean: bool$1,
       undefined: "undefined"
     },

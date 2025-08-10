@@ -1,7 +1,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Timeline | other | Horizontal Scroll Option</title>
+    <title>Timeline | other | Bi-Directional Scroll Option</title>
   </head>
   <body>
     <form
@@ -14,7 +14,7 @@
       <input
         type="hidden"
         name="html"
-        value='<h1>Timeline horizontal scroll option</h1>
+        value='<h1>Timeline bi-directional scroll option</h1>
 
 <div id="visualization"></div>
 '
@@ -60,8 +60,13 @@ for (var truck = 0; truck < numberOfGroups; truck++) {
 // specify options
 var options = {
   stack: true,
+  // Enable both vertical and horizontal scrolling
+  verticalScroll: true,
   horizontalScroll: true,
-  horizontalScrollInvert: false,
+  // Set a key that switches between vertical and horizontal scrolling.
+  horizontalScrollKey: "shiftKey",
+  // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with &apos;horizontalScrollKey&apos;
+  horizontalScrollInvert: true,
   zoomKey: "ctrlKey",
   maxHeight: 400,
   start: new Date(),
@@ -82,12 +87,12 @@ timeline = new vis.Timeline(container, items, groups, options);
       <input
         type="hidden"
         name="resources"
-        value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
+        value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.js"
       />
       <input
         type="hidden"
         name="title"
-        value="Timeline | other | Horizontal Scroll Option"
+        value="Timeline | other | Bi-Directional Scroll Option"
       />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
