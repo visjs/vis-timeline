@@ -16,4 +16,6 @@ require(['vis'], function (vis) {
   ]);
   var options = {};
   var timeline = new vis.Timeline(container, data, options);
+
+  void timeline; // Here you can do something useful with the Timeline instead.
 });

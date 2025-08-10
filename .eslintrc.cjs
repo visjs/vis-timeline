@@ -6,10 +6,13 @@ module.exports = {
     mocha: true
   },
 
+  parser: "@typescript-eslint/parser", // TODO: We only need this to parse newer JS syntax, since there is no TS here, when we update to ESLint 9, the default parser will suffice.
   parserOptions: {
     sourceType: "module",
-    "ecmaVersion": 2020
+    "ecmaVersion": 2024
   },
+
+  plugins: ["prettier"],
 
   extends: "eslint:recommended",
 
@@ -44,4 +47,12 @@ module.exports = {
     }],
     "guard-for-in": 1,
   },
+
+  overrides: [
+    // Prettier (has to be last)
+    {
+      files: ["**/*"],
+      extends: ["prettier"],
+    },
+  ],
 }
