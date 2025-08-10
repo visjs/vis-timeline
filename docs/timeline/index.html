@@ -970,42 +970,59 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
           </td>
         </tr>
 
-    <tr>
-      <td>horizontalScroll</td>
-      <td>Boolean</td>
-      <td><code>false</code></td>
-      <td>
-        This option allows you to scroll horizontally to move backwards and forwards in the time range.<br />
-        Only applicable when option <code>zoomKey</code> is defined or <code>zoomable</code> is <code>false</code>.<br />
-        If you also set <code>verticalScroll: true</code>, then the vertical direction will be preferred, unless the user has hardware to specifically scroll horizontally.<br />
-        If you need bi-directional scrolling with regular vertical scroll-wheels, then take a look at <code>horizontalScrollKey</code>.<br />
-        And if you want to invert the direction see <code>horizontalScrollInvert</code>.
-      </td>
-    </tr>
+        <tr>
+          <td>horizontalScroll</td>
+          <td>Boolean</td>
+          <td><code>false</code></td>
+          <td>
+            This option allows you to scroll horizontally to move backwards and
+            forwards in the time range.<br />
+            Only applicable when option <code>zoomKey</code> is defined or
+            <code>zoomable</code> is <code>false</code>.<br />
+            If you also set <code>verticalScroll: true</code>, then the vertical
+            direction will be preferred, unless the user has hardware to
+            specifically scroll horizontally.<br />
+            If you need bi-directional scrolling with regular vertical
+            scroll-wheels, then take a look at
+            <code>horizontalScrollKey</code>.<br />
+            And if you want to invert the direction see
+            <code>horizontalScrollInvert</code>.
+          </td>
+        </tr>
 
-    <tr>
-      <td>horizontalScrollKey</td>
-      <td>String</td>
-      <td><code>''</code></td>
-      <td>
-        This option allows you to scroll horizontally with a vertical scroll-wheel, while holding down a key.<br/>
-        Available values are <code>''</code> (does not apply), <code>'altKey'</code>, <code>'ctrlKey'</code>, <code>'shiftKey'</code> or <code>'metaKey'</code>.<br />
-        Only applicable when option <code>horizontalScroll</code> is defined.<br />
-        Note: Hardware which directly enables horizontal scrolling is unaffected by this setting, since the user can control that behaviour independently via the driver.
-      </td>
-    </tr>
+        <tr>
+          <td>horizontalScrollKey</td>
+          <td>String</td>
+          <td><code>''</code></td>
+          <td>
+            This option allows you to scroll horizontally with a vertical
+            scroll-wheel, while holding down a key.<br />
+            Available values are <code>''</code> (does not apply),
+            <code>'altKey'</code>, <code>'ctrlKey'</code>,
+            <code>'shiftKey'</code> or <code>'metaKey'</code>.<br />
+            Only applicable when option <code>horizontalScroll</code> is
+            defined.<br />
+            Note: Hardware which directly enables horizontal scrolling is
+            unaffected by this setting, since the user can control that
+            behaviour independently via the driver.
+          </td>
+        </tr>
 
-    <tr>
-      <td>horizontalScrollInvert</td>
-      <td>Boolean</td>
-      <td><code>false</code></td>
-      <td>
-        This option allows you to invert the horizontal scroll direction.<br />
-        By default scroll-up will move the view to the right (future) and scroll-down to the left (past).<br />
-        Only applicable when option <code>horizontalScroll</code> is defined.<br />
-        Note: Hardware which directly enables horizontal scrolling is unaffected by this setting, since the user can control that behaviour independently via the driver.
-      </td>
-    </tr>
+        <tr>
+          <td>horizontalScrollInvert</td>
+          <td>Boolean</td>
+          <td><code>false</code></td>
+          <td>
+            This option allows you to invert the horizontal scroll direction.<br />
+            By default scroll-up will move the view to the right (future) and
+            scroll-down to the left (past).<br />
+            Only applicable when option <code>horizontalScroll</code> is
+            defined.<br />
+            Note: Hardware which directly enables horizontal scrolling is
+            unaffected by this setting, since the user can control that
+            behaviour independently via the driver.
+          </td>
+        </tr>
 
         <tr
           class="toggle collapsible"

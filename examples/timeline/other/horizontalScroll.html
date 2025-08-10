@@ -2,8 +2,12 @@
   <head>
     <title>Timeline | other | Horizontal Scroll Option</title>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../../standalone/umd/vis-timeline-graph2d.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
   </head>
 
   <body>
@@ -47,23 +51,23 @@
         }
       }
 
-  // specify options
-  var options = {
-    stack: true,
-    horizontalScroll: true,
-    // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with 'horizontalScrollKey'
-    horizontalScrollInvert: true,
-    zoomKey: 'ctrlKey',
-    maxHeight: 400,
-    start: new Date(),
-    end: new Date(1000*60*60*24 + (new Date()).valueOf()),
-    editable: true,
-    margin: {
-      item: 10, // minimal margin between items
-      axis: 5   // minimal margin between items and the axis
-    },
-    orientation: 'top'
-  };
+      // specify options
+      var options = {
+        stack: true,
+        horizontalScroll: true,
+        // Invert the horizontal scroll direction when using a vertical scroll-wheel in combination with 'horizontalScrollKey'
+        horizontalScrollInvert: true,
+        zoomKey: "ctrlKey",
+        maxHeight: 400,
+        start: new Date(),
+        end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+        editable: true,
+        margin: {
+          item: 10, // minimal margin between items
+          axis: 5, // minimal margin between items and the axis
+        },
+        orientation: "top",
+      };
 
       // create a Timeline
       var container = document.getElementById("visualization");
