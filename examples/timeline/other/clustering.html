@@ -47,12 +47,18 @@
 </p>
 <button class="zoom" data-dir="1">Zoom in</button>
 <button class="zoom" data-dir="-1">Zoom out</button>
-</br>
-<input type="checkbox" id="clusterCheckbox">Enable clustering</button>
-</br>
-<input type="checkbox" id="groupItemsCheckBox">Enable grouping</button>
-</br>
-</br>
+<br>
+<label>
+  <input type="checkbox" id="clusterCheckbox">
+  Enable clustering
+</label>
+<br>
+<label>
+  <input type="checkbox" id="groupItemsCheckBox">
+  Enable grouping
+</label>
+<br>
+<br>
 
 <div>
   <label for="total-days-number">Days number:</label>
@@ -65,13 +71,13 @@
     <input class="slider-value" type="text" id="orders-per-day-number" readonly/>
     <div class="slider" id="orders-per-day-slider"></div>
 </div>
-</br>
+<br>
 <div>
     <label for="total-orders-count">Total orders:</label>
     <input class="slider-value" type="text" id="total-orders-count" readonly/>
 </div>
 
-</br>
+<br>
 <div id="visualization"></div>
 
 <script>

@@ -32,17 +32,36 @@
 <p>Specify individual items to be editable or readonly. Toggle edit options and override behavior from timeline.editable</p>
 
 <div id="visualization"></div>
-<p>
 <form>
-Timeline.editable = {</br>
-<input name="add" type="checkbox" checked>add</input></br>
-<input name="remove" type="checkbox" checked>remove</input></br>
-<input name="updateGroup" type="checkbox">updateGroup</input></br>
-<input name="updateTime" type="checkbox" checked>updateTime</input><br>
-<input name="overrideItems" type="checkbox">overrideItems</input><br>
+Timeline.editable = {
+  <br>
+  <label>
+    <input name="add" type="checkbox" checked>
+    add
+  </label>
+  <br>
+  <label>
+    <input name="remove" type="checkbox" checked>
+    remove
+  </label>
+  <br>
+  <label>
+    <input name="updateGroup" type="checkbox">
+    updateGroup
+  </label>
+  <br>
+  <label>
+    <input name="updateTime" type="checkbox" checked>
+    updateTime
+  </label>
+  <br>
+  <label>
+    <input name="overrideItems" type="checkbox">
+    overrideItems
+  </label>
+  <br>
 }
 </form>
-</p>
 <script>
   // create a DataSet with items
   var items = new vis.DataSet([
