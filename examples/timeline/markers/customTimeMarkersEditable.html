@@ -1,41 +1,58 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | markers | Editable markers</title>
+  <head>
+    <title>Timeline | markers | Editable markers</title>
 
-  <style type="text/css">
-    body, html {
-      font-family: sans-serif;
-      font-size: 11pt;
-    }
-  </style>
+    <style type="text/css">
+      body,
+      html {
+        font-family: sans-serif;
+        font-size: 11pt;
+      }
+    </style>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>Custom time markers have an option to make the title editable.</p>
 
-</head>
-<body>
+    <div id="visualization"></div>
 
-<p>Custom time markers have an option to make the title editable.</p>
+    <script type="text/javascript">
+      var container = document.getElementById("visualization");
+      var items = new vis.DataSet();
+      var customDate = new Date();
+      var options = {
+        start: new Date(Date.now() - 1000 * 60 * 60 * 24),
+        end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6),
+      };
+      var timeline = new vis.Timeline(container, items, options);
 
-<div id="visualization"></div>
-
-<script type="text/javascript">
-  var container = document.getElementById('visualization');
-  var items = new vis.DataSet();
-  var customDate = new Date();
-  var options = {
-    start: new Date(Date.now() - 1000 * 60 * 60 * 24),
-    end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
-  };
-  var timeline = new vis.Timeline(container, items, options);
-
-  var id1 = 'id1';
-  var id2 = 'id2';
-  timeline.addCustomTime(new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 2), id1);
-  timeline.setCustomTimeMarker("This is editable", id1, true);
-  timeline.addCustomTime(new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 3), id2);
-  timeline.setCustomTimeMarker("This is not editable", id2, false);
-</script>
-</body>
+      var id1 = "id1";
+      var id2 = "id2";
+      timeline.addCustomTime(
+        new Date(
+          customDate.getFullYear(),
+          customDate.getMonth(),
+          customDate.getDate() + 2,
+        ),
+        id1,
+      );
+      timeline.setCustomTimeMarker("This is editable", id1, true);
+      timeline.addCustomTime(
+        new Date(
+          customDate.getFullYear(),
+          customDate.getMonth(),
+          customDate.getDate() + 3,
+        ),
+        id2,
+      );
+      timeline.setCustomTimeMarker("This is not editable", id2, false);
+    </script>
+  </body>
 </html>

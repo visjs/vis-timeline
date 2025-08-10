@@ -1,65 +1,69 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | other | Localization</title>
+  <head>
+    <title>Timeline | other | Localization</title>
 
-  <style type="text/css">
-    body, html, select {
-      font-family: sans-serif;
-      font-size: 11pt;
-    }
-  </style>
+    <style type="text/css">
+      body,
+      html,
+      select {
+        font-family: sans-serif;
+        font-size: 11pt;
+      }
+    </style>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  
-</head>
-<body>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>
+      <label for="locale">Select a locale:</label>
+      <select id="locale">
+        <option value="en" selected>en</option>
+        <option value="it">it</option>
+        <option value="fr">fr</option>
+        <option value="nl">nl</option>
+        <option value="de">de</option>
+      </select>
+    </p>
 
-<p>
-  <label for="locale">Select a locale:</label>
-  <select id="locale">
-    <option value="en" selected>en</option>
-    <option value="it">it</option>
-    <option value="fr">fr</option>
-    <option value="nl">nl</option>
-    <option value="de">de</option>
-  </select>
-</p>
+    <div id="visualization"></div>
 
-<div id="visualization"></div>
+    <script type="text/javascript">
+      var DAY = 24 * 60 * 60 * 1000;
 
-<script type="text/javascript">
-  var DAY = 24 * 60 * 60 * 1000;
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById("visualization");
 
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        { id: 1, content: "item 1", start: new Date(Date.now() - DAY) },
+        { id: 2, content: "item 2", start: new Date(Date.now() + 2 * DAY) },
+      ]);
 
-  // Create a DataSet (allows two way data-binding)
-  var items = new vis.DataSet([
-    {id: 1, content: 'item 1', start: new Date(Date.now() - DAY)},
-    {id: 2, content: 'item 2', start: new Date(Date.now() + 2 * DAY)}
-  ]);
+      // Configuration for the Timeline
+      var options = {
+        showCurrentTime: true,
+      };
 
-  // Configuration for the Timeline
-  var options = {
-    showCurrentTime: true
-  };
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, options);
+      timeline.addCustomTime(new Date());
 
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
-  timeline.addCustomTime(new Date());
+      timeline.setCustomTime(new Date(Date.now() + DAY));
 
-  timeline.setCustomTime(new Date(Date.now() + DAY));
-
-  // update the locale when changing the select box value
-  var select = document.getElementById('locale');
-  select.onchange = function () {
-    timeline.setOptions({
-      locale: this.value
-    });
-  };
-  select.onchange();
-</script>
-</body>
+      // update the locale when changing the select box value
+      var select = document.getElementById("locale");
+      select.onchange = function () {
+        timeline.setOptions({
+          locale: this.value,
+        });
+      };
+      select.onchange();
+    </script>
+  </body>
 </html>

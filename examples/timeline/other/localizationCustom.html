@@ -1,83 +1,95 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | other | Custom Localization</title>
+  <head>
+    <title>Timeline | other | Custom Localization</title>
 
-  <style type="text/css">
-    body, html, select {
-      font-family: sans-serif;
-      font-size: 11pt;
-    }
-  </style>
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/tr.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/sq.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ar.js"></script>
-
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  
-</head>
-<body>
-
-<p>
-  <label for="locale">Select a locale:</label>
-  <select id="locale">
-    <option value="tr" selected>tr</option>
-    <option value="sq">hy</option>
-    <option value="ar">ar</option>
-  </select>
-</p>
-
-<div id="visualization"></div>
-
-<script type="text/javascript">
-  var DAY = 24 * 60 * 60 * 1000;
-
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
-
-  // Create a DataSet (allows two way data-binding)
-  var items = new vis.DataSet([
-    {id: 1, content: 'item 1', start: new Date(new Date().valueOf() - DAY)},
-    {id: 2, content: 'item 2', start: new Date(new Date().valueOf() + 2 * DAY)}
-  ]);
-
-  // Configuration for the Timeline
-  var options = {
-    showCurrentTime: true,
-    locale: 'tr',
-    locales: {
-      tr: {
-        current: 'geçerli',
-        time: 'kere',
-      },
-      sq: {
-        current: 'ընթացիկ',
-        time: 'ժամ',
-      },
-      ar: {
-        current: 'حالي',
-        time: 'وقت',
+    <style type="text/css">
+      body,
+      html,
+      select {
+        font-family: sans-serif;
+        font-size: 11pt;
       }
-    }
-  };
+    </style>
 
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
-  timeline.addCustomTime(new Date());
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/tr.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/sq.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/locale/ar.js"></script>
 
-  timeline.setCustomTime(new Date(new Date().valueOf() + DAY));
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>
+      <label for="locale">Select a locale:</label>
+      <select id="locale">
+        <option value="tr" selected>tr</option>
+        <option value="sq">hy</option>
+        <option value="ar">ar</option>
+      </select>
+    </p>
 
-  // update the locale when changing the select box value
-  var select = document.getElementById('locale');
-  select.onchange = function () {
-    timeline.setOptions({
-      locale: this.value
-    });
-  };
-  select.onchange();
-</script>
-</body>
+    <div id="visualization"></div>
+
+    <script type="text/javascript">
+      var DAY = 24 * 60 * 60 * 1000;
+
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById("visualization");
+
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        {
+          id: 1,
+          content: "item 1",
+          start: new Date(new Date().valueOf() - DAY),
+        },
+        {
+          id: 2,
+          content: "item 2",
+          start: new Date(new Date().valueOf() + 2 * DAY),
+        },
+      ]);
+
+      // Configuration for the Timeline
+      var options = {
+        showCurrentTime: true,
+        locale: "tr",
+        locales: {
+          tr: {
+            current: "geçerli",
+            time: "kere",
+          },
+          sq: {
+            current: "ընթացիկ",
+            time: "ժամ",
+          },
+          ar: {
+            current: "حالي",
+            time: "وقت",
+          },
+        },
+      };
+
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, options);
+      timeline.addCustomTime(new Date());
+
+      timeline.setCustomTime(new Date(new Date().valueOf() + DAY));
+
+      // update the locale when changing the select box value
+      var select = document.getElementById("locale");
+      select.onchange = function () {
+        timeline.setOptions({
+          locale: this.value,
+        });
+      };
+      select.onchange();
+    </script>
+  </body>
 </html>

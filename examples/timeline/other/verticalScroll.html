@@ -1,92 +1,88 @@
 <html>
-<head>
-  <title>Timeline | other | Vertical Scroll Option</title>
+  <head>
+    <title>Timeline | other | Vertical Scroll Option</title>
 
-  <meta name="example-screenshot-selector" content="#mytimeline1" />
+    <meta name="example-screenshot-selector" content="#mytimeline1" />
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
 
-  
-</head>
+  <body>
+    <h1>Timeline vertical scroll option</h1>
 
-<body>
+    <h2>With <code> verticalScroll: true, zoomKey: 'ctrlKey'</code></h2>
 
-<h1>Timeline vertical scroll option</h1>
+    <div id="mytimeline1"></div>
 
-<h2>With <code>
-verticalScroll: true,
-zoomKey: 'ctrlKey'</code>
-</h2>
+    <h2>
+      With
+      <code>
+        horizontalScroll: true, verticalScroll: true, zoomKey: 'ctrlKey'</code
+      >
+    </h2>
+    <div id="mytimeline2"></div>
+    <script>
+      // create groups
+      var numberOfGroups = 25;
+      var groups = new vis.DataSet();
+      for (var i = 0; i < numberOfGroups; i++) {
+        groups.add({
+          id: i,
+          content: "Truck&nbsp;" + i,
+        });
+      }
 
-<div id="mytimeline1"></div>
+      // create items
+      var numberOfItems = 1000;
+      var items = new vis.DataSet();
 
-<h2>With <code>
-horizontalScroll: true,
-verticalScroll: true,
-zoomKey: 'ctrlKey'</code>
-</h2>
-<div id="mytimeline2"></div>
-<script>
+      var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
 
-  // create groups
-  var numberOfGroups = 25; 
-  var groups = new vis.DataSet()
-  for (var i = 0; i < numberOfGroups; i++) {
-    groups.add({
-      id: i,
-      content: 'Truck&nbsp;' + i
-    })
-  }
-  
-  // create items
-  var numberOfItems = 1000;
-  var items = new vis.DataSet();
+      for (var truck = 0; truck < numberOfGroups; truck++) {
+        var date = new Date();
+        for (var order = 0; order < itemsPerGroup; order++) {
+          date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
+          var start = new Date(date);
 
-  var itemsPerGroup = Math.round(numberOfItems/numberOfGroups);
+          date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+          var end = new Date(date);
 
-  for (var truck = 0; truck < numberOfGroups; truck++) {
-    var date = new Date();
-    for (var order = 0; order < itemsPerGroup; order++) {
-      date.setHours(date.getHours() +  4 * (Math.random() < 0.2));
-      var start = new Date(date);
+          var orderIndex = order + itemsPerGroup * truck;
+          items.add({
+            id: orderIndex,
+            group: truck,
+            start: start,
+            end: end,
+            content: "Order " + orderIndex,
+          });
+        }
+      }
 
-      date.setHours(date.getHours() + 2 + Math.floor(Math.random()*4));
-      var end = new Date(date);
+      // specify options
+      var options = {
+        stack: true,
+        verticalScroll: true,
+        zoomKey: "ctrlKey",
+        maxHeight: 200,
+        start: new Date(),
+        end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+      };
 
-      var orderIndex = order + itemsPerGroup * truck
-      items.add({
-        id: orderIndex,
-        group: truck,
-        start: start,
-        end: end,
-        content: 'Order ' + orderIndex
-      });
-    }
-  }
-  
-  // specify options
-  var options = {
-    stack: true,
-    verticalScroll: true,
-    zoomKey: 'ctrlKey',
-    maxHeight: 200,
-    start: new Date(),
-    end: new Date(1000*60*60*24 + (new Date()).valueOf()),
-  };
+      // create a Timeline
 
-  // create a Timeline
+      options1 = jQuery.extend(options, {});
+      var container1 = document.getElementById("mytimeline1");
+      timeline1 = new vis.Timeline(container1, items, groups, options1);
 
-  options1 = jQuery.extend(options, {});
-  var container1 = document.getElementById('mytimeline1');
-  timeline1 = new vis.Timeline(container1, items, groups, options1);
-
-  options2 = jQuery.extend(options, {horizontalScroll: true});
-  var container2 = document.getElementById('mytimeline2');
-  timeline2 = new vis.Timeline(container2, items, groups, options2);
-
-</script>
-
-</body>
+      options2 = jQuery.extend(options, { horizontalScroll: true });
+      var container2 = document.getElementById("mytimeline2");
+      timeline2 = new vis.Timeline(container2, items, groups, options2);
+    </script>
+  </body>
 </html>
