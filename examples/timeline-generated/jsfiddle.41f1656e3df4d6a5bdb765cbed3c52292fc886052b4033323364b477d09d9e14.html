@@ -46,8 +46,16 @@ var container = document.getElementById("visualization");
 
 // Create a DataSet (allows two way data-binding)
 var items = new vis.DataSet([
-  { id: 1, content: "item 1", start: new Date(new Date().valueOf() - DAY) },
-  { id: 2, content: "item 2", start: new Date(new Date().valueOf() + 2 * DAY) },
+  {
+    id: 1,
+    content: "item 1",
+    start: new Date(new Date().valueOf() - DAY),
+  },
+  {
+    id: 2,
+    content: "item 2",
+    start: new Date(new Date().valueOf() + 2 * DAY),
+  },
 ]);
 
 // Configuration for the Timeline

@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-08-08T21:42:32.197Z
+ * @date    2025-08-10T09:31:11.273Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1982,7 +1982,7 @@ var _forEachInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(forEachExpor
 
 // Check if Moment.js is already loaded in the browser window, if so, use this
 // instance, else use bundled Moment.js.
-const moment$2 = typeof window !== 'undefined' && window['moment'] || moment$3;
+const moment$2 = typeof window !== "undefined" && window["moment"] || moment$3;
 
 var es_symbol = {};
 
@@ -16004,7 +16004,7 @@ const setupXSSProtection = options => {
   // Disable XSS protection completely on request
   if (options.disabled === true) {
     configuredXSSProtection = setupNoOpCleaner;
-    console.warn('You disabled XSS protection for vis-Timeline. I sure hope you know what you\'re doing!');
+    console.warn("You disabled XSS protection for vis-Timeline. I sure hope you know what you're doing!");
   } else {
     // Configure XSS protection with some custom options.
     // For a list of valid options check the lib's documentation:
@@ -16018,7 +16018,7 @@ const availableUtils = _objectSpread(_objectSpread({}, util$2), {}, {
   convert,
   setupXSSProtection
 });
-_Object$defineProperty(availableUtils, 'xss', {
+_Object$defineProperty(availableUtils, "xss", {
   get: function () {
     return configuredXSSProtection;
   }
@@ -16114,11 +16114,8 @@ var _parseFloat = /*@__PURE__*/getDefaultExportFromCjs(_parseFloatExports);
 /** Prototype for visual components */
 class Component {
   /**
-  * @param {{dom: Object, domProps: Object, emitter: Emitter, range: Range}} [body]
-  * @param {Object} [options]
-  */
-  constructor(body, options) {
-    // eslint-disable-line no-unused-vars
+   */
+  constructor() {
     this.options = null;
     this.props = null;
   }
@@ -16502,7 +16499,7 @@ var _sortInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(sortExports);
 
 /**
  * used in Core to convert the options into a volatile variable
- * 
+ *
  * @param {function} moment
  * @param {Object} body
  * @param {Array | Object} hiddenDates
@@ -16567,13 +16564,13 @@ function updateHiddenDates(moment, body, hiddenDates) {
               if (startDate.day() != endDate.day()) {
                 offset = 1;
               }
-              startDate = startDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7, 'days');
-              endDate = endDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7 - offset, 'days');
-              runUntil.add(1, 'weeks');
+              startDate = startDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7, "days");
+              endDate = endDate.dayOfYear(start.dayOfYear()).year(start.year()).subtract(7 - offset, "days");
+              runUntil.add(1, "weeks");
               break;
             case "weekly":
               {
-                const dayOffset = endDate.diff(startDate, 'days');
+                const dayOffset = endDate.diff(startDate, "days");
                 const day = startDate.day();
 
                 // set the start date to the range.start
@@ -16581,26 +16578,26 @@ function updateHiddenDates(moment, body, hiddenDates) {
                 endDate = startDate.clone();
 
                 // force
-                startDate = startDate.day(day).subtract(1, 'weeks');
-                endDate = endDate.day(day).add(dayOffset, 'days').subtract(1, 'weeks');
-                runUntil.add(1, 'weeks');
+                startDate = startDate.day(day).subtract(1, "weeks");
+                endDate = endDate.day(day).add(dayOffset, "days").subtract(1, "weeks");
+                runUntil.add(1, "weeks");
                 break;
               }
             case "monthly":
               if (startDate.month() != endDate.month()) {
                 offset = 1;
               }
-              startDate = startDate.month(start.month()).year(start.year()).subtract(1, 'months');
-              endDate = endDate.month(start.month()).year(start.year()).subtract(1, 'months').add(offset, 'months');
-              runUntil.add(1, 'months');
+              startDate = startDate.month(start.month()).year(start.year()).subtract(1, "months");
+              endDate = endDate.month(start.month()).year(start.year()).subtract(1, "months").add(offset, "months");
+              runUntil.add(1, "months");
               break;
             case "yearly":
               if (startDate.year() != endDate.year()) {
                 offset = 1;
               }
-              startDate = startDate.year(start.year()).subtract(1, 'years');
-              endDate = endDate.year(start.year()).subtract(1, 'years').add(offset, 'years');
-              runUntil.add(1, 'years');
+              startDate = startDate.year(start.year()).subtract(1, "years");
+              endDate = endDate.year(start.year()).subtract(1, "years").add(offset, "years");
+              runUntil.add(1, "years");
               break;
             default:
               console.log("Wrong repeat format, allowed are: daily, weekly, monthly, yearly. Given:", _repeatInstanceProperty(hiddenDates[i]));
@@ -16613,20 +16610,20 @@ function updateHiddenDates(moment, body, hiddenDates) {
             });
             switch (_repeatInstanceProperty(hiddenDates[i])) {
               case "daily":
-                startDate = startDate.add(1, 'days');
-                endDate = endDate.add(1, 'days');
+                startDate = startDate.add(1, "days");
+                endDate = endDate.add(1, "days");
                 break;
               case "weekly":
-                startDate = startDate.add(1, 'weeks');
-                endDate = endDate.add(1, 'weeks');
+                startDate = startDate.add(1, "weeks");
+                endDate = endDate.add(1, "weeks");
                 break;
               case "monthly":
-                startDate = startDate.add(1, 'months');
-                endDate = endDate.add(1, 'months');
+                startDate = startDate.add(1, "months");
+                endDate = endDate.add(1, "months");
                 break;
               case "yearly":
-                startDate = startDate.add(1, 'y');
-                endDate = endDate.add(1, 'y');
+                startDate = startDate.add(1, "y");
+                endDate = endDate.add(1, "y");
                 break;
               default:
                 console.log("Wrong repeat format, allowed are: daily, weekly, monthly, yearly. Given:", _repeatInstanceProperty(hiddenDates[i]));
@@ -17015,17 +17012,17 @@ var DateUtil = /*#__PURE__*/Object.freeze({
  */
 class Range extends Component {
   /**
-  * @param {{dom: Object, domProps: Object, emitter: Emitter}} body
-  * @param {Object} [options]    See description at Range.setOptions
-  * @constructor Range
-  * @extends Component
-  */
+   * @param {{dom: Object, domProps: Object, emitter: Emitter}} body
+   * @param {Object} [options]    See description at Range.setOptions
+   * @constructor Range
+   * @extends Component
+   */
   constructor(body, options) {
     var _context, _context2, _context3, _context4, _context5, _context6, _context7;
     super();
     const now = moment$2().hours(0).minutes(0).seconds(0).milliseconds(0);
-    const start = now.clone().add(-3, 'days').valueOf();
-    const end = now.clone().add(3, 'days').valueOf();
+    const start = now.clone().add(-3, "days").valueOf();
+    const end = now.clone().add(3, "days").valueOf();
     this.millisecondsPerPixelCache = undefined;
     if (options === undefined) {
       this.start = start;
@@ -17047,7 +17044,7 @@ class Range extends Component {
       start: null,
       end: null,
       moment: moment$2,
-      direction: 'horizontal',
+      direction: "horizontal",
       // 'horizontal' or 'vertical'
       moveable: true,
       zoomable: true,
@@ -17069,19 +17066,19 @@ class Range extends Component {
     this.animationTimer = null;
 
     // drag listeners for dragging
-    this.body.emitter.on('panstart', _bindInstanceProperty(_context = this._onDragStart).call(_context, this));
-    this.body.emitter.on('panmove', _bindInstanceProperty(_context2 = this._onDrag).call(_context2, this));
-    this.body.emitter.on('panend', _bindInstanceProperty(_context3 = this._onDragEnd).call(_context3, this));
+    this.body.emitter.on("panstart", _bindInstanceProperty(_context = this._onDragStart).call(_context, this));
+    this.body.emitter.on("panmove", _bindInstanceProperty(_context2 = this._onDrag).call(_context2, this));
+    this.body.emitter.on("panend", _bindInstanceProperty(_context3 = this._onDragEnd).call(_context3, this));
 
     // mouse wheel for zooming
-    this.body.emitter.on('mousewheel', _bindInstanceProperty(_context4 = this._onMouseWheel).call(_context4, this));
+    this.body.emitter.on("mousewheel", _bindInstanceProperty(_context4 = this._onMouseWheel).call(_context4, this));
 
     // pinch to zoom
-    this.body.emitter.on('touch', _bindInstanceProperty(_context5 = this._onTouch).call(_context5, this));
-    this.body.emitter.on('pinch', _bindInstanceProperty(_context6 = this._onPinch).call(_context6, this));
+    this.body.emitter.on("touch", _bindInstanceProperty(_context5 = this._onTouch).call(_context5, this));
+    this.body.emitter.on("pinch", _bindInstanceProperty(_context6 = this._onPinch).call(_context6, this));
 
     // on click of rolling mode button
-    this.body.dom.rollingModeBtn.addEventListener('click', _bindInstanceProperty(_context7 = this.startRolling).call(_context7, this));
+    this.body.dom.rollingModeBtn.addEventListener("click", _bindInstanceProperty(_context7 = this.startRolling).call(_context7, this));
     this.setOptions(options);
   }
 
@@ -17104,12 +17101,12 @@ class Range extends Component {
   setOptions(options) {
     if (options) {
       // copy the options that we know
-      const fields = ['animation', 'direction', 'min', 'max', 'zoomMin', 'zoomMax', 'moveable', 'zoomable', 'moment', 'activate', 'hiddenDates', 'zoomKey', 'zoomFriction', 'rtl', 'showCurrentTime', 'rollingMode', 'horizontalScroll'];
+      const fields = ["animation", "direction", "min", "max", "zoomMin", "zoomMax", "moveable", "zoomable", "moment", "activate", "hiddenDates", "zoomKey", "zoomFriction", "rtl", "showCurrentTime", "rollingMode", "horizontalScroll"];
       availableUtils.selectiveExtend(fields, this.options, options);
       if (options.rollingMode && options.rollingMode.follow) {
         this.startRolling();
       }
-      if ('start' in options || 'end' in options) {
+      if ("start" in options || "end" in options) {
         // apply a new range. both start and end are optional
         this.setRange(options.start, options.end);
       }
@@ -17129,7 +17126,7 @@ class Range extends Component {
       me.stopRolling();
       me.rolling = true;
       let interval = me.end - me.start;
-      const t = availableUtils.convert(new Date(), 'Date').valueOf();
+      const t = availableUtils.convert(new Date(), "Date").valueOf();
       const rollingModeOffset = me.options.rollingMode && me.options.rollingMode.offset || 0.5;
       const start = t - interval * rollingModeOffset;
       const end = t + interval * (1 - rollingModeOffset);
@@ -17174,7 +17171,7 @@ class Range extends Component {
    *                                    function is 'easeInOutQuad'.
    *                              {boolean} [byUser=false]
    *                              {Event}  event  Mouse event
-   * @param {Function} callback     a callback function to be executed at the end of this function  
+   * @param {Function} callback     a callback function to be executed at the end of this function
    * @param {Function} frameCallback    a callback function executed each frame of the range animation.
    *                                    The callback will be passed three parameters:
    *                                    {number} easeCoefficient    an easing coefficent
@@ -17190,20 +17187,20 @@ class Range extends Component {
       options.byUser = false;
     }
     const me = this;
-    const finalStart = start != undefined ? availableUtils.convert(start, 'Date').valueOf() : null;
-    const finalEnd = end != undefined ? availableUtils.convert(end, 'Date').valueOf() : null;
+    const finalStart = start != undefined ? availableUtils.convert(start, "Date").valueOf() : null;
+    const finalEnd = end != undefined ? availableUtils.convert(end, "Date").valueOf() : null;
     this._cancelAnimation();
     this.millisecondsPerPixelCache = undefined;
     if (options.animation) {
       // true or an Object
       const initStart = this.start;
       const initEnd = this.end;
-      const duration = typeof options.animation === 'object' && 'duration' in options.animation ? options.animation.duration : 500;
-      const easingName = typeof options.animation === 'object' && 'easingFunction' in options.animation ? options.animation.easingFunction : 'easeInOutQuad';
+      const duration = typeof options.animation === "object" && "duration" in options.animation ? options.animation.duration : 500;
+      const easingName = typeof options.animation === "object" && "easingFunction" in options.animation ? options.animation.easingFunction : "easeInOutQuad";
       const easingFunction = availableUtils.easingFunctions[easingName];
       if (!easingFunction) {
         var _context8;
-        throw new Error(_concatInstanceProperty(_context8 = "Unknown easing function ".concat(_JSON$stringify(easingName), ". Choose from: ")).call(_context8, _Object$keys(availableUtils.easingFunctions).join(', ')));
+        throw new Error(_concatInstanceProperty(_context8 = "Unknown easing function ".concat(_JSON$stringify(easingName), ". Choose from: ")).call(_context8, _Object$keys(availableUtils.easingFunctions).join(", ")));
       }
       const initTime = _Date$now();
       let anyChanged = false;
@@ -17228,11 +17225,11 @@ class Range extends Component {
             frameCallback(ease, changed, done);
           }
           if (changed) {
-            me.body.emitter.emit('rangechange', params);
+            me.body.emitter.emit("rangechange", params);
           }
           if (done) {
             if (anyChanged) {
-              me.body.emitter.emit('rangechanged', params);
+              me.body.emitter.emit("rangechanged", params);
               if (callback) {
                 return callback();
               }
@@ -17255,10 +17252,10 @@ class Range extends Component {
           byUser: options.byUser,
           event: options.event
         };
-        this.body.emitter.emit('rangechange', params);
+        this.body.emitter.emit("rangechange", params);
         clearTimeout(me.timeoutID);
         me.timeoutID = _setTimeout(() => {
-          me.body.emitter.emit('rangechanged', params);
+          me.body.emitter.emit("rangechanged", params);
         }, 200);
         if (callback) {
           return callback();
@@ -17300,10 +17297,10 @@ class Range extends Component {
    * @private
    */
   _applyRange(start, end) {
-    let newStart = start != null ? availableUtils.convert(start, 'Date').valueOf() : this.start;
-    let newEnd = end != null ? availableUtils.convert(end, 'Date').valueOf() : this.end;
-    const max = this.options.max != null ? availableUtils.convert(this.options.max, 'Date').valueOf() : null;
-    const min = this.options.min != null ? availableUtils.convert(this.options.min, 'Date').valueOf() : null;
+    let newStart = start != null ? availableUtils.convert(start, "Date").valueOf() : this.start;
+    let newEnd = end != null ? availableUtils.convert(end, "Date").valueOf() : this.end;
+    const max = this.options.max != null ? availableUtils.convert(this.options.max, "Date").valueOf() : null;
+    const min = this.options.min != null ? availableUtils.convert(this.options.min, "Date").valueOf() : null;
     let diff;
 
     // check for valid number
@@ -17396,7 +17393,7 @@ class Range extends Component {
 
     // if the new range does NOT overlap with the old range, emit checkRangedItems to avoid not showing ranged items (ranged meaning has end time, not necessarily of type Range)
     if (!(newStart >= this.start && newStart <= this.end || newEnd >= this.start && newEnd <= this.end) && !(this.start >= newStart && this.start <= newEnd || this.end >= newStart && this.end <= newEnd)) {
-      this.body.emitter.emit('checkRangedItems');
+      this.body.emitter.emit("checkRangedItems");
     }
     this.start = newStart;
     this.end = newEnd;
@@ -17474,7 +17471,7 @@ class Range extends Component {
     this.props.touch.end = this.end;
     this.props.touch.dragging = true;
     if (this.body.dom.root) {
-      this.body.dom.root.style.cursor = 'move';
+      this.body.dom.root.style.cursor = "move";
     }
   }
 
@@ -17496,14 +17493,14 @@ class Range extends Component {
     if (!this.props.touch.allowDragging) return;
     const direction = this.options.direction;
     validateDirection(direction);
-    let delta = direction == 'horizontal' ? event.deltaX : event.deltaY;
+    let delta = direction == "horizontal" ? event.deltaX : event.deltaY;
     delta -= this.deltaDifference;
     let interval = this.props.touch.end - this.props.touch.start;
 
     // normalize dragging speed if cutout is in between.
     const duration = getHiddenDurationBetween(this.body.hiddenDates, this.start, this.end);
     interval -= duration;
-    const width = direction == 'horizontal' ? this.body.domProps.center.width : this.body.domProps.center.height;
+    const width = direction == "horizontal" ? this.body.domProps.center.width : this.body.domProps.center.height;
     let diffRange;
     if (this.options.rtl) {
       diffRange = delta / width * interval;
@@ -17529,7 +17526,7 @@ class Range extends Component {
     const endDate = new Date(this.end);
 
     // fire a rangechange event
-    this.body.emitter.emit('rangechange', {
+    this.body.emitter.emit("rangechange", {
       start: startDate,
       end: endDate,
       byUser: true,
@@ -17537,7 +17534,7 @@ class Range extends Component {
     });
 
     // fire a panmove event
-    this.body.emitter.emit('panmove');
+    this.body.emitter.emit("panmove");
   }
 
   /**
@@ -17557,11 +17554,11 @@ class Range extends Component {
     if (!this.props.touch.allowDragging) return;
     this.props.touch.dragging = false;
     if (this.body.dom.root) {
-      this.body.dom.root.style.cursor = 'auto';
+      this.body.dom.root.style.cursor = "auto";
     }
 
     // fire a rangechanged event
-    this.body.emitter.emit('rangechanged', {
+    this.body.emitter.emit("rangechanged", {
       start: new Date(this.start),
       end: new Date(this.end),
       byUser: true,
@@ -17644,7 +17641,6 @@ class Range extends Component {
    * @private
    */
   _onTouch(event) {
-    // eslint-disable-line no-unused-vars
     this.props.touch.start = this.start;
     this.props.touch.end = this.end;
     this.props.touch.allowDragging = true;
@@ -17733,7 +17729,7 @@ class Range extends Component {
     let conversion;
     const direction = this.options.direction;
     validateDirection(direction);
-    if (direction == 'horizontal') {
+    if (direction == "horizontal") {
       return this.body.util.toTime(pointer.x).valueOf();
     } else {
       const height = this.body.domProps.center.height;
@@ -17860,7 +17856,7 @@ class Range extends Component {
  * @param {string} direction    'horizontal' or 'vertical'
  */
 function validateDirection(direction) {
-  if (direction != 'horizontal' && direction != 'vertical') {
+  if (direction != "horizontal" && direction != "vertical") {
     throw new TypeError("Unknown direction \"".concat(direction, "\". Choose \"horizontal\" or \"vertical\"."));
   }
 }
@@ -18199,8 +18195,7 @@ function hammerMock() {
     off: noop,
     destroy: noop,
     emit: noop,
-    get(m) {
-      //eslint-disable-line no-unused-vars
+    get() {
       return {
         set: noop
       };
@@ -18208,10 +18203,10 @@ function hammerMock() {
   };
 }
 let modifiedHammer;
-if (typeof window !== 'undefined') {
-  const OurHammer = window['Hammer'] || Hammer$3;
+if (typeof window !== "undefined") {
+  const OurHammer = window["Hammer"] || Hammer$3;
   modifiedHammer = propagating(OurHammer, {
-    preventDefault: 'mouse'
+    preventDefault: "mouse"
   });
 } else {
   modifiedHammer = function () {
@@ -18232,7 +18227,7 @@ function onTouch(hammer, callback) {
       callback(event);
     }
   };
-  hammer.on('hammer.input', callback.inputHandler);
+  hammer.on("hammer.input", callback.inputHandler);
 }
 
 /**
@@ -18247,7 +18242,7 @@ function onRelease(hammer, callback) {
       callback(event);
     }
   };
-  return hammer.on('hammer.input', callback.inputHandler);
+  return hammer.on("hammer.input", callback.inputHandler);
 }
 
 /**
@@ -18260,7 +18255,7 @@ function onRelease(hammer, callback) {
  * @return {Hammer.Pinch} returns the pinchRecognizer
  */
 function disablePreventDefaultVertically(pinchRecognizer) {
-  const TOUCH_ACTION_PAN_Y = 'pan-y';
+  const TOUCH_ACTION_PAN_Y = "pan-y";
   pinchRecognizer.getTouchAction = function () {
     // default method returns [TOUCH_ACTION_NONE]
     return [TOUCH_ACTION_PAN_Y];
@@ -18291,14 +18286,14 @@ function disablePreventDefaultVertically(pinchRecognizer) {
  */
 class TimeStep {
   /**
-    * @param {Date} [start]         The start date, for example new Date(2010, 9, 21)
-    *                               or new Date(2010, 9, 21, 23, 45, 00)
-    * @param {Date} [end]           The end date
-    * @param {number} [minimumStep] Optional. Minimum step size in milliseconds
-    * @param {Date|Array.<Date>} [hiddenDates] Optional.
-    * @param {{showMajorLabels: boolean, showWeekScale: boolean}} [options] Optional.
-    * @constructor  TimeStep
-    */
+   * @param {Date} [start]         The start date, for example new Date(2010, 9, 21)
+   *                               or new Date(2010, 9, 21, 23, 45, 00)
+   * @param {Date} [end]           The end date
+   * @param {number} [minimumStep] Optional. Minimum step size in milliseconds
+   * @param {Date|Array.<Date>} [hiddenDates] Optional.
+   * @param {{showMajorLabels: boolean, showWeekScale: boolean}} [options] Optional.
+   * @constructor  TimeStep
+   */
   constructor(start, end, minimumStep, hiddenDates, options) {
     this.moment = options && options.moment || moment$2;
     this.options = options ? options : {};
@@ -18308,7 +18303,7 @@ class TimeStep {
     this._start = this.moment();
     this._end = this.moment();
     this.autoScale = true;
-    this.scale = 'day';
+    this.scale = "day";
     this.step = 1;
 
     // initialize the range
@@ -18389,30 +18384,30 @@ class TimeStep {
   roundToMinor() {
     // round to floor
     // to prevent year & month scales rounding down to the first day of week we perform this separately
-    if (this.scale == 'week') {
+    if (this.scale == "week") {
       this.current.weekday(0);
     }
     // IMPORTANT: we have no breaks in this switch! (this is no bug)
     // noinspection FallThroughInSwitchStatementJS
     switch (this.scale) {
-      case 'year':
+      case "year":
         this.current = this.current.year(this.step * Math.floor(this.current.year() / this.step)).month(0);
       // eslint-disable-next-line no-fallthrough
-      case 'month':
+      case "month":
         this.current = this.current.date(1);
       // eslint-disable-next-line no-fallthrough
-      case 'week':
-      case 'day':
-      case 'weekday':
+      case "week":
+      case "day":
+      case "weekday":
         this.current = this.current.hours(0);
       // eslint-disable-next-line no-fallthrough
-      case 'hour':
+      case "hour":
         this.current = this.current.minutes(0);
       // eslint-disable-next-line no-fallthrough
-      case 'minute':
+      case "minute":
         this.current = this.current.seconds(0);
       // eslint-disable-next-line no-fallthrough
-      case 'second':
+      case "second":
         this.current = this.current.milliseconds(0);
       //case 'millisecond': // nothing to do for milliseconds
     }
@@ -18420,30 +18415,30 @@ class TimeStep {
       // round down to the first minor value that is a multiple of the current step size
       let priorCurrent = this.current.clone();
       switch (this.scale) {
-        case 'millisecond':
-          this.current = this.current.subtract(this.current.milliseconds() % this.step, 'milliseconds');
+        case "millisecond":
+          this.current = this.current.subtract(this.current.milliseconds() % this.step, "milliseconds");
           break;
-        case 'second':
-          this.current = this.current.subtract(this.current.seconds() % this.step, 'seconds');
+        case "second":
+          this.current = this.current.subtract(this.current.seconds() % this.step, "seconds");
           break;
-        case 'minute':
-          this.current = this.current.subtract(this.current.minutes() % this.step, 'minutes');
+        case "minute":
+          this.current = this.current.subtract(this.current.minutes() % this.step, "minutes");
           break;
-        case 'hour':
-          this.current = this.current.subtract(this.current.hours() % this.step, 'hours');
+        case "hour":
+          this.current = this.current.subtract(this.current.hours() % this.step, "hours");
           break;
-        case 'weekday': // intentional fall through
-        case 'day':
-          this.current = this.current.subtract((this.current.date() - 1) % this.step, 'day');
+        case "weekday": // intentional fall through
+        case "day":
+          this.current = this.current.subtract((this.current.date() - 1) % this.step, "day");
           break;
-        case 'week':
-          this.current = this.current.subtract(this.current.week() % this.step, 'week');
+        case "week":
+          this.current = this.current.subtract(this.current.week() % this.step, "week");
           break;
-        case 'month':
-          this.current = this.current.subtract(this.current.month() % this.step, 'month');
+        case "month":
+          this.current = this.current.subtract(this.current.month() % this.step, "month");
           break;
-        case 'year':
-          this.current = this.current.subtract(this.current.year() % this.step, 'year');
+        case "year":
+          this.current = this.current.subtract(this.current.year() % this.step, "year");
           break;
       }
       if (!priorCurrent.isSame(this.current)) {
@@ -18469,78 +18464,78 @@ class TimeStep {
     // Two cases, needed to prevent issues with switching daylight savings
     // (end of March and end of October)
     switch (this.scale) {
-      case 'millisecond':
-        this.current = this.current.add(this.step, 'millisecond');
+      case "millisecond":
+        this.current = this.current.add(this.step, "millisecond");
         break;
-      case 'second':
-        this.current = this.current.add(this.step, 'second');
+      case "second":
+        this.current = this.current.add(this.step, "second");
         break;
-      case 'minute':
-        this.current = this.current.add(this.step, 'minute');
+      case "minute":
+        this.current = this.current.add(this.step, "minute");
         break;
-      case 'hour':
-        this.current = this.current.add(this.step, 'hour');
+      case "hour":
+        this.current = this.current.add(this.step, "hour");
         if (this.current.month() < 6) {
-          this.current = this.current.subtract(this.current.hours() % this.step, 'hour');
+          this.current = this.current.subtract(this.current.hours() % this.step, "hour");
         } else {
           if (this.current.hours() % this.step !== 0) {
-            this.current = this.current.add(this.step - this.current.hours() % this.step, 'hour');
+            this.current = this.current.add(this.step - this.current.hours() % this.step, "hour");
           }
         }
         break;
-      case 'weekday': // intentional fall through
-      case 'day':
-        this.current = this.current.add(this.step, 'day');
+      case "weekday": // intentional fall through
+      case "day":
+        this.current = this.current.add(this.step, "day");
         break;
-      case 'week':
+      case "week":
         if (this.current.weekday() !== 0) {
           // we had a month break not correlating with a week's start before
-          this.current = this.current.weekday(0).add(this.step, 'week'); // switch back to week cycles
+          this.current = this.current.weekday(0).add(this.step, "week"); // switch back to week cycles
         } else if (this.options.showMajorLabels === false) {
-          this.current = this.current.add(this.step, 'week'); // the default case
+          this.current = this.current.add(this.step, "week"); // the default case
         } else {
           // first day of the week
           const nextWeek = this.current.clone();
-          nextWeek.add(1, 'week');
-          if (nextWeek.isSame(this.current, 'month')) {
+          nextWeek.add(1, "week");
+          if (nextWeek.isSame(this.current, "month")) {
             // is the first day of the next week in the same month?
-            this.current = this.current.add(this.step, 'week'); // the default case
+            this.current = this.current.add(this.step, "week"); // the default case
           } else {
             // inject a step at each first day of the month
-            this.current = this.current.add(this.step, 'week').date(1);
+            this.current = this.current.add(this.step, "week").date(1);
           }
         }
         break;
-      case 'month':
-        this.current = this.current.add(this.step, 'month');
+      case "month":
+        this.current = this.current.add(this.step, "month");
         break;
-      case 'year':
-        this.current = this.current.add(this.step, 'year');
+      case "year":
+        this.current = this.current.add(this.step, "year");
         break;
     }
     if (this.step != 1) {
       // round down to the correct major value
       switch (this.scale) {
-        case 'millisecond':
+        case "millisecond":
           if (this.current.milliseconds() > 0 && this.current.milliseconds() < this.step) this.current = this.current.milliseconds(0);
           break;
-        case 'second':
+        case "second":
           if (this.current.seconds() > 0 && this.current.seconds() < this.step) this.current = this.current.seconds(0);
           break;
-        case 'minute':
+        case "minute":
           if (this.current.minutes() > 0 && this.current.minutes() < this.step) this.current = this.current.minutes(0);
           break;
-        case 'hour':
+        case "hour":
           if (this.current.hours() > 0 && this.current.hours() < this.step) this.current = this.current.hours(0);
           break;
-        case 'weekday': // intentional fall through
-        case 'day':
+        case "weekday": // intentional fall through
+        case "day":
           if (this.current.date() < this.step + 1) this.current = this.current.date(1);
           break;
-        case 'week':
+        case "week":
           if (this.current.week() < this.step) this.current = this.current.week(1); // week numbering starts at 1, not 0
           break;
-        case 'month':
+        case "month":
           if (this.current.month() < this.step) this.current = this.current.month(0);
           break;
       }
@@ -18579,7 +18574,7 @@ class TimeStep {
    *                                 Choose for example 1, 2, 5, or 10.
    */
   setScale(params) {
-    if (params && typeof params.scale == 'string') {
+    if (params && typeof params.scale == "string") {
       this.scale = params.scale;
       this.step = params.step > 0 ? params.step : 1;
       this.autoScale = false;
@@ -18615,119 +18610,119 @@ class TimeStep {
 
     // find the smallest step that is larger than the provided minimumStep
     if (stepYear * 1000 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 1000;
     }
     if (stepYear * 500 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 500;
     }
     if (stepYear * 100 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 100;
     }
     if (stepYear * 50 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 50;
     }
     if (stepYear * 10 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 10;
     }
     if (stepYear * 5 > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 5;
     }
     if (stepYear > minimumStep) {
-      this.scale = 'year';
+      this.scale = "year";
       this.step = 1;
     }
     if (stepMonth * 3 > minimumStep) {
-      this.scale = 'month';
+      this.scale = "month";
       this.step = 3;
     }
     if (stepMonth > minimumStep) {
-      this.scale = 'month';
+      this.scale = "month";
       this.step = 1;
     }
     if (stepDay * 7 > minimumStep && this.options.showWeekScale) {
-      this.scale = 'week';
+      this.scale = "week";
       this.step = 1;
     }
     if (stepDay * 2 > minimumStep) {
-      this.scale = 'day';
+      this.scale = "day";
       this.step = 2;
     }
     if (stepDay > minimumStep) {
-      this.scale = 'day';
+      this.scale = "day";
       this.step = 1;
     }
     if (stepDay / 2 > minimumStep) {
-      this.scale = 'weekday';
+      this.scale = "weekday";
       this.step = 1;
     }
     if (stepHour * 4 > minimumStep) {
-      this.scale = 'hour';
+      this.scale = "hour";
       this.step = 4;
     }
     if (stepHour > minimumStep) {
-      this.scale = 'hour';
+      this.scale = "hour";
       this.step = 1;
     }
     if (stepMinute * 15 > minimumStep) {
-      this.scale = 'minute';
+      this.scale = "minute";
       this.step = 15;
     }
     if (stepMinute * 10 > minimumStep) {
-      this.scale = 'minute';
+      this.scale = "minute";
       this.step = 10;
     }
     if (stepMinute * 5 > minimumStep) {
-      this.scale = 'minute';
+      this.scale = "minute";
       this.step = 5;
     }
     if (stepMinute > minimumStep) {
-      this.scale = 'minute';
+      this.scale = "minute";
       this.step = 1;
     }
     if (stepSecond * 15 > minimumStep) {
-      this.scale = 'second';
+      this.scale = "second";
       this.step = 15;
     }
     if (stepSecond * 10 > minimumStep) {
-      this.scale = 'second';
+      this.scale = "second";
       this.step = 10;
     }
     if (stepSecond * 5 > minimumStep) {
-      this.scale = 'second';
+      this.scale = "second";
       this.step = 5;
     }
     if (stepSecond > minimumStep) {
-      this.scale = 'second';
+      this.scale = "second";
       this.step = 1;
     }
     if (stepMillisecond * 200 > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 200;
     }
     if (stepMillisecond * 100 > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 100;
     }
     if (stepMillisecond * 50 > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 50;
     }
     if (stepMillisecond * 10 > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 10;
     }
     if (stepMillisecond * 5 > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 5;
     }
     if (stepMillisecond > minimumStep) {
-      this.scale = 'millisecond';
+      this.scale = "millisecond";
       this.step = 1;
     }
   }
@@ -18744,25 +18739,25 @@ class TimeStep {
    */
   static snap(date, scale, step) {
     let clone = moment$2(date);
-    if (scale == 'year') {
+    if (scale == "year") {
       const year = clone.year() + Math.round(clone.month() / 12);
       clone = clone.year(Math.round(year / step) * step).month(0).date(0).hours(0).minutes(0).seconds(0).milliseconds(0);
-    } else if (scale == 'month') {
+    } else if (scale == "month") {
       if (clone.date() > 15) {
-        clone = clone.date(1).add(1, 'month'); // important: first set Date to 1, after that change the month.
+        clone = clone.date(1).add(1, "month"); // important: first set Date to 1, after that change the month.
       } else {
         clone = clone.date(1);
       }
       clone = clone.hours(0).minutes(0).seconds(0).milliseconds(0);
-    } else if (scale == 'week') {
+    } else if (scale == "week") {
       if (clone.weekday() > 2) {
         // doing it the momentjs locale aware way
-        clone = clone.weekday(0).add(1, 'week');
+        clone = clone.weekday(0).add(1, "week");
       } else {
         clone = clone.weekday(0);
       }
       clone = clone.hours(0).minutes(0).seconds(0).milliseconds(0);
-    } else if (scale == 'day') {
+    } else if (scale == "day") {
       //noinspection FallthroughInSwitchStatementJS
       switch (step) {
         case 5:
@@ -18774,7 +18769,7 @@ class TimeStep {
           break;
       }
       clone = clone.minutes(0).seconds(0).milliseconds(0);
-    } else if (scale == 'weekday') {
+    } else if (scale == "weekday") {
       //noinspection FallthroughInSwitchStatementJS
       switch (step) {
         case 5:
@@ -18786,7 +18781,7 @@ class TimeStep {
           break;
       }
       clone = clone.minutes(0).seconds(0).milliseconds(0);
-    } else if (scale == 'hour') {
+    } else if (scale == "hour") {
       switch (step) {
         case 4:
           clone = clone.minutes(Math.round(clone.minutes() / 60) * 60);
@@ -18796,7 +18791,7 @@ class TimeStep {
           break;
       }
       clone = clone.seconds(0).milliseconds(0);
-    } else if (scale == 'minute') {
+    } else if (scale == "minute") {
       //noinspection FallthroughInSwitchStatementJS
       switch (step) {
         case 15:
@@ -18811,7 +18806,7 @@ class TimeStep {
           break;
       }
       clone = clone.milliseconds(0);
-    } else if (scale == 'second') {
+    } else if (scale == "second") {
       //noinspection FallthroughInSwitchStatementJS
       switch (step) {
         case 15:
@@ -18825,7 +18820,7 @@ class TimeStep {
           clone = clone.milliseconds(Math.round(clone.milliseconds() / 500) * 500);
           break;
       }
-    } else if (scale == 'millisecond') {
+    } else if (scale == "millisecond") {
       const _step = step > 5 ? step / 2 : 1;
       clone = clone.milliseconds(Math.round(clone.milliseconds() / _step) * _step);
     }
@@ -18840,38 +18835,38 @@ class TimeStep {
   isMajor() {
     if (this.switchedYear == true) {
       switch (this.scale) {
-        case 'year':
-        case 'month':
-        case 'week':
-        case 'weekday':
-        case 'day':
-        case 'hour':
-        case 'minute':
-        case 'second':
-        case 'millisecond':
+        case "year":
+        case "month":
+        case "week":
+        case "weekday":
+        case "day":
+        case "hour":
+        case "minute":
+        case "second":
+        case "millisecond":
           return true;
         default:
           return false;
       }
     } else if (this.switchedMonth == true) {
       switch (this.scale) {
-        case 'week':
-        case 'weekday':
-        case 'day':
-        case 'hour':
-        case 'minute':
-        case 'second':
-        case 'millisecond':
+        case "week":
+        case "weekday":
+        case "day":
+        case "hour":
+        case "minute":
+        case "second":
+        case "millisecond":
           return true;
         default:
           return false;
       }
     } else if (this.switchedDay == true) {
       switch (this.scale) {
-        case 'millisecond':
-        case 'second':
-        case 'minute':
-        case 'hour':
+        case "millisecond":
+        case "second":
+        case "minute":
+        case "hour":
           return true;
         default:
           return false;
@@ -18879,22 +18874,22 @@ class TimeStep {
     }
     const date = this.moment(this.current);
     switch (this.scale) {
-      case 'millisecond':
+      case "millisecond":
         return date.milliseconds() == 0;
-      case 'second':
+      case "second":
         return date.seconds() == 0;
-      case 'minute':
+      case "minute":
         return date.hours() == 0 && date.minutes() == 0;
-      case 'hour':
+      case "hour":
         return date.hours() == 0;
-      case 'weekday': // intentional fall through
-      case 'day':
+      case "weekday": // intentional fall through
+      case "day":
         return this.options.showWeekScale ? date.isoWeekday() == 1 : date.date() == 1;
-      case 'week':
+      case "week":
         return date.date() == 1;
-      case 'month':
+      case "month":
         return date.month() == 0;
-      case 'year':
+      case "year":
         return false;
       default:
         return false;
@@ -18921,7 +18916,7 @@ class TimeStep {
     const format = this.format.minorLabels[this.scale];
     // noinspection FallThroughInSwitchStatementJS
     switch (this.scale) {
-      case 'week':
+      case "week":
         // Don't draw the minor label if this date is the first day of a month AND if it's NOT the start of the week.
         // The 'date' variable may actually be the 'next' step when called from TimeAxis' _repaintLabels.
         if (date.date() === 1 && date.weekday() !== 0) {
@@ -18929,7 +18924,7 @@ class TimeStep {
         }
       // eslint-disable-next-line no-fallthrough
       default:
-        return format && format.length > 0 ? this.moment(date).format(format) : '';
+        return format && format.length > 0 ? this.moment(date).format(format) : "";
     }
   }
 
@@ -18951,7 +18946,7 @@ class TimeStep {
       return this.format.majorLabels(date, this.scale, this.step);
     }
     const format = this.format.majorLabels[this.scale];
-    return format && format.length > 0 ? this.moment(date).format(format) : '';
+    return format && format.length > 0 ? this.moment(date).format(format) : "";
   }
 
   /**
@@ -18962,7 +18957,7 @@ class TimeStep {
     var _context;
     const _moment = this.moment;
     const m = this.moment(this.current);
-    const current = m.locale ? m.locale('en') : m.lang('en'); // old versions of moment have .lang() function
+    const current = m.locale ? m.locale("en") : m.lang("en"); // old versions of moment have .lang() function
     const step = this.step;
     const classNames = [];
 
@@ -18972,7 +18967,7 @@ class TimeStep {
      * @returns {String}
      */
     function even(value) {
-      return value / step % 2 == 0 ? ' vis-even' : ' vis-odd';
+      return value / step % 2 == 0 ? " vis-even" : " vis-odd";
     }
 
     /**
@@ -18981,16 +18976,16 @@ class TimeStep {
      * @returns {String}
      */
     function today(date) {
-      if (date.isSame(_Date$now(), 'day')) {
-        return ' vis-today';
+      if (date.isSame(_Date$now(), "day")) {
+        return " vis-today";
       }
-      if (date.isSame(_moment().add(1, 'day'), 'day')) {
-        return ' vis-tomorrow';
+      if (date.isSame(_moment().add(1, "day"), "day")) {
+        return " vis-tomorrow";
       }
-      if (date.isSame(_moment().add(-1, 'day'), 'day')) {
-        return ' vis-yesterday';
+      if (date.isSame(_moment().add(-1, "day"), "day")) {
+        return " vis-yesterday";
       }
-      return '';
+      return "";
     }
 
     /**
@@ -18999,7 +18994,7 @@ class TimeStep {
      * @returns {String}
      */
     function currentWeek(date) {
-      return date.isSame(_Date$now(), 'week') ? ' vis-current-week' : '';
+      return date.isSame(_Date$now(), "week") ? " vis-current-week" : "";
     }
 
     /**
@@ -19008,7 +19003,7 @@ class TimeStep {
      * @returns {String}
      */
     function currentMonth(date) {
-      return date.isSame(_Date$now(), 'month') ? ' vis-current-month' : '';
+      return date.isSame(_Date$now(), "month") ? " vis-current-month" : "";
     }
 
     /**
@@ -19017,52 +19012,52 @@ class TimeStep {
      * @returns {String}
      */
     function currentYear(date) {
-      return date.isSame(_Date$now(), 'year') ? ' vis-current-year' : '';
+      return date.isSame(_Date$now(), "year") ? " vis-current-year" : "";
     }
     switch (this.scale) {
-      case 'millisecond':
+      case "millisecond":
         classNames.push(today(current));
         classNames.push(even(current.milliseconds()));
         break;
-      case 'second':
+      case "second":
         classNames.push(today(current));
         classNames.push(even(current.seconds()));
         break;
-      case 'minute':
+      case "minute":
         classNames.push(today(current));
         classNames.push(even(current.minutes()));
         break;
-      case 'hour':
-        classNames.push(_concatInstanceProperty(_context = "vis-h".concat(current.hours())).call(_context, this.step == 4 ? '-h' + (current.hours() + 4) : ''));
+      case "hour":
+        classNames.push(_concatInstanceProperty(_context = "vis-h".concat(current.hours())).call(_context, this.step == 4 ? "-h" + (current.hours() + 4) : ""));
         classNames.push(today(current));
         classNames.push(even(current.hours()));
         break;
-      case 'weekday':
-        classNames.push("vis-".concat(current.format('dddd').toLowerCase()));
+      case "weekday":
+        classNames.push("vis-".concat(current.format("dddd").toLowerCase()));
         classNames.push(today(current));
         classNames.push(currentWeek(current));
         classNames.push(even(current.date()));
         break;
-      case 'day':
+      case "day":
         classNames.push("vis-day".concat(current.date()));
-        classNames.push("vis-".concat(current.format('MMMM').toLowerCase()));
+        classNames.push("vis-".concat(current.format("MMMM").toLowerCase()));
         classNames.push(today(current));
         classNames.push(currentMonth(current));
-        classNames.push(this.step <= 2 ? today(current) : '');
-        classNames.push(this.step <= 2 ? "vis-".concat(current.format('dddd').toLowerCase()) : '');
+        classNames.push(this.step <= 2 ? today(current) : "");
+        classNames.push(this.step <= 2 ? "vis-".concat(current.format("dddd").toLowerCase()) : "");
         classNames.push(even(current.date() - 1));
         break;
-      case 'week':
-        classNames.push("vis-week".concat(current.format('w')));
+      case "week":
+        classNames.push("vis-week".concat(current.format("w")));
         classNames.push(currentWeek(current));
         classNames.push(even(current.week()));
         break;
-      case 'month':
-        classNames.push("vis-".concat(current.format('MMMM').toLowerCase()));
+      case "month":
+        classNames.push("vis-".concat(current.format("MMMM").toLowerCase()));
         classNames.push(currentMonth(current));
         classNames.push(even(current.month()));
         break;
-      case 'year':
+      case "year":
         classNames.push("vis-year".concat(current.year()));
         classNames.push(currentYear(current));
         classNames.push(even(current.year()));
@@ -19075,26 +19070,26 @@ class TimeStep {
 // Time formatting
 TimeStep.FORMAT = {
   minorLabels: {
-    millisecond: 'SSS',
-    second: 's',
-    minute: 'HH:mm',
-    hour: 'HH:mm',
-    weekday: 'ddd D',
-    day: 'D',
-    week: 'w',
-    month: 'MMM',
-    year: 'YYYY'
+    millisecond: "SSS",
+    second: "s",
+    minute: "HH:mm",
+    hour: "HH:mm",
+    weekday: "ddd D",
+    day: "D",
+    week: "w",
+    month: "MMM",
+    year: "YYYY"
   },
   majorLabels: {
-    millisecond: 'HH:mm:ss',
-    second: 'D MMMM HH:mm',
-    minute: 'ddd D MMMM',
-    hour: 'ddd D MMMM',
-    weekday: 'MMMM YYYY',
-    day: 'MMMM YYYY',
-    week: 'MMMM YYYY',
-    month: 'YYYY',
-    year: ''
+    millisecond: "HH:mm:ss",
+    second: "D MMMM HH:mm",
+    minute: "ddd D MMMM",
+    hour: "ddd D MMMM",
+    weekday: "MMMM YYYY",
+    day: "MMMM YYYY",
+    week: "MMMM YYYY",
+    month: "YYYY",
+    year: ""
   }
 };
 
@@ -19130,7 +19125,7 @@ class TimeAxis extends Component {
     };
     this.defaultOptions = {
       orientation: {
-        axis: 'bottom'
+        axis: "bottom"
       },
       // axis orientation: 'top' or 'bottom'
       showMinorLabels: true,
@@ -19161,22 +19156,22 @@ class TimeAxis extends Component {
   setOptions(options) {
     if (options) {
       // copy all options that we know
-      availableUtils.selectiveExtend(['showMinorLabels', 'showMajorLabels', 'showWeekScale', 'maxMinorChars', 'hiddenDates', 'timeAxis', 'moment', 'rtl'], this.options, options);
+      availableUtils.selectiveExtend(["showMinorLabels", "showMajorLabels", "showWeekScale", "maxMinorChars", "hiddenDates", "timeAxis", "moment", "rtl"], this.options, options);
 
       // deep copy the format options
-      availableUtils.selectiveDeepExtend(['format'], this.options, options);
-      if ('orientation' in options) {
-        if (typeof options.orientation === 'string') {
+      availableUtils.selectiveDeepExtend(["format"], this.options, options);
+      if ("orientation" in options) {
+        if (typeof options.orientation === "string") {
           this.options.orientation.axis = options.orientation;
-        } else if (typeof options.orientation === 'object' && 'axis' in options.orientation) {
+        } else if (typeof options.orientation === "object" && "axis" in options.orientation) {
           this.options.orientation.axis = options.orientation.axis;
         }
       }
 
       // apply locale to moment.js
       // TODO: not so nice, this is applied globally to moment.js
-      if ('locale' in options) {
-        if (typeof moment$2.locale === 'function') {
+      if ("locale" in options) {
+        if (typeof moment$2.locale === "function") {
           // moment.js 2.8.1+
           moment$2.locale(options.locale);
         } else {
@@ -19190,10 +19185,10 @@ class TimeAxis extends Component {
    * Create the HTML DOM for the TimeAxis
    */
   _create() {
-    this.dom.foreground = document.createElement('div');
-    this.dom.background = document.createElement('div');
-    this.dom.foreground.className = 'vis-time-axis vis-foreground';
-    this.dom.background.className = 'vis-time-axis vis-background';
+    this.dom.foreground = document.createElement("div");
+    this.dom.background = document.createElement("div");
+    this.dom.foreground.className = "vis-time-axis vis-foreground";
+    this.dom.background.className = "vis-time-axis vis-background";
   }
 
   /**
@@ -19220,22 +19215,22 @@ class TimeAxis extends Component {
     const background = this.dom.background;
 
     // determine the correct parent DOM element (depending on option orientation)
-    const parent = this.options.orientation.axis == 'top' ? this.body.dom.top : this.body.dom.bottom;
+    const parent = this.options.orientation.axis == "top" ? this.body.dom.top : this.body.dom.bottom;
     const parentChanged = foreground.parentNode !== parent;
 
     // calculate character width and height
     this._calculateCharSize();
 
     // TODO: recalculate sizes only needed when parent is resized or options is changed
-    const showMinorLabels = this.options.showMinorLabels && this.options.orientation.axis !== 'none';
-    const showMajorLabels = this.options.showMajorLabels && this.options.orientation.axis !== 'none';
+    const showMinorLabels = this.options.showMinorLabels && this.options.orientation.axis !== "none";
+    const showMajorLabels = this.options.showMajorLabels && this.options.orientation.axis !== "none";
 
     // determine the width and height of the elemens for the axis
     props.minorLabelHeight = showMinorLabels ? props.minorCharHeight : 0;
     props.majorLabelHeight = showMajorLabels ? props.majorCharHeight : 0;
     props.height = props.minorLabelHeight + props.majorLabelHeight;
     props.width = foreground.offsetWidth;
-    props.minorLineHeight = this.body.domProps.root.height - props.majorLabelHeight - (this.options.orientation.axis == 'top' ? this.body.domProps.bottom.height : this.body.domProps.top.height);
+    props.minorLineHeight = this.body.domProps.root.height - props.majorLabelHeight - (this.options.orientation.axis == "top" ? this.body.domProps.bottom.height : this.body.domProps.top.height);
     props.minorLineWidth = 1; // TODO: really calculate width
     props.majorLineHeight = props.minorLineHeight + props.majorLabelHeight;
     props.majorLineWidth = 1; // TODO: really calculate width
@@ -19270,8 +19265,8 @@ class TimeAxis extends Component {
     const orientation = this.options.orientation.axis;
 
     // calculate range and step (step such that we have space for 7 characters per label)
-    const start = availableUtils.convert(this.body.range.start, 'Number');
-    const end = availableUtils.convert(this.body.range.end, 'Number');
+    const start = availableUtils.convert(this.body.range.start, "Number");
+    const end = availableUtils.convert(this.body.range.end, "Number");
     const timeLabelsize = this.body.util.toTime((this.props.minorCharWidth || 10) * this.options.maxMinorChars).valueOf();
     let minimumStep = timeLabelsize - getHiddenDurationBefore(this.options.moment, this.body.hiddenDates, this.body.range, timeLabelsize);
     minimumStep -= this.body.util.toTime(0).valueOf();
@@ -19323,7 +19318,7 @@ class TimeAxis extends Component {
       prevWidth = width;
       width = xNext - x;
       switch (step.scale) {
-        case 'week':
+        case "week":
           showMinorGrid = true;
           break;
         default:
@@ -19395,14 +19390,14 @@ class TimeAxis extends Component {
     let label = this.dom.redundant.minorTexts.shift();
     if (!label) {
       // create new label
-      const content = document.createTextNode('');
-      label = document.createElement('div');
+      const content = document.createTextNode("");
+      label = document.createElement("div");
       label.appendChild(content);
       this.dom.foreground.appendChild(label);
     }
     this.dom.minorTexts.push(label);
     label.innerHTML = availableUtils.xss(text);
-    let y = orientation == 'top' ? this.props.majorLabelHeight : 0;
+    let y = orientation == "top" ? this.props.majorLabelHeight : 0;
     this._setXY(label, x, y);
     label.className = "vis-text vis-minor ".concat(className);
     //label.title = title;  // TODO: this is a heavy operation
@@ -19424,8 +19419,8 @@ class TimeAxis extends Component {
     let label = this.dom.redundant.majorTexts.shift();
     if (!label) {
       // create label
-      const content = document.createElement('div');
-      label = document.createElement('div');
+      const content = document.createElement("div");
+      label = document.createElement("div");
       label.appendChild(content);
       this.dom.foreground.appendChild(label);
     }
@@ -19433,7 +19428,7 @@ class TimeAxis extends Component {
     label.className = "vis-text vis-major ".concat(className);
     //label.title = title; // TODO: this is a heavy operation
 
-    let y = orientation == 'top' ? 0 : this.props.minorLabelHeight;
+    let y = orientation == "top" ? 0 : this.props.minorLabelHeight;
     this._setXY(label, x, y);
     this.dom.majorTexts.push(label);
     return label;
@@ -19468,17 +19463,17 @@ class TimeAxis extends Component {
     let line = this.dom.redundant.lines.shift();
     if (!line) {
       // create vertical line
-      line = document.createElement('div');
+      line = document.createElement("div");
       this.dom.background.appendChild(line);
     }
     this.dom.lines.push(line);
     const props = this.props;
     line.style.width = "".concat(width, "px");
     line.style.height = "".concat(props.minorLineHeight, "px");
-    let y = orientation == 'top' ? props.majorLabelHeight : this.body.domProps.top.height;
+    let y = orientation == "top" ? props.majorLabelHeight : this.body.domProps.top.height;
     let x = left - props.minorLineWidth / 2;
     this._setXY(line, x, y);
-    line.className = _concatInstanceProperty(_context2 = "vis-grid ".concat(this.options.rtl ? 'vis-vertical-rtl' : 'vis-vertical', " vis-minor ")).call(_context2, className);
+    line.className = _concatInstanceProperty(_context2 = "vis-grid ".concat(this.options.rtl ? "vis-vertical-rtl" : "vis-vertical", " vis-minor ")).call(_context2, className);
     return line;
   }
 
@@ -19497,17 +19492,17 @@ class TimeAxis extends Component {
     let line = this.dom.redundant.lines.shift();
     if (!line) {
       // create vertical line
-      line = document.createElement('div');
+      line = document.createElement("div");
       this.dom.background.appendChild(line);
     }
     this.dom.lines.push(line);
     const props = this.props;
     line.style.width = "".concat(width, "px");
     line.style.height = "".concat(props.majorLineHeight, "px");
-    let y = orientation == 'top' ? 0 : this.body.domProps.top.height;
+    let y = orientation == "top" ? 0 : this.body.domProps.top.height;
     let x = left - props.majorLineWidth / 2;
     this._setXY(line, x, y);
-    line.className = _concatInstanceProperty(_context3 = "vis-grid ".concat(this.options.rtl ? 'vis-vertical-rtl' : 'vis-vertical', " vis-major ")).call(_context3, className);
+    line.className = _concatInstanceProperty(_context3 = "vis-grid ".concat(this.options.rtl ? "vis-vertical-rtl" : "vis-vertical", " vis-major ")).call(_context3, className);
     return line;
   }
 
@@ -19522,10 +19517,10 @@ class TimeAxis extends Component {
 
     // determine the char width and height on the minor axis
     if (!this.dom.measureCharMinor) {
-      this.dom.measureCharMinor = document.createElement('DIV');
-      this.dom.measureCharMinor.className = 'vis-text vis-minor vis-measure';
-      this.dom.measureCharMinor.style.position = 'absolute';
-      this.dom.measureCharMinor.appendChild(document.createTextNode('0'));
+      this.dom.measureCharMinor = document.createElement("DIV");
+      this.dom.measureCharMinor.className = "vis-text vis-minor vis-measure";
+      this.dom.measureCharMinor.style.position = "absolute";
+      this.dom.measureCharMinor.appendChild(document.createTextNode("0"));
       this.dom.foreground.appendChild(this.dom.measureCharMinor);
     }
     this.props.minorCharHeight = this.dom.measureCharMinor.clientHeight;
@@ -19533,10 +19528,10 @@ class TimeAxis extends Component {
 
     // determine the char width and height on the major axis
     if (!this.dom.measureCharMajor) {
-      this.dom.measureCharMajor = document.createElement('DIV');
-      this.dom.measureCharMajor.className = 'vis-text vis-major vis-measure';
-      this.dom.measureCharMajor.style.position = 'absolute';
-      this.dom.measureCharMajor.appendChild(document.createTextNode('0'));
+      this.dom.measureCharMajor = document.createElement("DIV");
+      this.dom.measureCharMajor.className = "vis-text vis-major vis-measure";
+      this.dom.measureCharMajor.style.position = "absolute";
+      this.dom.measureCharMajor.appendChild(document.createTextNode("0"));
       this.dom.foreground.appendChild(this.dom.measureCharMajor);
     }
     this.props.majorCharHeight = this.dom.measureCharMajor.clientHeight;
@@ -19864,44 +19859,44 @@ function _hasParent(element, parent) {
 
 // English
 const en = {
-  current: 'current',
-  time: 'time',
-  deleteSelected: 'Delete selected'
+  current: "current",
+  time: "time",
+  deleteSelected: "Delete selected"
 };
 const en_EN = en;
 const en_US = en;
 
 // Italiano
 const it = {
-  current: 'attuale',
-  time: 'tempo',
-  deleteSelected: 'Cancella la selezione'
+  current: "attuale",
+  time: "tempo",
+  deleteSelected: "Cancella la selezione"
 };
 const it_IT = it;
 const it_CH = it;
 
 // Dutch
 const nl = {
-  current: 'huidige',
-  time: 'tijd',
-  deleteSelected: 'Selectie verwijderen'
+  current: "huidige",
+  time: "tijd",
+  deleteSelected: "Selectie verwijderen"
 };
 const nl_NL = nl;
 const nl_BE = nl;
 
 // German
 const de = {
-  current: 'Aktuelle',
-  time: 'Zeit',
-  deleteSelected: 'L\u00f6sche Auswahl'
+  current: "Aktuelle",
+  time: "Zeit",
+  deleteSelected: "L\u00f6sche Auswahl"
 };
 const de_DE = de;
 
 // French
 const fr = {
-  current: 'actuel',
-  time: 'heure',
-  deleteSelected: 'Effacer la selection'
+  current: "actuel",
+  time: "heure",
+  deleteSelected: "Effacer la selection"
 };
 const fr_FR = fr;
 const fr_CA = fr;
@@ -19909,66 +19904,66 @@ const fr_BE = fr;
 
 // Espanol
 const es = {
-  current: 'corriente',
-  time: 'hora',
-  deleteSelected: 'Eliminar selecci\u00f3n'
+  current: "corriente",
+  time: "hora",
+  deleteSelected: "Eliminar selecci\u00f3n"
 };
 const es_ES = es;
 
 // Ukrainian
 const uk = {
-  current: 'поточний',
-  time: 'час',
-  deleteSelected: 'Видалити обране'
+  current: "поточний",
+  time: "час",
+  deleteSelected: "Видалити обране"
 };
 const uk_UA = uk;
 
 // Russian
 const ru = {
-  current: 'текущее',
-  time: 'время',
-  deleteSelected: 'Удалить выбранное'
+  current: "текущее",
+  time: "время",
+  deleteSelected: "Удалить выбранное"
 };
 const ru_RU = ru;
 
 // Polish
 const pl = {
-  current: 'aktualny',
-  time: 'czas',
-  deleteSelected: 'Usuń wybrane'
+  current: "aktualny",
+  time: "czas",
+  deleteSelected: "Usuń wybrane"
 };
 const pl_PL = pl;
 
 // Portuguese
 const pt = {
-  current: 'atual',
-  time: 'data',
-  deleteSelected: 'Apagar selecionado'
+  current: "atual",
+  time: "data",
+  deleteSelected: "Apagar selecionado"
 };
 const pt_BR = pt;
 const pt_PT = pt;
 
 // Japanese
 const ja = {
-  current: '現在',
-  time: '時刻',
-  deleteSelected: '選択されたものを削除'
+  current: "現在",
+  time: "時刻",
+  deleteSelected: "選択されたものを削除"
 };
 const ja_JP = ja;
 
 // Swedish
 const sv = {
-  current: 'nuvarande',
-  time: 'tid',
-  deleteSelected: 'Radera valda'
+  current: "nuvarande",
+  time: "tid",
+  deleteSelected: "Radera valda"
 };
 const sv_SE = sv;
 
 // Norwegian
 const nb = {
-  current: 'nåværende',
-  time: 'tid',
-  deleteSelected: 'Slett valgte'
+  current: "nåværende",
+  time: "tid",
+  deleteSelected: "Slett valgte"
 };
 const nb_NO = nb;
 const nn = nb;
@@ -19976,9 +19971,9 @@ const nn_NO = nb;
 
 // Lithuanian
 const lt = {
-  current: 'einamas',
-  time: 'laikas',
-  deleteSelected: 'Pašalinti pasirinktą'
+  current: "einamas",
+  time: "laikas",
+  deleteSelected: "Pašalinti pasirinktą"
 };
 const lt_LT = lt;
 const locales = {
@@ -20023,14 +20018,14 @@ const locales = {
 /** A custom time bar */
 class CustomTime extends Component {
   /**
-  * @param {{range: Range, dom: Object}} body
-  * @param {Object} [options]        Available parameters:
-  *                                  {number | string} id
-  *                                  {string} locales
-  *                                  {string} locale
-  * @constructor CustomTime
-  * @extends Component
-  */
+   * @param {{range: Range, dom: Object}} body
+   * @param {Object} [options]        Available parameters:
+   *                                  {number | string} id
+   *                                  {string} locales
+   *                                  {string} locale
+   * @constructor CustomTime
+   * @extends Component
+   */
   constructor(body, options) {
     var _context;
     super();
@@ -20040,7 +20035,7 @@ class CustomTime extends Component {
     this.defaultOptions = {
       moment: moment$2,
       locales,
-      locale: 'en',
+      locale: "en",
       id: undefined,
       title: undefined
     };
@@ -20072,7 +20067,7 @@ class CustomTime extends Component {
   setOptions(options) {
     if (options) {
       // copy all options that we know
-      availableUtils.selectiveExtend(['moment', 'locale', 'locales', 'id', 'title', 'rtl', 'snap'], this.options, options);
+      availableUtils.selectiveExtend(["moment", "locale", "locales", "id", "title", "rtl", "snap"], this.options, options);
     }
   }
 
@@ -20082,23 +20077,23 @@ class CustomTime extends Component {
    */
   _create() {
     var _context2, _context3, _context4;
-    const bar = document.createElement('div');
-    bar['custom-time'] = this;
-    bar.className = "vis-custom-time ".concat(this.options.id || '');
-    bar.style.position = 'absolute';
-    bar.style.top = '0px';
-    bar.style.height = '100%';
+    const bar = document.createElement("div");
+    bar["custom-time"] = this;
+    bar.className = "vis-custom-time ".concat(this.options.id || "");
+    bar.style.position = "absolute";
+    bar.style.top = "0px";
+    bar.style.height = "100%";
     this.bar = bar;
-    const drag = document.createElement('div');
-    drag.style.position = 'relative';
-    drag.style.top = '0px';
+    const drag = document.createElement("div");
+    drag.style.position = "relative";
+    drag.style.top = "0px";
     if (this.options.rtl) {
-      drag.style.right = '-10px';
+      drag.style.right = "-10px";
     } else {
-      drag.style.left = '-10px';
+      drag.style.left = "-10px";
     }
-    drag.style.height = '100%';
-    drag.style.width = '20px';
+    drag.style.height = "100%";
+    drag.style.width = "20px";
 
     /**
      *
@@ -20119,15 +20114,15 @@ class CustomTime extends Component {
     bar.appendChild(drag);
     // attach event listeners
     this.hammer = new Hammer(drag);
-    this.hammer.on('panstart', _bindInstanceProperty(_context2 = this._onDragStart).call(_context2, this));
-    this.hammer.on('panmove', _bindInstanceProperty(_context3 = this._onDrag).call(_context3, this));
-    this.hammer.on('panend', _bindInstanceProperty(_context4 = this._onDragEnd).call(_context4, this));
-    this.hammer.get('pan').set({
+    this.hammer.on("panstart", _bindInstanceProperty(_context2 = this._onDragStart).call(_context2, this));
+    this.hammer.on("panmove", _bindInstanceProperty(_context3 = this._onDrag).call(_context3, this));
+    this.hammer.on("panend", _bindInstanceProperty(_context4 = this._onDragEnd).call(_context4, this));
+    this.hammer.get("pan").set({
       threshold: 5,
       direction: Hammer.DIRECTION_ALL
     });
     // delay addition on item click for trackpads...
-    this.hammer.get('press').set({
+    this.hammer.get("press").set({
       time: 10000
     });
   }
@@ -20162,13 +20157,13 @@ class CustomTime extends Component {
         console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
         this.warned = true;
       }
-      locale = this.options.locales['en']; // fall back on english when not available
+      locale = this.options.locales["en"]; // fall back on english when not available
     }
     let title = this.options.title;
     // To hide the title completely use empty string ''.
     if (title === undefined) {
       var _context5;
-      title = _concatInstanceProperty(_context5 = "".concat(locale.time, ": ")).call(_context5, this.options.moment(this.customTime).format('dddd, MMMM Do YYYY, H:mm:ss'));
+      title = _concatInstanceProperty(_context5 = "".concat(locale.time, ": ")).call(_context5, this.options.moment(this.customTime).format("dddd, MMMM Do YYYY, H:mm:ss"));
       title = title.charAt(0).toUpperCase() + title.substring(1);
     } else if (typeof title === "function") {
       title = title.call(this, this.customTime);
@@ -20193,7 +20188,7 @@ class CustomTime extends Component {
    * @param {Date | number | string} time
    */
   setCustomTime(time) {
-    this.customTime = availableUtils.convert(time, 'Date');
+    this.customTime = availableUtils.convert(time, "Date");
     this.redraw();
   }
 
@@ -20214,20 +20209,20 @@ class CustomTime extends Component {
     if (this.marker) {
       this.bar.removeChild(this.marker);
     }
-    this.marker = document.createElement('div');
+    this.marker = document.createElement("div");
     this.marker.className = "vis-custom-time-marker";
     this.marker.innerHTML = availableUtils.xss(title);
-    this.marker.style.position = 'absolute';
+    this.marker.style.position = "absolute";
     if (editable) {
       var _context6;
-      this.marker.setAttribute('contenteditable', 'true');
-      this.marker.addEventListener('pointerdown', () => {
+      this.marker.setAttribute("contenteditable", "true");
+      this.marker.addEventListener("pointerdown", () => {
         this.marker.focus();
       });
-      this.marker.addEventListener('input', _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this));
+      this.marker.addEventListener("input", _bindInstanceProperty(_context6 = this._onMarkerChange).call(_context6, this));
       // The editable div element has no change event, so here emulates the change event.
       this.marker.title = title;
-      this.marker.addEventListener('blur', event => {
+      this.marker.addEventListener("blur", event => {
         if (this.title != event.target.innerHTML) {
           this._onMarkerChanged(event);
           this.title = event.target.innerHTML;
@@ -20238,9 +20233,9 @@ class CustomTime extends Component {
   }
 
   /**
-    * Set custom title.
-    * @param {Date | number | string} title
-    */
+   * Set custom title.
+   * @param {Date | number | string} title
+   */
   setCustomTitle(title) {
     this.options.title = title;
   }
@@ -20273,7 +20268,7 @@ class CustomTime extends Component {
     this.setCustomTime(snappedTime);
 
     // fire a timechange event
-    this.body.emitter.emit('timechange', {
+    this.body.emitter.emit("timechange", {
       id: this.options.id,
       time: new Date(this.customTime.valueOf()),
       event
@@ -20290,7 +20285,7 @@ class CustomTime extends Component {
     if (!this.eventParams.dragging) return;
 
     // fire a timechanged event
-    this.body.emitter.emit('timechanged', {
+    this.body.emitter.emit("timechanged", {
       id: this.options.id,
       time: new Date(this.customTime.valueOf()),
       event
@@ -20304,7 +20299,7 @@ class CustomTime extends Component {
    * @private
    */
   _onMarkerChange(event) {
-    this.body.emitter.emit('markerchange', {
+    this.body.emitter.emit("markerchange", {
       id: this.options.id,
       title: event.target.innerHTML,
       event
@@ -20318,7 +20313,7 @@ class CustomTime extends Component {
    * @private
    */
   _onMarkerChanged(event) {
-    this.body.emitter.emit('markerchanged', {
+    this.body.emitter.emit("markerchanged", {
       id: this.options.id,
       title: event.target.innerHTML,
       event
@@ -20335,8 +20330,8 @@ class CustomTime extends Component {
   static customTimeFromTarget(event) {
     let target = event.target;
     while (target) {
-      if (Object.prototype.hasOwnProperty.call(target, 'custom-time')) {
-        return target['custom-time'];
+      if (Object.prototype.hasOwnProperty.call(target, "custom-time")) {
+        return target["custom-time"];
       }
       target = target.parentNode;
     }
@@ -20360,47 +20355,47 @@ class Core {
     var _context, _context2, _context3;
     this.dom = {};
     this.dom.container = container;
-    this.dom.container.style.position = 'relative';
-    this.dom.root = document.createElement('div');
-    this.dom.background = document.createElement('div');
-    this.dom.backgroundVertical = document.createElement('div');
-    this.dom.backgroundHorizontal = document.createElement('div');
-    this.dom.centerContainer = document.createElement('div');
-    this.dom.leftContainer = document.createElement('div');
-    this.dom.rightContainer = document.createElement('div');
-    this.dom.center = document.createElement('div');
-    this.dom.left = document.createElement('div');
-    this.dom.right = document.createElement('div');
-    this.dom.top = document.createElement('div');
-    this.dom.bottom = document.createElement('div');
-    this.dom.shadowTop = document.createElement('div');
-    this.dom.shadowBottom = document.createElement('div');
-    this.dom.shadowTopLeft = document.createElement('div');
-    this.dom.shadowBottomLeft = document.createElement('div');
-    this.dom.shadowTopRight = document.createElement('div');
-    this.dom.shadowBottomRight = document.createElement('div');
-    this.dom.rollingModeBtn = document.createElement('div');
-    this.dom.loadingScreen = document.createElement('div');
-    this.dom.root.className = 'vis-timeline';
-    this.dom.background.className = 'vis-panel vis-background';
-    this.dom.backgroundVertical.className = 'vis-panel vis-background vis-vertical';
-    this.dom.backgroundHorizontal.className = 'vis-panel vis-background vis-horizontal';
-    this.dom.centerContainer.className = 'vis-panel vis-center';
-    this.dom.leftContainer.className = 'vis-panel vis-left';
-    this.dom.rightContainer.className = 'vis-panel vis-right';
-    this.dom.top.className = 'vis-panel vis-top';
-    this.dom.bottom.className = 'vis-panel vis-bottom';
-    this.dom.left.className = 'vis-content';
-    this.dom.center.className = 'vis-content';
-    this.dom.right.className = 'vis-content';
-    this.dom.shadowTop.className = 'vis-shadow vis-top';
-    this.dom.shadowBottom.className = 'vis-shadow vis-bottom';
-    this.dom.shadowTopLeft.className = 'vis-shadow vis-top';
-    this.dom.shadowBottomLeft.className = 'vis-shadow vis-bottom';
-    this.dom.shadowTopRight.className = 'vis-shadow vis-top';
-    this.dom.shadowBottomRight.className = 'vis-shadow vis-bottom';
-    this.dom.rollingModeBtn.className = 'vis-rolling-mode-btn';
-    this.dom.loadingScreen.className = 'vis-loading-screen';
+    this.dom.container.style.position = "relative";
+    this.dom.root = document.createElement("div");
+    this.dom.background = document.createElement("div");
+    this.dom.backgroundVertical = document.createElement("div");
+    this.dom.backgroundHorizontal = document.createElement("div");
+    this.dom.centerContainer = document.createElement("div");
+    this.dom.leftContainer = document.createElement("div");
+    this.dom.rightContainer = document.createElement("div");
+    this.dom.center = document.createElement("div");
+    this.dom.left = document.createElement("div");
+    this.dom.right = document.createElement("div");
+    this.dom.top = document.createElement("div");
+    this.dom.bottom = document.createElement("div");
+    this.dom.shadowTop = document.createElement("div");
+    this.dom.shadowBottom = document.createElement("div");
+    this.dom.shadowTopLeft = document.createElement("div");
+    this.dom.shadowBottomLeft = document.createElement("div");
+    this.dom.shadowTopRight = document.createElement("div");
+    this.dom.shadowBottomRight = document.createElement("div");
+    this.dom.rollingModeBtn = document.createElement("div");
+    this.dom.loadingScreen = document.createElement("div");
+    this.dom.root.className = "vis-timeline";
+    this.dom.background.className = "vis-panel vis-background";
+    this.dom.backgroundVertical.className = "vis-panel vis-background vis-vertical";
+    this.dom.backgroundHorizontal.className = "vis-panel vis-background vis-horizontal";
+    this.dom.centerContainer.className = "vis-panel vis-center";
+    this.dom.leftContainer.className = "vis-panel vis-left";
+    this.dom.rightContainer.className = "vis-panel vis-right";
+    this.dom.top.className = "vis-panel vis-top";
+    this.dom.bottom.className = "vis-panel vis-bottom";
+    this.dom.left.className = "vis-content";
+    this.dom.center.className = "vis-content";
+    this.dom.right.className = "vis-content";
+    this.dom.shadowTop.className = "vis-shadow vis-top";
+    this.dom.shadowBottom.className = "vis-shadow vis-bottom";
+    this.dom.shadowTopLeft.className = "vis-shadow vis-top";
+    this.dom.shadowBottomLeft.className = "vis-shadow vis-bottom";
+    this.dom.shadowTopRight.className = "vis-shadow vis-top";
+    this.dom.shadowBottomRight.className = "vis-shadow vis-bottom";
+    this.dom.rollingModeBtn.className = "vis-rolling-mode-btn";
+    this.dom.loadingScreen.className = "vis-loading-screen";
     this.dom.root.appendChild(this.dom.background);
     this.dom.root.appendChild(this.dom.backgroundVertical);
     this.dom.root.appendChild(this.dom.backgroundHorizontal);
@@ -20436,22 +20431,22 @@ class Core {
       scrollTop: 0,
       scrollTopMin: 0
     };
-    this.on('rangechange', () => {
+    this.on("rangechange", () => {
       if (this.initialDrawDone === true) {
         this._redraw();
       }
     });
-    this.on('rangechanged', () => {
+    this.on("rangechanged", () => {
       if (!this.initialRangeChangeDone) {
         this.initialRangeChangeDone = true;
       }
     });
-    this.on('touch', _bindInstanceProperty(_context = this._onTouch).call(_context, this));
-    this.on('panmove', _bindInstanceProperty(_context2 = this._onDrag).call(_context2, this));
+    this.on("touch", _bindInstanceProperty(_context = this._onTouch).call(_context, this));
+    this.on("panmove", _bindInstanceProperty(_context2 = this._onDrag).call(_context2, this));
     const me = this;
     this._origRedraw = _bindInstanceProperty(_context3 = this._redraw).call(_context3, this);
     this._redraw = availableUtils.throttle(this._origRedraw);
-    this.on('_change', properties => {
+    this.on("_change", properties => {
       if (me.itemSet && me.itemSet.initialItemSetDrawn && properties && properties.queue == true) {
         me._redraw();
       } else {
@@ -20462,16 +20457,16 @@ class Core {
     // create event listeners for all interesting events, these events will be
     // emitted via emitter
     this.hammer = new Hammer(this.dom.root);
-    const pinchRecognizer = this.hammer.get('pinch').set({
+    const pinchRecognizer = this.hammer.get("pinch").set({
       enable: true
     });
     pinchRecognizer && disablePreventDefaultVertically(pinchRecognizer);
-    this.hammer.get('pan').set({
+    this.hammer.get("pan").set({
       threshold: 5,
       direction: Hammer.DIRECTION_ALL
     });
     this.timelineListeners = {};
-    const events = ['tap', 'doubletap', 'press', 'pinch', 'pan', 'panstart', 'panmove', 'panend'
+    const events = ["tap", "doubletap", "press", "pinch", "pan", "panstart", "panmove", "panend"
     // TODO: cleanup
     //'touch', 'pinch',
     //'tap', 'doubletap', 'hold',
@@ -20490,12 +20485,12 @@ class Core {
 
     // emulate a touch event (emitted before the start of a pan, pinch, tap, or press)
     onTouch(this.hammer, event => {
-      me.emit('touch', event);
+      me.emit("touch", event);
     });
 
     // emulate a release event (emitted after a pan, pinch, tap, or press)
     onRelease(this.hammer, event => {
-      me.emit('release', event);
+      me.emit("release", event);
     });
 
     /**
@@ -20507,7 +20502,7 @@ class Core {
       const LINE_HEIGHT = 40;
       const PAGE_HEIGHT = 800;
       if (this.isActive()) {
-        this.emit('mousewheel', event);
+        this.emit("mousewheel", event);
       }
 
       // deltaX and deltaY normalization from jquery.mousewheel.js
@@ -20515,30 +20510,30 @@ class Core {
       let deltaY = 0;
 
       // Old school scrollwheel delta
-      if ('detail' in event) {
+      if ("detail" in event) {
         deltaY = event.detail * -1;
       }
-      if ('wheelDelta' in event) {
+      if ("wheelDelta" in event) {
         deltaY = event.wheelDelta;
       }
-      if ('wheelDeltaY' in event) {
+      if ("wheelDeltaY" in event) {
         deltaY = event.wheelDeltaY;
       }
-      if ('wheelDeltaX' in event) {
+      if ("wheelDeltaX" in event) {
         deltaX = event.wheelDeltaX * -1;
       }
 
       // Firefox < 17 horizontal scrolling related to DOMMouseScroll event
-      if ('axis' in event && event.axis === event.HORIZONTAL_AXIS) {
+      if ("axis" in event && event.axis === event.HORIZONTAL_AXIS) {
         deltaX = deltaY * -1;
         deltaY = 0;
       }
 
       // New school wheel delta (wheel event)
-      if ('deltaY' in event) {
+      if ("deltaY" in event) {
         deltaY = event.deltaY * -1;
       }
-      if ('deltaX' in event) {
+      if ("deltaX" in event) {
         deltaX = event.deltaX;
       }
 
@@ -20569,7 +20564,7 @@ class Core {
           const newScrollTop = this._setScrollTop(adjusted);
           if (newScrollTop !== current) {
             this._redraw();
-            this.emit('scroll', event);
+            this.emit("scroll", event);
 
             // Prevent default actions caused by mouse wheel
             // (else the page and timeline both scroll)
@@ -20595,11 +20590,9 @@ class Core {
     }
 
     // Add modern wheel event listener
-    const wheelType = "onwheel" in document.createElement("div") ? "wheel" :
-    // Modern browsers support "wheel"
-    document.onmousewheel !== undefined ? "mousewheel" :
-    // Webkit and IE support at least "mousewheel"
-
+    const wheelType = "onwheel" in document.createElement("div") ? "wheel" // Modern browsers support "wheel"
+    : document.onmousewheel !== undefined ? "mousewheel" // Webkit and IE support at least "mousewheel"
+    :
     // DOMMouseScroll - Older Firefox versions use "DOMMouseScroll"
     // onmousewheel - All the use "onmousewheel"
     this.dom.centerContainer.addEventListener ? "DOMMouseScroll" : "onmousewheel";
@@ -20620,11 +20613,11 @@ class Core {
         const adjusted = -event.target.scrollTop;
         me._setScrollTop(adjusted);
         me._redraw();
-        me.emit('scrollSide', event);
+        me.emit("scrollSide", event);
       }
     }
-    this.dom.left.parentNode.addEventListener('scroll', _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
-    this.dom.right.parentNode.addEventListener('scroll', _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
+    this.dom.left.parentNode.addEventListener("scroll", _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
+    this.dom.right.parentNode.addEventListener("scroll", _bindInstanceProperty(onMouseScrollSide).call(onMouseScrollSide, this));
     let itemAddedToTimeline = false;
 
     /**
@@ -20635,7 +20628,7 @@ class Core {
     function handleDragOver(event) {
       var _context4;
       if (event.preventDefault) {
-        me.emit('dragover', me.getEventProperties(event));
+        me.emit("dragover", me.getEventProperties(event));
         event.preventDefault(); // Necessary. Allows us to drop.
       }
 
@@ -20644,7 +20637,7 @@ class Core {
 
       // make sure only one item is added every time you're over the timeline
       if (itemAddedToTimeline) return;
-      event.dataTransfer.dropEffect = 'move';
+      event.dataTransfer.dropEffect = "move";
       itemAddedToTimeline = true;
       return false;
     }
@@ -20674,16 +20667,16 @@ class Core {
         x: event.clientX,
         y: event.clientY
       };
-      if (itemData.target !== 'item') {
+      if (itemData.target !== "item") {
         me.itemSet._onAddItem(event);
       } else {
         me.itemSet._onDropObjectOnItem(event);
       }
-      me.emit('drop', me.getEventProperties(event));
+      me.emit("drop", me.getEventProperties(event));
       return false;
     }
-    this.dom.center.addEventListener('dragover', _bindInstanceProperty(handleDragOver).call(handleDragOver, this), false);
-    this.dom.center.addEventListener('drop', _bindInstanceProperty(handleDrop).call(handleDrop, this), false);
+    this.dom.center.addEventListener("dragover", _bindInstanceProperty(handleDragOver).call(handleDragOver, this), false);
+    this.dom.center.addEventListener("drop", _bindInstanceProperty(handleDrop).call(handleDrop, this), false);
     this.customTimes = [];
 
     // store state information needed for touch events
@@ -20693,7 +20686,7 @@ class Core {
     this.initialRangeChangeDone = false;
 
     // attach the root panel to the provided container
-    if (!container) throw new Error('No container provided');
+    if (!container) throw new Error("No container provided");
     container.appendChild(this.dom.root);
     container.appendChild(this.dom.loadingScreen);
   }
@@ -20727,47 +20720,47 @@ class Core {
     var _context7;
     if (options) {
       // copy the known options
-      const fields = ['width', 'height', 'minHeight', 'maxHeight', 'autoResize', 'start', 'end', 'clickToUse', 'dataAttributes', 'hiddenDates', 'locale', 'locales', 'moment', 'preferZoom', 'rtl', 'zoomKey', 'horizontalScroll', 'verticalScroll', 'longSelectPressTime', 'snap'];
+      const fields = ["width", "height", "minHeight", "maxHeight", "autoResize", "start", "end", "clickToUse", "dataAttributes", "hiddenDates", "locale", "locales", "moment", "preferZoom", "rtl", "zoomKey", "horizontalScroll", "verticalScroll", "longSelectPressTime", "snap"];
       availableUtils.selectiveExtend(fields, this.options, options);
-      this.dom.rollingModeBtn.style.visibility = 'hidden';
+      this.dom.rollingModeBtn.style.visibility = "hidden";
       if (this.options.rtl) {
         this.dom.container.style.direction = "rtl";
-        this.dom.backgroundVertical.className = 'vis-panel vis-background vis-vertical-rtl';
+        this.dom.backgroundVertical.className = "vis-panel vis-background vis-vertical-rtl";
       }
       if (this.options.verticalScroll) {
         if (this.options.rtl) {
-          this.dom.rightContainer.className = 'vis-panel vis-right vis-vertical-scroll';
+          this.dom.rightContainer.className = "vis-panel vis-right vis-vertical-scroll";
         } else {
-          this.dom.leftContainer.className = 'vis-panel vis-left vis-vertical-scroll';
+          this.dom.leftContainer.className = "vis-panel vis-left vis-vertical-scroll";
         }
       }
-      if (typeof this.options.orientation !== 'object') {
+      if (typeof this.options.orientation !== "object") {
         this.options.orientation = {
           item: undefined,
           axis: undefined
         };
       }
-      if ('orientation' in options) {
-        if (typeof options.orientation === 'string') {
+      if ("orientation" in options) {
+        if (typeof options.orientation === "string") {
           this.options.orientation = {
             item: options.orientation,
             axis: options.orientation
           };
-        } else if (typeof options.orientation === 'object') {
-          if ('item' in options.orientation) {
+        } else if (typeof options.orientation === "object") {
+          if ("item" in options.orientation) {
             this.options.orientation.item = options.orientation.item;
           }
-          if ('axis' in options.orientation) {
+          if ("axis" in options.orientation) {
             this.options.orientation.axis = options.orientation.axis;
           }
         }
       }
-      if (this.options.orientation.axis === 'both') {
+      if (this.options.orientation.axis === "both") {
         if (!this.timeAxis2) {
           const timeAxis2 = this.timeAxis2 = new TimeAxis(this.body, this.options);
           timeAxis2.setOptions = options => {
             const _options = options ? availableUtils.extend({}, options) : {};
-            _options.orientation = 'top'; // override the orientation option, always top
+            _options.orientation = "top"; // override the orientation option, always top
             TimeAxis.prototype.setOptions.call(timeAxis2, _options);
           };
           this.components.push(timeAxis2);
@@ -20786,15 +20779,15 @@ class Core {
       }
 
       // if the graph2d's drawPoints is a function delegate the callback to the onRender property
-      if (typeof options.drawPoints == 'function') {
+      if (typeof options.drawPoints == "function") {
         options.drawPoints = {
           onRender: options.drawPoints
         };
       }
-      if ('hiddenDates' in this.options) {
+      if ("hiddenDates" in this.options) {
         convertHiddenOptions(this.options.moment, this.body, this.options.hiddenDates);
       }
-      if ('clickToUse' in options) {
+      if ("clickToUse" in options) {
         if (options.clickToUse) {
           if (!this.activator) {
             this.activator = new Activator(this.dom.root);
@@ -20815,7 +20808,7 @@ class Core {
     _forEachInstanceProperty(_context7 = this.components).call(_context7, component => component.setOptions(options));
 
     // enable/disable configure
-    if ('configure' in options) {
+    if ("configure" in options) {
       var _context8;
       if (!this.configurator) {
         this.configurator = this._createConfigurator();
@@ -20972,7 +20965,7 @@ class Core {
    */
   addCustomTime(time, id) {
     var _context12;
-    const timestamp = time !== undefined ? availableUtils.convert(time, 'Date') : new Date();
+    const timestamp = time !== undefined ? availableUtils.convert(time, "Date") : new Date();
     const exists = _someInstanceProperty(_context12 = this.customTimes).call(_context12, customTime => customTime.options.id === id);
     if (exists) {
       throw new Error("A custom time with id ".concat(_JSON$stringify(id), " already exists"));
@@ -21069,7 +21062,7 @@ class Core {
    */
   getDataRange() {
     // must be implemented by Timeline and Graph2d
-    throw new Error('Cannot invoke abstract method getDataRange');
+    throw new Error("Cannot invoke abstract method getDataRange");
   }
 
   /**
@@ -21140,7 +21133,7 @@ class Core {
       options = {};
     }
     const interval = this.range.end - this.range.start;
-    const t = availableUtils.convert(time, 'Date').valueOf();
+    const t = availableUtils.convert(time, "Date").valueOf();
     const start = t - interval / 2;
     const end = t + interval / 2;
     const animation = options && options.animation !== undefined ? options.animation : true;
@@ -21243,25 +21236,25 @@ class Core {
     updateHiddenDates(this.options.moment, this.body, this.options.hiddenDates);
 
     // update class names
-    if (options.orientation == 'top') {
-      availableUtils.addClassName(dom.root, 'vis-top');
-      availableUtils.removeClassName(dom.root, 'vis-bottom');
+    if (options.orientation == "top") {
+      availableUtils.addClassName(dom.root, "vis-top");
+      availableUtils.removeClassName(dom.root, "vis-bottom");
     } else {
-      availableUtils.removeClassName(dom.root, 'vis-top');
-      availableUtils.addClassName(dom.root, 'vis-bottom');
+      availableUtils.removeClassName(dom.root, "vis-top");
+      availableUtils.addClassName(dom.root, "vis-bottom");
     }
     if (options.rtl) {
-      availableUtils.addClassName(dom.root, 'vis-rtl');
-      availableUtils.removeClassName(dom.root, 'vis-ltr');
+      availableUtils.addClassName(dom.root, "vis-rtl");
+      availableUtils.removeClassName(dom.root, "vis-ltr");
     } else {
-      availableUtils.addClassName(dom.root, 'vis-ltr');
-      availableUtils.removeClassName(dom.root, 'vis-rtl');
+      availableUtils.addClassName(dom.root, "vis-ltr");
+      availableUtils.removeClassName(dom.root, "vis-rtl");
     }
 
     // update root width and height options
-    dom.root.style.maxHeight = availableUtils.option.asSize(options.maxHeight, '');
-    dom.root.style.minHeight = availableUtils.option.asSize(options.minHeight, '');
-    dom.root.style.width = availableUtils.option.asSize(options.width, '');
+    dom.root.style.maxHeight = availableUtils.option.asSize(options.maxHeight, "");
+    dom.root.style.minHeight = availableUtils.option.asSize(options.minHeight, "");
+    dom.root.style.width = availableUtils.option.asSize(options.width, "");
     const rootOffsetWidth = dom.root.offsetWidth;
 
     // calculate border widths
@@ -21321,14 +21314,14 @@ class Core {
     let offset = this._updateScrollTop();
 
     // reposition the scrollable contents
-    if (options.orientation.item != 'top') {
+    if (options.orientation.item != "top") {
       offset += Math.max(props.centerContainer.height - props.center.height - props.border.top - props.border.bottom, 0);
     }
     dom.center.style.transform = "translateY(".concat(offset, "px)");
 
     // show shadows when vertical scrolling is available
-    const visibilityTop = props.scrollTop == 0 ? 'hidden' : '';
-    const visibilityBottom = props.scrollTop == props.scrollTopMin ? 'hidden' : '';
+    const visibilityTop = props.scrollTop == 0 ? "hidden" : "";
+    const visibilityBottom = props.scrollTop == props.scrollTopMin ? "hidden" : "";
     dom.shadowTop.style.visibility = visibilityTop;
     dom.shadowBottom.style.visibility = visibilityBottom;
     dom.shadowTopLeft.style.visibility = visibilityTop;
@@ -21336,20 +21329,20 @@ class Core {
     dom.shadowTopRight.style.visibility = visibilityTop;
     dom.shadowBottomRight.style.visibility = visibilityBottom;
     if (options.verticalScroll) {
-      dom.rightContainer.className = 'vis-panel vis-right vis-vertical-scroll';
-      dom.leftContainer.className = 'vis-panel vis-left vis-vertical-scroll';
+      dom.rightContainer.className = "vis-panel vis-right vis-vertical-scroll";
+      dom.leftContainer.className = "vis-panel vis-left vis-vertical-scroll";
       dom.shadowTopRight.style.visibility = "hidden";
       dom.shadowBottomRight.style.visibility = "hidden";
       dom.shadowTopLeft.style.visibility = "hidden";
       dom.shadowBottomLeft.style.visibility = "hidden";
-      dom.left.style.top = '0px';
-      dom.right.style.top = '0px';
+      dom.left.style.top = "0px";
+      dom.right.style.top = "0px";
     }
     if (!options.verticalScroll || props.center.height < props.centerContainer.height) {
       dom.left.style.top = "".concat(offset, "px");
       dom.right.style.top = "".concat(offset, "px");
-      dom.rightContainer.className = dom.rightContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
-      dom.leftContainer.className = dom.leftContainer.className.replace(new RegExp('(?:^|\\s)' + 'vis-vertical-scroll' + '(?:\\s|$)'), ' ');
+      dom.rightContainer.className = dom.rightContainer.className.replace(new RegExp("(?:^|\\s)" + "vis-vertical-scroll" + "(?:\\s|$)"), " ");
+      dom.leftContainer.className = dom.leftContainer.className.replace(new RegExp("(?:^|\\s)" + "vis-vertical-scroll" + "(?:\\s|$)"), " ");
       props.left.width = leftContainerClientWidth || -props.border.left;
       props.right.width = rightContainerClientWidth || -props.border.right;
       this._setDOM();
@@ -21357,12 +21350,12 @@ class Core {
 
     // enable/disable vertical panning
     const contentsOverflow = props.center.height > props.centerContainer.height;
-    this.hammer.get('pan').set({
+    this.hammer.get("pan").set({
       direction: contentsOverflow ? Hammer.DIRECTION_ALL : Hammer.DIRECTION_HORIZONTAL
     });
 
     // set the long press time
-    this.hammer.get('press').set({
+    this.hammer.get("press").set({
       time: this.options.longSelectPressTime
     });
 
@@ -21373,10 +21366,10 @@ class Core {
     const MAX_REDRAW = 5;
     if (resized) {
       if (this.redrawCount < MAX_REDRAW) {
-        this.body.emitter.emit('_change');
+        this.body.emitter.emit("_change");
         return;
       } else {
-        console.log('WARNING: infinite loop in redraw?');
+        console.log("WARNING: infinite loop in redraw?");
       }
     } else {
       this.redrawCount = 0;
@@ -21415,25 +21408,25 @@ class Core {
     dom.bottom.style.width = "".concat(props.bottom.width, "px");
 
     // reposition the panels
-    dom.background.style.left = '0';
-    dom.background.style.top = '0';
+    dom.background.style.left = "0";
+    dom.background.style.top = "0";
     dom.backgroundVertical.style.left = "".concat(props.left.width + props.border.left, "px");
-    dom.backgroundVertical.style.top = '0';
-    dom.backgroundHorizontal.style.left = '0';
+    dom.backgroundVertical.style.top = "0";
+    dom.backgroundHorizontal.style.left = "0";
     dom.backgroundHorizontal.style.top = "".concat(props.top.height, "px");
     dom.centerContainer.style.left = "".concat(props.left.width, "px");
     dom.centerContainer.style.top = "".concat(props.top.height, "px");
-    dom.leftContainer.style.left = '0';
+    dom.leftContainer.style.left = "0";
     dom.leftContainer.style.top = "".concat(props.top.height, "px");
     dom.rightContainer.style.left = "".concat(props.left.width + props.center.width, "px");
     dom.rightContainer.style.top = "".concat(props.top.height, "px");
     dom.top.style.left = "".concat(props.left.width, "px");
-    dom.top.style.top = '0';
+    dom.top.style.top = "0";
     dom.bottom.style.left = "".concat(props.left.width, "px");
     dom.bottom.style.top = "".concat(props.top.height + props.centerContainer.height, "px");
-    dom.center.style.left = '0';
-    dom.left.style.left = '0';
-    dom.right.style.left = '0';
+    dom.center.style.left = "0";
+    dom.left.style.left = "0";
+    dom.right.style.left = "0";
   }
 
   /**
@@ -21445,7 +21438,7 @@ class Core {
    */
   setCurrentTime(time) {
     if (!this.currentTime) {
-      throw new Error('Option showCurrentTime must be true');
+      throw new Error("Option showCurrentTime must be true");
     }
     this.currentTime.setCurrentTime(time);
   }
@@ -21457,7 +21450,7 @@ class Core {
    */
   getCurrentTime() {
     if (!this.currentTime) {
-      throw new Error('Option showCurrentTime must be true');
+      throw new Error("Option showCurrentTime must be true");
     }
     return this.currentTime.getCurrentTime();
   }
@@ -21550,13 +21543,13 @@ class Core {
           me.props.lastWidth = rootOffsetWidth;
           me.props.lastHeight = rootOffsetHeight;
           me.props.scrollbarWidth = availableUtils.getScrollBarWidth();
-          me.body.emitter.emit('_change');
+          me.body.emitter.emit("_change");
         }
       }
     };
 
     // add event listener to window resize
-    window.addEventListener('resize', this._onResize);
+    window.addEventListener("resize", this._onResize);
 
     //Prevent initial unnecessary redraw
     if (me.dom.root) {
@@ -21578,29 +21571,25 @@ class Core {
 
     // remove event listener on window.resize
     if (this._onResize) {
-      window.removeEventListener('resize', this._onResize);
+      window.removeEventListener("resize", this._onResize);
       this._onResize = null;
     }
   }
 
   /**
    * Start moving the timeline vertically
-   * @param {Event} event
    * @private
    */
-  _onTouch(event) {
-    // eslint-disable-line no-unused-vars
+  _onTouch() {
     this.touch.allowDragging = true;
     this.touch.initialScrollTop = this.props.scrollTop;
   }
 
   /**
    * Start moving the timeline vertically
-   * @param {Event} event
    * @private
    */
-  _onPinch(event) {
-    // eslint-disable-line no-unused-vars
+  _onPinch() {
     this.touch.allowDragging = false;
   }
 
@@ -21649,7 +21638,7 @@ class Core {
     if (scrollTopMin != this.props.scrollTopMin) {
       // in case of bottom orientation, change the scrollTop such that the contents
       // do not move relative to the time axis at the bottom
-      if (this.options.orientation.item != 'top') {
+      if (this.options.orientation.item != "top") {
         this.props.scrollTop += scrollTopMin - this.props.scrollTopMin;
       }
       this.props.scrollTopMin = scrollTopMin;
@@ -21680,7 +21669,7 @@ class Core {
    * @private
    */
   _createConfigurator() {
-    throw new Error('Cannot invoke abstract method _createConfigurator');
+    throw new Error("Cannot invoke abstract method _createConfigurator");
   }
 }
 
@@ -21711,7 +21700,7 @@ class CurrentTime extends Component {
       alignCurrentTime: undefined,
       moment: moment$2,
       locales,
-      locale: 'en'
+      locale: "en"
     };
     this.options = availableUtils.extend({}, this.defaultOptions);
     this.setOptions(options);
@@ -21729,11 +21718,11 @@ class CurrentTime extends Component {
    * @private
    */
   _create() {
-    const bar = document.createElement('div');
-    bar.className = 'vis-current-time';
-    bar.style.position = 'absolute';
-    bar.style.top = '0px';
-    bar.style.height = '100%';
+    const bar = document.createElement("div");
+    bar.className = "vis-current-time";
+    bar.style.position = "absolute";
+    bar.style.top = "0px";
+    bar.style.height = "100%";
     this.bar = bar;
   }
 
@@ -21756,7 +21745,7 @@ class CurrentTime extends Component {
   setOptions(options) {
     if (options) {
       // copy all options that we know
-      availableUtils.selectiveExtend(['rtl', 'showCurrentTime', 'alignCurrentTime', 'moment', 'locale', 'locales'], this.options, options);
+      availableUtils.selectiveExtend(["rtl", "showCurrentTime", "alignCurrentTime", "moment", "locale", "locales"], this.options, options);
     }
   }
 
@@ -21787,9 +21776,9 @@ class CurrentTime extends Component {
           console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
           this.warned = true;
         }
-        locale = this.options.locales['en']; // fall back on english when not available
+        locale = this.options.locales["en"]; // fall back on english when not available
       }
-      let title = _concatInstanceProperty(_context2 = _concatInstanceProperty(_context3 = "".concat(locale.current, " ")).call(_context3, locale.time, ": ")).call(_context2, now.format('dddd, MMMM Do YYYY, H:mm:ss'));
+      let title = _concatInstanceProperty(_context2 = _concatInstanceProperty(_context3 = "".concat(locale.current, " ")).call(_context3, locale.time, ": ")).call(_context2, now.format("dddd, MMMM Do YYYY, H:mm:ss"));
       title = title.charAt(0).toUpperCase() + title.substring(1);
       if (this.options.rtl) {
         this.bar.style.transform = "translateX(".concat(x * -1, "px)");
@@ -21825,7 +21814,7 @@ class CurrentTime extends Component {
       if (interval < 30) interval = 30;
       if (interval > 1000) interval = 1000;
       me.redraw();
-      me.body.emitter.emit('currentTimeTick');
+      me.body.emitter.emit("currentTimeTick");
 
       // start a renderTimer to adjust for the new time
       me.currentTimeTimer = _setTimeout(update, interval);
@@ -21850,7 +21839,7 @@ class CurrentTime extends Component {
    *                                          ISO date string.
    */
   setCurrentTime(time) {
-    const t = availableUtils.convert(time, 'Date').valueOf();
+    const t = availableUtils.convert(time, "Date").valueOf();
     const now = _Date$now();
     this.offset = t - now;
     this.redraw();
@@ -23374,8 +23363,8 @@ function orderByStart(items) {
  */
 function orderByEnd(items) {
   _sortInstanceProperty(items).call(items, (a, b) => {
-    const aTime = 'end' in a.data ? a.data.end : a.data.start;
-    const bTime = 'end' in b.data ? b.data.end : b.data.start;
+    const aTime = "end" in a.data ? a.data.end : a.data.start;
+    const bTime = "end" in b.data ? b.data.end : b.data.start;
     return aTime - bTime;
   });
 }
@@ -23491,7 +23480,7 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
     }
   }
   for (let j = 0; j < subgroupOrder.length; j++) {
-    subgroup = subgroupOrder[j];
+    const subgroup = subgroupOrder[j];
     if (!Object.prototype.hasOwnProperty.call(subgroups, subgroup)) continue;
     doSubStack = doSubStack || subgroups[subgroup].stack;
     subgroups[subgroup].top = 0;
@@ -23512,8 +23501,8 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
 
 /**
  * Reusable stacking function
- * 
- * @param {Item[]} items 
+ *
+ * @param {Item[]} items
  * An array of items to consider during stacking.
  * @param {{horizontal: number, vertical: number}} margins
  * Margins to be used for collision checking and placement of items.
@@ -23527,9 +23516,9 @@ function stackSubgroupsWithInnerStack(subgroupItems, margin, subgroups) {
  * A callback function which indicates whether other items should consider this item when being stacked.
  * @param {function(Item): number} getInitialHeight
  * A callback function which determines the height items are initially placed at
- * @param {function(): boolean} shouldBail 
+ * @param {function(): boolean} shouldBail
  * A callback function which should indicate if the stacking process should be aborted.
- * 
+ *
  * @returns {null|number}
  * if shouldBail was triggered, returns null
  * otherwise, returns the maximum height
@@ -23569,11 +23558,11 @@ function performStacking(items, margins, compareTimes, shouldStack, shouldOthers
         // We need to put immoveable items into itemsAlreadyPositioned and ensure that this array is sorted.
         // We could simply insert them, and then use JavaScript's sort function to sort them afterwards.
         // This would achieve an average complexity of O(n log n).
-        // 
+        //
         // Instead, I'm gambling that the start of each item will usually be the same or later than the
         // start of the previous item. While this holds (best case), we can insert items in O(n).
         // In the worst case (where each item starts before the previous item) this grows to O(n^2).
-        // 
+        //
         // I am making the assumption that for most datasets, the "order" function will have relatively low cardinality,
         // and therefore this tradeoff should be easily worth it.
         if (previousStart !== null && itemStart < previousStart - EPSILON) {
@@ -23672,15 +23661,14 @@ function checkVerticalSpatialCollision(a, b, margin) {
   return a.top - margin.vertical + EPSILON < b.top + b.height && a.top + a.height + margin.vertical - EPSILON > b.top;
 }
 
-// eslint-disable-next-line valid-jsdoc
 /**
  * Find index of first item to meet predicate after a certain index.
  * If no such item is found, returns the length of the array.
- * 
+ *
  * @param {any[]} arr The array
  * @param {function(item): boolean} predicate A function that should return true when a suitable item is found
  * @param {number|undefined} startIndex The index to start search from (inclusive). Optional, if not provided will search from the beginning of the array.
- * 
+ *
  * @return {number}
  */
 function findIndexFrom(arr, predicate, startIndex) {
@@ -23698,12 +23686,12 @@ function findIndexFrom(arr, predicate, startIndex) {
 /**
  * Find index of last item to meet predicate within a given range.
  * If no such item is found, returns the index prior to the start of the range.
- * 
+ *
  * @param {any[]} arr The array
  * @param {function(item): boolean} predicate A function that should return true when a suitable item is found
  * @param {number|undefined} startIndex The earliest index to search to (inclusive). Optional, if not provided will continue until the start of the array.
  * @param {number|undefined} endIndex The end of the search range (exclusive). The search will begin on the index prior to this value. Optional, defaults to the end of array.
- * 
+ *
  * @return {number}
  */
 function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
@@ -23723,12 +23711,12 @@ function findLastIndexBetween(arr, predicate, startIndex, endIndex) {
 
 /**
  * Takes an array and returns an array containing only items which meet a predicate within a given range.
- * 
+ *
  * @param {any[]} arr The array
- * @param {(item) => boolean} predicate A function that should return true for items which should be included within the result
+ * @param {function(item): boolean} predicate A function that should return true for items which should be included within the result
  * @param {number|undefined} startIndex The earliest index to include (inclusive). Optional, if not provided will continue until the start of the array.
  * @param {number|undefined} endIndex The end of the range to filter (exclusive). Optional, defaults to the end of array.
- * 
+ *
  * @return {number}
  */
 function filterBetween(arr, predicate, startIndex, endIndex) {
@@ -23760,7 +23748,7 @@ var stack$1 = /*#__PURE__*/Object.freeze({
 	substack: substack
 });
 
-const BACKGROUND$1 = '__background__'; // reserved group id for background items without group
+const BACKGROUND$1 = "__background__"; // reserved group id for background items without group
 
 const ReservedGroupIds$1 = {
   BACKGROUND: BACKGROUND$1
@@ -23771,11 +23759,11 @@ const ReservedGroupIds$1 = {
  */
 class Group {
   /**
-  * @param {number | string} groupId
-  * @param {Object} data
-  * @param {ItemSet} itemSet
-  * @constructor Group
-  */
+   * @param {number | string} groupId
+   * @param {Object} data
+   * @param {ItemSet} itemSet
+   * @constructor Group
+   */
   constructor(groupId, data, itemSet) {
     this.groupId = groupId;
     this.subgroups = {};
@@ -23857,33 +23845,33 @@ class Group {
    * @private
    */
   _create() {
-    const label = document.createElement('div');
+    const label = document.createElement("div");
     if (this.itemSet.options.groupEditable.order) {
-      label.className = 'vis-label draggable';
+      label.className = "vis-label draggable";
     } else {
-      label.className = 'vis-label';
+      label.className = "vis-label";
     }
     this.dom.label = label;
-    const inner = document.createElement('div');
-    inner.className = 'vis-inner';
+    const inner = document.createElement("div");
+    inner.className = "vis-inner";
     label.appendChild(inner);
     this.dom.inner = inner;
-    const foreground = document.createElement('div');
-    foreground.className = 'vis-group';
-    foreground['vis-group'] = this;
+    const foreground = document.createElement("div");
+    foreground.className = "vis-group";
+    foreground["vis-group"] = this;
     this.dom.foreground = foreground;
-    this.dom.background = document.createElement('div');
-    this.dom.background.className = 'vis-group';
-    this.dom.axis = document.createElement('div');
-    this.dom.axis.className = 'vis-group';
+    this.dom.background = document.createElement("div");
+    this.dom.background.className = "vis-group";
+    this.dom.axis = document.createElement("div");
+    this.dom.axis.className = "vis-group";
 
     // create a hidden marker to detect when the Timelines container is attached
     // to the DOM, or the style of a parent of the Timeline is changed from
     // display:none is changed to visible.
-    this.dom.marker = document.createElement('div');
-    this.dom.marker.style.visibility = 'hidden';
-    this.dom.marker.style.position = 'absolute';
-    this.dom.marker.innerHTML = '';
+    this.dom.marker = document.createElement("div");
+    this.dom.marker.style.visibility = "hidden";
+    this.dom.marker.style.position = "absolute";
+    this.dom.marker.innerHTML = "";
     this.dom.background.appendChild(this.dom.marker);
   }
 
@@ -23920,15 +23908,15 @@ class Group {
     } else if (content !== undefined && content !== null) {
       this.dom.inner.innerHTML = availableUtils.xss(content);
     } else {
-      this.dom.inner.innerHTML = availableUtils.xss(this.groupId || ''); // groupId can be null
+      this.dom.inner.innerHTML = availableUtils.xss(this.groupId || ""); // groupId can be null
     }
 
     // update title
-    this.dom.label.title = data && data.title || '';
+    this.dom.label.title = data && data.title || "";
     if (!this.dom.inner.firstChild) {
-      availableUtils.addClassName(this.dom.inner, 'vis-hidden');
+      availableUtils.addClassName(this.dom.inner, "vis-hidden");
     } else {
-      availableUtils.removeClassName(this.dom.inner, 'vis-hidden');
+      availableUtils.removeClassName(this.dom.inner, "vis-hidden");
     }
     if (data && data.nestedGroups) {
       if (!this.nestedGroups || this.nestedGroups != data.nestedGroups) {
@@ -23941,30 +23929,30 @@ class Group {
           this.showNested = true;
         }
       }
-      availableUtils.addClassName(this.dom.label, 'vis-nesting-group');
+      availableUtils.addClassName(this.dom.label, "vis-nesting-group");
       if (this.showNested) {
-        availableUtils.removeClassName(this.dom.label, 'collapsed');
-        availableUtils.addClassName(this.dom.label, 'expanded');
+        availableUtils.removeClassName(this.dom.label, "collapsed");
+        availableUtils.addClassName(this.dom.label, "expanded");
       } else {
-        availableUtils.removeClassName(this.dom.label, 'expanded');
-        availableUtils.addClassName(this.dom.label, 'collapsed');
+        availableUtils.removeClassName(this.dom.label, "expanded");
+        availableUtils.addClassName(this.dom.label, "collapsed");
       }
     } else if (this.nestedGroups) {
       this.nestedGroups = null;
-      availableUtils.removeClassName(this.dom.label, 'collapsed');
-      availableUtils.removeClassName(this.dom.label, 'expanded');
-      availableUtils.removeClassName(this.dom.label, 'vis-nesting-group');
+      availableUtils.removeClassName(this.dom.label, "collapsed");
+      availableUtils.removeClassName(this.dom.label, "expanded");
+      availableUtils.removeClassName(this.dom.label, "vis-nesting-group");
     }
     if (data && (data.treeLevel || data.nestedInGroup)) {
-      availableUtils.addClassName(this.dom.label, 'vis-nested-group');
+      availableUtils.addClassName(this.dom.label, "vis-nested-group");
       if (data.treeLevel) {
-        availableUtils.addClassName(this.dom.label, 'vis-group-level-' + data.treeLevel);
+        availableUtils.addClassName(this.dom.label, "vis-group-level-" + data.treeLevel);
       } else {
         // Nesting level is unknown, but we're sure it's at least 1
-        availableUtils.addClassName(this.dom.label, 'vis-group-level-unknown-but-gte1');
+        availableUtils.addClassName(this.dom.label, "vis-group-level-unknown-but-gte1");
       }
     } else {
-      availableUtils.addClassName(this.dom.label, 'vis-group-level-0');
+      availableUtils.addClassName(this.dom.label, "vis-group-level-0");
     }
 
     // update className
@@ -24004,7 +23992,7 @@ class Group {
 
   /**
    * check if group has had an initial height hange
-   * @returns {boolean} 
+   * @returns {boolean}
    */
   _didMarkerHeightChange() {
     const markerHeight = this.dom.marker.clientHeight;
@@ -24052,7 +24040,7 @@ class Group {
 
   /**
    * checks if should bail redraw of items
-   * @returns {boolean} should bail 
+   * @returns {boolean} should bail
    */
   _shouldBailItemsRedraw() {
     const me = this;
@@ -24108,9 +24096,9 @@ class Group {
       };
 
       /**
-      * Get all visible items in range
-      * @return {array} items
-      */
+       * Get all visible items in range
+       * @return {array} items
+       */
       const getVisibleItems = () => {
         var _context8, _context9;
         const visibleItems = this._updateItemsInRange(orderedItems, _filterInstanceProperty(_context8 = this.visibleItems).call(_context8, item => !item.isCluster), range);
@@ -24133,7 +24121,7 @@ class Group {
         }
         return visibleSubgroupsItems;
       };
-      if (typeof this.itemSet.options.order === 'function') {
+      if (typeof this.itemSet.options.order === "function") {
         // a custom order function
         //show all items
         const me = this;
@@ -24188,7 +24176,7 @@ class Group {
         });
       }
       if (this.shouldBailStackItems) {
-        this.itemSet.body.emitter.emit('destroyTimeline');
+        this.itemSet.body.emitter.emit("destroyTimeline");
       }
       this.stackDirty = false;
     }
@@ -24201,12 +24189,12 @@ class Group {
    * @return {boolean} did resize
    */
   _didResize(resized, height) {
-    resized = availableUtils.updateProperty(this, 'height', height) || resized;
+    resized = availableUtils.updateProperty(this, "height", height) || resized;
     // recalculate size of label
     const labelWidth = this.dom.inner.clientWidth;
     const labelHeight = this.dom.inner.clientHeight;
-    resized = availableUtils.updateProperty(this.props.label, 'width', labelWidth) || resized;
-    resized = availableUtils.updateProperty(this.props.label, 'height', labelHeight) || resized;
+    resized = availableUtils.updateProperty(this.props.label, "width", labelWidth) || resized;
+    resized = availableUtils.updateProperty(this.props.label, "height", labelHeight) || resized;
     return resized;
   }
 
@@ -24305,7 +24293,7 @@ class Group {
       _forEachInstanceProperty(availableUtils).call(availableUtils, this.visibleItems, item => {
         if (item.data.subgroup !== undefined) {
           me.subgroups[item.data.subgroup].height = Math.max(me.subgroups[item.data.subgroup].height, item.height + margin.item.vertical);
-          me.subgroups[item.data.subgroup].visible = typeof this.subgroupVisibility[item.data.subgroup] === 'undefined' ? true : Boolean(this.subgroupVisibility[item.data.subgroup]);
+          me.subgroups[item.data.subgroup].visible = typeof this.subgroupVisibility[item.data.subgroup] === "undefined" ? true : Boolean(this.subgroupVisibility[item.data.subgroup]);
         }
       });
     }
@@ -24333,7 +24321,7 @@ class Group {
     // recalculate the height of the group
     let height;
     let items;
-    if (this.heightMode === 'fixed') {
+    if (this.heightMode === "fixed") {
       items = availableUtils.toArray(this.items);
     } else {
       // default or 'auto'
@@ -24489,7 +24477,7 @@ class Group {
   orderSubgroups() {
     if (this.subgroupOrderer !== undefined) {
       const sortArray = [];
-      if (typeof this.subgroupOrderer == 'string') {
+      if (typeof this.subgroupOrderer == "string") {
         for (const subgroup in this.subgroups) {
           if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
           sortArray.push({
@@ -24498,7 +24486,7 @@ class Group {
           });
         }
         _sortInstanceProperty(sortArray).call(sortArray, (a, b) => a.sortField - b.sortField);
-      } else if (typeof this.subgroupOrderer == 'function') {
+      } else if (typeof this.subgroupOrderer == "function") {
         for (const subgroup in this.subgroups) {
           if (!Object.prototype.hasOwnProperty.call(this.subgroups, subgroup)) continue;
           sortArray.push(this.subgroups[subgroup].items[0].data);
@@ -24657,7 +24645,7 @@ class Group {
     }
 
     // we do a binary search for the items that have only start values.
-    const initialPosByStart = availableUtils.binarySearchCustom(orderedItems.byStart, startSearchFunction, 'data', 'start');
+    const initialPosByStart = availableUtils.binarySearchCustom(orderedItems.byStart, startSearchFunction, "data", "start");
 
     // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the start values.
     this._traceVisible(initialPosByStart, orderedItems.byStart, visibleItems, visibleItemsLookup, item => item.data.start < lowerBound || item.data.start > upperBound);
@@ -24671,7 +24659,7 @@ class Group {
       }
     } else {
       // we do a binary search for the items that have defined end times.
-      const initialPosByEnd = availableUtils.binarySearchCustom(orderedItems.byEnd, endSearchFunction, 'data');
+      const initialPosByEnd = availableUtils.binarySearchCustom(orderedItems.byEnd, endSearchFunction, "data");
 
       // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
       this._traceVisible(initialPosByEnd, orderedItems.byEnd, visibleItems, visibleItemsLookup, item => item.data.end < lowerBound || item.data.start > upperBound);
@@ -24805,10 +24793,10 @@ class Group {
 
   /**
    * Update the visible items
-   * @param {array} orderedClusters 
-   * @param {array} oldVisibleClusters                         
-   * @param {{start: number, end: number}} range             
-   * @return {Item[]} visibleItems                            
+   * @param {array} orderedClusters
+   * @param {array} oldVisibleClusters
+   * @param {{start: number, end: number}} range
+   * @return {Item[]} visibleItems
    * @private
    */
   _updateClustersInRange(orderedClusters, oldVisibleClusters, range) {
@@ -24883,10 +24871,10 @@ class Group {
  */
 class BackgroundGroup extends Group {
   /**
-  * @param {number | string} groupId
-  * @param {Object} data
-  * @param {ItemSet} itemSet
-  */
+   * @param {number | string} groupId
+   * @param {Object} data
+   * @param {ItemSet} itemSet
+   */
   constructor(groupId, data, itemSet) {
     super(groupId, data, itemSet);
     // Group.call(this, groupId, data, itemSet);
@@ -24901,11 +24889,9 @@ class BackgroundGroup extends Group {
    * Repaint this group
    * @param {{start: number, end: number}} range
    * @param {{item: {horizontal: number, vertical: number}, axis: number}} margin
-   * @param {boolean} [forceRestack=false]  Force restacking of all items
    * @return {boolean} Returns true if the group is resized
    */
-  redraw(range, margin, forceRestack) {
-    // eslint-disable-line no-unused-vars
+  redraw(range, margin) {
     const resized = false;
     this.visibleItems = this._updateItemsInRange(this.orderedItems, this.visibleItems, range);
 
@@ -24913,7 +24899,7 @@ class BackgroundGroup extends Group {
     this.width = this.dom.background.offsetWidth;
 
     // apply new height (just always zero for BackgroundGroup
-    this.dom.background.style.height = '0';
+    this.dom.background.style.height = "0";
 
     // update vertical position of items after they are re-stacked and the height of the group is calculated
     for (let i = 0, ii = this.visibleItems.length; i < ii; i++) {
@@ -24938,14 +24924,14 @@ class BackgroundGroup extends Group {
  */
 class Item {
   /**
-  * @constructor Item
-  * @param {Object} data             Object containing (optional) parameters type,
-  *                                  start, end, content, group, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} options          Configuration options
-  *                                  // TODO: describe available options
-  */
+   * @constructor Item
+   * @param {Object} data             Object containing (optional) parameters type,
+   *                                  start, end, content, group, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} options          Configuration options
+   *                                  // TODO: describe available options
+   */
   constructor(data, conversion, options) {
     var _context;
     this.id = null;
@@ -24955,7 +24941,7 @@ class Item {
     this.conversion = conversion || {};
     this.defaultOptions = {
       locales,
-      locale: 'en'
+      locale: "en"
     };
     this.options = availableUtils.extend({}, this.defaultOptions, options);
     this.options.locales = availableUtils.extend({}, locales, this.options.locales);
@@ -25029,7 +25015,7 @@ class Item {
    */
   setSelectability(data) {
     if (data) {
-      this.selectable = typeof data.selectable === 'undefined' ? true : Boolean(data.selectable);
+      this.selectable = typeof data.selectable === "undefined" ? true : Boolean(data.selectable);
     }
   }
 
@@ -25051,11 +25037,9 @@ class Item {
 
   /**
    * Check whether this item is visible inside given range
-   * @param {timeline.Range} range with a timestamp for start and end
    * @returns {boolean} True if visible
    */
-  isVisible(range) {
-    // eslint-disable-line no-unused-vars
+  isVisible() {
     return false;
   }
 
@@ -25105,33 +25089,33 @@ class Item {
       var _context2, _context3;
       const me = this;
       // create and show drag area
-      const dragCenter = document.createElement('div');
-      dragCenter.className = 'vis-drag-center';
+      const dragCenter = document.createElement("div");
+      dragCenter.className = "vis-drag-center";
       dragCenter.dragCenterItem = this;
       this.hammerDragCenter = new Hammer(dragCenter);
-      this.hammerDragCenter.on('tap', event => {
-        me.parent.itemSet.body.emitter.emit('click', {
+      this.hammerDragCenter.on("tap", event => {
+        me.parent.itemSet.body.emitter.emit("click", {
           event,
           item: me.id
         });
       });
-      this.hammerDragCenter.on('doubletap', event => {
+      this.hammerDragCenter.on("doubletap", event => {
         event.stopPropagation();
         me.parent.itemSet._onUpdateItem(me);
-        me.parent.itemSet.body.emitter.emit('doubleClick', {
+        me.parent.itemSet.body.emitter.emit("doubleClick", {
           event,
           item: me.id
         });
       });
-      this.hammerDragCenter.on('panstart', event => {
+      this.hammerDragCenter.on("panstart", event => {
         // do not allow this event to propagate to the Range
         event.stopPropagation();
         me.parent.itemSet._onDragStart(event);
       });
-      this.hammerDragCenter.on('panmove', _bindInstanceProperty(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
-      this.hammerDragCenter.on('panend', _bindInstanceProperty(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet));
+      this.hammerDragCenter.on("panmove", _bindInstanceProperty(_context2 = me.parent.itemSet._onDrag).call(_context2, me.parent.itemSet));
+      this.hammerDragCenter.on("panend", _bindInstanceProperty(_context3 = me.parent.itemSet._onDragEnd).call(_context3, me.parent.itemSet));
       // delay addition on item click for trackpads...
-      this.hammerDragCenter.get('press').set({
+      this.hammerDragCenter.get("press").set({
         time: 10000
       });
       if (this.dom.box) {
@@ -25167,11 +25151,11 @@ class Item {
     if (this.selected && editable && !this.dom.deleteButton) {
       // create and show button
       const me = this;
-      const deleteButton = document.createElement('div');
+      const deleteButton = document.createElement("div");
       if (this.options.rtl) {
-        deleteButton.className = 'vis-delete-rtl';
+        deleteButton.className = "vis-delete-rtl";
       } else {
-        deleteButton.className = 'vis-delete';
+        deleteButton.className = "vis-delete";
       }
       let optionsLocale = this.options.locales[this.options.locale];
       if (!optionsLocale) {
@@ -25179,12 +25163,12 @@ class Item {
           console.warn("WARNING: options.locales['".concat(this.options.locale, "'] not found. See https://visjs.github.io/vis-timeline/docs/timeline/#Localization"));
           this.warned = true;
         }
-        optionsLocale = this.options.locales['en']; // fall back on english when not available
+        optionsLocale = this.options.locales["en"]; // fall back on english when not available
       }
       deleteButton.title = optionsLocale.deleteSelected;
 
       // TODO: be able to destroy the delete button
-      this.hammerDeleteButton = new Hammer(deleteButton).on('tap', event => {
+      this.hammerDeleteButton = new Hammer(deleteButton).on("tap", event => {
         event.stopPropagation();
         me.parent.removeFromDataSet(me);
       });
@@ -25212,8 +25196,8 @@ class Item {
     if (!this.options.tooltipOnItemUpdateTime) return;
     const editable = (this.options.editable.updateTime || this.data.editable === true) && this.data.editable !== false;
     if (this.selected && editable && !this.dom.onItemUpdateTimeTooltip) {
-      const onItemUpdateTimeTooltip = document.createElement('div');
-      onItemUpdateTimeTooltip.className = 'vis-onUpdateTime-tooltip';
+      const onItemUpdateTimeTooltip = document.createElement("div");
+      onItemUpdateTimeTooltip.className = "vis-onUpdateTime-tooltip";
       anchor.appendChild(onItemUpdateTimeTooltip);
       this.dom.onItemUpdateTimeTooltip = onItemUpdateTimeTooltip;
     } else if (!this.selected && this.dom.onItemUpdateTimeTooltip) {
@@ -25227,20 +25211,20 @@ class Item {
     // position onChange tooltip
     if (this.dom.onItemUpdateTimeTooltip) {
       // only show when editing
-      this.dom.onItemUpdateTimeTooltip.style.visibility = this.parent.itemSet.touchParams.itemIsDragging ? 'visible' : 'hidden';
+      this.dom.onItemUpdateTimeTooltip.style.visibility = this.parent.itemSet.touchParams.itemIsDragging ? "visible" : "hidden";
 
       // position relative to item's content
-      this.dom.onItemUpdateTimeTooltip.style.transform = 'translateX(-50%)';
-      this.dom.onItemUpdateTimeTooltip.style.left = '50%';
+      this.dom.onItemUpdateTimeTooltip.style.transform = "translateX(-50%)";
+      this.dom.onItemUpdateTimeTooltip.style.left = "50%";
 
       // position above or below the item depending on the item's position in the window
       const tooltipOffset = 50; // TODO: should be tooltip height (depends on template)
       const scrollTop = this.parent.itemSet.body.domProps.scrollTop;
 
-      // TODO: this.top for orientation:true is actually the items distance from the bottom... 
+      // TODO: this.top for orientation:true is actually the items distance from the bottom...
       // (should be this.bottom)
       let itemDistanceFromTop;
-      if (this.options.orientation.item == 'top') {
+      if (this.options.orientation.item == "top") {
         itemDistanceFromTop = this.top;
       } else {
         itemDistanceFromTop = this.parent.height - this.top - this.height;
@@ -25262,9 +25246,9 @@ class Item {
         templateFunction = _bindInstanceProperty(_context4 = this.options.tooltipOnItemUpdateTime.template).call(_context4, this);
         content = templateFunction(this.data);
       } else {
-        content = "start: ".concat(moment$2(this.data.start).format('MM/DD/YYYY hh:mm'));
+        content = "start: ".concat(moment$2(this.data.start).format("MM/DD/YYYY hh:mm"));
         if (this.data.end) {
-          content += "<br> end: ".concat(moment$2(this.data.end).format('MM/DD/YYYY hh:mm'));
+          content += "<br> end: ".concat(moment$2(this.data.end).format("MM/DD/YYYY hh:mm"));
         }
       }
       this.dom.onItemUpdateTimeTooltip.innerHTML = availableUtils.xss(content);
@@ -25272,10 +25256,10 @@ class Item {
   }
 
   /**
-  * get item data
-  * @return {object}
-  * @private
-  */
+   * get item data
+   * @return {object}
+   * @private
+   */
   _getItemData() {
     return this.parent.itemSet.itemsData.get(this.id);
   }
@@ -25294,13 +25278,13 @@ class Item {
     const itemData = this._getItemData(); // get a clone of the data from the dataset
 
     const frameElement = this.dom.box || this.dom.point;
-    const itemVisibleFrameContentElement = frameElement.getElementsByClassName('vis-item-visible-frame')[0];
+    const itemVisibleFrameContentElement = frameElement.getElementsByClassName("vis-item-visible-frame")[0];
     if (this.options.visibleFrameTemplate) {
       var _context5;
       visibleFrameTemplateFunction = _bindInstanceProperty(_context5 = this.options.visibleFrameTemplate).call(_context5, this);
       itemVisibleFrameContent = availableUtils.xss(visibleFrameTemplateFunction(itemData, itemVisibleFrameContentElement));
     } else {
-      itemVisibleFrameContent = '';
+      itemVisibleFrameContent = "";
     }
     if (itemVisibleFrameContentElement) {
       if (itemVisibleFrameContent instanceof Object && !(itemVisibleFrameContent instanceof Element)) {
@@ -25310,12 +25294,12 @@ class Item {
         if (changed) {
           // only replace the content when changed
           if (itemVisibleFrameContent instanceof Element) {
-            itemVisibleFrameContentElement.innerHTML = '';
+            itemVisibleFrameContentElement.innerHTML = "";
             itemVisibleFrameContentElement.appendChild(itemVisibleFrameContent);
           } else if (itemVisibleFrameContent != undefined) {
             itemVisibleFrameContentElement.innerHTML = availableUtils.xss(itemVisibleFrameContent);
           } else {
-            if (!(this.data.type == 'background' && this.data.content === undefined)) {
+            if (!(this.data.type == "background" && this.data.content === undefined)) {
               throw new Error("Property \"content\" missing in item ".concat(this.id));
             }
           }
@@ -25337,12 +25321,12 @@ class Item {
       if (changed) {
         // only replace the content when changed
         if (content instanceof Element) {
-          element.innerHTML = '';
+          element.innerHTML = "";
           element.appendChild(content);
         } else if (content != undefined) {
           element.innerHTML = availableUtils.xss(content);
         } else {
-          if (!(this.data.type == 'background' && this.data.content === undefined)) {
+          if (!(this.data.type == "background" && this.data.content === undefined)) {
             throw new Error("Property \"content\" missing in item ".concat(this.id));
           }
         }
@@ -25361,7 +25345,7 @@ class Item {
       let attributes = [];
       if (_Array$isArray(this.options.dataAttributes)) {
         attributes = this.options.dataAttributes;
-      } else if (this.options.dataAttributes == 'all') {
+      } else if (this.options.dataAttributes == "all") {
         attributes = _Object$keys(this.data);
       } else {
         return;
@@ -25403,8 +25387,8 @@ class Item {
    * @private
    */
   _contentToString(content) {
-    if (typeof content === 'string') return content;
-    if (content && 'outerHTML' in content) return content.outerHTML;
+    if (typeof content === "string") return content;
+    if (content && "outerHTML" in content) return content.outerHTML;
     return content;
   }
 
@@ -25413,31 +25397,31 @@ class Item {
    */
   _updateEditStatus() {
     if (this.options) {
-      if (typeof this.options.editable === 'boolean') {
+      if (typeof this.options.editable === "boolean") {
         this.editable = {
           updateTime: this.options.editable,
           updateGroup: this.options.editable,
           remove: this.options.editable
         };
-      } else if (typeof this.options.editable === 'object') {
+      } else if (typeof this.options.editable === "object") {
         this.editable = {};
-        availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.options.editable);
+        availableUtils.selectiveExtend(["updateTime", "updateGroup", "remove"], this.editable, this.options.editable);
       }
     }
     // Item data overrides, except if options.editable.overrideItems is set.
     if (!this.options || !this.options.editable || this.options.editable.overrideItems !== true) {
       if (this.data) {
-        if (typeof this.data.editable === 'boolean') {
+        if (typeof this.data.editable === "boolean") {
           this.editable = {
             updateTime: this.data.editable,
             updateGroup: this.data.editable,
             remove: this.data.editable
           };
-        } else if (typeof this.data.editable === 'object') {
+        } else if (typeof this.data.editable === "object") {
           // TODO: in timeline.js 5.0, we should change this to not reset options from the timeline configuration.
           // Basically just remove the next line...
           this.editable = {};
-          availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'remove'], this.editable, this.data.editable);
+          availableUtils.selectiveExtend(["updateTime", "updateGroup", "remove"], this.editable, this.data.editable);
         }
       }
     }
@@ -25480,13 +25464,13 @@ Item.prototype.stack = true;
  */
 class BoxItem extends Item {
   /**
-  * @param {Object} data             Object containing parameters start
-  *                                  content, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} [options]        Configuration options
-  *                                  // TODO: describe available options
-  */
+   * @param {Object} data             Object containing parameters start
+   *                                  content, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} [options]        Configuration options
+   *                                  // TODO: describe available options
+   */
   constructor(data, conversion, options) {
     super(data, conversion, options);
     this.props = {
@@ -25520,9 +25504,9 @@ class BoxItem extends Item {
     let isVisible;
     const align = this.data.align || this.options.align;
     const widthInMs = this.width * range.getMillisecondsPerPixel();
-    if (align == 'right') {
+    if (align == "right") {
       isVisible = this.data.start.getTime() > range.start && this.data.start.getTime() - widthInMs < range.end;
-    } else if (align == 'left') {
+    } else if (align == "left") {
       isVisible = this.data.start.getTime() + widthInMs > range.start && this.data.start.getTime() < range.end;
     } else {
       // default or 'center'
@@ -25532,32 +25516,32 @@ class BoxItem extends Item {
   }
 
   /**
-  * create DOM element
-  * @private
-  */
+   * create DOM element
+   * @private
+   */
   _createDomElement() {
     if (!this.dom) {
       // create DOM
       this.dom = {};
 
       // create main box
-      this.dom.box = document.createElement('DIV');
+      this.dom.box = document.createElement("DIV");
 
       // contents box (inside the background box). used for making margins
-      this.dom.content = document.createElement('DIV');
-      this.dom.content.className = 'vis-item-content';
+      this.dom.content = document.createElement("DIV");
+      this.dom.content.className = "vis-item-content";
       this.dom.box.appendChild(this.dom.content);
 
       // line to axis
-      this.dom.line = document.createElement('DIV');
-      this.dom.line.className = 'vis-line';
+      this.dom.line = document.createElement("DIV");
+      this.dom.line.className = "vis-line";
 
       // dot on axis
-      this.dom.dot = document.createElement('DIV');
-      this.dom.dot.className = 'vis-dot';
+      this.dom.dot = document.createElement("DIV");
+      this.dom.dot.className = "vis-dot";
 
       // attach this item as attribute
-      this.dom.box['vis-item'] = this;
+      this.dom.box["vis-item"] = this;
       this.dirty = true;
     }
   }
@@ -25568,21 +25552,21 @@ class BoxItem extends Item {
    */
   _appendDomElement() {
     if (!this.parent) {
-      throw new Error('Cannot redraw item: no parent attached');
+      throw new Error("Cannot redraw item: no parent attached");
     }
     if (!this.dom.box.parentNode) {
       const foreground = this.parent.dom.foreground;
-      if (!foreground) throw new Error('Cannot redraw item: parent has no foreground container element');
+      if (!foreground) throw new Error("Cannot redraw item: parent has no foreground container element");
       foreground.appendChild(this.dom.box);
     }
     if (!this.dom.line.parentNode) {
       var background = this.parent.dom.background;
-      if (!background) throw new Error('Cannot redraw item: parent has no background container element');
+      if (!background) throw new Error("Cannot redraw item: parent has no background container element");
       background.appendChild(this.dom.line);
     }
     if (!this.dom.dot.parentNode) {
       const axis = this.parent.dom.axis;
-      if (!background) throw new Error('Cannot redraw item: parent has no axis container element');
+      if (!background) throw new Error("Cannot redraw item: parent has no axis container element");
       axis.appendChild(this.dom.dot);
     }
     this.displayed = true;
@@ -25604,7 +25588,7 @@ class BoxItem extends Item {
       const editable = this.editable.updateTime || this.editable.updateGroup;
 
       // update class
-      const className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '') + (editable ? ' vis-editable' : ' vis-readonly');
+      const className = (this.data.className ? " " + this.data.className : "") + (this.selected ? " vis-selected" : "") + (editable ? " vis-editable" : " vis-readonly");
       this.dom.box.className = "vis-item vis-box".concat(className);
       this.dom.line.className = "vis-item vis-line".concat(className);
       this.dom.dot.className = "vis-item vis-dot".concat(className);
@@ -25778,12 +25762,12 @@ class BoxItem extends Item {
     const align = this.data.align === undefined ? this.options.align : this.data.align;
     const lineWidth = this.props.line.width;
     const dotWidth = this.props.dot.width;
-    if (align == 'right') {
+    if (align == "right") {
       // calculate right position of the box
       this.boxX = start - this.width;
       this.lineX = start - lineWidth;
       this.dotX = start - lineWidth / 2 - dotWidth / 2;
-    } else if (align == 'left') {
+    } else if (align == "left") {
       // calculate left position of the box
       this.boxX = start;
       this.lineX = start;
@@ -25805,20 +25789,20 @@ class BoxItem extends Item {
   repositionY() {
     const orientation = this.options.orientation.item;
     const lineStyle = this.dom.line.style;
-    if (orientation == 'top') {
+    if (orientation == "top") {
       const lineHeight = this.parent.top + this.top + 1;
       this.boxY = this.top || 0;
       lineStyle.height = "".concat(lineHeight, "px");
-      lineStyle.bottom = '';
-      lineStyle.top = '0';
+      lineStyle.bottom = "";
+      lineStyle.top = "0";
     } else {
       // orientation 'bottom'
       const itemSetHeight = this.parent.itemSet.props.height; // TODO: this is nasty
       const lineHeight = itemSetHeight - this.parent.top - this.parent.height + this.top;
       this.boxY = this.parent.height - this.top - (this.height || 0);
       lineStyle.height = "".concat(lineHeight, "px");
-      lineStyle.top = '';
-      lineStyle.bottom = '0';
+      lineStyle.top = "";
+      lineStyle.bottom = "0";
     }
     this.dotY = -this.props.dot.height / 2;
     this.repositionXY();
@@ -25847,13 +25831,13 @@ class BoxItem extends Item {
  */
 class PointItem extends Item {
   /**
-  * @param {Object} data             Object containing parameters start
-  *                                  content, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} [options]        Configuration options
-  *                                  // TODO: describe available options
-  */
+   * @param {Object} data             Object containing parameters start
+   *                                  content, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} [options]        Configuration options
+   *                                  // TODO: describe available options
+   */
   constructor(data, conversion, options) {
     super(data, conversion, options);
     this.props = {
@@ -25900,20 +25884,20 @@ class PointItem extends Item {
       this.dom = {};
 
       // background box
-      this.dom.point = document.createElement('div');
+      this.dom.point = document.createElement("div");
       // className is updated in redraw()
 
       // contents box, right from the dot
-      this.dom.content = document.createElement('div');
-      this.dom.content.className = 'vis-item-content';
+      this.dom.content = document.createElement("div");
+      this.dom.content.className = "vis-item-content";
       this.dom.point.appendChild(this.dom.content);
 
       // dot at start
-      this.dom.dot = document.createElement('div');
+      this.dom.dot = document.createElement("div");
       this.dom.point.appendChild(this.dom.dot);
 
       // attach this item as attribute
-      this.dom.point['vis-item'] = this;
+      this.dom.point["vis-item"] = this;
       this.dirty = true;
     }
   }
@@ -25924,12 +25908,12 @@ class PointItem extends Item {
    */
   _appendDomElement() {
     if (!this.parent) {
-      throw new Error('Cannot redraw item: no parent attached');
+      throw new Error("Cannot redraw item: no parent attached");
     }
     if (!this.dom.point.parentNode) {
       const foreground = this.parent.dom.foreground;
       if (!foreground) {
-        throw new Error('Cannot redraw item: parent has no foreground container element');
+        throw new Error("Cannot redraw item: parent has no foreground container element");
       }
       foreground.appendChild(this.dom.point);
     }
@@ -25951,7 +25935,7 @@ class PointItem extends Item {
       this._updateStyle(this.dom.point);
       const editable = this.editable.updateTime || this.editable.updateGroup;
       // update class
-      const className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '') + (editable ? ' vis-editable' : ' vis-readonly');
+      const className = (this.data.className ? " " + this.data.className : "") + (this.selected ? " vis-selected" : "") + (editable ? " vis-editable" : " vis-readonly");
       this.dom.point.className = "vis-item vis-point".concat(className);
       this.dom.dot.className = "vis-item vis-dot".concat(className);
     }
@@ -26130,7 +26114,7 @@ class PointItem extends Item {
    */
   repositionY() {
     const orientation = this.options.orientation.item;
-    if (orientation == 'top') {
+    if (orientation == "top") {
       this.pointY = this.top;
     } else {
       this.pointY = this.parent.height - this.top - this.height;
@@ -26161,13 +26145,13 @@ class PointItem extends Item {
  */
 class RangeItem extends Item {
   /**
-  * @param {Object} data             Object containing parameters start, end
-  *                                  content, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} [options]        Configuration options
-  *                                  // TODO: describe options
-  */
+   * @param {Object} data             Object containing parameters start, end
+   *                                  content, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} [options]        Configuration options
+   *                                  // TODO: describe options
+   */
   constructor(data, conversion, options) {
     super(data, conversion, options);
     this.props = {
@@ -26211,26 +26195,26 @@ class RangeItem extends Item {
       this.dom = {};
 
       // background box
-      this.dom.box = document.createElement('div');
+      this.dom.box = document.createElement("div");
       // className is updated in redraw()
 
       // frame box (to prevent the item contents from overflowing)
-      this.dom.frame = document.createElement('div');
-      this.dom.frame.className = 'vis-item-overflow';
+      this.dom.frame = document.createElement("div");
+      this.dom.frame.className = "vis-item-overflow";
       this.dom.box.appendChild(this.dom.frame);
 
       // visible frame box (showing the frame that is always visible)
-      this.dom.visibleFrame = document.createElement('div');
-      this.dom.visibleFrame.className = 'vis-item-visible-frame';
+      this.dom.visibleFrame = document.createElement("div");
+      this.dom.visibleFrame.className = "vis-item-visible-frame";
       this.dom.box.appendChild(this.dom.visibleFrame);
 
       // contents box
-      this.dom.content = document.createElement('div');
-      this.dom.content.className = 'vis-item-content';
+      this.dom.content = document.createElement("div");
+      this.dom.content.className = "vis-item-content";
       this.dom.frame.appendChild(this.dom.content);
 
       // attach this item as attribute
-      this.dom.box['vis-item'] = this;
+      this.dom.box["vis-item"] = this;
       this.dirty = true;
     }
   }
@@ -26241,12 +26225,12 @@ class RangeItem extends Item {
    */
   _appendDomElement() {
     if (!this.parent) {
-      throw new Error('Cannot redraw item: no parent attached');
+      throw new Error("Cannot redraw item: no parent attached");
     }
     if (!this.dom.box.parentNode) {
       const foreground = this.parent.dom.foreground;
       if (!foreground) {
-        throw new Error('Cannot redraw item: parent has no foreground container element');
+        throw new Error("Cannot redraw item: parent has no foreground container element");
       }
       foreground.appendChild(this.dom.box);
     }
@@ -26269,12 +26253,12 @@ class RangeItem extends Item {
       const editable = this.editable.updateTime || this.editable.updateGroup;
 
       // update class
-      const className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '') + (editable ? ' vis-editable' : ' vis-readonly');
+      const className = (this.data.className ? " " + this.data.className : "") + (this.selected ? " vis-selected" : "") + (editable ? " vis-editable" : " vis-readonly");
       this.dom.box.className = this.baseClassName + className;
 
       // turn off max-width to be able to calculate the real width
       // this causes an extra browser repaint/reflow, but so be it
-      this.dom.content.style.maxWidth = 'none';
+      this.dom.content.style.maxWidth = "none";
     }
   }
 
@@ -26285,8 +26269,8 @@ class RangeItem extends Item {
    */
   _getDomComponentsSizes() {
     // determine from css whether this box has overflow
-    this.overflow = window.getComputedStyle(this.dom.frame).overflow !== 'hidden';
-    this.whiteSpace = window.getComputedStyle(this.dom.content).whiteSpace !== 'nowrap';
+    this.overflow = window.getComputedStyle(this.dom.frame).overflow !== "hidden";
+    this.whiteSpace = window.getComputedStyle(this.dom.content).whiteSpace !== "nowrap";
     return {
       content: {
         width: this.dom.content.offsetWidth
@@ -26305,7 +26289,7 @@ class RangeItem extends Item {
   _updateDomComponentsSizes(sizes) {
     this.props.content.width = sizes.content.width;
     this.height = sizes.box.height;
-    this.dom.content.style.maxWidth = '';
+    this.dom.content.style.maxWidth = "";
     this.dirty = false;
   }
 
@@ -26334,7 +26318,7 @@ class RangeItem extends Item {
     _bindInstanceProperty(_context = this._createDomElement).call(_context, this),
     // append DOM to parent DOM
     _bindInstanceProperty(_context2 = this._appendDomElement).call(_context2, this),
-    // update dirty DOM 
+    // update dirty DOM
     _bindInstanceProperty(_context3 = this._updateDirtyDomComponents).call(_context3, this), () => {
       if (this.dirty) {
         var _context4;
@@ -26445,10 +26429,10 @@ class RangeItem extends Item {
       this.height = this.dom.box.offsetHeight;
     }
     switch (align) {
-      case 'left':
-        this.dom.content.style.transform = 'translateX(0)';
+      case "left":
+        this.dom.content.style.transform = "translateX(0)";
         break;
-      case 'right':
+      case "right":
         if (this.options.rtl) {
           const translateX = Math.max(boxWidth - contentWidth, 0) * -1;
           this.dom.content.style.transform = "translateX(".concat(translateX, "px)");
@@ -26456,7 +26440,7 @@ class RangeItem extends Item {
           this.dom.content.style.transform = "translateX(".concat(Math.max(boxWidth - contentWidth, 0), "px)");
         }
         break;
-      case 'center':
+      case "center":
         if (this.options.rtl) {
           const translateX = Math.max((boxWidth - contentWidth) / 2, 0) * -1;
           this.dom.content.style.transform = "translateX(".concat(translateX, "px)");
@@ -26497,7 +26481,7 @@ class RangeItem extends Item {
   repositionY() {
     const orientation = this.options.orientation.item;
     const box = this.dom.box;
-    if (orientation == 'top') {
+    if (orientation == "top") {
       box.style.top = "".concat(this.top, "px");
     } else {
       box.style.top = "".concat(this.parent.height - this.top - this.height, "px");
@@ -26511,8 +26495,8 @@ class RangeItem extends Item {
   _repaintDragLeft() {
     if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.editable.updateTime && !this.dom.dragLeft) {
       // create and show drag area
-      const dragLeft = document.createElement('div');
-      dragLeft.className = 'vis-drag-left';
+      const dragLeft = document.createElement("div");
+      dragLeft.className = "vis-drag-left";
       dragLeft.dragLeftItem = this;
       this.dom.box.appendChild(dragLeft);
       this.dom.dragLeft = dragLeft;
@@ -26532,8 +26516,8 @@ class RangeItem extends Item {
   _repaintDragRight() {
     if ((this.selected || this.options.itemsAlwaysDraggable.range) && this.editable.updateTime && !this.dom.dragRight) {
       // create and show drag area
-      const dragRight = document.createElement('div');
-      dragRight.className = 'vis-drag-right';
+      const dragRight = document.createElement("div");
+      dragRight.className = "vis-drag-right";
       dragRight.dragRightItem = this;
       this.dom.box.appendChild(dragRight);
       this.dom.dragRight = dragRight;
@@ -26546,7 +26530,7 @@ class RangeItem extends Item {
     }
   }
 }
-RangeItem.prototype.baseClassName = 'vis-item vis-range';
+RangeItem.prototype.baseClassName = "vis-item vis-range";
 
 /**
  * @constructor BackgroundItem
@@ -26554,15 +26538,15 @@ RangeItem.prototype.baseClassName = 'vis-item vis-range';
  */
 class BackgroundItem extends Item {
   /**
-  * @constructor BackgroundItem
-  * @param {Object} data             Object containing parameters start, end
-  *                                  content, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} [options]        Configuration options
-  *                                  // TODO: describe options
-  * // TODO: implement support for the BackgroundItem just having a start, then being displayed as a sort of an annotation
-  */
+   * @constructor BackgroundItem
+   * @param {Object} data             Object containing parameters start, end
+   *                                  content, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} [options]        Configuration options
+   *                                  // TODO: describe options
+   * // TODO: implement support for the BackgroundItem just having a start, then being displayed as a sort of an annotation
+   */
   constructor(data, conversion, options) {
     super(data, conversion, options);
     this.props = {
@@ -26603,17 +26587,17 @@ class BackgroundItem extends Item {
       this.dom = {};
 
       // background box
-      this.dom.box = document.createElement('div');
+      this.dom.box = document.createElement("div");
       // className is updated in redraw()
 
       // frame box (to prevent the item contents from overflowing
-      this.dom.frame = document.createElement('div');
-      this.dom.frame.className = 'vis-item-overflow';
+      this.dom.frame = document.createElement("div");
+      this.dom.frame.className = "vis-item-overflow";
       this.dom.box.appendChild(this.dom.frame);
 
       // contents box
-      this.dom.content = document.createElement('div');
-      this.dom.content.className = 'vis-item-content';
+      this.dom.content = document.createElement("div");
+      this.dom.content.className = "vis-item-content";
       this.dom.frame.appendChild(this.dom.content);
 
       // Note: we do NOT attach this item as attribute to the DOM,
@@ -26630,12 +26614,12 @@ class BackgroundItem extends Item {
    */
   _appendDomElement() {
     if (!this.parent) {
-      throw new Error('Cannot redraw item: no parent attached');
+      throw new Error("Cannot redraw item: no parent attached");
     }
     if (!this.dom.box.parentNode) {
       const background = this.parent.dom.background;
       if (!background) {
-        throw new Error('Cannot redraw item: parent has no background container element');
+        throw new Error("Cannot redraw item: parent has no background container element");
       }
       background.appendChild(this.dom.box);
     }
@@ -26657,7 +26641,7 @@ class BackgroundItem extends Item {
       this._updateStyle(this.dom.box);
 
       // update class
-      const className = (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '');
+      const className = (this.data.className ? " " + this.data.className : "") + (this.selected ? " vis-selected" : "");
       this.dom.box.className = this.baseClassName + className;
     }
   }
@@ -26669,7 +26653,7 @@ class BackgroundItem extends Item {
    */
   _getDomComponentsSizes() {
     // determine from css whether this box has overflow
-    this.overflow = window.getComputedStyle(this.dom.content).overflow !== 'hidden';
+    this.overflow = window.getComputedStyle(this.dom.content).overflow !== "hidden";
     return {
       content: {
         width: this.dom.content.offsetWidth
@@ -26736,8 +26720,7 @@ class BackgroundItem extends Item {
    * Reposition the item vertically
    * @Override
    */
-  repositionY(margin) {
-    // eslint-disable-line no-unused-vars
+  repositionY() {
     let height;
     const orientation = this.options.orientation.item;
 
@@ -26746,12 +26729,12 @@ class BackgroundItem extends Item {
       // TODO: instead of calculating the top position of the subgroups here for every BackgroundItem, calculate the top of the subgroup once in Itemset
       const itemSubgroup = this.data.subgroup;
       this.dom.box.style.height = "".concat(this.parent.subgroups[itemSubgroup].height, "px");
-      if (orientation == 'top') {
+      if (orientation == "top") {
         this.dom.box.style.top = "".concat(this.parent.top + this.parent.subgroups[itemSubgroup].top, "px");
       } else {
         this.dom.box.style.top = "".concat(this.parent.top + this.parent.height - this.parent.subgroups[itemSubgroup].top - this.parent.subgroups[itemSubgroup].height, "px");
       }
-      this.dom.box.style.bottom = '';
+      this.dom.box.style.bottom = "";
     }
     // and in the case of no subgroups:
     else {
@@ -26759,19 +26742,19 @@ class BackgroundItem extends Item {
       if (this.parent instanceof BackgroundGroup) {
         // if the item is not in a group:
         height = Math.max(this.parent.height, this.parent.itemSet.body.domProps.center.height, this.parent.itemSet.body.domProps.centerContainer.height);
-        this.dom.box.style.bottom = orientation == 'bottom' ? '0' : '';
-        this.dom.box.style.top = orientation == 'top' ? '0' : '';
+        this.dom.box.style.bottom = orientation == "bottom" ? "0" : "";
+        this.dom.box.style.top = orientation == "top" ? "0" : "";
       } else {
         height = this.parent.height;
         // same alignment for items when orientation is top or bottom
         this.dom.box.style.top = "".concat(this.parent.top, "px");
-        this.dom.box.style.bottom = '';
+        this.dom.box.style.bottom = "";
       }
     }
     this.dom.box.style.height = "".concat(height, "px");
   }
 }
-BackgroundItem.prototype.baseClassName = 'vis-item vis-background';
+BackgroundItem.prototype.baseClassName = "vis-item vis-background";
 BackgroundItem.prototype.stack = false;
 
 /**
@@ -26802,15 +26785,15 @@ class Popup {
    */
   constructor(container, overflowMethod) {
     this.container = container;
-    this.overflowMethod = overflowMethod || 'cap';
+    this.overflowMethod = overflowMethod || "cap";
     this.x = 0;
     this.y = 0;
     this.padding = 5;
     this.hidden = false;
 
     // create the frame
-    this.frame = document.createElement('div');
-    this.frame.className = 'vis-tooltip';
+    this.frame = document.createElement("div");
+    this.frame.className = "vis-tooltip";
     this.container.appendChild(this.frame);
   }
 
@@ -26829,7 +26812,7 @@ class Popup {
    */
   setText(content) {
     if (content instanceof Element) {
-      this.frame.innerHTML = '';
+      this.frame.innerHTML = "";
       this.frame.appendChild(content);
     } else {
       this.frame.innerHTML = availableUtils.xss(content); // string containing text or HTML
@@ -26851,11 +26834,11 @@ class Popup {
       var maxWidth = this.frame.parentNode.clientWidth;
       var left = 0,
         top = 0;
-      if (this.overflowMethod == 'flip' || this.overflowMethod == 'none') {
+      if (this.overflowMethod == "flip" || this.overflowMethod == "none") {
         let isLeft = false,
           isTop = true; // Where around the position it's located
 
-        if (this.overflowMethod == 'flip') {
+        if (this.overflowMethod == "flip") {
           if (this.y - height < this.padding) {
             isTop = false;
           }
@@ -27001,14 +26984,14 @@ var _everyInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(everyExports);
  */
 class ClusterItem extends Item {
   /**
-  * @constructor Item
-  * @param {Object} data             Object containing (optional) parameters type,
-  *                                  start, end, content, group, className.
-  * @param {{toScreen: function, toTime: function}} conversion
-  *                                  Conversion functions from time to screen and vice versa
-  * @param {Object} options          Configuration options
-  *                                  // TODO: describe available options
-  */
+   * @constructor Item
+   * @param {Object} data             Object containing (optional) parameters type,
+   *                                  start, end, content, group, className.
+   * @param {{toScreen: function, toTime: function}} conversion
+   *                                  Conversion functions from time to screen and vice versa
+   * @param {Object} options          Configuration options
+   *                                  // TODO: describe available options
+   */
   constructor(data, conversion, options) {
     const modifiedOptions = _Object$assign({}, {
       fitOnDoubleClick: true
@@ -27159,8 +27142,8 @@ class ClusterItem extends Item {
       this.repositionXWithoutRanges(start, align);
     }
     if (this.options.showStipes) {
-      this.dom.line.style.display = this._isStipeVisible() ? 'block' : 'none';
-      this.dom.dot.style.display = this._isStipeVisible() ? 'block' : 'none';
+      this.dom.line.style.display = this._isStipeVisible() ? "block" : "none";
+      this.dom.dot.style.display = this._isStipeVisible() ? "block" : "none";
       if (this._isStipeVisible()) {
         this.repositionStype(start, end);
       }
@@ -27173,8 +27156,8 @@ class ClusterItem extends Item {
    * @param {date} end
    */
   repositionStype(start, end) {
-    this.dom.line.style.display = 'block';
-    this.dom.dot.style.display = 'block';
+    this.dom.line.style.display = "block";
+    this.dom.dot.style.display = "block";
     const lineOffsetWidth = this.dom.line.offsetWidth;
     const dotOffsetWidth = this.dom.dot.offsetWidth;
     if (end) {
@@ -27199,29 +27182,29 @@ class ClusterItem extends Item {
    */
   repositionXWithoutRanges(start, align) {
     // calculate left position of the box
-    if (align == 'right') {
+    if (align == "right") {
       if (this.options.rtl) {
         this.right = start - this.width;
 
         // reposition box, line, and dot
-        this.dom.box.style.right = this.right + 'px';
+        this.dom.box.style.right = this.right + "px";
       } else {
         this.left = start - this.width;
 
         // reposition box, line, and dot
-        this.dom.box.style.left = this.left + 'px';
+        this.dom.box.style.left = this.left + "px";
       }
-    } else if (align == 'left') {
+    } else if (align == "left") {
       if (this.options.rtl) {
         this.right = start;
 
         // reposition box, line, and dot
-        this.dom.box.style.right = this.right + 'px';
+        this.dom.box.style.right = this.right + "px";
       } else {
         this.left = start;
 
         // reposition box, line, and dot
-        this.dom.box.style.left = this.left + 'px';
+        this.dom.box.style.left = this.left + "px";
       }
     } else {
       // default or 'center'
@@ -27229,12 +27212,12 @@ class ClusterItem extends Item {
         this.right = start - this.width / 2;
 
         // reposition box, line, and dot
-        this.dom.box.style.right = this.right + 'px';
+        this.dom.box.style.right = this.right + "px";
       } else {
         this.left = start - this.width / 2;
 
         // reposition box, line, and dot
-        this.dom.box.style.left = this.left + 'px';
+        this.dom.box.style.left = this.left + "px";
       }
     }
   }
@@ -27253,11 +27236,11 @@ class ClusterItem extends Item {
     }
     this.width = Math.max(boxWidth, this.minWidth || 0);
     if (this.options.rtl) {
-      this.dom.box.style.right = this.right + 'px';
+      this.dom.box.style.right = this.right + "px";
     } else {
-      this.dom.box.style.left = this.left + 'px';
+      this.dom.box.style.left = this.left + "px";
     }
-    this.dom.box.style.width = boxWidth + 'px';
+    this.dom.box.style.width = boxWidth + "px";
   }
 
   /**
@@ -27266,25 +27249,25 @@ class ClusterItem extends Item {
   repositionY() {
     var orientation = this.options.orientation.item;
     var box = this.dom.box;
-    if (orientation == 'top') {
-      box.style.top = (this.top || 0) + 'px';
+    if (orientation == "top") {
+      box.style.top = (this.top || 0) + "px";
     } else {
       // orientation 'bottom'
-      box.style.top = (this.parent.height - this.top - this.height || 0) + 'px';
+      box.style.top = (this.parent.height - this.top - this.height || 0) + "px";
     }
     if (this.options.showStipes) {
-      if (orientation == 'top') {
-        this.dom.line.style.top = '0';
-        this.dom.line.style.height = this.parent.top + this.top + 1 + 'px';
-        this.dom.line.style.bottom = '';
+      if (orientation == "top") {
+        this.dom.line.style.top = "0";
+        this.dom.line.style.height = this.parent.top + this.top + 1 + "px";
+        this.dom.line.style.bottom = "";
       } else {
         // orientation 'bottom'
         var itemSetHeight = this.parent.itemSet.props.height;
         var lineHeight = itemSetHeight - this.parent.top - this.parent.height + this.top;
-        this.dom.line.style.top = itemSetHeight - lineHeight + 'px';
-        this.dom.line.style.bottom = '0';
+        this.dom.line.style.top = itemSetHeight - lineHeight + "px";
+        this.dom.line.style.bottom = "0";
       }
-      this.dom.dot.style.top = -this.dom.dot.offsetHeight / 2 + 'px';
+      this.dom.dot.style.top = -this.dom.dot.offsetHeight / 2 + "px";
     }
   }
 
@@ -27398,22 +27381,22 @@ class ClusterItem extends Item {
       this.dom = {};
 
       // create main box
-      this.dom.box = document.createElement('DIV');
+      this.dom.box = document.createElement("DIV");
 
       // contents box (inside the background box). used for making margins
-      this.dom.content = document.createElement('DIV');
-      this.dom.content.className = 'vis-item-content';
+      this.dom.content = document.createElement("DIV");
+      this.dom.content.className = "vis-item-content";
       this.dom.box.appendChild(this.dom.content);
       if (this.options.showStipes) {
         // line to axis
-        this.dom.line = document.createElement('DIV');
-        this.dom.line.className = 'vis-cluster-line';
-        this.dom.line.style.display = 'none';
+        this.dom.line = document.createElement("DIV");
+        this.dom.line.className = "vis-cluster-line";
+        this.dom.line.style.display = "none";
 
         // dot on axis
-        this.dom.dot = document.createElement('DIV');
-        this.dom.dot.className = 'vis-cluster-dot';
-        this.dom.dot.style.display = 'none';
+        this.dom.dot = document.createElement("DIV");
+        this.dom.dot.className = "vis-cluster-dot";
+        this.dom.dot.style.display = "none";
       }
       if (this.options.fitOnDoubleClick) {
         var _context11;
@@ -27421,7 +27404,7 @@ class ClusterItem extends Item {
       }
 
       // attach this item as attribute
-      this.dom.box['vis-item'] = this;
+      this.dom.box["vis-item"] = this;
       this.dirty = true;
     }
   }
@@ -27431,24 +27414,24 @@ class ClusterItem extends Item {
    */
   _appendDomElement() {
     if (!this.parent) {
-      throw new Error('Cannot redraw item: no parent attached');
+      throw new Error("Cannot redraw item: no parent attached");
     }
     if (!this.dom.box.parentNode) {
       const foreground = this.parent.dom.foreground;
       if (!foreground) {
-        throw new Error('Cannot redraw item: parent has no foreground container element');
+        throw new Error("Cannot redraw item: parent has no foreground container element");
       }
       foreground.appendChild(this.dom.box);
     }
     const background = this.parent.dom.background;
     if (this.options.showStipes) {
       if (!this.dom.line.parentNode) {
-        if (!background) throw new Error('Cannot redraw item: parent has no background container element');
+        if (!background) throw new Error("Cannot redraw item: parent has no background container element");
         background.appendChild(this.dom.line);
       }
       if (!this.dom.dot.parentNode) {
         var axis = this.parent.dom.axis;
-        if (!background) throw new Error('Cannot redraw item: parent has no axis container element');
+        if (!background) throw new Error("Cannot redraw item: parent has no axis container element");
         axis.appendChild(this.dom.dot);
       }
     }
@@ -27469,16 +27452,16 @@ class ClusterItem extends Item {
       this._updateStyle(this.dom.box);
 
       // update class
-      const className = this.baseClassName + ' ' + (this.data.className ? ' ' + this.data.className : '') + (this.selected ? ' vis-selected' : '') + ' vis-readonly';
-      this.dom.box.className = 'vis-item ' + className;
+      const className = this.baseClassName + " " + (this.data.className ? " " + this.data.className : "") + (this.selected ? " vis-selected" : "") + " vis-readonly";
+      this.dom.box.className = "vis-item " + className;
       if (this.options.showStipes) {
-        this.dom.line.className = 'vis-item vis-cluster-line ' + (this.selected ? ' vis-selected' : '');
-        this.dom.dot.className = 'vis-item vis-cluster-dot ' + (this.selected ? ' vis-selected' : '');
+        this.dom.line.className = "vis-item vis-cluster-line " + (this.selected ? " vis-selected" : "");
+        this.dom.dot.className = "vis-item vis-cluster-dot " + (this.selected ? " vis-selected" : "");
       }
       if (this.data.end) {
         // turn off max-width to be able to calculate the real width
         // this causes an extra browser repaint/reflow, but so be it
-        this.dom.content.style.maxWidth = 'none';
+        this.dom.content.style.maxWidth = "none";
       }
     }
   }
@@ -27568,9 +27551,9 @@ class ClusterItem extends Item {
   }
 
   /**
-  * fit
-  * @private
-  */
+   * fit
+   * @private
+   */
   _fit() {
     if (this.emitter) {
       const {
@@ -27582,22 +27565,22 @@ class ClusterItem extends Item {
         end: new Date(fitEnd),
         animation: true
       };
-      this.emitter.emit('fit', fitArgs);
+      this.emitter.emit("fit", fitArgs);
     }
   }
 
   /**
-  * get item data
-  * @return {object}
-  * @private
-  */
+   * get item data
+   * @return {object}
+   * @private
+   */
   _getItemData() {
     return this.data;
   }
 }
-ClusterItem.prototype.baseClassName = 'vis-item vis-range vis-cluster';
+ClusterItem.prototype.baseClassName = "vis-item vis-range vis-cluster";
 
-const UNGROUPED$2 = '__ungrouped__'; // reserved group id for ungrouped items
+const UNGROUPED$2 = "__ungrouped__"; // reserved group id for ungrouped items
 
 const ReservedGroupIds = {
   UNGROUPED: UNGROUPED$2};
@@ -27609,7 +27592,7 @@ class ClusterGenerator {
   /**
    * @param {ItemSet} itemSet itemsSet instance
    * @constructor ClusterGenerator
-  */
+   */
   constructor(itemSet) {
     this.itemSet = itemSet;
     this.groups = {};
@@ -27623,7 +27606,7 @@ class ClusterGenerator {
    *                                  Conversion functions from time to screen and vice versa
    * @param {Object} [options]        Configuration options
    * @return {Object} newItem
-  */
+   */
   createClusterItem(itemData, conversion, options) {
     const newItem = new ClusterItem(itemData, conversion, options);
     return newItem;
@@ -27659,11 +27642,11 @@ class ClusterGenerator {
 
   /**
    * Cluster the items which are too close together
-   * @param {array} oldClusters 
-   * @param {number} scale      The scale of the current window : (windowWidth / (endDate - startDate)) 
-   * @param {{maxItems: number, clusterCriteria: function, titleTemplate: string}} options             
+   * @param {array} oldClusters
+   * @param {number} scale      The scale of the current window : (windowWidth / (endDate - startDate))
+   * @param {{maxItems: number, clusterCriteria: function, titleTemplate: string}} options
    * @return {array} clusters
-  */
+   */
   getClusters(oldClusters, scale, options) {
     let {
       maxItems,
@@ -27777,7 +27760,7 @@ class ClusterGenerator {
     // split the items per group
     for (const item of _Object$values(this.items)) {
       // put the item in the correct group
-      const groupName = item.parent ? item.parent.groupId : '';
+      const groupName = item.parent ? item.parent.groupId : "";
       let group = groups[groupName];
       if (!group) {
         group = [];
@@ -27809,10 +27792,10 @@ class ClusterGenerator {
   /**
    * Create new cluster or return existing
    * @private
-   * @param {array} clusterItems    
-   * @param {object} group 
-   * @param {array} oldClusters 
-   * @param {object} options 
+   * @param {array} clusterItems
+   * @param {object} group
+   * @param {array} oldClusters
+   * @param {object} options
    * @returns {object} cluster
    */
   _getClusterForItems(clusterItems, group, oldClusters, options) {
@@ -27846,21 +27829,21 @@ class ClusterGenerator {
       }
       return cluster;
     }
-    let titleTemplate = options.titleTemplate || '';
+    let titleTemplate = options.titleTemplate || "";
     const conversion = {
       toScreen: this.itemSet.body.util.toScreen,
       toTime: this.itemSet.body.util.toTime
     };
     const title = titleTemplate.replace(/{count}/, clusterItems.length);
-    const clusterContent = '<div title="' + title + '">' + clusterItems.length + '</div>';
+    const clusterContent = '<div title="' + title + '">' + clusterItems.length + "</div>";
     const clusterOptions = _Object$assign({}, options, this.itemSet.options);
     const data = {
-      'content': clusterContent,
-      'title': title,
-      'group': group,
-      'uiItems': clusterItems,
-      'eventEmitter': this.itemSet.body.emitter,
-      'range': this.itemSet.body.range
+      content: clusterContent,
+      title: title,
+      group: group,
+      uiItems: clusterItems,
+      eventEmitter: this.itemSet.body.emitter,
+      range: this.itemSet.body.range
     };
     cluster = this.createClusterItem(data, conversion, clusterOptions);
     if (group) {
@@ -27882,8 +27865,8 @@ class ClusterGenerator {
   }
 }
 
-const UNGROUPED$1 = '__ungrouped__'; // reserved group id for ungrouped items
-const BACKGROUND = '__background__'; // reserved group id for background items without group
+const UNGROUPED$1 = "__ungrouped__"; // reserved group id for ungrouped items
+const BACKGROUND = "__background__"; // reserved group id for background items without group
 
 /**
  * An ItemSet holds a set of items and ranges which can be displayed in a
@@ -27892,11 +27875,11 @@ const BACKGROUND = '__background__'; // reserved group id for background items w
  */
 class ItemSet extends Component {
   /**
-  * @param {{dom: Object, domProps: Object, emitter: Emitter, range: Range}} body
-  * @param {Object} [options]      See ItemSet.setOptions for the available options.
-  * @constructor ItemSet
-  * @extends Component
-  */
+   * @param {{dom: Object, domProps: Object, emitter: Emitter, range: Range}} body
+   * @param {Object} [options]      See ItemSet.setOptions for the available options.
+   * @constructor ItemSet
+   * @extends Component
+   */
   constructor(body, options) {
     super();
     this.body = body;
@@ -27904,19 +27887,18 @@ class ItemSet extends Component {
       type: null,
       // 'box', 'point', 'range', 'background'
       orientation: {
-        item: 'bottom' // item orientation: 'top' or 'bottom'
+        item: "bottom" // item orientation: 'top' or 'bottom'
       },
-      align: 'auto',
+      align: "auto",
       // alignment of box items
       stack: true,
       stackSubgroups: true,
-      groupOrderSwap(fromGroup, toGroup, groups) {
-        // eslint-disable-line no-unused-vars
+      groupOrderSwap(fromGroup, toGroup) {
         const targetOrder = toGroup.order;
         toGroup.order = fromGroup.order;
         fromGroup.order = targetOrder;
       },
-      groupOrder: 'order',
+      groupOrder: "order",
       selectable: true,
       multiselect: false,
       longSelectPressTime: 251,
@@ -27938,7 +27920,7 @@ class ItemSet extends Component {
       },
       snap: TimeStep.snap,
       // Only called when `objectData.target === 'item'.
-      onDropObjectOnItem(objectData, item, callback) {
+      onDropObjectOnItem(_objectData, item, callback) {
         callback(item);
       },
       onAdd(item, callback) {
@@ -27975,7 +27957,7 @@ class ItemSet extends Component {
       showTooltips: true,
       tooltip: {
         followMouse: false,
-        overflowMethod: 'flip',
+        overflowMethod: "flip",
         delay: 500
       },
       tooltipOnItemUpdateTime: false
@@ -28002,8 +27984,7 @@ class ItemSet extends Component {
 
     // listeners for the DataSet of the items
     this.itemListeners = {
-      'add'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      add(_event, params) {
         me._onAdd(params.items);
         if (me.options.cluster) {
           me.clusterGenerator.setItems(me.items, {
@@ -28012,8 +27993,7 @@ class ItemSet extends Component {
         }
         me.redraw();
       },
-      'update'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      update(_event, params) {
         me._onUpdate(params.items);
         if (me.options.cluster) {
           me.clusterGenerator.setItems(me.items, {
@@ -28022,8 +28002,7 @@ class ItemSet extends Component {
         }
         me.redraw();
       },
-      'remove'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      remove(_event, params) {
         me._onRemove(params.items);
         if (me.options.cluster) {
           me.clusterGenerator.setItems(me.items, {
@@ -28036,8 +28015,7 @@ class ItemSet extends Component {
 
     // listeners for the DataSet of the groups
     this.groupListeners = {
-      'add'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      add(_event, params, senderId) {
         me._onAddGroups(params.items);
         if (me.groupsData && me.groupsData.length > 0) {
           var _context;
@@ -28065,12 +28043,10 @@ class ItemSet extends Component {
           });
         }
       },
-      'update'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      update(_event, params) {
         me._onUpdateGroups(params.items);
       },
-      'remove'(event, params, senderId) {
-        // eslint-disable-line no-unused-vars
+      remove(_event, params) {
         me._onRemoveGroups(params.items);
       }
     };
@@ -28098,31 +28074,31 @@ class ItemSet extends Component {
    */
   _create() {
     var _context3, _context4, _context5, _context6, _context7, _context8, _context9, _context0, _context1, _context10, _context11, _context12, _context13, _context14, _context15;
-    const frame = document.createElement('div');
-    frame.className = 'vis-itemset';
-    frame['vis-itemset'] = this;
+    const frame = document.createElement("div");
+    frame.className = "vis-itemset";
+    frame["vis-itemset"] = this;
     this.dom.frame = frame;
 
     // create background panel
-    const background = document.createElement('div');
-    background.className = 'vis-background';
+    const background = document.createElement("div");
+    background.className = "vis-background";
     frame.appendChild(background);
     this.dom.background = background;
 
     // create foreground panel
-    const foreground = document.createElement('div');
-    foreground.className = 'vis-foreground';
+    const foreground = document.createElement("div");
+    foreground.className = "vis-foreground";
     frame.appendChild(foreground);
     this.dom.foreground = foreground;
 
     // create axis panel
-    const axis = document.createElement('div');
-    axis.className = 'vis-axis';
+    const axis = document.createElement("div");
+    axis.className = "vis-axis";
     this.dom.axis = axis;
 
     // create labelset
-    const labelSet = document.createElement('div');
-    labelSet.className = 'vis-labelset';
+    const labelSet = document.createElement("div");
+    labelSet.className = "vis-labelset";
     this.dom.labelSet = labelSet;
 
     // create ungrouped Group
@@ -28140,54 +28116,54 @@ class ItemSet extends Component {
     this.hammer = new Hammer(this.body.dom.centerContainer);
 
     // drag items when selected
-    this.hammer.on('hammer.input', event => {
+    this.hammer.on("hammer.input", event => {
       if (event.isFirst) {
         this._onTouch(event);
       }
     });
-    this.hammer.on('panstart', _bindInstanceProperty(_context3 = this._onDragStart).call(_context3, this));
-    this.hammer.on('panmove', _bindInstanceProperty(_context4 = this._onDrag).call(_context4, this));
-    this.hammer.on('panend', _bindInstanceProperty(_context5 = this._onDragEnd).call(_context5, this));
-    this.hammer.get('pan').set({
+    this.hammer.on("panstart", _bindInstanceProperty(_context3 = this._onDragStart).call(_context3, this));
+    this.hammer.on("panmove", _bindInstanceProperty(_context4 = this._onDrag).call(_context4, this));
+    this.hammer.on("panend", _bindInstanceProperty(_context5 = this._onDragEnd).call(_context5, this));
+    this.hammer.get("pan").set({
       threshold: 5,
       direction: Hammer.ALL
     });
     // delay addition on item click for trackpads...
-    this.hammer.get('press').set({
+    this.hammer.get("press").set({
       time: 10000
     });
 
     // single select (or unselect) when tapping an item
-    this.hammer.on('tap', _bindInstanceProperty(_context6 = this._onSelectItem).call(_context6, this));
+    this.hammer.on("tap", _bindInstanceProperty(_context6 = this._onSelectItem).call(_context6, this));
 
     // multi select when holding mouse/touch, or on ctrl+click
-    this.hammer.on('press', _bindInstanceProperty(_context7 = this._onMultiSelectItem).call(_context7, this));
+    this.hammer.on("press", _bindInstanceProperty(_context7 = this._onMultiSelectItem).call(_context7, this));
     // delay addition on item click for trackpads...
-    this.hammer.get('press').set({
+    this.hammer.get("press").set({
       time: 10000
     });
 
     // add item on doubletap
-    this.hammer.on('doubletap', _bindInstanceProperty(_context8 = this._onAddItem).call(_context8, this));
+    this.hammer.on("doubletap", _bindInstanceProperty(_context8 = this._onAddItem).call(_context8, this));
     if (this.options.rtl) {
       this.groupHammer = new Hammer(this.body.dom.rightContainer);
     } else {
       this.groupHammer = new Hammer(this.body.dom.leftContainer);
     }
-    this.groupHammer.on('tap', _bindInstanceProperty(_context9 = this._onGroupClick).call(_context9, this));
-    this.groupHammer.on('panstart', _bindInstanceProperty(_context0 = this._onGroupDragStart).call(_context0, this));
-    this.groupHammer.on('panmove', _bindInstanceProperty(_context1 = this._onGroupDrag).call(_context1, this));
-    this.groupHammer.on('panend', _bindInstanceProperty(_context10 = this._onGroupDragEnd).call(_context10, this));
-    this.groupHammer.get('pan').set({
+    this.groupHammer.on("tap", _bindInstanceProperty(_context9 = this._onGroupClick).call(_context9, this));
+    this.groupHammer.on("panstart", _bindInstanceProperty(_context0 = this._onGroupDragStart).call(_context0, this));
+    this.groupHammer.on("panmove", _bindInstanceProperty(_context1 = this._onGroupDrag).call(_context1, this));
+    this.groupHammer.on("panend", _bindInstanceProperty(_context10 = this._onGroupDragEnd).call(_context10, this));
+    this.groupHammer.get("pan").set({
       threshold: 5,
       direction: Hammer.DIRECTION_VERTICAL
     });
-    this.body.dom.centerContainer.addEventListener('mouseover', _bindInstanceProperty(_context11 = this._onMouseOver).call(_context11, this));
-    this.body.dom.centerContainer.addEventListener('mouseout', _bindInstanceProperty(_context12 = this._onMouseOut).call(_context12, this));
-    this.body.dom.centerContainer.addEventListener('mousemove', _bindInstanceProperty(_context13 = this._onMouseMove).call(_context13, this));
-    // right-click on timeline 
-    this.body.dom.centerContainer.addEventListener('contextmenu', _bindInstanceProperty(_context14 = this._onDragEnd).call(_context14, this));
-    this.body.dom.centerContainer.addEventListener('mousewheel', _bindInstanceProperty(_context15 = this._onMouseWheel).call(_context15, this));
+    this.body.dom.centerContainer.addEventListener("mouseover", _bindInstanceProperty(_context11 = this._onMouseOver).call(_context11, this));
+    this.body.dom.centerContainer.addEventListener("mouseout", _bindInstanceProperty(_context12 = this._onMouseOut).call(_context12, this));
+    this.body.dom.centerContainer.addEventListener("mousemove", _bindInstanceProperty(_context13 = this._onMouseMove).call(_context13, this));
+    // right-click on timeline
+    this.body.dom.centerContainer.addEventListener("contextmenu", _bindInstanceProperty(_context14 = this._onDragEnd).call(_context14, this));
+    this.body.dom.centerContainer.addEventListener("mousewheel", _bindInstanceProperty(_context15 = this._onMouseWheel).call(_context15, this));
 
     // attach to the DOM
     this.show();
@@ -28261,72 +28237,72 @@ class ItemSet extends Component {
     if (options) {
       var _context16, _context18;
       // copy all options that we know
-      const fields = ['type', 'rtl', 'align', 'order', 'stack', 'stackSubgroups', 'selectable', 'multiselect', 'sequentialSelection', 'multiselectPerGroup', 'longSelectPressTime', 'groupOrder', 'dataAttributes', 'template', 'groupTemplate', 'visibleFrameTemplate', 'hide', 'snap', 'groupOrderSwap', 'showTooltips', 'tooltip', 'tooltipOnItemUpdateTime', 'groupHeightMode', 'onTimeout'];
+      const fields = ["type", "rtl", "align", "order", "stack", "stackSubgroups", "selectable", "multiselect", "sequentialSelection", "multiselectPerGroup", "longSelectPressTime", "groupOrder", "dataAttributes", "template", "groupTemplate", "visibleFrameTemplate", "hide", "snap", "groupOrderSwap", "showTooltips", "tooltip", "tooltipOnItemUpdateTime", "groupHeightMode", "onTimeout"];
       availableUtils.selectiveExtend(fields, this.options, options);
-      if ('itemsAlwaysDraggable' in options) {
-        if (typeof options.itemsAlwaysDraggable === 'boolean') {
+      if ("itemsAlwaysDraggable" in options) {
+        if (typeof options.itemsAlwaysDraggable === "boolean") {
           this.options.itemsAlwaysDraggable.item = options.itemsAlwaysDraggable;
           this.options.itemsAlwaysDraggable.range = false;
-        } else if (typeof options.itemsAlwaysDraggable === 'object') {
-          availableUtils.selectiveExtend(['item', 'range'], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable);
+        } else if (typeof options.itemsAlwaysDraggable === "object") {
+          availableUtils.selectiveExtend(["item", "range"], this.options.itemsAlwaysDraggable, options.itemsAlwaysDraggable);
           // only allow range always draggable when item is always draggable as well
           if (!this.options.itemsAlwaysDraggable.item) {
             this.options.itemsAlwaysDraggable.range = false;
           }
         }
       }
-      if ('sequentialSelection' in options) {
-        if (typeof options.sequentialSelection === 'boolean') {
+      if ("sequentialSelection" in options) {
+        if (typeof options.sequentialSelection === "boolean") {
           this.options.sequentialSelection = options.sequentialSelection;
         }
       }
-      if ('orientation' in options) {
-        if (typeof options.orientation === 'string') {
-          this.options.orientation.item = options.orientation === 'top' ? 'top' : 'bottom';
-        } else if (typeof options.orientation === 'object' && 'item' in options.orientation) {
+      if ("orientation" in options) {
+        if (typeof options.orientation === "string") {
+          this.options.orientation.item = options.orientation === "top" ? "top" : "bottom";
+        } else if (typeof options.orientation === "object" && "item" in options.orientation) {
           this.options.orientation.item = options.orientation.item;
         }
       }
-      if ('margin' in options) {
-        if (typeof options.margin === 'number') {
+      if ("margin" in options) {
+        if (typeof options.margin === "number") {
           this.options.margin.axis = options.margin;
           this.options.margin.item.horizontal = options.margin;
           this.options.margin.item.vertical = options.margin;
-        } else if (typeof options.margin === 'object') {
-          availableUtils.selectiveExtend(['axis'], this.options.margin, options.margin);
-          if ('item' in options.margin) {
-            if (typeof options.margin.item === 'number') {
+        } else if (typeof options.margin === "object") {
+          availableUtils.selectiveExtend(["axis"], this.options.margin, options.margin);
+          if ("item" in options.margin) {
+            if (typeof options.margin.item === "number") {
               this.options.margin.item.horizontal = options.margin.item;
               this.options.margin.item.vertical = options.margin.item;
-            } else if (typeof options.margin.item === 'object') {
-              availableUtils.selectiveExtend(['horizontal', 'vertical'], this.options.margin.item, options.margin.item);
+            } else if (typeof options.margin.item === "object") {
+              availableUtils.selectiveExtend(["horizontal", "vertical"], this.options.margin.item, options.margin.item);
             }
           }
         }
       }
-      _forEachInstanceProperty(_context16 = ['locale', 'locales']).call(_context16, key => {
+      _forEachInstanceProperty(_context16 = ["locale", "locales"]).call(_context16, key => {
         if (key in options) {
           this.options[key] = options[key];
         }
       });
-      if ('editable' in options) {
-        if (typeof options.editable === 'boolean') {
+      if ("editable" in options) {
+        if (typeof options.editable === "boolean") {
           this.options.editable.updateTime = options.editable;
           this.options.editable.updateGroup = options.editable;
           this.options.editable.add = options.editable;
           this.options.editable.remove = options.editable;
           this.options.editable.overrideItems = false;
-        } else if (typeof options.editable === 'object') {
-          availableUtils.selectiveExtend(['updateTime', 'updateGroup', 'add', 'remove', 'overrideItems'], this.options.editable, options.editable);
+        } else if (typeof options.editable === "object") {
+          availableUtils.selectiveExtend(["updateTime", "updateGroup", "add", "remove", "overrideItems"], this.options.editable, options.editable);
         }
       }
-      if ('groupEditable' in options) {
-        if (typeof options.groupEditable === 'boolean') {
+      if ("groupEditable" in options) {
+        if (typeof options.groupEditable === "boolean") {
           this.options.groupEditable.order = options.groupEditable;
           this.options.groupEditable.add = options.groupEditable;
           this.options.groupEditable.remove = options.groupEditable;
-        } else if (typeof options.groupEditable === 'object') {
-          availableUtils.selectiveExtend(['order', 'add', 'remove'], this.options.groupEditable, options.groupEditable);
+        } else if (typeof options.groupEditable === "object") {
+          availableUtils.selectiveExtend(["order", "add", "remove"], this.options.groupEditable, options.groupEditable);
         }
       }
 
@@ -28334,14 +28310,14 @@ class ItemSet extends Component {
       const addCallback = name => {
         const fn = options[name];
         if (fn) {
-          if (!(typeof fn === 'function')) {
+          if (!(typeof fn === "function")) {
             var _context17;
             throw new Error(_concatInstanceProperty(_context17 = "option ".concat(name, " must be a function ")).call(_context17, name, "(item, callback)"));
           }
           this.options[name] = fn;
         }
       };
-      _forEachInstanceProperty(_context18 = ['onDropObjectOnItem', 'onAdd', 'onUpdate', 'onRemove', 'onMove', 'onMoving', 'onAddGroup', 'onMoveGroup', 'onRemoveGroup']).call(_context18, addCallback);
+      _forEachInstanceProperty(_context18 = ["onDropObjectOnItem", "onAdd", "onUpdate", "onRemove", "onMove", "onMoving", "onAddGroup", "onMoveGroup", "onRemoveGroup"]).call(_context18, addCallback);
       if (options.cluster) {
         _Object$assign(this.options, {
           cluster: options.cluster
@@ -28463,7 +28439,7 @@ class ItemSet extends Component {
   setPopupTimer(popup) {
     this.clearPopupTimer();
     if (popup) {
-      const delay = this.options.tooltip.delay || typeof this.options.tooltip.delay === 'number' ? this.options.tooltip.delay : 500;
+      const delay = this.options.tooltip.delay || typeof this.options.tooltip.delay === "number" ? this.options.tooltip.delay : 500;
       this.popupTimer = _setTimeout(function () {
         popup.show();
       }, delay);
@@ -28663,7 +28639,7 @@ class ItemSet extends Component {
     }
 
     // update class name
-    frame.className = 'vis-itemset';
+    frame.className = "vis-itemset";
     if (this.options.cluster) {
       this._clusterItems();
     }
@@ -28737,13 +28713,13 @@ class ItemSet extends Component {
     this.props.height = height;
 
     // reposition axis
-    this.dom.axis.style.top = asSize(orientation == 'top' ? this.body.domProps.top.height + this.body.domProps.border.top : this.body.domProps.top.height + this.body.domProps.centerContainer.height);
+    this.dom.axis.style.top = asSize(orientation == "top" ? this.body.domProps.top.height + this.body.domProps.border.top : this.body.domProps.top.height + this.body.domProps.centerContainer.height);
     if (this.options.rtl) {
-      this.dom.axis.style.right = '0';
+      this.dom.axis.style.right = "0";
     } else {
-      this.dom.axis.style.left = '0';
+      this.dom.axis.style.left = "0";
     }
-    this.hammer.get('press').set({
+    this.hammer.get("press").set({
       time: this.options.longSelectPressTime
     });
     this.initialItemSetDrawn = true;
@@ -28758,7 +28734,7 @@ class ItemSet extends Component {
    * @private
    */
   _firstGroup() {
-    const firstGroupIndex = this.options.orientation.item == 'top' ? 0 : this.groupIds.length - 1;
+    const firstGroupIndex = this.options.orientation.item == "top" ? 0 : this.groupIds.length - 1;
     const firstGroupId = this.groupIds[firstGroupIndex];
     const firstGroup = this.groups[firstGroupId] || this.groups[UNGROUPED$1];
     return firstGroup || null;
@@ -28828,7 +28804,7 @@ class ItemSet extends Component {
     } else if (isDataViewLike(items)) {
       this.itemsData = typeCoerceDataSet(items);
     } else {
-      throw new TypeError('Data must implement the interface of DataSet or DataView');
+      throw new TypeError("Data must implement the interface of DataSet or DataView");
     }
     if (oldItemsData) {
       // unsubscribe from old dataset
@@ -28857,7 +28833,7 @@ class ItemSet extends Component {
       // update the group holding all ungrouped items
       this._updateUngrouped();
     }
-    this.body.emitter.emit('_change', {
+    this.body.emitter.emit("_change", {
       queue: true
     });
   }
@@ -28896,7 +28872,7 @@ class ItemSet extends Component {
     } else if (isDataViewLike(groups)) {
       this.groupsData = groups;
     } else {
-      throw new TypeError('Data must implement the interface of DataSet or DataView');
+      throw new TypeError("Data must implement the interface of DataSet or DataView");
     }
     if (this.groupsData) {
       var _context22;
@@ -28940,7 +28916,7 @@ class ItemSet extends Component {
         restackGroups: true
       });
     }
-    this.body.emitter.emit('_change', {
+    this.body.emitter.emit("_change", {
       queue: true
     });
   }
@@ -28978,7 +28954,7 @@ class ItemSet extends Component {
    * @private
    */
   _getType(itemData) {
-    return itemData.type || this.options.type || (itemData.end ? 'range' : 'box');
+    return itemData.type || this.options.type || (itemData.end ? "range" : "box");
   }
 
   /**
@@ -28989,7 +28965,7 @@ class ItemSet extends Component {
    */
   getGroupId(itemData) {
     const type = this._getType(itemData);
-    if (type == 'background' && itemData.group == undefined) {
+    if (type == "background" && itemData.group == undefined) {
       return BACKGROUND;
     } else {
       return this.groupsData ? itemData.group : UNGROUPED$1;
@@ -29010,7 +28986,7 @@ class ItemSet extends Component {
       const constructor = ItemSet.types[type];
       let selected;
       if (item) {
-        // update item   	
+        // update item
         if (!constructor || !(item instanceof constructor)) {
           // item type has changed, delete the item and recreate it
           selected = item.selected; // preserve selection of this item
@@ -29043,7 +29019,7 @@ class ItemSet extends Component {
       });
       this._clusterItems();
     }
-    this.body.emitter.emit('_change', {
+    this.body.emitter.emit("_change", {
       queue: true
     });
   }
@@ -29066,7 +29042,7 @@ class ItemSet extends Component {
     if (count) {
       // update order
       this._order();
-      this.body.emitter.emit('_change', {
+      this.body.emitter.emit("_change", {
         queue: true
       });
     }
@@ -29128,7 +29104,7 @@ class ItemSet extends Component {
         group.setData(groupData);
       }
     });
-    this.body.emitter.emit('_change', {
+    this.body.emitter.emit("_change", {
       queue: true
     });
   }
@@ -29153,7 +29129,7 @@ class ItemSet extends Component {
     this.markDirty({
       restackGroups: !!this.options.cluster
     });
-    this.body.emitter.emit('_change', {
+    this.body.emitter.emit("_change", {
       queue: true
     });
   }
@@ -29426,10 +29402,10 @@ class ItemSet extends Component {
     const start = snap ? snap(time, scale, step) : time;
     const end = start;
     const itemData = {
-      type: 'range',
+      type: "range",
       start,
       end,
-      content: 'new item'
+      content: "new item"
     };
     const id = v4();
     itemData[this.itemsData.idProp] = id;
@@ -29519,14 +29495,14 @@ class ItemSet extends Component {
             // drag left side of a range item
             if (this.options.rtl) {
               if (itemData.end != undefined) {
-                initialEnd = availableUtils.convert(props.data.end, 'Date');
+                initialEnd = availableUtils.convert(props.data.end, "Date");
                 end = new Date(initialEnd.valueOf() + offset);
                 // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                 itemData.end = snap ? snap(end, scale, step) : end;
               }
             } else {
               if (itemData.start != undefined) {
-                initialStart = availableUtils.convert(props.data.start, 'Date');
+                initialStart = availableUtils.convert(props.data.start, "Date");
                 start = new Date(initialStart.valueOf() + offset);
                 // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                 itemData.start = snap ? snap(start, scale, step) : start;
@@ -29536,14 +29512,14 @@ class ItemSet extends Component {
             // drag right side of a range item
             if (this.options.rtl) {
               if (itemData.start != undefined) {
-                initialStart = availableUtils.convert(props.data.start, 'Date');
+                initialStart = availableUtils.convert(props.data.start, "Date");
                 start = new Date(initialStart.valueOf() + offset);
                 // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                 itemData.start = snap ? snap(start, scale, step) : start;
               }
             } else {
               if (itemData.end != undefined) {
-                initialEnd = availableUtils.convert(props.data.end, 'Date');
+                initialEnd = availableUtils.convert(props.data.end, "Date");
                 end = new Date(initialEnd.valueOf() + offset);
                 // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
                 itemData.end = snap ? snap(end, scale, step) : end;
@@ -29552,10 +29528,10 @@ class ItemSet extends Component {
           } else {
             // drag both start and end
             if (itemData.start != undefined) {
-              initialStart = availableUtils.convert(props.data.start, 'Date').valueOf();
+              initialStart = availableUtils.convert(props.data.start, "Date").valueOf();
               start = new Date(initialStart + offset);
               if (itemData.end != undefined) {
-                initialEnd = availableUtils.convert(props.data.end, 'Date');
+                initialEnd = availableUtils.convert(props.data.end, "Date");
                 const duration = initialEnd.valueOf() - initialStart.valueOf();
 
                 // TODO: pass a Moment instead of a Date to snap(). (Breaking change)
@@ -29583,11 +29559,11 @@ class ItemSet extends Component {
         itemData = this._cloneItemData(itemData); // convert start and end to the correct type
         me.options.onMoving(itemData, itemData => {
           if (itemData) {
-            props.item.setData(this._cloneItemData(itemData, 'Date'));
+            props.item.setData(this._cloneItemData(itemData, "Date"));
           }
         });
       });
-      this.body.emitter.emit('_change');
+      this.body.emitter.emit("_change");
     }
   }
 
@@ -29633,7 +29609,7 @@ class ItemSet extends Component {
             }
 
             // force re-stacking of all items next redraw
-            me.body.emitter.emit('_change');
+            me.body.emitter.emit("_change");
           });
         } else {
           // update existing item
@@ -29646,7 +29622,7 @@ class ItemSet extends Component {
             } else {
               // restore original values
               props.item.setData(props.data);
-              me.body.emitter.emit('_change');
+              me.body.emitter.emit("_change");
             }
           });
         }
@@ -29725,11 +29701,11 @@ class ItemSet extends Component {
     }
     groupsData.update(_concatInstanceProperty(nestedGroups).call(nestedGroups, nestingGroup));
     if (nestingGroup.showNested) {
-      availableUtils.removeClassName(group.dom.label, 'collapsed');
-      availableUtils.addClassName(group.dom.label, 'expanded');
+      availableUtils.removeClassName(group.dom.label, "collapsed");
+      availableUtils.addClassName(group.dom.label, "expanded");
     } else {
-      availableUtils.removeClassName(group.dom.label, 'expanded');
-      availableUtils.addClassName(group.dom.label, 'collapsed');
+      availableUtils.removeClassName(group.dom.label, "expanded");
+      availableUtils.addClassName(group.dom.label, "collapsed");
     }
   }
 
@@ -29738,14 +29714,14 @@ class ItemSet extends Component {
    * @param {object} group
    */
   toggleGroupDragClassName(group) {
-    group.dom.label.classList.toggle('vis-group-is-dragging');
-    group.dom.foreground.classList.toggle('vis-group-is-dragging');
+    group.dom.label.classList.toggle("vis-group-is-dragging");
+    group.dom.foreground.classList.toggle("vis-group-is-dragging");
   }
 
   /**
    * on drag start
    * @param {Event} event
-   * @return {void}   
+   * @return {void}
    * @private
    */
   _onGroupDragStart(event) {
@@ -29839,7 +29815,7 @@ class ItemSet extends Component {
             else if (origOrder[curPos + orgOffset] == draggedId) {
               orgOffset = 1;
             }
-            // found a group (apart from dragged group) that has the wrong position -> switch with the 
+            // found a group (apart from dragged group) that has the wrong position -> switch with the
             // group at the position where other one should be, fix index arrays and continue
             else {
               const slippedPosition = _indexOfInstanceProperty(newOrder).call(newOrder, origOrder[curPos + orgOffset]);
@@ -29918,7 +29894,7 @@ class ItemSet extends Component {
           }
         }
       });
-      me.body.emitter.emit('groupDragged', {
+      me.body.emitter.emit("groupDragged", {
         groupId: id
       });
       this.toggleGroupDragClassName(this.groupTouchParams.group);
@@ -29948,7 +29924,7 @@ class ItemSet extends Component {
     // emit a select event,
     // except when old selection is empty and new selection is still empty
     if (newSelection.length > 0 || oldSelection.length > 0) {
-      this.body.emitter.emit('select', {
+      this.body.emitter.emit("select", {
         items: newSelection,
         event
       });
@@ -29973,7 +29949,7 @@ class ItemSet extends Component {
     const title = item.getTitle();
     if (this.options.showTooltips && title) {
       if (this.popup == null) {
-        this.popup = new Popup(this.body.dom.root, this.options.tooltip.overflowMethod || 'flip');
+        this.popup = new Popup(this.body.dom.root, this.options.tooltip.overflowMethod || "flip");
       }
       this.popup.setText(title);
       const container = this.body.dom.centerContainer;
@@ -29988,7 +29964,7 @@ class ItemSet extends Component {
         this.popup.hide();
       }
     }
-    this.body.emitter.emit('itemover', {
+    this.body.emitter.emit("itemover", {
       item: item.id,
       event
     });
@@ -29997,7 +29973,7 @@ class ItemSet extends Component {
   /**
    * on mouse start
    * @param {Event} event
-   * @return {void}   
+   * @return {void}
    * @private
    */
   _onMouseOut(event) {
@@ -30014,7 +29990,7 @@ class ItemSet extends Component {
     if (this.popup != null) {
       this.popup.hide();
     }
-    this.body.emitter.emit('itemout', {
+    this.body.emitter.emit("itemout", {
       item: item.id,
       event
     });
@@ -30023,7 +29999,7 @@ class ItemSet extends Component {
   /**
    * on mouse move
    * @param {Event} event
-   * @return {void}   
+   * @return {void}
    * @private
    */
   _onMouseMove(event) {
@@ -30075,7 +30051,7 @@ class ItemSet extends Component {
   /**
    * Handle drop event of data on item
    * Only called when `objectData.target === 'item'.
-   * @param {Event} event The event 
+   * @param {Event} event The event
    * @private
    */
   _onDropObjectOnItem(event) {
@@ -30103,25 +30079,25 @@ class ItemSet extends Component {
     const step = this.body.util.getStep();
     let end;
     let newItemData;
-    if (event.type == 'drop') {
+    if (event.type == "drop") {
       newItemData = JSON.parse(event.dataTransfer.getData("text"));
-      newItemData.content = newItemData.content ? newItemData.content : 'new item';
+      newItemData.content = newItemData.content ? newItemData.content : "new item";
       newItemData.start = newItemData.start ? newItemData.start : snap ? snap(start, scale, step) : start;
-      newItemData.type = newItemData.type || 'box';
+      newItemData.type = newItemData.type || "box";
       newItemData[this.itemsData.idProp] = newItemData.id || v4();
-      if (newItemData.type == 'range' && !newItemData.end) {
+      if (newItemData.type == "range" && !newItemData.end) {
         end = this.body.util.toTime(x + this.props.width / 5);
         newItemData.end = snap ? snap(end, scale, step) : end;
       }
     } else {
       newItemData = {
         start: snap ? snap(start, scale, step) : start,
-        content: 'new item'
+        content: "new item"
       };
       newItemData[this.itemsData.idProp] = v4();
 
       // when default type is a range, add a default end date to the new item
-      if (this.options.type === 'range') {
+      if (this.options.type === "range") {
         end = this.body.util.toTime(x + this.props.width / 5);
         newItemData.end = snap ? snap(end, scale, step) : end;
       }
@@ -30136,7 +30112,7 @@ class ItemSet extends Component {
     this.options.onAdd(newItemData, item => {
       if (item) {
         me.itemsData.add(item);
-        if (event.type == 'drop') {
+        if (event.type == "drop") {
           me.setSelection([item.id]);
         }
         // TODO: need to trigger a redraw?
@@ -30202,7 +30178,7 @@ class ItemSet extends Component {
       }
       const filteredSelection = _filterInstanceProperty(selection).call(selection, item => this.getItemById(item).selectable);
       this.setSelection(filteredSelection);
-      this.body.emitter.emit('select', {
+      this.body.emitter.emit("select", {
         items: this.getSelection(),
         event
       });
@@ -30247,8 +30223,8 @@ class ItemSet extends Component {
   itemFromElement(element) {
     let cur = element;
     while (cur) {
-      if (Object.prototype.hasOwnProperty.call(cur, 'vis-item')) {
-        return cur['vis-item'];
+      if (Object.prototype.hasOwnProperty.call(cur, "vis-item")) {
+        return cur["vis-item"];
       }
       cur = cur.parentNode;
     }
@@ -30297,7 +30273,7 @@ class ItemSet extends Component {
       if (clientY >= foregroundRect.top && clientY < foregroundRect.top + foreground.offsetHeight) {
         return group;
       }
-      if (this.options.orientation.item === 'top') {
+      if (this.options.orientation.item === "top") {
         if (i === this.groupIds.length - 1 && clientY > foregroundRect.top) {
           return group;
         }
@@ -30319,8 +30295,8 @@ class ItemSet extends Component {
   static itemSetFromTarget(event) {
     let target = event.target;
     while (target) {
-      if (Object.prototype.hasOwnProperty.call(target, 'vis-itemset')) {
-        return target['vis-itemset'];
+      if (Object.prototype.hasOwnProperty.call(target, "vis-itemset")) {
+        return target["vis-itemset"];
       }
       target = target.parentNode;
     }
@@ -30343,17 +30319,17 @@ class ItemSet extends Component {
       type = this.itemsData.type;
     }
     if (clone.start != undefined) {
-      clone.start = availableUtils.convert(clone.start, type && type.start || 'Date');
+      clone.start = availableUtils.convert(clone.start, type && type.start || "Date");
     }
     if (clone.end != undefined) {
-      clone.end = availableUtils.convert(clone.end, type && type.end || 'Date');
+      clone.end = availableUtils.convert(clone.end, type && type.end || "Date");
     }
     return clone;
   }
 
   /**
    * cluster items
-   * @return {void}   
+   * @return {void}
    * @private
    */
   _clusterItems() {
@@ -30413,7 +30389,7 @@ class ItemSet extends Component {
       }
       if (selectionChanged) {
         const newSelection = this.getSelection();
-        this.body.emitter.emit('select', {
+        this.body.emitter.emit("select", {
           items: newSelection,
           event: event
         });
@@ -30440,7 +30416,7 @@ ItemSet.prototype._onAdd = ItemSet.prototype._onUpdate;
 
 let errorFound = false;
 let allOptions$2;
-let printStyle = 'background: #FFeeee; color: #dd0000';
+let printStyle = "background: #FFeeee; color: #dd0000";
 /**
  *  Used to validate options.
  */
@@ -30504,11 +30480,11 @@ class Validator {
       // TODO: Examine if needed, remove if possible
 
       // __any__ is a wildcard. Any value is accepted and will be further analysed by reference.
-      referenceOption = '__any__';
+      referenceOption = "__any__";
 
       // if the any-subgroup is not a predefined object in the configurator,
       // we do not look deeper into the object.
-      is_object = Validator.getType(options[option]) === 'object';
+      is_object = Validator.getType(options[option]) === "object";
     }
     let refOptionObj = referenceOptions[referenceOption];
     if (is_object && refOptionObj.__type__ !== undefined) {
@@ -30529,22 +30505,22 @@ class Validator {
    */
   static checkFields(option, options, referenceOptions, referenceOption, refOptionObj, path) {
     let log = function (message) {
-      console.log('%c' + message + Validator.printLocation(path, option), printStyle);
+      console.log("%c" + message + Validator.printLocation(path, option), printStyle);
     };
     let optionType = Validator.getType(options[option]);
     let refOptionType = refOptionObj[optionType];
     if (refOptionType !== undefined) {
       // if the type is correct, we check if it is supposed to be one of a few select values
-      if (Validator.getType(refOptionType) === 'array' && _indexOfInstanceProperty(refOptionType).call(refOptionType, options[option]) === -1) {
-        log('Invalid option detected in "' + option + '".' + ' Allowed values are:' + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
+      if (Validator.getType(refOptionType) === "array" && _indexOfInstanceProperty(refOptionType).call(refOptionType, options[option]) === -1) {
+        log('Invalid option detected in "' + option + '".' + " Allowed values are:" + Validator.print(refOptionType) + ' not "' + options[option] + '". ');
         errorFound = true;
-      } else if (optionType === 'object' && referenceOption !== "__any__") {
+      } else if (optionType === "object" && referenceOption !== "__any__") {
         path = availableUtils.copyAndExtendArray(path, option);
         Validator.parse(options[option], referenceOptions[referenceOption], path);
       }
-    } else if (refOptionObj['any'] === undefined) {
+    } else if (refOptionObj["any"] === undefined) {
       // type of the field is incorrect and the field cannot be any
-      log('Invalid type received for "' + option + '". Expected: ' + Validator.print(_Object$keys(refOptionObj)) + '. Received [' + optionType + '] "' + options[option] + '"');
+      log('Invalid type received for "' + option + '". Expected: ' + Validator.print(_Object$keys(refOptionObj)) + ". Received [" + optionType + '] "' + options[option] + '"');
       errorFound = true;
     }
   }
@@ -30557,40 +30533,40 @@ class Validator {
    */
   static getType(object) {
     var type = typeof object;
-    if (type === 'object') {
+    if (type === "object") {
       if (object === null) {
-        return 'null';
+        return "null";
       }
       if (object instanceof Boolean) {
-        return 'boolean';
+        return "boolean";
       }
       if (object instanceof Number) {
-        return 'number';
+        return "number";
       }
       if (object instanceof String) {
-        return 'string';
+        return "string";
       }
       if (_Array$isArray(object)) {
-        return 'array';
+        return "array";
       }
       if (object instanceof Date) {
-        return 'date';
+        return "date";
       }
       if (object.nodeType !== undefined) {
-        return 'dom';
+        return "dom";
       }
       if (object._isAMomentObject === true) {
-        return 'moment';
+        return "moment";
       }
-      return 'object';
-    } else if (type === 'number') {
-      return 'number';
-    } else if (type === 'boolean') {
-      return 'boolean';
-    } else if (type === 'string') {
-      return 'string';
+      return "object";
+    } else if (type === "number") {
+      return "number";
+    } else if (type === "boolean") {
+      return "boolean";
+    } else if (type === "string") {
+      return "string";
     } else if (type === undefined) {
-      return 'undefined';
+      return "undefined";
     }
     return type;
   }
@@ -30608,13 +30584,13 @@ class Validator {
     let globalSearchThreshold = 4;
     let msg;
     if (localSearch.indexMatch !== undefined) {
-      msg = ' in ' + Validator.printLocation(localSearch.path, option, '') + 'Perhaps it was incomplete? Did you mean: "' + localSearch.indexMatch + '"?\n\n';
+      msg = " in " + Validator.printLocation(localSearch.path, option, "") + 'Perhaps it was incomplete? Did you mean: "' + localSearch.indexMatch + '"?\n\n';
     } else if (globalSearch.distance <= globalSearchThreshold && localSearch.distance > globalSearch.distance) {
-      msg = ' in ' + Validator.printLocation(localSearch.path, option, '') + 'Perhaps it was misplaced? Matching option found at: ' + Validator.printLocation(globalSearch.path, globalSearch.closestMatch, '');
+      msg = " in " + Validator.printLocation(localSearch.path, option, "") + "Perhaps it was misplaced? Matching option found at: " + Validator.printLocation(globalSearch.path, globalSearch.closestMatch, "");
     } else if (localSearch.distance <= localSearchThreshold) {
       msg = '. Did you mean "' + localSearch.closestMatch + '"?' + Validator.printLocation(localSearch.path, option);
     } else {
-      msg = '. Did you mean one of these: ' + Validator.print(_Object$keys(options)) + Validator.printLocation(path, option);
+      msg = ". Did you mean one of these: " + Validator.print(_Object$keys(options)) + Validator.printLocation(path, option);
     }
     console.log('%cUnknown option detected: "' + option + '"' + msg, printStyle);
     errorFound = true;
@@ -30632,7 +30608,7 @@ class Validator {
   static findInOptions(option, options, path) {
     let recursive = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
     let min = 1e9;
-    let closestMatch = '';
+    let closestMatch = "";
     let closestMatchPath = [];
     let lowerCaseOption = option.toLowerCase();
     let indexMatch = undefined;
@@ -30676,25 +30652,25 @@ class Validator {
    * @static
    */
   static printLocation(path, option) {
-    let prefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 'Problem value found at: \n';
-    let str = '\n\n' + prefix + 'options = {\n';
+    let prefix = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "Problem value found at: \n";
+    let str = "\n\n" + prefix + "options = {\n";
     for (let i = 0; i < path.length; i++) {
       for (let j = 0; j < i + 1; j++) {
-        str += '  ';
+        str += "  ";
       }
-      str += path[i] + ': {\n';
+      str += path[i] + ": {\n";
     }
     for (let j = 0; j < path.length + 1; j++) {
-      str += '  ';
+      str += "  ";
     }
-    str += option + '\n';
+    str += option + "\n";
     for (let i = 0; i < path.length + 1; i++) {
       for (let j = 0; j < path.length - i; j++) {
-        str += '  ';
+        str += "  ";
       }
-      str += '}\n';
+      str += "}\n";
     }
-    return str + '\n\n';
+    return str + "\n\n";
   }
 
   /**
@@ -30703,7 +30679,7 @@ class Validator {
    * @static
    */
   static print(options) {
-    return _JSON$stringify(options).replace(/(\")|(\[)|(\])|(,"__type__")/g, "").replace(/(\,)/g, ', ');
+    return _JSON$stringify(options).replace(/(\")|(\[)|(\])|(,"__type__")/g, "").replace(/(\,)/g, ", ");
   }
 
   /**
@@ -30765,31 +30741,31 @@ class Validator {
  * __any__ means that the name of the property does not matter.
  * __type__ is a required field for all objects and contains the allowed types of all objects
  */
-let string$1 = 'string';
-let bool$1 = 'boolean';
-let number$1 = 'number';
-let array$1 = 'array';
-let date$1 = 'date';
-let object$1 = 'object'; // should only be in a __type__ property
-let dom$1 = 'dom';
-let moment$1 = 'moment';
-let any$1 = 'any';
+let string$1 = "string";
+let bool$1 = "boolean";
+let number$1 = "number";
+let array$1 = "array";
+let date$1 = "date";
+let object$1 = "object"; // should only be in a __type__ property
+let dom$1 = "dom";
+let moment$1 = "moment";
+let any$1 = "any";
 let allOptions$1 = {
   configure: {
     enabled: {
-      'boolean': bool$1
+      boolean: bool$1
     },
     filter: {
-      'boolean': bool$1,
-      'function': 'function'
+      boolean: bool$1,
+      function: "function"
     },
     container: {
       dom: dom$1
     },
     __type__: {
       object: object$1,
-      'boolean': bool$1,
-      'function': 'function'
+      boolean: bool$1,
+      function: "function"
     }
   },
   //globals :
@@ -30798,19 +30774,19 @@ let allOptions$1 = {
   },
   alignCurrentTime: {
     string: string$1,
-    'undefined': 'undefined'
+    undefined: "undefined"
   },
   rtl: {
-    'boolean': bool$1,
-    'undefined': 'undefined'
+    boolean: bool$1,
+    undefined: "undefined"
   },
   rollingMode: {
     follow: {
-      'boolean': bool$1
+      boolean: bool$1
     },
     offset: {
       number: number$1,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     __type__: {
       object: object$1
@@ -30821,29 +30797,29 @@ let allOptions$1 = {
       number: number$1
     },
     callback: {
-      'function': 'function'
+      function: "function"
     },
     __type__: {
       object: object$1
     }
   },
   verticalScroll: {
-    'boolean': bool$1,
-    'undefined': 'undefined'
+    boolean: bool$1,
+    undefined: "undefined"
   },
   horizontalScroll: {
-    'boolean': bool$1,
-    'undefined': 'undefined'
+    boolean: bool$1,
+    undefined: "undefined"
   },
   autoResize: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   throttleRedraw: {
     number: number$1
   },
   // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
   clickToUse: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   dataAttributes: {
     string: string$1,
@@ -30851,27 +30827,27 @@ let allOptions$1 = {
   },
   editable: {
     add: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     remove: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     updateGroup: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     updateTime: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     overrideItems: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     __type__: {
-      'boolean': bool$1,
+      boolean: bool$1,
       object: object$1
     }
   },
@@ -30885,85 +30861,85 @@ let allOptions$1 = {
     minorLabels: {
       millisecond: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       second: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       minute: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       hour: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       weekday: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       day: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       week: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       month: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       year: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       __type__: {
         object: object$1,
-        'function': 'function'
+        function: "function"
       }
     },
     majorLabels: {
       millisecond: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       second: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       minute: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       hour: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       weekday: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       day: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       week: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       month: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       year: {
         string: string$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       __type__: {
         object: object$1,
-        'function': 'function'
+        function: "function"
       }
     },
     __type__: {
@@ -30971,35 +30947,35 @@ let allOptions$1 = {
     }
   },
   moment: {
-    'function': 'function'
+    function: "function"
   },
   groupHeightMode: {
     string: string$1
   },
   groupOrder: {
     string: string$1,
-    'function': 'function'
+    function: "function"
   },
   groupEditable: {
     add: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     remove: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     order: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     __type__: {
-      'boolean': bool$1,
+      boolean: bool$1,
       object: object$1
     }
   },
   groupOrderSwap: {
-    'function': 'function'
+    function: "function"
   },
   height: {
     string: string$1,
@@ -31028,20 +31004,20 @@ let allOptions$1 = {
   },
   itemsAlwaysDraggable: {
     item: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     range: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     __type__: {
-      'boolean': bool$1,
+      boolean: bool$1,
       object: object$1
     }
   },
   limitSize: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   locale: {
     string: string$1
@@ -31064,11 +31040,11 @@ let allOptions$1 = {
     item: {
       horizontal: {
         number: number$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       vertical: {
         number: number$1,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       __type__: {
         object: object$1,
@@ -31104,55 +31080,55 @@ let allOptions$1 = {
     string: string$1
   },
   moveable: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   multiselect: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   multiselectPerGroup: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   onAdd: {
-    'function': 'function'
+    function: "function"
   },
   onDropObjectOnItem: {
-    'function': 'function'
+    function: "function"
   },
   onUpdate: {
-    'function': 'function'
+    function: "function"
   },
   onMove: {
-    'function': 'function'
+    function: "function"
   },
   onMoving: {
-    'function': 'function'
+    function: "function"
   },
   onRemove: {
-    'function': 'function'
+    function: "function"
   },
   onAddGroup: {
-    'function': 'function'
+    function: "function"
   },
   onMoveGroup: {
-    'function': 'function'
+    function: "function"
   },
   onRemoveGroup: {
-    'function': 'function'
+    function: "function"
   },
   onInitialDrawComplete: {
-    'function': 'function'
+    function: "function"
   },
   order: {
-    'function': 'function'
+    function: "function"
   },
   orientation: {
     axis: {
       string: string$1,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     item: {
       string: string$1,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     __type__: {
       string: string$1,
@@ -31160,58 +31136,58 @@ let allOptions$1 = {
     }
   },
   selectable: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   sequentialSelection: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   showCurrentTime: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   showMajorLabels: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   showMinorLabels: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   showWeekScale: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   stack: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   stackSubgroups: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   cluster: {
     maxItems: {
-      'number': number$1,
-      'undefined': 'undefined'
+      number: number$1,
+      undefined: "undefined"
     },
     titleTemplate: {
-      'string': string$1,
-      'undefined': 'undefined'
+      string: string$1,
+      undefined: "undefined"
     },
     clusterCriteria: {
-      'function': 'function',
-      'undefined': 'undefined'
+      function: "function",
+      undefined: "undefined"
     },
     showStipes: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     fitOnDoubleClick: {
-      'boolean': bool$1,
-      'undefined': 'undefined'
+      boolean: bool$1,
+      undefined: "undefined"
     },
     __type__: {
-      'boolean': bool$1,
+      boolean: bool$1,
       object: object$1
     }
   },
   snap: {
-    'function': 'function',
-    'null': 'null'
+    function: "function",
+    null: "null"
   },
   start: {
     date: date$1,
@@ -31220,33 +31196,33 @@ let allOptions$1 = {
     moment: moment$1
   },
   template: {
-    'function': 'function'
+    function: "function"
   },
   loadingScreenTemplate: {
-    'function': 'function'
+    function: "function"
   },
   groupTemplate: {
-    'function': 'function'
+    function: "function"
   },
   visibleFrameTemplate: {
     string: string$1,
-    'function': 'function'
+    function: "function"
   },
   showTooltips: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   tooltip: {
     followMouse: {
-      'boolean': bool$1
+      boolean: bool$1
     },
     overflowMethod: {
-      'string': ['cap', 'flip', 'none']
+      string: ["cap", "flip", "none"]
     },
     delay: {
       number: number$1
     },
     template: {
-      'function': 'function'
+      function: "function"
     },
     __type__: {
       object: object$1
@@ -31254,21 +31230,21 @@ let allOptions$1 = {
   },
   tooltipOnItemUpdateTime: {
     template: {
-      'function': 'function'
+      function: "function"
     },
     __type__: {
-      'boolean': bool$1,
+      boolean: bool$1,
       object: object$1
     }
   },
   timeAxis: {
     scale: {
       string: string$1,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     step: {
       number: number$1,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     __type__: {
       object: object$1
@@ -31282,13 +31258,13 @@ let allOptions$1 = {
     number: number$1
   },
   preferZoom: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   zoomable: {
-    'boolean': bool$1
+    boolean: bool$1
   },
   zoomKey: {
-    string: ['ctrlKey', 'altKey', 'shiftKey', 'metaKey', '']
+    string: ["ctrlKey", "altKey", "shiftKey", "metaKey", ""]
   },
   zoomFriction: {
     number: number$1
@@ -31321,8 +31297,8 @@ let allOptions$1 = {
 };
 let configureOptions$1 = {
   global: {
-    align: ['center', 'left', 'right'],
-    alignCurrentTime: ['none', 'year', 'month', 'quarter', 'week', 'isoWeek', 'day', 'date', 'hour', 'minute', 'second'],
+    align: ["center", "left", "right"],
+    alignCurrentTime: ["none", "year", "month", "quarter", "week", "isoWeek", "day", "date", "hour", "minute", "second"],
     direction: false,
     autoResize: true,
     clickToUse: false,
@@ -31333,37 +31309,37 @@ let configureOptions$1 = {
       updateGroup: false,
       updateTime: false
     },
-    end: '',
+    end: "",
     format: {
       minorLabels: {
-        millisecond: 'SSS',
-        second: 's',
-        minute: 'HH:mm',
-        hour: 'HH:mm',
-        weekday: 'ddd D',
-        day: 'D',
-        week: 'w',
-        month: 'MMM',
-        year: 'YYYY'
+        millisecond: "SSS",
+        second: "s",
+        minute: "HH:mm",
+        hour: "HH:mm",
+        weekday: "ddd D",
+        day: "D",
+        week: "w",
+        month: "MMM",
+        year: "YYYY"
       },
       majorLabels: {
-        millisecond: 'HH:mm:ss',
-        second: 'D MMMM HH:mm',
-        minute: 'ddd D MMMM',
-        hour: 'ddd D MMMM',
-        weekday: 'MMMM YYYY',
-        day: 'MMMM YYYY',
-        week: 'MMMM YYYY',
-        month: 'YYYY',
-        year: ''
+        millisecond: "HH:mm:ss",
+        second: "D MMMM HH:mm",
+        minute: "ddd D MMMM",
+        hour: "ddd D MMMM",
+        weekday: "MMMM YYYY",
+        day: "MMMM YYYY",
+        week: "MMMM YYYY",
+        month: "YYYY",
+        year: ""
       }
     },
-    groupHeightMode: ['auto', 'fixed', 'fitItems'],
+    groupHeightMode: ["auto", "fixed", "fitItems"],
     //groupOrder: {string, 'function': 'function'},
     groupsDraggable: false,
-    height: '',
+    height: "",
     //hiddenDates: {object, array},
-    locale: '',
+    locale: "",
     longSelectPressTime: 251,
     margin: {
       axis: [20, 0, 100, 1],
@@ -31372,11 +31348,11 @@ let configureOptions$1 = {
         vertical: [10, 0, 100, 1]
       }
     },
-    max: '',
-    maxHeight: '',
+    max: "",
+    maxHeight: "",
     maxMinorChars: [7, 0, 20, 1],
-    min: '',
-    minHeight: '',
+    min: "",
+    minHeight: "",
     moveable: false,
     multiselect: false,
     multiselectPerGroup: false,
@@ -31387,8 +31363,8 @@ let configureOptions$1 = {
     //onRename: {'function': 'function'},
     //order: {'function': 'function'},
     orientation: {
-      axis: ['both', 'bottom', 'top'],
-      item: ['bottom', 'top']
+      axis: ["both", "bottom", "top"],
+      item: ["bottom", "top"]
     },
     preferZoom: false,
     selectable: true,
@@ -31399,7 +31375,7 @@ let configureOptions$1 = {
     stackSubgroups: true,
     cluster: false,
     //snap: {'function': 'function', nada},
-    start: '',
+    start: "",
     //template: {'function': 'function'},
     //timeAxis: {
     //  scale: ['millisecond', 'second', 'minute', 'hour', 'weekday', 'day', 'week', 'month', 'year'],
@@ -31408,14 +31384,14 @@ let configureOptions$1 = {
     showTooltips: true,
     tooltip: {
       followMouse: false,
-      overflowMethod: 'flip',
+      overflowMethod: "flip",
       delay: [500, 0, 99999, 100]
     },
     tooltipOnItemUpdateTime: false,
-    type: ['box', 'point', 'range', 'background'],
-    width: '100%',
+    type: ["box", "point", "range", "background"],
+    width: "100%",
     zoomable: true,
-    zoomKey: ['ctrlKey', 'altKey', 'shiftKey', 'metaKey', ''],
+    zoomKey: ["ctrlKey", "altKey", "shiftKey", "metaKey", ""],
     zoomMax: [315360000000000, 10, 315360000000000, 1],
     zoomMin: [10, 10, 315360000000000, 1],
     xss: {
@@ -31425,146 +31401,146 @@ let configureOptions$1 = {
 };
 
 var htmlColors = {
-  black: '#000000',
-  navy: '#000080',
-  darkblue: '#00008B',
-  mediumblue: '#0000CD',
-  blue: '#0000FF',
-  darkgreen: '#006400',
-  green: '#008000',
-  teal: '#008080',
-  darkcyan: '#008B8B',
-  deepskyblue: '#00BFFF',
-  darkturquoise: '#00CED1',
-  mediumspringgreen: '#00FA9A',
-  lime: '#00FF00',
-  springgreen: '#00FF7F',
-  aqua: '#00FFFF',
-  cyan: '#00FFFF',
-  midnightblue: '#191970',
-  dodgerblue: '#1E90FF',
-  lightseagreen: '#20B2AA',
-  forestgreen: '#228B22',
-  seagreen: '#2E8B57',
-  darkslategray: '#2F4F4F',
-  limegreen: '#32CD32',
-  mediumseagreen: '#3CB371',
-  turquoise: '#40E0D0',
-  royalblue: '#4169E1',
-  steelblue: '#4682B4',
-  darkslateblue: '#483D8B',
-  mediumturquoise: '#48D1CC',
-  indigo: '#4B0082',
-  darkolivegreen: '#556B2F',
-  cadetblue: '#5F9EA0',
-  cornflowerblue: '#6495ED',
-  mediumaquamarine: '#66CDAA',
-  dimgray: '#696969',
-  slateblue: '#6A5ACD',
-  olivedrab: '#6B8E23',
-  slategray: '#708090',
-  lightslategray: '#778899',
-  mediumslateblue: '#7B68EE',
-  lawngreen: '#7CFC00',
-  chartreuse: '#7FFF00',
-  aquamarine: '#7FFFD4',
-  maroon: '#800000',
-  purple: '#800080',
-  olive: '#808000',
-  gray: '#808080',
-  skyblue: '#87CEEB',
-  lightskyblue: '#87CEFA',
-  blueviolet: '#8A2BE2',
-  darkred: '#8B0000',
-  darkmagenta: '#8B008B',
-  saddlebrown: '#8B4513',
-  darkseagreen: '#8FBC8F',
-  lightgreen: '#90EE90',
-  mediumpurple: '#9370D8',
-  darkviolet: '#9400D3',
-  palegreen: '#98FB98',
-  darkorchid: '#9932CC',
-  yellowgreen: '#9ACD32',
-  sienna: '#A0522D',
-  brown: '#A52A2A',
-  darkgray: '#A9A9A9',
-  lightblue: '#ADD8E6',
-  greenyellow: '#ADFF2F',
-  paleturquoise: '#AFEEEE',
-  lightsteelblue: '#B0C4DE',
-  powderblue: '#B0E0E6',
-  firebrick: '#B22222',
-  darkgoldenrod: '#B8860B',
-  mediumorchid: '#BA55D3',
-  rosybrown: '#BC8F8F',
-  darkkhaki: '#BDB76B',
-  silver: '#C0C0C0',
-  mediumvioletred: '#C71585',
-  indianred: '#CD5C5C',
-  peru: '#CD853F',
-  chocolate: '#D2691E',
-  tan: '#D2B48C',
-  lightgrey: '#D3D3D3',
-  palevioletred: '#D87093',
-  thistle: '#D8BFD8',
-  orchid: '#DA70D6',
-  goldenrod: '#DAA520',
-  crimson: '#DC143C',
-  gainsboro: '#DCDCDC',
-  plum: '#DDA0DD',
-  burlywood: '#DEB887',
-  lightcyan: '#E0FFFF',
-  lavender: '#E6E6FA',
-  darksalmon: '#E9967A',
-  violet: '#EE82EE',
-  palegoldenrod: '#EEE8AA',
-  lightcoral: '#F08080',
-  khaki: '#F0E68C',
-  aliceblue: '#F0F8FF',
-  honeydew: '#F0FFF0',
-  azure: '#F0FFFF',
-  sandybrown: '#F4A460',
-  wheat: '#F5DEB3',
-  beige: '#F5F5DC',
-  whitesmoke: '#F5F5F5',
-  mintcream: '#F5FFFA',
-  ghostwhite: '#F8F8FF',
-  salmon: '#FA8072',
-  antiquewhite: '#FAEBD7',
-  linen: '#FAF0E6',
-  lightgoldenrodyellow: '#FAFAD2',
-  oldlace: '#FDF5E6',
-  red: '#FF0000',
-  fuchsia: '#FF00FF',
-  magenta: '#FF00FF',
-  deeppink: '#FF1493',
-  orangered: '#FF4500',
-  tomato: '#FF6347',
-  hotpink: '#FF69B4',
-  coral: '#FF7F50',
-  darkorange: '#FF8C00',
-  lightsalmon: '#FFA07A',
-  orange: '#FFA500',
-  lightpink: '#FFB6C1',
-  pink: '#FFC0CB',
-  gold: '#FFD700',
-  peachpuff: '#FFDAB9',
-  navajowhite: '#FFDEAD',
-  moccasin: '#FFE4B5',
-  bisque: '#FFE4C4',
-  mistyrose: '#FFE4E1',
-  blanchedalmond: '#FFEBCD',
-  papayawhip: '#FFEFD5',
-  lavenderblush: '#FFF0F5',
-  seashell: '#FFF5EE',
-  cornsilk: '#FFF8DC',
-  lemonchiffon: '#FFFACD',
-  floralwhite: '#FFFAF0',
-  snow: '#FFFAFA',
-  yellow: '#FFFF00',
-  lightyellow: '#FFFFE0',
-  ivory: '#FFFFF0',
-  white: '#FFFFFF'
+  black: "#000000",
+  navy: "#000080",
+  darkblue: "#00008B",
+  mediumblue: "#0000CD",
+  blue: "#0000FF",
+  darkgreen: "#006400",
+  green: "#008000",
+  teal: "#008080",
+  darkcyan: "#008B8B",
+  deepskyblue: "#00BFFF",
+  darkturquoise: "#00CED1",
+  mediumspringgreen: "#00FA9A",
+  lime: "#00FF00",
+  springgreen: "#00FF7F",
+  aqua: "#00FFFF",
+  cyan: "#00FFFF",
+  midnightblue: "#191970",
+  dodgerblue: "#1E90FF",
+  lightseagreen: "#20B2AA",
+  forestgreen: "#228B22",
+  seagreen: "#2E8B57",
+  darkslategray: "#2F4F4F",
+  limegreen: "#32CD32",
+  mediumseagreen: "#3CB371",
+  turquoise: "#40E0D0",
+  royalblue: "#4169E1",
+  steelblue: "#4682B4",
+  darkslateblue: "#483D8B",
+  mediumturquoise: "#48D1CC",
+  indigo: "#4B0082",
+  darkolivegreen: "#556B2F",
+  cadetblue: "#5F9EA0",
+  cornflowerblue: "#6495ED",
+  mediumaquamarine: "#66CDAA",
+  dimgray: "#696969",
+  slateblue: "#6A5ACD",
+  olivedrab: "#6B8E23",
+  slategray: "#708090",
+  lightslategray: "#778899",
+  mediumslateblue: "#7B68EE",
+  lawngreen: "#7CFC00",
+  chartreuse: "#7FFF00",
+  aquamarine: "#7FFFD4",
+  maroon: "#800000",
+  purple: "#800080",
+  olive: "#808000",
+  gray: "#808080",
+  skyblue: "#87CEEB",
+  lightskyblue: "#87CEFA",
+  blueviolet: "#8A2BE2",
+  darkred: "#8B0000",
+  darkmagenta: "#8B008B",
+  saddlebrown: "#8B4513",
+  darkseagreen: "#8FBC8F",
+  lightgreen: "#90EE90",
+  mediumpurple: "#9370D8",
+  darkviolet: "#9400D3",
+  palegreen: "#98FB98",
+  darkorchid: "#9932CC",
+  yellowgreen: "#9ACD32",
+  sienna: "#A0522D",
+  brown: "#A52A2A",
+  darkgray: "#A9A9A9",
+  lightblue: "#ADD8E6",
+  greenyellow: "#ADFF2F",
+  paleturquoise: "#AFEEEE",
+  lightsteelblue: "#B0C4DE",
+  powderblue: "#B0E0E6",
+  firebrick: "#B22222",
+  darkgoldenrod: "#B8860B",
+  mediumorchid: "#BA55D3",
+  rosybrown: "#BC8F8F",
+  darkkhaki: "#BDB76B",
+  silver: "#C0C0C0",
+  mediumvioletred: "#C71585",
+  indianred: "#CD5C5C",
+  peru: "#CD853F",
+  chocolate: "#D2691E",
+  tan: "#D2B48C",
+  lightgrey: "#D3D3D3",
+  palevioletred: "#D87093",
+  thistle: "#D8BFD8",
+  orchid: "#DA70D6",
+  goldenrod: "#DAA520",
+  crimson: "#DC143C",
+  gainsboro: "#DCDCDC",
+  plum: "#DDA0DD",
+  burlywood: "#DEB887",
+  lightcyan: "#E0FFFF",
+  lavender: "#E6E6FA",
+  darksalmon: "#E9967A",
+  violet: "#EE82EE",
+  palegoldenrod: "#EEE8AA",
+  lightcoral: "#F08080",
+  khaki: "#F0E68C",
+  aliceblue: "#F0F8FF",
+  honeydew: "#F0FFF0",
+  azure: "#F0FFFF",
+  sandybrown: "#F4A460",
+  wheat: "#F5DEB3",
+  beige: "#F5F5DC",
+  whitesmoke: "#F5F5F5",
+  mintcream: "#F5FFFA",
+  ghostwhite: "#F8F8FF",
+  salmon: "#FA8072",
+  antiquewhite: "#FAEBD7",
+  linen: "#FAF0E6",
+  lightgoldenrodyellow: "#FAFAD2",
+  oldlace: "#FDF5E6",
+  red: "#FF0000",
+  fuchsia: "#FF00FF",
+  magenta: "#FF00FF",
+  deeppink: "#FF1493",
+  orangered: "#FF4500",
+  tomato: "#FF6347",
+  hotpink: "#FF69B4",
+  coral: "#FF7F50",
+  darkorange: "#FF8C00",
+  lightsalmon: "#FFA07A",
+  orange: "#FFA500",
+  lightpink: "#FFB6C1",
+  pink: "#FFC0CB",
+  gold: "#FFD700",
+  peachpuff: "#FFDAB9",
+  navajowhite: "#FFDEAD",
+  moccasin: "#FFE4B5",
+  bisque: "#FFE4C4",
+  mistyrose: "#FFE4E1",
+  blanchedalmond: "#FFEBCD",
+  papayawhip: "#FFEFD5",
+  lavenderblush: "#FFF0F5",
+  seashell: "#FFF5EE",
+  cornsilk: "#FFF8DC",
+  lemonchiffon: "#FFFACD",
+  floralwhite: "#FFFAF0",
+  snow: "#FFFAFA",
+  yellow: "#FFFF00",
+  lightyellow: "#FFFFE0",
+  ivory: "#FFFFF0",
+  white: "#FFFFFF"
 };
 
 /**
@@ -31627,7 +31603,7 @@ class ColorPicker {
    * @param {function} callback
    */
   setUpdateCallback(callback) {
-    if (typeof callback === 'function') {
+    if (typeof callback === "function") {
       this.updateCallback = callback;
     } else {
       throw new Error("Function attempted to set as colorPicker update callback is not a function.");
@@ -31639,7 +31615,7 @@ class ColorPicker {
    * @param {function} callback
    */
   setCloseCallback(callback) {
-    if (typeof callback === 'function') {
+    if (typeof callback === "function") {
       this.closeCallback = callback;
     } else {
       throw new Error("Function attempted to set as colorPicker closing callback is not a function.");
@@ -31653,7 +31629,7 @@ class ColorPicker {
    * @private
    */
   _isColorString(color) {
-    if (typeof color === 'string') {
+    if (typeof color === "string") {
       return htmlColors[color];
     }
   }
@@ -31672,7 +31648,7 @@ class ColorPicker {
    */
   setColor(color) {
     let setInitial = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : true;
-    if (color === 'none') {
+    if (color === "none") {
       return;
     }
     let rgba;
@@ -31686,7 +31662,7 @@ class ColorPicker {
     // check format
     if (availableUtils.isString(color) === true) {
       if (availableUtils.isValidRGB(color) === true) {
-        let rgbaArray = color.substr(4).substr(0, color.length - 5).split(',');
+        let rgbaArray = color.substr(4).substr(0, color.length - 5).split(",");
         rgba = {
           r: rgbaArray[0],
           g: rgbaArray[1],
@@ -31694,7 +31670,7 @@ class ColorPicker {
           a: 1.0
         };
       } else if (availableUtils.isValidRGBA(color) === true) {
-        let rgbaArray = color.substr(5).substr(0, color.length - 6).split(',');
+        let rgbaArray = color.substr(5).substr(0, color.length - 6).split(",");
         rgba = {
           r: rgbaArray[0],
           g: rgbaArray[1],
@@ -31713,7 +31689,7 @@ class ColorPicker {
     } else {
       if (color instanceof Object) {
         if (color.r !== undefined && color.g !== undefined && color.b !== undefined) {
-          let alpha = color.a !== undefined ? color.a : '1.0';
+          let alpha = color.a !== undefined ? color.a : "1.0";
           rgba = {
             r: color.r,
             g: color.g,
@@ -31742,7 +31718,7 @@ class ColorPicker {
       this.closeCallback = undefined;
     }
     this.applied = false;
-    this.frame.style.display = 'block';
+    this.frame.style.display = "block";
     this._generateHueCircle();
   }
 
@@ -31763,7 +31739,7 @@ class ColorPicker {
     if (this.applied === true) {
       this.updateCallback(this.initialColor);
     }
-    this.frame.style.display = 'none';
+    this.frame.style.display = "none";
 
     // call the closing callback, restoring the onclick method.
     // this is in a setTimeout because it will trigger the show again before the click is done.
@@ -31825,8 +31801,8 @@ class ColorPicker {
     let radius = this.r * hsv.s;
     let x = this.centerCoordinates.x + radius * Math.sin(angleConvert * hsv.h);
     let y = this.centerCoordinates.y + radius * Math.cos(angleConvert * hsv.h);
-    this.colorPickerSelector.style.left = x - 0.5 * this.colorPickerSelector.clientWidth + 'px';
-    this.colorPickerSelector.style.top = y - 0.5 * this.colorPickerSelector.clientHeight + 'px';
+    this.colorPickerSelector.style.left = x - 0.5 * this.colorPickerSelector.clientWidth + "px";
+    this.colorPickerSelector.style.top = y - 0.5 * this.colorPickerSelector.clientHeight + "px";
     this._updatePicker(rgba);
   }
 
@@ -31849,7 +31825,7 @@ class ColorPicker {
     let hsv = availableUtils.RGBToHSV(this.color.r, this.color.g, this.color.b);
     hsv.v = value / 100;
     let rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
-    rgba['a'] = this.color.a;
+    rgba["a"] = this.color.a;
     this.color = rgba;
     this._updatePicker();
   }
@@ -31862,7 +31838,7 @@ class ColorPicker {
   _updatePicker() {
     let rgba = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : this.color;
     let hsv = availableUtils.RGBToHSV(rgba.r, rgba.g, rgba.b);
-    let ctx = this.colorPickerCanvas.getContext('2d');
+    let ctx = this.colorPickerCanvas.getContext("2d");
     if (this.pixelRation === undefined) {
       this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
     }
@@ -31873,13 +31849,13 @@ class ColorPicker {
     let h = this.colorPickerCanvas.clientHeight;
     ctx.clearRect(0, 0, w, h);
     ctx.putImageData(this.hueCircle, 0, 0);
-    ctx.fillStyle = 'rgba(0,0,0,' + (1 - hsv.v) + ')';
+    ctx.fillStyle = "rgba(0,0,0," + (1 - hsv.v) + ")";
     ctx.circle(this.centerCoordinates.x, this.centerCoordinates.y, this.r);
     _fillInstanceProperty(ctx).call(ctx);
     this.brightnessRange.value = 100 * hsv.v;
     this.opacityRange.value = 100 * rgba.a;
-    this.initialColorDiv.style.backgroundColor = 'rgba(' + this.initialColor.r + ',' + this.initialColor.g + ',' + this.initialColor.b + ',' + this.initialColor.a + ')';
-    this.newColorDiv.style.backgroundColor = 'rgba(' + this.color.r + ',' + this.color.g + ',' + this.color.b + ',' + this.color.a + ')';
+    this.initialColorDiv.style.backgroundColor = "rgba(" + this.initialColor.r + "," + this.initialColor.g + "," + this.initialColor.b + "," + this.initialColor.a + ")";
+    this.newColorDiv.style.backgroundColor = "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
   }
 
   /**
@@ -31887,8 +31863,8 @@ class ColorPicker {
    * @private
    */
   _setSize() {
-    this.colorPickerCanvas.style.width = '100%';
-    this.colorPickerCanvas.style.height = '100%';
+    this.colorPickerCanvas.style.width = "100%";
+    this.colorPickerCanvas.style.height = "100%";
     this.colorPickerCanvas.width = 289 * this.pixelRatio;
     this.colorPickerCanvas.height = 289 * this.pixelRatio;
   }
@@ -31900,53 +31876,53 @@ class ColorPicker {
    */
   _create() {
     var _context, _context2, _context3, _context4;
-    this.frame = document.createElement('div');
-    this.frame.className = 'vis-color-picker';
-    this.colorPickerDiv = document.createElement('div');
-    this.colorPickerSelector = document.createElement('div');
-    this.colorPickerSelector.className = 'vis-selector';
+    this.frame = document.createElement("div");
+    this.frame.className = "vis-color-picker";
+    this.colorPickerDiv = document.createElement("div");
+    this.colorPickerSelector = document.createElement("div");
+    this.colorPickerSelector.className = "vis-selector";
     this.colorPickerDiv.appendChild(this.colorPickerSelector);
-    this.colorPickerCanvas = document.createElement('canvas');
+    this.colorPickerCanvas = document.createElement("canvas");
     this.colorPickerDiv.appendChild(this.colorPickerCanvas);
     if (!this.colorPickerCanvas.getContext) {
-      let noCanvas = document.createElement('DIV');
-      noCanvas.style.color = 'red';
-      noCanvas.style.fontWeight = 'bold';
-      noCanvas.style.padding = '10px';
-      noCanvas.innerHTML = 'Error: your browser does not support HTML canvas';
+      let noCanvas = document.createElement("DIV");
+      noCanvas.style.color = "red";
+      noCanvas.style.fontWeight = "bold";
+      noCanvas.style.padding = "10px";
+      noCanvas.innerHTML = "Error: your browser does not support HTML canvas";
       this.colorPickerCanvas.appendChild(noCanvas);
     } else {
       let ctx = this.colorPickerCanvas.getContext("2d");
       this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
       this.colorPickerCanvas.getContext("2d").setTransform(this.pixelRatio, 0, 0, this.pixelRatio, 0, 0);
     }
-    this.colorPickerDiv.className = 'vis-color';
-    this.opacityDiv = document.createElement('div');
-    this.opacityDiv.className = 'vis-opacity';
-    this.brightnessDiv = document.createElement('div');
-    this.brightnessDiv.className = 'vis-brightness';
-    this.arrowDiv = document.createElement('div');
-    this.arrowDiv.className = 'vis-arrow';
-    this.opacityRange = document.createElement('input');
+    this.colorPickerDiv.className = "vis-color";
+    this.opacityDiv = document.createElement("div");
+    this.opacityDiv.className = "vis-opacity";
+    this.brightnessDiv = document.createElement("div");
+    this.brightnessDiv.className = "vis-brightness";
+    this.arrowDiv = document.createElement("div");
+    this.arrowDiv.className = "vis-arrow";
+    this.opacityRange = document.createElement("input");
     try {
-      this.opacityRange.type = 'range'; // Not supported on IE9
-      this.opacityRange.min = '0';
-      this.opacityRange.max = '100';
-    }
-    // TODO: Add some error handling and remove this lint exception
-    catch (err) {} // eslint-disable-line no-empty
-    this.opacityRange.value = '100';
-    this.opacityRange.className = 'vis-range';
-    this.brightnessRange = document.createElement('input');
+      this.opacityRange.type = "range"; // Not supported on IE9
+      this.opacityRange.min = "0";
+      this.opacityRange.max = "100";
+    } catch (err) {
+      // TODO: Add some error handling and remove this lint exception
+    } // eslint-disable-line no-empty
+    this.opacityRange.value = "100";
+    this.opacityRange.className = "vis-range";
+    this.brightnessRange = document.createElement("input");
     try {
-      this.brightnessRange.type = 'range'; // Not supported on IE9
-      this.brightnessRange.min = '0';
-      this.brightnessRange.max = '100';
-    }
-    // TODO: Add some error handling and remove this lint exception
-    catch (err) {} // eslint-disable-line no-empty
-    this.brightnessRange.value = '100';
-    this.brightnessRange.className = 'vis-range';
+      this.brightnessRange.type = "range"; // Not supported on IE9
+      this.brightnessRange.min = "0";
+      this.brightnessRange.max = "100";
+    } catch (err) {
+      // TODO: Add some error handling and remove this lint exception
+    } // eslint-disable-line no-empty
+    this.brightnessRange.value = "100";
+    this.brightnessRange.className = "vis-range";
     this.opacityDiv.appendChild(this.opacityRange);
     this.brightnessDiv.appendChild(this.brightnessRange);
     var me = this;
@@ -31964,31 +31940,31 @@ class ColorPicker {
     };
     this.brightnessLabel = document.createElement("div");
     this.brightnessLabel.className = "vis-label vis-brightness";
-    this.brightnessLabel.innerHTML = 'brightness:';
+    this.brightnessLabel.innerHTML = "brightness:";
     this.opacityLabel = document.createElement("div");
     this.opacityLabel.className = "vis-label vis-opacity";
-    this.opacityLabel.innerHTML = 'opacity:';
+    this.opacityLabel.innerHTML = "opacity:";
     this.newColorDiv = document.createElement("div");
     this.newColorDiv.className = "vis-new-color";
-    this.newColorDiv.innerHTML = 'new';
+    this.newColorDiv.innerHTML = "new";
     this.initialColorDiv = document.createElement("div");
     this.initialColorDiv.className = "vis-initial-color";
-    this.initialColorDiv.innerHTML = 'initial';
+    this.initialColorDiv.innerHTML = "initial";
     this.cancelButton = document.createElement("div");
     this.cancelButton.className = "vis-button vis-cancel";
-    this.cancelButton.innerHTML = 'cancel';
+    this.cancelButton.innerHTML = "cancel";
     this.cancelButton.onclick = _bindInstanceProperty(_context = this._hide).call(_context, this, false);
     this.applyButton = document.createElement("div");
     this.applyButton.className = "vis-button vis-apply";
-    this.applyButton.innerHTML = 'apply';
+    this.applyButton.innerHTML = "apply";
     this.applyButton.onclick = _bindInstanceProperty(_context2 = this._apply).call(_context2, this);
     this.saveButton = document.createElement("div");
     this.saveButton.className = "vis-button vis-save";
-    this.saveButton.innerHTML = 'save';
+    this.saveButton.innerHTML = "save";
     this.saveButton.onclick = _bindInstanceProperty(_context3 = this._save).call(_context3, this);
     this.loadButton = document.createElement("div");
     this.loadButton.className = "vis-button vis-load";
-    this.loadButton.innerHTML = 'load last';
+    this.loadButton.innerHTML = "load last";
     this.loadButton.onclick = _bindInstanceProperty(_context4 = this._loadLast).call(_context4, this);
     this.frame.appendChild(this.colorPickerDiv);
     this.frame.appendChild(this.arrowDiv);
@@ -32012,22 +31988,22 @@ class ColorPicker {
     this.drag = {};
     this.pinch = {};
     this.hammer = new Hammer(this.colorPickerCanvas);
-    this.hammer.get('pinch').set({
+    this.hammer.get("pinch").set({
       enable: true
     });
     onTouch(this.hammer, event => {
       this._moveSelector(event);
     });
-    this.hammer.on('tap', event => {
+    this.hammer.on("tap", event => {
       this._moveSelector(event);
     });
-    this.hammer.on('panstart', event => {
+    this.hammer.on("panstart", event => {
       this._moveSelector(event);
     });
-    this.hammer.on('panmove', event => {
+    this.hammer.on("panmove", event => {
       this._moveSelector(event);
     });
-    this.hammer.on('panend', event => {
+    this.hammer.on("panend", event => {
       this._moveSelector(event);
     });
   }
@@ -32038,7 +32014,7 @@ class ColorPicker {
    */
   _generateHueCircle() {
     if (this.generated === false) {
-      let ctx = this.colorPickerCanvas.getContext('2d');
+      let ctx = this.colorPickerCanvas.getContext("2d");
       if (this.pixelRation === undefined) {
         this.pixelRatio = (window.devicePixelRatio || 1) / (ctx.webkitBackingStorePixelRatio || ctx.mozBackingStorePixelRatio || ctx.msBackingStorePixelRatio || ctx.oBackingStorePixelRatio || ctx.backingStorePixelRatio || 1);
       }
@@ -32065,11 +32041,11 @@ class ColorPicker {
           x = this.centerCoordinates.x + sat * Math.sin(angleConvert * hue);
           y = this.centerCoordinates.y + sat * Math.cos(angleConvert * hue);
           rgb = availableUtils.HSVToRGB(hue * hfac, sat * sfac, 1);
-          ctx.fillStyle = 'rgb(' + rgb.r + ',' + rgb.g + ',' + rgb.b + ')';
+          ctx.fillStyle = "rgb(" + rgb.r + "," + rgb.g + "," + rgb.b + ")";
           ctx.fillRect(x - 0.5, y - 0.5, 2, 2);
         }
       }
-      ctx.strokeStyle = 'rgba(0,0,0,1)';
+      ctx.strokeStyle = "rgba(0,0,0,1)";
       ctx.circle(this.centerCoordinates.x, this.centerCoordinates.y, this.r);
       ctx.stroke();
       this.hueCircle = ctx.getImageData(0, 0, w, h);
@@ -32095,8 +32071,8 @@ class ColorPicker {
     let radius = 0.98 * Math.min(Math.sqrt(x * x + y * y), centerX);
     let newTop = Math.cos(angle) * radius + centerY;
     let newLeft = Math.sin(angle) * radius + centerX;
-    this.colorPickerSelector.style.top = newTop - 0.5 * this.colorPickerSelector.clientHeight + 'px';
-    this.colorPickerSelector.style.left = newLeft - 0.5 * this.colorPickerSelector.clientWidth + 'px';
+    this.colorPickerSelector.style.top = newTop - 0.5 * this.colorPickerSelector.clientHeight + "px";
+    this.colorPickerSelector.style.left = newLeft - 0.5 * this.colorPickerSelector.clientWidth + "px";
 
     // set color
     let h = angle / (2 * Math.PI);
@@ -32106,12 +32082,12 @@ class ColorPicker {
     hsv.h = h;
     hsv.s = s;
     let rgba = availableUtils.HSVToRGB(hsv.h, hsv.s, hsv.v);
-    rgba['a'] = this.color.a;
+    rgba["a"] = this.color.a;
     this.color = rgba;
 
     // update previews
-    this.initialColorDiv.style.backgroundColor = 'rgba(' + this.initialColor.r + ',' + this.initialColor.g + ',' + this.initialColor.b + ',' + this.initialColor.a + ')';
-    this.newColorDiv.style.backgroundColor = 'rgba(' + this.color.r + ',' + this.color.g + ',' + this.color.b + ',' + this.color.a + ')';
+    this.initialColorDiv.style.backgroundColor = "rgba(" + this.initialColor.r + "," + this.initialColor.g + "," + this.initialColor.b + "," + this.initialColor.a + ")";
+    this.newColorDiv.style.backgroundColor = "rgba(" + this.color.r + "," + this.color.g + "," + this.color.b + "," + this.color.a + ")";
   }
 }
 
@@ -32169,13 +32145,13 @@ class Configurator {
       this.popupHistory = {};
       this._removePopup();
       let enabled = true;
-      if (typeof options === 'string') {
+      if (typeof options === "string") {
         this.options.filter = options;
       } else if (_Array$isArray(options)) {
         this.options.filter = options.join();
-      } else if (typeof options === 'object') {
+      } else if (typeof options === "object") {
         if (options == null) {
-          throw new TypeError('options cannot be null');
+          throw new TypeError("options cannot be null");
         }
         if (options.container !== undefined) {
           this.options.container = options.container;
@@ -32189,10 +32165,10 @@ class Configurator {
         if (options.enabled !== undefined) {
           enabled = options.enabled;
         }
-      } else if (typeof options === 'boolean') {
+      } else if (typeof options === "boolean") {
         this.options.filter = true;
         enabled = options;
-      } else if (typeof options === 'function') {
+      } else if (typeof options === "function") {
         this.options.filter = options;
         enabled = true;
       }
@@ -32233,7 +32209,7 @@ class Configurator {
       if (!Object.prototype.hasOwnProperty.call(this.configureOptions, option)) continue;
       this.allowCreation = false;
       show = false;
-      if (typeof filter === 'function') {
+      if (typeof filter === "function") {
         show = filter(option, []);
         show = show || this._handleObject(this.configureOptions[option], [option], true);
       } else if (filter === true || _indexOfInstanceProperty(filter).call(filter, option) !== -1) {
@@ -32264,8 +32240,8 @@ class Configurator {
    * @private
    */
   _push() {
-    this.wrapper = document.createElement('div');
-    this.wrapper.className = 'vis-configuration-wrapper';
+    this.wrapper = document.createElement("div");
+    this.wrapper.className = "vis-configuration-wrapper";
     this.container.appendChild(this.wrapper);
     for (var i = 0; i < this.domElements.length; i++) {
       this.wrapper.appendChild(this.domElements[i]);
@@ -32317,8 +32293,8 @@ class Configurator {
    */
   _makeItem(path) {
     if (this.allowCreation === true) {
-      let item = document.createElement('div');
-      item.className = 'vis-configuration vis-config-item vis-config-s' + path.length;
+      let item = document.createElement("div");
+      item.className = "vis-configuration vis-config-item vis-config-s" + path.length;
       for (var _len = arguments.length, domElements = new Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
         domElements[_key - 1] = arguments[_key];
       }
@@ -32337,8 +32313,8 @@ class Configurator {
    * @private
    */
   _makeHeader(name) {
-    let div = document.createElement('div');
-    div.className = 'vis-configuration vis-config-header';
+    let div = document.createElement("div");
+    div.className = "vis-configuration vis-config-header";
     div.innerHTML = availableUtils.xss(name);
     this._makeItem([], div);
   }
@@ -32353,12 +32329,12 @@ class Configurator {
    */
   _makeLabel(name, path) {
     let objectLabel = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-    let div = document.createElement('div');
-    div.className = 'vis-configuration vis-config-label vis-config-s' + path.length;
+    let div = document.createElement("div");
+    div.className = "vis-configuration vis-config-label vis-config-s" + path.length;
     if (objectLabel === true) {
-      div.innerHTML = availableUtils.xss('<i><b>' + name + ':</b></i>');
+      div.innerHTML = availableUtils.xss("<i><b>" + name + ":</b></i>");
     } else {
-      div.innerHTML = availableUtils.xss(name + ':');
+      div.innerHTML = availableUtils.xss(name + ":");
     }
     return div;
   }
@@ -32371,8 +32347,8 @@ class Configurator {
    * @private
    */
   _makeDropdown(arr, value, path) {
-    let select = document.createElement('select');
-    select.className = 'vis-configuration vis-config-select';
+    let select = document.createElement("select");
+    select.className = "vis-configuration vis-config-select";
     let selectedValue = 0;
     if (value !== undefined) {
       if (_indexOfInstanceProperty(arr).call(arr, value) !== -1) {
@@ -32380,10 +32356,10 @@ class Configurator {
       }
     }
     for (let i = 0; i < arr.length; i++) {
-      let option = document.createElement('option');
+      let option = document.createElement("option");
       option.value = arr[i];
       if (i === selectedValue) {
-        option.selected = 'selected';
+        option.selected = "selected";
       }
       option.innerHTML = arr[i];
       select.appendChild(option);
@@ -32408,42 +32384,42 @@ class Configurator {
     let min = arr[1];
     let max = arr[2];
     let step = arr[3];
-    let range = document.createElement('input');
-    range.className = 'vis-configuration vis-config-range';
+    let range = document.createElement("input");
+    range.className = "vis-configuration vis-config-range";
     try {
-      range.type = 'range'; // not supported on IE9
+      range.type = "range"; // not supported on IE9
       range.min = min;
       range.max = max;
-    }
-    // TODO: Add some error handling and remove this lint exception
-    catch (err) {} // eslint-disable-line no-empty
+    } catch (err) {
+      // TODO: Add some error handling and remove this lint exception
+    } // eslint-disable-line no-empty
     range.step = step;
 
     // set up the popup settings in case they are needed.
-    let popupString = '';
+    let popupString = "";
     let popupValue = 0;
     if (value !== undefined) {
-      let factor = 1.20;
+      let factor = 1.2;
       if (value < 0 && value * factor < min) {
         range.min = Math.ceil(value * factor);
         popupValue = range.min;
-        popupString = 'range increased';
+        popupString = "range increased";
       } else if (value / factor < min) {
         range.min = Math.ceil(value / factor);
         popupValue = range.min;
-        popupString = 'range increased';
+        popupString = "range increased";
       }
       if (value * factor > max && max !== 1) {
         range.max = Math.ceil(value * factor);
         popupValue = range.max;
-        popupString = 'range increased';
+        popupString = "range increased";
       }
       range.value = value;
     } else {
       range.value = defaultValue;
     }
-    let input = document.createElement('input');
-    input.className = 'vis-configuration vis-config-rangeinput';
+    let input = document.createElement("input");
+    input.className = "vis-configuration vis-config-rangeinput";
     input.value = Number(range.value);
     var me = this;
     range.onchange = function () {
@@ -32457,7 +32433,7 @@ class Configurator {
     let itemIndex = this._makeItem(path, label, range, input);
 
     // if a popup is needed AND it has not been shown for this value, show it.
-    if (popupString !== '' && this.popupHistory[itemIndex] !== popupValue) {
+    if (popupString !== "" && this.popupHistory[itemIndex] !== popupValue) {
       this.popupHistory[itemIndex] = popupValue;
       this._setupPopup(popupString, itemIndex);
     }
@@ -32469,20 +32445,20 @@ class Configurator {
    */
   _makeButton() {
     if (this.options.showButton === true) {
-      let generateButton = document.createElement('div');
-      generateButton.className = 'vis-configuration vis-config-button';
-      generateButton.innerHTML = 'generate options';
+      let generateButton = document.createElement("div");
+      generateButton.className = "vis-configuration vis-config-button";
+      generateButton.innerHTML = "generate options";
       generateButton.onclick = () => {
         this._printOptions();
       };
       generateButton.onmouseover = () => {
-        generateButton.className = 'vis-configuration vis-config-button hover';
+        generateButton.className = "vis-configuration vis-config-button hover";
       };
       generateButton.onmouseout = () => {
-        generateButton.className = 'vis-configuration vis-config-button';
+        generateButton.className = "vis-configuration vis-config-button";
       };
-      this.optionsContainer = document.createElement('div');
-      this.optionsContainer.className = 'vis-configuration vis-config-option-container';
+      this.optionsContainer = document.createElement("div");
+      this.optionsContainer.className = "vis-configuration vis-config-option-container";
       this.domElements.push(this.optionsContainer);
       this.domElements.push(generateButton);
     }
@@ -32552,14 +32528,14 @@ class Configurator {
    * @private
    */
   _makeCheckbox(defaultValue, value, path) {
-    var checkbox = document.createElement('input');
-    checkbox.type = 'checkbox';
-    checkbox.className = 'vis-configuration vis-config-checkbox';
+    var checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.className = "vis-configuration vis-config-checkbox";
     checkbox.checked = defaultValue;
     if (value !== undefined) {
       checkbox.checked = value;
       if (value !== defaultValue) {
-        if (typeof defaultValue === 'object') {
+        if (typeof defaultValue === "object") {
           if (value !== defaultValue.enabled) {
             this.changedOptions.push({
               path: path,
@@ -32590,9 +32566,9 @@ class Configurator {
    * @private
    */
   _makeTextInput(defaultValue, value, path) {
-    var checkbox = document.createElement('input');
-    checkbox.type = 'text';
-    checkbox.className = 'vis-configuration vis-config-text';
+    var checkbox = document.createElement("input");
+    checkbox.type = "text";
+    checkbox.className = "vis-configuration vis-config-text";
     checkbox.value = value;
     if (value !== defaultValue) {
       this.changedOptions.push({
@@ -32617,13 +32593,13 @@ class Configurator {
    */
   _makeColorField(arr, value, path) {
     let defaultColor = arr[1];
-    let div = document.createElement('div');
+    let div = document.createElement("div");
     value = value === undefined ? defaultColor : value;
-    if (value !== 'none') {
-      div.className = 'vis-configuration vis-config-colorBlock';
+    if (value !== "none") {
+      div.className = "vis-configuration vis-config-colorBlock";
       div.style.backgroundColor = value;
     } else {
-      div.className = 'vis-configuration vis-config-colorBlock none';
+      div.className = "vis-configuration vis-config-colorBlock none";
     }
     value = value === undefined ? defaultColor : value;
     div.onclick = () => {
@@ -32647,7 +32623,7 @@ class Configurator {
     this.colorPicker.show();
     this.colorPicker.setColor(value);
     this.colorPicker.setUpdateCallback(color => {
-      let colorString = 'rgba(' + color.r + ',' + color.g + ',' + color.b + ',' + color.a + ')';
+      let colorString = "rgba(" + color.r + "," + color.g + "," + color.b + "," + color.a + ")";
       div.style.backgroundColor = colorString;
       this._update(colorString, path);
     });
@@ -32679,12 +32655,12 @@ class Configurator {
       show = true;
       let item = obj[subObj];
       let newPath = availableUtils.copyAndExtendArray(path, subObj);
-      if (typeof filter === 'function') {
+      if (typeof filter === "function") {
         show = filter(subObj, path);
 
         // if needed we must go deeper into the object.
         if (show === false) {
-          if (!_Array$isArray(item) && typeof item !== 'string' && typeof item !== 'boolean' && item instanceof Object) {
+          if (!_Array$isArray(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
             this.allowCreation = false;
             show = this._handleObject(item, newPath, true);
             this.allowCreation = checkOnly === false;
@@ -32696,14 +32672,14 @@ class Configurator {
         let value = this._getValue(newPath);
         if (_Array$isArray(item)) {
           this._handleArray(item, value, newPath);
-        } else if (typeof item === 'string') {
+        } else if (typeof item === "string") {
           this._makeTextInput(item, value, newPath);
-        } else if (typeof item === 'boolean') {
+        } else if (typeof item === "boolean") {
           this._makeCheckbox(item, value, newPath);
         } else if (item instanceof Object) {
           // collapse the physics options that are not enabled
           let draw = true;
-          if (_indexOfInstanceProperty(path).call(path, 'physics') !== -1) {
+          if (_indexOfInstanceProperty(path).call(path, "physics") !== -1) {
             if (this.moduleOptions.physics.solver !== subObj) {
               draw = false;
             }
@@ -32711,7 +32687,7 @@ class Configurator {
           if (draw === true) {
             // initially collapse options with an disabled enabled option.
             if (item.enabled !== undefined) {
-              let enabledPath = availableUtils.copyAndExtendArray(newPath, 'enabled');
+              let enabledPath = availableUtils.copyAndExtendArray(newPath, "enabled");
               let enabledValue = this._getValue(enabledPath);
               if (enabledValue === true) {
                 let label = this._makeLabel(subObj, newPath, true);
@@ -32727,7 +32703,7 @@ class Configurator {
             }
           }
         } else {
-          console.error('dont know how to handle', item, subObj, newPath);
+          console.error("dont know how to handle", item, subObj, newPath);
         }
       }
     }
@@ -32742,7 +32718,7 @@ class Configurator {
    * @private
    */
   _handleArray(arr, value, path) {
-    if (typeof arr[0] === 'string' && arr[0] === 'color') {
+    if (typeof arr[0] === "string" && arr[0] === "color") {
       this._makeColorField(arr, value, path);
       if (arr[1] !== value) {
         this.changedOptions.push({
@@ -32750,7 +32726,7 @@ class Configurator {
           value: value
         });
       }
-    } else if (typeof arr[0] === 'string') {
+    } else if (typeof arr[0] === "string") {
       this._makeDropdown(arr, value, path);
       if (arr[0] !== value) {
         this.changedOptions.push({
@@ -32758,7 +32734,7 @@ class Configurator {
           value: value
         });
       }
-    } else if (typeof arr[0] === 'number') {
+    } else if (typeof arr[0] === "number") {
       this._makeRange(arr, value, path);
       if (arr[0] !== value) {
         this.changedOptions.push({
@@ -32797,10 +32773,10 @@ class Configurator {
     let pointer = optionsObj;
 
     // when dropdown boxes can be string or boolean, we typecast it into correct types
-    value = value === 'true' ? true : value;
-    value = value === 'false' ? false : value;
+    value = value === "true" ? true : value;
+    value = value === "false" ? false : value;
     for (let i = 0; i < path.length; i++) {
-      if (path[i] !== 'global') {
+      if (path[i] !== "global") {
         if (pointer[path[i]] === undefined) {
           pointer[path[i]] = {};
         }
@@ -32819,7 +32795,7 @@ class Configurator {
    */
   _printOptions() {
     let options = this.getOptions();
-    this.optionsContainer.innerHTML = '<pre>var options = ' + _JSON$stringify(options, null, 2) + '</pre>';
+    this.optionsContainer.innerHTML = "<pre>var options = " + _JSON$stringify(options, null, 2) + "</pre>";
   }
 
   /**
@@ -32841,19 +32817,19 @@ class Configurator {
  */
 class Timeline extends Core {
   /**
-  * @param {HTMLElement} container
-  * @param {vis.DataSet | vis.DataView | Array} [items]
-  * @param {vis.DataSet | vis.DataView | Array} [groups]
-  * @param {Object} [options]  See Timeline.setOptions for the available options.
-  * @constructor Timeline
-  */
+   * @param {HTMLElement} container
+   * @param {vis.DataSet | vis.DataView | Array} [items]
+   * @param {vis.DataSet | vis.DataView | Array} [groups]
+   * @param {Object} [options]  See Timeline.setOptions for the available options.
+   * @constructor Timeline
+   */
   constructor(container, items, groups, options) {
     var _context2, _context3, _context4, _context5, _context6, _context7, _context8;
     super();
     this.initTime = new Date();
     this.itemsDone = false;
     if (!(this instanceof Timeline)) {
-      throw new SyntaxError('Constructor must be called with the new operator');
+      throw new SyntaxError("Constructor must be called with the new operator");
     }
 
     // if the third element is options, the forth is groups (optionally);
@@ -32866,16 +32842,16 @@ class Timeline extends Core {
     // TODO: REMOVE THIS in the next MAJOR release
     // see https://github.com/almende/vis/issues/2511
     if (options && options.throttleRedraw) {
-      console.warn("Timeline option \"throttleRedraw\" is DEPRICATED and no longer supported. It will be removed in the next MAJOR release.");
+      console.warn('Timeline option "throttleRedraw" is DEPRICATED and no longer supported. It will be removed in the next MAJOR release.');
     }
     const me = this;
     this.defaultOptions = {
       autoResize: true,
       longSelectPressTime: 251,
       orientation: {
-        axis: 'bottom',
+        axis: "bottom",
         // axis orientation: 'bottom', 'top', or 'both'
-        item: 'bottom' // not relevant
+        item: "bottom" // not relevant
       },
       moment: moment$2
     };
@@ -32885,7 +32861,7 @@ class Timeline extends Core {
     // Create the DOM, props, and emitter
     this._create(container);
     if (!options || options && typeof options.rtl == "undefined") {
-      this.dom.root.style.visibility = 'hidden';
+      this.dom.root.style.visibility = "hidden";
       let directionFromDom;
       let domNode = this.dom.root;
       while (!directionFromDom && domNode) {
@@ -32912,7 +32888,7 @@ class Timeline extends Core {
     }
 
     // Prepare loading screen
-    const loadingScreenFragment = document.createElement('div');
+    const loadingScreenFragment = document.createElement("div");
     if (this.options.loadingScreenTemplate) {
       var _context;
       const templateFunction = _bindInstanceProperty(_context = this.options.loadingScreenTemplate).call(_context, this);
@@ -32921,7 +32897,7 @@ class Timeline extends Core {
         templateFunction(loadingScreenFragment);
       } else {
         if (loadingScreen instanceof Element) {
-          loadingScreenFragment.innerHTML = '';
+          loadingScreenFragment.innerHTML = "";
           loadingScreenFragment.appendChild(loadingScreen);
         } else if (loadingScreen != undefined) {
           loadingScreenFragment.innerHTML = availableUtils.xss(loadingScreen);
@@ -32978,30 +32954,30 @@ class Timeline extends Core {
 
     /**
      * Emit an event.
-     * @param {string} eventName Name of event. 
+     * @param {string} eventName Name of event.
      * @param {Event} event The event object.
      */
     function emit(eventName, event) {
       if (!me.hasListeners(eventName)) return;
       me.emit(eventName, me.getEventProperties(event));
     }
-    this.dom.root.onclick = event => emit('click', event);
-    this.dom.root.ondblclick = event => emit('doubleClick', event);
-    this.dom.root.oncontextmenu = event => emit('contextmenu', event);
-    this.dom.root.onmouseover = event => emit('mouseOver', event);
+    this.dom.root.onclick = event => emit("click", event);
+    this.dom.root.ondblclick = event => emit("doubleClick", event);
+    this.dom.root.oncontextmenu = event => emit("contextmenu", event);
+    this.dom.root.onmouseover = event => emit("mouseOver", event);
     if (window.PointerEvent) {
-      this.dom.root.onpointerdown = event => emit('mouseDown', event);
-      this.dom.root.onpointermove = event => emit('mouseMove', event);
-      this.dom.root.onpointerup = event => emit('mouseUp', event);
+      this.dom.root.onpointerdown = event => emit("mouseDown", event);
+      this.dom.root.onpointermove = event => emit("mouseMove", event);
+      this.dom.root.onpointerup = event => emit("mouseUp", event);
     } else {
-      this.dom.root.onmousemove = event => emit('mouseMove', event);
-      this.dom.root.onmousedown = event => emit('mouseDown', event);
-      this.dom.root.onmouseup = event => emit('mouseUp', event);
+      this.dom.root.onmousemove = event => emit("mouseMove", event);
+      this.dom.root.onmousedown = event => emit("mouseDown", event);
+      this.dom.root.onmouseup = event => emit("mouseUp", event);
     }
 
     //Single time autoscale/fit
     this.initialFitDone = false;
-    this.on('changed', () => {
+    this.on("changed", () => {
       if (me.itemsData == null) return;
       if (!me.initialFitDone && !me.options.rollingMode) {
         me.initialFitDone = true;
@@ -33023,7 +32999,7 @@ class Timeline extends Core {
       if (!me.initialDrawDone && (me.initialRangeChangeDone || !me.options.start && !me.options.end || me.options.rollingMode)) {
         me.initialDrawDone = true;
         me.itemSet.initialDrawDone = true;
-        me.dom.root.style.visibility = 'visible';
+        me.dom.root.style.visibility = "visible";
         me.dom.loadingScreen.parentNode.removeChild(me.dom.loadingScreen);
         if (me.options.onInitialDrawComplete) {
           _setTimeout(() => {
@@ -33032,7 +33008,7 @@ class Timeline extends Core {
         }
       }
     });
-    this.on('destroyTimeline', () => {
+    this.on("destroyTimeline", () => {
       me.destroy();
     });
 
@@ -33040,7 +33016,7 @@ class Timeline extends Core {
     if (options) {
       this.setOptions(options);
     }
-    this.body.emitter.on('fit', args => {
+    this.body.emitter.on("fit", args => {
       this._onFit(args);
       this.redraw();
     });
@@ -33090,10 +33066,10 @@ class Timeline extends Core {
     // validate options
     let errorFound = Validator.validate(options, allOptions$1);
     if (errorFound === true) {
-      console.log('%cErrors have been found in the supplied options object.', printStyle);
+      console.log("%cErrors have been found in the supplied options object.", printStyle);
     }
     Core.prototype.setOptions.call(this, options);
-    if ('type' in options) {
+    if ("type" in options) {
       if (options.type !== this.options.type) {
         this.options.type = options.type;
 
@@ -33244,7 +33220,7 @@ class Timeline extends Core {
     let end = null;
     _forEachInstanceProperty(itemsData).call(itemsData, itemData => {
       const s = itemData.start.valueOf();
-      const e = 'end' in itemData ? itemData.end.valueOf() : itemData.start.valueOf();
+      const e = "end" in itemData ? itemData.end.valueOf() : itemData.start.valueOf();
       if (start === null || s < start) {
         start = s;
       }
@@ -33446,8 +33422,8 @@ class Timeline extends Core {
     if (this.itemsData) {
       var _context9;
       _forEachInstanceProperty(_context9 = this.itemsData).call(_context9, item => {
-        const start = availableUtils.convert(item.start, 'Date').valueOf();
-        const end = availableUtils.convert(item.end != undefined ? item.end : item.start, 'Date').valueOf();
+        const start = availableUtils.convert(item.start, "Date").valueOf();
+        const end = availableUtils.convert(item.end != undefined ? item.end : item.start, "Date").valueOf();
         if (min === null || start < min) {
           min = start;
         }
@@ -33485,19 +33461,19 @@ class Timeline extends Core {
     const element = availableUtils.getTarget(event);
     let what = null;
     if (item != null) {
-      what = 'item';
+      what = "item";
     } else if (customTime != null) {
-      what = 'custom-time';
+      what = "custom-time";
     } else if (availableUtils.hasParent(element, this.timeAxis.dom.foreground)) {
-      what = 'axis';
+      what = "axis";
     } else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {
-      what = 'axis';
+      what = "axis";
     } else if (availableUtils.hasParent(element, this.itemSet.dom.labelSet)) {
-      what = 'group-label';
+      what = "group-label";
     } else if (availableUtils.hasParent(element, this.currentTime.bar)) {
-      what = 'current-time';
+      what = "current-time";
     } else if (availableUtils.hasParent(element, this.dom.center)) {
-      what = 'background';
+      what = "background";
     }
     return {
       event,
@@ -33567,7 +33543,7 @@ class Timeline extends Core {
  * @returns {number}
  */
 function getStart(item) {
-  return availableUtils.convert(item.data.start, 'Date').valueOf();
+  return availableUtils.convert(item.data.start, "Date").valueOf();
 }
 
 /**
@@ -33577,7 +33553,7 @@ function getStart(item) {
  */
 function getEnd(item) {
   const end = item.data.end != undefined ? item.data.end : item.data.start;
-  return availableUtils.convert(end, 'Date').valueOf();
+  return availableUtils.convert(end, "Date").valueOf();
 }
 
 /**
@@ -33689,12 +33665,12 @@ function getSVGElement(elementType, JSONcontainer, svgContainer) {
       JSONcontainer[elementType].redundant.shift();
     } else {
       // create a new element and add it to the SVG
-      element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
+      element = document.createElementNS("http://www.w3.org/2000/svg", elementType);
       svgContainer.appendChild(element);
     }
   } else {
     // create a new element and add it to the SVG, also create a new object in the svgElements to keep track of it.
-    element = document.createElementNS('http://www.w3.org/2000/svg', elementType);
+    element = document.createElementNS("http://www.w3.org/2000/svg", elementType);
     JSONcontainer[elementType] = {
       used: [],
       redundant: []
@@ -33761,13 +33737,13 @@ function getDOMElement(elementType, JSONcontainer, DOMContainer, insertBefore) {
  */
 function drawPoint(x, y, groupTemplate, JSONcontainer, svgContainer, labelObj) {
   var point;
-  if (groupTemplate.style == 'circle') {
-    point = getSVGElement('circle', JSONcontainer, svgContainer);
+  if (groupTemplate.style == "circle") {
+    point = getSVGElement("circle", JSONcontainer, svgContainer);
     point.setAttributeNS(null, "cx", x);
     point.setAttributeNS(null, "cy", y);
     point.setAttributeNS(null, "r", 0.5 * groupTemplate.size);
   } else {
-    point = getSVGElement('rect', JSONcontainer, svgContainer);
+    point = getSVGElement("rect", JSONcontainer, svgContainer);
     point.setAttributeNS(null, "x", x - 0.5 * groupTemplate.size);
     point.setAttributeNS(null, "y", y - 0.5 * groupTemplate.size);
     point.setAttributeNS(null, "width", groupTemplate.size);
@@ -33780,7 +33756,7 @@ function drawPoint(x, y, groupTemplate, JSONcontainer, svgContainer, labelObj) {
   //handle label
 
   if (labelObj) {
-    var label = getSVGElement('text', JSONcontainer, svgContainer);
+    var label = getSVGElement("text", JSONcontainer, svgContainer);
     if (labelObj.xOffset) {
       x = x + labelObj.xOffset;
     }
@@ -33817,7 +33793,7 @@ function drawBar(x, y, width, height, className, JSONcontainer, svgContainer, st
       height *= -1;
       y -= height;
     }
-    var rect = getSVGElement('rect', JSONcontainer, svgContainer);
+    var rect = getSVGElement("rect", JSONcontainer, svgContainer);
     rect.setAttributeNS(null, "x", x - 0.5 * width);
     rect.setAttributeNS(null, "y", y);
     rect.setAttributeNS(null, "width", width);
@@ -33835,14 +33811,14 @@ function drawBar(x, y, width, height, className, JSONcontainer, svgContainer, st
  */
 function getNavigatorLanguage() {
   try {
-    if (!navigator) return 'en';
+    if (!navigator) return "en";
     if (navigator.languages && navigator.languages.length) {
       return navigator.languages;
     } else {
-      return navigator.userLanguage || navigator.language || navigator.browserLanguage || 'en';
+      return navigator.userLanguage || navigator.language || navigator.browserLanguage || "en";
     }
   } catch (error) {
-    return 'en';
+    return "en";
   }
 }
 
@@ -33902,7 +33878,7 @@ class DataScale {
 
   /**
    * set chart height
-   * @param {number} majorCharHeight 
+   * @param {number} majorCharHeight
    */
   setCharHeight(majorCharHeight) {
     this.majorCharHeight = majorCharHeight;
@@ -33910,7 +33886,7 @@ class DataScale {
 
   /**
    * set height
-   * @param {number} containerHeight 
+   * @param {number} containerHeight
    */
   setHeight(containerHeight) {
     this.containerHeight = containerHeight;
@@ -33950,7 +33926,7 @@ class DataScale {
   /**
    * returns if value is major
    * @param {number} value
-   * @returns {boolean} 
+   * @returns {boolean}
    */
   is_major(value) {
     return value % (this.magnitudefactor * this.majorSteps[this.minorStepIdx]) === 0;
@@ -33958,7 +33934,7 @@ class DataScale {
 
   /**
    * returns step size
-   * @returns {number} 
+   * @returns {number}
    */
   getStep() {
     return this.magnitudefactor * this.minorSteps[this.minorStepIdx];
@@ -33966,7 +33942,7 @@ class DataScale {
 
   /**
    * returns first major
-   * @returns {number} 
+   * @returns {number}
    */
   getFirstMajor() {
     const majorStep = this.magnitudefactor * this.majorSteps[this.minorStepIdx];
@@ -33980,12 +33956,12 @@ class DataScale {
    */
   formatValue(current) {
     let returnValue = current.toPrecision(5);
-    if (typeof this.formattingFunction === 'function') {
+    if (typeof this.formattingFunction === "function") {
       returnValue = this.formattingFunction(current);
     }
-    if (typeof returnValue === 'number') {
+    if (typeof returnValue === "number") {
       return "".concat(returnValue);
-    } else if (typeof returnValue === 'string') {
+    } else if (typeof returnValue === "string") {
       return returnValue;
     } else {
       return current.toPrecision(5);
@@ -34106,7 +34082,7 @@ class DataScale {
   /**
    * convert value
    * @param {number} value
-   * @returns {number} 
+   * @returns {number}
    */
   convertValue(value) {
     return this.containerHeight - (value - this._start) * this.scale;
@@ -34115,7 +34091,7 @@ class DataScale {
   /**
    * returns screen to value
    * @param {number} pixels
-   * @returns {number} 
+   * @returns {number}
    */
   screenToValue(pixels) {
     return (this.containerHeight - pixels) / this.scale + this._start;
@@ -34125,20 +34101,20 @@ class DataScale {
 /** A horizontal time axis */
 class DataAxis extends Component {
   /**
-  * @param {Object} body
-  * @param {Object} [options]        See DataAxis.setOptions for the available
-  *                                  options.
-  * @param {SVGElement} svg
-  * @param {timeline.LineGraph.options} linegraphOptions
-  * @constructor DataAxis
-  * @extends Component
-  */
+   * @param {Object} body
+   * @param {Object} [options]        See DataAxis.setOptions for the available
+   *                                  options.
+   * @param {SVGElement} svg
+   * @param {timeline.LineGraph.options} linegraphOptions
+   * @constructor DataAxis
+   * @extends Component
+   */
   constructor(body, options, svg, linegraphOptions) {
     super();
     this.id = v4();
     this.body = body;
     this.defaultOptions = {
-      orientation: 'left',
+      orientation: "left",
       // supported: 'left', 'right'
       showMinorLabels: true,
       showMajorLabels: true,
@@ -34149,7 +34125,7 @@ class DataAxis extends Component {
       labelOffsetX: 10,
       labelOffsetY: 2,
       iconWidth: 20,
-      width: '40px',
+      width: "40px",
       visible: true,
       alignZeros: true,
       left: {
@@ -34231,7 +34207,7 @@ class DataAxis extends Component {
 
   /**
    * Adds group to data axis
-   * @param {string} label 
+   * @param {string} label
    * @param {object} graphOptions
    */
   addGroup(label, graphOptions) {
@@ -34243,7 +34219,7 @@ class DataAxis extends Component {
 
   /**
    * updates group of data axis
-   * @param {string} label 
+   * @param {string} label
    * @param {object} graphOptions
    */
   updateGroup(label, graphOptions) {
@@ -34255,7 +34231,7 @@ class DataAxis extends Component {
 
   /**
    * removes group of data axis
-   * @param {string} label 
+   * @param {string} label
    */
   removeGroup(label) {
     if (Object.prototype.hasOwnProperty.call(this.groups, label)) {
@@ -34274,7 +34250,7 @@ class DataAxis extends Component {
       if (this.options.orientation != options.orientation && options.orientation !== undefined) {
         redraw = true;
       }
-      const fields = ['orientation', 'showMinorLabels', 'showMajorLabels', 'icons', 'majorLinesOffset', 'minorLinesOffset', 'labelOffsetX', 'labelOffsetY', 'iconWidth', 'width', 'visible', 'left', 'right', 'alignZeros'];
+      const fields = ["orientation", "showMinorLabels", "showMajorLabels", "icons", "majorLinesOffset", "minorLinesOffset", "labelOffsetX", "labelOffsetY", "iconWidth", "width", "visible", "left", "right", "alignZeros"];
       availableUtils.selectiveDeepExtend(fields, this.options, options);
       this.minWidth = Number("".concat(this.options.width).replace("px", ""));
       if (redraw === true && this.dom.frame) {
@@ -34288,22 +34264,22 @@ class DataAxis extends Component {
    * Create the HTML DOM for the DataAxis
    */
   _create() {
-    this.dom.frame = document.createElement('div');
+    this.dom.frame = document.createElement("div");
     this.dom.frame.style.width = this.options.width;
     this.dom.frame.style.height = this.height;
-    this.dom.lineContainer = document.createElement('div');
-    this.dom.lineContainer.style.width = '100%';
+    this.dom.lineContainer = document.createElement("div");
+    this.dom.lineContainer.style.width = "100%";
     this.dom.lineContainer.style.height = this.height;
-    this.dom.lineContainer.style.position = 'relative';
-    this.dom.lineContainer.style.visibility = 'visible';
-    this.dom.lineContainer.style.display = 'block';
+    this.dom.lineContainer.style.position = "relative";
+    this.dom.lineContainer.style.visibility = "visible";
+    this.dom.lineContainer.style.display = "block";
 
     // create svg element for graph drawing.
-    this.svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+    this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     this.svg.style.position = "absolute";
-    this.svg.style.top = '0px';
-    this.svg.style.height = '100%';
-    this.svg.style.width = '100%';
+    this.svg.style.top = "0px";
+    this.svg.style.height = "100%";
+    this.svg.style.width = "100%";
     this.svg.style.display = "block";
     this.dom.frame.appendChild(this.svg);
   }
@@ -34318,7 +34294,7 @@ class DataAxis extends Component {
     const iconHeight = 15;
     const iconOffset = 4;
     let y = iconOffset + 0.5 * iconHeight;
-    if (this.options.orientation === 'left') {
+    if (this.options.orientation === "left") {
       x = iconOffset;
     } else {
       x = this.width - iconWidth - iconOffset;
@@ -34352,7 +34328,7 @@ class DataAxis extends Component {
   show() {
     this.hidden = false;
     if (!this.dom.frame.parentNode) {
-      if (this.options.orientation === 'left') {
+      if (this.options.orientation === "left") {
         this.body.dom.left.appendChild(this.dom.frame);
       } else {
         this.body.dom.right.appendChild(this.dom.frame);
@@ -34361,7 +34337,7 @@ class DataAxis extends Component {
     if (!this.dom.lineContainer.parentNode) {
       this.body.dom.backgroundHorizontal.appendChild(this.dom.lineContainer);
     }
-    this.dom.lineContainer.style.display = 'block';
+    this.dom.lineContainer.style.display = "block";
   }
 
   /**
@@ -34372,7 +34348,7 @@ class DataAxis extends Component {
     if (this.dom.frame.parentNode) {
       this.dom.frame.parentNode.removeChild(this.dom.frame);
     }
-    this.dom.lineContainer.style.display = 'none';
+    this.dom.lineContainer.style.display = "none";
   }
 
   /**
@@ -34412,7 +34388,7 @@ class DataAxis extends Component {
       const frame = this.dom.frame;
 
       // update classname
-      frame.className = 'vis-data-axis';
+      frame.className = "vis-data-axis";
 
       // calculate character width and height
       this._calculateCharSize();
@@ -34430,19 +34406,19 @@ class DataAxis extends Component {
       props.majorLineHeight = 1;
 
       //  take frame offline while updating (is almost twice as fast)
-      if (orientation === 'left') {
-        frame.style.top = '0';
-        frame.style.left = '0';
-        frame.style.bottom = '';
+      if (orientation === "left") {
+        frame.style.top = "0";
+        frame.style.left = "0";
+        frame.style.bottom = "";
         frame.style.width = "".concat(this.width, "px");
         frame.style.height = "".concat(this.height, "px");
         this.props.width = this.body.domProps.left.width;
         this.props.height = this.body.domProps.left.height;
       } else {
         // right
-        frame.style.top = '';
-        frame.style.bottom = '0';
-        frame.style.left = '0';
+        frame.style.top = "";
+        frame.style.bottom = "0";
+        frame.style.left = "0";
         frame.style.width = "".concat(this.width, "px");
         frame.style.height = "".concat(this.height, "px");
         this.props.width = this.body.domProps.right.width;
@@ -34470,7 +34446,7 @@ class DataAxis extends Component {
     let resized = false;
     prepareElements(this.DOMelements.lines);
     prepareElements(this.DOMelements.labels);
-    const orientation = this.options['orientation'];
+    const orientation = this.options["orientation"];
     const customRange = this.options[orientation].range != undefined ? this.options[orientation].range : {};
 
     //Override range with manual options:
@@ -34487,9 +34463,9 @@ class DataAxis extends Component {
     this.scale = new DataScale(this.range.start, this.range.end, autoScaleStart, autoScaleEnd, this.dom.frame.offsetHeight, this.props.majorCharHeight, this.options.alignZeros, this.options[orientation].format);
     if (this.master === false && this.masterAxis != undefined) {
       this.scale.followScale(this.masterAxis.scale);
-      this.dom.lineContainer.style.display = 'none';
+      this.dom.lineContainer.style.display = "none";
     } else {
-      this.dom.lineContainer.style.display = 'block';
+      this.dom.lineContainer.style.display = "block";
     }
 
     //Is updated in side-effect of _redrawLabel():
@@ -34498,19 +34474,19 @@ class DataAxis extends Component {
     _forEachInstanceProperty(lines).call(lines, line => {
       const y = line.y;
       const isMajor = line.major;
-      if (this.options['showMinorLabels'] && isMajor === false) {
-        this._redrawLabel(y - 2, line.val, orientation, 'vis-y-axis vis-minor', this.props.minorCharHeight);
+      if (this.options["showMinorLabels"] && isMajor === false) {
+        this._redrawLabel(y - 2, line.val, orientation, "vis-y-axis vis-minor", this.props.minorCharHeight);
       }
       if (isMajor) {
         if (y >= 0) {
-          this._redrawLabel(y - 2, line.val, orientation, 'vis-y-axis vis-major', this.props.majorCharHeight);
+          this._redrawLabel(y - 2, line.val, orientation, "vis-y-axis vis-major", this.props.majorCharHeight);
         }
       }
       if (this.master === true) {
         if (isMajor) {
-          this._redrawLine(y, orientation, 'vis-grid vis-horizontal vis-major', this.options.majorLinesOffset, this.props.majorLineWidth);
+          this._redrawLine(y, orientation, "vis-grid vis-horizontal vis-major", this.options.majorLinesOffset, this.props.majorLineWidth);
         } else {
-          this._redrawLine(y, orientation, 'vis-grid vis-horizontal vis-minor', this.options.minorLinesOffset, this.props.minorLineWidth);
+          this._redrawLine(y, orientation, "vis-grid vis-horizontal vis-minor", this.options.minorLinesOffset, this.props.minorLineWidth);
         }
       }
     });
@@ -34577,10 +34553,10 @@ class DataAxis extends Component {
    */
   _redrawLabel(y, text, orientation, className, characterHeight) {
     // reuse redundant label
-    const label = getDOMElement('div', this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
+    const label = getDOMElement("div", this.DOMelements.labels, this.dom.frame); //this.dom.redundant.labels.shift();
     label.className = className;
     label.innerHTML = availableUtils.xss(text);
-    if (orientation === 'left') {
+    if (orientation === "left") {
       label.style.left = "-".concat(this.options.labelOffsetX, "px");
       label.style.textAlign = "right";
     } else {
@@ -34588,7 +34564,7 @@ class DataAxis extends Component {
       label.style.textAlign = "left";
     }
     label.style.top = "".concat(y - 0.5 * characterHeight + this.options.labelOffsetY, "px");
-    text += '';
+    text += "";
     const largestWidth = Math.max(this.props.majorCharWidth, this.props.minorCharWidth);
     if (this.maxLabelSize < text.length * largestWidth) {
       this.maxLabelSize = text.length * largestWidth;
@@ -34605,10 +34581,10 @@ class DataAxis extends Component {
    */
   _redrawLine(y, orientation, className, offset, width) {
     if (this.master === true) {
-      const line = getDOMElement('div', this.DOMelements.lines, this.dom.lineContainer); //this.dom.redundant.lines.shift();
+      const line = getDOMElement("div", this.DOMelements.lines, this.dom.lineContainer); //this.dom.redundant.lines.shift();
       line.className = className;
-      line.innerHTML = '';
-      if (orientation === 'left') {
+      line.innerHTML = "";
+      if (orientation === "left") {
         line.style.left = "".concat(this.width - offset, "px");
       } else {
         line.style.right = "".concat(this.width - offset, "px");
@@ -34628,7 +34604,7 @@ class DataAxis extends Component {
 
     // Check if the title is defined for this axes
     if (this.options[orientation].title !== undefined && this.options[orientation].title.text !== undefined) {
-      const title = getDOMElement('div', this.DOMelements.title, this.dom.frame);
+      const title = getDOMElement("div", this.DOMelements.title, this.dom.frame);
       title.className = "vis-y-axis vis-title vis-".concat(orientation);
       title.innerHTML = availableUtils.xss(this.options[orientation].title.text);
 
@@ -34636,7 +34612,7 @@ class DataAxis extends Component {
       if (this.options[orientation].title.style !== undefined) {
         availableUtils.addCssText(title, this.options[orientation].title.style);
       }
-      if (orientation === 'left') {
+      if (orientation === "left") {
         title.style.left = "".concat(this.props.titleCharHeight, "px");
       } else {
         title.style.right = "".concat(this.props.titleCharHeight, "px");
@@ -34655,30 +34631,30 @@ class DataAxis extends Component {
    */
   _calculateCharSize() {
     // determine the char width and height on the minor axis
-    if (!('minorCharHeight' in this.props)) {
-      const textMinor = document.createTextNode('0');
-      const measureCharMinor = document.createElement('div');
-      measureCharMinor.className = 'vis-y-axis vis-minor vis-measure';
+    if (!("minorCharHeight" in this.props)) {
+      const textMinor = document.createTextNode("0");
+      const measureCharMinor = document.createElement("div");
+      measureCharMinor.className = "vis-y-axis vis-minor vis-measure";
       measureCharMinor.appendChild(textMinor);
       this.dom.frame.appendChild(measureCharMinor);
       this.props.minorCharHeight = measureCharMinor.clientHeight;
       this.props.minorCharWidth = measureCharMinor.clientWidth;
       this.dom.frame.removeChild(measureCharMinor);
     }
-    if (!('majorCharHeight' in this.props)) {
-      const textMajor = document.createTextNode('0');
-      const measureCharMajor = document.createElement('div');
-      measureCharMajor.className = 'vis-y-axis vis-major vis-measure';
+    if (!("majorCharHeight" in this.props)) {
+      const textMajor = document.createTextNode("0");
+      const measureCharMajor = document.createElement("div");
+      measureCharMajor.className = "vis-y-axis vis-major vis-measure";
       measureCharMajor.appendChild(textMajor);
       this.dom.frame.appendChild(measureCharMajor);
       this.props.majorCharHeight = measureCharMajor.clientHeight;
       this.props.majorCharWidth = measureCharMajor.clientWidth;
       this.dom.frame.removeChild(measureCharMajor);
     }
-    if (!('titleCharHeight' in this.props)) {
-      const textTitle = document.createTextNode('0');
-      const measureCharTitle = document.createElement('div');
-      measureCharTitle.className = 'vis-y-axis vis-title vis-measure';
+    if (!("titleCharHeight" in this.props)) {
+      const textTitle = document.createTextNode("0");
+      const measureCharTitle = document.createElement("div");
+      measureCharTitle.className = "vis-y-axis vis-title vis-measure";
       measureCharTitle.appendChild(textTitle);
       this.dom.frame.appendChild(measureCharTitle);
       this.props.titleCharHeight = measureCharTitle.clientHeight;
@@ -34690,13 +34666,10 @@ class DataAxis extends Component {
 
 /**
  *
- * @param {number | string} groupId
- * @param {Object} options   // TODO: Describe options
  *
  * @constructor Points
  */
-function Points(groupId, options) {// eslint-disable-line no-unused-vars
-}
+function Points() {}
 
 /**
  * draw the data points
@@ -34715,7 +34688,7 @@ Points.draw = function (dataset, group, framework, offset) {
       drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group), framework.svgElements, framework.svg, dataset[i].label);
     } else {
       var callbackResult = callback(dataset[i], group); // result might be true, false or an object
-      if (callbackResult === true || typeof callbackResult === 'object') {
+      if (callbackResult === true || typeof callbackResult === "object") {
         drawPoint(dataset[i].screen_x + offset, dataset[i].screen_y, getGroupTemplate(group, callbackResult), framework.svgElements, framework.svg, dataset[i].label);
       }
     }
@@ -34741,7 +34714,7 @@ Points.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
  * @returns {{style: *, styles: (*|string), size: *, className: *}}
  */
 function getGroupTemplate(group, callbackResult) {
-  callbackResult = typeof callbackResult === 'undefined' ? {} : callbackResult;
+  callbackResult = typeof callbackResult === "undefined" ? {} : callbackResult;
   return {
     style: callbackResult.style || group.options.drawPoints.style,
     styles: callbackResult.styles || group.options.drawPoints.styles,
@@ -34759,12 +34732,12 @@ function getGroupTemplate(group, callbackResult) {
 function getCallback(framework, group) {
   var callback = undefined;
   // check for the graph2d onRender
-  if (framework.options && framework.options.drawPoints && framework.options.drawPoints.onRender && typeof framework.options.drawPoints.onRender == 'function') {
+  if (framework.options && framework.options.drawPoints && framework.options.drawPoints.onRender && typeof framework.options.drawPoints.onRender == "function") {
     callback = framework.options.drawPoints.onRender;
   }
 
   // override it with the group onRender if defined
-  if (group.group.options && group.group.options.drawPoints && group.group.options.drawPoints.onRender && typeof group.group.options.drawPoints.onRender == 'function') {
+  if (group.group.options && group.group.options.drawPoints && group.group.options.drawPoints.onRender && typeof group.group.options.drawPoints.onRender == "function") {
     callback = group.group.options.drawPoints.onRender;
   }
   return callback;
@@ -34772,12 +34745,9 @@ function getCallback(framework, group) {
 
 /**
  *
- * @param {vis.GraphGroup.id} groupId
- * @param {Object} options   // TODO: Describe options
  * @constructor Bargraph
  */
-function Bargraph(groupId, options) {// eslint-disable-line no-unused-vars
-}
+function Bargraph() {}
 Bargraph.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var fillHeight = iconHeight * 0.5;
   var outline = getSVGElement("rect", framework.svgElements, framework.svg);
@@ -34792,8 +34762,8 @@ Bargraph.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   var bar1Height = Math.round(0.4 * iconHeight);
   var bar2Height = Math.round(0.75 * iconHeight);
   var offset = Math.round((iconWidth - 2 * barWidth) / 3);
-  drawBar(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, barWidth, bar1Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
-  drawBar(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, barWidth, bar2Height, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
+  drawBar(x + 0.5 * barWidth + offset, y + fillHeight - bar1Height - 1, barWidth, bar1Height, group.className + " vis-bar", framework.svgElements, framework.svg, group.style);
+  drawBar(x + 1.5 * barWidth + offset + 2, y + fillHeight - bar2Height - 1, barWidth, bar2Height, group.className + " vis-bar", framework.svgElements, framework.svg, group.style);
   if (group.options.drawPoints.enabled == true) {
     var groupTemplate = {
       style: group.options.drawPoints.style,
@@ -34825,7 +34795,7 @@ Bargraph.draw = function (groupIds, processedGroupData, framework) {
   // combine all barchart data
   for (i = 0; i < groupIds.length; i++) {
     group = framework.groups[groupIds[i]];
-    if (group.options.style === 'bar') {
+    if (group.options.style === "bar") {
       if (group.visible === true && (framework.options.groups.visibility[groupIds[i]] === undefined || framework.options.groups.visibility[groupIds[i]] === true)) {
         for (j = 0; j < processedGroupData[groupIds[i]].length; j++) {
           combinedData.push({
@@ -34900,7 +34870,7 @@ Bargraph.draw = function (groupIds, processedGroupData, framework) {
     } else {
       start += drawData.offset;
     }
-    drawBar(start, combinedData[i].screen_y - heightOffset, dataWidth, group.zeroPosition - combinedData[i].screen_y, group.className + ' vis-bar', framework.svgElements, framework.svg, group.style);
+    drawBar(start, combinedData[i].screen_y - heightOffset, dataWidth, group.zeroPosition - combinedData[i].screen_y, group.className + " vis-bar", framework.svgElements, framework.svg, group.style);
 
     // draw points
     if (group.options.drawPoints.enabled === true) {
@@ -34962,18 +34932,18 @@ Bargraph._getSafeDrawData = function (coreDistance, group, minWidth) {
   if (coreDistance < group.options.barChart.width && coreDistance > 0) {
     width = coreDistance < minWidth ? minWidth : coreDistance;
     offset = 0; // recalculate offset with the new width;
-    if (group.options.barChart.align === 'left') {
+    if (group.options.barChart.align === "left") {
       offset -= 0.5 * coreDistance;
-    } else if (group.options.barChart.align === 'right') {
+    } else if (group.options.barChart.align === "right") {
       offset += 0.5 * coreDistance;
     }
   } else {
     // default settings
     width = group.options.barChart.width;
     offset = 0;
-    if (group.options.barChart.align === 'left') {
+    if (group.options.barChart.align === "left") {
       offset -= 0.5 * group.options.barChart.width;
-    } else if (group.options.barChart.align === 'right') {
+    } else if (group.options.barChart.align === "right") {
       offset += 0.5 * group.options.barChart.width;
     }
   }
@@ -35031,12 +35001,9 @@ Bargraph._getStackedYRange = function (intersections, combinedData) {
 
 /**
  *
- * @param {vis.GraphGroup.id} groupId
- * @param {Object} options   // TODO: Describe options
  * @constructor Line
  */
-function Line(groupId, options) {// eslint-disable-line no-unused-vars
-}
+function Line() {}
 Line.calcPath = function (dataset, group) {
   if (dataset != null) {
     if (dataset.length > 0) {
@@ -35069,7 +35036,7 @@ Line.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
   path.setAttributeNS(null, "d", "M" + x + "," + y + " L" + (x + iconWidth) + "," + y + "");
   if (group.options.shaded.enabled == true) {
     fillPath = getSVGElement("path", framework.svgElements, framework.svg);
-    if (group.options.shaded.orientation == 'top') {
+    if (group.options.shaded.orientation == "top") {
       fillPath.setAttributeNS(null, "d", "M" + x + ", " + (y - fillHeight) + "L" + x + "," + y + " L" + (x + iconWidth) + "," + y + " L" + (x + iconWidth) + "," + (y - fillHeight));
     } else {
       fillPath.setAttributeNS(null, "d", "M" + x + "," + y + " " + "L" + x + "," + (y + fillHeight) + " " + "L" + (x + iconWidth) + "," + (y + fillHeight) + "L" + (x + iconWidth) + "," + y);
@@ -35092,31 +35059,31 @@ Line.drawIcon = function (group, x, y, iconWidth, iconHeight, framework) {
 Line.drawShading = function (pathArray, group, subPathArray, framework) {
   // append shading to the path
   if (group.options.shaded.enabled == true) {
-    var svgHeight = Number(framework.svg.style.height.replace('px', ''));
-    var fillPath = getSVGElement('path', framework.svgElements, framework.svg);
+    var svgHeight = Number(framework.svg.style.height.replace("px", ""));
+    var fillPath = getSVGElement("path", framework.svgElements, framework.svg);
     var type = "L";
     if (group.options.interpolation.enabled == true) {
       type = "C";
     }
     var dFill;
     var zero = 0;
-    if (group.options.shaded.orientation == 'top') {
+    if (group.options.shaded.orientation == "top") {
       zero = 0;
-    } else if (group.options.shaded.orientation == 'bottom') {
+    } else if (group.options.shaded.orientation == "bottom") {
       zero = svgHeight;
     } else {
       zero = Math.min(Math.max(0, group.zeroPosition), svgHeight);
     }
-    if (group.options.shaded.orientation == 'group' && subPathArray != null && subPathArray != undefined) {
-      dFill = 'M' + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false) + ' L' + subPathArray[subPathArray.length - 1][0] + "," + subPathArray[subPathArray.length - 1][1] + " " + this.serializePath(subPathArray, type, true) + subPathArray[0][0] + "," + subPathArray[0][1] + " Z";
+    if (group.options.shaded.orientation == "group" && subPathArray != null && subPathArray != undefined) {
+      dFill = "M" + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false) + " L" + subPathArray[subPathArray.length - 1][0] + "," + subPathArray[subPathArray.length - 1][1] + " " + this.serializePath(subPathArray, type, true) + subPathArray[0][0] + "," + subPathArray[0][1] + " Z";
     } else {
-      dFill = 'M' + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false) + ' V' + zero + ' H' + pathArray[0][0] + " Z";
+      dFill = "M" + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false) + " V" + zero + " H" + pathArray[0][0] + " Z";
     }
-    fillPath.setAttributeNS(null, 'class', group.className + ' vis-fill');
+    fillPath.setAttributeNS(null, "class", group.className + " vis-fill");
     if (group.options.shaded.style !== undefined) {
-      fillPath.setAttributeNS(null, 'style', group.options.shaded.style);
+      fillPath.setAttributeNS(null, "style", group.options.shaded.style);
     }
-    fillPath.setAttributeNS(null, 'd', dFill);
+    fillPath.setAttributeNS(null, "d", dFill);
   }
 };
 
@@ -35129,7 +35096,7 @@ Line.drawShading = function (pathArray, group, subPathArray, framework) {
  */
 Line.draw = function (pathArray, group, framework) {
   if (pathArray != null && pathArray != undefined) {
-    var path = getSVGElement('path', framework.svgElements, framework.svg);
+    var path = getSVGElement("path", framework.svgElements, framework.svg);
     path.setAttributeNS(null, "class", group.className);
     if (group.style !== undefined) {
       path.setAttributeNS(null, "style", group.style);
@@ -35139,7 +35106,7 @@ Line.draw = function (pathArray, group, framework) {
       type = "C";
     }
     // copy properties to path for drawing.
-    path.setAttributeNS(null, 'd', 'M' + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false));
+    path.setAttributeNS(null, "d", "M" + pathArray[0][0] + "," + pathArray[0][1] + " " + this.serializePath(pathArray, type, false));
   }
 };
 Line.serializePath = function (pathArray, type, inverse) {
@@ -35310,7 +35277,7 @@ Line._linear = function (data) {
  */
 function GraphGroup(group, groupId, options, groupsUsingDefaultStyles) {
   this.id = groupId;
-  var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'drawPoints', 'shaded', 'interpolation', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
+  var fields = ["sampling", "style", "sort", "yAxisOrientation", "barChart", "drawPoints", "shaded", "interpolation", "zIndex", "excludeFromStacking", "excludeFromLegend"];
   this.options = availableUtils.selectiveBridgeObject(fields, options);
   this.usingDefaultStyle = group.className === undefined;
   this.groupsUsingDefaultStyles = groupsUsingDefaultStyles;
@@ -35357,27 +35324,27 @@ GraphGroup.prototype.setZeroPosition = function (pos) {
  */
 GraphGroup.prototype.setOptions = function (options) {
   if (options !== undefined) {
-    var fields = ['sampling', 'style', 'sort', 'yAxisOrientation', 'barChart', 'zIndex', 'excludeFromStacking', 'excludeFromLegend'];
+    var fields = ["sampling", "style", "sort", "yAxisOrientation", "barChart", "zIndex", "excludeFromStacking", "excludeFromLegend"];
     availableUtils.selectiveDeepExtend(fields, this.options, options);
 
     // if the group's drawPoints is a function delegate the callback to the onRender property
-    if (typeof options.drawPoints == 'function') {
+    if (typeof options.drawPoints == "function") {
       options.drawPoints = {
         onRender: options.drawPoints
       };
     }
-    availableUtils.mergeOptions(this.options, options, 'interpolation');
-    availableUtils.mergeOptions(this.options, options, 'drawPoints');
-    availableUtils.mergeOptions(this.options, options, 'shaded');
+    availableUtils.mergeOptions(this.options, options, "interpolation");
+    availableUtils.mergeOptions(this.options, options, "drawPoints");
+    availableUtils.mergeOptions(this.options, options, "shaded");
     if (options.interpolation) {
-      if (typeof options.interpolation == 'object') {
+      if (typeof options.interpolation == "object") {
         if (options.interpolation.parametrization) {
-          if (options.interpolation.parametrization == 'uniform') {
+          if (options.interpolation.parametrization == "uniform") {
             this.options.interpolation.alpha = 0;
-          } else if (options.interpolation.parametrization == 'chordal') {
+          } else if (options.interpolation.parametrization == "chordal") {
             this.options.interpolation.alpha = 1.0;
           } else {
-            this.options.interpolation.parametrization = 'centripetal';
+            this.options.interpolation.parametrization = "centripetal";
             this.options.interpolation.alpha = 0.5;
           }
         }
@@ -35392,8 +35359,8 @@ GraphGroup.prototype.setOptions = function (options) {
  */
 GraphGroup.prototype.update = function (group) {
   this.group = group;
-  this.content = group.content || 'graph';
-  this.className = group.className || this.className || 'vis-graph-group' + this.groupsUsingDefaultStyles[0] % 10;
+  this.content = group.content || "graph";
+  this.className = group.className || this.className || "vis-graph-group" + this.groupsUsingDefaultStyles[0] % 10;
   this.visible = group.visible === undefined ? true : group.visible;
   this.style = group.style;
   this.setOptions(group.options);
@@ -35411,7 +35378,7 @@ GraphGroup.prototype.update = function (group) {
  */
 GraphGroup.prototype.getLegend = function (iconWidth, iconHeight, framework, x, y) {
   if (framework == undefined || framework == null) {
-    var svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
+    var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     framework = {
       svg: svg,
       svgElements: {},
@@ -35476,11 +35443,11 @@ function Legend(body, options, side, linegraphOptions) {
     iconSpacing: 6,
     left: {
       visible: true,
-      position: 'top-left' // top/bottom - left,center,right
+      position: "top-left" // top/bottom - left,center,right
     },
     right: {
       visible: true,
-      position: 'top-right' // top/bottom - left,center,right
+      position: "top-right" // top/bottom - left,center,right
     }
   };
   this.side = side;
@@ -35523,20 +35490,20 @@ Legend.prototype.removeGroup = function (label) {
   }
 };
 Legend.prototype._create = function () {
-  this.dom.frame = document.createElement('div');
-  this.dom.frame.className = 'vis-legend';
+  this.dom.frame = document.createElement("div");
+  this.dom.frame.className = "vis-legend";
   this.dom.frame.style.position = "absolute";
   this.dom.frame.style.top = "10px";
   this.dom.frame.style.display = "block";
-  this.dom.textArea = document.createElement('div');
-  this.dom.textArea.className = 'vis-legend-text';
+  this.dom.textArea = document.createElement("div");
+  this.dom.textArea.className = "vis-legend-text";
   this.dom.textArea.style.position = "relative";
   this.dom.textArea.style.top = "0px";
-  this.svg = document.createElementNS('http://www.w3.org/2000/svg', "svg");
-  this.svg.style.position = 'absolute';
-  this.svg.style.top = 0 + 'px';
-  this.svg.style.width = this.options.iconSize + 5 + 'px';
-  this.svg.style.height = '100%';
+  this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  this.svg.style.position = "absolute";
+  this.svg.style.top = 0 + "px";
+  this.svg.style.width = this.options.iconSize + 5 + "px";
+  this.svg.style.height = "100%";
   this.dom.frame.appendChild(this.svg);
   this.dom.frame.appendChild(this.dom.textArea);
 };
@@ -35561,7 +35528,7 @@ Legend.prototype.show = function () {
   }
 };
 Legend.prototype.setOptions = function (options) {
-  var fields = ['enabled', 'orientation', 'icons', 'left', 'right'];
+  var fields = ["enabled", "orientation", "icons", "left", "right"];
   availableUtils.selectiveDeepExtend(fields, this.options, options);
 };
 Legend.prototype.redraw = function () {
@@ -35580,49 +35547,49 @@ Legend.prototype.redraw = function () {
     this.hide();
   } else {
     this.show();
-    if (this.options[this.side].position == 'top-left' || this.options[this.side].position == 'bottom-left') {
-      this.dom.frame.style.left = '4px';
+    if (this.options[this.side].position == "top-left" || this.options[this.side].position == "bottom-left") {
+      this.dom.frame.style.left = "4px";
       this.dom.frame.style.textAlign = "left";
       this.dom.textArea.style.textAlign = "left";
-      this.dom.textArea.style.left = this.options.iconSize + 15 + 'px';
-      this.dom.textArea.style.right = '';
-      this.svg.style.left = 0 + 'px';
-      this.svg.style.right = '';
+      this.dom.textArea.style.left = this.options.iconSize + 15 + "px";
+      this.dom.textArea.style.right = "";
+      this.svg.style.left = 0 + "px";
+      this.svg.style.right = "";
     } else {
-      this.dom.frame.style.right = '4px';
+      this.dom.frame.style.right = "4px";
       this.dom.frame.style.textAlign = "right";
       this.dom.textArea.style.textAlign = "right";
-      this.dom.textArea.style.right = this.options.iconSize + 15 + 'px';
-      this.dom.textArea.style.left = '';
-      this.svg.style.right = 0 + 'px';
-      this.svg.style.left = '';
+      this.dom.textArea.style.right = this.options.iconSize + 15 + "px";
+      this.dom.textArea.style.left = "";
+      this.svg.style.right = 0 + "px";
+      this.svg.style.left = "";
     }
-    if (this.options[this.side].position == 'top-left' || this.options[this.side].position == 'top-right') {
-      this.dom.frame.style.top = 4 - Number(this.body.dom.center.style.top.replace("px", "")) + 'px';
-      this.dom.frame.style.bottom = '';
+    if (this.options[this.side].position == "top-left" || this.options[this.side].position == "top-right") {
+      this.dom.frame.style.top = 4 - Number(this.body.dom.center.style.top.replace("px", "")) + "px";
+      this.dom.frame.style.bottom = "";
     } else {
       var scrollableHeight = this.body.domProps.center.height - this.body.domProps.centerContainer.height;
-      this.dom.frame.style.bottom = 4 + scrollableHeight + Number(this.body.dom.center.style.top.replace("px", "")) + 'px';
-      this.dom.frame.style.top = '';
+      this.dom.frame.style.bottom = 4 + scrollableHeight + Number(this.body.dom.center.style.top.replace("px", "")) + "px";
+      this.dom.frame.style.top = "";
     }
     if (this.options.icons == false) {
-      this.dom.frame.style.width = this.dom.textArea.offsetWidth + 10 + 'px';
-      this.dom.textArea.style.right = '';
-      this.dom.textArea.style.left = '';
-      this.svg.style.width = '0px';
+      this.dom.frame.style.width = this.dom.textArea.offsetWidth + 10 + "px";
+      this.dom.textArea.style.right = "";
+      this.dom.textArea.style.left = "";
+      this.svg.style.width = "0px";
     } else {
-      this.dom.frame.style.width = this.options.iconSize + 15 + this.dom.textArea.offsetWidth + 10 + 'px';
+      this.dom.frame.style.width = this.options.iconSize + 15 + this.dom.textArea.offsetWidth + 10 + "px";
       this.drawLegendIcons();
     }
-    var content = '';
+    var content = "";
     for (i = 0; i < groupArray.length; i++) {
       groupId = groupArray[i];
       if (this.groups[groupId].visible == true && (this.linegraphOptions.visibility[groupId] === undefined || this.linegraphOptions.visibility[groupId] == true)) {
-        content += this.groups[groupId].content + '<br />';
+        content += this.groups[groupId].content + "<br />";
       }
     }
     this.dom.textArea.innerHTML = availableUtils.xss(content);
-    this.dom.textArea.style.lineHeight = 0.75 * this.options.iconSize + this.options.iconSpacing + 'px';
+    this.dom.textArea.style.lineHeight = 0.75 * this.options.iconSize + this.options.iconSpacing + "px";
   }
 };
 Legend.prototype.drawLegendIcons = function () {
@@ -35635,12 +35602,12 @@ Legend.prototype.drawLegendIcons = function () {
     // this resets the elements so the order is maintained
     resetElements(this.svgElements);
     var padding = window.getComputedStyle(this.dom.frame).paddingTop;
-    var iconOffset = Number(padding.replace('px', ''));
+    var iconOffset = Number(padding.replace("px", ""));
     var x = iconOffset;
     var iconWidth = this.options.iconSize;
     var iconHeight = 0.75 * this.options.iconSize;
     var y = iconOffset + 0.5 * iconHeight + 3;
-    this.svg.style.width = iconWidth + 5 + iconOffset + 'px';
+    this.svg.style.width = iconWidth + 5 + iconOffset + "px";
     for (var i = 0; i < groupArray.length; i++) {
       var groupId = groupArray[i];
       if (this.groups[groupId].visible == true && (this.linegraphOptions.visibility[groupId] === undefined || this.linegraphOptions.visibility[groupId] == true)) {
@@ -35651,7 +35618,7 @@ Legend.prototype.drawLegendIcons = function () {
   }
 };
 
-var UNGROUPED = '__ungrouped__'; // reserved group id for ungrouped items
+var UNGROUPED = "__ungrouped__"; // reserved group id for ungrouped items
 
 /**
  * This is the constructor of the LineGraph. It requires a Timeline body and options.
@@ -35665,33 +35632,33 @@ function LineGraph(body, options) {
   this.id = v4();
   this.body = body;
   this.defaultOptions = {
-    yAxisOrientation: 'left',
-    defaultGroup: 'default',
+    yAxisOrientation: "left",
+    defaultGroup: "default",
     sort: true,
     sampling: true,
     stack: false,
-    graphHeight: '400px',
+    graphHeight: "400px",
     shaded: {
       enabled: false,
-      orientation: 'bottom' // top, bottom, zero
+      orientation: "bottom" // top, bottom, zero
     },
-    style: 'line',
+    style: "line",
     // line, bar
     barChart: {
       width: 50,
       sideBySide: false,
-      align: 'center' // left, center, right
+      align: "center" // left, center, right
     },
     interpolation: {
       enabled: true,
-      parametrization: 'centripetal',
+      parametrization: "centripetal",
       // uniform (alpha = 0.0), chordal (alpha = 1.0), centripetal (alpha = 0.5)
       alpha: 0.5
     },
     drawPoints: {
       enabled: true,
       size: 6,
-      style: 'square' // square, circle
+      style: "square" // square, circle
     },
     dataAxis: {},
     //Defaults are done on DataAxis level
@@ -35718,32 +35685,26 @@ function LineGraph(body, options) {
 
   // listeners for the DataSet of the items
   this.itemListeners = {
-    'add': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    add: function (_event, params) {
       me._onAdd(params.items);
     },
-    'update': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    update: function (_event, params) {
       me._onUpdate(params.items);
     },
-    'remove': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    remove: function (_event, params) {
       me._onRemove(params.items);
     }
   };
 
   // listeners for the DataSet of the groups
   this.groupListeners = {
-    'add': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    add: function (_event, params) {
       me._onAddGroups(params.items);
     },
-    'update': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    update: function (_event, params) {
       me._onUpdateGroups(params.items);
     },
-    'remove': function (event, params, senderId) {
-      // eslint-disable-line no-unused-vars
+    remove: function (_event, params) {
       me._onRemoveGroups(params.items);
     }
   };
@@ -35755,7 +35716,7 @@ function LineGraph(body, options) {
   this.svgElements = {};
   this.setOptions(options);
   this.groupsUsingDefaultStyles = [0];
-  this.body.emitter.on('rangechanged', function () {
+  this.body.emitter.on("rangechanged", function () {
     me.svg.style.left = availableUtils.option.asSize(-me.props.width);
     me.forceGraphUpdate = true;
     //Is this local redraw necessary? (Core also does a change event!)
@@ -35777,27 +35738,27 @@ LineGraph.prototype = new Component();
  * Create the HTML DOM for the ItemSet
  */
 LineGraph.prototype._create = function () {
-  var frame = document.createElement('div');
-  frame.className = 'vis-line-graph';
+  var frame = document.createElement("div");
+  frame.className = "vis-line-graph";
   this.dom.frame = frame;
 
   // create svg element for graph drawing.
-  this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-  this.svg.style.position = 'relative';
-  this.svg.style.height = ('' + this.options.graphHeight).replace('px', '') + 'px';
-  this.svg.style.display = 'block';
+  this.svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+  this.svg.style.position = "relative";
+  this.svg.style.height = ("" + this.options.graphHeight).replace("px", "") + "px";
+  this.svg.style.display = "block";
   frame.appendChild(this.svg);
 
   // data axis
-  this.options.dataAxis.orientation = 'left';
+  this.options.dataAxis.orientation = "left";
   this.yAxisLeft = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
-  this.options.dataAxis.orientation = 'right';
+  this.options.dataAxis.orientation = "right";
   this.yAxisRight = new DataAxis(this.body, this.options.dataAxis, this.svg, this.options.groups);
   delete this.options.dataAxis.orientation;
 
   // legends
-  this.legendLeft = new Legend(this.body, this.options.legend, 'left', this.options.groups);
-  this.legendRight = new Legend(this.body, this.options.legend, 'right', this.options.groups);
+  this.legendLeft = new Legend(this.body, this.options.legend, "left", this.options.groups);
+  this.legendRight = new Legend(this.body, this.options.legend, "right", this.options.groups);
   this.show();
 };
 
@@ -35807,29 +35768,29 @@ LineGraph.prototype._create = function () {
  */
 LineGraph.prototype.setOptions = function (options) {
   if (options) {
-    var fields = ['sampling', 'defaultGroup', 'stack', 'height', 'graphHeight', 'yAxisOrientation', 'style', 'barChart', 'dataAxis', 'sort', 'groups'];
+    var fields = ["sampling", "defaultGroup", "stack", "height", "graphHeight", "yAxisOrientation", "style", "barChart", "dataAxis", "sort", "groups"];
     if (options.graphHeight === undefined && options.height !== undefined) {
       this.updateSVGheight = true;
       this.updateSVGheightOnResize = true;
     } else if (this.body.domProps.centerContainer.height !== undefined && options.graphHeight !== undefined) {
-      if (_parseInt((options.graphHeight + '').replace("px", '')) < this.body.domProps.centerContainer.height) {
+      if (_parseInt((options.graphHeight + "").replace("px", "")) < this.body.domProps.centerContainer.height) {
         this.updateSVGheight = true;
       }
     }
     availableUtils.selectiveDeepExtend(fields, this.options, options);
-    availableUtils.mergeOptions(this.options, options, 'interpolation');
-    availableUtils.mergeOptions(this.options, options, 'drawPoints');
-    availableUtils.mergeOptions(this.options, options, 'shaded');
-    availableUtils.mergeOptions(this.options, options, 'legend');
+    availableUtils.mergeOptions(this.options, options, "interpolation");
+    availableUtils.mergeOptions(this.options, options, "drawPoints");
+    availableUtils.mergeOptions(this.options, options, "shaded");
+    availableUtils.mergeOptions(this.options, options, "legend");
     if (options.interpolation) {
-      if (typeof options.interpolation == 'object') {
+      if (typeof options.interpolation == "object") {
         if (options.interpolation.parametrization) {
-          if (options.interpolation.parametrization == 'uniform') {
+          if (options.interpolation.parametrization == "uniform") {
             this.options.interpolation.alpha = 0;
-          } else if (options.interpolation.parametrization == 'chordal') {
+          } else if (options.interpolation.parametrization == "chordal") {
             this.options.interpolation.alpha = 1.0;
           } else {
-            this.options.interpolation.parametrization = 'centripetal';
+            this.options.interpolation.parametrization = "centripetal";
             this.options.interpolation.alpha = 0.5;
           }
         }
@@ -35897,7 +35858,7 @@ LineGraph.prototype.setItems = function (items) {
   } else if (isDataViewLike(items)) {
     this.itemsData = typeCoerceDataSet(items);
   } else {
-    throw new TypeError('Data must implement the interface of DataSet or DataView');
+    throw new TypeError("Data must implement the interface of DataSet or DataView");
   }
   if (oldItemsData) {
     // unsubscribe from old dataset
@@ -35953,7 +35914,7 @@ LineGraph.prototype.setGroups = function (groups) {
   } else if (isDataViewLike(groups)) {
     this.groupsData = groups;
   } else {
-    throw new TypeError('Data must implement the interface of DataSet or DataView');
+    throw new TypeError("Data must implement the interface of DataSet or DataView");
   }
   if (this.groupsData) {
     // subscribe to new dataset
@@ -36005,7 +35966,7 @@ LineGraph.prototype._onRemoveGroups = function (groupIds) {
  */
 LineGraph.prototype._removeGroup = function (groupId) {
   if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) return;
-  if (this.groups[groupId].options.yAxisOrientation == 'right') {
+  if (this.groups[groupId].options.yAxisOrientation == "right") {
     this.yAxisRight.removeGroup(groupId);
     this.legendRight.removeGroup(groupId);
     this.legendRight.redraw();
@@ -36027,7 +35988,7 @@ LineGraph.prototype._removeGroup = function (groupId) {
 LineGraph.prototype._updateGroup = function (group, groupId) {
   if (!Object.prototype.hasOwnProperty.call(this.groups, groupId)) {
     this.groups[groupId] = new GraphGroup(group, groupId, this.options, this.groupsUsingDefaultStyles);
-    if (this.groups[groupId].options.yAxisOrientation == 'right') {
+    if (this.groups[groupId].options.yAxisOrientation == "right") {
       this.yAxisRight.addGroup(groupId, this.groups[groupId]);
       this.legendRight.addGroup(groupId, this.groups[groupId]);
     } else {
@@ -36036,7 +35997,7 @@ LineGraph.prototype._updateGroup = function (group, groupId) {
     }
   } else {
     this.groups[groupId].update(group);
-    if (this.groups[groupId].options.yAxisOrientation == 'right') {
+    if (this.groups[groupId].options.yAxisOrientation == "right") {
       this.yAxisRight.updateGroup(groupId, this.groups[groupId]);
       this.legendRight.updateGroup(groupId, this.groups[groupId]);
       //If yAxisOrientation changed, clean out the group from the other axis.
@@ -36116,8 +36077,8 @@ LineGraph.prototype._updateAllGroupData = function (ids, groupIds) {
       }
       //Copy data (because of unmodifiable DataView input.
       var extended = availableUtils.bridgeObject(item);
-      extended.x = availableUtils.convert(item.x, 'Date');
-      extended.end = availableUtils.convert(item.end, 'Date');
+      extended.x = availableUtils.convert(item.x, "Date");
+      extended.end = availableUtils.convert(item.end, "Date");
       extended.orginalY = item.y; //real Y
       extended.y = Number(item.y);
       extended[fieldId] = item[fieldId];
@@ -36187,20 +36148,20 @@ LineGraph.prototype.redraw = function () {
     this.svg.style.left = availableUtils.option.asSize(-this.props.width);
 
     // if the height of the graph is set as proportional, change the height of the svg
-    if (_indexOfInstanceProperty(_context = this.options.height + '').call(_context, "%") != -1 || this.updateSVGheightOnResize == true) {
+    if (_indexOfInstanceProperty(_context = this.options.height + "").call(_context, "%") != -1 || this.updateSVGheightOnResize == true) {
       this.updateSVGheight = true;
     }
   }
 
   // update the height of the graph on each redraw of the graph.
   if (this.updateSVGheight == true) {
-    if (this.options.graphHeight != this.props.height + 'px') {
-      this.options.graphHeight = this.props.height + 'px';
-      this.svg.style.height = this.props.height + 'px';
+    if (this.options.graphHeight != this.props.height + "px") {
+      this.options.graphHeight = this.props.height + "px";
+      this.svg.style.height = this.props.height + "px";
     }
     this.updateSVGheight = false;
   } else {
-    this.svg.style.height = ('' + this.options.graphHeight).replace('px', '') + 'px';
+    this.svg.style.height = ("" + this.options.graphHeight).replace("px", "") + "px";
   }
 
   // zoomed is here to ensure that animations are shown correctly.
@@ -36208,7 +36169,7 @@ LineGraph.prototype.redraw = function () {
     resized = this._updateGraph() || resized;
     this.forceGraphUpdate = false;
     this.lastStart = this.body.range.start;
-    this.svg.style.left = -this.props.width + 'px';
+    this.svg.style.left = -this.props.width + "px";
   } else {
     // move the whole svg while dragging
     if (this.lastStart != 0) {
@@ -36217,7 +36178,7 @@ LineGraph.prototype.redraw = function () {
       if (this.props.width != 0) {
         var rangePerPixelInv = this.props.width / range;
         var xOffset = offset * rangePerPixelInv;
-        this.svg.style.left = -this.props.width - xOffset + 'px';
+        this.svg.style.left = -this.props.width - xOffset + "px";
       }
     }
   }
@@ -36305,7 +36266,7 @@ LineGraph.prototype._updateGraph = function () {
       var below = undefined;
       for (i = 0; i < groupIds.length; i++) {
         group = this.groups[groupIds[i]];
-        if (this.options.stack === true && this.options.style === 'line') {
+        if (this.options.stack === true && this.options.style === "line") {
           if (group.options.excludeFromStacking == undefined || !group.options.excludeFromStacking) {
             if (below != undefined) {
               this._stack(groupsData[group.id], groupsData[below.id]);
@@ -36329,7 +36290,7 @@ LineGraph.prototype._updateGraph = function () {
       var paths = {};
       for (i = 0; i < groupIds.length; i++) {
         group = this.groups[groupIds[i]];
-        if (group.options.style === 'line' && group.options.shaded.enabled == true) {
+        if (group.options.style === "line" && group.options.shaded.enabled == true) {
           var dataset = groupsData[groupIds[i]];
           if (dataset == null || dataset.length == 0) {
             continue;
@@ -36451,8 +36412,8 @@ LineGraph.prototype._getRelevantData = function (groupIds, groupsData, minDate, 
         var dateComparator = function (a, b) {
           return a.getTime() == b.getTime() ? 0 : a < b ? -1 : 1;
         };
-        var first = Math.max(0, availableUtils.binarySearchValue(itemsData, minDate, 'x', 'before', dateComparator));
-        var last = Math.min(itemsData.length, availableUtils.binarySearchValue(itemsData, maxDate, 'x', 'after', dateComparator) + 1);
+        var first = Math.max(0, availableUtils.binarySearchValue(itemsData, minDate, "x", "before", dateComparator));
+        var last = Math.min(itemsData.length, availableUtils.binarySearchValue(itemsData, maxDate, "x", "after", dateComparator) + 1);
         if (last <= 0) {
           last = itemsData.length;
         }
@@ -36524,8 +36485,8 @@ LineGraph.prototype._getYRanges = function (groupIds, groupsData, groupRanges) {
       if (groupData.length > 0) {
         group = this.groups[groupIds[i]];
         // if bar graphs are stacked, their range need to be handled differently and accumulated over all groups.
-        if (options.stack === true && options.style === 'bar') {
-          if (options.yAxisOrientation === 'left') {
+        if (options.stack === true && options.style === "bar") {
+          if (options.yAxisOrientation === "left") {
             combinedDataLeft = _concatInstanceProperty(combinedDataLeft).call(combinedDataLeft, groupData);
           } else {
             combinedDataRight = _concatInstanceProperty(combinedDataRight).call(combinedDataRight, groupData);
@@ -36537,8 +36498,8 @@ LineGraph.prototype._getYRanges = function (groupIds, groupsData, groupRanges) {
     }
 
     // if bar graphs are stacked, their range need to be handled differently and accumulated over all groups.
-    Bargraph.getStackedYRange(combinedDataLeft, groupRanges, groupIds, '__barStackLeft', 'left');
-    Bargraph.getStackedYRange(combinedDataRight, groupRanges, groupIds, '__barStackRight', 'right');
+    Bargraph.getStackedYRange(combinedDataLeft, groupRanges, groupIds, "__barStackLeft", "left");
+    Bargraph.getStackedYRange(combinedDataRight, groupRanges, groupIds, "__barStackRight", "right");
   }
 };
 
@@ -36564,7 +36525,7 @@ LineGraph.prototype._updateYAxis = function (groupIds, groupRanges) {
     // this is here to make sure that if there are no items in the axis but there are groups, that there is no infinite draw/redraw loop.
     for (var i = 0; i < groupIds.length; i++) {
       var group = this.groups[groupIds[i]];
-      if (group && group.options.yAxisOrientation != 'right') {
+      if (group && group.options.yAxisOrientation != "right") {
         yAxisLeftUsed = true;
         minLeft = 1e9;
         maxLeft = -1e9;
@@ -36580,7 +36541,7 @@ LineGraph.prototype._updateYAxis = function (groupIds, groupRanges) {
       if (!Object.prototype.hasOwnProperty.call(groupRanges, groupIds[i]) || groupRanges[groupIds[i]].ignore === true) continue;
       minVal = groupRanges[groupIds[i]].min;
       maxVal = groupRanges[groupIds[i]].max;
-      if (groupRanges[groupIds[i]].yAxisOrientation != 'right') {
+      if (groupRanges[groupIds[i]].yAxisOrientation != "right") {
         yAxisLeftUsed = true;
         minLeft = minLeft > minVal ? minVal : minLeft;
         maxLeft = maxLeft < maxVal ? maxVal : maxLeft;
@@ -36621,7 +36582,7 @@ LineGraph.prototype._updateYAxis = function (groupIds, groupRanges) {
   }
 
   // clean the accumulated lists
-  var tempGroups = ['__barStackLeft', '__barStackRight', '__lineStackLeft', '__lineStackRight'];
+  var tempGroups = ["__barStackLeft", "__barStackRight", "__lineStackLeft", "__lineStackRight"];
   for (i = 0; i < tempGroups.length; i++) {
     if (_indexOfInstanceProperty(groupIds).call(groupIds, tempGroups[i]) != -1) {
       _spliceInstanceProperty(groupIds).call(groupIds, _indexOfInstanceProperty(groupIds).call(groupIds, tempGroups[i]), 1);
@@ -36686,8 +36647,8 @@ LineGraph.prototype._convertXcoordinates = function (datapoints) {
  */
 LineGraph.prototype._convertYcoordinates = function (datapoints, group) {
   var axis = this.yAxisLeft;
-  var svgHeight = Number(this.svg.style.height.replace('px', ''));
-  if (group.options.yAxisOrientation == 'right') {
+  var svgHeight = Number(this.svg.style.height.replace("px", ""));
+  if (group.options.yAxisOrientation == "right") {
     axis = this.yAxisRight;
   }
   for (var i = 0; i < datapoints.length; i++) {
@@ -36703,52 +36664,52 @@ LineGraph.prototype._convertYcoordinates = function (datapoints, group) {
  * __any__ means that the name of the property does not matter.
  * __type__ is a required field for all objects and contains the allowed types of all objects
  */
-let string = 'string';
-let bool = 'boolean';
-let number = 'number';
-let array = 'array';
-let date = 'date';
-let object = 'object'; // should only be in a __type__ property
-let dom = 'dom';
-let moment = 'moment';
-let any = 'any';
+let string = "string";
+let bool = "boolean";
+let number = "number";
+let array = "array";
+let date = "date";
+let object = "object"; // should only be in a __type__ property
+let dom = "dom";
+let moment = "moment";
+let any = "any";
 let allOptions = {
   configure: {
     enabled: {
-      'boolean': bool
+      boolean: bool
     },
     filter: {
-      'boolean': bool,
-      'function': 'function'
+      boolean: bool,
+      function: "function"
     },
     container: {
       dom
     },
     __type__: {
       object,
-      'boolean': bool,
-      'function': 'function'
+      boolean: bool,
+      function: "function"
     }
   },
   //globals :
   alignCurrentTime: {
     string,
-    'undefined': 'undefined'
+    undefined: "undefined"
   },
   yAxisOrientation: {
-    string: ['left', 'right']
+    string: ["left", "right"]
   },
   defaultGroup: {
     string
   },
   sort: {
-    'boolean': bool
+    boolean: bool
   },
   sampling: {
-    'boolean': bool
+    boolean: bool
   },
   stack: {
-    'boolean': bool
+    boolean: bool
   },
   graphHeight: {
     string,
@@ -36756,22 +36717,22 @@ let allOptions = {
   },
   shaded: {
     enabled: {
-      'boolean': bool
+      boolean: bool
     },
     orientation: {
-      string: ['bottom', 'top', 'zero', 'group']
+      string: ["bottom", "top", "zero", "group"]
     },
     // top, bottom, zero, group
     groupId: {
       object
     },
     __type__: {
-      'boolean': bool,
+      boolean: bool,
       object
     }
   },
   style: {
-    string: ['line', 'bar', 'points']
+    string: ["line", "bar", "points"]
   },
   // line, bar
   barChart: {
@@ -36782,10 +36743,10 @@ let allOptions = {
       number
     },
     sideBySide: {
-      'boolean': bool
+      boolean: bool
     },
     align: {
-      string: ['left', 'center', 'right']
+      string: ["left", "center", "right"]
     },
     __type__: {
       object
@@ -36793,10 +36754,10 @@ let allOptions = {
   },
   interpolation: {
     enabled: {
-      'boolean': bool
+      boolean: bool
     },
     parametrization: {
-      string: ['centripetal', 'chordal', 'uniform']
+      string: ["centripetal", "chordal", "uniform"]
     },
     // uniform (alpha = 0.0), chordal (alpha = 1.0), centripetal (alpha = 0.5)
     alpha: {
@@ -36804,78 +36765,78 @@ let allOptions = {
     },
     __type__: {
       object,
-      'boolean': bool
+      boolean: bool
     }
   },
   drawPoints: {
     enabled: {
-      'boolean': bool
+      boolean: bool
     },
     onRender: {
-      'function': 'function'
+      function: "function"
     },
     size: {
       number
     },
     style: {
-      string: ['square', 'circle']
+      string: ["square", "circle"]
     },
     // square, circle
     __type__: {
       object,
-      'boolean': bool,
-      'function': 'function'
+      boolean: bool,
+      function: "function"
     }
   },
   dataAxis: {
     showMinorLabels: {
-      'boolean': bool
+      boolean: bool
     },
     showMajorLabels: {
-      'boolean': bool
+      boolean: bool
     },
     showWeekScale: {
-      'boolean': bool
+      boolean: bool
     },
     icons: {
-      'boolean': bool
+      boolean: bool
     },
     width: {
       string,
       number
     },
     visible: {
-      'boolean': bool
+      boolean: bool
     },
     alignZeros: {
-      'boolean': bool
+      boolean: bool
     },
     left: {
       range: {
         min: {
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         max: {
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         __type__: {
           object
         }
       },
       format: {
-        'function': 'function'
+        function: "function"
       },
       title: {
         text: {
           string,
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         style: {
           string,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         __type__: {
           object
@@ -36889,28 +36850,28 @@ let allOptions = {
       range: {
         min: {
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         max: {
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         __type__: {
           object
         }
       },
       format: {
-        'function': 'function'
+        function: "function"
       },
       title: {
         text: {
           string,
           number,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         style: {
           string,
-          'undefined': 'undefined'
+          undefined: "undefined"
         },
         __type__: {
           object
@@ -36926,17 +36887,17 @@ let allOptions = {
   },
   legend: {
     enabled: {
-      'boolean': bool
+      boolean: bool
     },
     icons: {
-      'boolean': bool
+      boolean: bool
     },
     left: {
       visible: {
-        'boolean': bool
+        boolean: bool
       },
       position: {
-        string: ['top-right', 'bottom-right', 'top-left', 'bottom-left']
+        string: ["top-right", "bottom-right", "top-left", "bottom-left"]
       },
       __type__: {
         object
@@ -36944,10 +36905,10 @@ let allOptions = {
     },
     right: {
       visible: {
-        'boolean': bool
+        boolean: bool
       },
       position: {
-        string: ['top-right', 'bottom-right', 'top-left', 'bottom-left']
+        string: ["top-right", "bottom-right", "top-left", "bottom-left"]
       },
       __type__: {
         object
@@ -36955,7 +36916,7 @@ let allOptions = {
     },
     __type__: {
       object,
-      'boolean': bool
+      boolean: bool
     }
   },
   groups: {
@@ -36967,14 +36928,14 @@ let allOptions = {
     }
   },
   autoResize: {
-    'boolean': bool
+    boolean: bool
   },
   throttleRedraw: {
     number
   },
   // TODO: DEPRICATED see https://github.com/almende/vis/issues/2511
   clickToUse: {
-    'boolean': bool
+    boolean: bool
   },
   end: {
     number,
@@ -36986,43 +36947,43 @@ let allOptions = {
     minorLabels: {
       millisecond: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       second: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       minute: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       hour: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       weekday: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       day: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       week: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       month: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       quarter: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       year: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       __type__: {
         object
@@ -37031,43 +36992,43 @@ let allOptions = {
     majorLabels: {
       millisecond: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       second: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       minute: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       hour: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       weekday: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       day: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       week: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       month: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       quarter: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       year: {
         string,
-        'undefined': 'undefined'
+        undefined: "undefined"
       },
       __type__: {
         object
@@ -37078,7 +37039,7 @@ let allOptions = {
     }
   },
   moment: {
-    'function': 'function'
+    function: "function"
   },
   height: {
     string,
@@ -37140,29 +37101,29 @@ let allOptions = {
     string
   },
   moveable: {
-    'boolean': bool
+    boolean: bool
   },
   multiselect: {
-    'boolean': bool
+    boolean: bool
   },
   orientation: {
     string
   },
   showCurrentTime: {
-    'boolean': bool
+    boolean: bool
   },
   showMajorLabels: {
-    'boolean': bool
+    boolean: bool
   },
   showMinorLabels: {
-    'boolean': bool
+    boolean: bool
   },
   showWeekScale: {
-    'boolean': bool
+    boolean: bool
   },
   snap: {
-    'function': 'function',
-    'null': 'null'
+    function: "function",
+    null: "null"
   },
   start: {
     date,
@@ -37173,11 +37134,11 @@ let allOptions = {
   timeAxis: {
     scale: {
       string,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     step: {
       number,
-      'undefined': 'undefined'
+      undefined: "undefined"
     },
     __type__: {
       object
@@ -37188,10 +37149,10 @@ let allOptions = {
     number
   },
   zoomable: {
-    'boolean': bool
+    boolean: bool
   },
   zoomKey: {
-    string: ['ctrlKey', 'altKey', 'metaKey', '']
+    string: ["ctrlKey", "altKey", "metaKey", ""]
   },
   zoomMax: {
     number
@@ -37208,31 +37169,31 @@ let allOptions = {
 };
 let configureOptions = {
   global: {
-    alignCurrentTime: ['none', 'year', 'month', 'quarter', 'week', 'isoWeek', 'day', 'date', 'hour', 'minute', 'second'],
+    alignCurrentTime: ["none", "year", "month", "quarter", "week", "isoWeek", "day", "date", "hour", "minute", "second"],
     //yAxisOrientation: ['left','right'], // TDOO: enable as soon as Grahp2d doesn't crash when changing this on the fly
     sort: true,
     sampling: true,
     stack: false,
     shaded: {
       enabled: false,
-      orientation: ['zero', 'top', 'bottom', 'group'] // zero, top, bottom
+      orientation: ["zero", "top", "bottom", "group"] // zero, top, bottom
     },
-    style: ['line', 'bar', 'points'],
+    style: ["line", "bar", "points"],
     // line, bar
     barChart: {
       width: [50, 5, 100, 5],
       minWidth: [50, 5, 100, 5],
       sideBySide: false,
-      align: ['left', 'center', 'right'] // left, center, right
+      align: ["left", "center", "right"] // left, center, right
     },
     interpolation: {
       enabled: true,
-      parametrization: ['centripetal', 'chordal', 'uniform'] // uniform (alpha = 0.0), chordal (alpha = 1.0), centripetal (alpha = 0.5)
+      parametrization: ["centripetal", "chordal", "uniform"] // uniform (alpha = 0.0), chordal (alpha = 1.0), centripetal (alpha = 0.5)
     },
     drawPoints: {
       enabled: true,
       size: [6, 2, 30, 1],
-      style: ['square', 'circle'] // square, circle
+      style: ["square", "circle"] // square, circle
     },
     dataAxis: {
       showMinorLabels: true,
@@ -37246,16 +37207,16 @@ let configureOptions = {
         //range: {min:'undefined': 'undefined'ined,max:'undefined': 'undefined'ined},
         //format: function (value) {return value;},
         title: {
-          text: '',
-          style: ''
+          text: "",
+          style: ""
         }
       },
       right: {
         //range: {min:'undefined': 'undefined'ined,max:'undefined': 'undefined'ined},
         //format: function (value) {return value;},
         title: {
-          text: '',
-          style: ''
+          text: "",
+          style: ""
         }
       }
     },
@@ -37264,59 +37225,59 @@ let configureOptions = {
       icons: true,
       left: {
         visible: true,
-        position: ['top-right', 'bottom-right', 'top-left', 'bottom-left'] // top/bottom - left,right
+        position: ["top-right", "bottom-right", "top-left", "bottom-left"] // top/bottom - left,right
       },
       right: {
         visible: true,
-        position: ['top-right', 'bottom-right', 'top-left', 'bottom-left'] // top/bottom - left,right
+        position: ["top-right", "bottom-right", "top-left", "bottom-left"] // top/bottom - left,right
       }
     },
     autoResize: true,
     clickToUse: false,
-    end: '',
+    end: "",
     format: {
       minorLabels: {
-        millisecond: 'SSS',
-        second: 's',
-        minute: 'HH:mm',
-        hour: 'HH:mm',
-        weekday: 'ddd D',
-        day: 'D',
-        week: 'w',
-        month: 'MMM',
-        quarter: '[Q]Q',
-        year: 'YYYY'
+        millisecond: "SSS",
+        second: "s",
+        minute: "HH:mm",
+        hour: "HH:mm",
+        weekday: "ddd D",
+        day: "D",
+        week: "w",
+        month: "MMM",
+        quarter: "[Q]Q",
+        year: "YYYY"
       },
       majorLabels: {
-        millisecond: 'HH:mm:ss',
-        second: 'D MMMM HH:mm',
-        minute: 'ddd D MMMM',
-        hour: 'ddd D MMMM',
-        weekday: 'MMMM YYYY',
-        day: 'MMMM YYYY',
-        week: 'MMMM YYYY',
-        month: 'YYYY',
-        quarter: 'YYYY',
-        year: ''
+        millisecond: "HH:mm:ss",
+        second: "D MMMM HH:mm",
+        minute: "ddd D MMMM",
+        hour: "ddd D MMMM",
+        weekday: "MMMM YYYY",
+        day: "MMMM YYYY",
+        week: "MMMM YYYY",
+        month: "YYYY",
+        quarter: "YYYY",
+        year: ""
       }
     },
-    height: '',
-    locale: '',
-    max: '',
-    maxHeight: '',
+    height: "",
+    locale: "",
+    max: "",
+    maxHeight: "",
     maxMinorChars: [7, 0, 20, 1],
-    min: '',
-    minHeight: '',
+    min: "",
+    minHeight: "",
     moveable: true,
-    orientation: ['both', 'bottom', 'top'],
+    orientation: ["both", "bottom", "top"],
     showCurrentTime: false,
     showMajorLabels: true,
     showMinorLabels: true,
     showWeekScale: false,
-    start: '',
-    width: '100%',
+    start: "",
+    width: "100%",
     zoomable: true,
-    zoomKey: ['ctrlKey', 'altKey', 'metaKey', ''],
+    zoomKey: ["ctrlKey", "altKey", "metaKey", ""],
     zoomMax: [315360000000000, 10, 315360000000000, 1],
     zoomMin: [10, 10, 315360000000000, 1],
     zIndex: 0
@@ -37344,7 +37305,7 @@ function Graph2d(container, items, groups, options) {
   // TODO: REMOVE THIS in the next MAJOR release
   // see https://github.com/almende/vis/issues/2511
   if (options && options.throttleRedraw) {
-    console.warn("Graph2d option \"throttleRedraw\" is DEPRICATED and no longer supported. It will be removed in the next MAJOR release.");
+    console.warn('Graph2d option "throttleRedraw" is DEPRICATED and no longer supported. It will be removed in the next MAJOR release.');
   }
   var me = this;
   this.defaultOptions = {
@@ -37352,9 +37313,9 @@ function Graph2d(container, items, groups, options) {
     end: null,
     autoResize: true,
     orientation: {
-      axis: 'bottom',
+      axis: "bottom",
       // axis orientation: 'bottom', 'top', or 'both'
-      item: 'bottom' // not relevant for Graph2d
+      item: "bottom" // not relevant for Graph2d
     },
     moment: moment$2,
     width: null,
@@ -37413,19 +37374,19 @@ function Graph2d(container, items, groups, options) {
   this.itemsData = null; // DataSet
   this.groupsData = null; // DataSet
 
-  this.on('tap', function (event) {
-    me.emit('click', me.getEventProperties(event));
+  this.on("tap", function (event) {
+    me.emit("click", me.getEventProperties(event));
   });
-  this.on('doubletap', function (event) {
-    me.emit('doubleClick', me.getEventProperties(event));
+  this.on("doubletap", function (event) {
+    me.emit("doubleClick", me.getEventProperties(event));
   });
   this.dom.root.oncontextmenu = function (event) {
-    me.emit('contextmenu', me.getEventProperties(event));
+    me.emit("contextmenu", me.getEventProperties(event));
   };
 
   //Single time autoscale/fit
   this.initialFitDone = false;
-  this.on('changed', function () {
+  this.on("changed", function () {
     if (me.itemsData == null) return;
     if (!me.initialFitDone && !me.options.rollingMode) {
       me.initialFitDone = true;
@@ -37446,7 +37407,7 @@ function Graph2d(container, items, groups, options) {
     }
     if (!me.initialDrawDone && (me.initialRangeChangeDone || !me.options.start && !me.options.end || me.options.rollingMode)) {
       me.initialDrawDone = true;
-      me.dom.root.style.visibility = 'visible';
+      me.dom.root.style.visibility = "visible";
       me.dom.loadingScreen.parentNode.removeChild(me.dom.loadingScreen);
       if (me.options.onInitialDrawComplete) {
         _setTimeout(() => {
@@ -37481,7 +37442,7 @@ Graph2d.prototype.setOptions = function (options) {
   // validate options
   let errorFound = Validator.validate(options, allOptions);
   if (errorFound === true) {
-    console.log('%cErrors have been found in the supplied options object.', printStyle);
+    console.log("%cErrors have been found in the supplied options object.", printStyle);
   }
   Core.prototype.setOptions.call(this, options);
 };
@@ -37594,7 +37555,7 @@ Graph2d.prototype.getDataRange = function () {
     if (!Object.prototype.hasOwnProperty.call(this.linegraph.groups, groupId) || this.linegraph.groups[groupId].visible !== true) continue;
     for (var i = 0; i < this.linegraph.groups[groupId].itemsData.length; i++) {
       var item = this.linegraph.groups[groupId].itemsData[i];
-      var value = availableUtils.convert(item.x, 'Date').valueOf();
+      var value = availableUtils.convert(item.x, "Date").valueOf();
       min = min == null ? value : min > value ? value : min;
       max = max == null ? value : max < value ? value : max;
     }
@@ -37621,23 +37582,23 @@ Graph2d.prototype.getEventProperties = function (event) {
   var element = availableUtils.getTarget(event);
   var what = null;
   if (availableUtils.hasParent(element, this.timeAxis.dom.foreground)) {
-    what = 'axis';
+    what = "axis";
   } else if (this.timeAxis2 && availableUtils.hasParent(element, this.timeAxis2.dom.foreground)) {
-    what = 'axis';
+    what = "axis";
   } else if (availableUtils.hasParent(element, this.linegraph.yAxisLeft.dom.frame)) {
-    what = 'data-axis';
+    what = "data-axis";
   } else if (availableUtils.hasParent(element, this.linegraph.yAxisRight.dom.frame)) {
-    what = 'data-axis';
+    what = "data-axis";
   } else if (availableUtils.hasParent(element, this.linegraph.legendLeft.dom.frame)) {
-    what = 'legend';
+    what = "legend";
   } else if (availableUtils.hasParent(element, this.linegraph.legendRight.dom.frame)) {
-    what = 'legend';
+    what = "legend";
   } else if (customTime != null) {
-    what = 'custom-time';
+    what = "custom-time";
   } else if (availableUtils.hasParent(element, this.currentTime.bar)) {
-    what = 'current-time';
+    what = "current-time";
   } else if (availableUtils.hasParent(element, this.dom.center)) {
-    what = 'background';
+    what = "background";
   }
   var value = [];
   var yAxisLeft = this.linegraph.yAxisLeft;

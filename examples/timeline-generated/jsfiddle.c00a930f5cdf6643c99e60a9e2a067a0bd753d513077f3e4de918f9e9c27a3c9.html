@@ -42,17 +42,36 @@ div.vis-readonly.vis-selected {
 </p>
 
 <div id="visualization"></div>
-<p></p>
 <form>
-  Timeline.editable = {<br />
-  <input name="add" type="checkbox" checked="" />add<br />
-  <input name="remove" type="checkbox" checked="" />remove<br />
-  <input name="updateGroup" type="checkbox" />updateGroup<br />
-  <input name="updateTime" type="checkbox" checked="" />updateTime<br />
-  <input name="overrideItems" type="checkbox" />overrideItems<br />
+  Timeline.editable = {
+  <br />
+  <label>
+    <input name="add" type="checkbox" checked="" />
+    add
+  </label>
+  <br />
+  <label>
+    <input name="remove" type="checkbox" checked="" />
+    remove
+  </label>
+  <br />
+  <label>
+    <input name="updateGroup" type="checkbox" />
+    updateGroup
+  </label>
+  <br />
+  <label>
+    <input name="updateTime" type="checkbox" checked="" />
+    updateTime
+  </label>
+  <br />
+  <label>
+    <input name="overrideItems" type="checkbox" />
+    overrideItems
+  </label>
+  <br />
   }
 </form>
-<p></p>
 '
       />
       <input
@@ -60,7 +79,13 @@ div.vis-readonly.vis-selected {
         name="js"
         value='// create a DataSet with items
 var items = new vis.DataSet([
-  { id: 1, content: "Editable", editable: true, start: "2010-08-23", group: 1 },
+  {
+    id: 1,
+    content: "Editable",
+    editable: true,
+    start: "2010-08-23",
+    group: 1,
+  },
   {
     id: 2,
     content: "Editable",
@@ -83,7 +108,13 @@ var items = new vis.DataSet([
     end: "2010-09-02",
     group: 2,
   },
-  { id: 5, content: "Editable", editable: true, start: "2010-08-28", group: 1 },
+  {
+    id: 5,
+    content: "Editable",
+    editable: true,
+    start: "2010-08-28",
+    group: 1,
+  },
   {
     id: 6,
     content: "Read-only",

@@ -1,57 +1,59 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <!-- 
   This example is used mainly for developers to test performance issues by controlling number of groups, 
   number of items and their types.
  -->
 <html>
+  <head>
+    <title>Timeline | other | Stress Performance example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
 
-<head>
-  <title>Timeline | other | Stress Performance example</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-</head>
+  <body>
+    <div id="visualization"></div>
+  </body>
 
-<body>
-  <div id="visualization"></div>
-</body>
+  <script>
+    var now = moment();
+    var groupCount = 20;
+    var itemCount = 400;
 
-<script>
-  var now = moment();
-  var groupCount = 20;
-  var itemCount = 400;
+    // create a data set with groups
+    var groups = new vis.DataSet();
+    for (var g = 0; g < groupCount; g++) {
+      groups.add({
+        id: g,
+        content: "group " + g,
+      });
+    }
 
-  // create a data set with groups
-  var groups = new vis.DataSet();
-  for (var g = 0; g < groupCount; g++) {
-    groups.add({
-      id: g,
-      content: "group " + g
-    });
-  }
+    var types = ["point", "range", "box", "background"];
+    // create a dataset with items
+    var items = new vis.DataSet();
+    for (var i = 0; i < itemCount; i++) {
+      var start = now.clone().add(Math.random() * 180, "days");
+      var end = start.clone().add(Math.random() * 30, "days");
+      var group = Math.floor(Math.random() * groupCount);
+      items.add({
+        id: i,
+        type: types[Math.floor(Math.random() * types.length)],
+        group: group,
+        content: "" + i,
+        start: start,
+        end: end,
+      });
+    }
 
-  var types = ['point', 'range', 'box', 'background']
-  // create a dataset with items
-  var items = new vis.DataSet();
-  for (var i = 0; i < itemCount; i++) {
-    var start = now.clone().add(Math.random() * 180, 'days');
-    var end = start.clone().add(Math.random() * 30, 'days');
-    var group = Math.floor(Math.random() * groupCount);
-    items.add({
-      id: i,
-      type: types[Math.floor(Math.random() * types.length)],
-      group: group,
-      content: '' + i,
-      start: start,
-      end: end
-    });
-  }
+    // create visualization
+    var container = document.getElementById("visualization");
+    var options = {};
 
-  // create visualization
-  var container = document.getElementById('visualization');
-  var options = {};
-
-  var timeline = new vis.Timeline(container, items, groups, options);
-</script>
-
+    var timeline = new vis.Timeline(container, items, groups, options);
+  </script>
 </html>

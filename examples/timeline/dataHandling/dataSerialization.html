@@ -1,39 +1,46 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | dataHandling | Data serialization</title>
+  <head>
+    <title>Timeline | dataHandling | Data serialization</title>
 
-  <style>
-    body, html {
-      font-family: arial, sans-serif;
-      font-size: 11pt;
-    }
+    <style>
+      body,
+      html {
+        font-family: arial, sans-serif;
+        font-size: 11pt;
+      }
 
-    textarea {
-      width: 800px;
-      height: 200px;
-    }
+      textarea {
+        width: 800px;
+        height: 200px;
+      }
 
-    .buttons {
-      margin: 20px 0;
-    }
+      .buttons {
+        margin: 20px 0;
+      }
 
-    .buttons input {
-      padding: 10px;
-    }
-  </style>
+      .buttons input {
+        padding: 10px;
+      }
+    </style>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  
-</head>
-<body>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <h1>Serialization and deserialization</h1>
 
-<h1>Serialization and deserialization</h1>
+    <p>
+      This example shows how to serialize and deserialize JSON data, and load
+      this in the Timeline via a DataSet. Serialization and deserialization is
+      needed when loading or saving data from a server.
+    </p>
 
-<p>This example shows how to serialize and deserialize JSON data, and load this in the Timeline via a DataSet. Serialization and deserialization is needed when loading or saving data from a server.</p>
-
-<textarea id="data">
+    <textarea id="data">
 [
   {
     "id": 1,
@@ -68,81 +75,92 @@
     "start": "2014-01-01T06:00:00"
   }
 ]
-</textarea>
+</textarea
+    >
 
-<div class="buttons">
-  <input type="button" id="load" value="&darr; Load" title="Load data from textarea into the Timeline">
-  <input type="button" id="save" value="&uarr; Save" title="Save data from the Timeline into the textarea">
-</div>
+    <div class="buttons">
+      <input
+        type="button"
+        id="load"
+        value="&darr; Load"
+        title="Load data from textarea into the Timeline"
+      />
+      <input
+        type="button"
+        id="save"
+        value="&uarr; Save"
+        title="Save data from the Timeline into the textarea"
+      />
+    </div>
 
-<div id="visualization"></div>
+    <div id="visualization"></div>
 
-<script>
-  var txtData = document.getElementById('data');
-  var btnLoad = document.getElementById('load');
-  var btnSave = document.getElementById('save');
+    <script>
+      var txtData = document.getElementById("data");
+      var btnLoad = document.getElementById("load");
+      var btnSave = document.getElementById("save");
 
-  // Create an empty DataSet.
-  // This DataSet is used for two way data binding with the Timeline.
-  var items = new vis.DataSet();
+      // Create an empty DataSet.
+      // This DataSet is used for two way data binding with the Timeline.
+      var items = new vis.DataSet();
 
-  // create a timeline
-  var container = document.getElementById('visualization');
-  var options = {
-    editable: true
-  };
-  var timeline = new vis.Timeline(container, items, options);
+      // create a timeline
+      var container = document.getElementById("visualization");
+      var options = {
+        editable: true,
+      };
+      var timeline = new vis.Timeline(container, items, options);
 
-  function loadData () {
-    // get and deserialize the data
-    var data = JSON.parse(txtData.value);
+      function loadData() {
+        // get and deserialize the data
+        var data = JSON.parse(txtData.value);
 
-    // update the data in the DataSet
-    //
-    // Note: when retrieving updated data from a server instead of a complete
-    // new set of data, one can simply update the existing data like:
-    //
-    //   items.update(data);
-    //
-    // Existing items will then be updated, and new items will be added.
-    items.clear();
-    items.add(data);
+        // update the data in the DataSet
+        //
+        // Note: when retrieving updated data from a server instead of a complete
+        // new set of data, one can simply update the existing data like:
+        //
+        //   items.update(data);
+        //
+        // Existing items will then be updated, and new items will be added.
+        items.clear();
+        items.add(data);
 
-    // adjust the timeline window such that we see the loaded data
-    timeline.fit();
-  }
-  btnLoad.onclick = loadData;
-
-  function saveData() {
-    // get the data from the DataSet
-    //
-    // Note that we specify the output type of the fields start and end
-    // as "ISODate", which is safely serializable. Other serializable types
-    // are "Number" (unix timestamp), "ASPDate" or "String" (without timezone!).
-    //
-    // Alternatively, it is possible to configure the DataSet to convert
-    // the output automatically to ISODates like:
-    //
-    //   var options = {
-    //     type: {start: 'ISODate', end: 'ISODate'}
-    //   };
-    //   var items = new vis.DataSet(options);
-    //   // now items.get() will automatically convert start and end to ISO dates.
-    //
-    var data = items.get({
-      type: {
-        start: 'ISODate',
-        end: 'ISODate'
+        // adjust the timeline window such that we see the loaded data
+        timeline.fit();
       }
-    });
+      btnLoad.onclick = loadData;
 
-    // serialize the data and put it in the textarea
-    txtData.value = JSON.stringify(data, null, 2);
-  }
-  btnSave.onclick = saveData;
+      function saveData() {
+        // get the data from the DataSet
+        //
+        // Note that we specify the output type of the fields start and end
+        // as "ISODate", which is safely serializable. Other serializable types
+        // are "Number" (unix timestamp), "ASPDate" or "String" (without timezone!).
+        //
+        // Alternatively, it is possible to configure the DataSet to convert
+        // the output automatically to ISODates like:
+        //
+        //   var options = {
+        //     type: {start: 'ISODate', end: 'ISODate'}
+        //   };
+        //   var items = new vis.DataSet(options);
+        //   // now items.get() will automatically convert start and end to ISO dates.
+        //
+        var data = items.get({
+          type: {
+            start: "ISODate",
+            end: "ISODate",
+          },
+        });
 
-  // load the initial data
-  loadData();
-</script>
-</body>
+        // serialize the data and put it in the textarea
+        txtData.value = JSON.stringify(data, null, 2);
+      }
+      btnSave.onclick = saveData;
+
+      // load the initial data
+      loadData();
+    </script>
+  </body>
 </html>
