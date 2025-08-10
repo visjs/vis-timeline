@@ -67,6 +67,7 @@ jobs:
       - attach_workspace:
           at: ..
 
+      - run: npm run style
       - run: npm run lint
 
   test:
@@ -134,10 +135,9 @@ workflows:
             - prepare
             - build
 
-      # Enable when the code base is ready.
-      # - lint:
-      #     requires:
-      #       - prepare
+      - lint:
+          requires:
+            - prepare
 
       - test:
           requires:
@@ -149,7 +149,7 @@ workflows:
             - prepare
             - build
             - examples
-            # - lint
+            - lint
             - test
           filters:
             branches:
@@ -161,7 +161,7 @@ workflows:
             - prepare
             - build
             - examples
-            # - lint
+            - lint
             - test
           filters:
             branches:

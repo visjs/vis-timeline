@@ -1,64 +1,68 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
+  <head>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <meta content="utf-8" http-equiv="encoding" />
+    <title>Graph2d | Localization</title>
 
-<head>
-  <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
-  <meta content="utf-8" http-equiv="encoding">
-  <title>Graph2d | Localization</title>
+    <style type="text/css">
+      body,
+      html,
+      select {
+        font-family: sans-serif;
+        font-size: 11pt;
+      }
+    </style>
 
-  <style type="text/css">
-    body, html, select {
-      font-family: sans-serif;
-      font-size: 11pt;
-    }
-  </style>
+    <script src="../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <h2>Graph2d | Localization</h2>
 
-  <script src="../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<h2>Graph2d | Localization</h2>
+    <p>
+      <label for="locale">Select a locale:</label>
+      <select id="locale">
+        <option value="en" selected>en</option>
+        <option value="it">it</option>
+        <option value="fr">fr</option>
+        <option value="nl">nl</option>
+        <option value="de">de</option>
+      </select>
+    </p>
 
-<p>
-  <label for="locale">Select a locale:</label>
-  <select id="locale">
-    <option value="en" selected>en</option>
-    <option value="it">it</option>
-    <option value="fr">fr</option>
-    <option value="nl">nl</option>
-    <option value="de">de</option>
-  </select>
-</p>
+    <div id="visualization"></div>
 
-<div id="visualization"></div>
+    <script type="text/javascript">
+      var container = document.getElementById("visualization");
+      var items = [
+        { x: "2014-06-11", y: 10 },
+        { x: "2014-06-12", y: 25 },
+        { x: "2014-06-13", y: 30 },
+        { x: "2014-06-14", y: 10 },
+        { x: "2014-06-15", y: 15 },
+        { x: "2014-06-16", y: 30 },
+      ];
 
-<script type="text/javascript">
+      var dataset = new vis.DataSet(items);
+      var options = {
+        start: "2014-06-10",
+        end: "2014-06-18",
+      };
+      var graph2d = new vis.Graph2d(container, dataset, options);
 
-  var container = document.getElementById('visualization');
-  var items = [
-    {x: '2014-06-11', y: 10},
-    {x: '2014-06-12', y: 25},
-    {x: '2014-06-13', y: 30},
-    {x: '2014-06-14', y: 10},
-    {x: '2014-06-15', y: 15},
-    {x: '2014-06-16', y: 30}
-  ];
-
-  var dataset = new vis.DataSet(items);
-  var options = {
-    start: '2014-06-10',
-    end: '2014-06-18'
-  };
-  var graph2d = new vis.Graph2d(container, dataset, options);
-
-  // update the locale when changing the select box value
-  var select = document.getElementById('locale');
-  select.onchange = function () {
-    graph2d.setOptions({
-      locale: this.value
-    });
-  };
-  select.onchange();
-</script>
-</body>
+      // update the locale when changing the select box value
+      var select = document.getElementById("locale");
+      select.onchange = function () {
+        graph2d.setOptions({
+          locale: this.value,
+        });
+      };
+      select.onchange();
+    </script>
+  </body>
 </html>

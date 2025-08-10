@@ -10,15 +10,13 @@ jsdoc -c jsdoc.json -r -t docs -d gen/docs lib
 - `-d`: Generated html files put in `gen/docs`
 - Source files to parse are taken from directory `lib`
 
-
 ## Notes
 
 The template generation is set up so that:
 
-  - Files ending in `.tmpl` are skipped
-  - All non-html files are plain copied
-  - html-files *can* contain `<?js ?>` tags, but this is not required
-
+- Files ending in `.tmpl` are skipped
+- All non-html files are plain copied
+- html-files _can_ contain `<?js ?>` tags, but this is not required
 
 ## Intention
 
@@ -26,18 +24,17 @@ The `docs` directory is treated as a `jsdoc` template, in which the html-files a
 
 The added value of using `jsdoc` for documentation generation, is that the complete documentation information, as collected by `jsdoc` from the source, is available for usage. This way, it's possible to insert technical notes from the source code into the documentation.
 
-----
+---
 
 # Usage of and Notes on Source Code
 
 This section contains notes on the usage of `jsdoc` functionality, to aid with the handling of its generated data.
 
-
 ## Parameters of `publish()`
 
 ### Parameter `taffyData`
 
-  A table containing *all* data collected from the source code, related to jsdoc generation. See below for more info and example outputs.
+A table containing _all_ data collected from the source code, related to jsdoc generation. See below for more info and example outputs.
 
 ### Parameter `opt`
 
@@ -96,23 +93,22 @@ This contains addition info for the current execution of `jsdoc`. Example of `en
 }
 ```
 
-
 ## taffyData
 
-This is a parameter to `publish()`. It's a table containing *all* data collected from the source code, related to jsdoc generation.
+This is a parameter to `publish()`. It's a table containing _all_ data collected from the source code, related to jsdoc generation.
 
 I can't find any way to return a list of fields for the data items in the taffyDB docs, therefore below there are examples of items, for better understanding of usage.
 
 Example usage:
 
 ```js
-  var data = taffyData;
-  var tmp = data().filter({name:'Label'}).get();
+var data = taffyData;
+var tmp = data().filter({ name: "Label" }).get();
 ```
 
 Returns an array with all items with `name === 'Label'`. Example output of one of these items, for a class:
 
-*In these examples, block comment endings are redacted to ' * /'*
+_In these examples, block comment endings are redacted to ' _ /'\*
 
 ```js
 {
@@ -151,45 +147,53 @@ A Label to be used for Nodes or Edges.
 Example of item for an instance method:
 
 ```js
-  var tmp = data().filter({name:'_drawText'}).get();
+var tmp = data().filter({ name: "_drawText" }).get();
 ```
 
 Full output returned:
 
 ```js
-[{
-  "comment":"/**\n *\n * @param {CanvasRenderingContext2D} ctx\n * @param {boolean} selected\n * @param {boolean} hover\n * @param {number} x\n * @param {number} y\n * @param {string} [baseline='middle']\n * @private\n * /",
-  "meta":{
-    "range":[20060,22269],
-    "filename":"Label.js",
-    "lineno":652,
-    "columnno":2,
-    "path":"/home/wim/projects/github/vis/lib/network/modules/components/shared",
-    "code":{
-      "id":"astnode100066427",
-      "name":"Label#_drawText",
-      "type":"MethodDefinition",
-      "paramnames":["ctx","selected","hover","x","y","baseline"]
+[
+  {
+    comment:
+      "/**\n *\n * @param {CanvasRenderingContext2D} ctx\n * @param {boolean} selected\n * @param {boolean} hover\n * @param {number} x\n * @param {number} y\n * @param {string} [baseline='middle']\n * @private\n * /",
+    meta: {
+      range: [20060, 22269],
+      filename: "Label.js",
+      lineno: 652,
+      columnno: 2,
+      path: "/home/wim/projects/github/vis/lib/network/modules/components/shared",
+      code: {
+        id: "astnode100066427",
+        name: "Label#_drawText",
+        type: "MethodDefinition",
+        paramnames: ["ctx", "selected", "hover", "x", "y", "baseline"],
+      },
+      vars: { "": null },
     },
-    "vars":{"":null}
+    params: [
+      { type: { names: ["CanvasRenderingContext2D"] }, name: "ctx" },
+      { type: { names: ["boolean"] }, name: "selected" },
+      { type: { names: ["boolean"] }, name: "hover" },
+      { type: { names: ["number"] }, name: "x" },
+      { type: { names: ["number"] }, name: "y" },
+      {
+        type: { names: ["string"] },
+        optional: true,
+        defaultvalue: "'middle'",
+        name: "baseline",
+      },
+    ],
+    access: "private",
+    name: "_drawText",
+    longname: "Label#_drawText",
+    kind: "function",
+    memberof: "Label",
+    scope: "instance",
+    ___id: "T000002R005388",
+    ___s: true,
   },
-  "params":[
-    {"type":{"names":["CanvasRenderingContext2D"]},"name":"ctx"},
-    {"type":{"names":["boolean"]},"name":"selected"},
-    {"type":{"names":["boolean"]},"name":"hover"},
-    {"type":{"names":["number"]},"name":"x"},
-    {"type":{"names":["number"]},"name":"y"},
-    {"type":{"names":["string"]},"optional":true,"defaultvalue":"'middle'","name":"baseline"}
-  ],
-  "access":"private",
-  "name":"_drawText",
-  "longname":"Label#_drawText",
-  "kind":"function",
-  "memberof":"Label",
-  "scope":"instance",
-  "___id":"T000002R005388",
-  "___s":true
-}]
+];
 ```
 
 ## `jsdoc` template rendering
@@ -197,16 +201,16 @@ Full output returned:
 See `function createRenderer(fromDir, data)` in code for usage.
 
 There are two calls for rendering templates:
- 
-  - `var html = renderer.render(inFile, docData);`
-  - `var html = renderer.partial(inFile, docData);`
- 
+
+- `var html = renderer.render(inFile, docData);`
+- `var html = renderer.partial(inFile, docData);`
+
 The difference is that `render()` will use a default layout template, if present, which will encapsulate all html. This can be set by:
- 
+
 ```js
-  renderer.layout = 'path/to/default/layout.tmpl'; 
+renderer.layout = "path/to/default/layout.tmpl";
 ```
- 
+
 Parameter `docData` is a hash which is used to pass parameters into a template. The standard way of using this appear to be:
 
 ```
@@ -215,15 +219,15 @@ Parameter `docData` is a hash which is used to pass parameters into a template. 
   var self = this;
 ?>
 ```
- 
+
 But it also appear to be possible to use the elements of docData directly:
 
 ```js
 var docData = {
-  myTitle: 'Hello, pussycat!'
+  myTitle: "Hello, pussycat!",
 };
 ```
- 
+
 Within the template:
 
 ```

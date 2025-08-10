@@ -199,7 +199,10 @@
     "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
     "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
     "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
-    "lint": "eslint {lib,test}/**/*.{m,}{j,t}s{x,}",
+    "style": "prettier --check .",
+    "style-fix": "prettier --write .",
+    "lint": "eslint .",
+    "lint-fix": "eslint --fix .",
     "clean": "shx rm -rf \"{dist,esnext,peer,standalone,styles}/*\"",
     "contributors:update": "git-authors-cli",
     "preparepublish": "npm run contributors:update",
@@ -208,9 +211,15 @@
   },
   "lint-staged": {
     "*.{css,html,json,md,yml,yaml}": "prettier --write",
-    "*.{js,ts}": ["eslint --fix", "prettier --write"],
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     ".*.{css,html,json,md,yml,yaml}": "prettier --write",
-    ".*.{js,ts}": ["eslint --fix", "prettier --write"]
+    ".*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "volta": {
     "node": "24.5.0",
@@ -241,7 +250,7 @@
     "jsdom": "26.1.0",
     "jsdom-global": "3.0.2",
     "keycharm": "0.4.0",
-    "lint-staged": "16.1.2",
+    "lint-staged": "16.1.5",
     "mocha": "11.7.1",
     "moment": "2.30.1",
     "nyc": "17.1.0",
