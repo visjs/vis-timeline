@@ -211,9 +211,15 @@
   },
   "lint-staged": {
     "*.{css,html,json,md,yml,yaml}": "prettier --write",
-    "*.{js,ts}": ["eslint --fix", "prettier --write"],
+    "*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
     ".*.{css,html,json,md,yml,yaml}": "prettier --write",
-    ".*.{js,ts}": ["eslint --fix", "prettier --write"]
+    ".*.{js,ts}": [
+      "eslint --fix",
+      "prettier --write"
+    ]
   },
   "volta": {
     "node": "24.5.0",

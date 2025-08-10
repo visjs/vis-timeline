@@ -3,8 +3,8 @@
  * screenshot generator would just hang forever.
  */
 (() => {
-  window.alert = function() {};
-  window.confirm = function() {
+  window.alert = function () {};
+  window.confirm = function () {
     return true;
   };
 })();

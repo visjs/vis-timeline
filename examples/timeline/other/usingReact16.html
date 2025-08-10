@@ -1,23 +1,22 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
   <head>
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <title>Timeline | other | React 16 Components in templates</title>
 
     <meta name="example-screenshot-selector" content="#root" />
 
     <style>
-        .vis-item-visible-frame {
-            z-index: 111111;
-            position: absolute;
-            top: 0;
-        }
+      .vis-item-visible-frame {
+        z-index: 111111;
+        position: absolute;
+        top: 0;
+      }
     </style>
   </head>
   <body>
+    <div id="root"></div>
 
-    <div id='root'></div>
-    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react/16.4.2/umd/react.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.4.2/umd/react-dom.development.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.5.1/umd/react-dom-server.browser.development.js"></script>
@@ -25,127 +24,169 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.27.7/babel.min.js"></script>
 
     <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-    <link href="../../../styles/vis-timeline-graph2d.css" rel="stylesheet" type="text/css" />
-    
+    <link
+      href="../../../styles/vis-timeline-graph2d.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
     <script type="text/babel">
-        // create groups
-        var numberOfGroups = 25; 
-        var groups = new vis.DataSet()
-        for (var i = 0; i < numberOfGroups; i++) {
-            groups.add({
-              id: i,
-              content: 'Truck ' + i
-            })
-        }
-          
-        // create items
-        var numberOfItems = 1000;
-        window.items = new vis.DataSet();
-        var itemsPerGroup = Math.round(numberOfItems/numberOfGroups);
-        for (var truck = 0; truck < numberOfGroups; truck++) {
-            var date = new Date();
-            for (var order = 0; order < itemsPerGroup; order++) {
-              date.setHours(date.getHours() +  4 * (Math.random() < 0.2));
-              var start = new Date(date);
-              date.setHours(date.getHours() + 2 + Math.floor(Math.random()*4));
-              var end = new Date(date);
-              items.add({
-                id: order + itemsPerGroup * truck,
-                group: truck,
-                start: start,
-                end: end,
-                content: 'Order ' + order
-              });
-            }
-        }
+      // create groups
+      var numberOfGroups = 25;
+      var groups = new vis.DataSet();
+      for (var i = 0; i < numberOfGroups; i++) {
+        groups.add({
+          id: i,
+          content: "Truck " + i,
+        });
+      }
 
-        var GroupTemplate = (group) => {
-            return <div>
-                <label>{group.content}</label>
+      // create items
+      var numberOfItems = 1000;
+      window.items = new vis.DataSet();
+      var itemsPerGroup = Math.round(numberOfItems / numberOfGroups);
+      for (var truck = 0; truck < numberOfGroups; truck++) {
+        var date = new Date();
+        for (var order = 0; order < itemsPerGroup; order++) {
+          date.setHours(date.getHours() + 4 * (Math.random() < 0.2));
+          var start = new Date(date);
+          date.setHours(date.getHours() + 2 + Math.floor(Math.random() * 4));
+          var end = new Date(date);
+          items.add({
+            id: order + itemsPerGroup * truck,
+            group: truck,
+            start: start,
+            end: end,
+            content: "Order " + order,
+          });
+        }
+      }
+
+      var GroupTemplate = (group) => {
+        return (
+          <div>
+            <label>{group.content}</label>
+          </div>
+        );
+      };
+
+      class ItemTemplate extends React.Component {
+        constructor(props) {
+          super(props);
+        }
+        render() {
+          return (
+            <div>
+              <label>{this.props.item.content}</label>
+              <button
+                onClick={() => {
+                  return console.log("aaaaaa");
+                }}
+              >
+                aaaa
+              </button>
             </div>
+          );
         }
+      }
 
-        class ItemTemplate extends React.Component {
-            constructor(props){
-                super(props);
-            }
-            render() {
-                return <div>
-                    <label>{this.props.item.content}</label>
-                    <button onClick={()=> { return console.log('aaaaaa')}}>aaaa</button>
-                </div>
-            }
+      class VisibleFramTemplate extends React.Component {
+        constructor(props) {
+          super(props);
         }
-
-        class VisibleFramTemplate extends React.Component {
-            constructor(props){
-                super(props);
-            }
-            render() {
-                return <div>
-                    id: {this.props.item.id}
-                    <button onClick={()=> { return console.log('aaaaaa') }}>aaaa</button>
-                </div>
-            }
+        render() {
+          return (
+            <div>
+              id: {this.props.item.id}
+              <button
+                onClick={() => {
+                  return console.log("aaaaaa");
+                }}
+              >
+                aaaa
+              </button>
+            </div>
+          );
         }
+      }
 
-        // specify options
-        var options = {
-            orientation: 'top',
-            maxHeight: 400,
-            start: new Date(),
-            end: new Date(1000*60*60*24 + (new Date()).valueOf()),
-            editable: true,
-            onInitialDrawComplete: () => {
-                window.timeline.setItems(window.items)
-            },
-            template: function (item, element) {
-                if (!item) { return }                
+      // specify options
+      var options = {
+        orientation: "top",
+        maxHeight: 400,
+        start: new Date(),
+        end: new Date(1000 * 60 * 60 * 24 + new Date().valueOf()),
+        editable: true,
+        onInitialDrawComplete: () => {
+          window.timeline.setItems(window.items);
+        },
+        template: function (item, element) {
+          if (!item) {
+            return;
+          }
 
-                return ReactDOM.createPortal( ReactDOM.render( <ItemTemplate item={item} />, element ), element, () => { window.timeline.redraw()} );
-                
-                // Works too
-                // return ReactDOMServer.renderToString(<ItemTemplate item={item} />)
-                
-                // Kinda works
-                // ReactDOM.render(<ItemTemplate item={item} />, element );
-                // return '' 
+          return ReactDOM.createPortal(
+            ReactDOM.render(<ItemTemplate item={item} />, element),
+            element,
+            () => {
+              window.timeline.redraw();
             },
-           
-            groupTemplate: function (group, element) {
-                if (!group || !group.content) { return }
-                return ReactDOM.createPortal( ReactDOM.render( <GroupTemplate group={group} />, element ), element );
-            },
+          );
 
-            visibleFrameTemplate: function (item, element) {
-                if (!item || !element) { return }
-                if (element.className.indexOf('timeline-item-visible-frame') === -1) { return }
-                return ReactDOM.createPortal( ReactDOM.render( <VisibleFramTemplate item={item} />, element ), element );
-                
-            },
+          // Works too
+          // return ReactDOMServer.renderToString(<ItemTemplate item={item} />)
+
+          // Kinda works
+          // ReactDOM.render(<ItemTemplate item={item} />, element );
+          // return ''
+        },
+
+        groupTemplate: function (group, element) {
+          if (!group || !group.content) {
+            return;
+          }
+          return ReactDOM.createPortal(
+            ReactDOM.render(<GroupTemplate group={group} />, element),
+            element,
+          );
+        },
+
+        visibleFrameTemplate: function (item, element) {
+          if (!item || !element) {
+            return;
+          }
+          if (element.className.indexOf("timeline-item-visible-frame") === -1) {
+            return;
+          }
+          return ReactDOM.createPortal(
+            ReactDOM.render(<VisibleFramTemplate item={item} />, element),
+            element,
+          );
+        },
+      };
+
+      class Timeline extends React.Component {
+        componentDidMount() {
+          return initTimeline();
         }
-    
-        class Timeline extends React.Component {
-            componentDidMount() {
-                return initTimeline();
-            }
-            render() {
-                return <div>
-                    <h1>timline with React</h1>
-                    <h2>Using react components for items and group templates</h2>      
+        render() {
+          return (
+            <div>
+              <h1>timline with React</h1>
+              <h2>Using react components for items and group templates</h2>
 
-                    <div id="visualization"></div>
-                </div>
-            }
-        };
+              <div id="visualization"></div>
+            </div>
+          );
+        }
+      }
 
-        function initTimeline() {
-            var container = document.getElementById('visualization');
-            window.timeline = new vis.Timeline(container, items, groups, options);
-        } 
+      function initTimeline() {
+        var container = document.getElementById("visualization");
+        window.timeline = new vis.Timeline(container, items, groups, options);
+      }
 
-        ReactDOM.render(<Timeline />, document.getElementById('root'));
+      ReactDOM.render(<Timeline />, document.getElementById("root"));
     </script>
   </body>
 </html>

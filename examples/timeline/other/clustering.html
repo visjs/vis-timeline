@@ -1,252 +1,289 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | other | Clustering example</title>
+  <head>
+    <title>Timeline | other | Clustering example</title>
 
-  <style>
-    body, html {
-      font-family: arial, sans-serif;
-      font-size: 11pt;
-    }
-
-    #visualization {
-      box-sizing: border-box;
-      width: 100%;
-      height: 300px;
-    }
-
-    .vis-cluster{
-      min-width: 145px;
-    }
-
-    .cluster-header{
-      display: block;
-      font-weight: 600;
-    }
-
-    .slider-value {
-      border: 0;
-      background: transparent;
-    }
-
-  </style>
-
-  <!-- note: moment.js must be loaded before vis-timeline-graph2d or the embedded version of moment.js is used -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-  
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  <link href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<p>
-  This example demonstrate using clustering.
-</p>
-<button class="zoom" data-dir="1">Zoom in</button>
-<button class="zoom" data-dir="-1">Zoom out</button>
-<br>
-<label>
-  <input type="checkbox" id="clusterCheckbox">
-  Enable clustering
-</label>
-<br>
-<label>
-  <input type="checkbox" id="groupItemsCheckBox">
-  Enable grouping
-</label>
-<br>
-<br>
-
-<div>
-  <label for="total-days-number">Days number:</label>
-  <input class="slider-value" type="text" id="total-days-number" readonly/>
-  <div class="slider" id="total-days-slider"></div>
-</div>
-
-<div>
-    <label for="orders-per-day-number">Orders per day number:</label>
-    <input class="slider-value" type="text" id="orders-per-day-number" readonly/>
-    <div class="slider" id="orders-per-day-slider"></div>
-</div>
-<br>
-<div>
-    <label for="total-orders-count">Total orders:</label>
-    <input class="slider-value" type="text" id="total-orders-count" readonly/>
-</div>
-
-<br>
-<div id="visualization"></div>
-
-<script>
-  function getRandomArbitrary(min, max) {
-      return Math.round(Math.random() * (max - min) + min);
-  }
-
-  function getRandomSignum() {
-    return Math.round(Math.random()) ? 1 : -1;
-  }
-  
-  var names = ['Group 1', 'Group 2', 'Group 3', 'Group 4'];
-  var groups = new vis.DataSet();
-  var groupsCount = 0;
-  for (var i in names) {
-      var name = names[i];
-      groups.add({id: name, content: name});
-  }
-
-  function getTimelineData() {
-    const offsets = [];
-    const totalDaysCount = $( "#total-days-slider" ).slider( "value");
-    const itemsInClusterCount = $( "#orders-per-day-slider" ).slider( "value");
-
-    const before = [Array.from(new Array(Math.round(totalDaysCount / 2)),function (val,index) {return index - totalDaysCount + 1;})];
-    const after = [Array.from(new Array(Math.round(totalDaysCount / 2)),function(val,index) {return index + 1;})];
-
-    for (var i in before) {
-        var offset = before[i];
-        offsets.push(...offset);
-    }
-    
-    for (var i in after) {
-        var offset = after[i];
-        offsets.push(...offset);
-    }
-
-    const clusterCenters = [];
-    for (let offset of offsets) {
-        const date = moment().add('days', offset);
-        clusterCenters.push(date);
-    }
-
-    const timeLineData = [];
-    let nodeIndex = 0;
-    for (var i in clusterCenters) {
-      let clusterCenter= clusterCenters[i];	
-      for (let clusterNodeIdx = 0; clusterNodeIdx < itemsInClusterCount; ++clusterNodeIdx) {
-        const minutesShift = getRandomArbitrary(1, 60)*getRandomSignum();
-        const hoursShift = getRandomArbitrary(1, 5)*getRandomSignum();
-        const secondsShift = getRandomArbitrary(1, 60)*getRandomSignum();
-
-        const start = clusterCenter.clone()
-                    .add(+minutesShift, 'm')
-                    .add(+hoursShift, 'h')
-                    .add(+secondsShift, 's');
-
-        const end = start.clone().add(60, 'm');
-
-        ++nodeIndex;
-
-        const currentGroup = names[getRandomArbitrary(0, names.length - 1)];
-
-        timeLineData.push({
-          id: nodeIndex,
-          content: "Order: " + nodeIndex,
-          start: start.format('YYYY/MM/DD HH:mm:ss'),
-          end: end.format('YYYY/MM/DD HH:mm:ss'),
-          width: 50,
-          group: currentGroup
-        });
+    <style>
+      body,
+      html {
+        font-family: arial, sans-serif;
+        font-size: 11pt;
       }
-    }
-    return timeLineData;
-  }
 
-  
-  $('#groupItemsCheckBox').change(function() {
-    if(this.checked) {
-      timeline.setGroups(groups);
-    } else {
-      timeline.setGroups(null);
-    }
-  });
-
-  $( "#orders-per-day-slider" ).slider({
-      value: 10,
-      min: 1,
-      max: 1000,
-      slide: function( event, ui ) {
-        setTimeout(() => {
-          $( "#orders-per-day-number").val( ui.value );
-          timeLineData = getTimelineData();
-          $( "#total-orders-count" ).val(timeLineData.length);
-          timeline.setItems(timeLineData);
-        });
+      #visualization {
+        box-sizing: border-box;
+        width: 100%;
+        height: 300px;
       }
-  });
 
-  $( "#total-days-slider" ).slider({
-      value: 1,
-      min: 2,
-      max: 10,
-      step: 2,
-      slide: function( event, ui ) {
-        setTimeout(() => {
-          $( "#total-days-number").val( ui.value );
-          timeLineData = getTimelineData();
-          $( "#total-orders-count" ).val(timeLineData.length);
-          timeline.setItems(timeLineData);
-        });
+      .vis-cluster {
+        min-width: 145px;
       }
-  });
 
-  $( "#total-days-number" ).val($( "#total-days-slider" ).slider( "value" ) );
-  
-  $( "#orders-per-day-number" ).val( $( "#orders-per-day-slider" ).slider( "value" ) );
-
-  // create visualization
-  var container = document.getElementById('visualization');
-  var defaultOptions = {
-    stack: true,
-    maxHeight: 800,
-    height: 600,
-    groupOrder: 'content',  // groupOrder can be a property name or a sorting function,
-    template: (itemData, element, data) => {
-      if (data.isCluster) {
-        return `<span class="cluster-header">Cluster</span><div>containg ${data.items.length} items </div>`;
-      } else {
-        return `<div>${data.content}</div>`;
+      .cluster-header {
+        display: block;
+        font-weight: 600;
       }
-    },
-  };
 
-  var timeline = new vis.Timeline(container);
-  timeline.setOptions(defaultOptions);
+      .slider-value {
+        border: 0;
+        background: transparent;
+      }
+    </style>
 
-  var timeLineData = getTimelineData();
-  $( "#total-orders-count" ).val(timeLineData.length);
-  timeline.setItems(timeLineData);
+    <!-- note: moment.js must be loaded before vis-timeline-graph2d or the embedded version of moment.js is used -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  timeline.fit();
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
 
-  $(".zoom").on("click", function(){
-      var dir = $(this).data('dir');
-      var range = timeline.getWindow();
-      var interval = range.end - range.start;
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link
+      href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>This example demonstrate using clustering.</p>
+    <button class="zoom" data-dir="1">Zoom in</button>
+    <button class="zoom" data-dir="-1">Zoom out</button>
+    <br />
+    <label>
+      <input type="checkbox" id="clusterCheckbox" />
+      Enable clustering
+    </label>
+    <br />
+    <label>
+      <input type="checkbox" id="groupItemsCheckBox" />
+      Enable grouping
+    </label>
+    <br />
+    <br />
 
-      timeline.setWindow({
-          start: range.start.valueOf() - interval * dir * 0.2,
-          end:   range.end.valueOf()   + interval * dir * 0.2
+    <div>
+      <label for="total-days-number">Days number:</label>
+      <input class="slider-value" type="text" id="total-days-number" readonly />
+      <div class="slider" id="total-days-slider"></div>
+    </div>
+
+    <div>
+      <label for="orders-per-day-number">Orders per day number:</label>
+      <input
+        class="slider-value"
+        type="text"
+        id="orders-per-day-number"
+        readonly
+      />
+      <div class="slider" id="orders-per-day-slider"></div>
+    </div>
+    <br />
+    <div>
+      <label for="total-orders-count">Total orders:</label>
+      <input
+        class="slider-value"
+        type="text"
+        id="total-orders-count"
+        readonly
+      />
+    </div>
+
+    <br />
+    <div id="visualization"></div>
+
+    <script>
+      function getRandomArbitrary(min, max) {
+        return Math.round(Math.random() * (max - min) + min);
+      }
+
+      function getRandomSignum() {
+        return Math.round(Math.random()) ? 1 : -1;
+      }
+
+      var names = ["Group 1", "Group 2", "Group 3", "Group 4"];
+      var groups = new vis.DataSet();
+      var groupsCount = 0;
+      for (var i in names) {
+        var name = names[i];
+        groups.add({ id: name, content: name });
+      }
+
+      function getTimelineData() {
+        const offsets = [];
+        const totalDaysCount = $("#total-days-slider").slider("value");
+        const itemsInClusterCount = $("#orders-per-day-slider").slider("value");
+
+        const before = [
+          Array.from(
+            new Array(Math.round(totalDaysCount / 2)),
+            function (val, index) {
+              return index - totalDaysCount + 1;
+            },
+          ),
+        ];
+        const after = [
+          Array.from(
+            new Array(Math.round(totalDaysCount / 2)),
+            function (val, index) {
+              return index + 1;
+            },
+          ),
+        ];
+
+        for (var i in before) {
+          var offset = before[i];
+          offsets.push(...offset);
+        }
+
+        for (var i in after) {
+          var offset = after[i];
+          offsets.push(...offset);
+        }
+
+        const clusterCenters = [];
+        for (let offset of offsets) {
+          const date = moment().add("days", offset);
+          clusterCenters.push(date);
+        }
+
+        const timeLineData = [];
+        let nodeIndex = 0;
+        for (var i in clusterCenters) {
+          let clusterCenter = clusterCenters[i];
+          for (
+            let clusterNodeIdx = 0;
+            clusterNodeIdx < itemsInClusterCount;
+            ++clusterNodeIdx
+          ) {
+            const minutesShift = getRandomArbitrary(1, 60) * getRandomSignum();
+            const hoursShift = getRandomArbitrary(1, 5) * getRandomSignum();
+            const secondsShift = getRandomArbitrary(1, 60) * getRandomSignum();
+
+            const start = clusterCenter
+              .clone()
+              .add(+minutesShift, "m")
+              .add(+hoursShift, "h")
+              .add(+secondsShift, "s");
+
+            const end = start.clone().add(60, "m");
+
+            ++nodeIndex;
+
+            const currentGroup = names[getRandomArbitrary(0, names.length - 1)];
+
+            timeLineData.push({
+              id: nodeIndex,
+              content: "Order: " + nodeIndex,
+              start: start.format("YYYY/MM/DD HH:mm:ss"),
+              end: end.format("YYYY/MM/DD HH:mm:ss"),
+              width: 50,
+              group: currentGroup,
+            });
+          }
+        }
+        return timeLineData;
+      }
+
+      $("#groupItemsCheckBox").change(function () {
+        if (this.checked) {
+          timeline.setGroups(groups);
+        } else {
+          timeline.setGroups(null);
+        }
       });
-  });
 
-  $('#clusterCheckbox').change(function() {
-    var options = {};
-    if(this.checked) {
-    var clusterOpts = {
-      cluster: {
-        titleTemplate: "Cluster containing {count} events. Zoom in to see the individual events.",
-        showStipes: true,
-      }
-    };
-    Object.assign(options, defaultOptions, clusterOpts);
-    } else {
-    Object.assign(options, defaultOptions);
-    }
-    timeline.setOptions(options);
-  });
-</script>
-</body>
+      $("#orders-per-day-slider").slider({
+        value: 10,
+        min: 1,
+        max: 1000,
+        slide: function (event, ui) {
+          setTimeout(() => {
+            $("#orders-per-day-number").val(ui.value);
+            timeLineData = getTimelineData();
+            $("#total-orders-count").val(timeLineData.length);
+            timeline.setItems(timeLineData);
+          });
+        },
+      });
+
+      $("#total-days-slider").slider({
+        value: 1,
+        min: 2,
+        max: 10,
+        step: 2,
+        slide: function (event, ui) {
+          setTimeout(() => {
+            $("#total-days-number").val(ui.value);
+            timeLineData = getTimelineData();
+            $("#total-orders-count").val(timeLineData.length);
+            timeline.setItems(timeLineData);
+          });
+        },
+      });
+
+      $("#total-days-number").val($("#total-days-slider").slider("value"));
+
+      $("#orders-per-day-number").val(
+        $("#orders-per-day-slider").slider("value"),
+      );
+
+      // create visualization
+      var container = document.getElementById("visualization");
+      var defaultOptions = {
+        stack: true,
+        maxHeight: 800,
+        height: 600,
+        groupOrder: "content", // groupOrder can be a property name or a sorting function,
+        template: (itemData, element, data) => {
+          if (data.isCluster) {
+            return `<span class="cluster-header">Cluster</span><div>containg ${data.items.length} items </div>`;
+          } else {
+            return `<div>${data.content}</div>`;
+          }
+        },
+      };
+
+      var timeline = new vis.Timeline(container);
+      timeline.setOptions(defaultOptions);
+
+      var timeLineData = getTimelineData();
+      $("#total-orders-count").val(timeLineData.length);
+      timeline.setItems(timeLineData);
+
+      timeline.fit();
+
+      $(".zoom").on("click", function () {
+        var dir = $(this).data("dir");
+        var range = timeline.getWindow();
+        var interval = range.end - range.start;
+
+        timeline.setWindow({
+          start: range.start.valueOf() - interval * dir * 0.2,
+          end: range.end.valueOf() + interval * dir * 0.2,
+        });
+      });
+
+      $("#clusterCheckbox").change(function () {
+        var options = {};
+        if (this.checked) {
+          var clusterOpts = {
+            cluster: {
+              titleTemplate:
+                "Cluster containing {count} events. Zoom in to see the individual events.",
+              showStipes: true,
+            },
+          };
+          Object.assign(options, defaultOptions, clusterOpts);
+        } else {
+          Object.assign(options, defaultOptions);
+        }
+        timeline.setOptions(options);
+      });
+    </script>
+  </body>
 </html>

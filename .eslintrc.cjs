@@ -3,22 +3,20 @@ module.exports = {
     browser: true,
     es6: true,
     node: true,
-    mocha: true
+    mocha: true,
   },
 
   parser: "@typescript-eslint/parser", // TODO: We only need this to parse newer JS syntax, since there is no TS here, when we update to ESLint 9, the default parser will suffice.
   parserOptions: {
     sourceType: "module",
-    "ecmaVersion": 2024
+    ecmaVersion: 2024,
   },
 
   plugins: ["prettier"],
 
   extends: "eslint:recommended",
 
-  ignorePatterns: [
-    "types/*.*"
-  ],
+  ignorePatterns: ["types/*.*"],
 
   // For the full list of rules, see: http://eslint.org/docs/rules/
   rules: {
@@ -31,20 +29,26 @@ module.exports = {
     // To flag presence of console.log without breaking linting:
     //"no-console": ["warn", { allow: ["warn", "error"] }],
 
-    "require-jsdoc": ["error", {
+    "require-jsdoc": [
+      "error",
+      {
         require: {
           FunctionDeclaration: true,
           MethodDefinition: true,
           ClassDeclaration: true,
-          ArrowFunctionExpression: false
-        }
-    }],
-    "valid-jsdoc": [2, {
-      requireReturnDescription: false,
-      requireReturn: false,
-      requireParamDescription: false,
-      requireReturnType: true
-    }],
+          ArrowFunctionExpression: false,
+        },
+      },
+    ],
+    "valid-jsdoc": [
+      2,
+      {
+        requireReturnDescription: false,
+        requireReturn: false,
+        requireParamDescription: false,
+        requireReturnType: true,
+      },
+    ],
     "guard-for-in": 1,
   },
 
@@ -55,4 +59,4 @@ module.exports = {
       extends: ["prettier"],
     },
   ],
-}
+};

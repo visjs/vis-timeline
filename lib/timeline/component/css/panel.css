@@ -23,11 +23,12 @@
   overflow: hidden;
 }
 
-.vis-left.vis-panel.vis-vertical-scroll, .vis-right.vis-panel.vis-vertical-scroll {
+.vis-left.vis-panel.vis-vertical-scroll,
+.vis-right.vis-panel.vis-vertical-scroll {
   height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
-} 
+}
 
 .vis-left.vis-panel.vis-vertical-scroll {
   direction: rtl;
@@ -64,7 +65,7 @@
   position: absolute;
   width: 100%;
   height: 1px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.8);
   /* TODO: find a nice way to ensure vis-shadows are drawn on top of items
   z-index: 1;
   */
