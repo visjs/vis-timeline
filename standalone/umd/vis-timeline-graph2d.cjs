@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-09-15T15:46:36.194Z
+ * @date    2025-09-15T17:38:30.555Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -23627,10 +23627,7 @@
   const randomUUID = typeof crypto !== 'undefined' && crypto.randomUUID && crypto.randomUUID.bind(crypto);
   var native = { randomUUID };
 
-  function v4(options, buf, offset) {
-      if (native.randomUUID && true && !options) {
-          return native.randomUUID();
-      }
+  function _v4(options, buf, offset) {
       options = options || {};
       const rnds = options.random ?? options.rng?.() ?? rng();
       if (rnds.length < 16) {
@@ -23639,6 +23636,12 @@
       rnds[6] = (rnds[6] & 0x0f) | 0x40;
       rnds[8] = (rnds[8] & 0x3f) | 0x80;
       return unsafeStringify(rnds);
+  }
+  function v4(options, buf, offset) {
+      if (native.randomUUID && true && !options) {
+          return native.randomUUID();
+      }
+      return _v4(options);
   }
 
   function ownKeys$1(e, r) { var t = _Object$keys(e); if (_Object$getOwnPropertySymbols) { var o = _Object$getOwnPropertySymbols(e); r && (o = _filterInstanceProperty(o).call(o, function (r) { return _Object$getOwnPropertyDescriptor(e, r).enumerable; })), t.push.apply(t, o); } return t; }
