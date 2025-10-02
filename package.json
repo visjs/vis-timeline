@@ -251,7 +251,7 @@
     "jsdom-global": "3.0.2",
     "keycharm": "0.4.0",
     "lint-staged": "16.2.3",
-    "mocha": "11.7.3",
+    "mocha": "11.7.4",
     "moment": "2.30.1",
     "nyc": "17.1.0",
     "propagating-hammerjs": "3.0.0",
