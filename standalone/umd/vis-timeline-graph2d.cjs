@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-11-05T06:18:38.276Z
+ * @date    2025-11-07T18:50:35.558Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -6962,6 +6962,131 @@
   }
 
   requireRu();
+
+  var tr$2 = {exports: {}};
+
+  var tr$1 = tr$2.exports;
+
+  var hasRequiredTr;
+
+  function requireTr () {
+  	if (hasRequiredTr) return tr$2.exports;
+  	hasRequiredTr = 1;
+  	(function (module, exports) {
+  (function (global, factory) {
+  		   typeof commonjsRequire === 'function' ? factory(requireMoment()) :
+  		   factory(global.moment);
+  		}(tr$1, (function (moment) {
+  		    //! moment.js locale configuration
+
+  		    var suffixes = {
+  		        1: "'inci",
+  		        5: "'inci",
+  		        8: "'inci",
+  		        70: "'inci",
+  		        80: "'inci",
+  		        2: "'nci",
+  		        7: "'nci",
+  		        20: "'nci",
+  		        50: "'nci",
+  		        3: "'üncü",
+  		        4: "'üncü",
+  		        100: "'üncü",
+  		        6: "'ncı",
+  		        9: "'uncu",
+  		        10: "'uncu",
+  		        30: "'uncu",
+  		        60: "'ıncı",
+  		        90: "'ıncı",
+  		    };
+
+  		    var tr = moment.defineLocale('tr', {
+  		        months: 'Ocak_Şubat_Mart_Nisan_Mayıs_Haziran_Temmuz_Ağustos_Eylül_Ekim_Kasım_Aralık'.split(
+  		            '_'
+  		        ),
+  		        monthsShort: 'Oca_Şub_Mar_Nis_May_Haz_Tem_Ağu_Eyl_Eki_Kas_Ara'.split('_'),
+  		        weekdays: 'Pazar_Pazartesi_Salı_Çarşamba_Perşembe_Cuma_Cumartesi'.split(
+  		            '_'
+  		        ),
+  		        weekdaysShort: 'Paz_Pzt_Sal_Çar_Per_Cum_Cmt'.split('_'),
+  		        weekdaysMin: 'Pz_Pt_Sa_Ça_Pe_Cu_Ct'.split('_'),
+  		        meridiem: function (hours, minutes, isLower) {
+  		            if (hours < 12) {
+  		                return isLower ? 'öö' : 'ÖÖ';
+  		            } else {
+  		                return isLower ? 'ös' : 'ÖS';
+  		            }
+  		        },
+  		        meridiemParse: /öö|ÖÖ|ös|ÖS/,
+  		        isPM: function (input) {
+  		            return input === 'ös' || input === 'ÖS';
+  		        },
+  		        longDateFormat: {
+  		            LT: 'HH:mm',
+  		            LTS: 'HH:mm:ss',
+  		            L: 'DD.MM.YYYY',
+  		            LL: 'D MMMM YYYY',
+  		            LLL: 'D MMMM YYYY HH:mm',
+  		            LLLL: 'dddd, D MMMM YYYY HH:mm',
+  		        },
+  		        calendar: {
+  		            sameDay: '[bugün saat] LT',
+  		            nextDay: '[yarın saat] LT',
+  		            nextWeek: '[gelecek] dddd [saat] LT',
+  		            lastDay: '[dün] LT',
+  		            lastWeek: '[geçen] dddd [saat] LT',
+  		            sameElse: 'L',
+  		        },
+  		        relativeTime: {
+  		            future: '%s sonra',
+  		            past: '%s önce',
+  		            s: 'birkaç saniye',
+  		            ss: '%d saniye',
+  		            m: 'bir dakika',
+  		            mm: '%d dakika',
+  		            h: 'bir saat',
+  		            hh: '%d saat',
+  		            d: 'bir gün',
+  		            dd: '%d gün',
+  		            w: 'bir hafta',
+  		            ww: '%d hafta',
+  		            M: 'bir ay',
+  		            MM: '%d ay',
+  		            y: 'bir yıl',
+  		            yy: '%d yıl',
+  		        },
+  		        ordinal: function (number, period) {
+  		            switch (period) {
+  		                case 'd':
+  		                case 'D':
+  		                case 'Do':
+  		                case 'DD':
+  		                    return number;
+  		                default:
+  		                    if (number === 0) {
+  		                        // special case for zero
+  		                        return number + "'ıncı";
+  		                    }
+  		                    var a = number % 10,
+  		                        b = (number % 100) - a,
+  		                        c = number >= 100 ? 100 : null;
+  		                    return number + (suffixes[a] || suffixes[b] || suffixes[c]);
+  		            }
+  		        },
+  		        week: {
+  		            dow: 1, // Monday is the first day of the week.
+  		            doy: 7, // The week that contains Jan 7th is the first week of the year.
+  		        },
+  		    });
+
+  		    return tr;
+
+  		}))); 
+  	} ());
+  	return tr$2.exports;
+  }
+
+  requireTr();
 
   var uk$2 = {exports: {}};
 
@@ -31235,6 +31360,14 @@
   const pt_BR = pt;
   const pt_PT = pt;
 
+  // Turkish
+  const tr = {
+    current: "güncel",
+    time: "zaman",
+    deleteSelected: "Seçileni sil"
+  };
+  const tr_TR = tr;
+
   // Japanese
   const ja = {
     current: "現在",
@@ -31295,6 +31428,8 @@
     pt,
     pt_BR,
     pt_PT,
+    tr,
+    tr_TR,
     ja,
     ja_JP,
     lt,
