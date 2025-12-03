@@ -9,7 +9,7 @@ The Timeline/Graph2D is an interactive visualization chart to visualize data in 
 [![GitHub contributors](https://img.shields.io/github/contributors/visjs/vis-timeline.svg)](https://github.com/visjs/vis-timeline/graphs/contributors)
 [![GitHub stars](https://img.shields.io/github/stars/visjs/vis-timeline.svg)](https://github.com/almende/vis/stargazers)
 
-[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors) 
+[![Backers on Open Collective](https://opencollective.com/visjs/backers/badge.svg)](#backers) [![Sponsors on Open Collective](https://opencollective.com/visjs/sponsors/badge.svg)](#sponsors)
 
 ## Install
 
@@ -26,41 +26,48 @@ of the project.
 ```html
 <!doctype html>
 <html>
-<head>
-  <title>Timeline</title>
-  <script type="text/javascript" src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-  <style type="text/css">
-    #visualization {
-      width: 600px;
-      height: 400px;
-      border: 1px solid lightgray;
-    }
-  </style>
-</head>
-<body>
-<div id="visualization"></div>
-<script type="text/javascript">
-  // DOM element where the Timeline will be attached
-  var container = document.getElementById('visualization');
+  <head>
+    <title>Timeline</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"
+    ></script>
+    <link
+      href="https://unpkg.com/vis-timeline@latest/styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style type="text/css">
+      #visualization {
+        width: 600px;
+        height: 400px;
+        border: 1px solid lightgray;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="visualization"></div>
+    <script type="text/javascript">
+      // DOM element where the Timeline will be attached
+      var container = document.getElementById("visualization");
 
-  // Create a DataSet (allows two way data-binding)
-  var items = new vis.DataSet([
-    {id: 1, content: 'item 1', start: '2014-04-20'},
-    {id: 2, content: 'item 2', start: '2014-04-14'},
-    {id: 3, content: 'item 3', start: '2014-04-18'},
-    {id: 4, content: 'item 4', start: '2014-04-16', end: '2014-04-19'},
-    {id: 5, content: 'item 5', start: '2014-04-25'},
-    {id: 6, content: 'item 6', start: '2014-04-27', type: 'point'}
-  ]);
+      // Create a DataSet (allows two way data-binding)
+      var items = new vis.DataSet([
+        { id: 1, content: "item 1", start: "2014-04-20" },
+        { id: 2, content: "item 2", start: "2014-04-14" },
+        { id: 3, content: "item 3", start: "2014-04-18" },
+        { id: 4, content: "item 4", start: "2014-04-16", end: "2014-04-19" },
+        { id: 5, content: "item 5", start: "2014-04-25" },
+        { id: 6, content: "item 6", start: "2014-04-27", type: "point" },
+      ]);
 
-  // Configuration for the Timeline
-  var options = {};
+      // Configuration for the Timeline
+      var options = {};
 
-  // Create a Timeline
-  var timeline = new vis.Timeline(container, items, options);
-</script>
-</body>
+      // Create a Timeline
+      var timeline = new vis.Timeline(container, items, options);
+    </script>
+  </body>
 </html>
 ```
 
@@ -202,7 +209,7 @@ Support this project by becoming a sponsor. Your logo will show up here with a l
 ## License
 
 Copyright (c) 2014-2017 Almende B.V. and contributors
-Copyright (c) 2017-2019 vis.js contributors
+Copyright (c) 2017-2025 vis.js contributors
 
 This work is dual-licensed under [Apache-2.0](./LICENSE.Apache-2.0.txt) and [MIT](./LICENSE.MIT.txt).
 You can choose between one of them if you use this work.

@@ -1,50 +1,60 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | markers | Markers example</title>
+  <head>
+    <title>Timeline | markers | Markers example</title>
 
-  <style type="text/css">
-    body, html {
-      font-family: sans-serif;
-      font-size: 11pt;
-    }
-  </style>
+    <style type="text/css">
+      body,
+      html {
+        font-family: sans-serif;
+        font-size: 11pt;
+      }
+    </style>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>
+      The Timeline has a function to add multiple custom time markers which can
+      be dragged by the user.
+    </p>
+    <p>
+      In this example, you can add new markers by double-clicking the timeline
+      below and delete the markers by double-clicking it.
+    </p>
+    <p>
+      <input type="text" id="markerText" placeholder="marker text" />
+    </p>
 
-</head>
-<body>
+    <div id="visualization"></div>
 
-<p>The Timeline has a function to add multiple custom time markers which can be dragged by the user.</p>
-<p>In this example, you can add new markers by double-clicking the timeline below and delete the markers by double-clicking it.</p>
-<p>
-  <input type="text" id="markerText" placeholder="marker text">
-</p>
+    <script type="text/javascript">
+      var container = document.getElementById("visualization");
+      var items = new vis.DataSet();
+      var customDate = new Date();
+      var options = {
+        start: new Date(Date.now() - 1000 * 60 * 60 * 24),
+        end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6),
+      };
+      var timeline = new vis.Timeline(container, items, options);
 
-<div id="visualization"></div>
-
-<script type="text/javascript">
-  var container = document.getElementById('visualization');
-  var items = new vis.DataSet();
-  var customDate = new Date();
-  var options = {
-    start: new Date(Date.now() - 1000 * 60 * 60 * 24),
-    end: new Date(Date.now() + 1000 * 60 * 60 * 24 * 6)
-  };
-  var timeline = new vis.Timeline(container, items, options);
-
-  timeline.on('doubleClick', function (properties) {
-    var eventProps = timeline.getEventProperties(properties.event);
-    if (eventProps.what === 'custom-time') {
-      timeline.removeCustomTime(eventProps.customTime);
-    } else {
-      var id = new Date().getTime();
-      var markerText = document.getElementById('markerText').value || undefined;
-      timeline.addCustomTime(eventProps.time, id);
-      timeline.setCustomTimeMarker(markerText, id);
-    }
-  });
-</script>
-</body>
+      timeline.on("doubleClick", function (properties) {
+        var eventProps = timeline.getEventProperties(properties.event);
+        if (eventProps.what === "custom-time") {
+          timeline.removeCustomTime(eventProps.customTime);
+        } else {
+          var id = new Date().getTime();
+          var markerText =
+            document.getElementById("markerText").value || undefined;
+          timeline.addCustomTime(eventProps.time, id);
+          timeline.setCustomTimeMarker(markerText, id);
+        }
+      });
+    </script>
+  </body>
 </html>

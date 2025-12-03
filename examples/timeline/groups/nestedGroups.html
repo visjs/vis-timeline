@@ -1,113 +1,117 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | groups | Nested Groups example</title>
+  <head>
+    <title>Timeline | groups | Nested Groups example</title>
 
-  <style>
-    body, html {
-      font-family: arial, sans-serif;
-      font-size: 11pt;
-    }
+    <style>
+      body,
+      html {
+        font-family: arial, sans-serif;
+        font-size: 11pt;
+      }
 
-    #visualization {
-      box-sizing: border-box;
-      width: 100%;
-      height: 300px;
-    }
-  </style>
+      #visualization {
+        box-sizing: border-box;
+        width: 100%;
+        height: 300px;
+      }
+    </style>
 
-  <!-- note: moment.js must be loaded before vis-timeline-graph2d or the embedded version of moment.js is used -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- note: moment.js must be loaded before vis-timeline-graph2d or the embedded version of moment.js is used -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
 
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-</head>
-<body>
-<p>
-  This example demonstrate using groups. Note that a DataSet is used for both
-  items and groups, allowing to dynamically add, update or remove both items
-  and groups via the DataSet.
-</p>
-<div id="visualization"></div>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <p>
+      This example demonstrate using groups. Note that a DataSet is used for
+      both items and groups, allowing to dynamically add, update or remove both
+      items and groups via the DataSet.
+    </p>
+    <div id="visualization"></div>
 
-<script>
-  var now = moment().minutes(0).seconds(0).milliseconds(0);
-  var itemCount = 60;
+    <script>
+      var now = moment().minutes(0).seconds(0).milliseconds(0);
+      var itemCount = 60;
 
-  // create a data set with groups
-  var groups = new vis.DataSet();
+      // create a data set with groups
+      var groups = new vis.DataSet();
 
-  groups.add([
-    {
-      id: 1,
-      content: "Lee",
-      nestedGroups: [11,12,13]
-    },
-    {
-      id: 2,
-      content: "invisible group",
-      visible: false
-    },
-    {
-      id: 3,
-      content: "John",
-      nestedGroups: [14],
-      showNested: false
-    },
-    {
-      id: 4,
-      content: "Alson"
-    },
+      groups.add([
+        {
+          id: 1,
+          content: "Lee",
+          nestedGroups: [11, 12, 13],
+        },
+        {
+          id: 2,
+          content: "invisible group",
+          visible: false,
+        },
+        {
+          id: 3,
+          content: "John",
+          nestedGroups: [14],
+          showNested: false,
+        },
+        {
+          id: 4,
+          content: "Alson",
+        },
+      ]);
 
-  ]);
+      groups.add([
+        {
+          id: 11,
+          content: "cook",
+        },
+        {
+          id: 12,
+          content: "shop",
+        },
+        {
+          id: 13,
+          content: "clean house",
+        },
+        {
+          id: 14,
+          content: "wash dishes",
+        },
+      ]);
 
-  groups.add([
-    {
-      id: 11,
-      content: "cook",
-    },
-    {
-      id: 12,
-      content: "shop",
-    },
-    {
-      id: 13,
-      content: "clean house",
-    },
-    {
-      id: 14,
-      content: "wash dishes",
-    }
-  ]);
+      // create a dataset with items
+      var items = new vis.DataSet();
+      var groupIds = groups.getIds();
+      var types = ["box", "point", "range", "background"];
+      for (var i = 0; i < itemCount; i++) {
+        var start = now.clone().add(Math.random() * 200, "hours");
+        var end = start.clone().add(2, "hours");
+        var randomGroupId =
+          groupIds[Math.floor(Math.random() * groupIds.length)];
+        var type = types[Math.floor(4 * Math.random())];
 
-  // create a dataset with items
-  var items = new vis.DataSet();
-  var groupIds = groups.getIds();
-    var types = [ 'box', 'point', 'range', 'background']
-  for (var i = 0; i < itemCount; i++) {
-    var start = now.clone().add(Math.random() * 200, 'hours');
-    var end = start.clone().add(2, 'hours');
-    var randomGroupId = groupIds[Math.floor(Math.random() * groupIds.length)];
-    var type = types[Math.floor(4 * Math.random())]
+        items.add({
+          id: i,
+          group: randomGroupId,
+          content: "item " + i,
+          start: start,
+          end: end,
+          type: type,
+        });
+      }
 
-    items.add({
-      id: i,
-      group: randomGroupId,
-      content: 'item ' + i,
-      start: start,
-      end: end,
-      type: type
-    });
-  }
+      // create visualization
+      var container = document.getElementById("visualization");
+      var options = {
+        groupOrder: "content", // groupOrder can be a property name or a sorting function
+      };
 
-  // create visualization
-  var container = document.getElementById('visualization');
-  var options = {
-    groupOrder: 'content'  // groupOrder can be a property name or a sorting function
-  };
-
-  var timeline = new vis.Timeline(container, items, groups, options);
-
-</script>
-</body>
+      var timeline = new vis.Timeline(container, items, groups, options);
+    </script>
+  </body>
 </html>

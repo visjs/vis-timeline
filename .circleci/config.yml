@@ -3,7 +3,7 @@ version: 2.1
 executors:
   node:
     docker:
-      - image: cimg/node:21.6.0-browsers
+      - image: cimg/node:24.11.1-browsers
     working_directory: ~/repo
     environment:
       GIT_AUTHOR_EMAIL: visjsbot@gmail.com
@@ -21,51 +21,53 @@ jobs:
       - run: npm ci
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "*"
+            - ".cache"
+            - "repo"
 
   build:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run build
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "declarations"
-            - "dist"
-            - "esnext"
-            - "peer"
-            - "standalone"
-            - "styles"
-            - "types"
+            - "repo/declarations"
+            - "repo/dist"
+            - "repo/esnext"
+            - "repo/peer"
+            - "repo/standalone"
+            - "repo/styles"
+            - "repo/types"
 
   examples:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run: npm run generate-examples-index
 
       - persist_to_workspace:
-          root: .
+          root: ..
           paths:
-            - "examples"
+            - "repo/examples"
 
   lint:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
+      - run: npm run style
       - run: npm run lint
 
   test:
@@ -73,16 +75,16 @@ jobs:
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
-      - run: npm run test-cov
+      - run: npm run test
 
   gh_pages:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run:
           name: Set Git credentials
@@ -94,14 +96,18 @@ jobs:
       - run:
           name: Publish GitHub Pages
           command: |
-            npx gh-pages --dist . --message "chore: update to $(git rev-parse HEAD) [ci skip]" --repo "$(node -e 'process.stdout.write(require("./package.json").repository.url)')" --src '{{coverage,dist,docs,esnext,examples,peer,standalone,styles,types}/**/*,LICENSE*,*.{html,md}}'
+            npx gh-pages \
+              --dist . \
+              --message "chore: update to $(git rev-parse HEAD) [ci skip]" \
+              --repo "$(node -e 'process.stdout.write(require("./package.json").repository.url.replace(/^git\+https:\/\//, "https://"))')" \
+              --src '{{coverage,dist,docs,esnext,examples,peer,standalone,styles,types}/**/*,LICENSE*,*.{html,md}}'
 
   release:
     executor: node
 
     steps:
       - attach_workspace:
-          at: .
+          at: ..
 
       - run:
           name: Prepare NPM
@@ -129,10 +135,9 @@ workflows:
             - prepare
             - build
 
-      # Enable when the code base is ready.
-      # - lint:
-      #     requires:
-      #       - prepare
+      - lint:
+          requires:
+            - prepare
 
       - test:
           requires:
@@ -144,7 +149,7 @@ workflows:
             - prepare
             - build
             - examples
-            # - lint
+            - lint
             - test
           filters:
             branches:
@@ -156,7 +161,7 @@ workflows:
             - prepare
             - build
             - examples
-            # - lint
+            - lint
             - test
           filters:
             branches:

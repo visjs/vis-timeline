@@ -1,4 +1,3 @@
-
 .vis-panel.vis-background.vis-horizontal .vis-grid.vis-horizontal {
   position: absolute;
   width: 100%;
@@ -14,7 +13,6 @@
   border-color: #bfbfbf;
 }
 
-
 .vis-data-axis .vis-y-axis.vis-major {
   width: 100%;
   position: absolute;
@@ -29,7 +27,6 @@
   visibility: hidden;
   width: auto;
 }
-
 
 .vis-data-axis .vis-y-axis.vis-minor {
   position: absolute;
@@ -99,5 +96,5 @@
 .vis-legend-text {
   /*font-size: 10px;*/
   white-space: nowrap;
-  display: inline-block
+  display: inline-block;
 }

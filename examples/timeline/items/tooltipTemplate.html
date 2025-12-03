@@ -1,49 +1,54 @@
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
-<head>
-  <title>Timeline | items | Tooltip Template</title>
+  <head>
+    <title>Timeline | items | Tooltip Template</title>
 
-  <style type="text/css">
-    body, html {
-      font-family: sans-serif;
-      max-width: 800px;
-    }
-  </style>
-
-  <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
-  <link href="../../../styles/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" />
-
-</head>
-<body>
-
-<h1>Tooltip Templates</h1>
-
-<div id="visualization"></div>
-<script type="text/javascript">
-  var items = new vis.DataSet([{
-    id: 1,
-    content: 'Item with custom tooltip',
-    start: '2016-01-02',
-    end: '2016-01-03',
-    title: 'IN_PROGRESS'
-  }]);
-
-  var options = {
-    start: '2016-01-01',
-    end: '2016-01-04',
-    tooltip: {
-      template: function(originalItemData, parsedItemData) {
-        var color = originalItemData.title == 'IN_PROGRESS' ? 'red' : 'green';
-        return `<span style="color:${color}">${originalItemData.title}</span>`;
+    <style type="text/css">
+      body,
+      html {
+        font-family: sans-serif;
+        max-width: 800px;
       }
-    }
-  };
+    </style>
 
-  var element = document.getElementById('visualization');
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+  </head>
+  <body>
+    <h1>Tooltip Templates</h1>
 
-  // Timeline object
-  var timelineTooltips = new vis.Timeline(element, items, options);
-</script>
+    <div id="visualization"></div>
+    <script type="text/javascript">
+      var items = new vis.DataSet([
+        {
+          id: 1,
+          content: "Item with custom tooltip",
+          start: "2016-01-02",
+          end: "2016-01-03",
+          title: "IN_PROGRESS",
+        },
+      ]);
 
-</body>
+      var options = {
+        start: "2016-01-01",
+        end: "2016-01-04",
+        tooltip: {
+          template: function (originalItemData, parsedItemData) {
+            var color =
+              originalItemData.title == "IN_PROGRESS" ? "red" : "green";
+            return `<span style="color:${color}">${originalItemData.title}</span>`;
+          },
+        },
+      };
+
+      var element = document.getElementById("visualization");
+
+      // Timeline object
+      var timelineTooltips = new vis.Timeline(element, items, options);
+    </script>
+  </body>
 </html>
