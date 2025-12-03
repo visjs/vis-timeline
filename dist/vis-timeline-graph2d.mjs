@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-11-27T18:08:55.231Z
+ * @date    2025-12-03T11:12:14.094Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -31244,7 +31244,7 @@ const fr_BE = fr;
 
 // Espanol
 const es = {
-  current: "corriente",
+  current: "actual",
   time: "hora",
   deleteSelected: "Eliminar selecci\u00f3n"
 };
