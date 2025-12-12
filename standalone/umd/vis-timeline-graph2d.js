@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2025-12-11T05:38:13.466Z
+ * @date    2025-12-12T13:40:29.211Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -31308,6 +31308,7 @@
     deleteSelected: "L\u00f6sche Auswahl"
   };
   const de_DE = de;
+  const de_CH = de;
 
   // French
   const fr = {
@@ -31318,6 +31319,7 @@
   const fr_FR = fr;
   const fr_CA = fr;
   const fr_BE = fr;
+  const fr_CH = fr;
 
   // Espanol
   const es = {
@@ -31413,10 +31415,12 @@
     nl_BE,
     de,
     de_DE,
+    de_CH,
     fr,
     fr_FR,
     fr_CA,
     fr_BE,
+    fr_CH,
     es,
     es_ES,
     uk,
