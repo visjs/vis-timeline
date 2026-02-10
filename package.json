@@ -244,7 +244,7 @@
     "cpy-cli": "6.0.0",
     "eslint": "8.57.1",
     "gh-pages": "6.3.0",
-    "git-authors-cli": "1.0.52",
+    "git-authors-cli": "1.0.53",
     "husky": "9.1.7",
     "jsdoc": "3.6.11",
     "jsdom": "26.1.0",
