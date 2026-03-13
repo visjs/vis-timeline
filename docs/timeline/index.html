@@ -433,6 +433,16 @@ var items = new vis.DataSet([
             explanation.
           </td>
         </tr>
+        <tr parent="itemEditable" class="hidden">
+          <td class="indent">editable.updateDuration</td>
+          <td>boolean</td>
+          <td>no</td>
+          <td>
+            If true, items duration can be changed by dragging the sides of the
+            item. See section <a href="#Editing_Items">Editing Items</a> for a
+            detailed explanation.
+          </td>
+        </tr>
       </table>
 
       <h3 id="groups">Groups</h3>
@@ -747,6 +757,16 @@ function (option, path) {
             If true, items can be dragged to another moment in time. See section
             <a href="#Editing_Items">Editing Items</a> for a detailed
             explanation.
+          </td>
+        </tr>
+        <tr parent="editable" class="hidden">
+          <td class="indent">editable.updateDuration</td>
+          <td>boolean</td>
+          <td><code>false</code></td>
+          <td>
+            If true, items duration can be changed by dragging the sides of the
+            item. See section <a href="#Editing_Items">Editing Items</a> for a
+            detailed explanation.
           </td>
         </tr>
         <tr parent="editable" class="hidden">
@@ -1277,8 +1297,9 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
             Callback function triggered when an item has been moved: after the
             user has dragged the item to an other position. See section
             <a href="#Editing_Items">Editing Items</a> for more information.
-            Only applicable when both options <code>selectable</code> and
-            <code>editable.updateTime</code> or
+            Only applicable when option <code>selectable</code> and one of
+            <code>editable.updateTime</code>,
+            <code>editable.updateDuration</code> or
             <code>editable.updateGroup</code> are set <code>true</code>.
           </td>
         </tr>
@@ -1301,8 +1322,10 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
           <td>
             Callback function triggered repeatedly when an item is being moved.
             See section <a href="#Editing_Items">Editing Items</a> for more
-            information. Only applicable when both options
-            <code>selectable</code> and <code>editable.updateTime</code> or
+            information. Only applicable when option <code>selectable</code>
+            and one of
+            <code>editable.updateTime</code>,
+            <code>editable.updateDuration</code> or
             <code>editable.updateGroup</code> are set <code>true</code>.
           </td>
         </tr>
@@ -1339,8 +1362,9 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
             Callback function triggered when an item is about to be updated,
             when the user double taps an item in the Timeline. See section
             <a href="#Editing_Items">Editing Items</a> for more information.
-            Only applicable when both options <code>selectable</code> and
-            <code>editable.updateTime</code> or
+            Only applicable when option <code>selectable</code> and one of
+            <code>editable.updateTime</code>,
+            <code>editable.updateDuration</code> or
             <code>editable.updateGroup</code> are set <code>true</code>.
           </td>
         </tr>
@@ -2853,11 +2877,12 @@ var options = {
 // enable or disable individual manipulation actions
 var options = {
   editable: {
-    add: true,         // add new items by double tapping
-    updateTime: true,  // drag items horizontally
-    updateGroup: true, // drag items from one group to another
-    remove: true,       // delete an item by tapping the delete button top right
-    overrideItems: false  // allow these options to override item.editable
+    add: true,                 // add new items by double tapping
+    updateTime: true,          // drag items horizontally
+    updateDuration: true,      // change items duration
+    updateGroup: true,         // drag items from one group to another
+    remove: true,              // delete an item by tapping the delete button top right
+    overrideItems: false       // allow these options to override item.editable
   }
 };</pre
       >
