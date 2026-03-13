@@ -4,13 +4,13 @@ exports['Package Exported files 1'] = {
     "HISTORY.md": {
       "empty": false
     },
-    "LICENSE.Apache-2.0.txt": {
+    "LICENSE": {
       "empty": false
     },
-    "LICENSE.md": {
+    "LICENSE-APACHE-2.0": {
       "empty": false
     },
-    "LICENSE.MIT.txt": {
+    "LICENSE-MIT": {
       "empty": false
     },
     "README.md": {
