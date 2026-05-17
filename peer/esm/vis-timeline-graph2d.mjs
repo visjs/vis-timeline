@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-05-17T13:15:36.598Z
+ * @date    2026-05-17T17:16:33.854Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -1133,21 +1133,21 @@ function require_export () {
 	return _export;
 }
 
-var isArray$3;
-var hasRequiredIsArray$3;
+var isArray$6;
+var hasRequiredIsArray$6;
 
-function requireIsArray$3 () {
-	if (hasRequiredIsArray$3) return isArray$3;
-	hasRequiredIsArray$3 = 1;
+function requireIsArray$6 () {
+	if (hasRequiredIsArray$6) return isArray$6;
+	hasRequiredIsArray$6 = 1;
 	var classof = /*@__PURE__*/ requireClassofRaw();
 
 	// `IsArray` abstract operation
 	// https://tc39.es/ecma262/#sec-isarray
 	// eslint-disable-next-line es/no-array-isarray -- safe
-	isArray$3 = Array.isArray || function isArray(argument) {
+	isArray$6 = Array.isArray || function isArray(argument) {
 	  return classof(argument) === 'Array';
 	};
-	return isArray$3;
+	return isArray$6;
 }
 
 var hasRequiredEs_array_isArray;
@@ -1156,7 +1156,7 @@ function requireEs_array_isArray () {
 	if (hasRequiredEs_array_isArray) return es_array_isArray;
 	hasRequiredEs_array_isArray = 1;
 	var $ = /*@__PURE__*/ require_export();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 
 	// `Array.isArray` method
 	// https://tc39.es/ecma262/#sec-array.isarray
@@ -1166,43 +1166,43 @@ function requireEs_array_isArray () {
 	return es_array_isArray;
 }
 
-var isArray$2;
-var hasRequiredIsArray$2;
+var isArray$5;
+var hasRequiredIsArray$5;
 
-function requireIsArray$2 () {
-	if (hasRequiredIsArray$2) return isArray$2;
-	hasRequiredIsArray$2 = 1;
+function requireIsArray$5 () {
+	if (hasRequiredIsArray$5) return isArray$5;
+	hasRequiredIsArray$5 = 1;
 	requireEs_array_isArray();
 	var path = /*@__PURE__*/ requirePath();
 
-	isArray$2 = path.Array.isArray;
-	return isArray$2;
+	isArray$5 = path.Array.isArray;
+	return isArray$5;
 }
 
-var isArray$1;
-var hasRequiredIsArray$1;
+var isArray$4;
+var hasRequiredIsArray$4;
 
-function requireIsArray$1 () {
-	if (hasRequiredIsArray$1) return isArray$1;
-	hasRequiredIsArray$1 = 1;
-	var parent = /*@__PURE__*/ requireIsArray$2();
+function requireIsArray$4 () {
+	if (hasRequiredIsArray$4) return isArray$4;
+	hasRequiredIsArray$4 = 1;
+	var parent = /*@__PURE__*/ requireIsArray$5();
 
-	isArray$1 = parent;
-	return isArray$1;
+	isArray$4 = parent;
+	return isArray$4;
 }
 
-var isArray;
-var hasRequiredIsArray;
+var isArray$3;
+var hasRequiredIsArray$3;
 
-function requireIsArray () {
-	if (hasRequiredIsArray) return isArray;
-	hasRequiredIsArray = 1;
-	isArray = /*@__PURE__*/ requireIsArray$1();
-	return isArray;
+function requireIsArray$3 () {
+	if (hasRequiredIsArray$3) return isArray$3;
+	hasRequiredIsArray$3 = 1;
+	isArray$3 = /*@__PURE__*/ requireIsArray$4();
+	return isArray$3;
 }
 
-var isArrayExports = requireIsArray();
-var _Array$isArray = /*@__PURE__*/getDefaultExportFromCjs(isArrayExports);
+var isArrayExports$1 = requireIsArray$3();
+var _Array$isArray$1 = /*@__PURE__*/getDefaultExportFromCjs(isArrayExports$1);
 
 var es_function_bind = {};
 
@@ -1738,7 +1738,7 @@ var hasRequiredArraySpeciesConstructor;
 function requireArraySpeciesConstructor () {
 	if (hasRequiredArraySpeciesConstructor) return arraySpeciesConstructor;
 	hasRequiredArraySpeciesConstructor = 1;
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 	var isConstructor = /*@__PURE__*/ requireIsConstructor();
 	var isObject = /*@__PURE__*/ requireIsObject();
 	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
@@ -2945,7 +2945,7 @@ function requireGetJsonReplacerFunction () {
 	if (hasRequiredGetJsonReplacerFunction) return getJsonReplacerFunction;
 	hasRequiredGetJsonReplacerFunction = 1;
 	var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 	var isCallable = /*@__PURE__*/ requireIsCallable();
 	var classof = /*@__PURE__*/ requireClassofRaw();
 	var toString = /*@__PURE__*/ requireToString();
@@ -3605,7 +3605,7 @@ function requireEs_array_concat () {
 	hasRequiredEs_array_concat = 1;
 	var $ = /*@__PURE__*/ require_export();
 	var fails = /*@__PURE__*/ requireFails();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 	var isObject = /*@__PURE__*/ requireIsObject();
 	var toObject = /*@__PURE__*/ requireToObject();
 	var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
@@ -5378,18 +5378,326 @@ function requireDefineProperty () {
 var definePropertyExports = requireDefineProperty();
 var _Object$defineProperty = /*@__PURE__*/getDefaultExportFromCjs(definePropertyExports);
 
-var symbol;
-var hasRequiredSymbol;
+var isArray$2;
+var hasRequiredIsArray$2;
 
-function requireSymbol () {
-	if (hasRequiredSymbol) return symbol;
-	hasRequiredSymbol = 1;
-	symbol = /*@__PURE__*/ requireSymbol$4();
-	return symbol;
+function requireIsArray$2 () {
+	if (hasRequiredIsArray$2) return isArray$2;
+	hasRequiredIsArray$2 = 1;
+	var parent = /*@__PURE__*/ requireIsArray$4();
+
+	isArray$2 = parent;
+	return isArray$2;
 }
 
-var symbolExports = requireSymbol();
-var _Symbol = /*@__PURE__*/getDefaultExportFromCjs(symbolExports);
+var isArray$1;
+var hasRequiredIsArray$1;
+
+function requireIsArray$1 () {
+	if (hasRequiredIsArray$1) return isArray$1;
+	hasRequiredIsArray$1 = 1;
+	var parent = /*@__PURE__*/ requireIsArray$2();
+
+	isArray$1 = parent;
+	return isArray$1;
+}
+
+var isArray;
+var hasRequiredIsArray;
+
+function requireIsArray () {
+	if (hasRequiredIsArray) return isArray;
+	hasRequiredIsArray = 1;
+	isArray = /*@__PURE__*/ requireIsArray$1();
+	return isArray;
+}
+
+var isArrayExports = /*@__PURE__*/ requireIsArray();
+var _Array$isArray = /*@__PURE__*/getDefaultExportFromCjs(isArrayExports);
+
+function _arrayWithHoles(r) {
+  if (_Array$isArray(r)) return r;
+}
+
+var getIteratorMethod$4;
+var hasRequiredGetIteratorMethod$5;
+
+function requireGetIteratorMethod$5 () {
+	if (hasRequiredGetIteratorMethod$5) return getIteratorMethod$4;
+	hasRequiredGetIteratorMethod$5 = 1;
+	var classof = /*@__PURE__*/ requireClassof();
+	var getMethod = /*@__PURE__*/ requireGetMethod();
+	var isNullOrUndefined = /*@__PURE__*/ requireIsNullOrUndefined();
+	var Iterators = /*@__PURE__*/ requireIterators();
+	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+
+	var ITERATOR = wellKnownSymbol('iterator');
+
+	getIteratorMethod$4 = function (it) {
+	  if (!isNullOrUndefined(it)) return getMethod(it, ITERATOR)
+	    || getMethod(it, '@@iterator')
+	    || Iterators[classof(it)];
+	};
+	return getIteratorMethod$4;
+}
+
+var getIteratorMethod_1;
+var hasRequiredGetIteratorMethod$4;
+
+function requireGetIteratorMethod$4 () {
+	if (hasRequiredGetIteratorMethod$4) return getIteratorMethod_1;
+	hasRequiredGetIteratorMethod$4 = 1;
+	requireEs_array_iterator();
+	requireEs_string_iterator();
+	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod$5();
+
+	getIteratorMethod_1 = getIteratorMethod;
+	return getIteratorMethod_1;
+}
+
+var getIteratorMethod$3;
+var hasRequiredGetIteratorMethod$3;
+
+function requireGetIteratorMethod$3 () {
+	if (hasRequiredGetIteratorMethod$3) return getIteratorMethod$3;
+	hasRequiredGetIteratorMethod$3 = 1;
+	var parent = /*@__PURE__*/ requireGetIteratorMethod$4();
+	requireWeb_domCollections_iterator();
+
+	getIteratorMethod$3 = parent;
+	return getIteratorMethod$3;
+}
+
+var getIteratorMethod$2;
+var hasRequiredGetIteratorMethod$2;
+
+function requireGetIteratorMethod$2 () {
+	if (hasRequiredGetIteratorMethod$2) return getIteratorMethod$2;
+	hasRequiredGetIteratorMethod$2 = 1;
+	var parent = /*@__PURE__*/ requireGetIteratorMethod$3();
+
+	getIteratorMethod$2 = parent;
+	return getIteratorMethod$2;
+}
+
+var getIteratorMethod$1;
+var hasRequiredGetIteratorMethod$1;
+
+function requireGetIteratorMethod$1 () {
+	if (hasRequiredGetIteratorMethod$1) return getIteratorMethod$1;
+	hasRequiredGetIteratorMethod$1 = 1;
+	var parent = /*@__PURE__*/ requireGetIteratorMethod$2();
+
+	getIteratorMethod$1 = parent;
+	return getIteratorMethod$1;
+}
+
+var getIteratorMethod;
+var hasRequiredGetIteratorMethod;
+
+function requireGetIteratorMethod () {
+	if (hasRequiredGetIteratorMethod) return getIteratorMethod;
+	hasRequiredGetIteratorMethod = 1;
+	getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod$1();
+	return getIteratorMethod;
+}
+
+var getIteratorMethodExports = /*@__PURE__*/ requireGetIteratorMethod();
+var _getIteratorMethod = /*@__PURE__*/getDefaultExportFromCjs(getIteratorMethodExports);
+
+var es_array_push = {};
+
+var arraySetLength;
+var hasRequiredArraySetLength;
+
+function requireArraySetLength () {
+	if (hasRequiredArraySetLength) return arraySetLength;
+	hasRequiredArraySetLength = 1;
+	var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
+
+	var $TypeError = TypeError;
+	// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
+	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
+
+	// Safari < 13 does not throw an error in this case
+	var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
+	  // makes no sense without proper strict mode support
+	  if (this !== undefined) return true;
+	  try {
+	    // eslint-disable-next-line es/no-object-defineproperty -- safe
+	    Object.defineProperty([], 'length', { writable: false }).length = 1;
+	  } catch (error) {
+	    return error instanceof TypeError;
+	  }
+	}();
+
+	arraySetLength = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
+	  if (isArray(O) && !getOwnPropertyDescriptor(O, 'length').writable) {
+	    throw new $TypeError('Cannot set read only .length');
+	  } return O.length = length;
+	} : function (O, length) {
+	  return O.length = length;
+	};
+	return arraySetLength;
+}
+
+var hasRequiredEs_array_push;
+
+function requireEs_array_push () {
+	if (hasRequiredEs_array_push) return es_array_push;
+	hasRequiredEs_array_push = 1;
+	var $ = /*@__PURE__*/ require_export();
+	var toObject = /*@__PURE__*/ requireToObject();
+	var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
+	var setArrayLength = /*@__PURE__*/ requireArraySetLength();
+	var doesNotExceedSafeInteger = /*@__PURE__*/ requireDoesNotExceedSafeInteger();
+	var fails = /*@__PURE__*/ requireFails();
+
+	var INCORRECT_TO_LENGTH = fails(function () {
+	  return [].push.call({ length: 0x100000000 }, 1) !== 4294967297;
+	});
+
+	// V8 <= 121 and Safari <= 15.4; FF < 23 throws InternalError
+	// https://bugs.chromium.org/p/v8/issues/detail?id=12681
+	var properErrorOnNonWritableLength = function () {
+	  try {
+	    // eslint-disable-next-line es/no-object-defineproperty -- safe
+	    Object.defineProperty([], 'length', { writable: false }).push();
+	  } catch (error) {
+	    return error instanceof TypeError;
+	  }
+	};
+
+	var FORCED = INCORRECT_TO_LENGTH || !properErrorOnNonWritableLength();
+
+	// `Array.prototype.push` method
+	// https://tc39.es/ecma262/#sec-array.prototype.push
+	$({ target: 'Array', proto: true, arity: 1, forced: FORCED }, {
+	  // eslint-disable-next-line no-unused-vars -- required for `.length`
+	  push: function push(item) {
+	    var O = toObject(this);
+	    var len = lengthOfArrayLike(O);
+	    var argCount = arguments.length;
+	    doesNotExceedSafeInteger(len + argCount);
+	    for (var i = 0; i < argCount; i++) {
+	      O[len] = arguments[i];
+	      len++;
+	    }
+	    setArrayLength(O, len);
+	    return len;
+	  }
+	});
+	return es_array_push;
+}
+
+var push$5;
+var hasRequiredPush$5;
+
+function requirePush$5 () {
+	if (hasRequiredPush$5) return push$5;
+	hasRequiredPush$5 = 1;
+	requireEs_array_push();
+	var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+	push$5 = getBuiltInPrototypeMethod('Array', 'push');
+	return push$5;
+}
+
+var push$4;
+var hasRequiredPush$4;
+
+function requirePush$4 () {
+	if (hasRequiredPush$4) return push$4;
+	hasRequiredPush$4 = 1;
+	var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+	var method = /*@__PURE__*/ requirePush$5();
+
+	var ArrayPrototype = Array.prototype;
+
+	push$4 = function (it) {
+	  var own = it.push;
+	  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.push) ? method : own;
+	};
+	return push$4;
+}
+
+var push$3;
+var hasRequiredPush$3;
+
+function requirePush$3 () {
+	if (hasRequiredPush$3) return push$3;
+	hasRequiredPush$3 = 1;
+	var parent = /*@__PURE__*/ requirePush$4();
+
+	push$3 = parent;
+	return push$3;
+}
+
+var push$2;
+var hasRequiredPush$2;
+
+function requirePush$2 () {
+	if (hasRequiredPush$2) return push$2;
+	hasRequiredPush$2 = 1;
+	var parent = /*@__PURE__*/ requirePush$3();
+
+	push$2 = parent;
+	return push$2;
+}
+
+var push$1;
+var hasRequiredPush$1;
+
+function requirePush$1 () {
+	if (hasRequiredPush$1) return push$1;
+	hasRequiredPush$1 = 1;
+	var parent = /*@__PURE__*/ requirePush$2();
+
+	push$1 = parent;
+	return push$1;
+}
+
+var push;
+var hasRequiredPush;
+
+function requirePush () {
+	if (hasRequiredPush) return push;
+	hasRequiredPush = 1;
+	push = /*@__PURE__*/ requirePush$1();
+	return push;
+}
+
+var pushExports = /*@__PURE__*/ requirePush();
+var _pushInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(pushExports);
+
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof _Symbol$1 && _getIteratorMethod(r) || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = true,
+      o = false;
+    try {
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (_pushInstanceProperty(a).call(a, e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = true, n = r;
+    } finally {
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
+    }
+    return a;
+  }
+}
 
 var es_array_slice = {};
 
@@ -5399,7 +5707,7 @@ function requireEs_array_slice () {
 	if (hasRequiredEs_array_slice) return es_array_slice;
 	hasRequiredEs_array_slice = 1;
 	var $ = /*@__PURE__*/ require_export();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 	var isConstructor = /*@__PURE__*/ requireIsConstructor();
 	var isObject = /*@__PURE__*/ requireIsObject();
 	var toAbsoluteIndex = /*@__PURE__*/ requireToAbsoluteIndex();
@@ -5449,16 +5757,58 @@ function requireEs_array_slice () {
 	return es_array_slice;
 }
 
+var slice$6;
+var hasRequiredSlice$6;
+
+function requireSlice$6 () {
+	if (hasRequiredSlice$6) return slice$6;
+	hasRequiredSlice$6 = 1;
+	requireEs_array_slice();
+	var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+
+	slice$6 = getBuiltInPrototypeMethod('Array', 'slice');
+	return slice$6;
+}
+
+var slice$5;
+var hasRequiredSlice$5;
+
+function requireSlice$5 () {
+	if (hasRequiredSlice$5) return slice$5;
+	hasRequiredSlice$5 = 1;
+	var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
+	var method = /*@__PURE__*/ requireSlice$6();
+
+	var ArrayPrototype = Array.prototype;
+
+	slice$5 = function (it) {
+	  var own = it.slice;
+	  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.slice) ? method : own;
+	};
+	return slice$5;
+}
+
+var slice$4;
+var hasRequiredSlice$4;
+
+function requireSlice$4 () {
+	if (hasRequiredSlice$4) return slice$4;
+	hasRequiredSlice$4 = 1;
+	var parent = /*@__PURE__*/ requireSlice$5();
+
+	slice$4 = parent;
+	return slice$4;
+}
+
 var slice$3;
 var hasRequiredSlice$3;
 
 function requireSlice$3 () {
 	if (hasRequiredSlice$3) return slice$3;
 	hasRequiredSlice$3 = 1;
-	requireEs_array_slice();
-	var getBuiltInPrototypeMethod = /*@__PURE__*/ requireGetBuiltInPrototypeMethod();
+	var parent = /*@__PURE__*/ requireSlice$4();
 
-	slice$3 = getBuiltInPrototypeMethod('Array', 'slice');
+	slice$3 = parent;
 	return slice$3;
 }
 
@@ -5468,15 +5818,9 @@ var hasRequiredSlice$2;
 function requireSlice$2 () {
 	if (hasRequiredSlice$2) return slice$2;
 	hasRequiredSlice$2 = 1;
-	var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
-	var method = /*@__PURE__*/ requireSlice$3();
+	var parent = /*@__PURE__*/ requireSlice$3();
 
-	var ArrayPrototype = Array.prototype;
-
-	slice$2 = function (it) {
-	  var own = it.slice;
-	  return it === ArrayPrototype || (isPrototypeOf(ArrayPrototype, it) && own === ArrayPrototype.slice) ? method : own;
-	};
+	slice$2 = parent;
 	return slice$2;
 }
 
@@ -5486,11 +5830,331 @@ var hasRequiredSlice$1;
 function requireSlice$1 () {
 	if (hasRequiredSlice$1) return slice$1;
 	hasRequiredSlice$1 = 1;
-	var parent = /*@__PURE__*/ requireSlice$2();
-
-	slice$1 = parent;
+	slice$1 = /*@__PURE__*/ requireSlice$2();
 	return slice$1;
 }
+
+var sliceExports$1 = /*@__PURE__*/ requireSlice$1();
+var _sliceInstanceProperty$1 = /*@__PURE__*/getDefaultExportFromCjs(sliceExports$1);
+
+var es_array_from = {};
+
+var iteratorClose;
+var hasRequiredIteratorClose;
+
+function requireIteratorClose () {
+	if (hasRequiredIteratorClose) return iteratorClose;
+	hasRequiredIteratorClose = 1;
+	var call = /*@__PURE__*/ requireFunctionCall();
+	var anObject = /*@__PURE__*/ requireAnObject();
+	var getMethod = /*@__PURE__*/ requireGetMethod();
+
+	iteratorClose = function (iterator, kind, value) {
+	  var innerResult, innerError;
+	  anObject(iterator);
+	  try {
+	    innerResult = getMethod(iterator, 'return');
+	    if (!innerResult) {
+	      if (kind === 'throw') throw value;
+	      return value;
+	    }
+	    innerResult = call(innerResult, iterator);
+	  } catch (error) {
+	    innerError = true;
+	    innerResult = error;
+	  }
+	  if (kind === 'throw') throw value;
+	  if (innerError) throw innerResult;
+	  anObject(innerResult);
+	  return value;
+	};
+	return iteratorClose;
+}
+
+var callWithSafeIterationClosing;
+var hasRequiredCallWithSafeIterationClosing;
+
+function requireCallWithSafeIterationClosing () {
+	if (hasRequiredCallWithSafeIterationClosing) return callWithSafeIterationClosing;
+	hasRequiredCallWithSafeIterationClosing = 1;
+	var anObject = /*@__PURE__*/ requireAnObject();
+	var iteratorClose = /*@__PURE__*/ requireIteratorClose();
+
+	// call something on iterator step with safe closing on error
+	callWithSafeIterationClosing = function (iterator, fn, value, ENTRIES) {
+	  try {
+	    return ENTRIES ? fn(anObject(value)[0], value[1]) : fn(value);
+	  } catch (error) {
+	    iteratorClose(iterator, 'throw', error);
+	  }
+	};
+	return callWithSafeIterationClosing;
+}
+
+var isArrayIteratorMethod;
+var hasRequiredIsArrayIteratorMethod;
+
+function requireIsArrayIteratorMethod () {
+	if (hasRequiredIsArrayIteratorMethod) return isArrayIteratorMethod;
+	hasRequiredIsArrayIteratorMethod = 1;
+	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+	var Iterators = /*@__PURE__*/ requireIterators();
+
+	var ITERATOR = wellKnownSymbol('iterator');
+	var ArrayPrototype = Array.prototype;
+
+	// check on default Array iterator
+	isArrayIteratorMethod = function (it) {
+	  return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
+	};
+	return isArrayIteratorMethod;
+}
+
+var getIterator;
+var hasRequiredGetIterator;
+
+function requireGetIterator () {
+	if (hasRequiredGetIterator) return getIterator;
+	hasRequiredGetIterator = 1;
+	var call = /*@__PURE__*/ requireFunctionCall();
+	var aCallable = /*@__PURE__*/ requireACallable();
+	var anObject = /*@__PURE__*/ requireAnObject();
+	var tryToString = /*@__PURE__*/ requireTryToString();
+	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod$5();
+
+	var $TypeError = TypeError;
+
+	getIterator = function (argument, usingIterator) {
+	  var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
+	  if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
+	  throw new $TypeError(tryToString(argument) + ' is not iterable');
+	};
+	return getIterator;
+}
+
+var arrayFrom;
+var hasRequiredArrayFrom;
+
+function requireArrayFrom () {
+	if (hasRequiredArrayFrom) return arrayFrom;
+	hasRequiredArrayFrom = 1;
+	var bind = /*@__PURE__*/ requireFunctionBindContext();
+	var call = /*@__PURE__*/ requireFunctionCall();
+	var toObject = /*@__PURE__*/ requireToObject();
+	var callWithSafeIterationClosing = /*@__PURE__*/ requireCallWithSafeIterationClosing();
+	var isArrayIteratorMethod = /*@__PURE__*/ requireIsArrayIteratorMethod();
+	var isConstructor = /*@__PURE__*/ requireIsConstructor();
+	var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
+	var createProperty = /*@__PURE__*/ requireCreateProperty();
+	var getIterator = /*@__PURE__*/ requireGetIterator();
+	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod$5();
+
+	var $Array = Array;
+
+	// `Array.from` method implementation
+	// https://tc39.es/ecma262/#sec-array.from
+	arrayFrom = function from(arrayLike /* , mapfn = undefined, thisArg = undefined */) {
+	  var O = toObject(arrayLike);
+	  var IS_CONSTRUCTOR = isConstructor(this);
+	  var argumentsLength = arguments.length;
+	  var mapfn = argumentsLength > 1 ? arguments[1] : undefined;
+	  var mapping = mapfn !== undefined;
+	  if (mapping) mapfn = bind(mapfn, argumentsLength > 2 ? arguments[2] : undefined);
+	  var iteratorMethod = getIteratorMethod(O);
+	  var index = 0;
+	  var length, result, step, iterator, next, value;
+	  // if the target is not iterable or it's an array with the default iterator - use a simple case
+	  if (iteratorMethod && !(this === $Array && isArrayIteratorMethod(iteratorMethod))) {
+	    result = IS_CONSTRUCTOR ? new this() : [];
+	    iterator = getIterator(O, iteratorMethod);
+	    next = iterator.next;
+	    for (;!(step = call(next, iterator)).done; index++) {
+	      value = mapping ? callWithSafeIterationClosing(iterator, mapfn, [step.value, index], true) : step.value;
+	      createProperty(result, index, value);
+	    }
+	  } else {
+	    length = lengthOfArrayLike(O);
+	    result = IS_CONSTRUCTOR ? new this(length) : $Array(length);
+	    for (;length > index; index++) {
+	      value = mapping ? mapfn(O[index], index) : O[index];
+	      createProperty(result, index, value);
+	    }
+	  }
+	  result.length = index;
+	  return result;
+	};
+	return arrayFrom;
+}
+
+var checkCorrectnessOfIteration;
+var hasRequiredCheckCorrectnessOfIteration;
+
+function requireCheckCorrectnessOfIteration () {
+	if (hasRequiredCheckCorrectnessOfIteration) return checkCorrectnessOfIteration;
+	hasRequiredCheckCorrectnessOfIteration = 1;
+	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
+
+	var ITERATOR = wellKnownSymbol('iterator');
+	var SAFE_CLOSING = false;
+
+	try {
+	  var called = 0;
+	  var iteratorWithReturn = {
+	    next: function () {
+	      return { done: !!called++ };
+	    },
+	    'return': function () {
+	      SAFE_CLOSING = true;
+	    }
+	  };
+	  iteratorWithReturn[ITERATOR] = function () {
+	    return this;
+	  };
+	  // eslint-disable-next-line es/no-array-from, no-throw-literal -- required for testing
+	  Array.from(iteratorWithReturn, function () { throw 2; });
+	} catch (error) { /* empty */ }
+
+	checkCorrectnessOfIteration = function (exec, SKIP_CLOSING) {
+	  try {
+	    if (!SKIP_CLOSING && !SAFE_CLOSING) return false;
+	  } catch (error) { return false; } // workaround of old WebKit + `eval` bug
+	  var ITERATION_SUPPORT = false;
+	  try {
+	    var object = {};
+	    object[ITERATOR] = function () {
+	      return {
+	        next: function () {
+	          return { done: ITERATION_SUPPORT = true };
+	        }
+	      };
+	    };
+	    exec(object);
+	  } catch (error) { /* empty */ }
+	  return ITERATION_SUPPORT;
+	};
+	return checkCorrectnessOfIteration;
+}
+
+var hasRequiredEs_array_from;
+
+function requireEs_array_from () {
+	if (hasRequiredEs_array_from) return es_array_from;
+	hasRequiredEs_array_from = 1;
+	var $ = /*@__PURE__*/ require_export();
+	var from = /*@__PURE__*/ requireArrayFrom();
+	var checkCorrectnessOfIteration = /*@__PURE__*/ requireCheckCorrectnessOfIteration();
+
+	var INCORRECT_ITERATION = !checkCorrectnessOfIteration(function (iterable) {
+	  // eslint-disable-next-line es/no-array-from -- required for testing
+	  Array.from(iterable);
+	});
+
+	// `Array.from` method
+	// https://tc39.es/ecma262/#sec-array.from
+	$({ target: 'Array', stat: true, forced: INCORRECT_ITERATION }, {
+	  from: from
+	});
+	return es_array_from;
+}
+
+var from$4;
+var hasRequiredFrom$4;
+
+function requireFrom$4 () {
+	if (hasRequiredFrom$4) return from$4;
+	hasRequiredFrom$4 = 1;
+	requireEs_string_iterator();
+	requireEs_array_from();
+	var path = /*@__PURE__*/ requirePath();
+
+	from$4 = path.Array.from;
+	return from$4;
+}
+
+var from$3;
+var hasRequiredFrom$3;
+
+function requireFrom$3 () {
+	if (hasRequiredFrom$3) return from$3;
+	hasRequiredFrom$3 = 1;
+	var parent = /*@__PURE__*/ requireFrom$4();
+
+	from$3 = parent;
+	return from$3;
+}
+
+var from$2;
+var hasRequiredFrom$2;
+
+function requireFrom$2 () {
+	if (hasRequiredFrom$2) return from$2;
+	hasRequiredFrom$2 = 1;
+	var parent = /*@__PURE__*/ requireFrom$3();
+
+	from$2 = parent;
+	return from$2;
+}
+
+var from$1;
+var hasRequiredFrom$1;
+
+function requireFrom$1 () {
+	if (hasRequiredFrom$1) return from$1;
+	hasRequiredFrom$1 = 1;
+	var parent = /*@__PURE__*/ requireFrom$2();
+
+	from$1 = parent;
+	return from$1;
+}
+
+var from;
+var hasRequiredFrom;
+
+function requireFrom () {
+	if (hasRequiredFrom) return from;
+	hasRequiredFrom = 1;
+	from = /*@__PURE__*/ requireFrom$1();
+	return from;
+}
+
+var fromExports = /*@__PURE__*/ requireFrom();
+var _Array$from = /*@__PURE__*/getDefaultExportFromCjs(fromExports);
+
+function _arrayLikeToArray(r, a) {
+  (null == a || a > r.length) && (a = r.length);
+  for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
+  return n;
+}
+
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    var _context;
+    if ("string" == typeof r) return _arrayLikeToArray(r, a);
+    var t = _sliceInstanceProperty$1(_context = {}.toString.call(r)).call(_context, 8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? _Array$from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0;
+  }
+}
+
+function _nonIterableRest() {
+  throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
+}
+
+function _slicedToArray(r, e) {
+  return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest();
+}
+
+var symbol;
+var hasRequiredSymbol;
+
+function requireSymbol () {
+	if (hasRequiredSymbol) return symbol;
+	hasRequiredSymbol = 1;
+	symbol = /*@__PURE__*/ requireSymbol$4();
+	return symbol;
+}
+
+var symbolExports = requireSymbol();
+var _Symbol = /*@__PURE__*/getDefaultExportFromCjs(symbolExports);
 
 var slice;
 var hasRequiredSlice;
@@ -5498,7 +6162,7 @@ var hasRequiredSlice;
 function requireSlice () {
 	if (hasRequiredSlice) return slice;
 	hasRequiredSlice = 1;
-	slice = /*@__PURE__*/ requireSlice$1();
+	slice = /*@__PURE__*/ requireSlice$4();
 	return slice;
 }
 
@@ -5632,7 +6296,7 @@ function requireEs_array_reverse () {
 	hasRequiredEs_array_reverse = 1;
 	var $ = /*@__PURE__*/ require_export();
 	var uncurryThis = /*@__PURE__*/ requireFunctionUncurryThis();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
+	var isArray = /*@__PURE__*/ requireIsArray$6();
 
 	var nativeReverse = uncurryThis([].reverse);
 	var test = [1, 2];
@@ -5708,41 +6372,6 @@ var reverseExports = requireReverse();
 var _reverseInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(reverseExports);
 
 var es_array_splice = {};
-
-var arraySetLength;
-var hasRequiredArraySetLength;
-
-function requireArraySetLength () {
-	if (hasRequiredArraySetLength) return arraySetLength;
-	hasRequiredArraySetLength = 1;
-	var DESCRIPTORS = /*@__PURE__*/ requireDescriptors();
-	var isArray = /*@__PURE__*/ requireIsArray$3();
-
-	var $TypeError = TypeError;
-	// eslint-disable-next-line es/no-object-getownpropertydescriptor -- safe
-	var getOwnPropertyDescriptor = Object.getOwnPropertyDescriptor;
-
-	// Safari < 13 does not throw an error in this case
-	var SILENT_ON_NON_WRITABLE_LENGTH_SET = DESCRIPTORS && !function () {
-	  // makes no sense without proper strict mode support
-	  if (this !== undefined) return true;
-	  try {
-	    // eslint-disable-next-line es/no-object-defineproperty -- safe
-	    Object.defineProperty([], 'length', { writable: false }).length = 1;
-	  } catch (error) {
-	    return error instanceof TypeError;
-	  }
-	}();
-
-	arraySetLength = SILENT_ON_NON_WRITABLE_LENGTH_SET ? function (O, length) {
-	  if (isArray(O) && !getOwnPropertyDescriptor(O, 'length').writable) {
-	    throw new $TypeError('Cannot set read only .length');
-	  } return O.length = length;
-	} : function (O, length) {
-	  return O.length = length;
-	};
-	return arraySetLength;
-}
 
 var deletePropertyOrThrow;
 var hasRequiredDeletePropertyOrThrow;
@@ -10319,7 +10948,7 @@ function deepObjectAssignNonentry() {
   for (const prop of _Reflect$ownKeys(b)) {
     if (!Object.prototype.propertyIsEnumerable.call(b, prop)) ;else if (b[prop] === DELETE) {
       delete a[prop];
-    } else if (a[prop] !== null && b[prop] !== null && typeof a[prop] === "object" && typeof b[prop] === "object" && !_Array$isArray(a[prop]) && !_Array$isArray(b[prop])) {
+    } else if (a[prop] !== null && b[prop] !== null && typeof a[prop] === "object" && typeof b[prop] === "object" && !_Array$isArray$1(a[prop]) && !_Array$isArray$1(b[prop])) {
       a[prop] = deepObjectAssignNonentry(a[prop], b[prop]);
     } else {
       a[prop] = clone(b[prop]);
@@ -10333,7 +10962,7 @@ function deepObjectAssignNonentry() {
  * @returns Deep cloned object/array or unchanged a.
  */
 function clone(a) {
-  if (_Array$isArray(a)) {
+  if (_Array$isArray$1(a)) {
     return _mapInstanceProperty(a).call(a, value => clone(value));
   } else if (typeof a === "object" && a !== null) {
     if (a instanceof Date) {
@@ -10383,7 +11012,11 @@ function Alea() {
  * @returns A ready to use seeded generator.
  */
 function AleaImplementation(seed) {
-  let [s0, s1, s2] = mashSeed(seed);
+  let _mashSeed = mashSeed(seed),
+    _mashSeed2 = _slicedToArray(_mashSeed, 3),
+    s0 = _mashSeed2[0],
+    s1 = _mashSeed2[1],
+    s2 = _mashSeed2[2];
   let c = 1;
   const random = () => {
     const t = 2091639 * s0 + c * 2.3283064365386963e-10; // 2^-32
@@ -10749,7 +11382,7 @@ const extend = _Object$assign;
  * @returns Argument a.
  */
 function selectiveExtend(props, a) {
-  if (!_Array$isArray(props)) {
+  if (!_Array$isArray$1(props)) {
     throw new Error("Array with property names expected as first argument");
   }
   for (var _len4 = arguments.length, others = new Array(_len4 > 2 ? _len4 - 2 : 0), _key4 = 2; _key4 < _len4; _key4++) {
@@ -10781,7 +11414,7 @@ function selectiveExtend(props, a) {
 function selectiveDeepExtend(props, a, b) {
   let allowDeletion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   // TODO: add support for Arrays to deepExtend
-  if (_Array$isArray(b)) {
+  if (_Array$isArray$1(b)) {
     throw new TypeError("Arrays are not supported by deepExtend");
   }
   for (let p = 0; p < props.length; p++) {
@@ -10796,7 +11429,7 @@ function selectiveDeepExtend(props, a, b) {
         } else {
           copyOrDelete(a, b, prop, allowDeletion);
         }
-      } else if (_Array$isArray(b[prop])) {
+      } else if (_Array$isArray$1(b[prop])) {
         throw new TypeError("Arrays are not supported by deepExtend");
       } else {
         copyOrDelete(a, b, prop, allowDeletion);
@@ -10823,7 +11456,7 @@ function selectiveNotDeepExtend(propsToExclude, a, b) {
   let allowDeletion = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
   // TODO: add support for Arrays to deepExtend
   // NOTE: array properties have an else-below; apparently, there is a problem here.
-  if (_Array$isArray(b)) {
+  if (_Array$isArray$1(b)) {
     throw new TypeError("Arrays are not supported by deepExtend");
   }
   for (const prop in b) {
@@ -10842,7 +11475,7 @@ function selectiveNotDeepExtend(propsToExclude, a, b) {
       } else {
         copyOrDelete(a, b, prop, allowDeletion);
       }
-    } else if (_Array$isArray(b[prop])) {
+    } else if (_Array$isArray$1(b[prop])) {
       a[prop] = [];
       for (let i = 0; i < b[prop].length; i++) {
         a[prop].push(b[prop][i]);
@@ -10876,7 +11509,7 @@ function deepExtend(a, b) {
         } else {
           copyOrDelete(a, b, prop, allowDeletion);
         }
-      } else if (_Array$isArray(b[prop])) {
+      } else if (_Array$isArray$1(b[prop])) {
         var _context4;
         a[prop] = _sliceInstanceProperty(_context4 = b[prop]).call(_context4);
       } else {
@@ -10923,7 +11556,7 @@ function getType(object) {
     if (object instanceof String) {
       return "String";
     }
-    if (_Array$isArray(object)) {
+    if (_Array$isArray$1(object)) {
       return "Array";
     }
     if (object instanceof Date) {
@@ -11020,7 +11653,7 @@ function removeClassName(elem, classNames) {
  * @param callback - Array.forEach-like callback.
  */
 function forEach(object, callback) {
-  if (_Array$isArray(object)) {
+  if (_Array$isArray$1(object)) {
     // array
     const len = object.length;
     for (let i = 0; i < len; i++) {
@@ -11429,7 +12062,10 @@ function splitCSSText(cssText) {
  */
 function addCssText(element, cssText) {
   const cssStyle = splitCSSText(cssText);
-  for (const [key, value] of _Object$entries(cssStyle)) {
+  for (const _ref of _Object$entries(cssStyle)) {
+    var _ref2 = _slicedToArray(_ref, 2);
+    const key = _ref2[0];
+    const value = _ref2[1];
     element.style.setProperty(key, value);
   }
 }
@@ -11955,7 +12591,7 @@ function getScrollBarWidth() {
  */
 function topMost(pile, accessors) {
   let candidate;
-  if (!_Array$isArray(accessors)) {
+  if (!_Array$isArray$1(accessors)) {
     accessors = [accessors];
   }
   for (const member of pile) {
@@ -12743,7 +13379,7 @@ let Configurator$1 = class Configurator {
       let enabled = true;
       if (typeof options === "string") {
         this.options.filter = options;
-      } else if (_Array$isArray(options)) {
+      } else if (_Array$isArray$1(options)) {
         this.options.filter = options.join();
       } else if (typeof options === "object") {
         if (options == null) {
@@ -13260,7 +13896,7 @@ let Configurator$1 = class Configurator {
 
           // if needed we must go deeper into the object.
           if (show === false) {
-            if (!_Array$isArray(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
+            if (!_Array$isArray$1(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
               this.allowCreation = false;
               show = this._handleObject(item, newPath, true);
               this.allowCreation = checkOnly === false;
@@ -13270,7 +13906,7 @@ let Configurator$1 = class Configurator {
         if (show !== false) {
           visibleInSet = true;
           const value = this._getValue(newPath);
-          if (_Array$isArray(item)) {
+          if (_Array$isArray$1(item)) {
             this._handleArray(item, value, newPath);
           } else if (typeof item === "string") {
             this._makeTextInput(item, value, newPath);
@@ -13663,7 +14299,7 @@ let Validator$1 = class Validator {
       if (object instanceof String) {
         return "string";
       }
-      if (_Array$isArray(object)) {
+      if (_Array$isArray$1(object)) {
         return "array";
       }
       if (object instanceof Date) {
@@ -16499,12 +17135,12 @@ var _sortInstanceProperty = /*@__PURE__*/getDefaultExportFromCjs(sortExports);
  * @returns {number}
  */
 function convertHiddenOptions(moment, body, hiddenDates) {
-  if (hiddenDates && !_Array$isArray(hiddenDates)) {
+  if (hiddenDates && !_Array$isArray$1(hiddenDates)) {
     return convertHiddenOptions(moment, body, [hiddenDates]);
   }
   body.hiddenDates = [];
   if (hiddenDates) {
-    if (_Array$isArray(hiddenDates) == true) {
+    if (_Array$isArray$1(hiddenDates) == true) {
       var _context;
       for (let i = 0; i < hiddenDates.length; i++) {
         if (_repeatInstanceProperty(hiddenDates[i]) === undefined) {
@@ -16528,7 +17164,7 @@ function convertHiddenOptions(moment, body, hiddenDates) {
  * @returns {null}
  */
 function updateHiddenDates(moment, body, hiddenDates) {
-  if (hiddenDates && !_Array$isArray(hiddenDates)) {
+  if (hiddenDates && !_Array$isArray$1(hiddenDates)) {
     return updateHiddenDates(moment, body, [hiddenDates]);
   }
   if (hiddenDates && body.domProps.centerContainer.width !== undefined) {
@@ -18307,7 +18943,7 @@ class TimeStep {
     this.switchedDay = false;
     this.switchedMonth = false;
     this.switchedYear = false;
-    if (_Array$isArray(hiddenDates)) {
+    if (_Array$isArray$1(hiddenDates)) {
       this.hiddenDates = hiddenDates;
     } else if (hiddenDates != undefined) {
       this.hiddenDates = [hiddenDates];
@@ -22129,101 +22765,6 @@ function requireInternalMetadata () {
 	return internalMetadata.exports;
 }
 
-var isArrayIteratorMethod;
-var hasRequiredIsArrayIteratorMethod;
-
-function requireIsArrayIteratorMethod () {
-	if (hasRequiredIsArrayIteratorMethod) return isArrayIteratorMethod;
-	hasRequiredIsArrayIteratorMethod = 1;
-	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
-	var Iterators = /*@__PURE__*/ requireIterators();
-
-	var ITERATOR = wellKnownSymbol('iterator');
-	var ArrayPrototype = Array.prototype;
-
-	// check on default Array iterator
-	isArrayIteratorMethod = function (it) {
-	  return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
-	};
-	return isArrayIteratorMethod;
-}
-
-var getIteratorMethod;
-var hasRequiredGetIteratorMethod;
-
-function requireGetIteratorMethod () {
-	if (hasRequiredGetIteratorMethod) return getIteratorMethod;
-	hasRequiredGetIteratorMethod = 1;
-	var classof = /*@__PURE__*/ requireClassof();
-	var getMethod = /*@__PURE__*/ requireGetMethod();
-	var isNullOrUndefined = /*@__PURE__*/ requireIsNullOrUndefined();
-	var Iterators = /*@__PURE__*/ requireIterators();
-	var wellKnownSymbol = /*@__PURE__*/ requireWellKnownSymbol();
-
-	var ITERATOR = wellKnownSymbol('iterator');
-
-	getIteratorMethod = function (it) {
-	  if (!isNullOrUndefined(it)) return getMethod(it, ITERATOR)
-	    || getMethod(it, '@@iterator')
-	    || Iterators[classof(it)];
-	};
-	return getIteratorMethod;
-}
-
-var getIterator;
-var hasRequiredGetIterator;
-
-function requireGetIterator () {
-	if (hasRequiredGetIterator) return getIterator;
-	hasRequiredGetIterator = 1;
-	var call = /*@__PURE__*/ requireFunctionCall();
-	var aCallable = /*@__PURE__*/ requireACallable();
-	var anObject = /*@__PURE__*/ requireAnObject();
-	var tryToString = /*@__PURE__*/ requireTryToString();
-	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod();
-
-	var $TypeError = TypeError;
-
-	getIterator = function (argument, usingIterator) {
-	  var iteratorMethod = arguments.length < 2 ? getIteratorMethod(argument) : usingIterator;
-	  if (aCallable(iteratorMethod)) return anObject(call(iteratorMethod, argument));
-	  throw new $TypeError(tryToString(argument) + ' is not iterable');
-	};
-	return getIterator;
-}
-
-var iteratorClose;
-var hasRequiredIteratorClose;
-
-function requireIteratorClose () {
-	if (hasRequiredIteratorClose) return iteratorClose;
-	hasRequiredIteratorClose = 1;
-	var call = /*@__PURE__*/ requireFunctionCall();
-	var anObject = /*@__PURE__*/ requireAnObject();
-	var getMethod = /*@__PURE__*/ requireGetMethod();
-
-	iteratorClose = function (iterator, kind, value) {
-	  var innerResult, innerError;
-	  anObject(iterator);
-	  try {
-	    innerResult = getMethod(iterator, 'return');
-	    if (!innerResult) {
-	      if (kind === 'throw') throw value;
-	      return value;
-	    }
-	    innerResult = call(innerResult, iterator);
-	  } catch (error) {
-	    innerError = true;
-	    innerResult = error;
-	  }
-	  if (kind === 'throw') throw value;
-	  if (innerError) throw innerResult;
-	  anObject(innerResult);
-	  return value;
-	};
-	return iteratorClose;
-}
-
 var iterate;
 var hasRequiredIterate;
 
@@ -22238,7 +22779,7 @@ function requireIterate () {
 	var lengthOfArrayLike = /*@__PURE__*/ requireLengthOfArrayLike();
 	var isPrototypeOf = /*@__PURE__*/ requireObjectIsPrototypeOf();
 	var getIterator = /*@__PURE__*/ requireGetIterator();
-	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod();
+	var getIteratorMethod = /*@__PURE__*/ requireGetIteratorMethod$5();
 	var iteratorClose = /*@__PURE__*/ requireIteratorClose();
 
 	var $TypeError = TypeError;
@@ -24054,11 +24595,10 @@ class Group {
    * @param {number} pixels
    */
   _calculateGroupSizeAndPosition() {
-    const {
-      offsetTop,
-      offsetLeft,
-      offsetWidth
-    } = this.dom.foreground;
+    const _this$dom$foreground = this.dom.foreground,
+      offsetTop = _this$dom$foreground.offsetTop,
+      offsetLeft = _this$dom$foreground.offsetLeft,
+      offsetWidth = _this$dom$foreground.offsetWidth;
     this.top = offsetTop;
     this.right = offsetLeft;
     this.width = offsetWidth;
@@ -24648,10 +25188,8 @@ class Group {
 
     // this function is used to do the binary search for items having start and end dates (range).
     const endSearchFunction = data => {
-      const {
-        start,
-        end
-      } = data;
+      const start = data.start,
+        end = data.end;
       if (end < lowerBound) {
         return -1;
       } else if (start <= upperBound) {
@@ -25369,7 +25907,7 @@ class Item {
   _updateDataAttributes(element) {
     if (this.options.dataAttributes && this.options.dataAttributes.length > 0) {
       let attributes = [];
-      if (_Array$isArray(this.options.dataAttributes)) {
+      if (_Array$isArray$1(this.options.dataAttributes)) {
         attributes = this.options.dataAttributes;
       } else if (this.options.dataAttributes == "all") {
         attributes = _Object$keys(this.data);
@@ -27582,10 +28120,9 @@ class ClusterItem extends Item {
    */
   _fit() {
     if (this.emitter) {
-      const {
-        fitStart,
-        fitEnd
-      } = this._getFitRange();
+      const _this$_getFitRange = this._getFitRange(),
+        fitStart = _this$_getFitRange.fitStart,
+        fitEnd = _this$_getFitRange.fitEnd;
       const fitArgs = {
         start: new Date(fitStart),
         end: new Date(fitEnd),
@@ -27674,10 +28211,9 @@ class ClusterGenerator {
    * @return {array} clusters
    */
   getClusters(oldClusters, scale, options) {
-    let {
-      maxItems,
-      clusterCriteria
-    } = typeof options === "boolean" ? {} : options;
+    let _ref = typeof options === "boolean" ? {} : options,
+      maxItems = _ref.maxItems,
+      clusterCriteria = _ref.clusterCriteria;
     if (!clusterCriteria) {
       clusterCriteria = () => true;
     }
@@ -28494,7 +29030,7 @@ class ItemSet extends Component {
     if (ids == undefined) {
       ids = [];
     }
-    if (!_Array$isArray(ids)) {
+    if (!_Array$isArray$1(ids)) {
       ids = [ids];
     }
     const idsToDeselect = _filterInstanceProperty(_context19 = this.selection).call(_context19, id => _indexOfInstanceProperty(ids).call(ids, id) === -1);
@@ -30362,9 +30898,8 @@ class ItemSet extends Component {
     if (!this.options.cluster) {
       return;
     }
-    const {
-      scale
-    } = this.body.range.conversion(this.body.domProps.center.width);
+    const _this$body$range$conv = this.body.range.conversion(this.body.domProps.center.width),
+      scale = _this$body$range$conv.scale;
     const clusters = this.clusterGenerator.getClusters(this.clusters, scale, this.options.cluster);
     if (this.clusters != clusters) {
       this._detachAllClusters();
@@ -30572,7 +31107,7 @@ class Validator {
       if (object instanceof String) {
         return "string";
       }
-      if (_Array$isArray(object)) {
+      if (_Array$isArray$1(object)) {
         return "array";
       }
       if (object instanceof Date) {
@@ -32181,7 +32716,7 @@ class Configurator {
       let enabled = true;
       if (typeof options === "string") {
         this.options.filter = options;
-      } else if (_Array$isArray(options)) {
+      } else if (_Array$isArray$1(options)) {
         this.options.filter = options.join();
       } else if (typeof options === "object") {
         if (options == null) {
@@ -32694,7 +33229,7 @@ class Configurator {
 
         // if needed we must go deeper into the object.
         if (show === false) {
-          if (!_Array$isArray(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
+          if (!_Array$isArray$1(item) && typeof item !== "string" && typeof item !== "boolean" && item instanceof Object) {
             this.allowCreation = false;
             show = this._handleObject(item, newPath, true);
             this.allowCreation = checkOnly === false;
@@ -32704,7 +33239,7 @@ class Configurator {
       if (show !== false) {
         visibleInSet = true;
         let value = this._getValue(newPath);
-        if (_Array$isArray(item)) {
+        if (_Array$isArray$1(item)) {
           this._handleArray(item, value, newPath);
         } else if (typeof item === "string") {
           this._makeTextInput(item, value, newPath);
@@ -32867,7 +33402,7 @@ class Timeline extends Core {
     }
 
     // if the third element is options, the forth is groups (optionally);
-    if (!(_Array$isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
+    if (!(_Array$isArray$1(groups) || isDataViewLike(groups)) && groups instanceof Object) {
       const forthArgument = options;
       options = groups;
       groups = forthArgument;
@@ -33158,7 +33693,7 @@ class Timeline extends Core {
       newDataSet = null;
     } else {
       // If groups is array, turn to DataSet & build dataview from that
-      if (_Array$isArray(groups)) groups = new DataSet(groups);
+      if (_Array$isArray$1(groups)) groups = new DataSet(groups);
       newDataSet = new DataView(groups, {
         filter
       });
@@ -33244,7 +33779,7 @@ class Timeline extends Core {
    */
   focus(id, options) {
     if (!this.itemsData || id == undefined) return;
-    const ids = _Array$isArray(id) ? id : [id];
+    const ids = _Array$isArray$1(id) ? id : [id];
 
     // get the specified item(s)
     const itemsData = this.itemsData.get(ids);
@@ -33554,11 +34089,9 @@ class Timeline extends Core {
    * @private
    */
   _onFit(args) {
-    const {
-      start,
-      end,
-      animation
-    } = args;
+    const start = args.start,
+      end = args.end,
+      animation = args.animation;
     if (!end) {
       this.moveTo(start.valueOf(), {
         animation
@@ -37330,7 +37863,7 @@ let configureOptions = {
 function Graph2d(container, items, groups, options) {
   var _context, _context2, _context3, _context4, _context5, _context6, _context7;
   // if the third element is options, the forth is groups (optionally);
-  if (!(_Array$isArray(groups) || isDataViewLike(groups)) && groups instanceof Object) {
+  if (!(_Array$isArray$1(groups) || isDataViewLike(groups)) && groups instanceof Object) {
     var forthArgument = options;
     options = groups;
     groups = forthArgument;
