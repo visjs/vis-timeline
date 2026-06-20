@@ -247,7 +247,7 @@
     "lint-staged": "17.0.7",
     "mocha": "11.7.6",
     "moment": "2.30.1",
-    "nyc": "17.1.0",
+    "nyc": "18.0.0",
     "propagating-hammerjs": "3.0.0",
     "semantic-release": "25.0.5",
     "shx": "0.4.0",
