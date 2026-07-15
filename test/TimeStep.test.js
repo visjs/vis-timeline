@@ -158,4 +158,32 @@ describe("TimeStep", () => {
       "should have the right value after a step",
     );
   });
+
+  it("should not tag a 2-day (day/step-2) column with a weekday class", () => {
+    const timestep = new TimeStep(new Date(2017, 3, 1), new Date(2017, 3, 30));
+    timestep.setScale({ scale: "day", step: 2 });
+    timestep.current = moment(new Date(2017, 3, 1));
+    const classNames = timestep.getClassName();
+    assert.ok(
+      !/vis-(monday|tuesday|wednesday|thursday|friday|saturday|sunday)/.test(
+        classNames,
+      ),
+      "a 2-day column must not carry a weekday class, got: " + classNames,
+    );
+  });
+
+  it("should tag a 1-day (day/step-1) column with its weekday class", () => {
+    const timestep = new TimeStep(new Date(2017, 3, 1), new Date(2017, 3, 30));
+    timestep.setScale({ scale: "day", step: 1 });
+    const current = moment(new Date(2017, 3, 1));
+    timestep.current = current;
+    const weekday = current.locale("en").format("dddd").toLowerCase();
+    assert.ok(
+      timestep
+        .getClassName()
+        .split(" ")
+        .includes("vis-" + weekday),
+      "a 1-day column should carry its weekday class (vis-" + weekday + ")",
+    );
+  });
 });
