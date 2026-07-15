@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-07-14T02:10:44.639Z
+ * @date    2026-07-15T16:58:28.645Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -30944,7 +30944,8 @@ class TimeStep {
         classNames.push(today(current));
         classNames.push(currentMonth(current));
         classNames.push(this.step <= 2 ? today(current) : "");
-        classNames.push(this.step <= 2 ? "vis-".concat(current.format("dddd").toLowerCase()) : "");
+        // only a single-day column (step 1) maps to one weekday
+        classNames.push(this.step === 1 ? "vis-".concat(current.format("dddd").toLowerCase()) : "");
         classNames.push(even(current.date() - 1));
         break;
       case "week":
