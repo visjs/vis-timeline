@@ -1,6 +1,8 @@
-import assert from "assert";
+import assert from "node:assert";
+
 import jsdom_global from "jsdom-global";
 import { DataSet } from "vis-data/esnext";
+
 import Timeline from "../lib/timeline/Timeline.js";
 
 const internals = {};

@@ -1,7 +1,7 @@
-import assert from "assert";
-import canvasMockify from "./canvas-mock.js";
+import assert from "node:assert";
 
 import DataAxis from "../lib/timeline/component/DataAxis.js";
+import canvasMockify from "./canvas-mock.js";
 
 const internals = {};
 

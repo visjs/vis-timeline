@@ -1,9 +1,10 @@
-import assert from "assert";
+import assert from "node:assert";
 
-import util from "../lib/util.js";
 import moment from "moment";
 
-var ASPDateRegex = /^\/?Date\((\-?\d+)/i;
+import util from "../lib/util.js";
+
+var ASPDateRegex = /^\/?Date\((-?\d+)/i;
 
 describe("util", function () {
   describe("convert", function () {
