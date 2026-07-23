@@ -571,47 +571,54 @@ export interface Graph2dOptions {
 }
 
 export class Graph2d {
-  constructor(
+  public constructor(
     container: HTMLElement,
     items: DataItemCollectionType,
     groups: DataGroupCollectionType,
     options?: Graph2dOptions,
   );
-  constructor(
+  public constructor(
     container: HTMLElement,
     items: DataItemCollectionType,
     options?: Graph2dOptions,
   );
 
-  addCustomTime(time: DateType, id?: IdType): IdType;
-  destroy(): void;
-  fit(options?: TimelineAnimationOptions): void;
-  focus(ids: IdType | IdType[], options?: TimelineAnimationOptions): void;
-  getCurrentTime(): Date;
-  getCustomTime(id?: IdType): Date;
-  getEventProperties(event: Event): TimelineEventPropertiesResult;
-  getItemRange(): any; // TODO
-  getSelection(): IdType[];
-  getVisibleItems(): IdType[];
-  getWindow(): { start: Date; end: Date };
-  moveTo(time: DateType, options?: TimelineAnimationOptions): void;
-  on(event: TimelineEvents, callback: () => void): void;
-  off(event: TimelineEvents, callback: () => void): void;
-  redraw(): void;
-  removeCustomTime(id: IdType): void;
-  setCurrentTime(time: DateType): void;
-  setCustomTime(time: DateType, id?: IdType): void;
-  setCustomTimeTitle(title: string, id?: IdType): void;
-  setCustomTimeMarker(title: string, id?: IdType, editable?: boolean): void;
-  setData(data: {
+  public addCustomTime(time: DateType, id?: IdType): IdType;
+  public destroy(): void;
+  public fit(options?: TimelineAnimationOptions): void;
+  public focus(
+    ids: IdType | IdType[],
+    options?: TimelineAnimationOptions,
+  ): void;
+  public getCurrentTime(): Date;
+  public getCustomTime(id?: IdType): Date;
+  public getEventProperties(event: Event): TimelineEventPropertiesResult;
+  public getItemRange(): any; // TODO
+  public getSelection(): IdType[];
+  public getVisibleItems(): IdType[];
+  public getWindow(): { start: Date; end: Date };
+  public moveTo(time: DateType, options?: TimelineAnimationOptions): void;
+  public on(event: TimelineEvents, callback: () => void): void;
+  public off(event: TimelineEvents, callback: () => void): void;
+  public redraw(): void;
+  public removeCustomTime(id: IdType): void;
+  public setCurrentTime(time: DateType): void;
+  public setCustomTime(time: DateType, id?: IdType): void;
+  public setCustomTimeTitle(title: string, id?: IdType): void;
+  public setCustomTimeMarker(
+    title: string,
+    id?: IdType,
+    editable?: boolean,
+  ): void;
+  public setData(data: {
     groups?: DataGroupCollectionType;
     items?: DataItemCollectionType;
   }): void;
-  setGroups(groups?: DataGroupCollectionType): void;
-  setItems(items: DataItemCollectionType): void;
-  setOptions(options: TimelineOptions): void;
-  setSelection(ids: IdType | IdType[]): void;
-  setWindow(
+  public setGroups(groups?: DataGroupCollectionType): void;
+  public setItems(items: DataItemCollectionType): void;
+  public setOptions(options: TimelineOptions): void;
+  public setSelection(ids: IdType | IdType[]): void;
+  public setWindow(
     start: DateType,
     end: DateType,
     options?: TimelineAnimationOptions,
@@ -629,14 +636,14 @@ export interface Graph2d {
 }
 
 export class Timeline {
-  constructor(
+  public constructor(
     container: HTMLElement,
     items: DataItemCollectionType,
     groups: DataGroupCollectionType,
     options?: TimelineOptions,
   );
 
-  constructor(
+  public constructor(
     container: HTMLElement,
     items: DataItemCollectionType,
     options?: TimelineOptions,
@@ -649,60 +656,63 @@ export class Timeline {
    * The id is added as CSS class name of the custom time bar, allowing to style multiple time bars differently.
    * The method returns id of the created bar.
    */
-  addCustomTime(time: DateType, id?: IdType): IdType;
+  public addCustomTime(time: DateType, id?: IdType): IdType;
 
   /**
    * Destroy the Timeline. The timeline is removed from memory. all DOM elements and event listeners are cleaned up.
    */
-  destroy(): void;
+  public destroy(): void;
 
   /**
    * Adjust the visible window such that it fits all items. See also focus(id).
    */
-  fit(options?: TimelineAnimationOptions): void;
+  public fit(options?: TimelineAnimationOptions): void;
 
   /**
    * Adjust the visible window such that the selected item (or multiple items) are centered on screen. See also function fit()
    */
-  focus(ids: IdType | IdType[], options?: TimelineAnimationOptions): void;
+  public focus(
+    ids: IdType | IdType[],
+    options?: TimelineAnimationOptions,
+  ): void;
 
   /**
    * Get the current time. Only applicable when option showCurrentTime is true.
    */
-  getCurrentTime(): Date;
+  public getCurrentTime(): Date;
 
   /**
    * Retrieve the custom time from the custom time bar with given id.
    * @param id Id is undefined by default.
    */
-  getCustomTime(id?: IdType): Date;
+  public getCustomTime(id?: IdType): Date;
 
-  getEventProperties(event: Event): TimelineEventPropertiesResult;
+  public getEventProperties(event: Event): TimelineEventPropertiesResult;
 
   /**
    * Get the range of all the items as an object containing min date and max date
    */
-  getItemRange(): { min: Date; max: Date };
+  public getItemRange(): { min: Date; max: Date };
 
   /**
    * Get an array with the ids of the currently selected items
    */
-  getSelection(): IdType[];
+  public getSelection(): IdType[];
 
   /**
    * Get an array with the ids of the currently visible items.
    */
-  getVisibleItems(): IdType[];
+  public getVisibleItems(): IdType[];
 
   /**
    * Get the current visible window.
    */
-  getWindow(): TimelineWindow;
+  public getWindow(): TimelineWindow;
 
   /**
    * Move the window such that given time is centered on screen.
    */
-  moveTo(
+  public moveTo(
     time: DateType,
     options?: TimelineAnimationOptions,
     callback?: (properties?: any) => void,
@@ -711,51 +721,54 @@ export class Timeline {
   /**
    * Create an event listener. The callback function is invoked every time the event is triggered.
    */
-  on(event: TimelineEvents, callback?: (properties?: any) => void): void;
+  public on(event: TimelineEvents, callback?: (properties?: any) => void): void;
 
   /**
    * Remove an event listener created before via function on(event[, callback]).
    */
-  off(event: TimelineEvents, callback?: (properties?: any) => void): void;
+  public off(
+    event: TimelineEvents,
+    callback?: (properties?: any) => void,
+  ): void;
 
   /**
    * Force a redraw of the Timeline. The size of all items will be recalculated.
    * Can be useful to manually redraw when option autoResize=false and the window has been resized, or when the items CSS has been changed.
    */
-  redraw(): void;
+  public redraw(): void;
 
   /**
    * Remove vertical bars previously added to the timeline via addCustomTime method.
    * @param id ID of the custom vertical bar returned by addCustomTime method.
    */
-  removeCustomTime(id: IdType): void;
+  public removeCustomTime(id: IdType): void;
 
   /**
    * Set a current time. This can be used for example to ensure that a client's time is synchronized with a shared server time.
    * Only applicable when option showCurrentTime is true.
    */
-  setCurrentTime(time: DateType): void;
+  public setCurrentTime(time: DateType): void;
 
   /**
    * Adjust the time of a custom time bar.
    * @param time The time the custom time bar should point to
    * @param id Id of the custom time bar, and is undefined by default.
    */
-  setCustomTime(time: DateType, id?: IdType): void;
+  public setCustomTime(time: DateType, id?: IdType): void;
 
   /**
    * Adjust the title attribute of a custom time bar.
    * @param title The title shown when hover over time bar
    * @param id Id of the custom time bar, and is undefined by default.
    */
-  setCustomTimeTitle(title: string, id?: IdType): void;
+  public setCustomTimeTitle(title: string, id?: IdType): void;
 
   /**
    * Set both groups and items at once. Both properties are optional.
    * This is a convenience method for individually calling both setItems(items) and setGroups(groups).
    * Both items and groups can be an Array with Objects, a DataSet (offering 2 way data binding), or a DataView (offering 1 way data binding).
    */
-  setData(data: {
+  public setData(data: {
     groups?: DataGroupCollectionType;
     items?: DataItemCollectionType;
   }): void;
@@ -763,24 +776,24 @@ export class Timeline {
   /**
    * Set a data set with groups for the Timeline.
    */
-  setGroups(groups?: DataGroupCollectionType): void;
+  public setGroups(groups?: DataGroupCollectionType): void;
 
   /**
    * Set a data set with items for the Timeline.
    */
-  setItems(items: DataItemCollectionType): void;
+  public setItems(items: DataItemCollectionType): void;
 
   /**
    * Set or update options. It is possible to change any option of the timeline at any time.
    * You can for example switch orientation on the fly.
    */
-  setOptions(options: TimelineOptions): void;
+  public setOptions(options: TimelineOptions): void;
 
   /**
    * Select one or multiple items by their id. The currently selected items will be unselected.
    * To unselect all selected items, call `setSelection([])`.
    */
-  setSelection(
+  public setSelection(
     ids: IdType | IdType[],
     options?: { focus: boolean; animation: TimelineAnimationOptions },
   ): void;
@@ -792,7 +805,7 @@ export class Timeline {
    * @param options Timeline animation options. See {@link TimelineAnimationOptions}
    * @param callback The callback function
    */
-  setWindow(
+  public setWindow(
     start: DateType,
     end: DateType,
     options?: TimelineAnimationOptions,
@@ -802,7 +815,7 @@ export class Timeline {
   /**
    * Toggle rollingMode.
    */
-  toggleRollingMode(): void;
+  public toggleRollingMode(): void;
 
   /**
    * Zoom in the current visible window.
@@ -810,7 +823,7 @@ export class Timeline {
    * @param options Timeline animation options. See {@link TimelineAnimationOptions}
    * @param callback The callback function
    */
-  zoomIn(
+  public zoomIn(
     percentage: number,
     options?: TimelineAnimationOptions,
     callback?: () => void,
@@ -822,7 +835,7 @@ export class Timeline {
    * @param options Timeline animation options. See {@link TimelineAnimationOptions}
    * @param callback The callback function
    */
-  zoomOut(
+  public zoomOut(
     percentage: number,
     options?: TimelineAnimationOptions,
     callback?: () => void,
