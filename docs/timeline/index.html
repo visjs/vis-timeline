@@ -153,8 +153,7 @@
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</pre
-      >
+</pre>
 
       <h2 id="Loading">Loading</h2>
       <p>
@@ -167,17 +166,14 @@
       <pre class="prettyprint lang-html">
 &lt;script src="vis/dist/vis.js"&gt;&lt;/script&gt;
 &lt;link href="vis/dist/vis-timeline-graph2d.min.css" rel="stylesheet" type="text/css" /&gt;
-</pre
-      >
+</pre>
 
       The constructor of the Timeline is <code>vis.Timeline</code>
       <pre class="prettyprint lang-js">
-var timeline = new vis.Timeline(container, items, options);</pre
-      >
+var timeline = new vis.Timeline(container, items, options);</pre>
       or when using groups:
       <pre class="prettyprint lang-js">
-var timeline = new vis.Timeline(container, items, groups, options);</pre
-      >
+var timeline = new vis.Timeline(container, items, groups, options);</pre>
 
       The constructor accepts four parameters:
       <ul>
@@ -238,8 +234,7 @@ var items = new vis.DataSet([
   }
   // more items...
 ]);
-</pre
-      >
+</pre>
 
       <p>The item properties are defined as:</p>
 
@@ -263,8 +258,7 @@ var items = new vis.DataSet([
   color: white;
   background-color: red;
   border-color: darkred;
-}</pre
-            >
+}</pre>
             More details on how to style items can be found in the section
             <a href="#Styles">Styles</a>.
           </td>
@@ -458,8 +452,7 @@ var groups = [
   }
   // more groups...
 ]);
-</pre
-      >
+</pre>
 
       <p>Groups can have the following properties:</p>
 
@@ -604,8 +597,7 @@ var options = {
     item: 20
   }
 };
-</pre
-      >
+</pre>
 
       <p>The following options are available.</p>
 
@@ -670,8 +662,7 @@ var options = {
             <pre class="prettyprint lang-js">
 function (option, path) {
   return option === 'format' || path.indexOf('format') !== -1;
-}</pre
-            >
+}</pre>
           </td>
         </tr>
 
@@ -800,8 +791,7 @@ function (option, path) {
     month:      'YYYY',
     year:       ''
   }
-}</pre
-            >
+}</pre>
 
             For values which not provided in the customized
             <code>options.format</code>, the default values will be used. All
@@ -818,8 +808,7 @@ function (option, path) {
 function format({
   minorLabels: Function(date: Date, scale: Number, step: Number),
   majorLabels: Function(date: Date, scale: Number, step: Number)
-}</pre
-            >
+}</pre>
           </td>
         </tr>
 
@@ -915,8 +904,7 @@ function format({
             changed. The signature of the <code>groupOrderWap</code> function
             is:
             <pre class="prettyprint lang-js">
-function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pre
-            >
+function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pre>
             The first to arguments hold the groups of which the positions are to
             be swapped and the third argument holds the DataSet with all groups.
           </td>
@@ -1602,8 +1590,7 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
             If specified, determines whether overlapped items should go to the
             same cluster. The signature of the clusterCriteria function is:
             <pre class="prettyprint lang-js">
-function clusterCriteria(firstItem: Object, secondItem: Object) : boolean.</pre
-            >
+function clusterCriteria(firstItem: Object, secondItem: Object) : boolean.</pre>
           </td>
         </tr>
         <tr parent="cluster" class="hidden">
@@ -1633,8 +1620,7 @@ function clusterCriteria(firstItem: Object, secondItem: Object) : boolean.</pre
             or can be set to <code>null</code> to disable snapping. The
             signature of the snap function is:
             <pre class="prettyprint lang-js">
-function snap(date: Date, scale: string, step: number) : Date or number</pre
-            >
+function snap(date: Date, scale: string, step: number) : Date or number</pre>
             The parameter <code>scale</code> can be can be 'millisecond',
             'second', 'minute', 'hour', 'weekday, 'week', 'day, 'month, or
             'year'. The parameter <code>step</code> is a number like 1, 2, 4, 5.
@@ -1709,8 +1695,7 @@ function snap(date: Date, scale: string, step: number) : Date or number</pre
             <pre class="prettyprint lang-js">
 var options = {
   timeAxis: {scale: 'minute', step: 5}
-}</pre
-            >
+}</pre>
             <p>
               Note: The 'week' scale only works properly when
               <a href="#Localization">locales</a> are enabled.
@@ -2117,8 +2102,7 @@ var options = {
 document.getElementById('myTimeline').onclick = function (event) {
   var props = timeline.getEventProperties(event)
   console.log(props);
-}</pre
-            >
+}</pre>
           </td>
         </tr>
 
@@ -2482,8 +2466,7 @@ document.getElementById('myTimeline').onclick = function (event) {
 timeline.on('select', function (properties) {
   alert('selected items: ' + properties.items);
 });
-</pre
-      >
+</pre>
 
       <p>A listener can be removed via the function <code>off</code>:</p>
 
@@ -2499,8 +2482,7 @@ timeline.on('select', onSelect);
 
 // remove event listener
 timeline.off('select', onSelect);
-</pre
-      >
+</pre>
 
       <p>The following events are available.</p>
 
@@ -2547,8 +2529,7 @@ timeline.on('contextmenu', function (props) {
   alert('Right click!');
   props.event.preventDefault();
 });
-</pre
-            >
+</pre>
           </td>
         </tr>
 
@@ -2859,8 +2840,7 @@ var options = {
     remove: true,       // delete an item by tapping the delete button top right
     overrideItems: false  // allow these options to override item.editable
   }
-};</pre
-      >
+};</pre>
 
       <p>
         Editing can be enabled/disabled for specific items. Setting the property
@@ -2875,8 +2855,7 @@ var items = new vis.DataSet([
   {id: 1, content: 'read-only item', start: '2013-04-20', editable: false},
   {id: 2, content: 'editable item', start: '2013-04-14'}
 ]);
-</pre
-      >
+</pre>
 
       <p>
         Individual manipulation actions (<code>updateTime</code>,
@@ -2960,8 +2939,7 @@ var options = {
     }
   }
 };
-</pre
-      >
+</pre>
 
       A full example is available here:
       <a href="../../examples/timeline/editing/editingItemsCallbacks.html"
@@ -2987,8 +2965,7 @@ var options = {
     return html;
   }
 };
-</pre
-      >
+</pre>
 
       <h3>Create HTML manually</h3>
 
@@ -3003,8 +2980,7 @@ var options = {
     item.moving = true;
   }
 };
-</pre
-      >
+</pre>
 
       <h3>Using a template engine</h3>
 
@@ -3016,16 +2992,14 @@ var options = {
   &lt;h1&gt;{{header}}&lt;/h1&gt;
   &lt;p&gt;{{description}}&lt;/p&gt;
 &lt;/script&gt;
-</pre
-      >
+</pre>
 
       Compile the template:
 
       <pre class="prettyprint lang-js">
 var source = document.getElementById('item-template').innerHTML;
 var template = Handlebars.compile(source);
-</pre
-      >
+</pre>
 
       And then specify the template in the Timeline options
 
@@ -3033,8 +3007,7 @@ var template = Handlebars.compile(source);
 var options = {
   template: template
 };
-</pre
-      >
+</pre>
 
       <h3>React templates</h3>
 
@@ -3045,8 +3018,7 @@ var options = {
   template: function (item, element, data) {
     return ReactDOM.render(&lt;b&gt;{item.content}&lt;/b&gt;, element);
   },
-</pre
-      >
+</pre>
 
       <h3>Multiple templates</h3>
 
@@ -3068,8 +3040,7 @@ var options = {
     return template(item);                    // execute the template
   }
 };
-</pre
-      >
+</pre>
 
       Now the items can be extended with a property <code>template</code>,
       specifying which template to use for the item.
@@ -3093,8 +3064,7 @@ var options = {
 var options = {
   locale: 'nl'
 };
-</pre
-      >
+</pre>
 
       <h3>Create a new locale</h3>
 
@@ -3115,8 +3085,7 @@ var options = {
   // use the new locale
   locale: 'mylocale'
 };
-</pre
-      >
+</pre>
 
       <h3 id="available-locales">Available locales</h3>
 
@@ -3258,8 +3227,7 @@ var options = {
     return vis.moment(date).utcOffset('+08:00');
   }
 };
-</pre
-      >
+</pre>
 
       <h2 id="Styles">Styles</h2>
       <p>
@@ -3280,8 +3248,7 @@ var options = {
     background-color: yellow;
   }
 &lt;/style&gt;
-</pre
-      >
+</pre>
 
       <h3 id="Grid_Backgrounds">Grid Backgrounds</h3>
       <p>
@@ -3385,8 +3352,7 @@ var options = {
     color: white;
   }
 &lt;/style&gt;
-</pre
-      >
+</pre>
 
       <h3 id="Performance_Tips">Performance Tips</h3>
       <p>
