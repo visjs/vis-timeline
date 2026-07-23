@@ -210,8 +210,7 @@
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
-</pre
-        >
+</pre>
         <p>
           <a
             href="http://visjs.org/examples/graph2d/01_basic.html"
@@ -236,8 +235,7 @@
           <a href="#Data_Format">Data Format</a>.
         </p>
         <pre class="prettyprint lang-js options">
-var graph = new vis.Graph2d(container [, data] [, groups] [, options]);</pre
-        >
+var graph = new vis.Graph2d(container [, data] [, groups] [, options]);</pre>
         For backwards compatibility, groups and options can be interchanged.
 
         <p>
@@ -284,8 +282,7 @@ var items = [
     {x: '2014-06-17', y: 10, group: 1},
     {x: '2014-06-18', y: 15, group: 1}
 ];
-</pre
-      >
+</pre>
 
       <table class="properties">
         <tr>
@@ -360,8 +357,7 @@ groups.add({
 groups.add({
   // more groups...
 });
-</pre
-      >
+</pre>
 
       <p>Groups can have the following properties:</p>
 
@@ -444,8 +440,7 @@ var options = {
     height: '400px',
     style: 'surface'
 };
-</pre
-      >
+</pre>
 
       The options colored in green can also be used as options for the groups.
       All options are optional.
@@ -560,8 +555,7 @@ var options = {
             <pre class="prettyprint lang-js">
 function (value) {
   return ''+value.toPrecision(3);
-}</pre
-            >
+}</pre>
           </td>
         </tr>
         <tr parent="dataAxis" class="hidden">
@@ -730,8 +724,7 @@ drawPoints: {
     return item.label != null;
   }
 }
-              </pre
-            >
+              </pre>
             This callback may also return an object containing a
             <code>size</code> and <code>style</code> property, both are
             optional, e.g.:
@@ -746,8 +739,7 @@ onRender: function(item, group, graph2d) {
     size: 30
   };
 }
-              </pre
-            >
+              </pre>
             The properties <code>className</code>, <code>style</code> and
             <code>size</code> returned from the callback will be used for
             rendering the datapoint. If a property is missing in the rendering
@@ -1060,8 +1052,7 @@ onRender: function(item, group, graph2d) {
             <pre class="prettyprint lang-js">
 function (option, path) {
   return option === 'format' || path.indexOf('format') !== -1;
-}</pre
-            >
+}</pre>
           </td>
         </tr>
 
@@ -1118,8 +1109,7 @@ function (option, path) {
     month:      'YYYY',
     year:       ''
   }
-}</pre
-            >
+}</pre>
             For values which not provided in the customized
             <code>options.format</code>, the default values will be used. All
             available formatting syntax is described in the
@@ -1331,8 +1321,7 @@ function (option, path) {
             <pre class="prettyprint lang-js options">
 var options = {
   timeAxis: {scale: 'minute', step: 5}
-}</pre
-            >
+}</pre>
           </td>
         </tr>
         <tr parent="timeAxis" class="hidden">
@@ -1665,8 +1654,7 @@ Graph2d.on('rangechanged', onChange);
 
 // remove event listener
 Graph2d.off('rangechanged', onChange);
-</pre
-      >
+</pre>
 
       <p>The following events are available.</p>
 
@@ -1713,8 +1701,7 @@ graph2d.on('contextmenu', function (props) {
   alert('Right click!');
   props.event.preventDefault();
 });
-</pre
-            >
+</pre>
           </td>
         </tr>
         <tr>
@@ -1813,8 +1800,7 @@ graph2d.on('contextmenu', function (props) {
 var options = {
   locale: 'nl'
 };
-</pre
-      >
+</pre>
 
       <h3>Create a new locale</h3>
 
@@ -1834,8 +1820,7 @@ var options = {
   // use the new locale
   locale: 'mylocale'
 };
-</pre
-      >
+</pre>
 
       <h3 id="available-locales">Available locales</h3>
 
@@ -1892,8 +1877,7 @@ var options = {
     return vis.moment(date).utcOffset('+08:00');
   }
 };
-</pre
-      >
+</pre>
 
       <h2 id="Styles">Styles</h2>
       <p>

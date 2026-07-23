@@ -1,5 +1,7 @@
-import assert from "assert";
+import assert from "node:assert";
+
 import jsdom_global from "jsdom-global";
+
 import moment from "../lib/module/moment.js";
 import PointItem from "../lib/timeline/component/item/PointItem.js";
 import Range from "../lib/timeline/Range.js";

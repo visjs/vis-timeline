@@ -1,5 +1,7 @@
-import assert from "assert";
+import assert from "node:assert";
+
 import jsdom_global from "jsdom-global";
+
 import Activator from "../lib/shared/Activator.js";
 
 const internals = {};
