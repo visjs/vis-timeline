@@ -50,16 +50,15 @@ code {
         type="hidden"
         name="html"
         value='<p>
-  This example shows the workings of the subgroups. Subgroups can be stacked on
-  each other, and the items within each subgroup can be stacked.
+  This example shows the workings of the subgroups. Subgroups can be stacked on each other, and the
+  items within each subgroup can be stacked.
 </p>
 <p>
-  When stacking is on for the whole timeline, all items in the timeline will be
-  stacked with respect to each other <em>unless</em> the
-  <code>stackSubgroups</code> option is set to <code>true</code>
-  and at least one subgroup has stacking enabled. In that case the subgroups
-  will be stacked with respect to each other and the elements in each subgroup
-  will be stacked based on the individual stacking settings for each subgroup.
+  When stacking is on for the whole timeline, all items in the timeline will be stacked with respect
+  to each other <em>unless</em> the <code>stackSubgroups</code> option is set to <code>true</code>
+  and at least one subgroup has stacking enabled. In that case the subgroups will be stacked with
+  respect to each other and the elements in each subgroup will be stacked based on the individual
+  stacking settings for each subgroup.
 </p>
 <table>
   <thead>
@@ -312,8 +311,7 @@ function toggleStackSubgroups() {
 }
 
 function toggleSubgroupStack(subgroup) {
-  groups.get("bar").subgroupStack[subgroup] =
-    !groups.get("bar").subgroupStack[subgroup];
+  groups.get("bar").subgroupStack[subgroup] = !groups.get("bar").subgroupStack[subgroup];
   document.getElementById("stack" + subgroup).innerHTML = groups
     .get("bar")
     .subgroupStack[subgroup].toString();

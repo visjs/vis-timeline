@@ -24,11 +24,10 @@ html {
         type="hidden"
         name="html"
         value='<p>
-  Test the performance with a lot of items. The Timeline can load hundreds of
-  thousands of items, but the performance of rendering them in the browser is
-  limited. Rendering typically runs smooth for up to a few hundreds of items at
-  once (you can set a <code>zoomMax</code> to prevent the user from zooming out
-  too far).
+  Test the performance with a lot of items. The Timeline can load hundreds of thousands of items,
+  but the performance of rendering them in the browser is limited. Rendering typically runs smooth
+  for up to a few hundreds of items at once (you can set a <code>zoomMax</code> to prevent the user
+  from zooming out too far).
 </p>
 <p>
   <label for="count">Number of items</label>
@@ -83,11 +82,7 @@ var timeline = new vis.Timeline(container, items, options);
         name="resources"
         value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | other | performance"
-      />
+      <input type="hidden" name="title" value="Timeline | other | performance" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

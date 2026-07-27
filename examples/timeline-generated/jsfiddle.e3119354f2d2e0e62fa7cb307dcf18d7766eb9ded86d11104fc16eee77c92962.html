@@ -34,9 +34,9 @@ html {
 <div id="tooltips-follow"></div>
 
 <p>
-  The example below has the tooltip overflow set to &apos;cap&apos;. Compare this to the
-  one above, to see how they differ. For the best results, move the cursor to
-  the top right, where the tool-tip is going to overflow out of the timeline.
+  The example below has the tooltip overflow set to &apos;cap&apos;. Compare this to the one above, to see how
+  they differ. For the best results, move the cursor to the top right, where the tool-tip is going
+  to overflow out of the timeline.
 </p>
 
 <div id="tooltips-cap"></div>
@@ -79,11 +79,7 @@ var items = new vis.DataSet([
 var options = {};
 
 // Timeline object
-var timelineTooltips = new vis.Timeline(
-  document.getElementById("tooltips"),
-  items,
-  options,
-);
+var timelineTooltips = new vis.Timeline(document.getElementById("tooltips"), items, options);
 
 // Follow options
 var follow_options = {
@@ -106,22 +102,14 @@ var cap_options = {
   },
 };
 
-var timelineCap = new vis.Timeline(
-  document.getElementById("tooltips-cap"),
-  items,
-  cap_options,
-);
+var timelineCap = new vis.Timeline(document.getElementById("tooltips-cap"), items, cap_options);
 
 // Hide options
 var hide_options = {
   showTooltips: false,
 };
 
-var timelineHide = new vis.Timeline(
-  document.getElementById("tooltips-hide"),
-  items,
-  hide_options,
-);
+var timelineHide = new vis.Timeline(document.getElementById("tooltips-hide"), items, hide_options);
 '
       />
       <input

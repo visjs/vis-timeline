@@ -32,9 +32,9 @@ html {
   <code>{locale: STRING}</code>.
 </p>
 <p>
-  To set up a day scale and also shows the corresponding calendar weeks,
-  configure use a time axis with day scale and enable showWeekScale. Then
-  configure the format to output the date/day and the week info accordingly:
+  To set up a day scale and also shows the corresponding calendar weeks, configure use a time axis
+  with day scale and enable showWeekScale. Then configure the format to output the date/day and the
+  week info accordingly:
 </p>
 <pre><code>
   {
@@ -52,10 +52,10 @@ html {
 </pre>
 
 <p>
-  The following timeline is initialized with the &apos;de&apos; locale and items are added
-  with locally localized moment.js objects. The timeline locale can be switched
-  to another locale at runtime. If you choose the &apos;en&apos; locale, the week numbers
-  will be calculated according to the US week calendar numbering scheme.
+  The following timeline is initialized with the &apos;de&apos; locale and items are added with locally
+  localized moment.js objects. The timeline locale can be switched to another locale at runtime. If
+  you choose the &apos;en&apos; locale, the week numbers will be calculated according to the US week calendar
+  numbering scheme.
 </p>
 
 <p>
@@ -91,12 +91,7 @@ groups.add([
 var items = new vis.DataSet();
 
 // create a localized moment object based on the current date
-var USdate = moment()
-  .locale("en")
-  .hours(0)
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+var USdate = moment().locale("en").hours(0).minutes(0).seconds(0).milliseconds(0);
 
 // use the locale-aware weekday function to move to the begin of the current week
 USdate.weekday(0);
@@ -116,12 +111,7 @@ for (var i = 0; i < itemCount; i++) {
 }
 
 // create another localized moment object - the &apos;de&apos; locale works according to the ISO8601 leap week calendar system
-var DEdate = moment()
-  .locale("de")
-  .hours(0)
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+var DEdate = moment().locale("de").hours(0).minutes(0).seconds(0).milliseconds(0);
 DEdate.weekday(0);
 for (var j = 0; j < itemCount; j++) {
   var DEweekNumber = DEdate.format("w");

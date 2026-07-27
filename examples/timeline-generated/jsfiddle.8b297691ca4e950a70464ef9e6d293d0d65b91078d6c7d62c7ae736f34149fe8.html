@@ -27,10 +27,9 @@
         type="hidden"
         name="html"
         value='<p style="width: 600px">
-  When the custom time bar is shown, the user can drag this bar to a specific
-  time. The Timeline sends an event that the custom time is changed, after which
-  the contents of the timeline can be changed according to the specified time in
-  past or future.
+  When the custom time bar is shown, the user can drag this bar to a specific time. The Timeline
+  sends an event that the custom time is changed, after which the contents of the timeline can be
+  changed according to the specified time in past or future.
 </p>
 
 <div id="customTime">&amp;nbsp;</div>
@@ -65,8 +64,7 @@ timeline.addCustomTime(new Date());
 
 // add event listener
 timeline.on("timechange", function (event) {
-  document.getElementById("customTime").innerHTML =
-    "Custom Time: " + event.time;
+  document.getElementById("customTime").innerHTML = "Custom Time: " + event.time;
 
   var item = data.get(1);
   if (event.time > item.start) {
@@ -98,11 +96,7 @@ timeline.setWindow(start, end, { animation: false });
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | editing | Update data on event"
-      />
+      <input type="hidden" name="title" value="Timeline | editing | Update data on event" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

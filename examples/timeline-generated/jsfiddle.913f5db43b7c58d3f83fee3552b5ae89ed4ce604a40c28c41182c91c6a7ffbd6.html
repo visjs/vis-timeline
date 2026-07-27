@@ -25,9 +25,9 @@ html {
         name="html"
         value='<h1>Set selection</h1>
 <p style="max-width: 600px">
-  Enter one or multiple ids of items, then press select to select the items.
-  This demo uses the function <code>Timeline.setSelection(ids)</code>.
-  Optionally, the window can be moved to the selected items.
+  Enter one or multiple ids of items, then press select to select the items. This demo uses the
+  function <code>Timeline.setSelection(ids)</code>. Optionally, the window can be moved to the
+  selected items.
 </p>
 
 <p>
@@ -36,28 +36,24 @@ html {
     id="select"
     value="Select"
   /><br />
-  <label
-    ><input type="checkbox" id="focus" checked="" /> Focus on selection</label
-  >
+  <label><input type="checkbox" id="focus" checked="" /> Focus on selection</label>
 </p>
 <div id="visualization"></div>
 
 <br />
 <p>
-  If the height of the timeline is limited some items may be vertically
-  offscreen. This demo uses
-  <code>Timeline.setSelection(ids, {focus: true})</code> and demonstrates that
-  focusing on an item will cause the timeline to scroll vertically to the item
-  that is being focused on. You can use the buttons below select a random item
-  either above or below the currently selected item.
+  If the height of the timeline is limited some items may be vertically offscreen. This demo uses
+  <code>Timeline.setSelection(ids, {focus: true})</code> and demonstrates that focusing on an item
+  will cause the timeline to scroll vertically to the item that is being focused on. You can use the
+  buttons below select a random item either above or below the currently selected item.
 </p>
 <button id="prevFocus">Select Item Above</button>
 <button id="nextFocus">Select Item Below</button>
 <br />
 
 <p>
-  If focusing on multiple items only the first item will be scrolled to. Try
-  entering several ids and hitting <em>select</em>.
+  If focusing on multiple items only the first item will be scrolled to. Try entering several ids
+  and hitting <em>select</em>.
 </p>
 <p>
   Select item(s):
@@ -208,11 +204,7 @@ setTimeout(function () {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | interaction | Select items"
-      />
+      <input type="hidden" name="title" value="Timeline | interaction | Select items" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

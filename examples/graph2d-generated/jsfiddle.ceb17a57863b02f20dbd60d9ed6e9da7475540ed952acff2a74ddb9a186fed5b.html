@@ -28,10 +28,9 @@ html {
         name="html"
         value='<h2>Graph2d | Label Example</h2>
 <div style="width: 700px; font-size: 14px; text-align: justify">
-  This example shows the how to add a label to each point in Graph2d. Each item
-  can have a label object which contains the content and CSS class.In addition,
-  xOffset and yOffset will adjust the location of the label relative to the
-  point being labelled.
+  This example shows the how to add a label to each point in Graph2d. Each item can have a label
+  object which contains the content and CSS class.In addition, xOffset and yOffset will adjust the
+  location of the label relative to the point being labelled.
 
   <br /><br />
 </div>
@@ -83,8 +82,7 @@ var items = [
 var groups = new vis.DataSet();
 groups.add({
   id: 1,
-  content:
-    "Only draw items with labels. Make the data point bigger and a square.",
+  content: "Only draw items with labels. Make the data point bigger and a square.",
   options: {
     drawPoints: function group1Renderer(item, group, grap2d) {
       if (item.label == null) {
@@ -100,8 +98,7 @@ groups.add({
 
 groups.add({
   id: 2,
-  content:
-    "Draw according to the Graph2d callback, but make it every datapoint square one.",
+  content: "Draw according to the Graph2d callback, but make it every datapoint square one.",
   options: {
     drawPoints: {
       style: "square",

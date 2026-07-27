@@ -43,20 +43,12 @@ var timeline = new vis.Timeline(container, items, options);
 var id1 = "id1";
 var id2 = "id2";
 timeline.addCustomTime(
-  new Date(
-    customDate.getFullYear(),
-    customDate.getMonth(),
-    customDate.getDate() + 2,
-  ),
+  new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 2),
   id1,
 );
 timeline.setCustomTimeMarker("This is editable", id1, true);
 timeline.addCustomTime(
-  new Date(
-    customDate.getFullYear(),
-    customDate.getMonth(),
-    customDate.getDate() + 3,
-  ),
+  new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 3),
   id2,
 );
 timeline.setCustomTimeMarker("This is not editable", id2, false);
@@ -67,11 +59,7 @@ timeline.setCustomTimeMarker("This is not editable", id2, false);
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | markers | Editable markers"
-      />
+      <input type="hidden" name="title" value="Timeline | markers | Editable markers" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

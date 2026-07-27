@@ -49,10 +49,9 @@ table .description {
         name="html"
         value='<h1>WK 2014</h1>
 <p style="max-width: 600px">
-  This example demonstrates using templates to format item contents. In this
-  case <a href="https://handlebarsjs.com">handlebars</a> is used as template
-  engine, but you can just use your favorite template engine or manually craft
-  HTML from the data of an item.
+  This example demonstrates using templates to format item contents. In this case
+  <a href="https://handlebarsjs.com">handlebars</a> is used as template engine, but you can just use
+  your favorite template engine or manually craft HTML from the data of an item.
 </p>
 
 <div id="visualization"></div>
@@ -97,9 +96,7 @@ table .description {
 
 // create a handlebars template
 var source = document.getElementById("item-template").innerHTML;
-var template = Handlebars.compile(
-  document.getElementById("item-template").innerHTML,
-);
+var template = Handlebars.compile(document.getElementById("item-template").innerHTML);
 
 // DOM element where the Timeline will be attached
 var container = document.getElementById("visualization");
@@ -280,11 +277,7 @@ var timeline = new vis.Timeline(container, items, options);
         name="resources"
         value="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.5/handlebars.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | styling | Templates"
-      />
+      <input type="hidden" name="title" value="Timeline | styling | Templates" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

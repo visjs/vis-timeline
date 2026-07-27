@@ -67,12 +67,7 @@ html {
 
 <div>
   <label for="orders-per-day-number">Orders per day number:</label>
-  <input
-    class="slider-value"
-    type="text"
-    id="orders-per-day-number"
-    readonly=""
-  />
+  <input class="slider-value" type="text" id="orders-per-day-number" readonly="" />
   <div class="slider" id="orders-per-day-slider"></div>
 </div>
 <br />
@@ -110,20 +105,14 @@ function getTimelineData() {
   const itemsInClusterCount = $("#orders-per-day-slider").slider("value");
 
   const before = [
-    Array.from(
-      new Array(Math.round(totalDaysCount / 2)),
-      function (val, index) {
-        return index - totalDaysCount + 1;
-      },
-    ),
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function (val, index) {
+      return index - totalDaysCount + 1;
+    }),
   ];
   const after = [
-    Array.from(
-      new Array(Math.round(totalDaysCount / 2)),
-      function (val, index) {
-        return index + 1;
-      },
-    ),
+    Array.from(new Array(Math.round(totalDaysCount / 2)), function (val, index) {
+      return index + 1;
+    }),
   ];
 
   for (var i in before) {
@@ -146,11 +135,7 @@ function getTimelineData() {
   let nodeIndex = 0;
   for (var i in clusterCenters) {
     let clusterCenter = clusterCenters[i];
-    for (
-      let clusterNodeIdx = 0;
-      clusterNodeIdx < itemsInClusterCount;
-      ++clusterNodeIdx
-    ) {
+    for (let clusterNodeIdx = 0; clusterNodeIdx < itemsInClusterCount; ++clusterNodeIdx) {
       const minutesShift = getRandomArbitrary(1, 60) * getRandomSignum();
       const hoursShift = getRandomArbitrary(1, 5) * getRandomSignum();
       const secondsShift = getRandomArbitrary(1, 60) * getRandomSignum();
@@ -262,8 +247,7 @@ $("#clusterCheckbox").change(function () {
   if (this.checked) {
     var clusterOpts = {
       cluster: {
-        titleTemplate:
-          "Cluster containing {count} events. Zoom in to see the individual events.",
+        titleTemplate: "Cluster containing {count} events. Zoom in to see the individual events.",
         showStipes: true,
       },
     };
@@ -280,11 +264,7 @@ $("#clusterCheckbox").change(function () {
         name="resources"
         value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js,https://code.jquery.com/jquery-1.12.4.js,https://code.jquery.com/ui/1.12.1/jquery-ui.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | other | Clustering example"
-      />
+      <input type="hidden" name="title" value="Timeline | other | Clustering example" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

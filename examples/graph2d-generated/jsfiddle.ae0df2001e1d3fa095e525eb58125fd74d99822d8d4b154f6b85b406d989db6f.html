@@ -24,19 +24,17 @@ html {
         name="html"
         value='<h2>Graph2d | Scrolling and Sorting</h2>
 <div style="width: 700px; font-size: 14px; text-align: justify">
-  You can determine the height of the Graph2d seperately from the height of the
-  frame. If the <code>graphHeight</code> is defined, and the
-  <code>height</code> is not, the frame will auto-scale to accommodate the
-  graphHeight. If the <code>height</code>
-  is defined as well, the user can scroll up and down vertically as well as
-  horizontally to view the graph.
+  You can determine the height of the Graph2d seperately from the height of the frame. If the
+  <code>graphHeight</code> is defined, and the <code>height</code> is not, the frame will auto-scale
+  to accommodate the graphHeight. If the <code>height</code>
+  is defined as well, the user can scroll up and down vertically as well as horizontally to view the
+  graph.
   <br /><br />
-  Vertical scrolling is planned, though not yet available. The graphHeight also
-  does not conform if only the <code>height</code> is defined. <br /><br />
+  Vertical scrolling is planned, though not yet available. The graphHeight also does not conform if
+  only the <code>height</code> is defined. <br /><br />
   You can manually disable the automatic sorting of the datapoints by using the
-  <code>sort</code> option. However, doing so does reduce the optimization of
-  the drawing so if you have a lot of points, keep <code>sort</code> turned on
-  for the best results.
+  <code>sort</code> option. However, doing so does reduce the optimization of the drawing so if you
+  have a lot of points, keep <code>sort</code> turned on for the best results.
 </div>
 <br />
 <div id="visualization"></div>
@@ -91,11 +89,7 @@ var graph2d = new vis.Graph2d(container, dataset, options);
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Graph2d | Scrolling and Sorting"
-      />
+      <input type="hidden" name="title" value="Graph2d | Scrolling and Sorting" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

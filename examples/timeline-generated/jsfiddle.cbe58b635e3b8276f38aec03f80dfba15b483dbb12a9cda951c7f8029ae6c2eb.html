@@ -52,8 +52,7 @@ code {
         value='<p>This example shows the ability to hide specific subgroups.</p>
 <p>
   Subgroups can be hidden using the
-  <code>subgroupVisibility</code> parameter in the timeline configuration
-  options.
+  <code>subgroupVisibility</code> parameter in the timeline configuration options.
 </p>
 <table>
   <thead>
@@ -269,8 +268,7 @@ var options = {
 var timeline = new vis.Timeline(container, items, groups, options);
 
 function toggleSubgroupVisibility(subgroup) {
-  groups.get("bar").subgroupVisibility[subgroup] =
-    !groups.get("bar").subgroupVisibility[subgroup];
+  groups.get("bar").subgroupVisibility[subgroup] = !groups.get("bar").subgroupVisibility[subgroup];
   document.getElementById("subgVis" + subgroup).innerHTML = groups
     .get("bar")
     .subgroupVisibility[subgroup].toString();
@@ -283,11 +281,7 @@ function toggleSubgroupVisibility(subgroup) {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | groups | Subgroup Visibility"
-      />
+      <input type="hidden" name="title" value="Timeline | groups | Subgroup Visibility" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

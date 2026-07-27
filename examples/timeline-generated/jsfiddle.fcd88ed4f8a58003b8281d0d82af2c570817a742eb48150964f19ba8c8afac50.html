@@ -24,14 +24,12 @@ html {
         type="hidden"
         name="html"
         value='<p style="max-width: 800px">
-  This example shows how to use callback functions <code>onAdd</code>,
-  <code>onMove</code>, <code>onMoving</code>, <code>onUpdate</code>, and
-  <code>onRemove</code>. The <code>onMoving</code> function updates an item
-  while dragging, and can be used to prevent the item from being drawn at
-  disallowed or infeasible timeslots. In this example, the items cannot be moved
-  outside of the month April 2013. The other callback functions are called after
-  an add, move, update, or remove action has taken place, and can be used to
-  cancel these actions.
+  This example shows how to use callback functions <code>onAdd</code>, <code>onMove</code>,
+  <code>onMoving</code>, <code>onUpdate</code>, and <code>onRemove</code>. The
+  <code>onMoving</code> function updates an item while dragging, and can be used to prevent the item
+  from being drawn at disallowed or infeasible timeslots. In this example, the items cannot be moved
+  outside of the month April 2013. The other callback functions are called after an add, move,
+  update, or remove action has taken place, and can be used to cancel these actions.
 </p>
 
 <div id="visualization"></div>
@@ -65,19 +63,14 @@ var options = {
   editable: true,
 
   onAdd: function (item, callback) {
-    prettyPrompt(
-      "Add item",
-      "Enter text content for new item:",
-      item.content,
-      function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted new item
-        } else {
-          callback(null); // cancel item creation
-        }
-      },
-    );
+    prettyPrompt("Add item", "Enter text content for new item:", item.content, function (value) {
+      if (value) {
+        item.content = value;
+        callback(item); // send back adjusted new item
+      } else {
+        callback(null); // cancel item creation
+      }
+    });
   },
 
   onMove: function (item, callback) {
@@ -108,19 +101,14 @@ var options = {
   },
 
   onUpdate: function (item, callback) {
-    prettyPrompt(
-      "Update item",
-      "Edit items text:",
-      item.content,
-      function (value) {
-        if (value) {
-          item.content = value;
-          callback(item); // send back adjusted item
-        } else {
-          callback(null); // cancel updating the item
-        }
-      },
-    );
+    prettyPrompt("Update item", "Edit items text:", item.content, function (value) {
+      if (value) {
+        item.content = value;
+        callback(item); // send back adjusted item
+      } else {
+        callback(null); // cancel updating the item
+      }
+    });
   },
 
   onRemove: function (item, callback) {
@@ -147,11 +135,7 @@ function logEvent(event, properties) {
   var log = document.getElementById("log");
   var msg = document.createElement("div");
   msg.innerHTML =
-    "event=" +
-    JSON.stringify(event) +
-    ", " +
-    "properties=" +
-    JSON.stringify(properties);
+    "event=" + JSON.stringify(event) + ", " + "properties=" + JSON.stringify(properties);
   log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
 }
 
@@ -187,11 +171,7 @@ function prettyPrompt(title, text, inputValue, callback) {
         name="resources"
         value="https://cdn.jsdelivr.net/npm/sweetalert@1.1.3/dist/sweetalert.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | editing | Manipulation callbacks"
-      />
+      <input type="hidden" name="title" value="Timeline | editing | Manipulation callbacks" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

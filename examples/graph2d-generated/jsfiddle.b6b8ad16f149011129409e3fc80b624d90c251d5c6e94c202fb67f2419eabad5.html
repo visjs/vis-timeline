@@ -25,10 +25,9 @@ html {
         value='<h2>Graph2d | Dynamic Styling Example</h2>
 
 <div style="width: 800px; font-size: 14px; text-align: justify">
-  This example shows how to programmatically change the styling of a group.
-  While this can also be done in CSS, this must be statically defined, and the
-  programmatic interface allows the user to define the look of the graph at
-  runtime.
+  This example shows how to programmatically change the styling of a group. While this can also be
+  done in CSS, this must be statically defined, and the programmatic interface allows the user to
+  define the look of the graph at runtime.
 </div>
 <br />
 
@@ -64,9 +63,7 @@ html {
               <td>Line Style</td>
               <td>
                 <select id="line" onchange="updateStyle()">
-                  <option value="stroke-dasharray:1 0;" selected="selected">
-                    line
-                  </option>
+                  <option value="stroke-dasharray:1 0;" selected="selected">line</option>
                   <option value="stroke-dasharray:10 10;">dash</option>
                   <option value="stroke-dasharray:2 2;">dot</option>
                   <option value="stroke-dasharray:10 5 2 5;">dash-dot</option>
@@ -118,9 +115,7 @@ html {
                   <option value="fill-opacity:0.3;">0.3</option>
                   <option value="fill-opacity:0.4;">0.4</option>
                   <option value="fill-opacity:0.5;">0.5</option>
-                  <option value="fill-opacity:0.6;" selected="selected">
-                    0.6
-                  </option>
+                  <option value="fill-opacity:0.6;" selected="selected">0.6</option>
                   <option value="fill-opacity:0.7;">0.7</option>
                   <option value="fill-opacity:0.8;">0.8</option>
                   <option value="fill-opacity:0.9;">0.9</option>
@@ -250,15 +245,10 @@ function updateStyle() {
   groupData.options.drawPoints = {};
   groupData.options.drawPoints.styles = "";
   groupData.options.drawPoints.style = document.getElementById("points").value;
-  groupData.options.drawPoints.styles +=
-    document.getElementById("pointcolor").value;
-  groupData.options.drawPoints.styles +=
-    document.getElementById("pointthickness").value;
-  groupData.options.drawPoints.styles +=
-    document.getElementById("pointfill").value;
-  groupData.options.drawPoints.size = Number(
-    document.getElementById("pointsize").value,
-  );
+  groupData.options.drawPoints.styles += document.getElementById("pointcolor").value;
+  groupData.options.drawPoints.styles += document.getElementById("pointthickness").value;
+  groupData.options.drawPoints.styles += document.getElementById("pointfill").value;
+  groupData.options.drawPoints.size = Number(document.getElementById("pointsize").value);
   if (groupData.options.drawPoints.style == "") {
     groupData.options.drawPoints = false;
   }
@@ -266,8 +256,7 @@ function updateStyle() {
   groupData.options.shaded = {};
   groupData.options.shaded.style = "";
   groupData.options.shaded.style += document.getElementById("fillcolor").value;
-  groupData.options.shaded.style +=
-    document.getElementById("fillopacity").value;
+  groupData.options.shaded.style += document.getElementById("fillopacity").value;
   groupData.options.shaded.orientation = document.getElementById("fill").value;
   if (groupData.options.shaded.orientation == "") {
     groupData.options.shaded = false;

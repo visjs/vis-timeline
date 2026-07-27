@@ -30,9 +30,8 @@ html {
         type="hidden"
         name="html"
         value='<p>
-  This example demonstrate using groups. Note that a DataSet is used for both
-  items and groups, allowing to dynamically add, update or remove both items and
-  groups via the DataSet.
+  This example demonstrate using groups. Note that a DataSet is used for both items and groups,
+  allowing to dynamically add, update or remove both items and groups via the DataSet.
 </p>
 <div id="visualization"></div>
 '
@@ -59,12 +58,7 @@ for (var i = 0; i < itemCount; i++) {
   items.add({
     id: i,
     group: group,
-    content:
-      "item " +
-      i +
-      &apos; <span style="color:#97B0F8;">(&apos; +
-      names[group] +
-      ")</span>",
+    content: "item " + i + &apos; <span style="color:#97B0F8;">(&apos; + names[group] + ")</span>",
     start: start,
     type: "box",
   });
@@ -87,11 +81,7 @@ timeline.setItems(items);
         name="resources"
         value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | groups | Group example"
-      />
+      <input type="hidden" name="title" value="Timeline | groups | Group example" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

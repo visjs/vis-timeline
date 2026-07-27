@@ -33,17 +33,14 @@ html {
 </p>
 <p>
   To set the scale to use week numbers, use the following options:
-  <code>
-    { timeAxis: { scale: &apos;week&apos;, step: 1 }, format: { minorLabels: {week: &apos;w&apos;} }
-    }
-  </code>
+  <code> { timeAxis: { scale: &apos;week&apos;, step: 1 }, format: { minorLabels: {week: &apos;w&apos;} } } </code>
 </p>
 
 <p>
-  The following timeline is initialized with the &apos;de&apos; locale and items are added
-  with locally localized moment.js objects. The timeline locale can be switched
-  to another locale at runtime. If you choose the &apos;en&apos; locale, the week numbers
-  will be calculated according to the US week calendar numbering scheme.
+  The following timeline is initialized with the &apos;de&apos; locale and items are added with locally
+  localized moment.js objects. The timeline locale can be switched to another locale at runtime. If
+  you choose the &apos;en&apos; locale, the week numbers will be calculated according to the US week calendar
+  numbering scheme.
 </p>
 
 <p>
@@ -79,12 +76,7 @@ groups.add([
 var items = new vis.DataSet();
 
 // create a localized moment object based on the current date
-var USdate = moment()
-  .locale("en")
-  .hours(0)
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+var USdate = moment().locale("en").hours(0).minutes(0).seconds(0).milliseconds(0);
 
 // use the locale-aware weekday function to move to the begin of the current week
 USdate.weekday(0);
@@ -104,12 +96,7 @@ for (var i = 0; i < itemCount; i++) {
 }
 
 // create another localized moment object - the &apos;de&apos; locale works according to the ISO8601 leap week calendar system
-var DEdate = moment()
-  .locale("de")
-  .hours(0)
-  .minutes(0)
-  .seconds(0)
-  .milliseconds(0);
+var DEdate = moment().locale("de").hours(0).minutes(0).seconds(0).milliseconds(0);
 DEdate.weekday(0);
 for (var j = 0; j < itemCount; j++) {
   var DEweekNumber = DEdate.format("w");
@@ -154,11 +141,7 @@ select.onchange();
         name="resources"
         value="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js,https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | styling | Week styling"
-      />
+      <input type="hidden" name="title" value="Timeline | styling | Week styling" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

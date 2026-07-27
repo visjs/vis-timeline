@@ -26,15 +26,11 @@ html {
         value='<p>The timeline has two marker events.</p>
 <ol>
   <li>
-    <p>
-      <code>markerchange</code> which is fired when a marker title has been
-      changed.
-    </p>
+    <p><code>markerchange</code> which is fired when a marker title has been changed.</p>
   </li>
   <li>
     <p>
-      <code>markerchanged</code> which is fired when an alteration to a marker
-      title is committed.
+      <code>markerchanged</code> which is fired when an alteration to a marker title is committed.
     </p>
   </li>
 </ol>
@@ -57,11 +53,7 @@ var container = document.getElementById("visualization");
 var timeline = new vis.Timeline(container, items, options);
 var id = "id";
 timeline.addCustomTime(
-  new Date(
-    customDate.getFullYear(),
-    customDate.getMonth(),
-    customDate.getDate() + 3,
-  ),
+  new Date(customDate.getFullYear(), customDate.getMonth(), customDate.getDate() + 3),
   id,
 );
 timeline.setCustomTimeMarker("Enter some text", id, true);
@@ -75,8 +67,7 @@ timeline.on("markerchanged", function (properties) {
 function logEvent(event, properties) {
   var log = document.getElementById("log");
   var msg = document.createElement("div");
-  msg.innerHTML =
-    "event=" + event + ", " + "properties=" + JSON.stringify(properties);
+  msg.innerHTML = "event=" + event + ", " + "properties=" + JSON.stringify(properties);
   log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
 }
 '
@@ -86,11 +77,7 @@ function logEvent(event, properties) {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | markers | Marker events"
-      />
+      <input type="hidden" name="title" value="Timeline | markers | Marker events" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

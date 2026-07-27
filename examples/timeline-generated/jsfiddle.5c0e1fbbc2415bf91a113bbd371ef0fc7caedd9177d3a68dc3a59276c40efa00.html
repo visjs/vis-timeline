@@ -27,23 +27,22 @@ p {
         name="html"
         value='<h1>Item ordering</h1>
 <p>
-  By default, the items displayed on the Timeline are unordered. They are
-  stacked in the order that they where loaded. This means that way items are
-  stacked can change while moving and zooming the Timeline.
+  By default, the items displayed on the Timeline are unordered. They are stacked in the order that
+  they where loaded. This means that way items are stacked can change while moving and zooming the
+  Timeline.
 </p>
 <p>
-  To display and stack the items in a controlled order, you can provide a custom
-  sorting function via the configuration option <code>order</code>.
+  To display and stack the items in a controlled order, you can provide a custom sorting function
+  via the configuration option <code>order</code>.
 </p>
 <p>
-  WARNING: Custom ordering is only suitable for small amounts of items (up to a
-  few hundred), as the Timeline has to render <i>all</i> items once on load to
-  determine their width and height.
+  WARNING: Custom ordering is only suitable for small amounts of items (up to a few hundred), as the
+  Timeline has to render <i>all</i> items once on load to determine their width and height.
 </p>
 <p>
   <label for="ordering"
-    ><input type="checkbox" id="ordering" checked="" /> Apply custom ordering.
-    Order items by their id.</label
+    ><input type="checkbox" id="ordering" checked="" /> Apply custom ordering. Order items by their
+    id.</label
   >
 </p>
 
@@ -97,11 +96,7 @@ ordering.onchange = function () {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | items | Item ordering"
-      />
+      <input type="hidden" name="title" value="Timeline | items | Item ordering" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

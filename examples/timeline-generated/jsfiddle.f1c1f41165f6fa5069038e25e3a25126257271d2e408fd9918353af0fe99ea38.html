@@ -60,11 +60,10 @@ li.object-item:before {
 
 <p>
   For this to work, you will have to define your own
-  <code>&apos;dragstart&apos;</code> eventListener on each item in your list of items
-  (make sure that any new item added to the list is attached to this
-  eventListener &apos;dragstart&apos; handler). This &apos;dragstart&apos; handler must set
-  <code>dataTransfer</code> - notice you can set the item&apos;s information as you
-  want this way.
+  <code>&apos;dragstart&apos;</code> eventListener on each item in your list of items (make sure that any new
+  item added to the list is attached to this eventListener &apos;dragstart&apos; handler). This &apos;dragstart&apos;
+  handler must set <code>dataTransfer</code> - notice you can set the item&apos;s information as you want
+  this way.
 </p>
 
 <div id="visualization"></div>
@@ -140,11 +139,7 @@ var options = {
       return;
     }
     alert(
-      &apos;dropped object with content: "&apos; +
-        objectData.content +
-        &apos;" to item: "&apos; +
-        item.content +
-        &apos;"&apos;,
+      &apos;dropped object with content: "&apos; + objectData.content + &apos;" to item: "&apos; + item.content + &apos;"&apos;,
     );
   },
 };
@@ -196,11 +191,7 @@ for (var i = items.length - 1; i >= 0; i--) {
 
 for (var i = objectItems.length - 1; i >= 0; i--) {
   var objectItem = objectItems[i];
-  objectItem.addEventListener(
-    "dragstart",
-    handleObjectItemDragStart.bind(this),
-    false,
-  );
+  objectItem.addEventListener("dragstart", handleObjectItemDragStart.bind(this), false);
 }
 '
       />
@@ -209,11 +200,7 @@ for (var i = objectItems.length - 1; i >= 0; i--) {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | other | Drag &amp; Drop"
-      />
+      <input type="hidden" name="title" value="Timeline | other | Drag &amp; Drop" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>

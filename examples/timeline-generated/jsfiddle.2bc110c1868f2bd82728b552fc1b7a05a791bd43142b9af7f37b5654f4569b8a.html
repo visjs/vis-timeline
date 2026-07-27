@@ -23,12 +23,11 @@ html {
         type="hidden"
         name="html"
         value='<p>
-  This example listens for events <code>select</code>, <code>click</code>,
-  <code>doubleClick</code>, <code>rangechange</code>, and
-  <code>rangechanged</code> of the Timeline (other possible events:
-  <code>mouseDown</code>, <code>mouseUp</code>, <code>mouseOver</code>,
-  <code>mouseMove</code>), and listens for changes in the DataSet
-  (<code>add</code>, <code>update</code>, or <code>remove</code> items).
+  This example listens for events <code>select</code>, <code>click</code>, <code>doubleClick</code>,
+  <code>rangechange</code>, and <code>rangechanged</code> of the Timeline (other possible events:
+  <code>mouseDown</code>, <code>mouseUp</code>, <code>mouseOver</code>, <code>mouseMove</code>), and
+  listens for changes in the DataSet (<code>add</code>, <code>update</code>, or
+  <code>remove</code> items).
 </p>
 <div id="visualization"></div>
 <p></p>
@@ -129,11 +128,7 @@ function logEvent(event, properties) {
   var log = document.getElementById("log");
   var msg = document.createElement("div");
   msg.innerHTML =
-    "event=" +
-    JSON.stringify(event) +
-    ", " +
-    "properties=" +
-    stringifyObject(properties);
+    "event=" + JSON.stringify(event) + ", " + "properties=" + stringifyObject(properties);
   log.firstChild ? log.insertBefore(msg, log.firstChild) : log.appendChild(msg);
 }
 
@@ -148,11 +143,7 @@ function setHoveredItem(id) {
         name="resources"
         value="https://visjs.github.io/vis-timeline/standalone/umd/vis-timeline-graph2d.min.js"
       />
-      <input
-        type="hidden"
-        name="title"
-        value="Timeline | interaction | Event listeners"
-      />
+      <input type="hidden" name="title" value="Timeline | interaction | Event listeners" />
       <input type="hidden" name="wrap" value="b" />
       <button id="open" alt="JSFiddle" title="JSFiddle">Open JSFiddle</button>
     </form>
