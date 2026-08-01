@@ -102,9 +102,8 @@ function createRenderer(fromDir, data) {
 
     @param {TAFFY} taffyData See <http://taffydb.com/>.
     @param {object} opts
-    @param {Tutorial} tutorials
  */
-exports.publish = function(taffyData, opts, tutorials) {
+exports.publish = function(taffyData, opts) {
   //console.log(JSON.stringify(opts, null, 2));
 
   var fromDir = path.resolve(opts.template);
