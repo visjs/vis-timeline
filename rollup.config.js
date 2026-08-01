@@ -5,7 +5,7 @@ import terser from "@rollup/plugin-terser";
 import copy from "rollup-plugin-copy";
 import css from "rollup-plugin-postcss";
 
-import { generateHeader, BABEL_IGNORE_RE } from "vis-dev-utils";
+import { BABEL_IGNORE_RE, generateHeader } from "vis-dev-utils";
 
 const banner = generateHeader({ name: "vis-timeline and vis-graph2d" });
 
