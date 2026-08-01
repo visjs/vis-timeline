@@ -1,7 +1,7 @@
 import { defineConfig } from "oxlint";
 import type { OxlintConfig } from "oxlint";
-
 import oxlintSharedConfig from "vis-dev-utils/oxlint-shared-config";
+
 import { ignorePatterns } from "./linting-and-formatting-ignore-patterns.ts";
 
 export default defineConfig<OxlintConfig>({

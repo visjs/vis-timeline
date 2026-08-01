@@ -1,11 +1,11 @@
+import babel from "@rollup/plugin-babel";
 import commonjs from "@rollup/plugin-commonjs";
 import nodeResolve from "@rollup/plugin-node-resolve";
-import babel from "@rollup/plugin-babel";
 import terser from "@rollup/plugin-terser";
-import { generateHeader } from "vis-dev-utils";
-import css from "rollup-plugin-postcss";
 import copy from "rollup-plugin-copy";
-import { BABEL_IGNORE_RE } from "vis-dev-utils";
+import css from "rollup-plugin-postcss";
+
+import { generateHeader, BABEL_IGNORE_RE } from "vis-dev-utils";
 
 const banner = generateHeader({ name: "vis-timeline and vis-graph2d" });
 

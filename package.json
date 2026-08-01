@@ -2,262 +2,20 @@
   "name": "vis-timeline",
   "version": "0.0.0-no-version",
   "description": "Create a fully customizable, interactive timeline with items and ranges.",
+  "keywords": [
+    "chart",
+    "graph",
+    "javascript",
+    "linechart",
+    "timeline",
+    "vis",
+    "visualization"
+  ],
   "homepage": "https://visjs.github.io/vis-timeline/",
-  "license": "(Apache-2.0 OR MIT)",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/visjs/vis-timeline.git"
-  },
   "bugs": {
     "url": "https://github.com/visjs/vis-timeline/issues"
   },
-  "keywords": [
-    "vis",
-    "visualization",
-    "javascript",
-    "chart",
-    "linechart",
-    "timeline",
-    "graph"
-  ],
-  "browser": "./peer/umd/vis-timeline-graph2d.min.cjs",
-  "jsnext": "./esnext/esm/vis-timeline-graph2d.mjs",
-  "main": "./peer/umd/vis-timeline-graph2d.cjs",
-  "module": "./peer/esm/vis-timeline-graph2d.mjs",
-  "types": "./declarations/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./peer/esm/vis-timeline-graph2d.mjs",
-      "require": "./peer/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./package.json": "./package.json",
-    "./declarations/index.d.ts": {
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone": {
-      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
-      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/esm/vis-timeline-graph2d.js": {
-      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/esm/vis-timeline-graph2d.mjs": {
-      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/esm/vis-timeline-graph2d.min.js": {
-      "import": "./standalone/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/esm/vis-timeline-graph2d.min.mjs": {
-      "import": "./standalone/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/umd/vis-timeline-graph2d.js": {
-      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/umd/vis-timeline-graph2d.cjs": {
-      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/umd/vis-timeline-graph2d.min.js": {
-      "require": "./standalone/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./standalone/umd/vis-timeline-graph2d.min.cjs": {
-      "require": "./standalone/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer": {
-      "import": "./peer/esm/vis-timeline-graph2d.mjs",
-      "require": "./peer/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/esm/vis-timeline-graph2d.js": {
-      "import": "./peer/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/esm/vis-timeline-graph2d.mjs": {
-      "import": "./peer/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/esm/vis-timeline-graph2d.min.js": {
-      "import": "./peer/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/esm/vis-timeline-graph2d.min.mjs": {
-      "import": "./peer/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/umd/vis-timeline-graph2d.js": {
-      "require": "./peer/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/umd/vis-timeline-graph2d.cjs": {
-      "require": "./peer/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/umd/vis-timeline-graph2d.min.js": {
-      "require": "./peer/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./peer/umd/vis-timeline-graph2d.min.cjs": {
-      "require": "./peer/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext": {
-      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
-      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/esm/vis-timeline-graph2d.js": {
-      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/esm/vis-timeline-graph2d.mjs": {
-      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/esm/vis-timeline-graph2d.min.js": {
-      "import": "./esnext/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/esm/vis-timeline-graph2d.min.mjs": {
-      "import": "./esnext/esm/vis-timeline-graph2d.min.mjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/umd/vis-timeline-graph2d.js": {
-      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/umd/vis-timeline-graph2d.cjs": {
-      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/umd/vis-timeline-graph2d.min.js": {
-      "require": "./esnext/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./esnext/umd/vis-timeline-graph2d.min.cjs": {
-      "require": "./esnext/umd/vis-timeline-graph2d.min.cjs",
-      "types": "./declarations/index.d.ts"
-    },
-    "./styles/*": "./styles/*",
-    "./dist/vis-timeline-graph2d": {
-      "import": "./dist/vis-timeline-graph2d.mjs",
-      "require": "./dist/vis-timeline-graph2d.cjs"
-    },
-    "./dist/vis-timeline-graph2d.js": {
-      "import": "./dist/vis-timeline-graph2d.mjs",
-      "require": "./dist/vis-timeline-graph2d.cjs"
-    },
-    "./dist/vis-timeline-graph2d.min": {
-      "import": "./dist/vis-timeline-graph2d.min.mjs",
-      "require": "./dist/vis-timeline-graph2d.min.cjs"
-    },
-    "./dist/vis-timeline-graph2d.min.js": {
-      "import": "./dist/vis-timeline-graph2d.min.mjs",
-      "require": "./dist/vis-timeline-graph2d.min.cjs"
-    },
-    "./dist/vis-timeline-graph2d.esm": {
-      "import": "./dist/vis-timeline-graph2d.mjs",
-      "require": "./dist/vis-timeline-graph2d.cjs"
-    },
-    "./dist/vis-timeline-graph2d.esm.js": {
-      "import": "./dist/vis-timeline-graph2d.mjs",
-      "require": "./dist/vis-timeline-graph2d.cjs"
-    },
-    "./dist/vis-timeline-graph2d.esm.min": {
-      "import": "./dist/vis-timeline-graph2d.min.mjs",
-      "require": "./dist/vis-timeline-graph2d.min.cjs"
-    },
-    "./dist/vis-timeline-graph2d.esm.min.js": {
-      "import": "./dist/vis-timeline-graph2d.min.mjs",
-      "require": "./dist/vis-timeline-graph2d.min.cjs"
-    }
-  },
-  "files": [
-    "HISTORY.md",
-    "declarations",
-    "dist",
-    "esnext",
-    "peer",
-    "standalone",
-    "styles",
-    "types"
-  ],
-  "type": "module",
-  "scripts": {
-    "test": "mocha --exit",
-    "test-cov": "nyc --reporter=lcov mocha --exit",
-    "build": "shx mkdir -p declarations && shx cp \"types/**/*\" \"declarations\" && rollup --config rollup.build.js && rollup --config rollup.config.js",
-    "watch": "rollup --watch --config rollup.config.js",
-    "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
-    "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
-    "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
-    "style": "oxfmt --check .",
-    "style-fix": "oxfmt .",
-    "lint": "oxlint --report-unused-disable-directives-severity error .",
-    "lint-fix": "oxlint --report-unused-disable-directives-severity error --fix .",
-    "clean": "shx rm -rf \"{declarations,dist,esnext,peer,standalone,styles}/*\"",
-    "contributors:update": "git-authors-cli",
-    "preparepublish": "npm run contributors:update",
-    "prepublishOnly": "npm run contributors:update && npm run build",
-    "prepare": "husky"
-  },
-  "lint-staged": {
-    "*.{js,ts,css,html,json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern",
-    "*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix",
-    ".*.{js,ts,css,html,json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern",
-    ".*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix"
-  },
-  "peerDependencies": {
-    "@egjs/hammerjs": "^2.0.0",
-    "component-emitter": "^1.3.0",
-    "keycharm": "^0.2.0 || ^0.3.0 || ^0.4.0",
-    "moment": "^2.24.0",
-    "propagating-hammerjs": "^1.4.0 || ^2.0.0 || ^3.0.0",
-    "uuid": "^3.4.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^13.0.0 || ^14.0.0",
-    "vis-data": ">=8.0.0",
-    "vis-util": ">=6.0.0",
-    "xss": "^1.0.0"
-  },
-  "devDependencies": {
-    "@babel/plugin-proposal-object-rest-spread": "7.20.7",
-    "@egjs/hammerjs": "2.0.17",
-    "component-emitter": "1.3.1",
-    "gh-pages": "6.3.0",
-    "git-authors-cli": "1.0.53",
-    "husky": "9.1.7",
-    "jsdoc": "3.6.11",
-    "jsdom": "30.0.0",
-    "jsdom-global": "3.0.2",
-    "keycharm": "0.4.0",
-    "lint-staged": "17.2.0",
-    "mocha": "11.7.6",
-    "moment": "2.30.1",
-    "nyc": "18.0.0",
-    "oxfmt": "0.61.0",
-    "oxlint": "1.76.0",
-    "oxlint-tsgolint": "7.0.2001",
-    "propagating-hammerjs": "3.0.0",
-    "semantic-release": "25.0.8",
-    "shx": "0.4.0",
-    "snap-shot-it": "7.9.10",
-    "uuid": "14.0.1",
-    "vis-data": "8.0.4",
-    "vis-dev-utils": "7.1.1",
-    "vis-util": "6.0.0",
-    "xss": "1.0.15"
-  },
-  "funding": {
-    "type": "opencollective",
-    "url": "https://opencollective.com/visjs"
-  },
+  "license": "(Apache-2.0 OR MIT)",
   "contributors": [
     "jos <wjosdejong@gmail.com>",
     "Alex de Mulder <alexdemulder@gmail.com>",
@@ -452,5 +210,247 @@
     "Shao Wang <wsdonny@gmail.com>",
     "TATSUNO Yasuhiro <ytatsuno.jp@gmail.com>",
     "Tanya <zamorskatetiana@gmail.com>"
-  ]
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visjs/vis-timeline.git"
+  },
+  "funding": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/visjs"
+  },
+  "files": [
+    "HISTORY.md",
+    "declarations",
+    "dist",
+    "esnext",
+    "peer",
+    "standalone",
+    "styles",
+    "types"
+  ],
+  "type": "module",
+  "main": "./peer/umd/vis-timeline-graph2d.cjs",
+  "module": "./peer/esm/vis-timeline-graph2d.mjs",
+  "browser": "./peer/umd/vis-timeline-graph2d.min.cjs",
+  "types": "./declarations/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./peer/esm/vis-timeline-graph2d.mjs",
+      "require": "./peer/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./package.json": "./package.json",
+    "./declarations/index.d.ts": {
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone": {
+      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
+      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/esm/vis-timeline-graph2d.js": {
+      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/esm/vis-timeline-graph2d.mjs": {
+      "import": "./standalone/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/esm/vis-timeline-graph2d.min.js": {
+      "import": "./standalone/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/esm/vis-timeline-graph2d.min.mjs": {
+      "import": "./standalone/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/umd/vis-timeline-graph2d.js": {
+      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/umd/vis-timeline-graph2d.cjs": {
+      "require": "./standalone/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/umd/vis-timeline-graph2d.min.js": {
+      "require": "./standalone/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./standalone/umd/vis-timeline-graph2d.min.cjs": {
+      "require": "./standalone/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer": {
+      "import": "./peer/esm/vis-timeline-graph2d.mjs",
+      "require": "./peer/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/esm/vis-timeline-graph2d.js": {
+      "import": "./peer/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/esm/vis-timeline-graph2d.mjs": {
+      "import": "./peer/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/esm/vis-timeline-graph2d.min.js": {
+      "import": "./peer/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/esm/vis-timeline-graph2d.min.mjs": {
+      "import": "./peer/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/umd/vis-timeline-graph2d.js": {
+      "require": "./peer/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/umd/vis-timeline-graph2d.cjs": {
+      "require": "./peer/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/umd/vis-timeline-graph2d.min.js": {
+      "require": "./peer/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./peer/umd/vis-timeline-graph2d.min.cjs": {
+      "require": "./peer/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext": {
+      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
+      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/esm/vis-timeline-graph2d.js": {
+      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/esm/vis-timeline-graph2d.mjs": {
+      "import": "./esnext/esm/vis-timeline-graph2d.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/esm/vis-timeline-graph2d.min.js": {
+      "import": "./esnext/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/esm/vis-timeline-graph2d.min.mjs": {
+      "import": "./esnext/esm/vis-timeline-graph2d.min.mjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/umd/vis-timeline-graph2d.js": {
+      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/umd/vis-timeline-graph2d.cjs": {
+      "require": "./esnext/umd/vis-timeline-graph2d.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/umd/vis-timeline-graph2d.min.js": {
+      "require": "./esnext/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./esnext/umd/vis-timeline-graph2d.min.cjs": {
+      "require": "./esnext/umd/vis-timeline-graph2d.min.cjs",
+      "types": "./declarations/index.d.ts"
+    },
+    "./styles/*": "./styles/*",
+    "./dist/vis-timeline-graph2d": {
+      "import": "./dist/vis-timeline-graph2d.mjs",
+      "require": "./dist/vis-timeline-graph2d.cjs"
+    },
+    "./dist/vis-timeline-graph2d.js": {
+      "import": "./dist/vis-timeline-graph2d.mjs",
+      "require": "./dist/vis-timeline-graph2d.cjs"
+    },
+    "./dist/vis-timeline-graph2d.min": {
+      "import": "./dist/vis-timeline-graph2d.min.mjs",
+      "require": "./dist/vis-timeline-graph2d.min.cjs"
+    },
+    "./dist/vis-timeline-graph2d.min.js": {
+      "import": "./dist/vis-timeline-graph2d.min.mjs",
+      "require": "./dist/vis-timeline-graph2d.min.cjs"
+    },
+    "./dist/vis-timeline-graph2d.esm": {
+      "import": "./dist/vis-timeline-graph2d.mjs",
+      "require": "./dist/vis-timeline-graph2d.cjs"
+    },
+    "./dist/vis-timeline-graph2d.esm.js": {
+      "import": "./dist/vis-timeline-graph2d.mjs",
+      "require": "./dist/vis-timeline-graph2d.cjs"
+    },
+    "./dist/vis-timeline-graph2d.esm.min": {
+      "import": "./dist/vis-timeline-graph2d.min.mjs",
+      "require": "./dist/vis-timeline-graph2d.min.cjs"
+    },
+    "./dist/vis-timeline-graph2d.esm.min.js": {
+      "import": "./dist/vis-timeline-graph2d.min.mjs",
+      "require": "./dist/vis-timeline-graph2d.min.cjs"
+    }
+  },
+  "scripts": {
+    "test": "mocha --exit",
+    "test-cov": "nyc --reporter=lcov mocha --exit",
+    "build": "shx mkdir -p declarations && shx cp \"types/**/*\" \"declarations\" && rollup --config rollup.build.js && rollup --config rollup.config.js",
+    "watch": "rollup --watch --config rollup.config.js",
+    "generate-examples-index": "npm run generate-examples-index:timeline && npm run generate-examples-index:graph2d",
+    "generate-examples-index:timeline": "generate-examples-index --config generate-examples-index-timeline.json",
+    "generate-examples-index:graph2d": "generate-examples-index --config generate-examples-index-graph2d.json",
+    "style": "oxfmt --check .",
+    "style-fix": "oxfmt .",
+    "lint": "oxlint --report-unused-disable-directives-severity error .",
+    "lint-fix": "oxlint --report-unused-disable-directives-severity error --fix .",
+    "clean": "shx rm -rf \"{declarations,dist,esnext,peer,standalone,styles}/*\"",
+    "contributors:update": "git-authors-cli",
+    "preparepublish": "npm run contributors:update",
+    "prepublishOnly": "npm run contributors:update && npm run build",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-object-rest-spread": "7.20.7",
+    "@egjs/hammerjs": "2.0.17",
+    "component-emitter": "1.3.1",
+    "gh-pages": "6.3.0",
+    "git-authors-cli": "1.0.53",
+    "husky": "9.1.7",
+    "jsdoc": "3.6.11",
+    "jsdom": "30.0.0",
+    "jsdom-global": "3.0.2",
+    "keycharm": "0.4.0",
+    "lint-staged": "17.2.0",
+    "mocha": "11.7.6",
+    "moment": "2.30.1",
+    "nyc": "18.0.0",
+    "oxfmt": "0.61.0",
+    "oxlint": "1.76.0",
+    "oxlint-tsgolint": "7.0.2001",
+    "propagating-hammerjs": "3.0.0",
+    "semantic-release": "25.0.8",
+    "shx": "0.4.0",
+    "snap-shot-it": "7.9.10",
+    "uuid": "14.0.1",
+    "vis-data": "8.0.4",
+    "vis-dev-utils": "7.1.1",
+    "vis-util": "6.0.0",
+    "xss": "1.0.15"
+  },
+  "peerDependencies": {
+    "@egjs/hammerjs": "^2.0.0",
+    "component-emitter": "^1.3.0",
+    "keycharm": "^0.2.0 || ^0.3.0 || ^0.4.0",
+    "moment": "^2.24.0",
+    "propagating-hammerjs": "^1.4.0 || ^2.0.0 || ^3.0.0",
+    "uuid": "^3.4.0 || ^7.0.0 || ^8.0.0 || ^9.0.0 || ^10.0.0 || ^11.0.0 || ^13.0.0 || ^14.0.0",
+    "vis-data": ">=8.0.0",
+    "vis-util": ">=6.0.0",
+    "xss": "^1.0.0"
+  },
+  "lint-staged": {
+    "*.{js,ts,css,html,json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern",
+    "*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix",
+    ".*.{js,ts,css,html,json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern",
+    ".*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix"
+  },
+  "jsnext": "./esnext/esm/vis-timeline-graph2d.mjs"
 }
