@@ -1,24 +1,8 @@
 export const ignorePatterns: string[] = [
-  "/*/",
-
-  "!/dev-lib/",
-  "!/lib/",
-  "!/scripts/",
-  "!/src/",
-  "!/test/",
-  "!/types/",
-
-  "!/docs/",
-  "/docs/css/",
+  "*.min.css",
+  "/__snapshots__/",
   "/docs/js/",
-  "/docs/publish.js",
-
-  "!/examples/",
-  "/examples/graph2d-generated/",
-  "/examples/graph2d/examples.css",
-  "/examples/graph2d/index.html",
-  "/examples/timeline-generated/",
-  "/examples/timeline/examples.css",
-  "/examples/timeline/index.html",
+  "/docs/js/",
   "/examples/timeline/other/requirejs/scripts/require.js",
+  // Everything from gitignore is implicitly ignored.
 ];
