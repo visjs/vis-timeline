@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-07-31T05:42:47.447Z
+ * @date    2026-08-05T15:50:59.056Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -2108,18 +2108,6 @@ class Group {
       }
     };
 
-    // this function is used to do the binary search for items having start and end dates (range).
-    const endSearchFunction = (data) => {
-      const { start, end } = data;
-      if (end < lowerBound) {
-        return -1;
-      } else if (start <= upperBound) {
-        return 0;
-      } else {
-        return 1;
-      }
-    };
-
     // first check if the items that were in view previously are still in view.
     // IMPORTANT: this handles the case for the items with startdate before the window and enddate after the window!
     // also cleans up invisible items.
@@ -2151,33 +2139,13 @@ class Group {
       (item) => item.data.start < lowerBound || item.data.start > upperBound,
     );
 
-    // if the window has changed programmatically without overlapping the old window, the ranged items with start < lowerBound and end > upperbound are not shown.
-    // We therefore have to brute force check all items in the byEnd list
-    if (this.checkRangedItems == true) {
-      this.checkRangedItems = false;
-      for (let i = 0; i < orderedItems.byEnd.length; i++) {
-        this._checkIfVisibleWithReference(
-          orderedItems.byEnd[i],
-          visibleItems,
-          visibleItemsLookup,
-          range,
-        );
-      }
-    } else {
-      // we do a binary search for the items that have defined end times.
-      const initialPosByEnd = availableUtils.binarySearchCustom(
-        orderedItems.byEnd,
-        endSearchFunction,
-        "data",
-      );
-
-      // trace the visible items from the inital start pos both ways until an invisible item is found, we only look at the end values.
-      this._traceVisible(
-        initialPosByEnd,
-        orderedItems.byEnd,
+    // check every item with end date if is visible. Binary search would be the most efficient, but it would leave out items that start before the range and end after the range.
+    for (let i = 0; i < orderedItems.byEnd.length; i++) {
+      this._checkIfVisibleWithReference(
+        orderedItems.byEnd[i],
         visibleItems,
         visibleItemsLookup,
-        (item) => item.data.end < lowerBound || item.data.start > upperBound,
+        range,
       );
     }
 

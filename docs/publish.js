@@ -13,23 +13,22 @@
   helper.registerLink('global', globalUrl);
 
   ============================================================================== */
-'use strict';
+"use strict";
 //var taffy = require('taffydb').taffy;  // not really required here, left for reference
 
 // Internal modules of `jsdoc` are available here.
 // This is not the complete list, there may be more useful stuff in jsdoc
 // For all modules scan in: '/usr/lib/node_modules/jsdoc/lib/jsdoc/' (or similar on your system)
-var fs = require('jsdoc/fs');
-var path = require('jsdoc/path');
-var template = require('jsdoc/template');
-
+var fs = require("jsdoc/fs");
+var path = require("jsdoc/path");
+var template = require("jsdoc/template");
 
 /**
  * Set up the template rendering engine.
  */
 function createRenderer(fromDir, data) {
-  var renderer = new template.Template(fromDir);  // Param is the template source directory.
-                                                  // All template files are relative to this directory!
+  var renderer = new template.Template(fromDir); // Param is the template source directory.
+  // All template files are relative to this directory!
   /**
    * Example helper method
    * 
@@ -52,30 +51,30 @@ function createRenderer(fromDir, data) {
   /**
    * Retrieves jsdoc info for the passed instance method.
    */
-  renderer.getComment = function(methodName) {
-    var tmp = data().filter({longname: methodName}).get()[0];
+  renderer.getComment = function (methodName) {
+    var tmp = data().filter({ longname: methodName }).get()[0];
 
     if (tmp === undefined) {
-      throw new Error('Could not find jsdoc for: ' + methodName);
+      throw new Error("Could not find jsdoc for: " + methodName);
     }
 
     // NOTE: Following does not show up with `gulp docs`, need to do call directly
-	  // console.log(JSON.stringify(tmp, null, 2));
+    // console.log(JSON.stringify(tmp, null, 2));
 
     // Some restructuring, to adapt it to the docs layout
     // This needs some work to make it handle 0 and > 1 parameters
     var paramText = "";
     if (tmp.params !== undefined && tmp.params.length > 0) {
       let param = tmp.params[0];
-      let tmpText = param.type.names.join('|') + ' ' + param.name;
+      let tmpText = param.type.names.join("|") + " " + param.name;
       if (param.optional === true) {
-        tmpText = '[' + tmpText + ']';
+        tmpText = "[" + tmpText + "]";
       }
-      paramText = '<code>' + tmpText + '</code>';
+      paramText = "<code>" + tmpText + "</code>";
     }
-    var prototype = tmp.name + '(' + paramText + ')';
+    var prototype = tmp.name + "(" + paramText + ")";
 
-    var returns = 'none';
+    var returns = "none";
     if (tmp.returns !== undefined && tmp.returns.length > 0) {
       let name = tmp.returns[0].type.names[0];
       if (name !== "undefined") {
@@ -87,13 +86,12 @@ function createRenderer(fromDir, data) {
       name: tmp.name,
       prototype: prototype,
       returns: returns,
-      description: tmp.description
-    }
-	};
+      description: tmp.description,
+    };
+  };
 
   return renderer;
 }
-
 
 /**
   Entry point for the template.
@@ -102,9 +100,8 @@ function createRenderer(fromDir, data) {
 
     @param {TAFFY} taffyData See <http://taffydb.com/>.
     @param {object} opts
-    @param {Tutorial} tutorials
  */
-exports.publish = function(taffyData, opts, tutorials) {
+exports.publish = function (taffyData, opts) {
   //console.log(JSON.stringify(opts, null, 2));
 
   var fromDir = path.resolve(opts.template);
@@ -112,28 +109,28 @@ exports.publish = function(taffyData, opts, tutorials) {
   var renderer = createRenderer(fromDir, taffyData);
 
   var docFiles = fs.ls(fromDir, 3);
-  docFiles.forEach(function(fileName) {
+  docFiles.forEach(function (fileName) {
     // Template filenames need to be relative to template source dir
     var relName = path.relative(fromDir, fileName);
     var outFile = path.join(toDir, relName);
 
-    if (/publish.js$/.test(fileName)) return;   // Skip self
-    if (/README.md$/.test(fileName)) return;   // Skip own README
-    if (/\.tmpl$/.test(fileName)) return;       // Skip .tmpl files; these are used as partials only
+    if (/publish.js$/.test(fileName)) return; // Skip self
+    if (/README.md$/.test(fileName)) return; // Skip own README
+    if (fileName.endsWith(".tmpl")) return; // Skip .tmpl files; these are used as partials only
 
-    if (!/\.html$/.test(fileName)) {
+    if (!fileName.endsWith(".html")) {
       // Just plain copy over non-html files
       var tmpDir = fs.toDir(outFile);
       fs.mkPath(tmpDir);
       fs.copyFileSync(fileName, tmpDir);
       return;
     }
-   
-    // Render html files as templates 
+
+    // Render html files as templates
     //console.log(relName);
     var html = renderer.partial(relName, {});
     fs.mkPath(fs.toDir(outFile));
-    fs.writeFileSync(outFile, html, 'utf8');
+    fs.writeFileSync(outFile, html, "utf8");
   });
 
   //console.log(JSON.stringify(env, null, 2));
