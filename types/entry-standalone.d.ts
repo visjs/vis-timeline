@@ -6,7 +6,7 @@ export { util };
 
 import moment from "moment";
 export { moment };
-import Hammer from "hammerjs";
+import Hammer from "@egjs/hammerjs";
 export { Hammer };
 import keycharm from "keycharm";
 export { keycharm };
