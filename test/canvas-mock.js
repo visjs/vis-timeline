@@ -36,7 +36,7 @@ const mockify = (html = '') => {
   };
 
   // Using the global catch instead of specific event handler, because I couldn't get them to work
-	virtualConsole.sendTo(myConsole);
+	virtualConsole.forwardTo(myConsole);
 
   let cleanupFunction = jsdom_global(
     html,
