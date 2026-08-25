@@ -1,6 +1,6 @@
 import assert from "node:assert";
 
-import { stack } from "../lib/timeline/Stack.js";
+import { stack, substack } from "../lib/timeline/Stack.js";
 
 /**
  * Builds a minimal fake Item as expected by Stack.js: only the properties
@@ -13,10 +13,11 @@ import { stack } from "../lib/timeline/Stack.js";
  * @param {number|null} [options.top]
  * @returns {object} a fake Item
  */
-function makeItem({ left, width, height, top = null }) {
+function makeItem({ left, width, height, top = null, baseTop }) {
   return {
     stack: true,
     top,
+    baseTop,
     left,
     width,
     height,
@@ -126,6 +127,81 @@ describe("Stack", () => {
         0,
         "b is left overlapping a on screen, the vertical check never even runs for this pair",
       );
+    });
+  });
+
+  describe("substack() (used for items inside a stacked subgroup)", () => {
+    // Same idea as the plain stack() vertical-epsilon scenario above, but
+    // going through substack()/baseTop instead of stack()/margin.axis, since
+    // subgroups position their items independently of the main stack().
+    function verticalOverlapScenario(verticalEpsilon) {
+      const first = makeItem({
+        left: 0,
+        width: 100,
+        height: 10,
+        baseTop: 10,
+      });
+      const second = makeItem({
+        left: 0,
+        width: 100,
+        height: 10.5,
+        baseTop: 0,
+      });
+      const margin = {
+        item: { horizontal: 0, vertical: 0 },
+        epsilon: { horizontal: 0.001, vertical: verticalEpsilon },
+      };
+
+      substack([first, second], margin, { top: 0 });
+      return { first, second };
+    }
+
+    it("with the default tolerance, a genuine small overlap pushes the second item onto its own row", () => {
+      const { first, second } = verticalOverlapScenario(0.001);
+
+      assert.equal(first.top, 10);
+      assert.equal(second.top, 20);
+    });
+
+    it("with a larger tolerance, the same overlap is tolerated and the item keeps its baseTop", () => {
+      const { first, second } = verticalOverlapScenario(1);
+
+      assert.equal(first.top, 10);
+      assert.equal(second.top, 0);
+    });
+  });
+
+  describe("boundary semantics: collision requires a *strictly* larger overlap than epsilon", () => {
+    // Same fixture as the plain stack() vertical-epsilon scenario, but
+    // parameterized on the exact vertical overlap between `incoming` and
+    // `fixed`, to pin down the `>` vs `>=` boundary.
+    function withOverlap(overlap, verticalEpsilon) {
+      const fixed = makeItem({ left: 0, width: 100, height: 10, top: 10 });
+      const incoming = makeItem({
+        left: 0,
+        width: 100,
+        height: 10 + overlap,
+      });
+      const margin = {
+        item: { horizontal: 0, vertical: 0 },
+        axis: 0,
+        epsilon: { horizontal: 0.001, vertical: verticalEpsilon },
+      };
+
+      stack([fixed, incoming], margin, false, null);
+      return incoming.top;
+    }
+
+    it("an overlap smaller than epsilon is not a collision", () => {
+      assert.equal(withOverlap(0.4, 0.5), 0);
+    });
+
+    it("an overlap exactly equal to epsilon is not a collision (strict inequality)", () => {
+      assert.equal(withOverlap(0.5, 0.5), 0);
+    });
+
+    it("an overlap larger than epsilon is a collision", () => {
+      assert.equal(withOverlap(0.6, 0.5), 20);
     });
   });
 });

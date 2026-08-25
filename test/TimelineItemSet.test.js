@@ -173,5 +173,41 @@ describe("Timeline ItemSet", () => {
         vertical: 0.001,
       });
     });
+
+    it("two separate partial updates each stick, without resetting the other axis", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, {});
+      itemset.setOptions({ margin: { epsilon: { horizontal: 5 } } });
+      itemset.setOptions({ margin: { epsilon: { vertical: 9 } } });
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 5,
+        vertical: 9,
+      });
+    });
+
+    it("a number shorthand on setOptions() overrides both axes, even if previously customized", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, {
+        margin: { epsilon: { horizontal: 5, vertical: 9 } },
+      });
+      itemset.setOptions({ margin: { epsilon: 2 } });
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 2,
+        vertical: 2,
+      });
+    });
+
+    it("a plain number margin (legacy shorthand for axis/item spacing) does not touch epsilon", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, { margin: { epsilon: 3 } });
+      itemset.setOptions({ margin: 20 });
+      assert.equal(itemset.options.margin.axis, 20);
+      assert.equal(itemset.options.margin.item.horizontal, 20);
+      assert.equal(itemset.options.margin.item.vertical, 20);
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 3,
+        vertical: 3,
+      });
+    });
   });
 });
