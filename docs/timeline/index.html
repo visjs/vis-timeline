@@ -1129,6 +1129,39 @@ function groupOrderSwap(fromGroup: Object, toGroup: Object, groups: DataSet)</pr
           <td><code>10</code></td>
           <td>The minimal vertical margin in pixels between items.</td>
         </tr>
+        <tr parent="margin" class="hidden">
+          <td class="indent">margin.epsilon</td>
+          <td>number or Object</td>
+          <td><code>0.001</code></td>
+          <td>
+            Tolerance in pixels used when checking collisions during stacking,
+            to prevent round-off errors. Increase it if items that should be
+            considered touching or overlapping (for example due to sub-pixel
+            rounding) are instead stacked on separate rows; decrease it if items
+            that are genuinely distinct end up merged onto the same row. When a
+            number, applies the value to both
+            <code>margin.epsilon.horizontal</code> and
+            <code>margin.epsilon.vertical</code>.
+          </td>
+        </tr>
+        <tr parent="margin" class="hidden">
+          <td class="indent2">margin.epsilon.horizontal</td>
+          <td>number</td>
+          <td><code>0.001</code></td>
+          <td>
+            Tolerance in pixels used for horizontal (start/end, or left/right)
+            collision checks.
+          </td>
+        </tr>
+        <tr parent="margin" class="hidden">
+          <td class="indent2">margin.epsilon.vertical</td>
+          <td>number</td>
+          <td><code>0.001</code></td>
+          <td>
+            Tolerance in pixels used for the vertical (top/height) collision
+            check that decides whether items are pushed onto separate rows.
+          </td>
+        </tr>
 
         <tr>
           <td>max</td>
