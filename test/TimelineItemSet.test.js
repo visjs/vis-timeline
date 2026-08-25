@@ -133,4 +133,45 @@ describe("Timeline ItemSet", () => {
     assert.equal(itemset.getItems().length, 2);
     assert.deepEqual(itemset.getItems(), internals.testitems);
   });
+
+  describe("margin.epsilon option", () => {
+    it("defaults to 0.001 for both horizontal and vertical", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, {});
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 0.001,
+        vertical: 0.001,
+      });
+    });
+
+    it("accepts a plain number, applying it to both axes", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, { margin: { epsilon: 1 } });
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 1,
+        vertical: 1,
+      });
+    });
+
+    it("accepts a partial object, leaving the other axis at its default", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, {
+        margin: { epsilon: { vertical: 1 } },
+      });
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 0.001,
+        vertical: 1,
+      });
+    });
+
+    it("can be updated via setOptions() after construction", () => {
+      const body = getBasicBody();
+      const itemset = new ItemSet(body, {});
+      itemset.setOptions({ margin: { epsilon: { horizontal: 2 } } });
+      assert.deepEqual(itemset.options.margin.epsilon, {
+        horizontal: 2,
+        vertical: 0.001,
+      });
+    });
+  });
 });
