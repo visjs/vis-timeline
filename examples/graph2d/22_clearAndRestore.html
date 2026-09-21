@@ -1,0 +1,64 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Clear and restore points</title>
+    <link
+      href="../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Graph2d | Clear and restore points</h2>
+    <p>
+      This example uses the ES module build. Clear and restore the points to
+      update both axes while retaining the groups.
+    </p>
+    <p>
+      <button id="clear-points" type="button">Clear points</button>
+      <button id="restore-points" type="button">Restore points</button>
+    </p>
+    <div id="visualization"></div>
+    <script type="module">
+      import {
+        DataSet,
+        Graph2d,
+      } from "../../standalone/esm/vis-timeline-graph2d.mjs";
+
+      const points = [
+        { id: 1, x: "2014-06-12", y: 5, group: "left" },
+        { id: 2, x: "2014-06-13", y: 20, group: "left" },
+        { id: 3, x: "2014-06-14", y: 10, group: "left" },
+        { id: 4, x: "2014-06-12", y: 100, group: "right" },
+        { id: 5, x: "2014-06-13", y: 300, group: "right" },
+        { id: 6, x: "2014-06-14", y: 200, group: "right" },
+      ];
+      const dataset = new DataSet(points);
+      const groups = [
+        { id: "left", content: "Left axis" },
+        {
+          id: "right",
+          content: "Right axis",
+          options: { yAxisOrientation: "right" },
+        },
+      ];
+      new Graph2d(document.getElementById("visualization"), dataset, groups, {
+        start: "2014-06-11",
+        end: "2014-06-15",
+        height: "400px",
+      });
+
+      document.getElementById("clear-points").onclick = () => dataset.clear();
+      document.getElementById("restore-points").onclick = () => {
+        dataset.clear();
+        dataset.add(points);
+      };
+    </script>
+  </body>
+</html>
