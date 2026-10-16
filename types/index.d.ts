@@ -219,9 +219,20 @@ export interface TimelineMarginItem {
 
 export type TimelineMarginItemType = number | TimelineMarginItem;
 
+export interface TimelineMarginEpsilon {
+  /** Tolerance used for horizontal (start/end, or left/right) collision checks. Defaults to 0.001. */
+  horizontal?: number;
+  /** Tolerance used for the vertical (top/height) collision check that decides whether items are pushed onto separate rows. Defaults to 0.001. */
+  vertical?: number;
+}
+
+export type TimelineMarginEpsilonType = number | TimelineMarginEpsilon;
+
 export interface TimelineMarginOption {
   axis?: number;
   item?: TimelineMarginItemType;
+  /** Tolerance used when checking collisions during stacking, to prevent round-off errors. Defaults to 0.001 for both horizontal and vertical. */
+  epsilon?: TimelineMarginEpsilonType;
 }
 
 export interface TimelineOrientationOption {
