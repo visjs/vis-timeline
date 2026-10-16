@@ -65,4 +65,18 @@ describe("Timeline", () => {
     assert(selectedIds.length === 1);
     assert(dataSet.get(selectedIds[0]).fooid === 2);
   });
+
+  it("focuses point items when an optional end is undefined or null", () => {
+    const timeline = new Timeline(document.createElement("div"), []);
+    const items = new DataSet([
+      { id: 1, start: new Date("2021-07-21T00:00:00Z"), end: undefined },
+      { id: 2, start: new Date("2021-07-22T00:00:00Z"), end: null },
+    ]);
+    timeline.setItems(items);
+
+    assert.doesNotThrow(() => timeline.focus([1, 2], { animation: false }));
+    const window = timeline.getWindow();
+    assert(window.start <= items.get(1).start);
+    assert(window.end >= items.get(2).start);
+  });
 });
