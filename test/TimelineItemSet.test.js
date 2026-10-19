@@ -133,4 +133,26 @@ describe("Timeline ItemSet", () => {
     assert.equal(itemset.getItems().length, 2);
     assert.deepEqual(itemset.getItems(), internals.testitems);
   });
+
+  describe("adding items in the visible range", () => {
+    const addInRange = (options) => {
+      const body = getBasicBody();
+      body.range = internals.testrange;
+      body.util.toScreen = () => 0;
+      const itemset = new ItemSet(body, options);
+      itemset.setItems(internals.testitems);
+      return itemset;
+    };
+
+    it("should show the item right away without clustering", () => {
+      const itemset = addInRange({});
+      assert.equal(itemset.items[1].displayed, true);
+    });
+
+    it("should leave showing to the redraw with clustering", () => {
+      // Showing on add renders and measures each item before it is clustered.
+      const itemset = addInRange({ cluster: { maxItems: 1 } });
+      assert.equal(itemset.items[1].displayed, false);
+    });
+  });
 });
