@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-08-22T14:48:28.292Z
+ * @date    2026-10-25T13:34:44.881Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -10411,7 +10411,9 @@ class ItemSet extends Component {
     this.hammer.on("panstart", this._onDragStart.bind(this));
     this.hammer.on("panmove", this._onDrag.bind(this));
     this.hammer.on("panend", this._onDragEnd.bind(this));
-    this.hammer.get("pan").set({ threshold: 5, direction: modifiedHammer.ALL });
+    this.hammer
+      .get("pan")
+      .set({ threshold: 5, direction: modifiedHammer.DIRECTION_ALL });
     // delay addition on item click for trackpads...
     this.hammer.get("press").set({ time: 10000 });
 
@@ -14401,7 +14403,7 @@ LineGraph.prototype._updateYAxis = function (groupIds, groupRanges) {
     }
 
     // if there are items:
-    for (i = 0; i < groupIds.length; i++) {
+    for (let i = 0; i < groupIds.length; i++) {
       if (
         !Object.prototype.hasOwnProperty.call(groupRanges, groupIds[i]) ||
         groupRanges[groupIds[i]].ignore === true
@@ -14463,7 +14465,7 @@ LineGraph.prototype._updateYAxis = function (groupIds, groupRanges) {
     "__lineStackLeft",
     "__lineStackRight",
   ];
-  for (i = 0; i < tempGroups.length; i++) {
+  for (let i = 0; i < tempGroups.length; i++) {
     if (groupIds.indexOf(tempGroups[i]) != -1) {
       groupIds.splice(groupIds.indexOf(tempGroups[i]), 1);
     }
