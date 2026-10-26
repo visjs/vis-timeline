@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-10-25T13:34:44.881Z
+ * @date    2026-10-26T17:05:06.215Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -29947,7 +29947,11 @@ class Group {
       this._addToSubgroup(item);
       this.orderSubgroups();
     }
-    if (!_includesInstanceProperty(_context23 = this.visibleItems).call(_context23, item)) {
+
+    // With clustering, the redraw that follows decides visibility: showing here
+    // renders and measures each item before it is clustered (one forced layout per item).
+    const deferToRedraw = this.itemSet.options.cluster && !item.isCluster;
+    if (!deferToRedraw && !_includesInstanceProperty(_context23 = this.visibleItems).call(_context23, item)) {
       const range = this.itemSet.body.range; // TODO: not nice accessing the range like this
       this._checkIfVisible(item, this.visibleItems, range);
     }
