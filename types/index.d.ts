@@ -24,7 +24,7 @@ export type DataSetDataItem = DataSet<DataItem, "id">;
 export type DataViewDataGroup = DataView<DataGroup, "id">;
 export type DataViewDataItem = DataView<DataItem, "id">;
 
-import { MomentInput, MomentFormatSpecification, Moment } from "moment";
+import { Moment, MomentFormatSpecification, MomentInput } from "moment";
 import { IFilterXSSOptions } from "xss";
 export type MomentConstructor1 = (
   inp?: MomentInput,
