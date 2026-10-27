@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-10-27T05:45:05.403Z
+ * @date    2026-10-27T09:17:38.360Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -27787,6 +27787,13 @@
 		    ) {
 		      return "";
 		    }
+		  } else if (name === "action" || name === "formaction") {
+		    // Only allow HTTP(S) or relative form URLs; the href/src data:image/ exception does not apply.
+		    // A relative URL's first segment cannot contain a colon; colons in queries and fragments are not schemes.
+		    value = _.trim(value);
+		    if (!/^https?:\/\//i.test(value) && /^[^/?#]*:/.test(value)) {
+		      return "";
+		    }
 		  } else if (name === "background") {
 		    // filter `background` attribute (maybe no use)
 		    // `javascript:`
@@ -28383,7 +28390,9 @@
 		function shallowCopyObject(obj) {
 		  var ret = {};
 		  for (var i in obj) {
-		    ret[i] = obj[i];
+		    if (Object.prototype.hasOwnProperty.call(obj, i)) {
+		      ret[i] = obj[i];
+		    }
 		  }
 		  return ret;
 		}
@@ -28391,12 +28400,14 @@
 		function keysToLowerCase(obj) {
 		  var ret = {};
 		  for (var i in obj) {
-		    if (Array.isArray(obj[i])) {
-		      ret[i.toLowerCase()] = obj[i].map(function (item) {
-		        return item.toLowerCase();
-		      });
-		    } else {
-		      ret[i.toLowerCase()] = obj[i];
+		    if (Object.prototype.hasOwnProperty.call(obj, i)) {
+		      if (Array.isArray(obj[i])) {
+		        ret[i.toLowerCase()] = obj[i].map(function (item) {
+		          return item.toLowerCase();
+		        });
+		      } else {
+		        ret[i.toLowerCase()] = obj[i];
+		      }
 		    }
 		  }
 		  return ret;
@@ -28414,34 +28425,35 @@
 		function FilterXSS(options) {
 		  options = shallowCopyObject(options || {});
 
-		  if (options.stripIgnoreTag) {
-		    if (options.onIgnoreTag) {
+		  if (Object.prototype.hasOwnProperty.call(options, 'stripIgnoreTag') && options.stripIgnoreTag) {
+		    if (Object.prototype.hasOwnProperty.call(options, 'onIgnoreTag') && options.onIgnoreTag) {
 		      console.error(
 		        'Notes: cannot use these two options "stripIgnoreTag" and "onIgnoreTag" at the same time'
 		      );
 		    }
 		    options.onIgnoreTag = DEFAULT.onIgnoreTagStripAll;
 		  }
-		  if (options.whiteList || options.allowList) {
-		    options.whiteList = keysToLowerCase(options.whiteList || options.allowList);
+		  if (Object.prototype.hasOwnProperty.call(options, 'whiteList') || Object.prototype.hasOwnProperty.call(options, 'allowList')) {
+		    const wl = Object.prototype.hasOwnProperty.call(options, 'whiteList') ? options.whiteList : options.allowList;
+		    options.whiteList = keysToLowerCase(wl);
 		  } else {
 		    options.whiteList = DEFAULT.whiteList;
 		  }
 
-		  this.attributeWrapSign = options.singleQuotedAttributeValue === true ? "'" : DEFAULT.attributeWrapSign;
+		  this.attributeWrapSign = Object.prototype.hasOwnProperty.call(options, 'singleQuotedAttributeValue') && options.singleQuotedAttributeValue === true ? "'" : DEFAULT.attributeWrapSign;
 
-		  options.onTag = options.onTag || DEFAULT.onTag;
-		  options.onTagAttr = options.onTagAttr || DEFAULT.onTagAttr;
-		  options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
-		  options.onIgnoreTagAttr = options.onIgnoreTagAttr || DEFAULT.onIgnoreTagAttr;
-		  options.safeAttrValue = options.safeAttrValue || DEFAULT.safeAttrValue;
-		  options.escapeHtml = options.escapeHtml || DEFAULT.escapeHtml;
+		  options.onTag = Object.prototype.hasOwnProperty.call(options, 'onTag') ? options.onTag : DEFAULT.onTag;
+		  options.onTagAttr = Object.prototype.hasOwnProperty.call(options, 'onTagAttr') ? options.onTagAttr : DEFAULT.onTagAttr;
+		  options.onIgnoreTag = Object.prototype.hasOwnProperty.call(options, 'onIgnoreTag') ? options.onIgnoreTag : DEFAULT.onIgnoreTag;
+		  options.onIgnoreTagAttr = Object.prototype.hasOwnProperty.call(options, 'onIgnoreTagAttr') ? options.onIgnoreTagAttr : DEFAULT.onIgnoreTagAttr;
+		  options.safeAttrValue = Object.prototype.hasOwnProperty.call(options, 'safeAttrValue') ? options.safeAttrValue : DEFAULT.safeAttrValue;
+		  options.escapeHtml = Object.prototype.hasOwnProperty.call(options, 'escapeHtml') ? options.escapeHtml : DEFAULT.escapeHtml;
 		  this.options = options;
 
-		  if (options.css === false) {
+		  if (Object.prototype.hasOwnProperty.call(options, 'css') && options.css === false) {
 		    this.cssFilter = false;
 		  } else {
-		    options.css = options.css || {};
+		    options.css = Object.prototype.hasOwnProperty.call(options, 'css') ? options.css : {};
 		    this.cssFilter = new FilterCSS(options.css);
 		  }
 		}
@@ -28589,16 +28601,83 @@
 			  return xss.process(html);
 			}
 
+			/**
+			 * Filter XSS and return both the sanitized HTML and a list of removed elements.
+			 * Addresses feature request: https://github.com/leizongmin/js-xss/issues/284
+			 *
+			 * @param {String} html    - dirty HTML string to sanitize
+			 * @param {Object} options - same options as filterXSS()
+			 * @return {Object} { html: String, removed: Array }
+			 *
+			 * Each item in `removed` is one of:
+			 *   { type: "tag",  tag: "script", html: "<script>",  isClosing: false }
+			 *   { type: "attr", tag: "a",      attr: "onclick",   value: "evil()" }
+			 */
+			function filterXSSWithResult(html, options) {
+			  var removed = [];
+
+			  // Copy options so we don't mutate the caller's object
+			  var opts = {};
+			  if (options) {
+			    for (var key in options) {
+			      opts[key] = options[key];
+			    }
+			  }
+
+			  // Save any hooks the user may have already provided
+			  var originalOnIgnoreTag = opts.onIgnoreTag;
+			  var originalOnIgnoreTagAttr = opts.onIgnoreTagAttr;
+
+			  // Override onIgnoreTag to record removed tags
+			  opts.onIgnoreTag = function (tag, tagHtml, tagOptions) {
+			    removed.push({
+			      type: "tag",
+			      tag: tag,
+			      html: tagHtml,
+			      isClosing: !!(tagOptions && tagOptions.isClosing),
+			    });
+			    // Still call the user's original hook if they had one
+			    if (originalOnIgnoreTag) {
+			      return originalOnIgnoreTag(tag, tagHtml, tagOptions);
+			    }
+			  };
+
+			  // Override onIgnoreTagAttr to record removed attributes
+			  opts.onIgnoreTagAttr = function (tag, name, value, isWhiteAttr) {
+			    removed.push({
+			      type: "attr",
+			      tag: tag,
+			      attr: name,
+			      value: value,
+			    });
+			    // Still call the user's original hook if they had one
+			    if (originalOnIgnoreTagAttr) {
+			      return originalOnIgnoreTagAttr(tag, name, value, isWhiteAttr);
+			    }
+			  };
+
+			  var cleanHtml = filterXSS(html, opts);
+
+			  return {
+			    html: cleanHtml,
+			    removed: removed,
+			  };
+			}
 			exports = module.exports = filterXSS;
 			exports.filterXSS = filterXSS;
+			exports.filterXSSWithResult = filterXSSWithResult;
 			exports.FilterXSS = FilterXSS;
 
 			(function () {
 			  for (var i in DEFAULT) {
-			    exports[i] = DEFAULT[i];
+			    if (Object.prototype.hasOwnProperty.call(DEFAULT, i)) {
+			      exports[i] = DEFAULT[i];
+			    }
 			  }
 			  for (var j in parser) {
-			    exports[j] = parser[j];
+			    if (Object.prototype.hasOwnProperty.call(parser, j)) {
+			      exports[j] = parser[j];
+			    }
 			  }
 			})();
 
