@@ -433,7 +433,7 @@
     "vis-data": "8.0.5",
     "vis-dev-utils": "7.1.1",
     "vis-util": "6.0.2",
-    "xss": "1.0.16"
+    "xss": "1.0.17"
   },
   "peerDependencies": {
     "@egjs/hammerjs": "^2.0.0",
