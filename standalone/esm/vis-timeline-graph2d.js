@@ -5,7 +5,7 @@
  * Create a fully customizable, interactive timeline with items and ranges.
  *
  * @version 0.0.0-no-version
- * @date    2026-10-27T22:12:40.526Z
+ * @date    2026-10-28T01:53:37.058Z
  *
  * @copyright (c) 2011-2017 Almende B.V, http://almende.com
  * @copyright (c) 2017-2019 visjs contributors, https://github.com/visjs
@@ -28666,6 +28666,44 @@ function requireXss () {
 	}
 
 	/**
+	 * Use a caller-supplied function only when it is an own property.
+	 * `undefined` and other non-functions fall back to the default.
+	 * Do not read the option with ||: a missing own property would still
+	 * resolve to a polluted Object.prototype.
+	 *
+	 * @param {Object} options
+	 * @param {String} key
+	 * @param {Function} fallback
+	 * @return {Function}
+	 */
+	function ownFunction(options, key, fallback) {
+	  if (Object.prototype.hasOwnProperty.call(options, key) && typeof options[key] === 'function') {
+	    return options[key];
+	  }
+	  return fallback;
+	}
+
+	/**
+	 * Read an own option when the caller actually provided a value.
+	 * null and undefined mean "not set". An own object, including {}, is explicit.
+	 * Do not read the option with ||: a missing own property would still
+	 * resolve to a polluted Object.prototype.
+	 *
+	 * @param {Object} options
+	 * @param {String} key
+	 * @return {*}
+	 */
+	function ownProvided(options, key) {
+	  if (!Object.prototype.hasOwnProperty.call(options, key)) {
+	    return;
+	  }
+	  if (options[key] === undefined || options[key] === null) {
+	    return;
+	  }
+	  return options[key];
+	}
+
+	/**
 	 * FilterXSS class
 	 *
 	 * @param {Object} options
@@ -28685,21 +28723,24 @@ function requireXss () {
 	    }
 	    options.onIgnoreTag = DEFAULT.onIgnoreTagStripAll;
 	  }
-	  if (Object.prototype.hasOwnProperty.call(options, 'whiteList') || Object.prototype.hasOwnProperty.call(options, 'allowList')) {
-	    const wl = Object.prototype.hasOwnProperty.call(options, 'whiteList') ? options.whiteList : options.allowList;
-	    options.whiteList = keysToLowerCase(wl);
-	  } else {
+	  var wl = ownProvided(options, 'whiteList');
+	  if (wl === undefined) {
+	    wl = ownProvided(options, 'allowList');
+	  }
+	  if (wl === undefined) {
 	    options.whiteList = DEFAULT.whiteList;
+	  } else {
+	    options.whiteList = keysToLowerCase(wl);
 	  }
 
 	  this.attributeWrapSign = Object.prototype.hasOwnProperty.call(options, 'singleQuotedAttributeValue') && options.singleQuotedAttributeValue === true ? "'" : DEFAULT.attributeWrapSign;
 
-	  options.onTag = Object.prototype.hasOwnProperty.call(options, 'onTag') ? options.onTag : DEFAULT.onTag;
-	  options.onTagAttr = Object.prototype.hasOwnProperty.call(options, 'onTagAttr') ? options.onTagAttr : DEFAULT.onTagAttr;
-	  options.onIgnoreTag = Object.prototype.hasOwnProperty.call(options, 'onIgnoreTag') ? options.onIgnoreTag : DEFAULT.onIgnoreTag;
-	  options.onIgnoreTagAttr = Object.prototype.hasOwnProperty.call(options, 'onIgnoreTagAttr') ? options.onIgnoreTagAttr : DEFAULT.onIgnoreTagAttr;
-	  options.safeAttrValue = Object.prototype.hasOwnProperty.call(options, 'safeAttrValue') ? options.safeAttrValue : DEFAULT.safeAttrValue;
-	  options.escapeHtml = Object.prototype.hasOwnProperty.call(options, 'escapeHtml') ? options.escapeHtml : DEFAULT.escapeHtml;
+	  options.onTag = ownFunction(options, 'onTag', DEFAULT.onTag);
+	  options.onTagAttr = ownFunction(options, 'onTagAttr', DEFAULT.onTagAttr);
+	  options.onIgnoreTag = ownFunction(options, 'onIgnoreTag', DEFAULT.onIgnoreTag);
+	  options.onIgnoreTagAttr = ownFunction(options, 'onIgnoreTagAttr', DEFAULT.onIgnoreTagAttr);
+	  options.safeAttrValue = ownFunction(options, 'safeAttrValue', DEFAULT.safeAttrValue);
+	  options.escapeHtml = ownFunction(options, 'escapeHtml', DEFAULT.escapeHtml);
 	  this.options = options;
 
 	  if (Object.prototype.hasOwnProperty.call(options, 'css') && options.css === false) {
@@ -28868,11 +28909,15 @@ function requireLib () {
 		function filterXSSWithResult(html, options) {
 		  var removed = [];
 
-		  // Copy options so we don't mutate the caller's object
+		  // Copy own properties only so the caller's object is not mutated.
+		  // for...in would also copy polluted prototype fields and turn them
+		  // into own properties, which FilterXSS would then trust.
 		  var opts = {};
 		  if (options) {
 		    for (var key in options) {
-		      opts[key] = options[key];
+		      if (Object.prototype.hasOwnProperty.call(options, key)) {
+		        opts[key] = options[key];
+		      }
 		    }
 		  }
 
