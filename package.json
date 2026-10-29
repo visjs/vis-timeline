@@ -452,5 +452,9 @@
     ".*.{js,ts,css,html,json,md,yml,yaml}": "oxfmt --no-error-on-unmatched-pattern",
     ".*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix"
   },
+  "allowScripts": {
+    "core-js-pure": false,
+    "puppeteer": false
+  },
   "jsnext": "./esnext/esm/vis-timeline-graph2d.mjs"
 }
