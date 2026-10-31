@@ -432,7 +432,7 @@
     "uuid": "14.0.3",
     "vis-data": "8.0.6",
     "vis-dev-utils": "7.2.0",
-    "vis-util": "6.0.2",
+    "vis-util": "6.0.3",
     "xss": "1.0.17"
   },
   "peerDependencies": {
