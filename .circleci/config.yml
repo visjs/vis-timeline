@@ -53,8 +53,6 @@ jobs:
       - attach_workspace:
           at: ..
 
-      - run: npx puppeteer browsers install chrome
-
       - run: npm run generate-examples-index
 
       - persist_to_workspace:

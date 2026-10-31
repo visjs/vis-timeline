@@ -453,8 +453,7 @@
     ".*.{js,ts}": "oxlint --no-error-on-unmatched-pattern --report-unused-disable-directives-severity error --fix"
   },
   "allowScripts": {
-    "core-js-pure": false,
-    "puppeteer": false
+    "puppeteer": true
   },
   "jsnext": "./esnext/esm/vis-timeline-graph2d.mjs"
 }
