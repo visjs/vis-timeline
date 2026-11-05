@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Timeline | Fixed millisecond steps</title>
+    <script src="../../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <link
+      href="../../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <style>
+      body {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <p>
+      A fixed 3500 millisecond step keeps ticks 3.5 seconds apart, even when
+      crossing a second boundary. Labels show seconds and milliseconds so the
+      interval is visible.
+    </p>
+    <div id="visualization"></div>
+    <script>
+      var start = new Date("2026-01-01T00:00:00.000Z");
+      var items = new vis.DataSet(
+        [0, 3500, 7000, 10500].map(function (offset, index) {
+          return {
+            id: index,
+            content: offset / 1000 + " seconds",
+            start: new Date(start.valueOf() + offset),
+          };
+        }),
+      );
+      var timeline = new vis.Timeline(
+        document.getElementById("visualization"),
+        items,
+        {
+          start: start,
+          end: new Date(start.valueOf() + 14000),
+          timeAxis: { scale: "millisecond", step: 3500 },
+          format: { minorLabels: { millisecond: "ss.SSS" } },
+          showMajorLabels: false,
+          showCurrentTime: false,
+          moveable: false,
+          zoomable: false,
+        },
+      );
+    </script>
+  </body>
+</html>
