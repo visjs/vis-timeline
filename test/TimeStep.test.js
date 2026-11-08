@@ -16,6 +16,42 @@ describe("TimeStep", () => {
     internals.jsdom_global();
   });
 
+  for (const step of [250, 350, 1500, 3500]) {
+    it(`should preserve explicit ${step} millisecond steps across seconds`, () => {
+      const start = new Date("2026-01-01T00:00:00.000Z");
+      const timestep = new TimeStep(start, new Date(start.valueOf() + 60000));
+      timestep.setScale({ scale: "millisecond", step });
+      timestep.start();
+
+      for (let i = 0; i < 8; i++) {
+        const previous = timestep.getCurrent().valueOf();
+        timestep.next();
+        assert.equal(timestep.getCurrent().valueOf() - previous, step);
+      }
+    });
+  }
+
+  for (const step of [1, 5, 10, 50, 100, 200]) {
+    it(`should preserve automatic ${step} millisecond steps across seconds`, () => {
+      const start = new Date("2026-01-01T00:00:00.000Z");
+      const timestep = new TimeStep(
+        start,
+        new Date(start.valueOf() + 60000),
+        step / 2,
+      );
+      assert.equal(timestep.autoScale, true);
+      assert.equal(timestep.scale, "millisecond");
+      assert.equal(timestep.step, step);
+      timestep.start();
+
+      for (let i = 0; i <= 1000 / step; i++) {
+        const previous = timestep.getCurrent().valueOf();
+        timestep.next();
+        assert.equal(timestep.getCurrent().valueOf() - previous, step);
+      }
+    });
+  }
+
   it("should work with just start and end dates", () => {
     const timestep = new TimeStep(new Date(2017, 3, 3), new Date(2017, 3, 5));
     assert.equal(
