@@ -1710,7 +1710,13 @@ var options = {
           <td>
             Set a fixed step size for the time axis. Only applicable when used
             together with <code>timeAxis.scale</code>. Choose for example 1, 2,
-            5, or 10.
+            5, or 10. With <code>timeAxis.scale: 'millisecond'</code>, an
+            explicit step is preserved across second boundaries, including
+            values such as 3500 (3.5 seconds). Hidden dates can still cause the
+            axis to skip an interval. See the
+            <a href="../../examples/timeline/other/fixedMillisecondSteps.html"
+              >fixed millisecond steps example</a
+            >.
           </td>
         </tr>
 
