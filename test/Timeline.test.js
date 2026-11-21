@@ -65,4 +65,17 @@ describe("Timeline", () => {
     assert(selectedIds.length === 1);
     assert(dataSet.get(selectedIds[0]).fooid === 2);
   });
+
+  it("should remove the className of a group when it is cleared", function () {
+    const groups = new DataSet([
+      { id: 1, content: "Group 1", className: "highlighted" },
+    ]);
+    const timeline = new Timeline(document.createElement("div"), [], groups);
+    const label = timeline.itemSet.groups[1].dom.label;
+    assert(label.classList.contains("highlighted"));
+
+    groups.update({ id: 1, className: "" });
+
+    assert(!label.classList.contains("highlighted"));
+  });
 });
