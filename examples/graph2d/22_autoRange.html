@@ -1,0 +1,70 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Graph2d | Automatic ranges on both axes</title>
+    <link
+      href="../../styles/vis-timeline-graph2d.min.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="../../standalone/umd/vis-timeline-graph2d.min.js"></script>
+    <style type="text/css">
+      body,
+      html {
+        font-family: sans-serif;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Graph2d | Automatic ranges on both axes</h2>
+    <p>
+      These charts use <code>dataAxis.alignZeros: false</code> and automatic
+      ranges. The temperature peak and trough should remain visible while both
+      axes share the same grid lines.
+    </p>
+    <h3>Positive peak: temperature reaches 17</h3>
+    <div id="visualization"></div>
+    <h3>Negative trough: temperature reaches -20</h3>
+    <div id="trough"></div>
+
+    <script type="text/javascript">
+      function drawGraph(container, pressure, temperature) {
+        var groups = new vis.DataSet([
+          { id: "pressure", content: "Pressure (left)" },
+          {
+            id: "temperature",
+            content: "Temperature (right)",
+            options: { yAxisOrientation: "right" },
+          },
+        ]);
+        var dates = ["2014-06-12", "2014-06-13", "2014-06-14"];
+        var items = [];
+        dates.forEach(function (date, index) {
+          items.push({ x: date, y: pressure[index], group: "pressure" });
+          items.push({ x: date, y: temperature[index], group: "temperature" });
+        });
+        return new vis.Graph2d(container, new vis.DataSet(items), groups, {
+          graphHeight: "350px",
+          locale: "en",
+          dataAxis: { alignZeros: false },
+          interpolation: false,
+          legend: true,
+          start: "2014-06-11",
+          end: "2014-06-15",
+        });
+      }
+
+      var peak = drawGraph(
+        document.getElementById("visualization"),
+        [8.8, 10.2, 8.8],
+        [2, 17, 2],
+      );
+      var trough = drawGraph(
+        document.getElementById("trough"),
+        [7.4, 8.5, 7.4],
+        [19, -20, 19],
+      );
+    </script>
+  </body>
+</html>
