@@ -4,6 +4,28 @@
 
 The Timeline/Graph2D is an interactive visualization chart to visualize data in time. The data items can take place on a single date, or have a start and end date (a range). You can freely move and zoom in the timeline by dragging and scrolling in the Timeline. Items can be created, edited, and deleted in the timeline. The time scale on the axis is adjusted automatically, and supports scales ranging from milliseconds to years.
 
+## Table of Contents
+
+- [Badges](#badges)
+- [Install](#install)
+- [Example](#example)
+- [Options](#options)
+- [Selectors](#selectors)
+  - [Custom CSS](#custom-css)
+  - [Grid Styling](#grid-styling)
+- [Builds](#builds)
+  - [Standalone build](#standalone-build)
+  - [Peer build](#peer-build)
+  - [ESNext build](#esnext-build)
+  - [Legacy build](#legacy-build)
+- [Build](#build)
+  - [Excluding external dependencies](#excluding-external-dependencies)
+- [Test](#test)
+- [Contribute](#contribute)
+  - [Backers](#backers)
+  - [Sponsors](#sponsors)
+- [License](#license)
+
 ## Badges
 
 [![GitHub contributors](https://img.shields.io/github/contributors/visjs/vis-timeline.svg)](https://github.com/visjs/vis-timeline/graphs/contributors)
@@ -21,10 +43,10 @@ Install via npm:
 
 A basic example on loading a Timeline is shown below. More examples can be
 found in the [examples directory](https://github.com/visjs/vis-timeline/tree/master/examples/)
-of the project.
+of the project. You can view demos of the examples [here](https://visjs.github.io/vis-timeline/examples/timeline/).
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
     <title>Timeline</title>
@@ -71,6 +93,88 @@ of the project.
 </html>
 ```
 
+## Options
+
+| Property    | Type                                                                                     | Default                         | Description                                                                                                                                                                                                                       | Examples and Demos                                                                                                                                                                                         |
+| ----------- | ---------------------------------------------------------------------------------------- | ------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **STYLING** |                                                                                          |                                 |                                                                                                                                                                                                                                   |
+| rtl         | _boolean_                                                                                | false                           | Right-to-left option for rtl languages, e.g. Arabic.                                                                                                                                                                              |
+| orientation | _{axis:<br>"both"\|"bottom" \| "none" \| "top",<br>item: "top" \| "bottom"}_             | {axis:"bottom", item: "bottom"} | There are a number of orientation options for the time axis and the items.                                                                                                                                                        | [Example](https://github.com/visjs/vis-timeline/blob/master/examples/timeline/styling/axisOrientation.html) \| [Demo](https://visjs.github.io/vis-timeline/examples/timeline/styling/axisOrientation.html) |
+| **EDITING** |                                                                                          |                                 |                                                                                                                                                                                                                                   |
+| editable    | _boolean \| {add: boolean, updateTime: boolean, updateGroup: boolean, remove: boolean }_ | false                           | An editable timeline allows to drag items around, create new items, and remove items. Changes are logged in the browser console.                                                                                                  |                                                                                                                                                                                                            |
+| multiselect | _boolean_                                                                                | false                           | **Editable** option is required.<br><br>Allow selecting multiple items using ctrl+click, shift+click, or hold.                                                                                                                    |
+| snap        | _function(date: Date, scale: string, step: number) \| null_                              | null                            | **Editable** option is required.<br><br>Snap function controls timeline item alignment:<br>- Returns modified Date object<br>- Called when items are moved<br>- Affects time unit snapping<br>- Set to _null_ to disable snapping | See [Snap Example](#snap-example) for implementation                                                                                                                                                       |
+
+## Selectors
+
+### Custom CSS
+
+[Demo](https://visjs.github.io/vis-timeline/examples/timeline/styling/customCss.html) \| [Example](https://github.com/visjs/vis-timeline/blob/master/examples/timeline/styling/customCss.html)
+
+The style of the Timeline can be fully customized via CSS.
+
+![Custom CSS](docs/img/customCss.png)
+
+Below are some of the selectors to customize the timeline.
+
+```css
+.vis-timeline {
+}
+.vis-item {
+}
+
+.vis-item.vis-line {
+}
+.vis-item.vis-dot {
+}
+
+.vis-item.vis-selected {
+}
+
+.vis-time-axis .vis-text {
+}
+.vis-time-axis .vis-text.vis-major {
+}
+.vis-time-axis .vis-text.vis-minor {
+}
+
+.vis-time-axis .vis-grid.vis-minor {
+}
+.vis-time-axis .vis-grid.vis-major {
+}
+```
+
+You can use html snippets to embed images within items. Check content in the example below:
+
+```javascript
+var items = new vis.DataSet([
+  /* Other items */
+  {
+    start: new Date(2010, 7, 23, 23, 0, 0),
+    content:
+      '<div>Mail from boss</div><img src="../resources/img/mail-icon.png" style="width:32px; height:32px;">',
+  },
+]);
+```
+
+### Grid Styling
+
+[Demo](https://visjs.github.io/vis-timeline/examples/timeline/styling/gridStyling.html) \| [Example](https://github.com/visjs/vis-timeline/blob/master/examples/timeline/styling/gridStyling.html)
+
+```css
+.vis-time-axis .vis-grid.vis-odd {
+  /* Used for alternating column styles by selecting the odd (alternatively, you can use `even` ) columns in the current view */
+}
+
+.vis-time-axis .vis-grid.vis-saturday {
+  /* Can be used to customize the column style of any day, Saturday in this example  */
+}
+
+.vis-time-axis .vis-text.vis-saturday {
+  /* Can be used to customize the text style of any day, Saturday in this example */
+}
+```
+
 ## Builds
 
 There are four builds provided at the moment.
@@ -82,7 +186,7 @@ There are four builds provided at the moment.
   type="text/javascript"
   src="https://unpkg.com/vis-timeline@latest/standalone/umd/vis-timeline-graph2d.min.js"
 ></script>
-```
+````
 
 ```javascript
 import { Timeline } from "vis-timeline/standalone";
