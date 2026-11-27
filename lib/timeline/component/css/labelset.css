@@ -38,5 +38,5 @@
 }
 
 .vis-labelset .vis-label .vis-inner.vis-hidden {
-  padding: 0;
+  padding: 1px;
 }
