@@ -65,4 +65,32 @@ describe("Timeline", () => {
     assert(selectedIds.length === 1);
     assert(dataSet.get(selectedIds[0]).fooid === 2);
   });
+
+  it("should not apply weekend classes to major grid lines on the first of the month", function () {
+    const container = document.createElement("div");
+    const timeline = new Timeline(container, [], {
+      start: new Date(2021, 11, 31),
+      end: new Date(2022, 0, 5),
+      timeAxis: { scale: "day", step: 1 },
+    });
+    timeline.timeAxis.body.domProps.center.width = 600;
+    timeline.timeAxis._repaintLabels();
+
+    const lines = timeline.timeAxis.dom.lines;
+    const majorWeekendLines = lines.filter(
+      (line) =>
+        line.classList.contains("vis-major") &&
+        (line.classList.contains("vis-saturday") ||
+          line.classList.contains("vis-sunday")),
+    );
+    assert.strictEqual(majorWeekendLines.length, 0);
+
+    const minorSaturdayLines = lines.filter(
+      (line) =>
+        line.classList.contains("vis-minor") &&
+        line.classList.contains("vis-saturday"),
+    );
+    assert(minorSaturdayLines.length > 0);
+    timeline.destroy();
+  });
 });
